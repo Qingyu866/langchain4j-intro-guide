@@ -32,77 +32,93 @@
 </head>
 <body class="bg-white text-gray-800 antialiased">
     <div class="flex min-h-screen">
-        <aside class="w-[280px] fixed left-0 top-0 h-full bg-white border-r border-gray-200 overflow-y-auto z-50">
-            <a href="index.html" class="flex items-center gap-3 mb-8 text-gray-900 no-underline">
-                <div class="w-9 h-9 bg-indigo-600 rounded-lg flex items-center justify-center text-white text-xl">⚡</div>
-                <span class="font-bold text-xl">LangChain4j</span>
-            </a>
+        <aside class="w-[280px] fixed h-screen bg-white border-r border-gray-200 overflow-y-auto pb-8">
+  <div class="p-6">
+    <div class="flex items-center gap-3 mb-8">
+      <div class="w-10 h-10 bg-indigo-600 rounded-lg flex items-center justify-center">
+        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+        </svg>
+      </div>
+      <div>
+        <h1 class="font-bold text-gray-900">LangChain4j</h1>
+        <p class="text-xs text-gray-500">入门指南</p>
+      </div>
+    </div>
 
-            <div class="mb-8">
-                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">入门</div>
-                <ul class="list-none">
-                    <li><a href="index.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">首页</a></li>
-                    <li><a href="getting-started.html" class="block bg-primary-50 text-indigo-700 no-underline py-2 px-3 text-sm rounded-md font-medium">快速入门</a></li>
-                    <li><a href="core-concepts.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">核心概念</a></li>
-                </ul>
-            </div>
+    <div class="space-y-6">
+      <div>
+        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">快速开始</h3>
+        <ul class="space-y-1">
+          <li><a href="index.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all text-center" data-page="index">概览</a></li>
+          <li><a href="getting-started.html" data-page="getting\-started" class="nav-link bg-indigo-50 text-indigo-700 font-medium block px-4 py-2\.5 rounded-md transition-all text-center">环境准备</a></li>
+          <li><a href="core-concepts.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all text-center" data-page="core-concepts">核心概念</a></li>
+        </ul>
+      </div>
 
-            <div class="mb-8">
-                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">核心功能</div>
-                <ul class="list-none">
-                    <li><a href="embedding-models.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">嵌入模型</a></li>
-                    <li><a href="prompt-templates.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">提示模板</a></li>
-                    <li><a href="output-parsers.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">输出解析</a></li>
-                    <li><a href="function-calling-deep.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">函数调用</a></li>
-                    <li><a href="advanced-features.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">高级特性</a></li>
-                    <li><a href="multimodal-full.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">多模态处理</a></li>
-                </ul>
-            </div>
+      <div>
+        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">核心功能</h3>
+        <ul class="space-y-1">
+          <li><a href="embedding-models.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all text-center" data-page="embedding-models">Embedding 模型</a></li>
+          <li><a href="prompt-templates.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all text-center" data-page="prompt-templates">Prompt 模板</a></li>
+          <li><a href="output-parsers.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all text-center" data-page="output-parsers">输出解析</a></li>
+          <li><a href="model-providers.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all text-center" data-page="model-providers">模型提供商</a></li>
+          <li><a href="function-calling.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all text-center" data-page="function-calling">函数调用</a></li>
+          <li><a href="advanced-features.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all text-center" data-page="advanced-features">高级特性</a></li>
+          <li><a href="multimodal.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all text-center" data-page="multimodal">多模态</a></li>
+        </ul>
+      </div>
 
-            <div class="mb-8">
-                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">RAG 完整指南</div>
-                <ul class="list-none">
-                    <li><a href="rag-complete.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">RAG 完整指南</a></li>
-                    <li><a href="project-rag-kb.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">RAG 知识库项目</a></li>
-                </ul>
-            </div>
+      <div>
+        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">RAG 完整指南</h3>
+        <ul class="space-y-1">
+          <li><a href="rag-intro.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all text-center" data-page="rag-intro">RAG 简介</a></li>
+          <li><a href="rag-setup.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all text-center" data-page="rag-setup">RAG 环境搭建</a></li>
+          <li><a href="rag-implementation.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all text-center" data-page="rag-implementation">RAG 实现</a></li>
+          <li><a href="rag-advanced.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all text-center" data-page="rag-advanced">RAG 高级</a></li>
+        </ul>
+      </div>
 
-            <div class="mb-8">
-                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">项目实战</div>
-                <ul class="list-none">
-                    <li><a href="project-ai-assistant.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">AI 助手项目</a></li>
-                    <li><a href="project-chatbot.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">聊天机器人项目</a></li>
-                </ul>
-            </div>
+      <div>
+        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">项目实战</h3>
+        <ul class="space-y-1">
+          <li><a href="practice.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all text-center" data-page="practice">综合实战</a></li>
+        </ul>
+      </div>
 
-            <div class="mb-8">
-                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">深入与最佳实践</div>
-                <ul class="list-none">
-                    <li><a href="best-practices.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">最佳实践</a></li>
-                    <li><a href="examples.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">代码示例</a></li>
-                    <li><a href="integrations.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">框架集成</a></li>
-                    <li><a href="testing-strategies.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">测试策略</a></li>
-                    <li><a href="performance-tuning.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">性能调优</a></li>
-                    <li><a href="deep-dive.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">深度解析</a></li>
-                    <li><a href="error-handling.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">错误处理</a></li>
-                    <li><a href="moderation-safety.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">内容审核与安全</a></li>
-                    <li><a href="troubleshooting.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">故障排查</a></li>
-                </ul>
-            </div>
+      <div>
+        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">最佳实践</h3>
+        <ul class="space-y-1">
+          <li><a href="best-practices.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all text-center" data-page="best-practices">最佳实践</a></li>
+          <li><a href="testing.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all text-center" data-page="testing">测试策略</a></li>
+          <li><a href="performance.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all text-center" data-page="performance">性能优化</a></li>
+          <li><a href="deep-dive.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all text-center" data-page="deep-dive">深度解析</a></li>
+          <li><a href="error-handling.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all text-center" data-page="error-handling">错误处理</a></li>
+          <li><a href="moderation.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all text-center" data-page="moderation">内容审核</a></li>
+          <li><a href="troubleshooting.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all text-center" data-page="troubleshooting">故障排查</a></li>
+        </ul>
+      </div>
 
-            <div class="mb-8">
-                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">高级主题</div>
-                <ul class="list-none">
-                    <li><a href="interview-prep.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">面试准备</a></li>
-                    <li><a href="practice.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">实战练习</a></li>
-                    <li><a href="search.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">搜索功能</a></li>
-                    <li><a href="chat-listeners.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">聊天监听器</a></li>
-                    <li><a href="faq.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">常见问题</a></li>
-                    <li><a href="cost-optimization.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">成本优化</a></li>
-                    <li><a href="deployment.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">部署与运维</a></li>
-                </ul>
-            </div>
-        </aside>
+      <div>
+        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">面试准备</h3>
+        <ul class="space-y-1">
+          <li><a href="interview.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all text-center" data-page="interview">面试准备</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">其他</h3>
+        <ul class="space-y-1">
+          <li><a href="search.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all text-center" data-page="search">向量搜索</a></li>
+          <li><a href="chat-listeners.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all text-center" data-page="chat-listeners">监听器</a></li>
+          <li><a href="faq.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all text-center" data-page="faq">常见问题</a></li>
+          <li><a href="cost-optimization.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all text-center" data-page="cost-optimization">成本优化</a></li>
+          <li><a href="deployment.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all text-center" data-page="deployment">部署上线</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</aside>
 
         <main class="flex-1 ml-[280px]">
             <div class="max-w-7xl mx-auto px-8 py-12">
