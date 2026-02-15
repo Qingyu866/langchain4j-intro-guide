@@ -7,13 +7,32 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            200: '#c7d2fe',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
 </head>
 <body class="bg-white text-gray-800 antialiased">
     <div class="flex min-h-screen">
-        
-
-
-<aside class="w-[280px] fixed h-screen bg-white border-r border-gray-200 overflow-y-auto pb-8">
+        <aside class="w-[280px] fixed h-screen bg-white border-r border-gray-200 overflow-y-auto pb-8">
   <div class="p-6">
     <div class="flex items-center gap-3 mb-8">
       <div class="w-10 h-10 bg-indigo-600 rounded-lg flex items-center justify-center">
@@ -50,12 +69,12 @@
         </ul>
       </div>
 
-       <div>
+      <div>
         <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">RAG 完整指南</h3>
         <ul class="space-y-1">
           <li><a href="rag-intro.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all text-center" data-page="rag-intro">RAG 简介</a></li>
           <li><a href="rag-setup.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all text-center" data-page="rag-setup">RAG 环境搭建</a></li>
-          <li><a href="rag-implementation.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all text-center" data-page="rag-implementation">RAG 实现</a></li>
+          <li><a href="rag-implementation.html" class="nav-link bg-indigo-50 text-indigo-700 font-medium block px-4 py-2.5 rounded-md transition-all text-center" data-page="rag-implementation">RAG 实现</a></li>
           <li><a href="rag-advanced.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all text-center" data-page="rag-advanced">RAG 高级</a></li>
         </ul>
       </div>
@@ -105,113 +124,983 @@
     </div>
   </div>
 </aside>
-<!-- class="block px-4 py-2.5 text-sm bg-indigo-50 text-indigo-700 font-medium rounded-md transition-all text-center" -->
-<!-- class="block px-4 py-2.5 text-sm bg-indigo-50 text-indigo-700 font-medium rounded-md transition-all text-center" -->
-<!-- class="block px-4 py-2.5 text-sm bg-indigo-50 text-indigo-700 font-medium rounded-md transition-all text-center" -->
-
 
         <main class="flex-1 ml-[280px] px-8 py-12 max-w-7xl mx-auto">
             <section class="mb-12">
-                <h1 class="text-4xl font-bold text-gray-900 mb-8 leading-tight">RAG实现</h1>
-                <p class="text-lg text-gray-600 max-w-3xl mb-10 leading-relaxed">
-                    实现RAG的核心功能，包括文档加载、分块、检索等。
+                <div class="flex items-center gap-3 mb-8 text-sm">
+                    <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-medium">RAG</span>
+                    <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-medium">完整实现</span>
+                    <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-medium">~45分钟</span>
+                </div>
+
+                <h1 class="text-5xl font-bold text-gray-900 mb-6">RAG实现</h1>
+                <p class="text-xl text-gray-600 mb-8 leading-relaxed max-w-4xl">
+                    深入学习RAG系统的完整实现，掌握从文档加载到AI生成的完整流水线。
                 </p>
-            </section>
 
-            <section class="mb-12">
-                <h2 class="text-2xl font-semibold text-gray-900 mb-6 pb-3 border-b border-gray-200">什么是RAG？</h2>
-                <div class="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-lg p-6 mb-6">
-                    <p class="text-gray-700 mb-4">
-                        <strong>检索增强生成（Retrieval-Augmented Generation，RAG）</strong>是一种技术，
-                        通过在将用户问题发送给LLM之前，先从外部数据源检索相关信息，然后将这些信息注入到提示词中。
-                        这样可以让LLM访问它训练数据之外的私有、实时或特定领域的知识。
-                    </p>
-                </div>
-
-                <div class="bg-white rounded-lg shadow-md p-6 mb-6 border border-gray-200">
-                    <h4 class="font-semibold text-gray-900 mb-4 text-xl">RAG工作流程</h4>
-                    <ol class="space-y-3 text-gray-600 ml-6">
-                        <li><strong>1. 文档摄入（Ingestion）</strong> - 加载原始文档，进行清理、分块、生成Embedding</li>
-                        <li><strong>2. 向量存储</strong> - 将Embedding存储到向量数据库中</li>
-                        <li><strong>3. 检索（Retrieval）</strong> - 用户提问时，将问题也转为Embedding，检索相关文档</li>
-                        <li><strong>4. 增强（Augmentation）</strong> - 将检索到的文档和问题一起组装成提示词</li>
-                        <li><strong>5. 生成（Generation）</strong> - LLM基于增强的提示词生成回答</li>
-                    </ol>
-                </div>
-
-                <p class="text-gray-600">
-                    RAG解决了传统LLM的几个关键问题：
-                </p>
-                <ul class="list-none space-y-2 text-gray-600 ml-6">
-                    <li class="flex items-start gap-2">
-                        <span class="text-indigo-600">✓</span>
-                        <span><strong>知识截止</strong> - 可以访问训练数据之外的信息</span>
-                    </li>
-                    <li class="flex items-start gap-2">
-                        <span class="text-indigo-600">✓</span>
-                        <span><strong>幻觉</strong> - 基于检索的事实减少胡编乱造</span>
-                    </li>
-                    <li class="flex items-start gap-2">
-                        <span class="text-indigo-600">✓</span>
-                        <span><strong>领域知识</strong> - 可以访问企业内部文档、特定领域知识</span>
-                    </li>
-                    <li class="flex items-start gap-2">
-                        <span class="text-indigo-600">✓</span>
-                        <span><strong>数据隐私</strong> - 私有数据可以本地存储，无需上传到公有云</span>
-                    </li>
-                </ul>
-            </section>
-
-            <section class="mb-12">
-                <h2 class="text-2xl font-semibold text-gray-900 mb-6 pb-3 border-b border-gray-200">为什么需要RAG？</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                    <div class="bg-white border border-gray-200 rounded-xl p-6">
-                        <h4 class="text-lg font-semibold text-gray-900 mb-3">传统LLM的局限</h4>
-                        <ul class="space-y-2 text-gray-600 text-sm">
-                            <li>• 知识截止到训练时间</li>
-                            <li>• 无法访问私有数据</li>
-                            <li>• 容易产生幻觉</li>
-                            <li>• 缺乏领域特定知识</li>
-                        </ul>
-                    </div>
-                    <div class="bg-white border border-gray-200 rounded-xl p-6">
-                        <h4 class="text-lg font-semibold text-gray-900 mb-3">RAG的优势</h4>
-                        <ul class="space-y-2 text-gray-600 text-sm">
-                            <li>• 实时访问外部知识</li>
-                            <li>• 支持私有数据源</li>
-                            <li>• 基于事实减少幻觉</li>
-                            <li>• 可扩展领域知识库</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 mb-6">
-                    <h3 class="text-lg font-semibold text-gray-900 mb-3">典型应用场景</h3>
-                    <ul class="list-none space-y-2 text-gray-600">
-                        <li class="flex items-start gap-2">
-                            <span class="text-indigo-600">📚</span>
-                            <span>企业知识库问答 - 基于公司文档回答问题</span>
+                <div class="bg-gray-50 rounded-lg p-6 mb-10">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">📚 本章学习目标</h2>
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex items-start gap-3">
+                            <span class="text-green-600 text-2xl font-bold">✓</span>
+                            <span class="flex-1"><strong class="text-gray-900">掌握文档加载器的使用方法</strong></span>
                         </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-indigo-600">📖</span>
-                            <span>技术文档助手 - 基于产品文档提供支持</span>
+                        <li class="flex items-start gap-3">
+                            <span class="text-green-600 text-2xl font-bold">✓</span>
+                            <span class="flex-1"><strong class="text-gray-900">理解文本分块策略和最佳实践</strong></span>
                         </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-indigo-600">🔍</span>
-                            <span>研究助手 - 基于论文库进行文献检索</span>
+                        <li class="flex items-start gap-3">
+                            <span class="text-green-600 text-2xl font-bold">✓</span>
+                            <span class="flex-1"><strong class="text-gray-900">实现Embedding生成和存储</strong></span>
                         </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-indigo-600">💼</span>
-                            <span>法律文档分析 - 基于法律条文和案例提供咨询</span>
+                        <li class="flex items-start gap-3">
+                            <span class="text-green-600 text-2xl font-bold">✓</span>
+                            <span class="flex-1"><strong class="text-gray-900">构建检索器和相似度计算</strong></span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-green-600 text-2xl font-bold">✓</span>
+                            <span class="flex-1"><strong class="text-gray-900">实现上下文注入和Prompt构建</strong></span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-green-600 text-2xl font-bold">✓</span>
+                            <span class="flex-1"><strong class="text-gray-900">创建完整的RAG Pipeline</strong></span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-green-600 text-2xl font-bold">✓</span>
+                            <span class="flex-1"><strong class="text-gray-900">使用LangChain4j API和AiServices</strong></span>
                         </li>
                     </ul>
+                </div>
+            </section>
+
+            <section id="architecture-overview" class="mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                    <span class="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center text-indigo-600">1</span>
+                    RAG架构概览
+                </h2>
+
+                <div class="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg p-6 mb-6">
+                    <p class="text-gray-700 text-lg leading-relaxed mb-4">
+                        在深入代码实现之前，先理解RAG系统的整体架构，各组件如何协作。
+                    </p>
+                    <div class="space-y-6">
+                        <div class="flex items-center gap-4">
+                            <div class="w-16 h-16 rounded-full bg-white shadow-md flex items-center justify-center text-2xl font-bold text-gray-900 flex-shrink-0">1</div>
+                            <div class="flex-1">
+                                <p class="text-base text-gray-700"><strong>文档摄入层</strong></p>
+                                <p class="text-sm text-gray-600 mt-1">DocumentLoader加载 → TextSplitter分块 → EmbeddingModel向量化 → EmbeddingStore存储</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-16 h-16 rounded-full bg-white shadow-md flex items-center justify-center text-2xl font-bold text-gray-900 flex-shrink-0">2</div>
+                            <div class="flex-1">
+                                <p class="text-base text-gray-700"><strong>检索层</strong></p>
+                                <p class="text-sm text-gray-600 mt-1">查询转为Embedding → VectorStore检索 → ContentRetriever返回Top-N结果</p>
+                            <p class="text-sm text-gray-600 mt-1">优化：缓存、并行、重排序</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-16 h-16 rounded-full bg-white shadow-md flex items-center justify-center text-2xl font-bold text-gray-900 flex-shrink-0">3</div>
+                            <div class="flex-1">
+                                <p class="text-base text-gray-700"><strong>生成层</strong></p>
+                                <p class="text-sm text-gray-600 mt-1">检索结果注入Prompt → ChatLanguageModel生成回答 → 返回给用户</p>
+                                <p class="text-sm text-gray-600 mt-1">优化：流式输出、Token管理</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-blue-50 border-l-4 border-blue-500 p-5 rounded-r-lg">
+                    <h4 class="font-bold text-blue-900 mb-2">💡 关键设计决策</h4>
+                    <ul class="space-y-2 text-blue-800 text-sm">
+                        <li>• <strong>分块大小</strong>：固定大小（512/1024/2048 tokens）或语义分块</li>
+                        <li>• <strong>检索数量</strong>：Top-K策略，通常返回3-5个最相关结果</li>
+                        <li>• <strong>向量维度</strong>：OpenAI text-embedding-3-small: 1536维，平衡性能和精度</li>
+                        <li>• <strong>上下文管理</strong>：控制总Token数，避免超出LLM上下文限制</li>
+                        <li>• <strong>延迟优化</strong>：使用流式检索，边检索边生成</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="document-loading" class="mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                    <span class="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center text-indigo-600">2</span>
+                    文档加载（Document Loading）
+                </h2>
+
+                <p class="text-gray-600 mb-6">
+                    DocumentLoader是RAG流程的第一步，负责从各种数据源加载原始文档。
+                </p>
+
+                <div class="bg-white rounded-lg shadow-md p-6 mb-6 border border-gray-200">
+                    <h3 class="text-lg font-bold text-gray-900 mb-4">支持的文档格式</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="bg-gray-50 border border-gray-200 rounded-lg p-4 text-center">
+                            <div class="text-3xl mb-3">📄</div>
+                            <p class="text-sm text-gray-600">文件系统</p>
+                        </div>
+                        <div class="bg-gray-50 border border-gray-200 rounded-lg p-4 text-center">
+                            <div class="text-3xl mb-3">📡</div>
+                            <p class="text-sm text-gray-600">云存储</p>
+                        </div>
+                        <div class="bg-gray-50 border border-gray-200 rounded-lg p-4 text-center">
+                            <div class="text-3xl mb-3">🌐</div>
+                            <p class="text-sm text-gray-600">网络爬虫</p>
+                        </div>
+                        <div class="bg-gray-50 border border-gray-200 rounded-lg p-4 text-center">
+                            <div class="text-3xl mb-3">🔗</div>
+                            <p class="text-sm text-gray-600">代码库</p>
+                        </div>
+                        <div class="bg-gray-50 border border-gray-200 rounded-lg p-4 text-center">
+                            <div class="text-3xl mb-3">🌐</div>
+                            <p class="text-sm text-gray-600">URL源</p>
+                        </div>
+                        <div class="bg-gray-50 border border-gray-200 rounded-lg p-4 text-center">
+                            <div class="text-3xl mb-3">📦</div>
+                            <p class="text-sm text-gray-600">Classpath</p>
+                        </div>
+                    </div>
+                </div>
+
+                    <div class="bg-green-50 border-l-4 border-green-500 p-5 rounded-r-lg">
+                        <h4 class="font-bold text-green-900 mb-2">💡 核心接口</h4>
+                        <p class="text-green-800 text-sm">所有DocumentLoader都实现统一的接口：</p>
+                        <pre class="text-green-900 rounded-lg p-4 text-sm font-mono"><code>public interface DocumentLoader {
+    List&lt;Document&gt; load(String source);
+}</code></pre>
+                    </div>
+                </div>
+
+                <div class="bg-gray-900 rounded-lg p-5 mb-4 overflow-x-auto">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-mono text-gray-400 uppercase">FileSystemDocumentLoader.java</span>
+                        <span class="text-xs text-gray-500">文件系统加载器</span>
+                    </div>
+                    <pre class="text-gray-100 text-sm font-mono"><code>import dev.langchain4j.data.document.Document;
+import dev.langchain4j.data.document.DocumentLoader;
+import dev.langchain4j.data.document.loader.FileSystemDocumentLoader;
+
+public class DocumentLoadingExample {
+    public static void main(String[] args) throws Exception {
+        // 1. 创建文件系统加载器
+        DocumentLoader loader = FileSystemDocumentLoader.builder()
+                .build();
+
+        // 2. 加载单个文件
+        List&lt;Document&gt; singleDoc = loader.load("documents/manual.pdf");
+
+        // 3. 加载整个目录
+        List&lt;Document&gt; allDocs = loader.load("documents/");
+
+        // 4. 加载多个文件
+        List&lt;Document&gt; multiDocs = loader.load(
+            "docs/intro.pdf",
+            "docs/guide.pdf",
+            "docs/api.pdf"
+        );
+
+        System.out.println("=== 文档加载示例 ===");
+        System.out.println("单文件: " + singleDoc.size() + " 个文档");
+        System.out.println("目录: " + allDocs.size() + " 个文档");
+        System.out.println("多文件: " + multiDocs.size() + " 个文档");
+    }
+}</code></pre>
+                </div>
+
+                <div class="bg-blue-50 border-l-4 border-blue-500 p-5 rounded-r-lg">
+                    <h4 class="font-bold text-blue-900 mb-2">🔑 加载器配置选项</h4>
+                    <p class="text-blue-800 text-sm mb-3">DocumentLoader支持丰富的配置选项：</p>
+                    <ul class="space-y-2 text-blue-800 text-sm">
+                        <li>• <strong>编码检测</strong>：自动识别文件编码（UTF-8、GBK等）</li>
+                        <li>• <strong>分批加载</strong>：大文件分批加载，避免内存溢出</li>
+                        <li>• <strong>递归目录</strong>：递归加载整个目录树</li>
+                        <li>• <strong>元数据提取</strong>：从文件名、路径、大小等提取信息</li>
+                    </ul>
+                </div>
+
+                <div class="bg-yellow-50 border border border-yellow-200 rounded-lg p-5 mt-4">
+                    <h4 class="font-bold text-yellow-900 mb-2">⚠️ 注意事项</h4>
+                    <ul class="space-y-2 text-yellow-800 text-sm">
+                        <li>• <strong>文件大小限制</strong>：单个文件不宜过大，建议分块处理</li>
+                        <li>• <strong>内存管理</strong>：加载大量文档时注意内存使用，可以流式处理</li>
+                        <li>• <strong>权限检查</strong>：确保有文件读取权限</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="text-splitting" class="mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                    <span class="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center text-indigo-600">3</span>
+                    文本分块（Text Splitting）
+                </h2>
+
+                <p class="text-gray-600 mb-6">
+                    文档分块是RAG系统的关键步骤，直接影响检索质量。
+                    合理的分块策略能让检索更精准、上下文更连贯。
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <div class="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow">
+                        <h4 class="font-bold text-gray-900 mb-3">📏 固定大小分块</h4>
+                        <p class="text-gray-600 text-sm mb-2">按照固定的Token数量切分</p>
+                        <div class="bg-gray-900 rounded-lg p-5 mb-4 overflow-x-auto">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-xs font-mono text-gray-400 uppercase">DocumentByLineSplitter.java</span>
+                                <span class="text-xs text-gray-500">行级分块</span>
+                            </div>
+                            <pre class="text-gray-100 text-sm font-mono"><code>import dev.langchain4j.data.document.DocumentSplitter;
+import dev.langchain4j.data.document.splitter.DocumentByLineSplitter;
+import dev.lang4j.data.segment.TextSegment;
+import dev.langchain4j.model.embedding.EmbeddingModel;
+
+public class FixedSizeSplitterExample {
+    private static final int MAX_TOKENS_PER_CHUNK = 500;
+
+    public static void main(String[] args) {
+        // 1. 创建行级分块器
+        DocumentSplitter splitter = DocumentByLineSplitter.builder()
+                .maxSegmentSize(MAX_TOKENS_PER_CHUNK)
+                .maxOverlapSize(50)  // 允许50 tokens重叠
+                .build();
+
+        // 2. 加载文档
+        DocumentLoader loader = FileSystemDocumentLoader.builder().build();
+        List&lt;Document&gt; documents = loader.load("documents/manual.pdf");
+
+        // 3. 分块处理
+        List&lt;TextSegment&gt; segments = splitter.split(documents.get(0));
+
+        System.out.println("=== 固定大小分块示例 ===");
+        System.out.println("原始文档: " + documents.get(0).text().length() + " 个字符");
+        System.out.println("分块数量: " + segments.size() + " 个片段");
+        System.out.println("每段约: " + MAX_TOKENS_PER_CHUNK + " tokens");
+        
+        // 打印前3个片段
+        for (int i = 0; i &lt; Math.min(3, segments.size()); i++) {
+            System.out.println("\n--- 片段 " + (i+1) + " ---");
+            System.out.println("内容: " + segments.get(i).text());
+            System.out.println("长度: " + segments.get(i).text().length());
+        }
+    }
+}</code></pre>
+                        </div>
+                        <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-lg">
+                            <h4 class="font-bold text-blue-900 mb-2">💡 最佳实践</h4>
+                            <ul class="space-y-2 text-blue-800 text-sm">
+                                <li>• <strong>Token数量</strong>：通常使用512、1024或2048</li>
+                                <li>• <strong>重叠大小</strong>：50-200 tokens重叠保证语义完整性</li>
+                                <li>• <strong>段落边界</strong>优先在段落换行处切分</li>
+                                <li>• <strong>代码文件</strong>：编程文件可在函数或类边界处切分</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow">
+                        <h4 class="font-bold text-gray-900 mb-3">🚫 缺点与改进</h4>
+                        <ul class="space-y-2 text-gray-600 text-sm">
+                            <li>• <strong>语义破坏</strong>：固定大小可能在句子中间切分</li>
+                            <li>• <strong>上下文缺失</strong>：太小分块可能导致重要信息丢失</li>
+                            <li>• <strong>冗余存储</strong>：更多小块增加存储和检索时间</li>
+                        </ul>
+                    </div>
+                    </div>
+
+                    <div class="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow">
+                        <h4 class="font-bold text-gray-900 mb-3">📊 评估指标</h4>
+                        <p class="text-gray-600 text-sm mb-2">如何评估分块效果？</p>
+                        <ul class="space-y-2 text-gray-600 text-sm">
+                            <li>• <strong>检索准确率</strong>：分块后检索相关内容的召回率</li>
+                            <li>• <strong>回答质量</strong>：上下文完整性的影响</li>
+                            <li>• <strong>Token效率</strong>：分块大小的Token利用率</li>
+                        </ul>
+                    </div>
+                </div>
+
+                    <div class="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow">
+                        <h4 class="font-bold text-gray-900 mb-3">🔧 混合策略</h4>
+                        <p class="text-gray-600 text-sm mb-2">
+                            可以将不同分块策略结合使用，取长补短：
+                        </p>
+                        <ul class="space-y-2 text-gray-600 text-sm">
+                            <li>• <strong>大文档</strong>：段落+固定大小混合</li>
+                            <li>• <strong>代码文件</strong>：函数/类边界+递归</li>
+                            <li>• <strong>小文档</strong>：纯语义分块</li>
+                            <li>• <strong>动态调整</strong>：根据检索效果动态调整</li>
+                        </ul>
+                    </div>
+                </div>
+
+                    <div class="bg-indigo-50 border-l-4 border-indigo-500 p-5 rounded-r-lg">
+                        <h4 class="font-bold text-indigo-900 mb-2">🏗️ LangChain4j分块器</h4>
+                        <p class="text-indigo-800 text-base">
+                            LangChain4j提供多种分块器，可组合使用达到最佳效果。
+                        </p>
+                        <div class="space-y-3 text-indigo-800 text-sm">
+                            <p><strong>DocumentByParagraphSplitter</strong>：按段落分块，适合长文本文档</p>
+                            <p><strong>DocumentByLineSplitter</strong>：按行固定大小，适合代码文件</p>
+                            <p><strong>DocumentByCharacterSplitter</strong>：按字符数固定大小，最灵活</p>
+                            <p><strong>DocumentByRecursiveCharacterSplitter</strong>：递归分块，适合结构化内容</p>
+                            <p><strong>DocumentByRecursiveCharacterSplitter</strong>：递归到指定层级</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="embedding-generation" class="mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                    <span class="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center text-indigo-600">4</span>
+                    Embedding生成（Embedding Generation）
+                </h2>
+
+                <p class="text-gray-600 mb-6">
+                    将文本分块转换为向量表示，使计算机能够计算语义相似度。
+                </p>
+
+                <div class="bg-white rounded-lg shadow-md p-6 mb-6 border border-gray-200">
+                    <h3 class="text-lg font-bold text-gray-900 mb-4">Embedding模型选择</h3>
+                    <div class="space-y-3 text-gray-600 text-sm">
+                        <p class="mb-2">
+                            OpenAI提供多种Embedding模型，选择合适模型很重要：
+                        </p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+                                <div class="text-2xl mb-3">text-3xl font-bold">text-embedding-3-small</div>
+                                <p class="text-sm text-gray-600 mb-2"><strong>特点</strong>：性能高，速度快</p>
+                                <p class="text-sm text-gray-600 mb-2"><strong>维度</strong>：1536维</p>
+                                <p class="text-sm text-gray-600 mb-2"><strong>成本</strong>：$0.0001 / 1K tokens</p>
+                                <p class="text-sm text-gray-600 mb-2"><strong>适用</strong>：通用场景，性价比高</p>
+                            </div>
+                            <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+                                <div class="text-2xl mb-3">text-embedding-ada-002</div>
+                                <p class="text-sm text-gray-600 mb-2"><strong>特点</strong>：精度更高，语义理解更强</p>
+                                <p class="text-sm text-gray-600 mb-2"><strong>维度</strong>：3072维</p>
+                                <p class="text-sm text-gray-600 mb-2"><strong>成本</strong>：$0.0001 / 1K tokens</p>
+                                <p class="text-sm text-gray-600 mb-2"><strong>适用</strong>：需要更高精度的场景</p>
+                            </div>
+                            <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+                                <div class="text-2xl mb-3">text-embedding-babbage-002</div>
+                                <p class="text-sm text-gray-600 mb-2"><strong>特点</strong>：性能优异，适合中英文混合</p>
+                                <p class="text-sm text-gray-600 mb-2"><strong>维度</strong>：3072维</p>
+                                <p class="text-sm text-gray-600 mb-2"><strong>成本</strong>：$0.0002 / 1K tokens</p>
+                                <p class="text-sm text-gray-600 mb-2"><strong>适用</strong>：双语或代码混合场景</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                    <div class="bg-gray-900 rounded-lg p-5 mb-4 overflow-x-auto">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-mono text-gray-400 uppercase">EmbeddingGeneration.java</span>
+                            <span class="text-xs text-gray-500">生成示例</span>
+                        </div>
+                        <pre class="text-gray-100 text-sm font-mono"><code>import dev.langchain4j.data.segment.TextSegment;
+import dev.langchain4j.model.embedding.EmbeddingModel;
+import dev.langchain4j.model.openai.OpenAiEmbeddingModel;
+import dev.langchain4j.model.openai.OpenAiEmbeddingModelName;
+import java.util.List;
+
+public class EmbeddingGenerationExample {
+    private static final String API_KEY = System.getenv("OPENAI_API_KEY");
+
+    public static void main(String[] args) {
+        System.out.println("=== Embedding生成示例 ===");
+        
+        try {
+            // 1. 创建Embedding模型
+            EmbeddingModel embeddingModel = OpenAiEmbeddingModel.builder()
+                .apiKey(API_KEY)
+                .modelName("text-embedding-3-small")
+                .dimensions(1536)  // text-embedding-3-small的维度
+                .build();
+            
+            System.out.println("✓ Embedding模型创建成功");
+            
+            // 2. 准备文本数据
+            List&lt;String&gt; texts = List.of(
+                "LangChain4j是一个强大的Java AI开发框架",
+                "它支持多种模型提供商",
+                "RAG可以让AI访问私有数据",
+                "LangChain4j简化了开发流程"
+            );
+            
+            System.out.println("\n开始生成Embeddings...");
+            
+            // 3. 批量生成Embeddings
+            int batchSize = 100; // 每批100个
+            List&lt;TextSegment&gt; allSegments = new ArrayList&lt;&gt;();
+            
+            for (int i = 0; i &lt; texts.size(); i += batchSize) {
+                int end = Math.min(i + batchSize, texts.size());
+                List&lt;String&gt; batch = texts.subList(i, end);
+                
+                List&lt;TextSegment&gt; segments = TextSegment.from(batch);
+                
+                List&lt;Embedding&gt; embeddings = embeddingModel.embedAll(segments);
+                
+                allSegments.addAll(segments);
+                
+                System.out.println("批次 " + (i / batchSize + 1) + ": 生成 " + embeddings.size() + " 个Embeddings");
+            }
+            
+            System.out.println("\n✓ 总共生成 " + allSegments.size() + " 个Embeddings");
+            System.out.println("✓ 每个Embedding约 1536维浮点数");
+            
+            // 4. 使用示例Embedding
+            System.out.println("\n=== 使用Embedding进行检索 ===");
+            System.out.println("相似度计算原理：余弦相似度");
+            
+        } catch (Exception e) {
+            System.err.println("✗ 错误: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                    </div>
+
+                    <div class="bg-green-50 border-l-4 border-green-500 p-5 rounded-r-lg">
+                        <h4 class="font-bold text-green-900 mb-2">💡 优化技巧</h4>
+                        <ul class="space-y-2 text-green-800 text-sm">
+                            <li>• <strong>批量处理</strong>：一次生成多个Embedding，提高效率</li>
+                            <li>• <strong>缓存结果</strong>：相同文本的Embedding可以缓存避免重复生成</li>
+                            <li>• <strong>异步生成</strong>：对于大量数据，使用异步API</li>
+                            <li>• <strong>维度优化</strong>：1536维适合大多数场景，减少维度节省成本</li>
+                            <li>• <strong>量化</strong>：某些模型支持量化，可压缩存储</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="vector-storage" class="mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                    <span class="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center text-indigo-600">5</span>
+                    向量存储（Vector Storage）
+                </h2>
+
+                <p class="text-gray-600 mb-6">
+                    向量数据库负责存储和快速检索Embedding向量。
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <div class="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow">
+                        <h4 class="font-bold text-gray-900 mb-3">🌲️ Pinecone（托管服务）</h4>
+                        <ul class="space-y-2 text-gray-600 text-sm">
+                            <li class="mb-2"><strong>优点</strong>：无需运维，自动扩展，全球CDN加速</li>
+                            <li class="mb-2"><strong>缺点</strong>：数据在云端，网络延迟，数据隐私顾虑</li>
+                            <li class="mb-2"><strong>成本</strong>：按检索次数和存储量计费</li>
+                            <li class="mb-2"><strong>适用</strong>：生产环境，快速原型，中小规模应用</li>
+                        </ul>
+                        <div class="bg-gray-900 rounded-lg p-5 mb-4 overflow-x-auto">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-xs font-mono text-gray-400 uppercase">Pinecone示例</span>
+                                <span class="text-xs text-gray-500">集成示例</span>
+                            </div>
+                            <pre class="text-gray-100 text-sm font-mono"><code>import dev.langchain4j.model.embedding.EmbeddingModel;
+import dev.langchain4j.store.embedding.pinecone.PineconeEmbeddingStore;
+import dev.langchain4j.rag.content.retriever.EmbeddingStoreContentRetriever;
+
+// 1. 创建Embedding模型
+EmbeddingModel embeddingModel = OpenAiEmbeddingModel.builder()
+    .apiKey(System.getenv("OPENAI_API_KEY"))
+    .modelName("text-embedding-3-small")
+    .dimensions(1536)
+    .build();
+
+// 2. 创建Pinecone存储
+PineconeEmbeddingStore store = PineconeEmbeddingStore.builder()
+    .apiKey(System.getenv("PINECONE_API_KEY"))
+    .index(System.getenv("PINECONE_INDEX")) // 从环境变量获取索引名
+    .build();
+
+// 3. 添加数据到存储
+List&lt;TextSegment&gt; segments = ...; // 从上一步获得
+for (TextSegment segment : segments) {
+    store.add(segment.embeddingModel().embed(segment).vector());
+}
+
+System.out.println("✓ 已添加 " + segments.size() + " 个向量到Pinecone");</code></pre>
+                        </div>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow">
+                        <h4 class="font-bold text-gray-900 mb-3">🗄️ Chroma（本地部署）</h4>
+                        <ul class="space-y-2 text-gray-600 text-sm">
+                            <li class="mb-2"><strong>优点</strong>：数据完全本地，无网络延迟，完全控制</li>
+                            <li class="mb-2"><strong>缺点</strong>：需要自行运维，需要硬件资源，扩展性受限</li>
+                            <li class="mb-2"><strong>成本</strong>：完全免费，但需要硬件投入</li>
+                            <li class="mb-2"><strong>适用</strong>：数据隐私敏感，需要本地控制，开发测试</li>
+                        </ul>
+                        <div class="bg-gray-900 rounded-lg p-5 mb-4 overflow-x-auto">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-xs font-mono text-gray-400 uppercase">Chroma示例</span>
+                                <span class="text-xs text-gray-500">集成示例</span>
+                            </div>
+                            <pre class="text-gray-100 text-sm font-mono"><code>import dev.langchain4j.model.embedding.EmbeddingModel;
+import dev.langchain4j.store.embedding.chroma.ChromaEmbeddingStore;
+
+// 创建Chroma存储
+ChromaEmbeddingStore store = ChromaEmbeddingStore.builder()
+    .collectionName("langchain4j-rag")
+    .build();
+
+// 添加数据
+for (TextSegment segment : segments) {
+    store.add(segment.embeddingModel().embed(segment).vector());
+}
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow">
+                        <h4 class="font-bold text-gray-900 mb-3">🟢 Weaviate（高级功能）</h4>
+                        <ul class="space-y-2 text-gray-600 text-sm">
+                            <li class="mb-2"><strong>优点</strong>：支持GraphQL API，高级查询功能强</li>
+                            <li class="mb-2"><strong>缺点</strong>：学习曲线陡峭，配置复杂</li>
+                            <li class="mb-2"><strong>适用</strong>：超大规模应用，需要高级功能</li>
+                        </ul>
+                    </div>
+                </div>
+
+                    <div class="bg-indigo-50 border-l-4 border-indigo-500 p-5 rounded-r-lg">
+                        <h4 class="font-bold text-indigo-900 mb-2">🏗️ 选择建议</h4>
+                        <p class="text-indigo-800 text-base">
+                            根据实际需求选择合适的向量数据库，学习曲线、成本预算、扩展性都是重要考虑因素。
+                        </p>
+                        <ul class="space-y-2 text-indigo-800 text-sm">
+                            <li>• <strong>快速原型</strong>：Pinecone - 易上手，快速验证</li>
+                            <li>• <strong>数据隐私</strong>：Chroma - 完全本地，企业级应用</li>
+                            <li>• <strong>大规模</strong>：Milvus - 极致性能，开源免费</li>
+                            <li>• <strong>高级功能</strong>：Weaviate - 丰富特性，GraphQL</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="retrieval" class="mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                    <span class="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center text-indigo-600">6</span>
+                    检索（Retrieval）
+                </h2>
+
+                <p class="text-gray-600 mb-6">
+                    检索是RAG的核心环节，根据用户查询找到最相关的文档段。
+                </p>
+
+                <div class="bg-white rounded-lg shadow-md p-6 mb-6 border border-gray-200">
+                    <h3 class="text-lg font-bold text-gray-900 mb-4">检索流程详解</h3>
+                    <div class="space-y-4 text-gray-600 text-base">
+                        <div class="flex items-start gap-3">
+                            <div class="w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold flex-shrink-0 text-lg">1</div>
+                            <div class="flex-1">
+                                <div class="font-bold text-gray-900 text-lg mb-1">查询向量化</div>
+                                <p class="text-gray-600 text-base mt-1">将用户查询转为Embedding向量</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-12 h-12 rounded-full bg-purple-600 flex items-center justify-center text-white font-bold flex-shrink-0 text-lg">2</div>
+                            <div class="flex-1">
+                                <div class="font-bold text-gray-900 text-lg mb-1">相似度计算</div>
+                                <p class="text-gray-600 text-base mt-1">计算查询向量与存储向量的余弦相似度</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-12 h-12 rounded-full bg-green-600 flex items-center justify-center text-white font-bold flex-shrink-0 text-lg">3</div>
+                            <div class="flex-1">
+                                <div class="font-bold text-gray-900 text-lg mb-1">结果排序</div>
+                                <p class="text-gray-600 text-base mt-1">按相似度从高到低排序，返回Top-K结果</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-12 h-12 rounded-full bg-orange-600 flex items-center justify-center text-white font-bold flex-shrink-0 text-lg">4</div>
+                            <div class="flex-1">
+                                <div class="font-bold text-gray-900 text-lg mb-1">上下文组装</div>
+                                <p class="text-gray-600 text-base mt-1">将Top-K结果组装成Prompt上下文</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-900 rounded-lg p-5 mb-4 overflow-x-auto">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-mono text-gray-400 uppercase">RetrievalService.java</span>
+                        <span class="text-xs text-gray-500">检索服务示例</span>
+                    </div>
+                    <pre class="text-gray-100 text-sm font-mono"><code>import dev.langchain4j.rag.content.retriever.ContentRetriever;
+import dev.langchain4j.rag.content.retriever.EmbeddingStoreContentRetriever;
+import dev.langchain4j.rag.query.Query;
+import dev.langchain4j.model.chat.ChatLanguageModel;
+
+public class RetrievalService {
+    private final EmbeddingStoreContentRetriever retriever;
+    private final ChatLanguageModel chatModel;
+
+    public RetrievalService(EmbeddingStoreContentRetriever retriever, 
+                             ChatLanguageModel chatModel) {
+        this.retriever = retriever;
+        this.chatModel = chatModel;
+    }
+
+    public String search(String query) {
+        // 1. 创建查询对象
+        Query queryObj = Query.from(query);
+
+        // 2. 执行检索
+        List&lt;TextSegment&gt; results = retriever.retrieve(queryObj);
+
+        // 3. 组装上下文
+        StringBuilder context = new StringBuilder();
+        context.append("相关文档：\n");
+        for (int i = 0; i &lt; results.size(); i++) {
+            context.append("- ").append(results.get(i).text()).append("\n");
+        }
+
+        // 4. 生成回答
+        String prompt = context.toString()
+            .append("\n\n问题：")
+            .append(query)
+            .append("\n\n请基于以上文档回答：");
+
+        return chatModel.generate(prompt);
+    }
+}</code></pre>
+                </div>
+
+                <div class="bg-green-50 border-l-4 border-green-500 p-5 rounded-r-lg">
+                    <h4 class="font-bold text-green-900 mb-2">💡 高级检索技巧</h4>
+                    <ul class="space-y-2 text-green-800 text-sm">
+                        <li>• <strong>混合检索</strong>：结合向量检索和关键词检索，提高精度</li>
+                            <li>• <strong>重排序</strong>：使用专门的Rerank模型优化结果质量</li>
+                            <li>• <strong>多路查询</strong>：用不同策略（向量+BM25）检索并行后融合</li>
+                            <li>• <strong>阈值调整</strong>：根据反馈动态调整相似度阈值</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </section>
+
+            <section id="context-injection" class="mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                    <span class="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center text-indigo-600">7</span>
+                    上下文注入（Context Injection）
+                </h2>
+
+                <p class="text-gray-600 mb-6">
+                    将检索到的文档信息注入到Prompt中，让LLM基于事实生成回答。
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <div class="bg-white border border-gray-200 rounded-xl p-5 hover:shadow-lg transition-shadow">
+                        <h4 class="font-bold text-gray-900 mb-3">📝 基础Prompt模板</h4>
+                        <p class="text-gray-600 text-sm mb-2">简单的模板结构：</p>
+                        <div class="bg-gray-900 rounded-lg p-5 mb-4 overflow-x-auto">
+                            <pre class="text-gray-100 text-sm font-mono"><code>基于以下文档回答问题：
+
+文档片段：
+{{context}}
+
+问题：
+{{query}}
+
+请基于文档内容，提供准确详细的回答。</code></pre>
+                        </div>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-xl p-5 hover:shadow-lg transition-shadow">
+                        <h4 class="font-bold text-gray-900 mb-3">🎨 高级模板技巧</h4>
+                        <ul class="space-y-2 text-gray-600 text-sm">
+                            <li>• <strong>结构化上下文</strong>：按文档分类或主题组织信息</li>
+                            <li>• <strong>添加来源引用</strong>：标注回答来自哪些文档段</li>
+                            <li>• <strong>限制上下文</strong>：控制注入的文档数量，避免超限</li>
+                            <li>• <strong>提示来源追溯</strong>：让用户可以验证答案来源</li>
+                            <li>• <strong>使用分隔符</strong>：用清晰的分隔符区分不同文档</li>
+                        </ul>
+                    </div>
+                    <div class="bg-blue-50 border-l-4 border-blue-500 p-5 rounded-r-lg">
+                        <h4 class="font-bold text-blue-900 mb-2">💡 动态调整</h4>
+                        <ul class="space-y-2 text-blue-800 text-sm">
+                            <li>• <strong>根据问题长度</strong>：短问题用少上下文，长问题用多上下文</li>
+                            <li>• <strong>根据检索分数</strong>：相关性低的文档可以排除</li>
+                            <li>• <strong>流式注入</strong>：边检索边生成，减少响应延迟</li>
+                        </ul>
+                    </div>
+                </div>
+                    <div class="bg-indigo-50 border-l-4 border-indigo-500 p-5 rounded-r-lg">
+                        <h4 class="font-bold text-indigo-900 mb-2">🏗️ LangChain4j Prompt模板</h4>
+                        <p class="text-indigo-800 text-base">
+                            LangChain4j提供了PromptTemplate API，可以更方便地管理模板。
+                        </p>
+                        <div class="bg-gray-900 rounded-lg p-5 mb-4 overflow-x-auto">
+                            <pre class="text-gray-100 text-sm font-mono"><code>import dev.langchain4j.model.chat.ChatLanguageModel;
+import dev.langchain4j.model.chat.ChatLanguageModel;
+import dev.langchain4j.model.prompt.ChatLanguageModel;
+import dev.langchain4j.model.prompt.PromptTemplate;
+import dev.langchain4j.data.message.AiMessage;
+import dev.langchain4j.data.message.UserMessage;
+import dev.langchain4j.data.message.UserMessage.userMessage;
+import dev.langchain4j.model.chat.ChatMessage;
+import java.util.List;
+
+// 1. 定义Prompt模板
+PromptTemplate promptTemplate = PromptTemplate.from(
+    "基于以下文档片段回答问题：\n" +
+    "{{context}}" +
+    "\n" +
+    "问题：{{query}}\n" +
+    "请基于文档内容，提供准确详细的回答。"
+);
+
+// 2. 创建Chat模型
+ChatLanguageModel chatModel = OpenAiChatModel.builder()
+    .apiKey(System.getenv("OPENAI_API_KEY"))
+    .modelName("gpt-4")
+    .build();
+
+// 3. 创建AI Service
+ChatService service = AiServices.builder(ChatService.class)
+    .chatLanguageModel(chatModel)
+    .promptTemplate(promptTemplate)
+    .build();
+
+// 4. 使用服务
+String answer = service.chat("什么是LangChain4j？");</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="complete-pipeline" class="mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                    <span class="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center text-indigo-600">8</span>
+                    完整RAG Pipeline
+                </h2>
+
+                <p class="text-gray-600 mb-6">
+                    将前面所有组件组合起来，构建一个完整的RAG系统。
+                </p>
+
+                <div class="bg-gray-900 rounded-lg p-5 mb-4 overflow-x-auto">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-mono text-gray-400 uppercase">CompleteRAGSystem.java</span>
+                        <span class="text-xs text-gray-500">完整RAG系统</span>
+                    </div>
+                    <pre class="text-gray-100 text-sm font-mono"><code>import dev.langchain4j.data.document.Document;
+import dev.langchain4j.data.document.loader.FileSystemDocumentLoader;
+import dev.langchain4j.data.document.splitter.DocumentByLineSplitter;
+import dev.langchain4j.model.embedding.EmbeddingModel;
+import dev.langchain4j.rag.content.retriever.ContentRetriever;
+import dev.langchain4j.rag.query.Query;
+import dev.langchain4j.store.embedding.inmemory.InMemoryEmbeddingStore;
+import dev.langchain4j.model.openai.OpenAiChatModel;
+import dev.langchain4j.model.chat.ChatLanguageModel;
+import dev.langchain4j.rag.query.augmenter.Augmenter;
+import dev.langchain4j.model.output.JsonOutputParser;
+import java.util.List;
+
+public class CompleteRAGSystem {
+
+    private static final String DOCUMENT_PATH = "documents";
+    private static final String OPENAI_API_KEY = System.getenv("OPENAI_API_KEY");
+    private static final int TOP_K = 5;
+
+    public static void main(String[] args) {
+        System.out.println("=== RAG系统启动 ===");
+        
+        try {
+            // 步骤1: 加载文档
+            System.out.println("\n[步骤1] 加载和处理文档...");
+            DocumentLoader loader = FileSystemDocumentLoader.builder().build();
+            List&lt;Document&gt; documents = loader.load(DOCUMENT_PATH);
+            System.out.println("✓ 加载 " + documents.size() + " 个文档");
+
+            // 步骤2: 分块处理
+            System.out.println("\n[步骤2] 文档分块...");
+            DocumentByLineSplitter splitter = DocumentByLineSplitter.builder()
+                .maxSegmentSize(500)
+                .maxOverlapSize(50)
+                .build();
+            List&lt;TextSegment&gt; segments = splitter.split(documents.get(0));
+
+            // 步骤3: 生成Embeddings
+            System.out.println("\n[步骤3] 生成Embeddings...");
+            EmbeddingModel embeddingModel = OpenAiEmbeddingModel.builder()
+                .apiKey(OPENAI_API_KEY)
+                .modelName("text-embedding-3-small")
+                .dimensions(1536)
+                .build();
+
+            List&lt;Embedding&gt; embeddings = embeddingModel.embedAll(segments);
+            System.out.println("✓ 生成 " + embeddings.size() + " 个Embeddings");
+
+            // 步骤4: 创建向量存储
+            System.out.println("\n[步骤4] 创建向量存储...");
+            InMemoryEmbeddingStore&lt;TextSegment&gt; store = InMemoryEmbeddingStore.create();
+            store.addAll(embeddings);
+            System.out.println("✓ 向量存储创建成功");
+
+            // 步骤5: 创建检索器
+            System.out.println("\n[步骤5] 创建检索器...");
+            ContentRetriever retriever = EmbeddingStoreContentRetriever.builder()
+                .embeddingModel(embeddingModel)
+                .embeddingStore(store)
+                .maxResults(TOP_K)
+                .build();
+            System.out.println("✓ 检索器创建成功");
+
+            // 步骤6: 创建Chat模型
+            System.out.println("\n[步骤6] 创建Chat模型...");
+            ChatLanguageModel chatModel = OpenAiChatModel.builder()
+                .apiKey(OPENAI_API_KEY)
+                .modelName(OpenAiChatModelName.GPT_4)
+                .build();
+            System.out.println("✓ Chat模型创建成功");
+
+            // 步骤7: 创建AI Service
+            System.out.println("\n[步骤7] 创建AI Service...");
+            Augmenter augmenter = Augmenter.builder()
+                .chatLanguageModel(chatModel)
+                .contentRetriever(retriever)
+                .build();
+
+            // 定义Service接口
+            interface RagService {
+                String chat(String message);
+            }
+
+            RagService service = AiServices.builder(RagService.class)
+                .chatLanguageModel(chatModel)
+                .augmenter(augmenter)
+                .build();
+
+            // 步骤8: 测试查询
+            System.out.println("\n[步骤8] 测试查询...");
+            String testQuery = "什么是LangChain4j的RAG能力？";
+            String answer = service.chat(testQuery);
+            
+            System.out.println("\n=== RAG回答 ===");
+            System.out.println(answer);
+            
+        } catch (Exception e) {
+            System.err.println("✗ 错误: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                </div>
+            </section>
+
+            <section id="optimization" class="mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                    <span class="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center text-indigo-600">9</span>
+                    性能优化
+                </h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <div class="bg-white border border-gray-200 rounded-xl p-5 hover:shadow-lg transition-shadow">
+                        <h4 class="font-bold text-gray-900 mb-3">⚡ 检索优化</h4>
+                        <p class="text-gray-600 text-sm mb-2">提高检索速度</p>
+                        <ul class="space-y-2 text-gray-600 text-sm">
+                            <li>• <strong>缓存</strong>：缓存常用查询的检索结果，避免重复检索</li>
+                            <li>• <strong>并行检索</strong>：同时查询多个向量数据库</li>
+                            <li>• <strong>索引优化</strong>：为向量数据库添加合适的索引，提升查询速度</li>
+                            <li>• <strong>批量查询</strong>：一次检索多个查询，减少往返次数</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-xl p-5 hover:shadow-lg transition-shadow">
+                        <h4 class="font-bold text-gray-900 mb-3">💾 生成优化</h4>
+                        <p class="text-gray-600 text-sm mb-2">降低Embedding成本</p>
+                        <ul class="space-y-2 text-gray-600 text-sm">
+                            <li>• <strong>批量处理</strong>：积累多个文本后一次性生成，减少API调用次数</li>
+                            <li> <strong>异步处理</strong>：使用异步API提高吞吐量</li>
+                            <li>• <strong>模型选择</strong>：text-embedding-3-small比ada-002便宜很多</li>
+                            <li>• <strong>维度优化</strong>：1536维在精度和成本间取得良好平衡</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-xl p-5 hover:shadow-lg transition-shadow">
+                        <h4 class="font-bold text-gray-900 mb-3">🎨 上下文管理</h4>
+                        <p class="text-gray-600 text-sm mb-2">优化LLM上下文使用</p>
+                        <ul class="space-y-2 text-gray-600 text-sm">
+                            <li>• <strong>Top-K选择</strong>：使用3-5个结果，平衡相关性和多样性</li>
+                            <li>• <strong>上下文压缩</strong>：长文档摘要后嵌入，节省Token</li>
+                            <li> <strong>重排序过滤</strong>：在LLM前用Rerank过滤低质量结果</li>
+                            <li>• <strong>流式输出</strong>：边检索边生成，减少延迟</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="best-practices" class="mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6">✨ 最佳实践</h2>
+                <div class="space-y-6">
+                    <div class="bg-green-50 border border-green-200 rounded-xl p-5 hover:shadow-lg transition-shadow">
+                        <h4 class="font-bold text-green-900 mb-3">📝 数据质量</h4>
+                        <ul class="space-y-2 text-green-800 text-sm">
+                            <li>• <strong>数据清洗</strong>：加载前清理HTML标签、特殊字符</li>
+                            <li>• <strong>去重</strong>：使用哈希或去重算法移除重复文档</li>
+                            <li>• <strong>标准化</strong>：统一格式（Markdown、TXT）</li>
+                            <li>• <strong>版本管理</strong>：记录文档版本，支持历史回滚</li>
+                        </ul>
+                    </div>
+                    <div class="bg-green-50 border border-green-200 rounded-xl p-5 hover:shadow-lg transition-shadow">
+                        <h4 class="font-bold text-green-900 mb-3">🔒 系统测试</h4>
+                        <ul class="space-y-2 text-green-800 text-sm">
+                            <li>• <strong>单元测试</strong>：测试每个组件的独立功能</li>
+                            <li>• <strong>集成测试</strong>：测试组件间协作是否正常</li>
+                            <li>• <strong>E2E测试</strong>：端到端测试整个流程</li>
+                        </ul>
+                    </div>
+                    <div class="bg-green-50 border border-green-200 rounded-xl p-5 hover:shadow-lg transition-shadow">
+                        <h4 class="font-bold text-green-900 mb-3">📈 监控与日志</h4>
+                        <ul class="space-y-2 text-green-800 text-sm">
+                            <li>• <strong>性能指标</strong>：检索时间、生成时间、总延迟</li>
+                            <li>• <strong>质量指标</strong>：召回率、准确率、相关性</li>
+                            <li>• <strong>用户反馈</strong>：满意度评分、采纳率</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="common-pitfalls" class="mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6">⚠️ 常见陷阱</h2>
+                <div class="space-y-4">
+                    <div class="bg-red-50 border border-red-200 rounded-xl p-5">
+                        <h4 class="font-bold text-red-900 mb-3">数据陷阱</h4>
+                        <ul class="space-y-2 text-gray-700 text-sm">
+                            <li>• <strong>重复数据</strong>：导致重复索引和检索结果，降低质量</li>
+                            <li>• <strong>过时信息</strong>：历史文档未被及时更新，可能返回错误答案</li>
+                            <li>• <strong>格式混乱</strong>：非结构化数据难以有效检索</li>
+                        </ul>
+                    </div>
+                    <div class="bg-red-50 border border-red-200 rounded-xl p-5">
+                        <h4 class="font-bold text-red-900 mb-3">检索陷阱</h4>
+                        <ul class="space-y-2 text-gray-700 text-sm">
+                            <li>• <strong>分块不当</strong>：太大或太小导致检索精度下降</li>
+                            <li>• <strong>阈值固定</strong>：固定的Top-K导致结果质量不均衡</li>
+                            <li> <strong>向量维度</strong>：维度过高导致成本激增且未必提升精度</li>
+                            <li>• <strong>忽略语义</strong>：仅靠关键词匹配会丢失语义信息</li>
+                        </ul>
+                    </div>
+                    <div class="bg-red-50 border-red-200 rounded-xl p-5">
+                        <h4 class="font-bold text-red-900 mb-3">生成陷阱</h4>
+                        <ul class="space-y-2 text-gray-700 text-sm">
+                            <li>• <strong>上下文超限</strong>：Token过多导致LLM截断，丢失部分上下文</li>
+                            <li>• <strong>Prompt过长</strong>：导致额外Token消耗</li>
+                            <li>• <strong>格式混乱</strong>：JSON格式化、Markdown转义错误</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-5">
+                    <h4 class="font-bold text-yellow-900 mb-3">💡 解决方案</h4>
+                        <ul class="space-y-2 text-yellow-800 text-sm">
+                            <li>• <strong>数据治理</strong>：建立数据更新机制，定期清理和去重</li>
+                            <li>• <strong>A/B测试</strong>：对比不同分块策略的效果</li>
+                            <li>• <strong>监控告警</strong>：设置检索质量监控，低于阈值时告警</li>
+                            <li> <strong>动态调整</strong>：根据反馈自动调整参数</li>
+                        </ul>
+                    </div>
                 </div>
             </section>
 
             <section class="mb-12">
                 <div class="text-center">
                     <a href="rag-advanced.html" class="inline-flex items-center gap-2 px-6 py-3 bg-indigo-600 text-white rounded-md font-medium hover:bg-indigo-700 transition-all shadow-md">
-                        继续学习 RAG高级 →
+                        继续学习 RAG高级技巧 →
                     </a>
                 </div>
             </section>
