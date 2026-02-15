@@ -3,615 +3,538 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RAG 高级技术 - LangChain4j 完整指南</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>RAG 高级技术 - LangChain4j 学习指南</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
-<body>
-    <header>
-        <div class="header-container">
-            <h1>RAG 高级技术</h1>
-            <p class="subtitle">深入掌握混合检索、重排序、性能优化和生产部署</p>
-        </div>
-    </header>
+<body class="bg-white text-gray-800 antialiased">
+    <div class="flex min-h-screen">
+        <aside class="w-[280px] fixed h-screen bg-white border-r border-gray-200 overflow-y-auto pb-8">
+            <div class="p-6">
+                <div class="flex items-center gap-3 mb-8">
+                    <div class="w-10 h-10 bg-indigo-600 rounded-lg flex items-center justify-center">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 class="font-bold text-gray-900">LangChain4j</h1>
+                        <p class="text-xs text-gray-500">入门指南</p>
+                    </div>
+                </div>
 
-    <nav class="top-nav">
-        <ul>
-            <li><a href="index.html">首页</a></li>
-            <li><a href="quickstart.html">快速开始</a></li>
-            <li><a href="core-concepts.html">核心概念</a></li>
-            <li><a href="rag-intro.html">RAG 完整指南</a></li>
-            <li><a href="interview-prep.html">面试准备</a></li>
-        </ul>
-    </nav>
+                <div class="space-y-6">
+                    <div>
+                        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">快速开始</h3>
+                        <ul class="space-y-1">
+                            <li><a href="index.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all text-center" data-page="index">概览</a></li>
+                            <li><a href="getting-started.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all text-center" data-page="getting-started">环境准备</a></li>
+                            <li><a href="core-concepts.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all text-center" data-page="core-concepts">核心概念</a></li>
+                        </ul>
+                    </div>
 
-    <main class="content-container">
-        <section class="learning-objectives">
-            <h2>📚 学习目标</h2>
-            <ul>
-                <li>理解混合检索的原理和实现</li>
-                <li>掌握重排序算法提升检索质量</li>
-                <li>学习多查询策略提升检索覆盖率</li>
-                <li>优化 RAG 系统性能（延迟、吞吐量、准确率）</li>
-                <li>部署 RAG 系统到生产环境</li>
-                <li>建立监控和日志系统</li>
-            </ul>
-        </section>
+                    <div>
+                        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">RAG 完整指南</h3>
+                        <ul class="space-y-1">
+                            <li><a href="rag-intro.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all text-center" data-page="rag-intro">RAG 简介</a></li>
+                            <li><a href="rag-setup.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all text-center" data-page="rag-setup">RAG 环境搭建</a></li>
+                            <li><a href="rag-implementation.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all text-center" data-page="rag-implementation">RAG 实现</a></li>
+                            <li><a href="rag-advanced.html" class="nav-link bg-indigo-50 text-indigo-700 font-medium block px-4 py-2.5 rounded-md transition-all text-center" data-page="rag-advanced">RAG 高级</a></li>
+                        </ul>
+                    </div>
 
-        <h1>RAG 高级技术</h1>
+                    <div>
+                        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">项目实战</h3>
+                        <ul class="space-y-1">
+                            <li><a href="project-chatbot.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all text-center" data-page="project-chatbot">聊天机器人</a></li>
+                            <li><a href="project-ai-assistant.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all text-center" data-page="project-ai-assistant">AI助手</a></li>
+                            <li><a href="project-rag-kb.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all text-center" data-page="project-rag-kb">RAG知识库</a></li>
+                            <li><a href="practice.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all text-center" data-page="practice">综合实战</a></li>
+                        </ul>
+                    </div>
 
-        <h2 id="1-混合检索">1. 混合检索（Hybrid Retrieval）</h2>
+                    <div>
+                        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">面试准备</h3>
+                        <ul class="space-y-1">
+                            <li><a href="interview-prep.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all text-center" data-page="interview-prep">面试准备</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </aside>
 
-        <h3 id="11-什么是混合检索">1.1 什么是混合检索？</h3>
+        <main class="flex-1 ml-[280px] px-8 py-12 max-w-7xl mx-auto">
+            <section class="mb-12">
+                <h1 class="text-4xl font-bold text-gray-900 mb-8 leading-tight">RAG 高级技术</h1>
+                <p class="text-lg text-gray-600 max-w-3xl mb-10 leading-relaxed">
+                    深入掌握混合检索、重排序、性能优化和生产部署，构建生产级 RAG 系统。
+                </p>
 
-        <p>混合检索结合了<strong>向量检索（语义检索）</strong>和<strong>关键词检索（BM25）</strong>的优势，能够同时利用语义相似度和精确匹配关键词，显著提升检索质量。</p>
+                <div class="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-lg p-6 mb-6">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4">📚 学习目标</h3>
+                    <ul class="space-y-2 text-gray-700">
+                        <li class="flex items-start gap-2">
+                            <span class="text-indigo-600">✓</span>
+                            <span>理解混合检索的原理和实现</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-indigo-600">✓</span>
+                            <span>掌握重排序算法提升检索质量</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-indigo-600">✓</span>
+                            <span>学习多查询策略提升检索覆盖率</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-indigo-600">✓</span>
+                            <span>优化 RAG 系统性能（延迟、吞吐量、准确率）</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-indigo-600">✓</span>
+                            <span>部署 RAG 系统到生产环境</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-indigo-600">✓</span>
+                            <span>建立监控和日志系统</span>
+                        </li>
+                    </ul>
+                </div>
+            </section>
 
-        <h4>核心优势：</h4>
-        <ul>
-            <li><strong>语义理解</strong>：向量检索能够理解同义词、语义相近的查询</li>
-            <li><strong>精确匹配</strong>：关键词检索能够匹配精确术语、专有名词</li>
-            <li><strong>互补性强</strong>：两种检索方式互补，覆盖更多相关文档</li>
-            <li><strong>提升准确率</strong>：混合检索通常比单一检索方法准确率提升 10-30%</li>
-        </ul>
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold text-gray-900 mb-6 pb-3 border-b border-gray-200">1. 混合检索（Hybrid Retrieval）</h2>
 
-        <h4>适用场景：</h4>
-        <ul>
-            <li>专业领域（医学、法律、金融），包含大量专业术语</li>
-            <li>多语言检索场景</li>
-            <li>需要精确匹配特定关键词或编号的查询</li>
-            <li>查询中包含同义词、缩写的场景</li>
-        </ul>
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">1.1 什么是混合检索？</h3>
 
-        <h3 id="12-混合检索架构">1.2 混合检索架构</h3>
+                <p class="text-gray-600 mb-6">
+                    混合检索结合了<strong>向量检索（语义检索）</strong>和<strong>关键词检索（BM25）</strong>的优势，能够同时利用语义相似度和精确匹配关键词，显著提升检索质量。
+                </p>
 
-        <pre><code class="mermaid">graph TB
-    A[用户查询] --> B[向量检索]
-    A --> C[关键词检索 BM25]
-    B --> D[检索结果 1]
-    C --> E[检索结果 2]
-    D --> F[结果融合 RRF]
-    E --> F
-    F --> G[重排序 Reranker]
-    G --> H[最终结果]</code></pre>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-white border border-gray-200 rounded-xl p-6">
+                        <h4 class="text-lg font-semibold text-gray-900 mb-3">核心优势</h4>
+                        <ul class="space-y-2 text-gray-600 text-sm">
+                            <li><strong>语义理解</strong>：向量检索能够理解同义词、语义相近的查询</li>
+                            <li><strong>精确匹配</strong>：关键词检索能够匹配精确术语、专有名词</li>
+                            <li><strong>互补性强</strong>：两种检索方式互补，覆盖更多相关文档</li>
+                            <li><strong>提升准确率</strong>：通常比单一检索方法准确率提升 10-30%</li>
+                        </ul>
+                    </div>
 
-        <h4>检索流程：</h4>
-        <ol>
-            <li><strong>并行检索</strong>：同时进行向量检索和关键词检索</li>
-            <li><strong>结果融合</strong>：使用融合算法（如 RRF）合并两种检索结果</li>
-            <li><strong>重排序</strong>：使用重排序模型对融合后的结果重新打分排序</li>
-            <li><strong>返回 Top-K</strong>：返回最相关的 K 个文档</li>
-        </ol>
+                    <div class="bg-white border border-gray-200 rounded-xl p-6">
+                        <h4 class="text-lg font-semibold text-gray-900 mb-3">适用场景</h4>
+                        <ul class="space-y-2 text-gray-600 text-sm">
+                            <li>专业领域（医学、法律、金融），包含大量专业术语</li>
+                            <li>多语言检索场景</li>
+                            <li>需要精确匹配特定关键词或编号的查询</li>
+                            <li>查询中包含同义词、缩写的场景</li>
+                        </ul>
+                    </div>
+                </div>
 
-        <h3 id="13-向量检索-vs-关键词检索">1.3 向量检索 vs 关键词检索</h3>
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">1.2 混合检索架构</h3>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>维度</th>
-                    <th>向量检索</th>
-                    <th>关键词检索（BM25）</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>检索原理</strong></td>
-                    <td>语义相似度（余弦相似度）</td>
-                    <td>词频-逆文档频率（TF-IDF）</td>
-                </tr>
-                <tr>
-                    <td><strong>优势</strong></td>
-                    <td>理解语义、同义词、概念</td>
-                    <td>精确匹配、处理专业术语</td>
-                </tr>
-                <tr>
-                    <td><strong>劣势</strong></td>
-                    <td>难以处理精确匹配、多义词</td>
-                    <td>无法理解语义、同义词</td>
-                </tr>
-                <tr>
-                    <td><strong>索引大小</strong></td>
-                    <td>较大（存储向量）</td>
-                    <td>较小（仅存储倒排索引）</td>
-                </tr>
-                <tr>
-                    <td><strong>检索速度</strong></td>
-                    <td>较慢（近似最近邻搜索）</td>
-                    <td>较快（倒排索引）</td>
-                </tr>
-                <tr>
-                    <td><strong>适合场景</strong></td>
-                    <td>开放域问答、推荐系统</td>
-                    <td>精确搜索、代码搜索</td>
-                </tr>
-            </tbody>
-        </table>
+                <div class="bg-gray-50 rounded-lg p-6 mb-6">
+                    <pre class="text-sm text-gray-700 font-mono whitespace-pre-wrap">
+用户查询
+    ↓
+┌─────────────┐     ┌─────────────┐
+│ 向量检索     │     │ 关键词检索    │
+│ (Semantic) │     │ (BM25)     │
+└─────────────┘     └─────────────┘
+        ↓                   ↓
+    检索结果 1          检索结果 2
+        ↓                   ↓
+        └─────────┬─────────┘
+                  ↓
+           结果融合 (RRF)
+                  ↓
+           重排序 (Reranker)
+                  ↓
+              最终结果</pre>
+                </div>
 
-        <h3 id="14-结果融合算法">1.4 结果融合算法</h3>
+                <h4 class="text-lg font-semibold text-gray-900 mb-3">检索流程：</h4>
+                <ol class="list-decimal list-inside space-y-2 text-gray-600 mb-6">
+                    <li><strong>并行检索</strong>：同时进行向量检索和关键词检索</li>
+                    <li><strong>结果融合</strong>：使用融合算法（如 RRF）合并两种检索结果</li>
+                    <li><strong>重排序</strong>：使用重排序模型对融合后的结果重新打分排序</li>
+                    <li><strong>返回 Top-K</strong>：返回最相关的 K 个文档</li>
+                </ol>
 
-        <h4>Reciprocal Rank Fusion (RRF)</h4>
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">1.3 向量检索 vs 关键词检索</h3>
 
-        <p>RRF 是最常用的结果融合算法，能够平衡两种检索结果的排名。</p>
+                <div class="overflow-x-auto mb-6">
+                    <table class="min-w-full bg-white border border-gray-200 rounded-lg">
+                        <thead>
+                            <tr class="bg-gray-50">
+                                <th class="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider border-b">维度</th>
+                                <th class="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider border-b">向量检索</th>
+                                <th class="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider border-b">关键词检索（BM25）</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr>
+                                <td class="px-4 py-3 text-sm text-gray-900 font-medium">检索原理</td>
+                                <td class="px-4 py-3 text-sm text-gray-600">语义相似度（余弦相似度）</td>
+                                <td class="px-4 py-3 text-sm text-gray-600">词频-逆文档频率（TF-IDF）</td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-3 text-sm text-gray-900 font-medium">优势</td>
+                                <td class="px-4 py-3 text-sm text-gray-600">理解语义、同义词、概念</td>
+                                <td class="px-4 py-3 text-sm text-gray-600">精确匹配、处理专业术语</td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-3 text-sm text-gray-900 font-medium">劣势</td>
+                                <td class="px-4 py-3 text-sm text-gray-600">难以处理精确匹配、多义词</td>
+                                <td class="px-4 py-3 text-sm text-gray-600">无法理解语义、同义词</td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-3 text-sm text-gray-900 font-medium">检索速度</td>
+                                <td class="px-4 py-3 text-sm text-gray-600">较慢（近似最近邻搜索）</td>
+                                <td class="px-4 py-3 text-sm text-gray-600">较快（倒排索引）</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
 
-        <p><strong>公式：</strong></p>
-        <pre><code>RRF_score(d) = Σ [1 / (k + rank_i(d))]</code></pre>
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">1.4 结果融合算法</h3>
 
-        <ul>
-            <li><code>d</code>：文档</li>
-            <li><code>rank_i(d)</code>：文档在第 i 个检索结果中的排名</li>
-            <li><code>k</code>：平滑常数（通常设置为 60）</li>
-        </ul>
+                <h4 class="text-lg font-semibold text-gray-900 mb-3">Reciprocal Rank Fusion (RRF)</h4>
 
-        <h4>加权融合（Weighted Fusion）</h4>
+                <p class="text-gray-600 mb-4">RRF 是最常用的结果融合算法，能够平衡两种检索结果的排名。</p>
 
-        <p>给不同检索结果分配不同权重，根据业务需求调整。</p>
+                <div class="bg-gray-50 rounded-lg p-4 mb-4">
+                    <p class="text-sm text-gray-700 font-mono mb-2">RRF_score(d) = Σ [1 / (k + rank_i(d))]</p>
+                    <ul class="text-sm text-gray-600 space-y-1">
+                        <li><code>d</code>：文档</li>
+                        <li><code>rank_i(d)</code>：文档在第 i 个检索结果中的排名</li>
+                        <li><code>k</code>：平滑常数（通常设置为 60）</li>
+                    </ul>
+                </div>
 
-        <pre><code>fused_score(d) = α × vector_score(d) + (1-α) × bm25_score(d)</code></pre>
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">1.5 混合检索实现</h3>
 
-        <ul>
-            <li><code>α</code>：权重参数（0 到 1）
-                <ul>
-                    <li><code>α = 0.3</code>：更依赖关键词检索（专业领域）</li>
-                    <li><code>α = 0.7</code>：更依赖向量检索（开放域）</li>
-                </ul>
-            </li>
-        </ul>
-
-        <h3 id="15-混合检索实现">1.5 混合检索实现</h3>
-
-        <h4>完整代码示例：</h4>
-
-        <pre><code class="language-java">import dev.langchain4j.data.document.Document;
-import dev.langchain4j.data.document.DocumentSplitter;
-import dev.langchain4j.data.document.splitter.DocumentSplitters;
-import dev.langchain4j.data.segment.TextSegment;
-import dev.langchain4j.model.embedding.EmbeddingModel;
-import dev.langchain4j.model.openai.OpenAiEmbeddingModel;
-import dev.langchain4j.store.embedding.EmbeddingStore;
-import dev.langchain4j.store.embedding.EmbeddingStoreIngestor;
-import dev.langchain4j.store.embedding.inmemory.InMemoryEmbeddingStore;
-import dev.langchain4j.store.embedding.pinecone.PineconeEmbeddingStore;
-import dev.langchain4j.rag.retriever.EmbeddingStoreRetriever;
-import dev.langchain4j.rag.content.retriever.ContentRetriever;
-import dev.langchain4j.rag.content.aggregator.ContentAggregator;
-import dev.langchain4j.rag.content.aggregator.ReRankingContentAggregator;
-import dev.langchain4j.rag.query.transformer.QueryTransformer;
-import dev.langchain4j.rag.query.transformer.ExpandingQueryTransformer;
-
-import java.util.List;
-import java.util.ArrayList;
-import java.util.stream.Collectors;
-
-/**
- * 混合检索系统
- * 结合向量检索和关键词检索的优势
- */
+                <div class="bg-gray-900 rounded-lg p-4 mb-6 overflow-x-auto">
+                    <pre class="text-sm text-gray-100 font-mono">
 public class HybridRetrievalSystem {
 
-    private final EmbeddingModel embeddingModel;
-    private final EmbeddingStore<TextSegment> vectorStore;
-    private final KeywordRetriever keywordRetriever;
-    private final ReRanker reRanker;
-
-    public HybridRetrievalSystem() {
-        this.embeddingModel = OpenAiEmbeddingModel.builder()
-                .apiKey(System.getenv("OPENAI_API_KEY"))
-                .modelName("text-embedding-3-small")
-                .build();
-
-        this.vectorStore = PineconeEmbeddingStore.builder()
-                .apiKey(System.getenv("PINECONE_API_KEY"))
-                .index("rag-hybrid-index")
-                .build();
-
-        this.keywordRetriever = new BM25Retriever();
-        this.reRanker = new CrossEncoderReRanker();
-    }
-
-    public List<RetrievalResult> hybridSearch(String query, int topK) {
+    public List&lt;RetrievalResult&gt; hybridSearch(String query, int topK) {
         // 并行执行两种检索
-        CompletableFuture<List<RetrievalResult>> vectorFuture =
+        CompletableFuture&lt;List&lt;RetrievalResult&gt;&gt; vectorFuture =
                 CompletableFuture.supplyAsync(() -> vectorSearch(query, topK * 2));
 
-        CompletableFuture<List<RetrievalResult>> keywordFuture =
+        CompletableFuture&lt;List&lt;RetrievalResult&gt;&gt; keywordFuture =
                 CompletableFuture.supplyAsync(() -> keywordSearch(query, topK * 2));
 
-        List<RetrievalResult> vectorResults = vectorFuture.join();
-        List<RetrievalResult> keywordResults = keywordFuture.join();
-
-        List<RetrievalResult> fusedResults = fuseResults(
-                vectorResults,
-                keywordResults,
-                FusionMethod.RRF,
-                60
+        // 融合检索结果
+        List&lt;RetrievalResult&gt; fusedResults = fuseResults(
+                vectorResults, keywordResults, FusionMethod.RRF, 60
         );
 
-        List<RetrievalResult> rerankedResults = reRanker.rerank(
-                query,
-                fusedResults,
-                topK
-        );
-
-        return rerankedResults;
+        // 重排序
+        return reRanker.rerank(query, fusedResults, topK);
     }
-
-    public enum FusionMethod {
-        RRF, WEIGHTED, COMBINATION
-    }
-
-    public enum RetrievalType {
-        VECTOR, KEYWORD
-    }
-
-    public static class RetrievalResult {
-        private final String content;
-        private final double score;
-        private final RetrievalType type;
-
-        public RetrievalResult(String content, double score, RetrievalType type) {
-            this.content = content;
-            this.score = score;
-            this.type = type;
-        }
-
-        public String content() { return content; }
-        public double score() { return score; }
-        public RetrievalType type() { return type; }
-    }
-}</code></pre>
-
-        <h2 id="2-重排序-reranking">2. 重排序（Reranking）</h2>
-
-        <h3 id="21-什么是重排序">2.1 什么是重排序？</h3>
-
-        <p>重排序是在粗粒度检索（向量检索/混合检索）之后，使用更精细的模型对检索结果重新打分排序的过程。重排序能够显著提升检索质量，通常能将 Top-10 的准确率提升 5-15%。</p>
-
-        <h4>重排序的作用：</h4>
-        <ul>
-            <li><strong>提升精度</strong>：使用更精确的模型重新评估相关性</li>
-            <li><strong>优化排序</strong>：纠正粗粒度检索的排序偏差</li>
-            <li><strong>过滤噪声</strong>：去除相关性低的文档</li>
-            <li><strong>提升用户体验</strong>：返回更相关的结果</li>
-        </ul>
-
-        <h3 id="22-重排序模型">2.2 重排序模型</h3>
-
-        <h4>Cross-Encoder（交叉编码器）</h4>
-
-        <p>Cross-Encoder 将查询和文档一起输入模型，直接计算相关性分数。相比 Bi-Encoder（双编码器），Cross-Encoder 的准确率更高，但计算成本也更高。</p>
-
-        <p><strong>模型示例：</strong></p>
-        <ul>
-            <li><code>ms-marco-MiniLM-L-6-v2</code> - 快速、准确率高</li>
-            <li><code>ms-marco-MiniLM-L-12-v2</code> - 更高准确率</li>
-            <li><code>bert-base-uncased-msmarco</code> - 准确率高，速度中等</li>
-        </ul>
-
-        <h4>Bi-Encoder vs Cross-Encoder</h4>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>维度</th>
-                    <th>Bi-Encoder</th>
-                    <th>Cross-Encoder</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>输入方式</strong></td>
-                    <td>查询和文档分别编码</td>
-                    <td>查询和文档一起编码</td>
-                </tr>
-                <tr>
-                    <td><strong>计算方式</strong></td>
-                    <td>预计算向量，余弦相似度</td>
-                    <td>每次都重新计算</td>
-                </tr>
-                <tr>
-                    <td><strong>检索速度</strong></td>
-                    <td>快（向量检索）</td>
-                    <td>慢（逐个计算）</td>
-                </tr>
-                <tr>
-                    <td><strong>准确率</strong></td>
-                    <td>中等</td>
-                    <td>高</td>
-                </tr>
-                <tr>
-                    <td><strong>适用场景</strong></td>
-                    <td>粗粒度检索</td>
-                    <td>细粒度重排序</td>
-                </tr>
-                <tr>
-                    <td><strong>计算成本</strong></td>
-                    <td>低</td>
-                    <td>高</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <h3 id="23-重排序策略">2.3 重排序策略</h3>
-
-        <h4>两阶段检索（Two-Stage Retrieval）</h4>
-
-        <p>先用 Bi-Encoder 进行粗粒度检索，再用 Cross-Encoder 进行细粒度重排序。这是最常用的策略。</p>
-
-        <pre><code class="language-java">/**
- * 两阶段检索策略
- */
-public class TwoStageRetrieval {
-
-    private final BiEncoderRetriever biEncoderRetriever;
-    private final CrossEncoderReranker crossEncoderReranker;
-
-    public TwoStageRetrieval() {
-        this.biEncoderRetriever = new BiEncoderRetriever();
-        this.crossEncoderReranker = new CrossEncoderReranker();
-    }
-
-    public List<Document> retrieve(String query, int topK) {
-        List<Document> candidates = biEncoderRetriever.retrieve(query, topK * 3);
-        List<Document> reranked = crossEncoderReranker.rerank(query, candidates, topK);
-        return reranked;
-    }
-}</code></pre>
-
-        <h4>级联重排序（Cascaded Reranking）</h4>
-
-        <p>使用多个重排序模型进行级联重排序，逐步提升精度。例如：快速模型 → 中等模型 → 高精度模型。</p>
-
-        <pre><code class="language-java">/**
- * 级联重排序策略
- */
-public class CascadedReranking {
-
-    private final List<ReRanker> rerankers;
-
-    public CascadedReranking() {
-        this.rerankers = Arrays.asList(
-                new FastReranker(),
-                new MediumReranker(),
-                new HighPrecisionReranker()
-        );
-    }
-
-    public List<Document> rerank(String query, List<Document> candidates, int topK) {
-        List<Document> results = candidates;
-
-        for (int i = 0; i < rerankers.size(); i++) {
-            ReRanker reranker = rerankers.get(i);
-            int stageTopK = (int) (topK * Math.pow(2, rerankers.size() - i));
-            stageTopK = Math.min(stageTopK, results.size());
-            results = reranker.rerank(query, results, stageTopK);
-        }
-
-        return results.stream()
-                .limit(topK)
-                .collect(Collectors.toList());
-    }
-}</code></pre>
-
-        <h4>自适应重排序（Adaptive Reranking）</h4>
-
-        <p>根据查询特征、检索结果质量自适应决定是否进行重排序。例如：简单查询不重排序，复杂查询才重排序。</p>
-
-        <h2 id="3-多查询策略">3. 多查询策略</h2>
-
-        <h3 id="31-什么是多查询策略">3.1 什么是多查询策略？</h3>
-
-        <p>多查询策略是通过生成多个查询变体，扩大检索覆盖面，提升召回率的技术。适用于复杂查询、多义词查询、需要多个角度检索的场景。</p>
-
-        <h4>多查询策略的作用：</h4>
-        <ul>
-            <li><strong>提升召回率</strong>：通过多个查询覆盖更多相关文档</li>
-            <li><strong>解决多义词</strong>：处理一词多义、同义词问题</li>
-            <li><strong>多角度检索</strong>：从不同角度检索相关内容</li>
-            <li><strong>提升准确率</strong>：结合多个检索结果，提升最终准确率</li>
-        </ul>
-
-        <h3 id="32-查询扩展策略">3.2 查询扩展策略</h3>
-
-        <h4>查询重写（Query Rewriting）</h4>
-
-        <p>使用 LLM 重写查询，生成更准确、更丰富的查询变体。</p>
-
-        <pre><code class="language-java">/**
- * 查询重写策略
- */
-public class QueryRewriting {
-
-    private final ChatLanguageModel llm;
-
-    public QueryRewriting() {
-        this.llm = OpenAiChatModel.builder()
-                .apiKey(System.getenv("OPENAI_API_KEY"))
-                .modelName("gpt-4o-mini")
-                .build();
-    }
-
-    public List<String> expandQuery(String originalQuery, int variants) {
-        String prompt = String.format(
-                "你是查询重写专家。请为以下查询生成 %d 个不同的变体。" +
-                "要求：\n" +
-                "1. 保持原查询的核心意图\n" +
-                "2. 使用不同的表达方式\n" +
-                "3. 包含同义词和相关概念\n" +
-                "4. 每个变体都要能独立检索到相关文档\n\n" +
-                "原查询：%s\n\n" +
-                "仅返回变体列表，每行一个，不要包含序号和额外说明。",
-                variants, originalQuery
-        );
-
-        String response = llm.generate(prompt);
-
-        return Arrays.stream(response.split("\n"))
-                .map(String::trim)
-                .filter(line -> !line.isEmpty())
-                .collect(Collectors.toList());
-    }
-}</code></pre>
-
-        <h4>查询分解（Query Decomposition）</h4>
-
-        <p>将复杂查询分解为多个子查询，分别检索后合并结果。适用于复合查询、多主题查询。</p>
-
-        <h4>HyDE（Hypothetical Document Embeddings）</h4>
-
-        <p>使用 LLM 生成假设性文档，然后用假设性文档的嵌入向量进行检索。适用于抽象查询、概念性查询。</p>
-
-        <h2 id="4-性能优化">4. 性能优化</h2>
-
-        <h3 id="41-rag-性能瓶颈分析">4.1 RAG 性能瓶颈分析</h3>
-
-        <p>RAG 系统的性能瓶颈主要集中在以下几个方面：</p>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>阶段</th>
-                    <th>潜在瓶颈</th>
-                    <th>优化策略</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>检索</strong></td>
-                    <td>向量数据库查询慢</td>
-                    <td>使用近似最近邻搜索（HNSW）、索引优化、分片</td>
-                </tr>
-                <tr>
-                    <td><strong>嵌入生成</strong></td>
-                    <td>Embedding 模型推理慢</td>
-                    <td>批量推理、模型量化、缓存嵌入</td>
-                </tr>
-                <tr>
-                    <td><strong>重排序</strong></td>
-                    <td>Cross-Encoder 推理慢</td>
-                    <td>GPU 加速、批量推理、减少候选文档</td>
-                </tr>
-                <tr>
-                    <td><strong>生成</strong></td>
-                    <td>LLM 推理慢</td>
-                    <td>流式输出、模型选择、提示词优化</td>
-                </tr>
-                <tr>
-                    <td><strong>网络</strong></td>
-                    <td>API 调用延迟高</td>
-                    <td>并发请求、本地部署、CDN</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <h3 id="42-检索性能优化">4.2 检索性能优化</h3>
-
-        <h4>近似最近邻搜索（ANN）</h4>
-
-        <p>使用近似算法替代精确最近邻搜索，大幅提升检索速度，牺牲少量精度。</p>
-
-        <ul>
-            <li><strong>HNSW（Hierarchical Navigable Small World）</strong>：最常用的 ANN 算法，平衡速度和精度</li>
-            <li><strong>IVF（Inverted File Index）</strong>：速度快，适合大规模数据</li>
-            <li><strong>FAISS（Facebook AI Similarity Search）</strong>：高效向量检索库</li>
-        </ul>
-
-        <h4>索引分片（Sharding）</h4>
-
-        <p>将向量索引分片到多个节点，提升检索吞吐量。适用于大规模数据、高并发场景。</p>
-
-        <h3 id="43-嵌入生成优化">4.3 嵌入生成优化</h3>
-
-        <h4>批量推理（Batch Inference）</h4>
-
-        <p>批量生成嵌入向量，减少 API 调用次数，提升吞吐量。</p>
-
-        <h4>缓存嵌入（Caching）</h4>
-
-        <p>缓存已生成的嵌入向量，避免重复计算。适用于重复文档、频繁查询的场景。</p>
-
-        <h3 id="44-生成性能优化">4.4 生成性能优化</h3>
-
-        <h4>流式输出（Streaming）</h4>
-
-        <p>使用流式输出，逐步生成答案，提升用户体验。LLM 开始生成后立即返回部分结果。</p>
-
-        <h4>模型选择（Model Selection）</h4>
-
-        <p>根据任务复杂度选择合适的模型。简单任务使用小模型（速度快、成本低），复杂任务使用大模型（准确率高）。</p>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>模型</th>
-                    <th>速度</th>
-                    <th>成本</th>
-                    <th>准确率</th>
-                    <th>适用场景</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><code>gpt-4o-mini</code></td>
-                    <td>快</td>
-                    <td>低</td>
-                    <td>中等</td>
-                    <td>简单问答、快速响应</td>
-                </tr>
-                <tr>
-                    <td><code>gpt-4o</code></td>
-                    <td>中等</td>
-                    <td>中等</td>
-                    <td>高</td>
-                    <td>通用任务、平衡性能</td>
-                </tr>
-                <tr>
-                    <td><code>gpt-4-turbo</code></td>
-                    <td>中等</td>
-                    <td>高</td>
-                    <td>很高</td>
-                    <td>复杂推理、专业领域</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <h4>提示词优化（Prompt Optimization）</h4>
-
-        <p>优化提示词结构，减少 LLM 推理时间。使用简洁、明确的指令，避免冗余信息。</p>
-
-        <h2 id="5-生产部署">5. 生产部署</h2>
-
-        <h3 id="51-架构设计">5.1 架构设计</h3>
-
-        <h4>高可用架构</h4>
-
-        <pre><code class="mermaid">graph TB
-    A[负载均衡器] --> B[RAG 服务 1]
-    A --> C[RAG 服务 2]
-    A --> D[RAG 服务 3]
-    B --> E[向量数据库 主节点]
-    B --> F[向量数据库 从节点]
-    C --> E
-    C --> F
-    D --> E
-    D --> F
-    E --> G[Redis 缓存]
-    F --> G
-    B --> H[OpenAI API]
-    C --> H
-    D --> H</code></pre>
-
-        <h4>关键组件：</h4>
-        <ul>
-            <li><strong>负载均衡器</strong>：Nginx / HAProxy，分发请求到多个 RAG 服务</li>
-            <li><strong>RAG 服务</strong>：Spring Boot / FastAPI，处理检索和生成</li>
-            <li><strong>向量数据库</strong>：Pinecone / Weaviate，主从复制，高可用</li>
-            <li><strong>缓存层</strong>：Redis，缓存查询结果和嵌入</li>
-            <li><strong>消息队列</strong>：Kafka / RabbitMQ，异步任务</li>
-        </ul>
-
-        <h3 id="52-容器化部署">5.2 容器化部署</h3>
-
-        <h4>Dockerfile 示例：</h4>
-
-        <pre><code class="language-dockerfile"># 多阶段构建 Dockerfile
+}</pre>
+                </div>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold text-gray-900 mb-6 pb-3 border-b border-gray-200">2. 重排序（Reranking）</h2>
+
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">2.1 什么是重排序？</h3>
+
+                <p class="text-gray-600 mb-6">
+                    重排序是在粗粒度检索（向量检索/混合检索）之后，使用更精细的模型对检索结果重新打分排序的过程。
+                    重排序能够显著提升检索质量，通常能将 Top-10 的准确率提升 5-15%。
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-green-50 border border-green-200 rounded-xl p-6">
+                        <h4 class="text-lg font-semibold text-green-900 mb-3">✅ 重排序的作用</h4>
+                        <ul class="space-y-2 text-green-800 text-sm">
+                            <li><strong>提升精度</strong>：使用更精确的模型重新评估相关性</li>
+                            <li><strong>优化排序</strong>：纠正粗粒度检索的排序偏差</li>
+                            <li><strong>过滤噪声</strong>：去除相关性低的文档</li>
+                            <li><strong>提升用户体验</strong>：返回更相关的结果</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-yellow-50 border border-yellow-200 rounded-xl p-6">
+                        <h4 class="text-lg font-semibold text-yellow-900 mb-3">⚠️ 性能权衡</h4>
+                        <ul class="space-y-2 text-yellow-800 text-sm">
+                            <li><strong>优点</strong>：准确率高、排序精确</li>
+                            <li><strong>缺点</strong>：计算成本高、延迟增加</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">2.2 重排序模型</h3>
+
+                <h4 class="text-lg font-semibold text-gray-900 mb-3">Cross-Encoder（交叉编码器）</h4>
+
+                <p class="text-gray-600 mb-4">
+                    Cross-Encoder 将查询和文档一起输入模型，直接计算相关性分数。
+                    相比 Bi-Encoder（双编码器），Cross-Encoder 的准确率更高，但计算成本也更高。
+                </p>
+
+                <div class="bg-gray-50 rounded-lg p-4 mb-6">
+                    <h5 class="text-md font-semibold text-gray-900 mb-2">模型示例：</h5>
+                    <ul class="text-sm text-gray-600 space-y-1">
+                        <li><code>ms-marco-MiniLM-L-6-v2</code> - 快速、准确率高</li>
+                        <li><code>ms-marco-MiniLM-L-12-v2</code> - 更高准确率</li>
+                        <li><code>bert-base-uncased-msmarco</code> - 准确率高，速度中等</li>
+                    </ul>
+                </div>
+
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">2.3 重排序策略</h3>
+
+                <div class="space-y-4">
+                    <div class="bg-white border border-gray-200 rounded-xl p-6">
+                        <h4 class="text-lg font-semibold text-gray-900 mb-3">两阶段检索（Two-Stage Retrieval）</h4>
+                        <p class="text-gray-600 mb-3">
+                            先用 Bi-Encoder 进行粗粒度检索，再用 Cross-Encoder 进行细粒度重排序。这是最常用的策略。
+                        </p>
+                    </div>
+
+                    <div class="bg-white border border-gray-200 rounded-xl p-6">
+                        <h4 class="text-lg font-semibold text-gray-900 mb-3">级联重排序（Cascaded Reranking）</h4>
+                        <p class="text-gray-600 mb-3">
+                            使用多个重排序模型进行级联重排序，逐步提升精度。例如：快速模型 → 中等模型 → 高精度模型。
+                        </p>
+                    </div>
+
+                    <div class="bg-white border border-gray-200 rounded-xl p-6">
+                        <h4 class="text-lg font-semibold text-gray-900 mb-3">自适应重排序（Adaptive Reranking）</h4>
+                        <p class="text-gray-600 mb-3">
+                            根据查询特征、检索结果质量自适应决定是否进行重排序。例如：简单查询不重排序，复杂查询才重排序。
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold text-gray-900 mb-6 pb-3 border-b border-gray-200">3. 多查询策略</h2>
+
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">3.1 什么是多查询策略？</h3>
+
+                <p class="text-gray-600 mb-6">
+                    多查询策略是通过生成多个查询变体，扩大检索覆盖面，提升召回率的技术。
+                    适用于复杂查询、多义词查询、需要多个角度检索的场景。
+                </p>
+
+                <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-6 mb-6">
+                    <h4 class="text-lg font-semibold text-gray-900 mb-3">多查询策略的作用：</h4>
+                    <ul class="space-y-2 text-gray-700">
+                        <li class="flex items-start gap-2">
+                            <span class="text-indigo-600">✓</span>
+                            <span><strong>提升召回率</strong>：通过多个查询覆盖更多相关文档</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-indigo-600">✓</span>
+                            <span><strong>解决多义词</strong>：处理一词多义、同义词问题</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-indigo-600">✓</span>
+                            <span><strong>多角度检索</strong>：从不同角度检索相关内容</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-indigo-600">✓</span>
+                            <span><strong>提升准确率</strong>：结合多个检索结果，提升最终准确率</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">3.2 查询扩展策略</h3>
+
+                <div class="space-y-4 mb-6">
+                    <div class="bg-white border border-gray-200 rounded-xl p-6">
+                        <h4 class="text-lg font-semibold text-gray-900 mb-3">查询重写（Query Rewriting）</h4>
+                        <p class="text-gray-600 mb-3">
+                            使用 LLM 重写查询，生成更准确、更丰富的查询变体。
+                        </p>
+                    </div>
+
+                    <div class="bg-white border border-gray-200 rounded-xl p-6">
+                        <h4 class="text-lg font-semibold text-gray-900 mb-3">查询分解（Query Decomposition）</h4>
+                        <p class="text-gray-600 mb-3">
+                            将复杂查询分解为多个子查询，分别检索后合并结果。适用于复合查询、多主题查询。
+                        </p>
+                    </div>
+
+                    <div class="bg-white border border-gray-200 rounded-xl p-6">
+                        <h4 class="text-lg font-semibold text-gray-900 mb-3">HyDE（Hypothetical Document Embeddings）</h4>
+                        <p class="text-gray-600 mb-3">
+                            使用 LLM 生成假设性文档，然后用假设性文档的嵌入向量进行检索。适用于抽象查询、概念性查询。
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold text-gray-900 mb-6 pb-3 border-b border-gray-200">4. 性能优化</h2>
+
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">4.1 RAG 性能瓶颈分析</h3>
+
+                <p class="text-gray-600 mb-6">RAG 系统的性能瓶颈主要集中在以下几个方面：</p>
+
+                <div class="overflow-x-auto mb-6">
+                    <table class="min-w-full bg-white border border-gray-200 rounded-lg">
+                        <thead>
+                            <tr class="bg-gray-50">
+                                <th class="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider border-b">阶段</th>
+                                <th class="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider border-b">潜在瓶颈</th>
+                                <th class="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider border-b">优化策略</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr>
+                                <td class="px-4 py-3 text-sm text-gray-900 font-medium">检索</td>
+                                <td class="px-4 py-3 text-sm text-gray-600">向量数据库查询慢</td>
+                                <td class="px-4 py-3 text-sm text-gray-600">使用近似最近邻搜索（HNSW）、索引优化、分片</td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-3 text-sm text-gray-900 font-medium">嵌入生成</td>
+                                <td class="px-4 py-3 text-sm text-gray-600">Embedding 模型推理慢</td>
+                                <td class="px-4 py-3 text-sm text-gray-600">批量推理、模型量化、缓存嵌入</td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-3 text-sm text-gray-900 font-medium">重排序</td>
+                                <td class="px-4 py-3 text-sm text-gray-600">Cross-Encoder 推理慢</td>
+                                <td class="px-4 py-3 text-sm text-gray-600">GPU 加速、批量推理、减少候选文档</td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-3 text-sm text-gray-900 font-medium">生成</td>
+                                <td class="px-4 py-3 text-sm text-gray-600">LLM 推理慢</td>
+                                <td class="px-4 py-3 text-sm text-gray-600">流式输出、模型选择、提示词优化</td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-3 text-sm text-gray-900 font-medium">网络</td>
+                                <td class="px-4 py-3 text-sm text-gray-600">API 调用延迟高</td>
+                                <td class="px-4 py-3 text-sm text-gray-600">并发请求、本地部署、CDN</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">4.2 检索性能优化</h3>
+
+                <h4 class="text-lg font-semibold text-gray-900 mb-3">近似最近邻搜索（ANN）</h4>
+
+                <p class="text-gray-600 mb-4">使用近似算法替代精确最近邻搜索，大幅提升检索速度，牺牲少量精度。</p>
+
+                <ul class="list-disc list-inside space-y-2 text-gray-600 mb-6">
+                    <li><strong>HNSW（Hierarchical Navigable Small World）</strong>：最常用的 ANN 算法，平衡速度和精度</li>
+                    <li><strong>IVF（Inverted File Index）</strong>：速度快，适合大规模数据</li>
+                    <li><strong>FAISS（Facebook AI Similarity Search）</strong>：高效向量检索库</li>
+                </ul>
+
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">4.3 嵌入生成优化</h3>
+
+                <h4 class="text-lg font-semibold text-gray-900 mb-3">批量推理（Batch Inference）</h4>
+
+                <p class="text-gray-600 mb-4">批量生成嵌入向量，减少 API 调用次数，提升吞吐量。</p>
+
+                <h4 class="text-lg font-semibold text-gray-900 mb-3">缓存嵌入（Caching）</h4>
+
+                <p class="text-gray-600 mb-6">缓存已生成的嵌入向量，避免重复计算。适用于重复文档、频繁查询的场景。</p>
+
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">4.4 生成性能优化</h3>
+
+                <h4 class="text-lg font-semibold text-gray-900 mb-3">流式输出（Streaming）</h4>
+
+                <p class="text-gray-600 mb-4">使用流式输出，逐步生成答案，提升用户体验。LLM 开始生成后立即返回部分结果。</p>
+
+                <h4 class="text-lg font-semibold text-gray-900 mb-3">模型选择（Model Selection）</h4>
+
+                <p class="text-gray-600 mb-4">根据任务复杂度选择合适的模型。简单任务使用小模型（速度快、成本低），复杂任务使用大模型（准确率高）。</p>
+
+                <div class="overflow-x-auto mb-6">
+                    <table class="min-w-full bg-white border border-gray-200 rounded-lg">
+                        <thead>
+                            <tr class="bg-gray-50">
+                                <th class="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider border-b">模型</th>
+                                <th class="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider border-b">速度</th>
+                                <th class="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider border-b">成本</th>
+                                <th class="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider border-b">准确率</th>
+                                <th class="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider border-b">适用场景</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr>
+                                <td class="px-4 py-3 text-sm text-gray-900 font-medium"><code>gpt-4o-mini</code></td>
+                                <td class="px-4 py-3 text-sm text-gray-600">快</td>
+                                <td class="px-4 py-3 text-sm text-gray-600">低</td>
+                                <td class="px-4 py-3 text-sm text-gray-600">中等</td>
+                                <td class="px-4 py-3 text-sm text-gray-600">简单问答、快速响应</td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-3 text-sm text-gray-900 font-medium"><code>gpt-4o</code></td>
+                                <td class="px-4 py-3 text-sm text-gray-600">中等</td>
+                                <td class="px-4 py-3 text-sm text-gray-600">中等</td>
+                                <td class="px-4 py-3 text-sm text-gray-600">高</td>
+                                <td class="px-4 py-3 text-sm text-gray-600">通用任务、平衡性能</td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-3 text-sm text-gray-900 font-medium"><code>gpt-4-turbo</code></td>
+                                <td class="px-4 py-3 text-sm text-gray-600">中等</td>
+                                <td class="px-4 py-3 text-sm text-gray-600">高</td>
+                                <td class="px-4 py-3 text-sm text-gray-600">很高</td>
+                                <td class="px-4 py-3 text-sm text-gray-600">复杂推理、专业领域</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold text-gray-900 mb-6 pb-3 border-b border-gray-200">5. 生产部署</h2>
+
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">5.1 架构设计</h3>
+
+                <h4 class="text-lg font-semibold text-gray-900 mb-3">高可用架构</h4>
+
+                <div class="bg-gray-50 rounded-lg p-6 mb-6">
+                    <pre class="text-sm text-gray-700 font-mono whitespace-pre-wrap">
+负载均衡器 (Nginx/HAProxy)
+    ↓
+┌─────────┬─────────┬─────────┐
+│ RAG     │ RAG     │ RAG     │
+│ 服务 1  │ 服务 2  │ 服务 3  │
+└─────────┴─────────┴─────────┘
+    ↓         ↓         ↓
+┌───────────────────────────┐
+│     向量数据库集群        │
+│   (主节点 + 从节点)       │
+└───────────────────────────┘
+            ↓
+┌───────────────────────┐
+│    Redis 缓存         │
+└───────────────────────┘
+            ↓
+┌───────────────────────┐
+│    OpenAI API        │
+└───────────────────────┘</pre>
+                </div>
+
+                <h4 class="text-lg font-semibold text-gray-900 mb-3">关键组件：</h4>
+                <ul class="list-disc list-inside space-y-2 text-gray-600 mb-6">
+                    <li><strong>负载均衡器</strong>：Nginx / HAProxy，分发请求到多个 RAG 服务</li>
+                    <li><strong>RAG 服务</strong>：Spring Boot / FastAPI，处理检索和生成</li>
+                    <li><strong>向量数据库</strong>：Pinecone / Weaviate，主从复制，高可用</li>
+                    <li><strong>缓存层</strong>：Redis，缓存查询结果和嵌入</li>
+                    <li><strong>消息队列</strong>：Kafka / RabbitMQ，异步任务</li>
+                </ul>
+
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">5.2 容器化部署</h3>
+
+                <h4 class="text-lg font-semibold text-gray-900 mb-3">Dockerfile 示例：</h4>
+
+                <div class="bg-gray-900 rounded-lg p-4 mb-6 overflow-x-auto">
+                    <pre class="text-sm text-gray-100 font-mono">
+# 多阶段构建 Dockerfile
 
 # 构建阶段
 FROM maven:3.9-eclipse-temurin-21 AS builder
@@ -626,209 +549,80 @@ RUN mvn clean package -DskipTests
 FROM eclipse-temurin:21-jre
 
 WORKDIR /app
-
 COPY --from=builder /app/target/rag-service.jar .
 
 ENV JAVA_OPTS="-Xms2g -Xmx2g -XX:+UseG1GC"
-
 EXPOSE 8080
 
-ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar rag-service.jar"]</code></pre>
+ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar rag-service.jar"]</pre>
+                </div>
 
-        <h4>docker-compose.yml 示例：</h4>
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">5.3 Kubernetes 部署</h3>
 
-        <pre><code class="language-yaml">version: '3.8'
+                <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+                    <p class="text-sm text-blue-800">
+                        <strong>提示：</strong>Kubernetes 部署示例包含 Deployment、Service 和 HPA（Horizontal Pod Autoscaler）配置，
+                        实现自动扩缩容、健康检查和负载均衡。
+                    </p>
+                </div>
+            </section>
 
-services:
-  rag-service:
-    build: .
-    ports:
-      - "8080:8080"
-    environment:
-      - OPENAI_API_KEY=${OPENAI_API_KEY}
-      - PINECONE_API_KEY=${PINECONE_API_KEY}
-      - SPRING_PROFILES_ACTIVE=prod
-    depends_on:
-      - redis
-      - postgres
-    restart: unless-stopped
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold text-gray-900 mb-6 pb-3 border-b border-gray-200">6. 监控和日志</h2>
 
-  redis:
-    image: redis:7-alpine
-    ports:
-      - "6379:6379"
-    volumes:
-      - redis_data:/data
-    restart: unless-stopped
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">6.1 监控指标</h3>
 
-  prometheus:
-    image: prom/prometheus:latest
-    ports:
-      - "9090:9090"
-    volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
-      - prometheus_data:/prometheus
-    restart: unless-stopped
+                <h4 class="text-lg font-semibold text-gray-900 mb-3">关键指标：</h4>
 
-  grafana:
-    image: grafana/grafana:latest
-    ports:
-      - "3000:3000"
-    volumes:
-      - grafana_data:/var/lib/grafana
-    restart: unless-stopped
+                <div class="overflow-x-auto mb-6">
+                    <table class="min-w-full bg-white border border-gray-200 rounded-lg">
+                        <thead>
+                            <tr class="bg-gray-50">
+                                <th class="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider border-b">类别</th>
+                                <th class="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider border-b">指标</th>
+                                <th class="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider border-b">目标值</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr>
+                                <td class="px-4 py-3 text-sm text-gray-900 font-medium">性能</td>
+                                <td class="px-4 py-3 text-sm text-gray-600">P95 延迟</td>
+                                <td class="px-4 py-3 text-sm text-gray-600">&lt; 2s</td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-3 text-sm text-gray-900 font-medium">性能</td>
+                                <td class="px-4 py-3 text-sm text-gray-600">P99 延迟</td>
+                                <td class="px-4 py-3 text-sm text-gray-600">&lt; 5s</td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-3 text-sm text-gray-900 font-medium">性能</td>
+                                <td class="px-4 py-3 text-sm text-gray-600">吞吐量（QPS）</td>
+                                <td class="px-4 py-3 text-sm text-gray-600">&gt; 100</td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-3 text-sm text-gray-900 font-medium">可用性</td>
+                                <td class="px-4 py-3 text-sm text-gray-600">成功率</td>
+                                <td class="px-4 py-3 text-sm text-gray-600">&gt; 99.9%</td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-3 text-sm text-gray-900 font-medium">准确率</td>
+                                <td class="px-4 py-3 text-sm text-gray-600">Top-1 准确率</td>
+                                <td class="px-4 py-3 text-sm text-gray-600">&gt; 70%</td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-3 text-sm text-gray-900 font-medium">准确率</td>
+                                <td class="px-4 py-3 text-sm text-gray-600">Top-5 准确率</td>
+                                <td class="px-4 py-3 text-sm text-gray-600">&gt; 85%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
 
-volumes:
-  redis_data:
-  prometheus_data:
-  grafana_data:</code></pre>
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">6.2 Prometheus 配置</h3>
 
-        <h3 id="53-kubernetes-部署">5.3 Kubernetes 部署</h3>
-
-        <h4>Deployment 示例：</h4>
-
-        <pre><code class="language-yaml">apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: rag-service
-  labels:
-    app: rag-service
-spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: rag-service
-  template:
-    metadata:
-      labels:
-        app: rag-service
-    spec:
-      containers:
-      - name: rag-service
-        image: your-registry/rag-service:latest
-        ports:
-        - containerPort: 8080
-        env:
-        - name: OPENAI_API_KEY
-          valueFrom:
-            secretKeyRef:
-              name: api-secrets
-              key: openai-api-key
-        - name: JAVA_OPTS
-          value: "-Xms2g -Xmx2g -XX:+UseG1GC"
-        resources:
-          requests:
-            memory: "2Gi"
-            cpu: "1000m"
-          limits:
-            memory: "4Gi"
-            cpu: "2000m"
-        livenessProbe:
-          httpGet:
-            path: /actuator/health/liveness
-            port: 8080
-          initialDelaySeconds: 60
-          periodSeconds: 10
-        readinessProbe:
-          httpGet:
-            path: /actuator/health/readiness
-            port: 8080
-          initialDelaySeconds: 30
-          periodSeconds: 5</code></pre>
-
-        <h4>Service 示例：</h4>
-
-        <pre><code class="language-yaml">apiVersion: v1
-kind: Service
-metadata:
-  name: rag-service
-spec:
-  selector:
-    app: rag-service
-  ports:
-  - protocol: TCP
-    port: 80
-    targetPort: 8080
-  type: LoadBalancer</code></pre>
-
-        <h4>HorizontalPodAutoscaler 示例：</h4>
-
-        <pre><code class="language-yaml">apiVersion: autoscaling/v2
-kind: HorizontalPodAutoscaler
-metadata:
-  name: rag-service-hpa
-spec:
-  scaleTargetRef:
-    apiVersion: apps/v1
-    kind: Deployment
-    name: rag-service
-  minReplicas: 3
-  maxReplicas: 10
-  metrics:
-  - type: Resource
-    resource:
-      name: cpu
-      target:
-        type: Utilization
-        averageUtilization: 70
-  - type: Resource
-    resource:
-      name: memory
-      target:
-        type: Utilization
-        averageUtilization: 80</code></pre>
-
-        <h2 id="6-监控和日志">6. 监控和日志</h2>
-
-        <h3 id="61-监控指标">6.1 监控指标</h3>
-
-        <h4>关键指标：</h4>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>类别</th>
-                    <th>指标</th>
-                    <th>目标值</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>性能</strong></td>
-                    <td>P95 延迟</td>
-                    <td>&lt; 2s</td>
-                </tr>
-                <tr>
-                    <td><strong>性能</strong></td>
-                    <td>P99 延迟</td>
-                    <td>&lt; 5s</td>
-                </tr>
-                <tr>
-                    <td><strong>性能</strong></td>
-                    <td>吞吐量（QPS）</td>
-                    <td>&gt; 100</td>
-                </tr>
-                <tr>
-                    <td><strong>可用性</strong></td>
-                    <td>成功率</td>
-                    <td>&gt; 99.9%</td>
-                </tr>
-                <tr>
-                    <td><strong>准确率</strong></td>
-                    <td>Top-1 准确率</td>
-                    <td>&gt; 70%</td>
-                </tr>
-                <tr>
-                    <td><strong>准确率</strong></td>
-                    <td>Top-5 准确率</td>
-                    <td>&gt; 85%</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <h3 id="62-prometheus-配置">6.2 Prometheus 配置</h3>
-
-        <pre><code class="language-yaml"># prometheus.yml
+                <div class="bg-gray-900 rounded-lg p-4 mb-6 overflow-x-auto">
+                    <pre class="text-sm text-gray-100 font-mono">
+# prometheus.yml
 global:
   scrape_interval: 15s
   evaluation_interval: 15s
@@ -845,170 +639,136 @@ scrape_configs:
 
   - job_name: 'redis'
     static_configs:
-      - targets: ['redis:9121']</code></pre>
+      - targets: ['redis:9121']</pre>
+                </div>
 
-        <h3 id="63-grafana-仪表盘">6.3 Grafana 仪表盘</h3>
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">6.3 Grafana 仪表盘</h3>
 
-        <h4>推荐面板：</h4>
-        <ul>
-            <li><strong>请求指标</strong>：QPS、成功率、错误率</li>
-            <li><strong>延迟指标</strong>：P50、P95、P99 延迟</li>
-            <li><strong>检索指标</strong>：检索时间、检索数量、检索准确率</li>
-            <li><strong>生成指标</strong>：生成时间、Token 数量、Token 成本</li>
-            <li><strong>资源指标</strong>：CPU、内存、网络、磁盘</li>
-        </ul>
+                <h4 class="text-lg font-semibold text-gray-900 mb-3">推荐面板：</h4>
+                <ul class="list-disc list-inside space-y-2 text-gray-600 mb-6">
+                    <li><strong>请求指标</strong>：QPS、成功率、错误率</li>
+                    <li><strong>延迟指标</strong>：P50、P95、P99 延迟</li>
+                    <li><strong>检索指标</strong>：检索时间、检索数量、检索准确率</li>
+                    <li><strong>生成指标</strong>：生成时间、Token 数量、Token 成本</li>
+                    <li><strong>资源指标</strong>：CPU、内存、网络、磁盘</li>
+                </ul>
+            </section>
 
-        <h3 id="64-日志管理">6.4 日志管理</h3>
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold text-gray-900 mb-6 pb-3 border-b border-gray-200">7. 最佳实践</h2>
 
-        <h4>结构化日志：</h4>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-white border border-gray-200 rounded-xl p-6">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-3">性能优化</h3>
+                        <ol class="list-decimal list-inside space-y-2 text-gray-600 text-sm">
+                            <li>使用近似检索（HNSW）</li>
+                            <li>批量推理嵌入</li>
+                            <li>缓存查询和嵌入</li>
+                            <li>流式输出</li>
+                            <li>异步任务</li>
+                            <li>并发请求</li>
+                        </ol>
+                    </div>
 
-        <pre><code class="language-java">import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.slf4j.MDC;
+                    <div class="bg-white border border-gray-200 rounded-xl p-6">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-3">部署</h3>
+                        <ol class="list-decimal list-inside space-y-2 text-gray-600 text-sm">
+                            <li>容器化部署（Docker）</li>
+                            <li>Kubernetes 编排</li>
+                            <li>高可用架构</li>
+                            <li>Prometheus + Grafana</li>
+                            <li>结构化日志（ELK）</li>
+                            <li>健康检查（Liveness/Readiness）</li>
+                        </ol>
+                    </div>
 
-public class RAGLogger {
+                    <div class="bg-white border border-gray-200 rounded-xl p-6">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-3">监控</h3>
+                        <ol class="list-decimal list-inside space-y-2 text-gray-600 text-sm">
+                            <li>监控关键指标</li>
+                            <li>配置告警规则</li>
+                            <li>可视化仪表盘</li>
+                            <li>Trace ID 追踪</li>
+                            <li>定期审查</li>
+                            <li>持续优化</li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
 
-    private static final Logger logger = LoggerFactory.getLogger(RAGLogger.class);
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold text-gray-900 mb-6 pb-3 border-b border-gray-200">8. 常见问题（FAQ）</h2>
 
-    public static void logRetrieval(String query, int retrievedCount, long latencyMs) {
-        MDC.put("query", query);
-        MDC.put("retrieved_count", String.valueOf(retrievedCount));
-        MDC.put("latency_ms", String.valueOf(latencyMs));
-        MDC.put("event_type", "retrieval");
+                <div class="space-y-6">
+                    <div class="bg-white border border-gray-200 rounded-xl p-6">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-3">Q1: 如何选择向量数据库？</h3>
+                        <p class="text-gray-600 mb-3"><strong>A:</strong> 根据以下因素选择：</p>
+                        <ul class="list-disc list-inside space-y-1 text-gray-600 text-sm">
+                            <li><strong>数据规模</strong>：小规模（&lt; 1M）用 Chroma/Qdrant，大规模（&gt; 10M）用 Pinecone/Weaviate</li>
+                            <li><strong>性能要求</strong>：高并发、低延迟选择 Pinecloud/Milvus</li>
+                            <li><strong>成本预算</strong>：免费方案用 Chroma/Qdrant，企业方案用 Pinecone/Weaviate</li>
+                            <li><strong>部署方式</strong>：自部署选 Milvus/Weaviate，托管服务选 Pinecone</li>
+                        </ul>
+                    </div>
 
-        logger.info("Retrieved {} documents in {} ms", retrievedCount, latencyMs);
+                    <div class="bg-white border border-gray-200 rounded-xl p-6">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-3">Q2: 如何提升检索准确率？</h3>
+                        <p class="text-gray-600 mb-3"><strong>A:</strong> 多管齐下：</p>
+                        <ul class="list-disc list-inside space-y-1 text-gray-600 text-sm">
+                            <li>使用混合检索（向量检索 + 关键词检索）</li>
+                            <li>添加重排序器（Cross-Encoder）</li>
+                            <li>优化文本分割策略</li>
+                            <li>增加检索数量（topK）</li>
+                            <li>使用多查询策略</li>
+                        </ul>
+                    </div>
 
-        MDC.clear();
-    }
+                    <div class="bg-white border border-gray-200 rounded-xl p-6">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-3">Q3: 如何降低成本？</h3>
+                        <p class="text-gray-600 mb-3"><strong>A:</strong> 多种方式：</p>
+                        <ul class="list-disc list-inside space-y-1 text-gray-600 text-sm">
+                            <li>使用较小的 Embedding 模型（text-embedding-3-small）</li>
+                            <li>缓存查询结果和嵌入</li>
+                            <li>使用 gpt-4o-mini 替代 gpt-4-turbo</li>
+                            <li>优化提示词，减少 Token 使用</li>
+                            <li>批量推理，减少 API 调用</li>
+                        </ul>
+                    </div>
 
-    public static void logGeneration(
-            String query,
-            int inputTokens,
-            int outputTokens,
-            long latencyMs
-    ) {
-        MDC.put("query", query);
-        MDC.put("input_tokens", String.valueOf(inputTokens));
-        MDC.put("output_tokens", String.valueOf(outputTokens));
-        MDC.put("latency_ms", String.valueOf(latencyMs));
-        MDC.put("event_type", "generation");
+                    <div class="bg-white border border-gray-200 rounded-xl p-6">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-3">Q4: 如何处理长文档？</h3>
+                        <p class="text-gray-600 mb-3"><strong>A:</strong> 分割策略：</p>
+                        <ul class="list-disc list-inside space-y-1 text-gray-600 text-sm">
+                            <li>使用递归文本分割器</li>
+                            <li>保留语义完整性</li>
+                            <li>添加重叠（overlap）避免信息丢失</li>
+                            <li>使用语义分割（基于语义边界）</li>
+                            <li>考虑文档摘要 + 详细内容的分层检索</li>
+                        </ul>
+                    </div>
 
-        logger.info("Generated {} output tokens ({} input tokens) in {} ms",
-                outputTokens, inputTokens, latencyMs);
+                    <div class="bg-white border border-gray-200 rounded-xl p-6">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-3">Q5: 如何保证数据安全？</h3>
+                        <p class="text-gray-600 mb-3"><strong>A:</strong> 安全措施：</p>
+                        <ul class="list-disc list-inside space-y-1 text-gray-600 text-sm">
+                            <li>使用环境变量管理 API Key</li>
+                            <li>启用向量数据库的访问控制（ACL）</li>
+                            <li>数据加密（静态加密 + 传输加密）</li>
+                            <li>定期备份向量数据</li>
+                            <li>限制 API 调用频率（Rate Limiting）</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
 
-        MDC.clear();
-    }
-
-    public static void logError(String event, String message, Throwable throwable) {
-        MDC.put("event_type", "error");
-        MDC.put("event", event);
-
-        logger.error("Error in {}: {}", event, message, throwable);
-
-        MDC.clear();
-    }
-}</code></pre>
-
-        <h2 id="7-最佳实践">7. 最佳实践</h2>
-
-        <h3 id="71-性能优化最佳实践">7.1 性能优化最佳实践</h3>
-
-        <ol>
-            <li><strong>使用近似检索</strong>：HNSW 索引，平衡速度和精度</li>
-            <li><strong>批量推理</strong>：批量生成嵌入，减少 API 调用</li>
-            <li><strong>缓存策略</strong>：缓存查询结果和嵌入</li>
-            <li><strong>流式输出</strong>：提升用户体验</li>
-            <li><strong>异步任务</strong>：使用消息队列异步处理</li>
-            <li><strong>并发请求</strong>：并发执行多个检索</li>
-        </ol>
-
-        <h3 id="72-部署最佳实践">7.2 部署最佳实践</h3>
-
-        <ol>
-            <li><strong>容器化</strong>：使用 Docker 容器化部署</li>
-            <li><strong>编排</strong>：使用 Kubernetes 管理服务</li>
-            <li><strong>高可用</strong>：多实例部署，负载均衡</li>
-            <li><strong>监控</strong>：Prometheus + Grafana 监控</li>
-            <li><strong>日志</strong>：结构化日志，ELK Stack 集成</li>
-            <li><strong>健康检查</strong>：配置 liveness 和 readiness probe</li>
-        </ol>
-
-        <h3 id="73-监控最佳实践">7.3 监控最佳实践</h3>
-
-        <ol>
-            <li><strong>关键指标</strong>：监控延迟、吞吐量、准确率</li>
-            <li><strong>告警规则</strong>：配置合理的告警阈值</li>
-            <li><strong>仪表盘</strong>：可视化监控指标</li>
-            <li><strong>日志追踪</strong>：使用 Trace ID 追踪请求链路</li>
-            <li><strong>定期审查</strong>：定期审查性能指标</li>
-            <li><strong>持续优化</strong>：根据监控数据持续优化</li>
-        </ol>
-
-        <h2 id="8-常见问题faq">8. 常见问题（FAQ）</h2>
-
-        <h3>Q1: 如何选择向量数据库？</h3>
-        <p><strong>A:</strong> 根据以下因素选择：</p>
-        <ul>
-            <li><strong>数据规模</strong>：小规模（&lt; 1M）用 Chroma/Qdrant，大规模（&gt; 10M）用 Pinecone/Weaviate</li>
-            <li><strong>性能要求</strong>：高并发、低延迟选择 Pinecloud/Milvus</li>
-            <li><strong>成本预算</strong>：免费方案用 Chroma/Qdrant，企业方案用 Pinecone/Weaviate</li>
-            <li><strong>部署方式</strong>：自部署选 Milvus/Weaviate，托管服务选 Pinecone</li>
-        </ul>
-
-        <h3>Q2: 如何提升检索准确率？</h3>
-        <p><strong>A:</strong> 多管齐下：</p>
-        <ul>
-            <li>使用混合检索（向量检索 + 关键词检索）</li>
-            <li>添加重排序器（Cross-Encoder）</li>
-            <li>优化文本分割策略</li>
-            <li>增加检索数量（topK）</li>
-            <li>使用多查询策略</li>
-        </ul>
-
-        <h3>Q3: 如何降低成本？</h3>
-        <p><strong>A:</strong> 多种方式：</p>
-        <ul>
-            <li>使用较小的 Embedding 模型（text-embedding-3-small）</li>
-            <li>缓存查询结果和嵌入</li>
-            <li>使用 gpt-4o-mini 替代 gpt-4-turbo</li>
-            <li>优化提示词，减少 Token 使用</li>
-            <li>批量推理，减少 API 调用</li>
-        </ul>
-
-        <h3>Q4: 如何处理长文档？</h3>
-        <p><strong>A:</strong> 分割策略：</p>
-        <ul>
-            <li>使用递归文本分割器</li>
-            <li>保留语义完整性</li>
-            <li>添加重叠（overlap）避免信息丢失</li>
-            <li>使用语义分割（基于语义边界）</li>
-            <li>考虑文档摘要 + 详细内容的分层检索</li>
-        </ul>
-
-        <h3>Q5: 如何保证数据安全？</h3>
-        <p><strong>A:</strong> 安全措施：</p>
-        <ul>
-            <li>使用环境变量管理 API Key</li>
-            <li>启用向量数据库的访问控制（ACL）</li>
-            <li>数据加密（静态加密 + 传输加密）</li>
-            <li>定期备份向量数据</li>
-            <li>限制 API 调用频率（Rate Limiting）</li>
-        </ul>
-
-        <div class="next-steps">
-            <h2>继续学习</h2>
-            <ul>
-                <li><a href="index.html">返回首页</a></li>
-                <li><a href="rag-intro.html">RAG 简介</a></li>
-                <li><a href="rag-setup.html">RAG 环境搭建</a></li>
-                <li><a href="rag-implementation.html">RAG 实现</a></li>
-                <li><a href="interview-prep.html">面试准备</a></li>
-            </ul>
-        </div>
-    </main>
-
-    <footer>
-        <p>&copy; 2025 LangChain4j 完整指南. 保留所有权利.</p>
-    </footer>
+            <section class="mb-12">
+                <div class="text-center">
+                    <a href="rag-intro.html" class="inline-flex items-center gap-2 px-6 py-3 bg-indigo-600 text-white rounded-md font-medium hover:bg-indigo-700 transition-all shadow-md">
+                        ← 继续学习 RAG 简介
+                    </a>
+                </div>
+            </section>
+        </main>
+    </div>
 </body>
 </html>
