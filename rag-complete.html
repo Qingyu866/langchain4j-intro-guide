@@ -3,65 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <title>RAG完整指南 - LangChain4j 学习指南</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
-                    },
-                    colors: {
-                        primary: {
-                            50: '#eef2ff',
-                            100: '#e0e7ff',
-                            200: '#c7d2fe',
-                            500: '#6366f1',
-                            600: '#4f46e5',
-                            700: '#4338ca',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+    <!-- 模块化CSS -->
+    <link rel="stylesheet" href="css/main.css">
 </head>
-<body class="bg-white text-gray-800 antialiased">
-    <div class="flex min-h-screen">
+<body>
+    <div class="page-container">
         
 
 
-<aside class="w-[280px] fixed h-screen bg-white border-r border-gray-200 overflow-y-auto pb-8">
-  <div class="p-6">
-    <div class="flex items-center gap-3 mb-8">
-      <div class="w-10 h-10 bg-indigo-600 rounded-lg flex items-center justify-center">
-        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<aside class="sidebar">
+  <div class="sidebar-content">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-icon">
+        <svg class="sidebar-logo-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
         </svg>
       </div>
       <div>
-        <h1 class="font-bold text-gray-900">LangChain4j</h1>
-        <p class="text-xs text-gray-500">入门指南</p>
+        <h1 class="sidebar-logo-title">LangChain4j</h1>
+        <p class="sidebar-logo-subtitle">入门指南</p>
       </div>
     </div>
 
     <div class="space-y-6">
-      <div>
-        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">快速开始</h3>
-        <ul class="space-y-1">
+      <div class="sidebar-nav-group">
+        <h3 class="sidebar-nav-title">快速开始</h3>
+        <ul class="sidebar-nav-list">
           <li><a href="index.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="index">概览</a></li>
           <li><a href="getting-started.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="getting-started">环境准备</a></li>
           <li><a href="core-concepts.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="core-concepts">核心概念</a></li>
         </ul>
       </div>
 
-      <div>
-        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">核心功能</h3>
-        <ul class="space-y-1">
+      <div class="sidebar-nav-group">
+        <h3 class="sidebar-nav-title">核心功能</h3>
+        <ul class="sidebar-nav-list">
           <li><a href="embedding-models.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="embedding-models">Embedding 模型</a></li>
           <li><a href="prompt-templates.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="prompt-templates">Prompt 模板</a></li>
           <li><a href="output-parsers.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="output-parsers">输出解析</a></li>
@@ -72,9 +48,9 @@
         </ul>
       </div>
 
-       <div>
-        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">RAG 完整指南</h3>
-        <ul class="space-y-1">
+       <div class="sidebar-nav-group">
+        <h3 class="sidebar-nav-title">RAG 完整指南</h3>
+        <ul class="sidebar-nav-list">
           <li><a href="rag-intro.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="rag-intro">RAG 简介</a></li>
           <li><a href="rag-setup.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="rag-setup">RAG 环境搭建</a></li>
           <li><a href="rag-implementation.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="rag-implementation">RAG 实现</a></li>
@@ -82,9 +58,9 @@
         </ul>
       </div>
 
-      <div>
-        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">项目实战</h3>
-        <ul class="space-y-1">
+      <div class="sidebar-nav-group">
+        <h3 class="sidebar-nav-title">项目实战</h3>
+        <ul class="sidebar-nav-list">
           <li><a href="project-chatbot.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="project-chatbot">聊天机器人</a></li>
           <li><a href="project-ai-assistant.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="project-ai-assistant">AI助手</a></li>
           <li><a href="project-rag-kb.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="project-rag-kb">RAG知识库</a></li>
@@ -92,9 +68,9 @@
         </ul>
       </div>
 
-      <div>
-        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">最佳实践</h3>
-        <ul class="space-y-1">
+      <div class="sidebar-nav-group">
+        <h3 class="sidebar-nav-title">最佳实践</h3>
+        <ul class="sidebar-nav-list">
           <li><a href="best-practices.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="best-practices">最佳实践</a></li>
           <li><a href="testing-strategies.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="testing-strategies">测试策略</a></li>
           <li><a href="performance-tuning.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="performance-tuning">性能优化</a></li>
@@ -105,16 +81,16 @@
         </ul>
       </div>
 
-      <div>
-        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">面试准备</h3>
-        <ul class="space-y-1">
+      <div class="sidebar-nav-group">
+        <h3 class="sidebar-nav-title">面试准备</h3>
+        <ul class="sidebar-nav-list">
           <li><a href="interview-prep.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="interview-prep">面试准备</a></li>
         </ul>
       </div>
 
-      <div>
-        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">其他</h3>
-        <ul class="space-y-1">
+      <div class="sidebar-nav-group">
+        <h3 class="sidebar-nav-title">其他</h3>
+        <ul class="sidebar-nav-list">
           <li><a href="search.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="search">向量搜索</a></li>
           <li><a href="chat-listeners.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="chat-listeners">监听器</a></li>
           <li><a href="faq.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="faq">常见问题</a></li>
@@ -127,9 +103,9 @@
     </div>
   </div>
 </aside>
-<!-- class="block px-4 py-2.5 text-sm bg-indigo-50 text-indigo-700 font-medium rounded-md transition-all text-center" -->
-<!-- class="block px-4 py-2.5 text-sm bg-indigo-50 text-indigo-700 font-medium rounded-md transition-all text-center" -->
-<!-- class="block px-4 py-2.5 text-sm bg-indigo-50 text-indigo-700 font-medium rounded-md transition-all text-center" -->
+
+
+
 
 
         <main class="flex-1 ml-[280px] px-8 py-12 max-w-7xl mx-auto">>
@@ -194,7 +170,7 @@
     </div>
 
                 <div class="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-lg p-6 mb-6">
-                    <h3 class="text-lg font-semibold text-gray-900 mb-3">什么是RAG？</h3>
+                    <h3 class="subsection-title-sm">什么是RAG？</h3>
                     <p class="text-gray-700 mb-4">
                         <strong>检索增强生成（Retrieval-Augmented Generation，RAG）</strong>是一种技术，
                         通过在将用户问题发送给LLM之前，先从外部数据源检索相关信息，然后将这些信息注入到提示词中。
@@ -236,7 +212,7 @@
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div class="grid-2col">
                     <div class="border border-gray-200 rounded-lg p-5 hover:border-indigo-300 transition-colors">
                         <div class="text-2xl mb-3">✅</div>
                         <h4 class="font-semibold text-gray-900 mb-2">RAG优势</h4>
@@ -278,34 +254,34 @@
     </div>
 
                 <div class="bg-gray-50 rounded-lg p-6 mb-6">
-                    <h3 class="text-lg font-semibold text-gray-900 mb-3">LangChain4j文档加载器</h3>
+                    <h3 class="subsection-title-sm">LangChain4j文档加载器</h3>
                     <p class="text-gray-700 mb-4">
                         LangChain4j提供了多种DocumentLoader，可以方便地从各种来源加载文档：
                     </p>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <div class="bg-white rounded-lg p-4 shadow-sm border border-gray-200">
-                            <div class="font-semibold text-gray-900 mb-2">文件系统</div>
-                            <p class="text-sm text-gray-600">从本地文件系统加载</p>
+                    <div class="grid-3col">
+                        <div class="card">
+                            <div class="subsection-title">文件系统</div>
+                            <p class="card-description">从本地文件系统加载</p>
                         </div>
-                        <div class="bg-white rounded-lg p-4 shadow-sm border border-gray-200">
-                            <div class="font-semibold text-gray-900 mb-2">云存储</div>
-                            <p class="text-sm text-gray-600">S3、Azure、GCS等</p>
+                        <div class="card">
+                            <div class="subsection-title">云存储</div>
+                            <p class="card-description">S3、Azure、GCS等</p>
                         </div>
-                        <div class="bg-white rounded-lg p-4 shadow-sm border border-gray-200">
-                            <div class="font-semibold text-gray-900 mb-2">网络爬虫</div>
-                            <p class="text-sm text-gray-600">Selenium、Playwright</p>
+                        <div class="card">
+                            <div class="subsection-title">网络爬虫</div>
+                            <p class="card-description">Selenium、Playwright</p>
                         </div>
-                        <div class="bg-white rounded-lg p-4 shadow-sm border border-gray-200">
-                            <div class="font-semibold text-gray-900 mb-2">代码库</div>
-                            <p class="text-sm text-gray-600">GitHub、GitLab等</p>
+                        <div class="card">
+                            <div class="subsection-title">代码库</div>
+                            <p class="card-description">GitHub、GitLab等</p>
                         </div>
-                        <div class="bg-white rounded-lg p-4 shadow-sm border border-gray-200">
-                            <div class="font-semibold text-gray-900 mb-2">URL</div>
-                            <p class="text-sm text-gray-600">直接从URL加载</p>
+                        <div class="card">
+                            <div class="subsection-title">URL</div>
+                            <p class="card-description">直接从URL加载</p>
                         </div>
-                        <div class="bg-white rounded-lg p-4 shadow-sm border border-gray-200">
-                            <div class="font-semibold text-gray-900 mb-2">Classpath</div>
-                            <p class="text-sm text-gray-600">从classpath资源加载</p>
+                        <div class="card">
+                            <div class="subsection-title">Classpath</div>
+                            <p class="card-description">从classpath资源加载</p>
                         </div>
                     </div>
                 </div>
@@ -388,7 +364,7 @@ public class FileSystemDocumentLoader {
                     </p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div class="grid-2col">
                     <div class="border border-gray-200 rounded-lg p-5">
                         <h4 class="font-semibold text-gray-900 mb-2">固定大小分块</h4>
                         <p class="text-sm text-gray-600 mb-3">按固定字符数或Token数分割</p>
@@ -534,7 +510,7 @@ public class ChunkingStrategies {
     </div>
 
                 <div class="bg-gray-50 rounded-lg p-6 mb-6">
-                    <h3 class="text-lg font-semibold text-gray-900 mb-3">什么是Embedding？</h3>
+                    <h3 class="subsection-title-sm">什么是Embedding？</h3>
                     <p class="text-gray-700 mb-4">
                         <strong>Embedding（嵌入）</strong>是将文本、图像等数据转换为数值向量的过程。
                         这些向量在高维空间中保留了数据的语义信息，相似的文本在向量空间中距离较近。
@@ -679,7 +655,7 @@ public class EmbeddingGeneration {
     </div>
 
                 <div class="bg-gray-50 rounded-lg p-6 mb-6">
-                    <h3 class="text-lg font-semibold text-gray-900 mb-3">LangChain4j支持的向量数据库</h3>
+                    <h3 class="subsection-title-sm">LangChain4j支持的向量数据库</h3>
                     <p class="text-gray-700 mb-4">
                         LangChain4j提供了统一的EmbeddingStore接口，支持30+种向量数据库：
                     </p>
@@ -820,7 +796,7 @@ public class InMemoryStoreExample {
     </div>
 
                 <div class="bg-gray-50 rounded-lg p-6 mb-6">
-                    <h3 class="text-lg font-semibold text-gray-900 mb-3">检索质量决定RAG效果</h3>
+                    <h3 class="subsection-title-sm">检索质量决定RAG效果</h3>
                     <p class="text-gray-700 mb-4">
                         检索是RAG系统的核心，高质量的检索才能让LLM生成准确回答。
                         LangChain4j提供了ContentRetriever接口和多种检索策略。
@@ -925,7 +901,7 @@ public class VectorRetrieverExample {
     </div>
 
                 <div class="bg-gradient-to-r from-green-50 to-blue-50 rounded-lg p-6 mb-6">
-                    <h3 class="text-lg font-semibold text-gray-900 mb-3">端到端RAG实现</h3>
+                    <h3 class="subsection-title-sm">端到端RAG实现</h3>
                     <p class="text-gray-700 mb-4">
                         现在让我们将前面的组件组合起来，构建一个完整的RAG系统。
                         该系统将：
@@ -1363,7 +1339,7 @@ public class MetadataFiltering {
         <h2 class="text-2xl font-bold text-gray-900">最佳实践与优化</h2>
     </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div class="grid-2col">
                     <div class="border border-gray-200 rounded-lg p-5">
                         <h4 class="font-semibold text-gray-900 mb-2">🚀 Embedding优化</h4>
                         <ul class="space-y-2 text-gray-700 text-sm">

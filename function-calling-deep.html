@@ -2,137 +2,134 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>Function Calling深度解析 - LangChain4j 学习指南</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <title>函数调用 - LangChain4j 学习指南</title>
+    <!-- 模块化CSS -->
+    <link rel="stylesheet" href="css/main.css">
 </head>
-<body class="bg-white text-gray-800 antialiased">
-    <div class="flex min-h-screen">
+<body>
+    <div class="page-container">
         
 
 
-<aside class="w-[280px] fixed h-screen bg-white border-r border-gray-200 overflow-y-auto pb-8">
-  <div class="p-6">
-    <div class="flex items-center gap-3 mb-8">
-      <div class="w-10 h-10 bg-indigo-600 rounded-lg flex items-center justify-center">
-        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<aside class="sidebar">
+  <div class="sidebar-content">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-icon">
+        <svg class="sidebar-logo-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
         </svg>
       </div>
       <div>
-        <h1 class="font-bold text-gray-900">LangChain4j</h1>
-        <p class="text-xs text-gray-500">入门指南</p>
+        <h1 class="sidebar-logo-title">LangChain4j</h1>
+        <p class="sidebar-logo-subtitle">入门指南</p>
       </div>
     </div>
 
     <div class="space-y-6">
-      <div>
-        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">快速开始</h3>
-        <ul class="space-y-1">
-          <li><a href="index.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="index">概览</a></li>
-          <li><a href="getting-started.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="getting-started">环境准备</a></li>
-          <li><a href="core-concepts.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="core-concepts">核心概念</a></li>
+      <div class="sidebar-nav-group">
+        <h3 class="sidebar-nav-title">快速开始</h3>
+        <ul class="sidebar-nav-list">
+          <li><a href="index.html" class="sidebar-nav-link" data-page="index">概览</a></li>
+          <li><a href="getting-started.html" class="sidebar-nav-link" data-page="getting-started">环境准备</a></li>
+          <li><a href="core-concepts.html" class="sidebar-nav-link" data-page="core-concepts">核心概念</a></li>
         </ul>
       </div>
 
-      <div>
-        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">核心功能</h3>
-        <ul class="space-y-1">
-          <li><a href="embedding-models.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="embedding-models">Embedding 模型</a></li>
-          <li><a href="prompt-templates.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="prompt-templates">Prompt 模板</a></li>
-          <li><a href="output-parsers.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="output-parsers">输出解析</a></li>
-          <li><a href="model-providers.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="model-providers">模型提供商</a></li>
-          <li><a href="function-calling-deep.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="function-calling-deep">函数调用</a></li>
-          <li><a href="advanced-features.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="advanced-features">高级特性</a></li>
-          <li><a href="multimodal-full.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="multimodal-full">多模态</a></li>
+      <div class="sidebar-nav-group">
+        <h3 class="sidebar-nav-title">核心功能</h3>
+        <ul class="sidebar-nav-list">
+          <li><a href="embedding-models.html" class="sidebar-nav-link" data-page="embedding-models">Embedding 模型</a></li>
+          <li><a href="prompt-templates.html" class="sidebar-nav-link" data-page="prompt-templates">Prompt 模板</a></li>
+          <li><a href="output-parsers.html" class="sidebar-nav-link" data-page="output-parsers">输出解析</a></li>
+          <li><a href="model-providers.html" class="sidebar-nav-link" data-page="model-providers">模型提供商</a></li>
+          <li><a href="function-calling-deep.html" class="sidebar-nav-link" data-page="function-calling-deep">函数调用</a></li>
+          <li><a href="advanced-features.html" class="sidebar-nav-link" data-page="advanced-features">高级特性</a></li>
+          <li><a href="multimodal-full.html" class="sidebar-nav-link" data-page="multimodal-full">多模态</a></li>
         </ul>
       </div>
 
-       <div>
-        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">RAG 完整指南</h3>
-        <ul class="space-y-1">
-          <li><a href="rag-intro.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="rag-intro">RAG 简介</a></li>
-          <li><a href="rag-setup.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="rag-setup">RAG 环境搭建</a></li>
-          <li><a href="rag-implementation.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="rag-implementation">RAG 实现</a></li>
-          <li><a href="rag-advanced.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="rag-advanced">RAG 高级</a></li>
+       <div class="sidebar-nav-group">
+        <h3 class="sidebar-nav-title">RAG 完整指南</h3>
+        <ul class="sidebar-nav-list">
+          <li><a href="rag-intro.html" class="sidebar-nav-link" data-page="rag-intro">RAG 简介</a></li>
+          <li><a href="rag-setup.html" class="sidebar-nav-link" data-page="rag-setup">RAG 环境搭建</a></li>
+          <li><a href="rag-implementation.html" class="sidebar-nav-link" data-page="rag-implementation">RAG 实现</a></li>
+          <li><a href="rag-advanced.html" class="sidebar-nav-link" data-page="rag-advanced">RAG 高级</a></li>
         </ul>
       </div>
 
-      <div>
-        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">项目实战</h3>
-        <ul class="space-y-1">
-          <li><a href="project-chatbot.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="project-chatbot">聊天机器人</a></li>
-          <li><a href="project-ai-assistant.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="project-ai-assistant">AI助手</a></li>
-          <li><a href="project-rag-kb.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="project-rag-kb">RAG知识库</a></li>
-          <li><a href="practice.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="practice">综合实战</a></li>
+      <div class="sidebar-nav-group">
+        <h3 class="sidebar-nav-title">项目实战</h3>
+        <ul class="sidebar-nav-list">
+          <li><a href="project-chatbot.html" class="sidebar-nav-link" data-page="project-chatbot">聊天机器人</a></li>
+          <li><a href="project-ai-assistant.html" class="sidebar-nav-link" data-page="project-ai-assistant">AI助手</a></li>
+          <li><a href="project-rag-kb.html" class="sidebar-nav-link" data-page="project-rag-kb">RAG知识库</a></li>
+          <li><a href="practice.html" class="sidebar-nav-link" data-page="practice">综合实战</a></li>
         </ul>
       </div>
 
-      <div>
-        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">最佳实践</h3>
-        <ul class="space-y-1">
-          <li><a href="best-practices.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="best-practices">最佳实践</a></li>
-          <li><a href="testing-strategies.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="testing-strategies">测试策略</a></li>
-          <li><a href="performance-tuning.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="performance-tuning">性能优化</a></li>
-          <li><a href="deep-dive.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="deep-dive">深度解析</a></li>
-          <li><a href="error-handling.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="error-handling">错误处理</a></li>
-          <li><a href="moderation-safety.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="moderation-safety">内容审核</a></li>
-          <li><a href="troubleshooting.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="troubleshooting">故障排查</a></li>
+      <div class="sidebar-nav-group">
+        <h3 class="sidebar-nav-title">最佳实践</h3>
+        <ul class="sidebar-nav-list">
+          <li><a href="best-practices.html" class="sidebar-nav-link" data-page="best-practices">最佳实践</a></li>
+          <li><a href="testing-strategies.html" class="sidebar-nav-link" data-page="testing-strategies">测试策略</a></li>
+          <li><a href="performance-tuning.html" class="sidebar-nav-link" data-page="performance-tuning">性能优化</a></li>
+          <li><a href="deep-dive.html" class="sidebar-nav-link" data-page="deep-dive">深度解析</a></li>
+          <li><a href="error-handling.html" class="sidebar-nav-link" data-page="error-handling">错误处理</a></li>
+          <li><a href="moderation-safety.html" class="sidebar-nav-link" data-page="moderation-safety">内容审核</a></li>
+          <li><a href="troubleshooting.html" class="sidebar-nav-link" data-page="troubleshooting">故障排查</a></li>
         </ul>
       </div>
 
-      <div>
-        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">面试准备</h3>
-        <ul class="space-y-1">
-          <li><a href="interview-prep.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="interview-prep">面试准备</a></li>
+      <div class="sidebar-nav-group">
+        <h3 class="sidebar-nav-title">面试准备</h3>
+        <ul class="sidebar-nav-list">
+          <li><a href="interview-prep.html" class="sidebar-nav-link" data-page="interview-prep">面试准备</a></li>
         </ul>
       </div>
 
-      <div>
-        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">其他</h3>
-        <ul class="space-y-1">
-          <li><a href="search.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="search">向量搜索</a></li>
-          <li><a href="chat-listeners.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="chat-listeners">监听器</a></li>
-          <li><a href="faq.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="faq">常见问题</a></li>
-          <li><a href="cost-optimization.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="cost-optimization">成本优化</a></li>
-          <li><a href="deployment.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="deployment">部署上线</a></li>
-          <li><a href="integrations.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="integrations">框架集成</a></li>
-          <li><a href="examples.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="examples">实战示例</a></li>
+      <div class="sidebar-nav-group">
+        <h3 class="sidebar-nav-title">其他</h3>
+        <ul class="sidebar-nav-list">
+          <li><a href="search.html" class="sidebar-nav-link" data-page="search">向量搜索</a></li>
+          <li><a href="chat-listeners.html" class="sidebar-nav-link" data-page="chat-listeners">监听器</a></li>
+          <li><a href="faq.html" class="sidebar-nav-link" data-page="faq">常见问题</a></li>
+          <li><a href="cost-optimization.html" class="sidebar-nav-link" data-page="cost-optimization">成本优化</a></li>
+          <li><a href="deployment.html" class="sidebar-nav-link" data-page="deployment">部署上线</a></li>
+          <li><a href="integrations.html" class="sidebar-nav-link" data-page="integrations">框架集成</a></li>
+          <li><a href="examples.html" class="sidebar-nav-link" data-page="examples">实战示例</a></li>
         </ul>
       </div>
     </div>
   </div>
 </aside>
-<!-- class="block px-4 py-2.5 text-sm bg-indigo-50 text-indigo-700 font-medium rounded-md transition-all text-center" -->
-<!-- class="block px-4 py-2.5 text-sm bg-indigo-50 text-indigo-700 font-medium rounded-md transition-all text-center" -->
-<!-- class="block px-4 py-2.5 text-sm bg-indigo-50 text-indigo-700 font-medium rounded-md transition-all text-center" -->
 
 
-        <main class="flex-1 ml-[280px] px-8 py-12 max-w-7xl mx-auto">>
-            <section class="mb-16">
+
+
+
+        <main class="main-content">
+            <div class="content-wrapper">
                 <div class="flex items-center gap-2 mb-4">
-                    <span class="inline-flex items-center gap-1 py-1.5 px-3 bg-primary-50 border border-primary-200 rounded-full text-primary-700 text-xs font-medium">⏱️ 45分钟</span>
-                    <span class="inline-flex items-center gap-1 py-1.5 px-3 bg-orange-50 border border-orange-200 rounded-full text-orange-700 text-xs font-medium">进阶内容</span>
+                    <span class="page-tag indigo">⏱️ 45分钟</span>
+                    <span class="page-tag purple">进阶内容</span>
                 </div>
-                <h1 class="text-5xl font-bold text-gray-900 mb-6 leading-tight">Function Calling深度解析</h1>
-                <p class="text-xl text-gray-600 max-w-4xl mb-10 leading-relaxed">
+                <h1 class="page-title">Function Calling</h1>
+                <p class="text-xl text-gray-600 max-w-3xl mb-10 leading-relaxed">
                     深入理解LangChain4j的Function Calling机制，让AI能够调用Java方法，构建强大的智能体和自动化系统。
                 </p>
-            </section>
 
-            <section class="mb-16">
-                <div class="flex items-center gap-3 mb-6">
-        <span class="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-full text-sm font-bold">1</span>
-        <h2 class="text-2xl font-bold text-gray-900">什么是Function Calling</h2>
-    </div>
+            <section class="content-section">
+                <div class="section-header">
+                    <span class="circular-number">1</span>
+                    <h2>什么是Function Calling</h2>
+                </div>
                 <div class="mb-8">
-                    <h3 class="text-2xl font-semibold text-gray-900 mb-4">1.1 核心概念</h3>
+                    <h3 class="subsection-title">1.1 核心概念</h3>
                     <p class="text-gray-600 mb-6 leading-relaxed">
                         Function Calling是一种让大语言模型能够调用外部工具和API的技术。AI不再是被动回答问题，而是可以主动执行任务，如调用数据库、发送邮件、执行计算等。
                     </p>
-                    <div class="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-r-lg mb-8">
+                    <div class="info-card info-card-blue">
                         <h4 class="font-semibold text-blue-900 mb-2">💡 Function Calling的价值</h4>
                         <ul class="text-blue-800 space-y-2 list-disc list-inside">
                             <li>AI可以执行实际操作，而不仅仅是生成文本</li>
@@ -144,39 +141,22 @@
                 </div>
 
                 <div class="mb-8">
-                    <h3 class="text-2xl font-semibold text-gray-900 mb-4">1.2 工作原理</h3>
-                    <div class="bg-gray-900 border border-gray-300 rounded-xl overflow-hidden mb-6">
-                        <div class="p-8 text-gray-300 text-center">
-                            <div class="mb-8">
-                                <div class="inline-block bg-purple-600 rounded-lg p-6 mb-8">
-                                    <div class="text-4xl mb-4">👤</div>
-                                    <div class="font-medium mb-2 text-white">用户</div>
-                                    <div class="text-sm text-purple-200">"北京今天天气怎么样？"</div>
-                                </div>
-                                <div class="inline-block text-3xl mb-8 text-gray-500">→</div>
-                                <div class="inline-block bg-indigo-600 rounded-lg p-6 mb-8">
-                                    <div class="text-4xl mb-4">🤖</div>
-                                    <div class="font-medium mb-2 text-white">LLM分析</div>
-                                    <div class="text-sm text-indigo-200">识别需要调用天气API</div>
-                                </div>
-                            </div>
-                            <div class="mb-8">
-                                <div class="inline-block bg-yellow-600 rounded-lg p-6 mb-8">
-                                    <div class="text-4xl mb-4">📡</div>
-                                    <div class="font-medium mb-2 text-white">Function Call</div>
-                                    <div class="text-sm text-yellow-200">getWeather(city: "北京")</div>
-                                </div>
-                                <div class="inline-block text-3xl mb-8 text-gray-500">→</div>
-                                <div class="inline-block bg-green-600 rounded-lg p-6 mb-8">
-                                    <div class="text-4xl mb-4">☀️</div>
-                                    <div class="font-medium mb-2 text-white">API返回</div>
-                                    <div class="text-sm text-green-200">温度: 23°C, 晴天</div>
-                                </div>
-                                <div class="inline-block text-3xl mb-8 text-gray-500">→</div>
-                                <div class="inline-block bg-blue-600 rounded-lg p-6 mb-8">
-                                    <div class="text-4xl mb-4">🤖</div>
-                                    <div class="font-medium mb-2 text-white">LLM生成</div>
-                                    <div class="text-sm text-blue-200">"北京今天天气晴朗，温度23°C"</div>
+                    <h3 class="subsection-title">1.2 工作原理</h3>
+                    <div class="code-preview">
+                        <div class="code-preview-content">
+                            <div class="p-8 text-gray-300 text-center">
+                                <div class="mb-8">
+                                    <div class="inline-block bg-purple-600 rounded-lg p-6 mb-8">
+                                        <div class="text-4xl mb-4">👤</div>
+                                        <div class="font-medium mb-2 text-white">用户</div>
+                                        <div class="text-sm text-purple-200">"北京今天天气怎么样？"</div>
+                                    </div>
+                                    <div class="inline-block text-3xl mb-8 text-gray-500">→</div>
+                                    <div class="inline-block bg-indigo-600 rounded-lg p-6 mb-8">
+                                        <div class="text-4xl mb-4">🤖</div>
+                                        <div class="font-medium mb-2 text-white">LLM分析</div>
+                                        <div class="text-sm text-indigo-200">识别需要调用天气API</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -184,46 +164,44 @@
                 </div>
             </section>
 
-            <section class="mb-16">
-                <div class="flex items-center gap-3 mb-6">
-        <span class="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-full text-sm font-bold">2</span>
-        <h2 class="text-2xl font-bold text-gray-900">定义工具</h2>
-    </div>
+            <section class="content-section">
+                <div class="section-header">
+                    <span class="circular-number">2</span>
+                    <h2>定义工具</h2>
+                </div>
                 <div class="mb-8">
-                    <h3 class="text-2xl font-semibold text-gray-900 mb-4">2.1 使用@Tool注解</h3>
-                    <div class="bg-gray-900 border border-gray-300 rounded-xl overflow-hidden mb-6">
-                        <div class="flex items-center justify-between px-4 py-3 bg-gray-800 border-b border-gray-700">
-                            <div class="flex items-center gap-1.5">
-                                <div class="flex gap-1">
-                                    <span class="w-2.5 h-2.5 rounded-full bg-red-500"></span>
-                                    <span class="w-2.5 h-2.5 rounded-full bg-yellow-500"></span>
-                                    <span class="w-2.5 h-2.5 rounded-full bg-green-500"></span>
-                                </div>
-                                <span class="text-gray-400 text-xs font-mono ml-3">Calculator.java</span>
+                    <h3 class="subsection-title">2.1 使用@Tool注解</h3>
+                    <div class="code-preview">
+                        <div class="code-preview-header">
+                            <div class="code-preview-dots">
+                                <div class="code-preview-dot code-preview-dot-red"></div>
+                                <div class="code-preview-dot code-preview-dot-yellow"></div>
+                                <div class="code-preview-dot code-preview-dot-green"></div>
                             </div>
+                            <span class="code-preview-filename">Calculator.java</span>
                         </div>
-                        <div class="p-4 overflow-x-auto">
-                            <pre class="m-0 font-mono text-sm leading-relaxed text-gray-300"><code><span class="text-purple-400">import</span> <span class="text-yellow-300">dev.langchain4j.agent.tool</span>.<span class="text-blue-400">Tool</span>;
+                        <div class="code-preview-content">
+                            <pre><code>import dev.langchain4j.agent.tool.Tool;
 
-<span class="text-purple-400">public class</span> <span class="text-yellow-300">Calculator</span> {
+public class Calculator {
 
-    <span class="text-gray-500">/**</span>
-<span class="text-gray-500">     * 加法运算</span>
-<span class="text-gray-500">     * @param a 第一个加数</span>
-<span class="text-gray-500">     * @param b 第二个加数</span>
-<span class="text-gray-500">     * @return 两数之和</span>
-<span class="text-gray-500">     */</span>
-    <span class="text-blue-400">@Tool</span>(<span class="text-green-400">"Add two numbers together"</span>)
-    <span class="text-purple-400">public double</span> <span class="text-blue-400">add</span>(<span class="text-purple-400">double</span> a, <span class="text-purple-400">double</span> b) {
-        <span class="text-purple-400">return</span> a + b;
+    /**
+     * 加法运算
+     * @param a 第一个加数
+     * @param b 第二个加数
+     * @return 两数之和
+     */
+    @Tool("Add two numbers together")
+    public double add(double a, double b) {
+        return a + b;
     }
 
-    <span class="text-gray-500">/**</span>
-<span class="text-gray-500">     * 乘法运算</span>
-<span class="text-gray-500">     */</span>
-    <span class="text-blue-400">@Tool</span>(<span class="text-green-400">"Multiply two numbers"</span>)
-    <span class="text-purple-400">public double</span> <span class="text-blue-400">multiply</span>(<span class="text-purple-400">double</span> a, <span class="text-purple-400">double</span> b) {
-        <span class="text-purple-400">return</span> a * b;
+    /**
+     * 乘法运算
+     */
+    @Tool("Multiply two numbers")
+    public double multiply(double a, double b) {
+        return a * b;
     }
 }</code></pre>
                         </div>
@@ -231,8 +209,8 @@
                 </div>
 
                 <div class="mb-8">
-                    <h3 class="text-2xl font-semibold text-gray-900 mb-4">2.2 工具最佳实践</h3>
-                    <div class="bg-orange-50 border-l-4 border-orange-500 p-6 rounded-r-lg mb-8">
+                    <h3 class="subsection-title">2.2 工具最佳实践</h3>
+                    <div class="info-card info-card-purple">
                         <h4 class="font-semibold text-orange-900 mb-2">⚠️ 注意事项</h4>
                         <ul class="text-orange-800 space-y-2 list-disc list-inside">
                             <li><strong>清晰的描述</strong>：@Tool注解的描述要清晰准确，帮助LLM理解工具用途</li>
@@ -245,54 +223,52 @@
                 </div>
             </section>
 
-            <section class="mb-16">
-                <div class="flex items-center gap-3 mb-6">
-        <span class="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-full text-sm font-bold">3</span>
-        <h2 class="text-2xl font-bold text-gray-900">集成工具到AI服务</h2>
-    </div>
+            <section class="content-section">
+                <div class="section-header">
+                    <span class="circular-number">3</span>
+                    <h2>集成工具到AI服务</h2>
+                </div>
                 <div class="mb-8">
-                    <h3 class="text-2xl font-semibold text-gray-900 mb-4">3.1 基础集成</h3>
-                    <div class="bg-gray-900 border border-gray-300 rounded-xl overflow-hidden mb-6">
-                        <div class="flex items-center justify-between px-4 py-3 bg-gray-800 border-b border-gray-700">
-                            <div class="flex items-center gap-1.5">
-                                <div class="flex gap-1">
-                                    <span class="w-2.5 h-2.5 rounded-full bg-red-500"></span>
-                                    <span class="w-2.5 h-2.5 rounded-full bg-yellow-500"></span>
-                                    <span class="w-2.5 h-2.5 rounded-full bg-green-500"></span>
-                                </div>
-                                <span class="text-gray-400 text-xs font-mono ml-3">ToolIntegrationExample.java</span>
+                    <h3 class="subsection-title">3.1 基础集成</h3>
+                    <div class="code-preview">
+                        <div class="code-preview-header">
+                            <div class="code-preview-dots">
+                                <div class="code-preview-dot code-preview-dot-red"></div>
+                                <div class="code-preview-dot code-preview-dot-yellow"></div>
+                                <div class="code-preview-dot code-preview-dot-green"></div>
                             </div>
+                            <span class="code-preview-filename">ToolIntegrationExample.java</span>
                         </div>
-                        <div class="p-4 overflow-x-auto">
-                            <pre class="m-0 font-mono text-sm leading-relaxed text-gray-300"><code><span class="text-purple-400">import</span> <span class="text-yellow-300">dev.langchain4j.service</span>.<span class="text-blue-400">AiServices</span>;
-<span class="text-purple-400">import</span> <span class="text-yellow-300">dev.langchain4j.model.chat</span>.<span class="text-blue-400">ChatLanguageModel</span>;
-<span class="text-purple-400">import</span> <span class="text-yellow-300">dev.langchain4j.model.openai</span>.<span class="text-blue-400">OpenAiChatModel</span>;
+                        <div class="code-preview-content">
+                            <pre><code>import dev.langchain4j.service.AiServices;
+import dev.langchain4j.model.chat.ChatLanguageModel;
+import dev.langchain4j.model.openai.OpenAiChatModel;
 
-<span class="text-purple-400">public class</span> <span class="text-yellow-300">ToolIntegrationExample</span> {
+public class ToolIntegrationExample {
 
-    <span class="text-purple-400">public interface</span> <span class="text-yellow-300">MathAssistant</span> {
-        <span class="text-yellow-300">String</span> <span class="text-blue-400">calculate</span>(<span class="text-yellow-300">String</span> expression);
+    public interface MathAssistant {
+        String calculate(String expression);
     }
 
-    <span class="text-purple-400">public static void</span> <span class="text-blue-400">main</span>(<span class="text-yellow-300">String</span>[] args) {
-        <span class="text-gray-500">// 1. 创建聊天模型</span>
-        <span class="text-yellow-300">ChatLanguageModel</span> model = <span class="text-yellow-300">OpenAiChatModel</span>.<span class="text-blue-400">builder</span>()
-            .<span class="text-blue-400">apiKey</span>(<span class="text-yellow-300">System</span>.<span class="text-blue-400">getenv</span>(<span class="text-green-400">"OPENAI_API_KEY"</span>))
-            .<span class="text-blue-400">modelName</span>(<span class="text-green-400">"gpt-4o"</span>)
-            .<span class="text-blue-400">build</span>();
+    public static void main(String[] args) {
+        // 1. 创建聊天模型
+        ChatLanguageModel model = OpenAiChatModel.builder()
+            .apiKey(System.getenv("OPENAI_API_KEY"))
+            .modelName("gpt-4o")
+            .build();
 
-        <span class="text-gray-500">// 2. 创建工具实例</span>
-        <span class="text-yellow-300">Calculator</span> calculator = <span class="text-purple-400">new</span> <span class="text-yellow-300">Calculator</span>();
+        // 2. 创建工具实例
+        Calculator calculator = new Calculator();
 
-        <span class="text-gray-500">// 3. 构建AI服务并注册工具</span>
-        <span class="text-yellow-300">MathAssistant</span> assistant = <span class="text-yellow-300">AiServices</span>.<span class="text-blue-400">builder</span>(<span class="text-yellow-300">MathAssistant</span>.<span class="text-purple-400">class</span>)
-            .<span class="text-blue-400">chatLanguageModel</span>(model)
-            .<span class="text-blue-400">tools</span>(calculator)
-            .<span class="text-blue-400">build</span>();
+        // 3. 构建AI服务并注册工具
+        MathAssistant assistant = AiServices.builder(MathAssistant.class)
+            .chatLanguageModel(model)
+            .tools(calculator)
+            .build();
 
-        <span class="text-gray-500">// 4. 使用服务</span>
-        <span class="text-yellow-300">String</span> result = assistant.<span class="text-blue-400">calculate</span>(<span class="text-green-400">"15 乘以 23 等于多少？"</span>);
-        <span class="text-yellow-300">System</span>.<span class="text-blue-400">out</span>.<span class="text-blue-400">println</span>(result);
+        // 4. 使用服务
+        String result = assistant.calculate("15 乘以 23 等于多少？");
+        System.out.println(result);
     }
 }</code></pre>
                         </div>
@@ -300,7 +276,7 @@
                 </div>
             </section>
 
-            <section class="mb-16 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-8 border border-indigo-100">
+            <section class="content-section summary-section">
                 <h2 class="text-2xl font-bold text-gray-900 mb-6">🎯 学习总结</h2>
                 <div class="space-y-4 text-gray-700">
                     <p>通过本章学习，你掌握了：</p>
@@ -310,11 +286,12 @@
                         <li>将工具集成到LangChain4j AI服务中</li>
                         <li>工具定义和使用的最佳实践</li>
                     </ul>
-                    <div class="mt-6 pt-6 border-t border-indigo-200">
+                    <div class="mt-6 pt-6 border-t border-gray-200">
                         <p class="font-medium text-gray-900">下一步：学习 <a href="advanced-features.html" class="text-indigo-600 hover:text-indigo-800">高级特性</a>，掌握流式响应、结构化输出等更多功能。</p>
                     </div>
                 </div>
             </section>
+            </div>
         </main>
     </div>
 </body>

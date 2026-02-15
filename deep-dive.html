@@ -3,65 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <title>深度解析 - LangChain4j 学习指南</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
-                    },
-                    colors: {
-                        primary: {
-                            50: '#eef2ff',
-                            100: '#e0e7ff',
-                            200: '#c7d2fe',
-                            500: '#6366f1',
-                            600: '#4f46e5',
-                            700: '#4338ca',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+    <!-- 模块化CSS -->
+    <link rel="stylesheet" href="css/main.css">
 </head>
-<body class="bg-white text-gray-800 antialiased">
-    <div class="flex min-h-screen">
+<body>
+    <div class="page-container">
         
 
 
-<aside class="w-[280px] fixed h-screen bg-white border-r border-gray-200 overflow-y-auto pb-8">
-  <div class="p-6">
-    <div class="flex items-center gap-3 mb-8">
-      <div class="w-10 h-10 bg-indigo-600 rounded-lg flex items-center justify-center">
-        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<aside class="sidebar">
+  <div class="sidebar-content">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-icon">
+        <svg class="sidebar-logo-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
         </svg>
       </div>
       <div>
-        <h1 class="font-bold text-gray-900">LangChain4j</h1>
-        <p class="text-xs text-gray-500">入门指南</p>
+        <h1 class="sidebar-logo-title">LangChain4j</h1>
+        <p class="sidebar-logo-subtitle">入门指南</p>
       </div>
     </div>
 
     <div class="space-y-6">
-      <div>
-        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">快速开始</h3>
-        <ul class="space-y-1">
+      <div class="sidebar-nav-group">
+        <h3 class="sidebar-nav-title">快速开始</h3>
+        <ul class="sidebar-nav-list">
           <li><a href="index.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="index">概览</a></li>
           <li><a href="getting-started.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="getting-started">环境准备</a></li>
           <li><a href="core-concepts.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="core-concepts">核心概念</a></li>
         </ul>
       </div>
 
-      <div>
-        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">核心功能</h3>
-        <ul class="space-y-1">
+      <div class="sidebar-nav-group">
+        <h3 class="sidebar-nav-title">核心功能</h3>
+        <ul class="sidebar-nav-list">
           <li><a href="embedding-models.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="embedding-models">Embedding 模型</a></li>
           <li><a href="prompt-templates.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="prompt-templates">Prompt 模板</a></li>
           <li><a href="output-parsers.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="output-parsers">输出解析</a></li>
@@ -72,9 +48,9 @@
         </ul>
       </div>
 
-       <div>
-        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">RAG 完整指南</h3>
-        <ul class="space-y-1">
+       <div class="sidebar-nav-group">
+        <h3 class="sidebar-nav-title">RAG 完整指南</h3>
+        <ul class="sidebar-nav-list">
           <li><a href="rag-intro.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="rag-intro">RAG 简介</a></li>
           <li><a href="rag-setup.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="rag-setup">RAG 环境搭建</a></li>
           <li><a href="rag-implementation.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="rag-implementation">RAG 实现</a></li>
@@ -82,9 +58,9 @@
         </ul>
       </div>
 
-      <div>
-        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">项目实战</h3>
-        <ul class="space-y-1">
+      <div class="sidebar-nav-group">
+        <h3 class="sidebar-nav-title">项目实战</h3>
+        <ul class="sidebar-nav-list">
           <li><a href="project-chatbot.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="project-chatbot">聊天机器人</a></li>
           <li><a href="project-ai-assistant.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="project-ai-assistant">AI助手</a></li>
           <li><a href="project-rag-kb.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="project-rag-kb">RAG知识库</a></li>
@@ -92,9 +68,9 @@
         </ul>
       </div>
 
-      <div>
-        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">最佳实践</h3>
-        <ul class="space-y-1">
+      <div class="sidebar-nav-group">
+        <h3 class="sidebar-nav-title">最佳实践</h3>
+        <ul class="sidebar-nav-list">
           <li><a href="best-practices.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="best-practices">最佳实践</a></li>
           <li><a href="testing-strategies.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="testing-strategies">测试策略</a></li>
           <li><a href="performance-tuning.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="performance-tuning">性能优化</a></li>
@@ -105,16 +81,16 @@
         </ul>
       </div>
 
-      <div>
-        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">面试准备</h3>
-        <ul class="space-y-1">
+      <div class="sidebar-nav-group">
+        <h3 class="sidebar-nav-title">面试准备</h3>
+        <ul class="sidebar-nav-list">
           <li><a href="interview-prep.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="interview-prep">面试准备</a></li>
         </ul>
       </div>
 
-      <div>
-        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">其他</h3>
-        <ul class="space-y-1">
+      <div class="sidebar-nav-group">
+        <h3 class="sidebar-nav-title">其他</h3>
+        <ul class="sidebar-nav-list">
           <li><a href="search.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="search">向量搜索</a></li>
           <li><a href="chat-listeners.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="chat-listeners">监听器</a></li>
           <li><a href="faq.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="faq">常见问题</a></li>
@@ -127,13 +103,13 @@
     </div>
   </div>
 </aside>
-<!-- class="block px-4 py-2.5 text-sm bg-indigo-50 text-indigo-700 font-medium rounded-md transition-all text-center" -->
-<!-- class="block px-4 py-2.5 text-sm bg-indigo-50 text-indigo-700 font-medium rounded-md transition-all text-center" -->
-<!-- class="block px-4 py-2.5 text-sm bg-indigo-50 text-indigo-700 font-medium rounded-md transition-all text-center" -->
 
 
-        <main class="flex-1 ml-[280px]">
-            <div class="max-w-7xl mx-auto px-8 py-12">
+
+
+
+        <main class="main-content">
+            <div class="content-wrapper">
                 <!-- 页面标签 -->
                 <div class="flex items-center gap-2 mb-4">
                     <span class="px-3 py-1 bg-indigo-100 text-indigo-700 text-xs font-medium rounded-full">深度解析</span>
@@ -142,17 +118,17 @@
                 </div>
 
                 <h1 class="text-4xl font-bold text-gray-900 mb-4">深度解析</h1>
-                <p class="text-xl text-gray-600 mb-8">深入 LangChain4j 的内部架构、设计模式和扩展机制</p>
+                <p class="page-intro">深入 LangChain4j 的内部架构、设计模式和扩展机制</p>
 
                 <!-- 目录 -->
                 <nav class="bg-gray-50 border border-gray-200 rounded-xl p-6 mb-8">
                     <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">目录</h3>
-                    <ol class="space-y-2 text-sm text-gray-700">
-                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">1.</span> <a href="#langchain4j内部架构" class="hover:text-indigo-600 transition-colors">LangChain4j 内部架构</a></li>
-                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">2.</span> <a href="#内存管理机制" class="hover:text-indigo-600 transition-colors">内存管理机制</a></li>
-                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">3.</span> <a href="#线程模型与并发" class="hover:text-indigo-600 transition-colors">线程模型与并发</a></li>
-                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">4.</span> <a href="#高级扩展性模式" class="hover:text-indigo-600 transition-colors">高级扩展性模式</a></li>
-                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">5.</span> <a href="#源码解析" class="hover:text-indigo-600 transition-colors">源码解析</a></li>
+                    <ol class="toc-list">
+                        <li class="toc-item"><span class="toc-number">1.</span> <a href="#langchain4j内部架构" class="toc-link">LangChain4j 内部架构</a></li>
+                        <li class="toc-item"><span class="toc-number">2.</span> <a href="#内存管理机制" class="toc-link">内存管理机制</a></li>
+                        <li class="toc-item"><span class="toc-number">3.</span> <a href="#线程模型与并发" class="toc-link">线程模型与并发</a></li>
+                        <li class="toc-item"><span class="toc-number">4.</span> <a href="#高级扩展性模式" class="toc-link">高级扩展性模式</a></li>
+                        <li class="toc-item"><span class="toc-number">5.</span> <a href="#源码解析" class="toc-link">源码解析</a></li>
                     </ol>
                 </nav>
 
@@ -163,9 +139,9 @@
                         <h2 class="text-2xl font-bold text-gray-900">LangChain4j 内部架构</h2>
                     </div>
 
-                    <p class="text-gray-700 mb-6">LangChain4j 采用模块化、可扩展的架构设计。本节深入解析其核心组件、插件系统和扩展点机制。</p>
+                    <p class="paragraph">LangChain4j 采用模块化、可扩展的架构设计。本节深入解析其核心组件、插件系统和扩展点机制。</p>
 
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">1.1 核心组件设计</h3>
+                    <h3 class="subsection-title">1.1 核心组件设计</h3>
                     <p class="text-gray-700 mb-4">LangChain4j 的核心由四个抽象接口构成，它们共同构建了灵活的 AI 应用框架：</p>
 
                     <ul class="list-disc list-inside text-gray-700 mb-6 space-y-2">
@@ -178,24 +154,24 @@
                     <h4 class="text-lg font-semibold text-gray-900 mb-3">自定义 ChatModel 实现</h4>
                     <p class="text-gray-700 mb-4">通过实现 ChatLanguageModel 接口，可以自定义任何 LLM 的适配器：</p>
 
-                    <div class="relative mb-6">
-                        <div class="absolute top-0 right-0 px-3 py-1 bg-gray-800 text-gray-400 text-xs font-medium rounded-bl-md">CustomChatModel.java</div>
-                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="text-purple-400">package</span> <span class="text-blue-300">com.example.langchain4j.custom</span>;
+                    <div class="code-wrapper">
+                        <div class="code-filename-badge">CustomChatModel.java</div>
+                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="code-keyword">package</span> <span class="text-blue-300">com.example.langchain4j.custom</span>;
 
-<span class="text-purple-400">import</span> <span class="text-blue-300">dev.langchain4j.model.chat.ChatLanguageModel</span>;
-<span class="text-purple-400">import</span> <span class="text-blue-300">dev.langchain4j.data.message.AiMessage</span>;
-<span class="text-purple-400">import</span> <span class="text-blue-300">dev.langchain4j.data.message.UserMessage</span>;
-<span class="text-purple-400">import</span> <span class="text-blue-300">dev.langchain4j.model.output.Response</span>;
+<span class="code-keyword">import</span> <span class="text-blue-300">dev.langchain4j.model.chat.ChatLanguageModel</span>;
+<span class="code-keyword">import</span> <span class="text-blue-300">dev.langchain4j.data.message.AiMessage</span>;
+<span class="code-keyword">import</span> <span class="text-blue-300">dev.langchain4j.data.message.UserMessage</span>;
+<span class="code-keyword">import</span> <span class="text-blue-300">dev.langchain4j.model.output.Response</span>;
 
 <span class="text-gray-500">/**
  * 自定义 ChatLanguageModel 实现
  * 演示如何适配自定义的 LLM 服务
  */</span>
-<span class="text-purple-400">public class</span> <span class="text-yellow-300">CustomChatModel</span> <span class="text-purple-400">implements</span> <span class="text-green-300">ChatLanguageModel</span> {
+<span class="code-keyword">public class</span> <span class="code-class">CustomChatModel</span> <span class="code-keyword">implements</span> <span class="code-string">ChatLanguageModel</span> {
 
-    <span class="text-purple-400">private final</span> <span class="text-blue-300">String</span> baseUrl;
-    <span class="text-purple-400">private final</span> <span class="text-blue-300">String</span> apiKey;
-    <span class="text-purple-400">private final</span> <span class="text-blue-300">Double</span> temperature;
+    <span class="code-keyword">private final</span> <span class="text-blue-300">String</span> baseUrl;
+    <span class="code-keyword">private final</span> <span class="text-blue-300">String</span> apiKey;
+    <span class="code-keyword">private final</span> <span class="text-blue-300">Double</span> temperature;
 
     <span class="text-gray-500">/**
      * 构造自定义模型
@@ -203,10 +179,10 @@
      * @param apiKey 认证密钥
      * @param temperature 温度参数（0.0-2.0）
      */</span>
-    <span class="text-purple-400">public</span> <span class="text-yellow-300">CustomChatModel</span>(<span class="text-blue-300">String</span> baseUrl, <span class="text-blue-300">String</span> apiKey, <span class="text-blue-300">Double</span> temperature) {
-        <span class="text-purple-400">this</span>.baseUrl = baseUrl;
-        <span class="text-purple-400">this</span>.apiKey = apiKey;
-        <span class="text-purple-400">this</span>.temperature = temperature;
+    <span class="code-keyword">public</span> <span class="code-class">CustomChatModel</span>(<span class="text-blue-300">String</span> baseUrl, <span class="text-blue-300">String</span> apiKey, <span class="text-blue-300">Double</span> temperature) {
+        <span class="code-keyword">this</span>.baseUrl = baseUrl;
+        <span class="code-keyword">this</span>.apiKey = apiKey;
+        <span class="code-keyword">this</span>.temperature = temperature;
     }
 
     <span class="text-gray-500">/**
@@ -214,64 +190,64 @@
      * 核心接口方法，实现与 LLM 服务的通信
      */</span>
     <span class="text-gray-500">@Override</span>
-    <span class="text-purple-400">public</span> <span class="text-blue-300">Response&lt;AiMessage&gt;</span> <span class="text-yellow-300">generate</span>(<span class="text-blue-300">List&lt;ChatMessage&gt;</span> messages) {
+    <span class="code-keyword">public</span> <span class="text-blue-300">Response&lt;AiMessage&gt;</span> <span class="code-class">generate</span>(<span class="text-blue-300">List&lt;ChatMessage&gt;</span> messages) {
         <span class="text-gray-500">// 1. 构建 HTTP 请求体</span>
         <span class="text-blue-300">String</span> requestBody = buildRequestPayload(messages);
 
         <span class="text-gray-500">// 2. 发送 HTTP 请求到自定义 LLM 服务</span>
         <span class="text-blue-300">String</span> response = httpClient.sendRequest(
-            baseUrl + <span class="text-green-300">"/v1/chat/completions"</span>,
-            <span class="text-green-300">"POST"</span>,
+            baseUrl + <span class="code-string">"/v1/chat/completions"</span>,
+            <span class="code-string">"POST"</span>,
             requestBody,
-            Map.<span class="text-yellow-300">of</span>(<span class="text-green-300">"Authorization"</span>, <span class="text-green-300">"Bearer "</span> + apiKey)
+            Map.<span class="code-class">of</span>(<span class="code-string">"Authorization"</span>, <span class="code-string">"Bearer "</span> + apiKey)
         );
 
         <span class="text-gray-500">// 3. 解析响应并返回 AiMessage</span>
         <span class="text-blue-300">AiMessage</span> aiMessage = parseResponse(response);
-        <span class="text-purple-400">return new</span> <span class="text-yellow-300">Response</span>&lt;&gt;(aiMessage);
+        <span class="code-keyword">return new</span> <span class="code-class">Response</span>&lt;&gt;(aiMessage);
     }
 
     <span class="text-gray-500">/**
      * 构建请求负载
      * 将 ChatMessage 列表转换为 LLM 服务所需的格式
      */</span>
-    <span class="text-purple-400">private</span> <span class="text-blue-300">String</span> <span class="text-yellow-300">buildRequestPayload</span>(<span class="text-blue-300">List&lt;ChatMessage&gt;</span> messages) {
-        <span class="text-blue-300">StringBuilder</span> sb = <span class="text-purple-400">new</span> <span class="text-yellow-300">StringBuilder</span>();
-        sb.<span class="text-yellow-300">append</span>(<span class="text-green-300">"{"</span>);
-        sb.<span class="text-yellow-300">append</span>(<span class="text-green-300">"\"model\": \"custom-model-v1\","</span>);
-        sb.<span class="text-yellow-300">append</span>(<span class="text-green-300">"\"messages\": ["</span>);
+    <span class="code-keyword">private</span> <span class="text-blue-300">String</span> <span class="code-class">buildRequestPayload</span>(<span class="text-blue-300">List&lt;ChatMessage&gt;</span> messages) {
+        <span class="text-blue-300">StringBuilder</span> sb = <span class="code-keyword">new</span> <span class="code-class">StringBuilder</span>();
+        sb.<span class="code-class">append</span>(<span class="code-string">"{"</span>);
+        sb.<span class="code-class">append</span>(<span class="code-string">"\"model\": \"custom-model-v1\","</span>);
+        sb.<span class="code-class">append</span>(<span class="code-string">"\"messages\": ["</span>);
 
-        <span class="text-purple-400">for</span> (<span class="text-blue-300">int</span> i = <span class="text-orange-300">0</span>; i &lt; messages.<span class="text-yellow-300">size</span>(); i++) {
-            <span class="text-blue-300">ChatMessage</span> msg = messages.<span class="text-yellow-300">get</span>(i);
-            <span class="text-purple-400">if</span> (i &gt; <span class="text-orange-300">0</span>) sb.<span class="text-yellow-300">append</span>(<span class="text-green-300">","</span>);
-            sb.<span class="text-yellow-300">append</span>(<span class="text-green-300">"{\"role\": \""</span>).<span class="text-yellow-300">append</span>(msg.<span class="text-yellow-300">type</span>()).<span class="text-yellow-300">append</span>(<span class="text-green-300">"\","</span>);
-            sb.<span class="text-yellow-300">append</span>(<span class="text-green-300">"\"content\": \""</span>).<span class="text-yellow-300">append</span>(msg.<span class="text-yellow-300">text</span>()).<span class="text-yellow-300">append</span>(<span class="text-green-300">"\"}"</span>);
+        <span class="code-keyword">for</span> (<span class="text-blue-300">int</span> i = <span class="text-orange-300">0</span>; i &lt; messages.<span class="code-class">size</span>(); i++) {
+            <span class="text-blue-300">ChatMessage</span> msg = messages.<span class="code-class">get</span>(i);
+            <span class="code-keyword">if</span> (i &gt; <span class="text-orange-300">0</span>) sb.<span class="code-class">append</span>(<span class="code-string">","</span>);
+            sb.<span class="code-class">append</span>(<span class="code-string">"{\"role\": \""</span>).<span class="code-class">append</span>(msg.<span class="code-class">type</span>()).<span class="code-class">append</span>(<span class="code-string">"\","</span>);
+            sb.<span class="code-class">append</span>(<span class="code-string">"\"content\": \""</span>).<span class="code-class">append</span>(msg.<span class="code-class">text</span>()).<span class="code-class">append</span>(<span class="code-string">"\"}"</span>);
         }
 
-        sb.<span class="text-yellow-300">append</span>(<span class="text-green-300">"],"</span>);
-        sb.<span class="text-yellow-300">append</span>(<span class="text-green-300">"\"temperature\": "</span>).<span class="text-yellow-300">append</span>(temperature);
-        sb.<span class="text-yellow-300">append</span>(<span class="text-green-300">"}"</span>);
+        sb.<span class="code-class">append</span>(<span class="code-string">"],"</span>);
+        sb.<span class="code-class">append</span>(<span class="code-string">"\"temperature\": "</span>).<span class="code-class">append</span>(temperature);
+        sb.<span class="code-class">append</span>(<span class="code-string">"}"</span>);
 
-        <span class="text-purple-400">return</span> sb.<span class="text-yellow-300">toString</span>();
+        <span class="code-keyword">return</span> sb.<span class="code-class">toString</span>();
     }
 
     <span class="text-gray-500">/**
      * 解析 LLM 服务响应
      * 将 JSON 响应转换为 AiMessage 对象
      */</span>
-    <span class="text-purple-400">private</span> <span class="text-blue-300">AiMessage</span> <span class="text-yellow-300">parseResponse</span>(<span class="text-blue-300">String</span> jsonResponse) {
+    <span class="code-keyword">private</span> <span class="text-blue-300">AiMessage</span> <span class="code-class">parseResponse</span>(<span class="text-blue-300">String</span> jsonResponse) {
         <span class="text-gray-500">// 使用 JSON 库解析响应</span>
-        <span class="text-blue-300">JSONObject</span> json = <span class="text-purple-400">new</span> <span class="text-yellow-300">JSONObject</span>(jsonResponse);
-        <span class="text-blue-300">String</span> content = json.<span class="text-yellow-300">getJSONArray</span>(<span class="text-green-300">"choices"</span>)
-                              .<span class="text-yellow-300">getJSONObject</span>(<span class="text-orange-300">0</span>)
-                              .<span class="text-yellow-300">getJSONObject</span>(<span class="text-green-300">"message"</span>)
-                              .<span class="text-yellow-300">getString</span>(<span class="text-green-300">"content"</span>);
-        <span class="text-purple-400">return</span> <span class="text-purple-400">new</span> <span class="text-yellow-300">AiMessage</span>(content);
+        <span class="text-blue-300">JSONObject</span> json = <span class="code-keyword">new</span> <span class="code-class">JSONObject</span>(jsonResponse);
+        <span class="text-blue-300">String</span> content = json.<span class="code-class">getJSONArray</span>(<span class="code-string">"choices"</span>)
+                              .<span class="code-class">getJSONObject</span>(<span class="text-orange-300">0</span>)
+                              .<span class="code-class">getJSONObject</span>(<span class="code-string">"message"</span>)
+                              .<span class="code-class">getString</span>(<span class="code-string">"content"</span>);
+        <span class="code-keyword">return</span> <span class="code-keyword">new</span> <span class="code-class">AiMessage</span>(content);
     }
 }</code></pre>
                     </div>
 
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">1.2 插件系统机制</h3>
+                    <h3 class="subsection-title">1.2 插件系统机制</h3>
                     <p class="text-gray-700 mb-4">LangChain4j 使用 Java SPI（Service Provider Interface）实现插件系统，支持运行时动态加载扩展：</p>
 
                     <ul class="list-disc list-inside text-gray-700 mb-6 space-y-2">
@@ -280,7 +256,7 @@
                         <li><strong>Priority</strong>: 插件优先级控制加载顺序</li>
                     </ul>
 
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">1.3 扩展点设计</h3>
+                    <h3 class="subsection-title">1.3 扩展点设计</h3>
                     <p class="text-gray-700 mb-4">LangChain4j 在关键流程中定义了多个扩展点，允许开发者插入自定义逻辑：</p>
 
                     <ul class="list-disc list-inside text-gray-700 mb-6 space-y-2">
@@ -298,9 +274,9 @@
                         <h2 class="text-2xl font-bold text-gray-900">内存管理机制</h2>
                     </div>
 
-                    <p class="text-gray-700 mb-6">LangChain4j 提供灵活的内存管理系统，支持多种对话历史存储和检索策略。</p>
+                    <p class="paragraph">LangChain4j 提供灵活的内存管理系统，支持多种对话历史存储和检索策略。</p>
 
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">2.1 Message Window 实现</h3>
+                    <h3 class="subsection-title">2.1 Message Window 实现</h3>
                     <p class="text-gray-700 mb-4">MessageWindow 是最常用的内存实现，使用滑动窗口算法管理对话历史：</p>
 
                     <ul class="list-disc list-inside text-gray-700 mb-6 space-y-2">
@@ -312,23 +288,23 @@
                     <h4 class="text-lg font-semibold text-gray-900 mb-3">自定义 Memory 实现</h4>
                     <p class="text-gray-700 mb-4">通过实现 ChatMemory 接口，可以自定义对话存储逻辑：</p>
 
-                    <div class="relative mb-6">
-                        <div class="absolute top-0 right-0 px-3 py-1 bg-gray-800 text-gray-400 text-xs font-medium rounded-bl-md">RedisChatMemory.java</div>
-                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="text-purple-400">package</span> <span class="text-blue-300">com.example.langchain4j.memory</span>;
+                    <div class="code-wrapper">
+                        <div class="code-filename-badge">RedisChatMemory.java</div>
+                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="code-keyword">package</span> <span class="text-blue-300">com.example.langchain4j.memory</span>;
 
-<span class="text-purple-400">import</span> <span class="text-blue-300">dev.langchain4j.memory.ChatMemory</span>;
-<span class="text-purple-400">import</span> <span class="text-blue-300">dev.langchain4j.data.message.ChatMessage</span>;
-<span class="text-purple-400">import</span> <span class="text-blue-300">redis.clients.jedis.Jedis</span>;
+<span class="code-keyword">import</span> <span class="text-blue-300">dev.langchain4j.memory.ChatMemory</span>;
+<span class="code-keyword">import</span> <span class="text-blue-300">dev.langchain4j.data.message.ChatMessage</span>;
+<span class="code-keyword">import</span> <span class="text-blue-300">redis.clients.jedis.Jedis</span>;
 
 <span class="text-gray-500">/**
  * 基于 Redis 的 ChatMemory 实现
  * 支持持久化存储和分布式部署
  */</span>
-<span class="text-purple-400">public class</span> <span class="text-yellow-300">RedisChatMemory</span> <span class="text-purple-400">implements</span> <span class="text-green-300">ChatMemory</span> {
+<span class="code-keyword">public class</span> <span class="code-class">RedisChatMemory</span> <span class="code-keyword">implements</span> <span class="code-string">ChatMemory</span> {
 
-    <span class="text-purple-400">private final</span> <span class="text-blue-300">String</span> sessionId;
-    <span class="text-purple-400">private final</span> <span class="text-blue-300">Jedis</span> jedis;
-    <span class="text-purple-400">private final int</span> maxMessages;
+    <span class="code-keyword">private final</span> <span class="text-blue-300">String</span> sessionId;
+    <span class="code-keyword">private final</span> <span class="text-blue-300">Jedis</span> jedis;
+    <span class="code-keyword">private final int</span> maxMessages;
 
     <span class="text-gray-500">/**
      * 构造 Redis 内存
@@ -336,84 +312,84 @@
      * @param jedis Redis 客户端
      * @param maxMessages 最大消息数
      */</span>
-    <span class="text-purple-400">public</span> <span class="text-yellow-300">RedisChatMemory</span>(<span class="text-blue-300">String</span> sessionId, <span class="text-blue-300">Jedis</span> jedis, <span class="text-blue-300">int</span> maxMessages) {
-        <span class="text-purple-400">this</span>.sessionId = sessionId;
-        <span class="text-purple-400">this</span>.jedis = jedis;
-        <span class="text-purple-400">this</span>.maxMessages = maxMessages;
+    <span class="code-keyword">public</span> <span class="code-class">RedisChatMemory</span>(<span class="text-blue-300">String</span> sessionId, <span class="text-blue-300">Jedis</span> jedis, <span class="text-blue-300">int</span> maxMessages) {
+        <span class="code-keyword">this</span>.sessionId = sessionId;
+        <span class="code-keyword">this</span>.jedis = jedis;
+        <span class="code-keyword">this</span>.maxMessages = maxMessages;
     }
 
     <span class="text-gray-500">/**
      * 添加消息到对话历史
      */</span>
     <span class="text-gray-500">@Override</span>
-    <span class="text-purple-400">public void</span> <span class="text-yellow-300">add</span>(<span class="text-blue-300">ChatMessage</span> message) {
-        <span class="text-blue-300">String</span> key = <span class="text-green-300">"chat:memory:"</span> + sessionId;
+    <span class="code-keyword">public void</span> <span class="code-class">add</span>(<span class="text-blue-300">ChatMessage</span> message) {
+        <span class="text-blue-300">String</span> key = <span class="code-string">"chat:memory:"</span> + sessionId;
         <span class="text-blue-300">String</span> jsonMessage = serializeMessage(message);
 
         <span class="text-gray-500">// 使用 Redis List 存储消息（左进右出）</span>
-        jedis.<span class="text-yellow-300">lpush</span>(key, jsonMessage);
+        jedis.<span class="code-class">lpush</span>(key, jsonMessage);
 
         <span class="text-gray-500">// 保持最大消息数限制</span>
-        jedis.<span class="text-yellow-300">ltrim</span>(key, <span class="text-orange-300">0</span>, maxMessages - <span class="text-orange-300">1</span>);
+        jedis.<span class="code-class">ltrim</span>(key, <span class="text-orange-300">0</span>, maxMessages - <span class="text-orange-300">1</span>);
 
         <span class="text-gray-500">// 设置过期时间（24小时）</span>
-        jedis.<span class="text-yellow-300">expire</span>(key, <span class="text-orange-300">86400</span>);
+        jedis.<span class="code-class">expire</span>(key, <span class="text-orange-300">86400</span>);
     }
 
     <span class="text-gray-500">/**
      * 获取对话历史中的所有消息
      */</span>
     <span class="text-gray-500">@Override</span>
-    <span class="text-purple-400">public</span> <span class="text-blue-300">List&lt;ChatMessage&gt;</span> <span class="text-yellow-300">messages</span>() {
-        <span class="text-blue-300">String</span> key = <span class="text-green-300">"chat:memory:"</span> + sessionId;
+    <span class="code-keyword">public</span> <span class="text-blue-300">List&lt;ChatMessage&gt;</span> <span class="code-class">messages</span>() {
+        <span class="text-blue-300">String</span> key = <span class="code-string">"chat:memory:"</span> + sessionId;
 
         <span class="text-gray-500">// 从 Redis 获取所有消息（从右到左，保持时间顺序）</span>
-        <span class="text-blue-300">List&lt;String&gt;</span> jsonMessages = jedis.<span class="text-yellow-300">lrange</span>(key, <span class="text-orange-300">0</span>, -<span class="text-orange-300">1</span>);
+        <span class="text-blue-300">List&lt;String&gt;</span> jsonMessages = jedis.<span class="code-class">lrange</span>(key, <span class="text-orange-300">0</span>, -<span class="text-orange-300">1</span>);
 
         <span class="text-gray-500">// 反转列表并反序列化</span>
-        <span class="text-blue-300">Collections</span>.<span class="text-yellow-300">reverse</span>(jsonMessages);
-        <span class="text-purple-400">return</span> jsonMessages.<span class="text-yellow-300">stream</span>()
-            .<span class="text-yellow-300">map</span>(<span class="text-purple-400">this</span>::deserializeMessage)
-            .<span class="text-yellow-300">collect</span>(<span class="text-blue-300">Collectors</span>.<span class="text-yellow-300">toList</span>());
+        <span class="text-blue-300">Collections</span>.<span class="code-class">reverse</span>(jsonMessages);
+        <span class="code-keyword">return</span> jsonMessages.<span class="code-class">stream</span>()
+            .<span class="code-class">map</span>(<span class="code-keyword">this</span>::deserializeMessage)
+            .<span class="code-class">collect</span>(<span class="text-blue-300">Collectors</span>.<span class="code-class">toList</span>());
     }
 
     <span class="text-gray-500">/**
      * 清空对话历史
      */</span>
     <span class="text-gray-500">@Override</span>
-    <span class="text-purple-400">public void</span> <span class="text-yellow-300">clear</span>() {
-        <span class="text-blue-300">String</span> key = <span class="text-green-300">"chat:memory:"</span> + sessionId;
-        jedis.<span class="text-yellow-300">del</span>(key);
+    <span class="code-keyword">public void</span> <span class="code-class">clear</span>() {
+        <span class="text-blue-300">String</span> key = <span class="code-string">"chat:memory:"</span> + sessionId;
+        jedis.<span class="code-class">del</span>(key);
     }
 
     <span class="text-gray-500">/**
      * 序列化消息为 JSON
      */</span>
-    <span class="text-purple-400">private</span> <span class="text-blue-300">String</span> <span class="text-yellow-300">serializeMessage</span>(<span class="text-blue-300">ChatMessage</span> message) {
-        <span class="text-blue-300">JSONObject</span> json = <span class="text-purple-400">new</span> <span class="text-yellow-300">JSONObject</span>();
-        json.<span class="text-yellow-300">put</span>(<span class="text-green-300">"type"</span>, message.<span class="text-yellow-300">type</span>().<span class="text-yellow-300">name</span>());
-        json.<span class="text-yellow-300">put</span>(<span class="text-green-300">"text"</span>, message.<span class="text-yellow-300">text</span>());
-        <span class="text-purple-400">return</span> json.<span class="text-yellow-300">toString</span>();
+    <span class="code-keyword">private</span> <span class="text-blue-300">String</span> <span class="code-class">serializeMessage</span>(<span class="text-blue-300">ChatMessage</span> message) {
+        <span class="text-blue-300">JSONObject</span> json = <span class="code-keyword">new</span> <span class="code-class">JSONObject</span>();
+        json.<span class="code-class">put</span>(<span class="code-string">"type"</span>, message.<span class="code-class">type</span>().<span class="code-class">name</span>());
+        json.<span class="code-class">put</span>(<span class="code-string">"text"</span>, message.<span class="code-class">text</span>());
+        <span class="code-keyword">return</span> json.<span class="code-class">toString</span>();
     }
 
     <span class="text-gray-500">/**
      * 从 JSON 反序列化消息
      */</span>
-    <span class="text-purple-400">private</span> <span class="text-blue-300">ChatMessage</span> <span class="text-yellow-300">deserializeMessage</span>(<span class="text-blue-300">String</span> json) {
-        <span class="text-blue-300">JSONObject</span> obj = <span class="text-purple-400">new</span> <span class="text-yellow-300">JSONObject</span>(json);
-        <span class="text-blue-300">String</span> type = obj.<span class="text-yellow-300">getString</span>(<span class="text-green-300">"type"</span>);
-        <span class="text-blue-300">String</span> text = obj.<span class="text-yellow-300">getString</span>(<span class="text-green-300">"text"</span>);
+    <span class="code-keyword">private</span> <span class="text-blue-300">ChatMessage</span> <span class="code-class">deserializeMessage</span>(<span class="text-blue-300">String</span> json) {
+        <span class="text-blue-300">JSONObject</span> obj = <span class="code-keyword">new</span> <span class="code-class">JSONObject</span>(json);
+        <span class="text-blue-300">String</span> type = obj.<span class="code-class">getString</span>(<span class="code-string">"type"</span>);
+        <span class="text-blue-300">String</span> text = obj.<span class="code-class">getString</span>(<span class="code-string">"text"</span>);
 
-        <span class="text-purple-400">switch</span> (type) {
-            <span class="text-purple-400">case</span> <span class="text-green-300">"USER"</span>: <span class="text-purple-400">return new</span> <span class="text-yellow-300">UserMessage</span>(text);
-            <span class="text-purple-400">case</span> <span class="text-green-300">"AI"</span>: <span class="text-purple-400">return new</span> <span class="text-yellow-300">AiMessage</span>(text);
-            <span class="text-purple-400">default</span>: <span class="text-purple-400">throw new</span> <span class="text-yellow-300">IllegalArgumentException</span>(<span class="text-green-300">"Unknown message type: "</span> + type);
+        <span class="code-keyword">switch</span> (type) {
+            <span class="code-keyword">case</span> <span class="code-string">"USER"</span>: <span class="code-keyword">return new</span> <span class="code-class">UserMessage</span>(text);
+            <span class="code-keyword">case</span> <span class="code-string">"AI"</span>: <span class="code-keyword">return new</span> <span class="code-class">AiMessage</span>(text);
+            <span class="code-keyword">default</span>: <span class="code-keyword">throw new</span> <span class="code-class">IllegalArgumentException</span>(<span class="code-string">"Unknown message type: "</span> + type);
         }
     }
 }</code></pre>
                     </div>
 
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">2.2 Token 滑动窗口</h3>
+                    <h3 class="subsection-title">2.2 Token 滑动窗口</h3>
                     <p class="text-gray-700 mb-4">TokenChatMemory 实现基于 token 数量的限制，比简单的消息数量限制更精确：</p>
 
                     <ul class="list-disc list-inside text-gray-700 mb-6 space-y-2">
@@ -422,7 +398,7 @@
                         <li><strong>跨模型兼容</strong>: 支持不同 LLM 的 token 计算方式</li>
                     </ul>
 
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">2.3 持久化策略</h3>
+                    <h3 class="subsection-title">2.3 持久化策略</h3>
                     <p class="text-gray-700 mb-4">LangChain4j 支持多种持久化存储后端：</p>
 
                     <ul class="list-disc list-inside text-gray-700 mb-6 space-y-2">
@@ -440,9 +416,9 @@
                         <h2 class="text-2xl font-bold text-gray-900">线程模型与并发</h2>
                     </div>
 
-                    <p class="text-gray-700 mb-6">LangChain4j 提供同步和异步两种调用模式，并内置线程安全机制。</p>
+                    <p class="paragraph">LangChain4j 提供同步和异步两种调用模式，并内置线程安全机制。</p>
 
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">3.1 同步 vs 异步调用</h3>
+                    <h3 class="subsection-title">3.1 同步 vs 异步调用</h3>
                     <p class="text-gray-700 mb-4">根据应用场景选择合适的调用模式：</p>
 
                     <ul class="list-disc list-inside text-gray-700 mb-6 space-y-2">
@@ -454,88 +430,88 @@
                     <h4 class="text-lg font-semibold text-gray-900 mb-3">异步流式调用示例</h4>
                     <p class="text-gray-700 mb-4">使用 StreamingChatLanguageModel 实现实时流式输出：</p>
 
-                    <div class="relative mb-6">
-                        <div class="absolute top-0 right-0 px-3 py-1 bg-gray-800 text-gray-400 text-xs font-medium rounded-bl-md">AsyncStreamingExample.java</div>
-                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="text-purple-400">package</span> <span class="text-blue-300">com.example.langchain4j.async</span>;
+                    <div class="code-wrapper">
+                        <div class="code-filename-badge">AsyncStreamingExample.java</div>
+                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="code-keyword">package</span> <span class="text-blue-300">com.example.langchain4j.async</span>;
 
-<span class="text-purple-400">import</span> <span class="text-blue-300">dev.langchain4j.model.openai.OpenAiStreamingChatModel</span>;
-<span class="text-purple-400">import</span> <span class="text-blue-300">dev.langchain4j.data.message.AiMessage</span>;
-<span class="text-purple-400">import</span> <span class="text-blue-300">dev.langchain4j.data.message.UserMessage</span>;
-<span class="text-purple-400">import</span> <span class="text-blue-300">java.util.concurrent.CompletableFuture</span>;
+<span class="code-keyword">import</span> <span class="text-blue-300">dev.langchain4j.model.openai.OpenAiStreamingChatModel</span>;
+<span class="code-keyword">import</span> <span class="text-blue-300">dev.langchain4j.data.message.AiMessage</span>;
+<span class="code-keyword">import</span> <span class="text-blue-300">dev.langchain4j.data.message.UserMessage</span>;
+<span class="code-keyword">import</span> <span class="text-blue-300">java.util.concurrent.CompletableFuture</span>;
 
 <span class="text-gray-500">/**
  * 异步流式调用示例
  * 演示如何使用 StreamingChatLanguageModel 实现实时输出
  */</span>
-<span class="text-purple-400">public class</span> <span class="text-yellow-300">AsyncStreamingExample</span> {
+<span class="code-keyword">public class</span> <span class="code-class">AsyncStreamingExample</span> {
 
-    <span class="text-purple-400">private final</span> <span class="text-blue-300">OpenAiStreamingChatModel</span> model;
+    <span class="code-keyword">private final</span> <span class="text-blue-300">OpenAiStreamingChatModel</span> model;
 
-    <span class="text-purple-400">public</span> <span class="text-yellow-300">AsyncStreamingExample</span>(<span class="text-blue-300">String</span> apiKey) {
-        <span class="text-purple-400">this</span>.model = <span class="text-blue-300">OpenAiStreamingChatModel</span>.<span class="text-yellow-300">builder</span>()
-            .<span class="text-yellow-300">apiKey</span>(apiKey)
-            .<span class="text-yellow-300">modelName</span>(<span class="text-green-300">"gpt-4"</span>)
-            .<span class="text-yellow-300">temperature</span>(<span class="text-orange-300">0.7</span>)
-            .<span class="text-yellow-300">build</span>();
+    <span class="code-keyword">public</span> <span class="code-class">AsyncStreamingExample</span>(<span class="text-blue-300">String</span> apiKey) {
+        <span class="code-keyword">this</span>.model = <span class="text-blue-300">OpenAiStreamingChatModel</span>.<span class="code-class">builder</span>()
+            .<span class="code-class">apiKey</span>(apiKey)
+            .<span class="code-class">modelName</span>(<span class="code-string">"gpt-4"</span>)
+            .<span class="code-class">temperature</span>(<span class="text-orange-300">0.7</span>)
+            .<span class="code-class">build</span>();
     }
 
     <span class="text-gray-500">/**
      * 异步流式调用
      * 返回 CompletableFuture，支持链式调用
      */</span>
-    <span class="text-purple-400">public</span> <span class="text-blue-300">CompletableFuture&lt;String&gt;</span> <span class="text-yellow-300">generateAsync</span>(<span class="text-blue-300">String</span> prompt) {
-        <span class="text-blue-300">CompletableFuture&lt;String&gt;</span> future = <span class="text-purple-400">new</span> <span class="text-yellow-300">CompletableFuture</span>&lt;&gt;();
+    <span class="code-keyword">public</span> <span class="text-blue-300">CompletableFuture&lt;String&gt;</span> <span class="code-class">generateAsync</span>(<span class="text-blue-300">String</span> prompt) {
+        <span class="text-blue-300">CompletableFuture&lt;String&gt;</span> future = <span class="code-keyword">new</span> <span class="code-class">CompletableFuture</span>&lt;&gt;();
 
-        <span class="text-blue-300">StringBuilder</span> responseBuilder = <span class="text-purple-400">new</span> <span class="text-yellow-300">StringBuilder</span>();
+        <span class="text-blue-300">StringBuilder</span> responseBuilder = <span class="code-keyword">new</span> <span class="code-class">StringBuilder</span>();
 
         <span class="text-gray-500">// 使用流式模型生成响应</span>
-        model.<span class="text-yellow-300">generate</span>(<span class="text-purple-400">new</span> <span class="text-yellow-300">UserMessage</span>(prompt), <span class="text-blue-300">StreamingResponseHandler</span>.<span class="text-yellow-300">builder</span>()
-            .<span class="text-yellow-300">onPartialResponse</span>(partialResponse -&gt; {
+        model.<span class="code-class">generate</span>(<span class="code-keyword">new</span> <span class="code-class">UserMessage</span>(prompt), <span class="text-blue-300">StreamingResponseHandler</span>.<span class="code-class">builder</span>()
+            .<span class="code-class">onPartialResponse</span>(partialResponse -&gt; {
                 <span class="text-gray-500">// 收到部分响应时回调</span>
-                <span class="text-blue-300">String</span> token = partialResponse.<span class="text-yellow-300">content</span>();
-                responseBuilder.<span class="text-yellow-300">append</span>(token);
+                <span class="text-blue-300">String</span> token = partialResponse.<span class="code-class">content</span>();
+                responseBuilder.<span class="code-class">append</span>(token);
 
                 <span class="text-gray-500">// 实时输出到控制台（可选）</span>
-                <span class="text-blue-300">System</span>.<span class="text-yellow-300">out</span>.<span class="text-yellow-300">print</span>(token);
+                <span class="text-blue-300">System</span>.<span class="code-class">out</span>.<span class="code-class">print</span>(token);
             })
-            .<span class="text-yellow-300">onComplete</span>(completeResponse -&gt; {
+            .<span class="code-class">onComplete</span>(completeResponse -&gt; {
                 <span class="text-gray-500">// 生成完成时回调</span>
-                <span class="text-blue-300">String</span> fullResponse = responseBuilder.<span class="text-yellow-300">toString</span>();
-                future.<span class="text-yellow-300">complete</span>(fullResponse);
+                <span class="text-blue-300">String</span> fullResponse = responseBuilder.<span class="code-class">toString</span>();
+                future.<span class="code-class">complete</span>(fullResponse);
             })
-            .<span class="text-yellow-300">onError</span>(error -&gt; {
+            .<span class="code-class">onError</span>(error -&gt; {
                 <span class="text-gray-500">// 发生错误时回调</span>
-                future.<span class="text-yellow-300">completeExceptionally</span>(error);
+                future.<span class="code-class">completeExceptionally</span>(error);
             })
-            .<span class="text-yellow-300">build</span>()
+            .<span class="code-class">build</span>()
         );
 
-        <span class="text-purple-400">return</span> future;
+        <span class="code-keyword">return</span> future;
     }
 
     <span class="text-gray-500">/**
      * 使用示例
      */</span>
-    <span class="text-purple-400">public static void</span> <span class="text-yellow-300">main</span>(<span class="text-blue-300">String</span>[] args) {
-        <span class="text-blue-300">AsyncStreamingExample</span> example = <span class="text-purple-400">new</span> <span class="text-yellow-300">AsyncStreamingExample</span>(<span class="text-green-300">"your-api-key"</span>);
+    <span class="code-keyword">public static void</span> <span class="code-class">main</span>(<span class="text-blue-300">String</span>[] args) {
+        <span class="text-blue-300">AsyncStreamingExample</span> example = <span class="code-keyword">new</span> <span class="code-class">AsyncStreamingExample</span>(<span class="code-string">"your-api-key"</span>);
 
         <span class="text-gray-500">// 异步生成并处理结果</span>
-        example.<span class="text-yellow-300">generateAsync</span>(<span class="text-green-300">"介绍一下 LangChain4j 的核心特性"</span>)
-            .<span class="text-yellow-300">thenAccept</span>(response -&gt; {
-                <span class="text-blue-300">System</span>.<span class="text-yellow-300">out</span>.<span class="text-yellow-300">println</span>(<span class="text-green-300">"\n完整响应: "</span> + response);
+        example.<span class="code-class">generateAsync</span>(<span class="code-string">"介绍一下 LangChain4j 的核心特性"</span>)
+            .<span class="code-class">thenAccept</span>(response -&gt; {
+                <span class="text-blue-300">System</span>.<span class="code-class">out</span>.<span class="code-class">println</span>(<span class="code-string">"\n完整响应: "</span> + response);
             })
-            .<span class="text-yellow-300">exceptionally</span>(error -&gt; {
-                <span class="text-blue-300">System</span>.<span class="text-yellow-300">err</span>.<span class="text-yellow-300">println</span>(<span class="text-green-300">"生成失败: "</span> + error.<span class="text-yellow-300">getMessage</span>());
-                <span class="text-purple-400">return null</span>;
+            .<span class="code-class">exceptionally</span>(error -&gt; {
+                <span class="text-blue-300">System</span>.<span class="code-class">err</span>.<span class="code-class">println</span>(<span class="code-string">"生成失败: "</span> + error.<span class="code-class">getMessage</span>());
+                <span class="code-keyword">return null</span>;
             });
 
         <span class="text-gray-500">// 主线程可以继续执行其他任务</span>
-        <span class="text-blue-300">System</span>.<span class="text-yellow-300">out</span>.<span class="text-yellow-300">println</span>(<span class="text-green-300">"正在生成响应..."</span>);
+        <span class="text-blue-300">System</span>.<span class="code-class">out</span>.<span class="code-class">println</span>(<span class="code-string">"正在生成响应..."</span>);
     }
 }</code></pre>
                     </div>
 
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">3.2 线程安全设计</h3>
+                    <h3 class="subsection-title">3.2 线程安全设计</h3>
                     <p class="text-gray-700 mb-4">LangChain4j 的核心组件都是线程安全的：</p>
 
                     <ul class="list-disc list-inside text-gray-700 mb-6 space-y-2">
@@ -544,7 +520,7 @@
                         <li><strong>无状态设计</strong>: 大多数组件是无状态的，天然线程安全</li>
                     </ul>
 
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">3.3 并发最佳实践</h3>
+                    <h3 class="subsection-title">3.3 并发最佳实践</h3>
                     <p class="text-gray-700 mb-4">在高并发场景下，建议遵循以下最佳实践：</p>
 
                     <ul class="list-disc list-inside text-gray-700 mb-6 space-y-2">
@@ -562,9 +538,9 @@
                         <h2 class="text-2xl font-bold text-gray-900">高级扩展性模式</h2>
                     </div>
 
-                    <p class="text-gray-700 mb-6">LangChain4j 提供多种扩展机制，支持深度定制和集成。</p>
+                    <p class="paragraph">LangChain4j 提供多种扩展机制，支持深度定制和集成。</p>
 
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">4.1 自定义 ChatModel</h3>
+                    <h3 class="subsection-title">4.1 自定义 ChatModel</h3>
                     <p class="text-gray-700 mb-4">通过实现 ChatLanguageModel 接口，可以集成任何 LLM 服务：</p>
 
                     <ul class="list-disc list-inside text-gray-700 mb-6 space-y-2">
@@ -576,49 +552,49 @@
                     <h4 class="text-lg font-semibold text-gray-900 mb-3">AOP 拦截器实现</h4>
                     <p class="text-gray-700 mb-4">使用 AOP 拦截器在请求/响应生命周期中插入自定义逻辑：</p>
 
-                    <div class="relative mb-6">
-                        <div class="absolute top-0 right-0 px-3 py-1 bg-gray-800 text-gray-400 text-xs font-medium rounded-bl-md">RequestInterceptor.java</div>
-                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="text-purple-400">package</span> <span class="text-blue-300">com.example.langchain4j.interceptor</span>;
+                    <div class="code-wrapper">
+                        <div class="code-filename-badge">RequestInterceptor.java</div>
+                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="code-keyword">package</span> <span class="text-blue-300">com.example.langchain4j.interceptor</span>;
 
-<span class="text-purple-400">import</span> <span class="text-blue-300">dev.langchain4j.model.chat.request.ChatRequest</span>;
-<span class="text-purple-400">import</span> <span class="text-blue-300">dev.langchain4j.model.chat.response.ChatResponse</span>;
-<span class="text-purple-400">import</span> <span class="text-blue-300">dev.langchain4j.model.chat.ChatLanguageModel</span>;
-<span class="text-purple-400">import</span> <span class="text-blue-300">java.lang.reflect</span>.<span class="text-yellow-300">Proxy</span>;
+<span class="code-keyword">import</span> <span class="text-blue-300">dev.langchain4j.model.chat.request.ChatRequest</span>;
+<span class="code-keyword">import</span> <span class="text-blue-300">dev.langchain4j.model.chat.response.ChatResponse</span>;
+<span class="code-keyword">import</span> <span class="text-blue-300">dev.langchain4j.model.chat.ChatLanguageModel</span>;
+<span class="code-keyword">import</span> <span class="text-blue-300">java.lang.reflect</span>.<span class="code-class">Proxy</span>;
 
 <span class="text-gray-500">/**
  * AOP 拦截器实现
  * 在调用 LLM 前后插入自定义逻辑（日志、监控、权限检查等）
  */</span>
-<span class="text-purple-400">public class</span> <span class="text-yellow-300">RequestInterceptor</span> {
+<span class="code-keyword">public class</span> <span class="code-class">RequestInterceptor</span> {
 
     <span class="text-gray-500">/**
      * 包装 ChatLanguageModel，添加拦截逻辑
      */</span>
-    <span class="text-purple-400">public static</span> <span class="text-blue-300">ChatLanguageModel</span> <span class="text-yellow-300">wrap</span>(<span class="text-blue-300">ChatLanguageModel</span> model) {
-        <span class="text-purple-400">return</span> (<span class="text-blue-300">ChatLanguageModel</span>) <span class="text-yellow-300">Proxy</span>.<span class="text-yellow-300">newProxyInstance</span>(
-            <span class="text-blue-300">RequestInterceptor</span>.<span class="text-yellow-300">class</span>.<span class="text-yellow-300">getClassLoader</span>(),
-            <span class="text-purple-400">new</span> <span class="text-blue-300">Class</span>[]{<span class="text-blue-300">ChatLanguageModel</span>.<span class="text-yellow-300">class</span>},
+    <span class="code-keyword">public static</span> <span class="text-blue-300">ChatLanguageModel</span> <span class="code-class">wrap</span>(<span class="text-blue-300">ChatLanguageModel</span> model) {
+        <span class="code-keyword">return</span> (<span class="text-blue-300">ChatLanguageModel</span>) <span class="code-class">Proxy</span>.<span class="code-class">newProxyInstance</span>(
+            <span class="text-blue-300">RequestInterceptor</span>.<span class="code-class">class</span>.<span class="code-class">getClassLoader</span>(),
+            <span class="code-keyword">new</span> <span class="text-blue-300">Class</span>[]{<span class="text-blue-300">ChatLanguageModel</span>.<span class="code-class">class</span>},
             (<span class="text-blue-300">proxy</span>, <span class="text-blue-300">method</span>, <span class="text-blue-300">args</span>) -&gt; {
                 <span class="text-gray-500">// 1. 前置处理：记录请求日志</span>
-                <span class="text-blue-300">long</span> startTime = <span class="text-blue-300">System</span>.<span class="text-yellow-300">currentTimeMillis</span>();
-                <span class="text-blue-300">System</span>.<span class="text-yellow-300">out</span>.<span class="text-yellow-300">println</span>(<span class="text-green-300">"[INTERCEPTOR] Before call: "</span> + method.<span class="text-yellow-300">getName</span>());
+                <span class="text-blue-300">long</span> startTime = <span class="text-blue-300">System</span>.<span class="code-class">currentTimeMillis</span>();
+                <span class="text-blue-300">System</span>.<span class="code-class">out</span>.<span class="code-class">println</span>(<span class="code-string">"[INTERCEPTOR] Before call: "</span> + method.<span class="code-class">getName</span>());
 
                 <span class="text-gray-500">// 2. 执行实际的 LLM 调用</span>
-                <span class="text-blue-300">Object</span> result = method.<span class="text-yellow-300">invoke</span>(model, args);
+                <span class="text-blue-300">Object</span> result = method.<span class="code-class">invoke</span>(model, args);
 
                 <span class="text-gray-500">// 3. 后置处理：记录响应日志</span>
-                <span class="text-blue-300">long</span> endTime = <span class="text-blue-300">System</span>.<span class="text-yellow-300">currentTimeMillis</span>();
-                <span class="text-blue-300">System</span>.<span class="text-yellow-300">out</span>.<span class="text-yellow-300">println</span>(<span class="text-green-300">"[INTERCEPTOR] After call: "</span> + method.<span class="text-yellow-300">getName</span>() +
-                    <span class="text-green-300">", Time: "</span> + (endTime - startTime) + <span class="text-green-300">"ms"</span>);
+                <span class="text-blue-300">long</span> endTime = <span class="text-blue-300">System</span>.<span class="code-class">currentTimeMillis</span>();
+                <span class="text-blue-300">System</span>.<span class="code-class">out</span>.<span class="code-class">println</span>(<span class="code-string">"[INTERCEPTOR] After call: "</span> + method.<span class="code-class">getName</span>() +
+                    <span class="code-string">", Time: "</span> + (endTime - startTime) + <span class="code-string">"ms"</span>);
 
                 <span class="text-gray-500">// 4. 可选：修改响应结果</span>
-                <span class="text-purple-400">if</span> (result <span class="text-purple-400">instanceof</span> <span class="text-blue-300">ChatResponse</span>) {
+                <span class="code-keyword">if</span> (result <span class="code-keyword">instanceof</span> <span class="text-blue-300">ChatResponse</span>) {
                     <span class="text-blue-300">ChatResponse</span> response = (<span class="text-blue-300">ChatResponse</span>) result;
                     <span class="text-gray-500">// 可以在这里添加额外的元数据</span>
-                    response.<span class="text-yellow-300">metadata</span>().<span class="text-yellow-300">put</span>(<span class="text-green-300">"interceptor_timestamp"</span>, endTime);
+                    response.<span class="code-class">metadata</span>().<span class="code-class">put</span>(<span class="code-string">"interceptor_timestamp"</span>, endTime);
                 }
 
-                <span class="text-purple-400">return</span> result;
+                <span class="code-keyword">return</span> result;
             }
         );
     }
@@ -626,17 +602,17 @@
     <span class="text-gray-500">/**
      * 使用示例
      */</span>
-    <span class="text-purple-400">public static void</span> <span class="text-yellow-300">main</span>(<span class="text-blue-300">String</span>[] args) {
-        <span class="text-blue-300">ChatLanguageModel</span> originalModel = <span class="text-blue-300">OpenAiChatModel</span>.<span class="text-yellow-300">builder</span>()
-            .<span class="text-yellow-300">apiKey</span>(<span class="text-green-300">"your-api-key"</span>)
-            .<span class="text-yellow-300">build</span>();
+    <span class="code-keyword">public static void</span> <span class="code-class">main</span>(<span class="text-blue-300">String</span>[] args) {
+        <span class="text-blue-300">ChatLanguageModel</span> originalModel = <span class="text-blue-300">OpenAiChatModel</span>.<span class="code-class">builder</span>()
+            .<span class="code-class">apiKey</span>(<span class="code-string">"your-api-key"</span>)
+            .<span class="code-class">build</span>();
 
         <span class="text-gray-500">// 使用拦截器包装模型</span>
-        <span class="text-blue-300">ChatLanguageModel</span> wrappedModel = <span class="text-yellow-300">RequestInterceptor</span>.<span class="text-yellow-300">wrap</span>(originalModel);
+        <span class="text-blue-300">ChatLanguageModel</span> wrappedModel = <span class="code-class">RequestInterceptor</span>.<span class="code-class">wrap</span>(originalModel);
 
         <span class="text-gray-500">// 调用时会自动触发拦截逻辑</span>
-        <span class="text-blue-300">String</span> response = wrappedModel.<span class="text-yellow-300">generate</span>(<span class="text-green-300">"Hello!"</span>);
-        <span class="text-blue-300">System</span>.<span class="text-yellow-300">out</span>.<span class="text-yellow-300">println</span>(<span class="text-green-300">"Response: "</span> + response);
+        <span class="text-blue-300">String</span> response = wrappedModel.<span class="code-class">generate</span>(<span class="code-string">"Hello!"</span>);
+        <span class="text-blue-300">System</span>.<span class="code-class">out</span>.<span class="code-class">println</span>(<span class="code-string">"Response: "</span> + response);
     }
 }</code></pre>
                     </div>
@@ -644,37 +620,37 @@
                     <h4 class="text-lg font-semibold text-gray-900 mb-3">事件监听器实现</h4>
                     <p class="text-gray-700 mb-4">使用事件监听器模式解耦业务逻辑：</p>
 
-                    <div class="relative mb-6">
-                        <div class="absolute top-0 right-0 px-3 py-1 bg-gray-800 text-gray-400 text-xs font-medium rounded-bl-md">EventListener.java</div>
-                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="text-purple-400">package</span> <span class="text-blue-300">com.example.langchain4j.listener</span>;
+                    <div class="code-wrapper">
+                        <div class="code-filename-badge">EventListener.java</div>
+                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="code-keyword">package</span> <span class="text-blue-300">com.example.langchain4j.listener</span>;
 
-<span class="text-purple-400">import</span> <span class="text-blue-300">java.util.ArrayList</span>;
-<span class="text-purple-400">import</span> <span class="text-blue-300">java.util.List</span>;
+<span class="code-keyword">import</span> <span class="text-blue-300">java.util.ArrayList</span>;
+<span class="code-keyword">import</span> <span class="text-blue-300">java.util.List</span>;
 
 <span class="text-gray-500">/**
  * 事件监听器
  * 监听 LLM 调用的各个生命周期事件
  */</span>
-<span class="text-purple-400">public class</span> <span class="text-yellow-300">EventListener</span> {
+<span class="code-keyword">public class</span> <span class="code-class">EventListener</span> {
 
-    <span class="text-purple-400">private final</span> <span class="text-blue-300">List&lt;EventHandler&gt;</span> handlers = <span class="text-purple-400">new</span> <span class="text-yellow-300">ArrayList</span>&lt;&gt;();
+    <span class="code-keyword">private final</span> <span class="text-blue-300">List&lt;EventHandler&gt;</span> handlers = <span class="code-keyword">new</span> <span class="code-class">ArrayList</span>&lt;&gt;();
 
     <span class="text-gray-500">/**
      * 注册事件处理器
      */</span>
-    <span class="text-purple-400">public void</span> <span class="text-yellow-300">addHandler</span>(<span class="text-blue-300">EventHandler</span> handler) {
-        handlers.<span class="text-yellow-300">add</span>(handler);
+    <span class="code-keyword">public void</span> <span class="code-class">addHandler</span>(<span class="text-blue-300">EventHandler</span> handler) {
+        handlers.<span class="code-class">add</span>(handler);
     }
 
     <span class="text-gray-500">/**
      * 触发事件
      */</span>
-    <span class="text-purple-400">public void</span> <span class="text-yellow-300">fireEvent</span>(<span class="text-blue-300">Event</span> event) {
-        <span class="text-purple-400">for</span> (<span class="text-blue-300">EventHandler</span> handler : handlers) {
-            <span class="text-purple-400">try</span> {
-                handler.<span class="text-yellow-300">handle</span>(event);
-            } <span class="text-purple-400">catch</span> (<span class="text-blue-300">Exception</span> e) {
-                <span class="text-blue-300">System</span>.<span class="text-yellow-300">err</span>.<span class="text-yellow-300">println</span>(<span class="text-green-300">"Event handler failed: "</span> + e.<span class="text-yellow-300">getMessage</span>());
+    <span class="code-keyword">public void</span> <span class="code-class">fireEvent</span>(<span class="text-blue-300">Event</span> event) {
+        <span class="code-keyword">for</span> (<span class="text-blue-300">EventHandler</span> handler : handlers) {
+            <span class="code-keyword">try</span> {
+                handler.<span class="code-class">handle</span>(event);
+            } <span class="code-keyword">catch</span> (<span class="text-blue-300">Exception</span> e) {
+                <span class="text-blue-300">System</span>.<span class="code-class">err</span>.<span class="code-class">println</span>(<span class="code-string">"Event handler failed: "</span> + e.<span class="code-class">getMessage</span>());
             }
         }
     }
@@ -682,56 +658,56 @@
     <span class="text-gray-500">/**
      * 事件处理器接口
      */</span>
-    <span class="text-purple-400">public interface</span> <span class="text-yellow-300">EventHandler</span> {
-        <span class="text-purple-400">void</span> <span class="text-yellow-300">handle</span>(<span class="text-blue-300">Event</span> event);
+    <span class="code-keyword">public interface</span> <span class="code-class">EventHandler</span> {
+        <span class="code-keyword">void</span> <span class="code-class">handle</span>(<span class="text-blue-300">Event</span> event);
     }
 
     <span class="text-gray-500">/**
      * 事件定义
      */</span>
-    <span class="text-purple-400">public static class</span> <span class="text-yellow-300">Event</span> {
-        <span class="text-purple-400">private final</span> <span class="text-blue-300">String</span> type;
-        <span class="text-purple-400">private final</span> <span class="text-blue-300">Object</span> data;
+    <span class="code-keyword">public static class</span> <span class="code-class">Event</span> {
+        <span class="code-keyword">private final</span> <span class="text-blue-300">String</span> type;
+        <span class="code-keyword">private final</span> <span class="text-blue-300">Object</span> data;
 
-        <span class="text-purple-400">public</span> <span class="text-yellow-300">Event</span>(<span class="text-blue-300">String</span> type, <span class="text-blue-300">Object</span> data) {
-            <span class="text-purple-400">this</span>.type = type;
-            <span class="text-purple-400">this</span>.data = data;
+        <span class="code-keyword">public</span> <span class="code-class">Event</span>(<span class="text-blue-300">String</span> type, <span class="text-blue-300">Object</span> data) {
+            <span class="code-keyword">this</span>.type = type;
+            <span class="code-keyword">this</span>.data = data;
         }
 
-        <span class="text-purple-400">public</span> <span class="text-blue-300">String</span> <span class="text-yellow-300">type</span>() { <span class="text-purple-400">return</span> type; }
-        <span class="text-purple-400">public</span> <span class="text-blue-300">Object</span> <span class="text-yellow-300">data</span>() { <span class="text-purple-400">return</span> data; }
+        <span class="code-keyword">public</span> <span class="text-blue-300">String</span> <span class="code-class">type</span>() { <span class="code-keyword">return</span> type; }
+        <span class="code-keyword">public</span> <span class="text-blue-300">Object</span> <span class="code-class">data</span>() { <span class="code-keyword">return</span> data; }
     }
 
     <span class="text-gray-500">/**
      * 使用示例：记录日志的事件处理器
      */</span>
-    <span class="text-purple-400">public static class</span> <span class="text-yellow-300">LoggingHandler</span> <span class="text-purple-400">implements</span> <span class="text-yellow-300">EventHandler</span> {
+    <span class="code-keyword">public static class</span> <span class="code-class">LoggingHandler</span> <span class="code-keyword">implements</span> <span class="code-class">EventHandler</span> {
         <span class="text-gray-500">@Override</span>
-        <span class="text-purple-400">public void</span> <span class="text-yellow-300">handle</span>(<span class="text-blue-300">Event</span> event) {
-            <span class="text-blue-300">System</span>.<span class="text-yellow-300">out</span>.<span class="text-yellow-300">println</span>(<span class="text-green-300">"[LOG] Event: "</span> + event.<span class="text-yellow-300">type</span>() + <span class="text-green-300">", Data: "</span> + event.<span class="text-yellow-300">data</span>());
+        <span class="code-keyword">public void</span> <span class="code-class">handle</span>(<span class="text-blue-300">Event</span> event) {
+            <span class="text-blue-300">System</span>.<span class="code-class">out</span>.<span class="code-class">println</span>(<span class="code-string">"[LOG] Event: "</span> + event.<span class="code-class">type</span>() + <span class="code-string">", Data: "</span> + event.<span class="code-class">data</span>());
         }
     }
 
     <span class="text-gray-500">/**
      * 使用示例：监控的事件处理器
      */</span>
-    <span class="text-purple-400">public static class</span> <span class="text-yellow-300">MonitoringHandler</span> <span class="text-purple-400">implements</span> <span class="text-yellow-300">EventHandler</span> {
-        <span class="text-purple-400">private long</span> startTime;
+    <span class="code-keyword">public static class</span> <span class="code-class">MonitoringHandler</span> <span class="code-keyword">implements</span> <span class="code-class">EventHandler</span> {
+        <span class="code-keyword">private long</span> startTime;
 
         <span class="text-gray-500">@Override</span>
-        <span class="text-purple-400">public void</span> <span class="text-yellow-300">handle</span>(<span class="text-blue-300">Event</span> event) {
-            <span class="text-purple-400">if</span> (<span class="text-green-300">"REQUEST_START"</span>.<span class="text-yellow-300">equals</span>(event.<span class="text-yellow-300">type</span>())) {
-                startTime = <span class="text-blue-300">System</span>.<span class="text-yellow-300">currentTimeMillis</span>();
-            } <span class="text-purple-400">else if</span> (<span class="text-green-300">"RESPONSE_END"</span>.<span class="text-yellow-300">equals</span>(event.<span class="text-yellow-300">type</span>())) {
-                <span class="text-blue-300">long</span> duration = <span class="text-blue-300">System</span>.<span class="text-yellow-300">currentTimeMillis</span>() - startTime;
-                <span class="text-blue-300">System</span>.<span class="text-yellow-300">out</span>.<span class="text-yellow-300">println</span>(<span class="text-green-300">"[MONITOR] Duration: "</span> + duration + <span class="text-green-300">"ms"</span>);
+        <span class="code-keyword">public void</span> <span class="code-class">handle</span>(<span class="text-blue-300">Event</span> event) {
+            <span class="code-keyword">if</span> (<span class="code-string">"REQUEST_START"</span>.<span class="code-class">equals</span>(event.<span class="code-class">type</span>())) {
+                startTime = <span class="text-blue-300">System</span>.<span class="code-class">currentTimeMillis</span>();
+            } <span class="code-keyword">else if</span> (<span class="code-string">"RESPONSE_END"</span>.<span class="code-class">equals</span>(event.<span class="code-class">type</span>())) {
+                <span class="text-blue-300">long</span> duration = <span class="text-blue-300">System</span>.<span class="code-class">currentTimeMillis</span>() - startTime;
+                <span class="text-blue-300">System</span>.<span class="code-class">out</span>.<span class="code-class">println</span>(<span class="code-string">"[MONITOR] Duration: "</span> + duration + <span class="code-string">"ms"</span>);
             }
         }
     }
 }</code></pre>
                     </div>
 
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">4.2 自定义 ToolExecutor</h3>
+                    <h3 class="subsection-title">4.2 自定义 ToolExecutor</h3>
                     <p class="text-gray-700 mb-4">扩展工具执行器，支持更复杂的工具调用场景：</p>
 
                     <ul class="list-disc list-inside text-gray-700 mb-6 space-y-2">
@@ -749,9 +725,9 @@
                         <h2 class="text-2xl font-bold text-gray-900">源码解析</h2>
                     </div>
 
-                    <p class="text-gray-700 mb-6">通过分析 LangChain4j 的源码，理解其设计思路和最佳实践。</p>
+                    <p class="paragraph">通过分析 LangChain4j 的源码，理解其设计思路和最佳实践。</p>
 
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">5.1 关键类设计思路</h3>
+                    <h3 class="subsection-title">5.1 关键类设计思路</h3>
                     <p class="text-gray-700 mb-4">LangChain4j 的核心类采用了简洁而强大的设计：</p>
 
                     <ul class="list-disc list-inside text-gray-700 mb-6 space-y-2">
@@ -761,7 +737,7 @@
                         <li><strong>ToolSpecification</strong>: 工具描述，支持函数调用</li>
                     </ul>
 
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">5.2 设计模式应用</h3>
+                    <h3 class="subsection-title">5.2 设计模式应用</h3>
                     <p class="text-gray-700 mb-4">LangChain4j 广泛应用经典设计模式：</p>
 
                     <ul class="list-disc list-inside text-gray-700 mb-6 space-y-2">
@@ -772,7 +748,7 @@
                         <li><strong>Template Method</strong>: 抽象基类定义算法骨架</li>
                     </ul>
 
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">5.3 性能优化技巧</h3>
+                    <h3 class="subsection-title">5.3 性能优化技巧</h3>
                     <p class="text-gray-700 mb-4">从源码中学到的性能优化经验：</p>
 
                     <ul class="list-disc list-inside text-gray-700 mb-6 space-y-2">
@@ -786,40 +762,40 @@
                     <h4 class="text-lg font-semibold text-gray-900 mb-3">自定义 ChatModel 核心实现</h4>
                     <p class="text-gray-700 mb-4">深入理解 ChatModel 的实现原理：</p>
 
-                    <div class="relative mb-6">
-                        <div class="absolute top-0 right-0 px-3 py-1 bg-gray-800 text-gray-400 text-xs font-medium rounded-bl-md">ChatModelCore.java</div>
-                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="text-purple-400">package</span> <span class="text-blue-300">com.example.langchain4j.core</span>;
+                    <div class="code-wrapper">
+                        <div class="code-filename-badge">ChatModelCore.java</div>
+                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="code-keyword">package</span> <span class="text-blue-300">com.example.langchain4j.core</span>;
 
-<span class="text-purple-400">import</span> <span class="text-blue-300">dev.langchain4j.model.chat.ChatLanguageModel</span>;
-<span class="text-purple-400">import</span> <span class="text-blue-300">dev.langchain4j.model.output.Response</span>;
-<span class="text-purple-400">import</span> <span class="text-blue-300">dev.langchain4j.data.message.ChatMessage</span>;
+<span class="code-keyword">import</span> <span class="text-blue-300">dev.langchain4j.model.chat.ChatLanguageModel</span>;
+<span class="code-keyword">import</span> <span class="text-blue-300">dev.langchain4j.model.output.Response</span>;
+<span class="code-keyword">import</span> <span class="text-blue-300">dev.langchain4j.data.message.ChatMessage</span>;
 
 <span class="text-gray-500">/**
  * ChatModel 核心实现示例
  * 展示 ChatLanguageModel 接口的关键实现要点
  */</span>
-<span class="text-purple-400">public abstract class</span> <span class="text-yellow-300">ChatModelCore</span> <span class="text-purple-400">implements</span> <span class="text-green-300">ChatLanguageModel</span> {
+<span class="code-keyword">public abstract class</span> <span class="code-class">ChatModelCore</span> <span class="code-keyword">implements</span> <span class="code-string">ChatLanguageModel</span> {
 
     <span class="text-gray-500">/**
      * 核心生成方法
      * 子类必须实现具体的 LLM 调用逻辑
      */</span>
     <span class="text-gray-500">@Override</span>
-    <span class="text-purple-400">public abstract</span> <span class="text-blue-300">Response&lt;AiMessage&gt;</span> <span class="text-yellow-300">generate</span>(<span class="text-blue-300">List&lt;ChatMessage&gt;</span> messages);
+    <span class="code-keyword">public abstract</span> <span class="text-blue-300">Response&lt;AiMessage&gt;</span> <span class="code-class">generate</span>(<span class="text-blue-300">List&lt;ChatMessage&gt;</span> messages);
 
     <span class="text-gray-500">/**
      * 带系统提示的生成
      * 在消息列表前插入 SystemMessage
      */</span>
     <span class="text-gray-500">@Override</span>
-    <span class="text-purple-400">public</span> <span class="text-blue-300">Response&lt;AiMessage&gt;</span> <span class="text-yellow-300">generate</span>(
+    <span class="code-keyword">public</span> <span class="text-blue-300">Response&lt;AiMessage&gt;</span> <span class="code-class">generate</span>(
         <span class="text-blue-300">String</span> systemPrompt,
         <span class="text-blue-300">List&lt;ChatMessage&gt;</span> messages
     ) {
-        <span class="text-blue-300">List&lt;ChatMessage&gt;</span> fullMessages = <span class="text-purple-400">new</span> <span class="text-yellow-300">ArrayList</span>&lt;&gt;();
-        fullMessages.<span class="text-yellow-300">add</span>(<span class="text-purple-400">new</span> <span class="text-yellow-300">SystemMessage</span>(systemPrompt));
-        fullMessages.<span class="text-yellow-300">addAll</span>(messages);
-        <span class="text-purple-400">return</span> <span class="text-yellow-300">generate</span>(fullMessages);
+        <span class="text-blue-300">List&lt;ChatMessage&gt;</span> fullMessages = <span class="code-keyword">new</span> <span class="code-class">ArrayList</span>&lt;&gt;();
+        fullMessages.<span class="code-class">add</span>(<span class="code-keyword">new</span> <span class="code-class">SystemMessage</span>(systemPrompt));
+        fullMessages.<span class="code-class">addAll</span>(messages);
+        <span class="code-keyword">return</span> <span class="code-class">generate</span>(fullMessages);
     }
 
     <span class="text-gray-500">/**
@@ -827,33 +803,33 @@
      * 便捷方法，包装为 UserMessage
      */</span>
     <span class="text-gray-500">@Override</span>
-    <span class="text-purple-400">public</span> <span class="text-blue-300">Response&lt;AiMessage&gt;</span> <span class="text-yellow-300">generate</span>(<span class="text-blue-300">String</span> userMessage) {
-        <span class="text-blue-300">List&lt;ChatMessage&gt;</span> messages = <span class="text-blue-300">List</span>.<span class="text-yellow-300">of</span>(<span class="text-purple-400">new</span> <span class="text-yellow-300">UserMessage</span>(userMessage));
-        <span class="text-purple-400">return</span> <span class="text-yellow-300">generate</span>(messages);
+    <span class="code-keyword">public</span> <span class="text-blue-300">Response&lt;AiMessage&gt;</span> <span class="code-class">generate</span>(<span class="text-blue-300">String</span> userMessage) {
+        <span class="text-blue-300">List&lt;ChatMessage&gt;</span> messages = <span class="text-blue-300">List</span>.<span class="code-class">of</span>(<span class="code-keyword">new</span> <span class="code-class">UserMessage</span>(userMessage));
+        <span class="code-keyword">return</span> <span class="code-class">generate</span>(messages);
     }
 
     <span class="text-gray-500">/**
      * Token 计数
      * 用于估算 LLM 调用成本
      */</span>
-    <span class="text-purple-400">public</span> <span class="text-blue-300">int</span> <span class="text-yellow-300">estimateTokenCount</span>(<span class="text-blue-300">String</span> text) {
+    <span class="code-keyword">public</span> <span class="text-blue-300">int</span> <span class="code-class">estimateTokenCount</span>(<span class="text-blue-300">String</span> text) {
         <span class="text-gray-500">// 简单实现：假设 1 token ≈ 4 个字符</span>
-        <span class="text-purple-400">return</span> (text.<span class="text-yellow-300">length</span>() + <span class="text-orange-300">3</span>) / <span class="text-orange-300">4</span>;
+        <span class="code-keyword">return</span> (text.<span class="code-class">length</span>() + <span class="text-orange-300">3</span>) / <span class="text-orange-300">4</span>;
     }
 
     <span class="text-gray-500">/**
      * 获取模型信息
      * 可用于调试和监控
      */</span>
-    <span class="text-purple-400">public</span> <span class="text-blue-300">String</span> <span class="text-yellow-300">getModelInfo</span>() {
-        <span class="text-purple-400">return this</span>.<span class="text-yellow-300">getClass</span>().<span class="text-yellow-300">getSimpleName</span>();
+    <span class="code-keyword">public</span> <span class="text-blue-300">String</span> <span class="code-class">getModelInfo</span>() {
+        <span class="code-keyword">return this</span>.<span class="code-class">getClass</span>().<span class="code-class">getSimpleName</span>();
     }
 
     <span class="text-gray-500">/**
      * 资源清理
      * 关闭连接池、释放资源
      */</span>
-    <span class="text-purple-400">public void</span> <span class="text-yellow-300">close</span>() {
+    <span class="code-keyword">public void</span> <span class="code-class">close</span>() {
         <span class="text-gray-500">// 默认实现：无需操作</span>
         <span class="text-gray-500">// 子类可重写以释放特定资源</span>
     }

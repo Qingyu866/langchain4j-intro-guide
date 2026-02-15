@@ -3,65 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <title>常见问题 - LangChain4j 学习指南</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
-                    },
-                    colors: {
-                        primary: {
-                            50: '#eef2ff',
-                            100: '#e0e7ff',
-                            200: '#c7d2fe',
-                            500: '#6366f1',
-                            600: '#4f46e5',
-                            700: '#4338ca',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+    <!-- 模块化CSS -->
+    <link rel="stylesheet" href="css/main.css">
 </head>
-<body class="bg-white text-gray-800 antialiased">
-    <div class="flex min-h-screen">
+<body>
+    <div class="page-container">
         
 
 
-<aside class="w-[280px] fixed h-screen bg-white border-r border-gray-200 overflow-y-auto pb-8">
-  <div class="p-6">
-    <div class="flex items-center gap-3 mb-8">
-      <div class="w-10 h-10 bg-indigo-600 rounded-lg flex items-center justify-center">
-        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<aside class="sidebar">
+  <div class="sidebar-content">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-icon">
+        <svg class="sidebar-logo-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
         </svg>
       </div>
       <div>
-        <h1 class="font-bold text-gray-900">LangChain4j</h1>
-        <p class="text-xs text-gray-500">入门指南</p>
+        <h1 class="sidebar-logo-title">LangChain4j</h1>
+        <p class="sidebar-logo-subtitle">入门指南</p>
       </div>
     </div>
 
     <div class="space-y-6">
-      <div>
-        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">快速开始</h3>
-        <ul class="space-y-1">
+      <div class="sidebar-nav-group">
+        <h3 class="sidebar-nav-title">快速开始</h3>
+        <ul class="sidebar-nav-list">
           <li><a href="index.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="index">概览</a></li>
           <li><a href="getting-started.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="getting-started">环境准备</a></li>
           <li><a href="core-concepts.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="core-concepts">核心概念</a></li>
         </ul>
       </div>
 
-      <div>
-        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">核心功能</h3>
-        <ul class="space-y-1">
+      <div class="sidebar-nav-group">
+        <h3 class="sidebar-nav-title">核心功能</h3>
+        <ul class="sidebar-nav-list">
           <li><a href="embedding-models.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="embedding-models">Embedding 模型</a></li>
           <li><a href="prompt-templates.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="prompt-templates">Prompt 模板</a></li>
           <li><a href="output-parsers.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="output-parsers">输出解析</a></li>
@@ -72,9 +48,9 @@
         </ul>
       </div>
 
-       <div>
-        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">RAG 完整指南</h3>
-        <ul class="space-y-1">
+       <div class="sidebar-nav-group">
+        <h3 class="sidebar-nav-title">RAG 完整指南</h3>
+        <ul class="sidebar-nav-list">
           <li><a href="rag-intro.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="rag-intro">RAG 简介</a></li>
           <li><a href="rag-setup.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="rag-setup">RAG 环境搭建</a></li>
           <li><a href="rag-implementation.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="rag-implementation">RAG 实现</a></li>
@@ -82,9 +58,9 @@
         </ul>
       </div>
 
-      <div>
-        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">项目实战</h3>
-        <ul class="space-y-1">
+      <div class="sidebar-nav-group">
+        <h3 class="sidebar-nav-title">项目实战</h3>
+        <ul class="sidebar-nav-list">
           <li><a href="project-chatbot.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="project-chatbot">聊天机器人</a></li>
           <li><a href="project-ai-assistant.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="project-ai-assistant">AI助手</a></li>
           <li><a href="project-rag-kb.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="project-rag-kb">RAG知识库</a></li>
@@ -92,9 +68,9 @@
         </ul>
       </div>
 
-      <div>
-        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">最佳实践</h3>
-        <ul class="space-y-1">
+      <div class="sidebar-nav-group">
+        <h3 class="sidebar-nav-title">最佳实践</h3>
+        <ul class="sidebar-nav-list">
           <li><a href="best-practices.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="best-practices">最佳实践</a></li>
           <li><a href="testing-strategies.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="testing-strategies">测试策略</a></li>
           <li><a href="performance-tuning.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="performance-tuning">性能优化</a></li>
@@ -105,16 +81,16 @@
         </ul>
       </div>
 
-      <div>
-        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">面试准备</h3>
-        <ul class="space-y-1">
+      <div class="sidebar-nav-group">
+        <h3 class="sidebar-nav-title">面试准备</h3>
+        <ul class="sidebar-nav-list">
           <li><a href="interview-prep.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="interview-prep">面试准备</a></li>
         </ul>
       </div>
 
-      <div>
-        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">其他</h3>
-        <ul class="space-y-1">
+      <div class="sidebar-nav-group">
+        <h3 class="sidebar-nav-title">其他</h3>
+        <ul class="sidebar-nav-list">
           <li><a href="search.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="search">向量搜索</a></li>
           <li><a href="chat-listeners.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="chat-listeners">监听器</a></li>
           <li><a href="faq.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="faq">常见问题</a></li>
@@ -127,13 +103,13 @@
     </div>
   </div>
 </aside>
-<!-- class="block px-4 py-2.5 text-sm bg-indigo-50 text-indigo-700 font-medium rounded-md transition-all text-center" -->
-<!-- class="block px-4 py-2.5 text-sm bg-indigo-50 text-indigo-700 font-medium rounded-md transition-all text-center" -->
-<!-- class="block px-4 py-2.5 text-sm bg-indigo-50 text-indigo-700 font-medium rounded-md transition-all text-center" -->
 
 
-        <main class="flex-1 ml-[280px]">
-            <div class="max-w-7xl mx-auto px-8 py-12">
+
+
+
+        <main class="main-content">
+            <div class="content-wrapper">
                 <!-- 页面标签 -->
                 <div class="flex items-center gap-2 mb-4">
                     <span class="px-3 py-1 bg-indigo-100 text-indigo-700 text-xs font-medium rounded-full">常见问题</span>
@@ -141,19 +117,19 @@
                     <span class="px-3 py-1 bg-green-100 text-green-700 text-xs font-medium rounded-full">快速参考</span>
                 </div>
 
-                <h1 class="text-4xl font-bold text-gray-900 mb-4">常见问题</h1>
-                <p class="text-xl text-gray-600 mb-8">LangChain4j 开发过程中的常见问题解答和最佳实践</p>
+                <h1 class="page-title">常见问题</h1>
+                <p class="page-intro">LangChain4j 开发过程中的常见问题解答和最佳实践</p>
 
                 <!-- 目录 -->
                 <nav class="bg-gray-50 border border-gray-200 rounded-xl p-6 mb-8">
                     <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">目录</h3>
-                    <ol class="space-y-2 text-sm text-gray-700">
-                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">1.</span> <a href="#基础概念" class="hover:text-indigo-600 transition-colors">基础概念</a></li>
-                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">2.</span> <a href="#嵌入模型" class="hover:text-indigo-600 transition-colors">嵌入模型</a></li>
-                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">3.</span> <a href="#RAG相关" class="hover:text-indigo-600 transition-colors">RAG 相关</a></li>
-                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">4.</span> <a href="#函数调用" class="hover:text-indigo-600 transition-colors">函数调用</a></li>
-                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">5.</span> <a href="#性能与优化" class="hover:text-indigo-600 transition-colors">性能与优化</a></li>
-                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">6.</span> <a href="#生产部署" class="hover:text-indigo-600 transition-colors">生产部署</a></li>
+                    <ol class="toc-list">
+                        <li class="toc-item"><span class="toc-number">1.</span> <a href="#基础概念" class="toc-link">基础概念</a></li>
+                        <li class="toc-item"><span class="toc-number">2.</span> <a href="#嵌入模型" class="toc-link">嵌入模型</a></li>
+                        <li class="toc-item"><span class="toc-number">3.</span> <a href="#RAG相关" class="toc-link">RAG 相关</a></li>
+                        <li class="toc-item"><span class="toc-number">4.</span> <a href="#函数调用" class="toc-link">函数调用</a></li>
+                        <li class="toc-item"><span class="toc-number">5.</span> <a href="#性能与优化" class="toc-link">性能与优化</a></li>
+                        <li class="toc-item"><span class="toc-number">6.</span> <a href="#生产部署" class="toc-link">生产部署</a></li>
                     </ol>
                 </nav>
 
@@ -166,7 +142,7 @@
 
                     <div class="space-y-6">
                         <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-900 mb-3">Q: LangChain4j 与 LangChain 有什么区别？</h3>
+                            <h3 class="subsection-title-sm">Q: LangChain4j 与 LangChain 有什么区别？</h3>
                             <p class="text-gray-700"><strong>A:</strong> LangChain4j 是 LangChain 的 Java 实现，专门为 Java 生态系统设计。主要区别：</p>
                             <ul class="list-disc list-inside mt-3 space-y-1 text-gray-600">
                                 <li><strong>编程语言</strong>：LangChain4j 是 Java，原版 LangChain 是 Python</li>
@@ -177,7 +153,7 @@
                         </div>
 
                         <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-900 mb-3">Q: 如何选择合适的 ChatLanguageModel？</h3>
+                            <h3 class="subsection-title-sm">Q: 如何选择合适的 ChatLanguageModel？</h3>
                             <p class="text-gray-700"><strong>A:</strong> 根据需求和场景选择：</p>
                             <ul class="list-disc list-inside mt-3 space-y-1 text-gray-600">
                                 <li><strong>快速原型</strong>：使用 HuggingFace 本地模型，免费且无需 API Key</li>
@@ -189,7 +165,7 @@
                         </div>
 
                         <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-900 mb-3">Q: LangChain4j 支持哪些模型提供商？</h3>
+                            <h3 class="subsection-title-sm">Q: LangChain4j 支持哪些模型提供商？</h3>
                             <p class="text-gray-700"><strong>A:</strong> LangChain4j 支持主流的 AI 模型提供商：</p>
                             <ul class="list-disc list-inside mt-3 space-y-1 text-gray-600">
                                 <li><strong>OpenAI</strong>：GPT-4、GPT-3.5-turbo、Embeddings</li>
@@ -202,7 +178,7 @@
                         </div>
 
                         <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-900 mb-3">Q: 什么是 Chain？</h3>
+                            <h3 class="subsection-title-sm">Q: 什么是 Chain？</h3>
                             <p class="text-gray-700"><strong>A:</strong> Chain 是 LangChain4j 的核心概念，表示将多个 AI 组件串联起来形成工作流：</p>
                             <ul class="list-disc list-inside mt-3 space-y-1 text-gray-600">
                                 <li><strong>简单 Chain</strong>：单个操作（如文本生成、向量检索）</li>
@@ -223,7 +199,7 @@
 
                     <div class="space-y-6">
                         <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-900 mb-3">Q: 嵌入向量是什么？</h3>
+                            <h3 class="subsection-title-sm">Q: 嵌入向量是什么？</h3>
                             <p class="text-gray-700"><strong>A:</strong> 嵌入向量是将文本、图像等数据转换为数值向量的表示方法：</p>
                             <ul class="list-disc list-inside mt-3 space-y-1 text-gray-600">
                                 <li><strong>数值表示</strong>：通常为浮点数数组（如 [0.1, -0.3, 0.8, ...]）</li>
@@ -234,7 +210,7 @@
                         </div>
 
                         <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-900 mb-3">Q: 如何选择嵌入模型？</h3>
+                            <h3 class="subsection-title-sm">Q: 如何选择嵌入模型？</h3>
                             <p class="text-gray-700"><strong>A:</strong> 根据语言、性能和场景选择：</p>
                             <ul class="list-disc list-inside mt-3 space-y-1 text-gray-600">
                                 <li><strong>多语言</strong>：OpenAI text-embedding-ada-002、Cohere embed-multilingual-v3</li>
@@ -246,7 +222,7 @@
                         </div>
 
                         <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-900 mb-3">Q: 如何计算向量相似度？</h3>
+                            <h3 class="subsection-title-sm">Q: 如何计算向量相似度？</h3>
                             <p class="text-gray-700"><strong>A:</strong> 常用的向量相似度计算方法：</p>
                             <ul class="list-disc list-inside mt-3 space-y-1 text-gray-600">
                                 <li><strong>余弦相似度</strong>：最常用，值域 [-1, 1]，1 表示完全相同</li>
@@ -258,7 +234,7 @@
                         </div>
 
                         <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-900 mb-3">Q: 文本分块（Chunking）策略有哪些？</h3>
+                            <h3 class="subsection-title-sm">Q: 文本分块（Chunking）策略有哪些？</h3>
                             <p class="text-gray-700"><strong>A:</strong> 常见的文本分块策略：</p>
                             <ul class="list-disc list-inside mt-3 space-y-1 text-gray-600">
                                 <li><strong>固定大小</strong>：按字符数切分（如 1000 字符），简单但可能截断语义</li>
@@ -280,7 +256,7 @@
 
                     <div class="space-y-6">
                         <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-900 mb-3">Q: 什么是 RAG？</h3>
+                            <h3 class="subsection-title-sm">Q: 什么是 RAG？</h3>
                             <p class="text-gray-700"><strong>A:</strong> RAG（Retrieval-Augmented Generation，检索增强生成）是一种结合知识检索和 LLM 生成的技术：</p>
                             <ul class="list-disc list-inside mt-3 space-y-1 text-gray-600">
                                 <li><strong>问题</strong>：用户提出问题</li>
@@ -292,7 +268,7 @@
                         </div>
 
                         <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-900 mb-3">Q: 如何选择向量数据库？</h3>
+                            <h3 class="subsection-title-sm">Q: 如何选择向量数据库？</h3>
                             <p class="text-gray-700"><strong>A:</strong> 根据需求和场景选择向量数据库：</p>
                             <ul class="list-disc list-inside mt-3 space-y-1 text-gray-600">
                                 <li><strong>PostgreSQL + PGVector</strong>：已有 PostgreSQL 环境，易集成，性能中等</li>
@@ -305,7 +281,7 @@
                         </div>
 
                         <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-900 mb-3">Q: 如何提高 RAG 检索质量？</h3>
+                            <h3 class="subsection-title-sm">Q: 如何提高 RAG 检索质量？</h3>
                             <p class="text-gray-700"><strong>A:</strong> 提高检索质量的常用策略：</p>
                             <ul class="list-disc list-inside mt-3 space-y-1 text-gray-600">
                                 <li><strong>优化分块</strong>：使用递归分块，设置合理的 chunk size 和 overlap</li>
@@ -317,7 +293,7 @@
                         </div>
 
                         <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-900 mb-3">Q: RAG 常见问题如何解决？</h3>
+                            <h3 class="subsection-title-sm">Q: RAG 常见问题如何解决？</h3>
                             <p class="text-gray-700"><strong>A:</strong> 常见问题及解决方案：</p>
                             <ul class="list-disc list-inside mt-3 space-y-1 text-gray-600">
                                 <li><strong>检索不准确</strong>：增加 chunk size、使用重排序、调整检索参数</li>
@@ -339,7 +315,7 @@
 
                     <div class="space-y-6">
                         <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-900 mb-3">Q: 什么是函数调用（Function Calling）？</h3>
+                            <h3 class="subsection-title-sm">Q: 什么是函数调用（Function Calling）？</h3>
                             <p class="text-gray-700"><strong>A:</strong> 函数调用允许 LLM 调用外部工具和 API，扩展其能力：</p>
                             <ul class="list-disc list-inside mt-3 space-y-1 text-gray-600">
                                 <li><strong>定义工具</strong>：使用 @Tool 注解定义可调用函数</li>
@@ -351,7 +327,7 @@
                         </div>
 
                         <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-900 mb-3">Q: 如何设计良好的工具函数？</h3>
+                            <h3 class="subsection-title-sm">Q: 如何设计良好的工具函数？</h3>
                             <p class="text-gray-700"><strong>A:</strong> 设计工具函数的最佳实践：</p>
                             <ul class="list-disc list-inside mt-3 space-y-1 text-gray-600">
                                 <li><strong>单一职责</strong>：每个函数只做一件事</li>
@@ -364,7 +340,7 @@
                         </div>
 
                         <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-900 mb-3">Q: 函数调用失败如何处理？</h3>
+                            <h3 class="subsection-title-sm">Q: 函数调用失败如何处理？</h3>
                             <p class="text-gray-700"><strong>A:</strong> 函数调用失败的常见原因和解决方案：</p>
                             <ul class="list-disc list-inside mt-3 space-y-1 text-gray-600">
                                 <li><strong>参数不匹配</strong>：检查参数名称和类型是否正确</li>
@@ -386,7 +362,7 @@
 
                     <div class="space-y-6">
                         <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-900 mb-3">Q: 如何提高 LangChain4j 应用性能？</h3>
+                            <h3 class="subsection-title-sm">Q: 如何提高 LangChain4j 应用性能？</h3>
                             <p class="text-gray-700"><strong>A:</strong> 性能优化的关键策略：</p>
                             <ul class="list-disc list-inside mt-3 space-y-1 text-gray-600">
                                 <li><strong>缓存</strong>：缓存嵌入向量、API 响应、检索结果</li>
@@ -399,7 +375,7 @@
                         </div>
 
                         <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-900 mb-3">Q: 如何降低 LangChain4j 成本？</h3>
+                            <h3 class="subsection-title-sm">Q: 如何降低 LangChain4j 成本？</h3>
                             <p class="text-gray-700"><strong>A:</strong> 降低成本的策略：</p>
                             <ul class="list-disc list-inside mt-3 space-y-1 text-gray-600">
                                 <li><strong>模型选择</strong>：使用更便宜的模型（如 GPT-3.5-turbo）</li>
@@ -412,7 +388,7 @@
                         </div>
 
                         <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-900 mb-3">Q: 如何处理并发请求？</h3>
+                            <h3 class="subsection-title-sm">Q: 如何处理并发请求？</h3>
                             <p class="text-gray-700"><strong>A:</strong> 并发处理的最佳实践：</p>
                             <ul class="list-disc list-inside mt-3 space-y-1 text-gray-600">
                                 <li><strong>异步 API</strong>：使用 LangChain4j 的异步接口</li>
@@ -435,7 +411,7 @@
 
                     <div class="space-y-6">
                         <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-900 mb-3">Q: 如何部署 LangChain4j 应用？</h3>
+                            <h3 class="subsection-title-sm">Q: 如何部署 LangChain4j 应用？</h3>
                             <p class="text-gray-700"><strong>A:</strong> 生产环境部署建议：</p>
                             <ul class="list-disc list-inside mt-3 space-y-1 text-gray-600">
                                 <li><strong>容器化</strong>：使用 Docker 容器化应用</li>
@@ -448,7 +424,7 @@
                         </div>
 
                         <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-900 mb-3">Q: 如何保护 API Key？</h3>
+                            <h3 class="subsection-title-sm">Q: 如何保护 API Key？</h3>
                             <p class="text-gray-700"><strong>A:</strong> API Key 安全管理策略：</p>
                             <ul class="list-disc list-inside mt-3 space-y-1 text-gray-600">
                                 <li><strong>环境变量</strong>：使用环境变量存储敏感信息</li>
@@ -461,7 +437,7 @@
                         </div>
 
                         <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-900 mb-3">Q: 如何监控 LangChain4j 应用？</h3>
+                            <h3 class="subsection-title-sm">Q: 如何监控 LangChain4j 应用？</h3>
                             <p class="text-gray-700"><strong>A:</strong> 监控关键指标：</p>
                             <ul class="list-disc list-inside mt-3 space-y-1 text-gray-600">
                                 <li><strong>API 调用</strong>：调用次数、成功/失败率、响应时间</li>

@@ -3,65 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <title>搜索功能 - LangChain4j 学习指南</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
-                    },
-                    colors: {
-                        primary: {
-                            50: '#eef2ff',
-                            100: '#e0e7ff',
-                            200: '#c7d2fe',
-                            500: '#6366f1',
-                            600: '#4f46e5',
-                            700: '#4338ca',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+    <!-- 模块化CSS -->
+    <link rel="stylesheet" href="css/main.css">
 </head>
-<body class="bg-white text-gray-800 antialiased">
-    <div class="flex min-h-screen">
+<body>
+    <div class="page-container">
         
 
 
-<aside class="w-[280px] fixed h-screen bg-white border-r border-gray-200 overflow-y-auto pb-8">
-  <div class="p-6">
-    <div class="flex items-center gap-3 mb-8">
-      <div class="w-10 h-10 bg-indigo-600 rounded-lg flex items-center justify-center">
-        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<aside class="sidebar">
+  <div class="sidebar-content">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-icon">
+        <svg class="sidebar-logo-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
         </svg>
       </div>
       <div>
-        <h1 class="font-bold text-gray-900">LangChain4j</h1>
-        <p class="text-xs text-gray-500">入门指南</p>
+        <h1 class="sidebar-logo-title">LangChain4j</h1>
+        <p class="sidebar-logo-subtitle">入门指南</p>
       </div>
     </div>
 
     <div class="space-y-6">
-      <div>
-        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">快速开始</h3>
-        <ul class="space-y-1">
+      <div class="sidebar-nav-group">
+        <h3 class="sidebar-nav-title">快速开始</h3>
+        <ul class="sidebar-nav-list">
           <li><a href="index.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="index">概览</a></li>
           <li><a href="getting-started.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="getting-started">环境准备</a></li>
           <li><a href="core-concepts.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="core-concepts">核心概念</a></li>
         </ul>
       </div>
 
-      <div>
-        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">核心功能</h3>
-        <ul class="space-y-1">
+      <div class="sidebar-nav-group">
+        <h3 class="sidebar-nav-title">核心功能</h3>
+        <ul class="sidebar-nav-list">
           <li><a href="embedding-models.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="embedding-models">Embedding 模型</a></li>
           <li><a href="prompt-templates.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="prompt-templates">Prompt 模板</a></li>
           <li><a href="output-parsers.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="output-parsers">输出解析</a></li>
@@ -72,9 +48,9 @@
         </ul>
       </div>
 
-       <div>
-        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">RAG 完整指南</h3>
-        <ul class="space-y-1">
+       <div class="sidebar-nav-group">
+        <h3 class="sidebar-nav-title">RAG 完整指南</h3>
+        <ul class="sidebar-nav-list">
           <li><a href="rag-intro.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="rag-intro">RAG 简介</a></li>
           <li><a href="rag-setup.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="rag-setup">RAG 环境搭建</a></li>
           <li><a href="rag-implementation.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="rag-implementation">RAG 实现</a></li>
@@ -82,9 +58,9 @@
         </ul>
       </div>
 
-      <div>
-        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">项目实战</h3>
-        <ul class="space-y-1">
+      <div class="sidebar-nav-group">
+        <h3 class="sidebar-nav-title">项目实战</h3>
+        <ul class="sidebar-nav-list">
           <li><a href="project-chatbot.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="project-chatbot">聊天机器人</a></li>
           <li><a href="project-ai-assistant.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="project-ai-assistant">AI助手</a></li>
           <li><a href="project-rag-kb.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="project-rag-kb">RAG知识库</a></li>
@@ -92,9 +68,9 @@
         </ul>
       </div>
 
-      <div>
-        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">最佳实践</h3>
-        <ul class="space-y-1">
+      <div class="sidebar-nav-group">
+        <h3 class="sidebar-nav-title">最佳实践</h3>
+        <ul class="sidebar-nav-list">
           <li><a href="best-practices.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="best-practices">最佳实践</a></li>
           <li><a href="testing-strategies.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="testing-strategies">测试策略</a></li>
           <li><a href="performance-tuning.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="performance-tuning">性能优化</a></li>
@@ -105,16 +81,16 @@
         </ul>
       </div>
 
-      <div>
-        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">面试准备</h3>
-        <ul class="space-y-1">
+      <div class="sidebar-nav-group">
+        <h3 class="sidebar-nav-title">面试准备</h3>
+        <ul class="sidebar-nav-list">
           <li><a href="interview-prep.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="interview-prep">面试准备</a></li>
         </ul>
       </div>
 
-      <div>
-        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">其他</h3>
-        <ul class="space-y-1">
+      <div class="sidebar-nav-group">
+        <h3 class="sidebar-nav-title">其他</h3>
+        <ul class="sidebar-nav-list">
           <li><a href="search.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="search">向量搜索</a></li>
           <li><a href="chat-listeners.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="chat-listeners">监听器</a></li>
           <li><a href="faq.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="faq">常见问题</a></li>
@@ -127,13 +103,13 @@
     </div>
   </div>
 </aside>
-<!-- class="block px-4 py-2.5 text-sm bg-indigo-50 text-indigo-700 font-medium rounded-md transition-all text-center" -->
-<!-- class="block px-4 py-2.5 text-sm bg-indigo-50 text-indigo-700 font-medium rounded-md transition-all text-center" -->
-<!-- class="block px-4 py-2.5 text-sm bg-indigo-50 text-indigo-700 font-medium rounded-md transition-all text-center" -->
 
 
-        <main class="flex-1 ml-[280px]">
-            <div class="max-w-7xl mx-auto px-8 py-12">
+
+
+
+        <main class="main-content">
+            <div class="content-wrapper">
                 <!-- 页面标签 -->
                 <div class="flex items-center gap-2 mb-4">
                     <span class="px-3 py-1 bg-indigo-100 text-indigo-700 text-xs font-medium rounded-full">搜索功能</span>
@@ -141,18 +117,18 @@
                     <span class="px-3 py-1 bg-green-100 text-green-700 text-xs font-medium rounded-full">语义搜索</span>
                 </div>
 
-                <h1 class="text-4xl font-bold text-gray-900 mb-4">搜索功能</h1>
-                <p class="text-xl text-gray-600 mb-8">LangChain4j 的向量检索和语义搜索实现</p>
+                <h1 class="page-title">向量搜索</h1>
+                <p class="page-intro">LangChain4j 的向量检索和语义搜索实现</p>
 
                 <!-- 目录 -->
                 <nav class="bg-gray-50 border border-gray-200 rounded-xl p-6 mb-8">
                     <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">目录</h3>
-                    <ol class="space-y-2 text-sm text-gray-700">
-                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">1.</span> <a href="#向量检索概述" class="hover:text-indigo-600 transition-colors">向量检索概述</a></li>
-                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">2.</span> <a href="#EmbeddingStore接口" class="hover:text-indigo-600 transition-colors">EmbeddingStore 接口</a></li>
-                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">3.</span> <a href="#向量检索实现" class="hover:text-indigo-600 transition-colors">向量检索实现</a></li>
-                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">4.</span> <a href="#混合检索" class="hover:text-indigo-600 transition-colors">混合检索</a></li>
-                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">5.</span> <a href="#最佳实践" class="hover:text-indigo-600 transition-colors">最佳实践</a></li>
+                    <ol class="toc-list">
+                        <li class="toc-item"><span class="toc-number">1.</span> <a href="#向量检索概述" class="toc-link">向量检索概述</a></li>
+                        <li class="toc-item"><span class="toc-number">2.</span> <a href="#EmbeddingStore接口" class="toc-link">EmbeddingStore 接口</a></li>
+                        <li class="toc-item"><span class="toc-number">3.</span> <a href="#向量检索实现" class="toc-link">向量检索实现</a></li>
+                        <li class="toc-item"><span class="toc-number">4.</span> <a href="#混合检索" class="toc-link">混合检索</a></li>
+                        <li class="toc-item"><span class="toc-number">5.</span> <a href="#最佳实践" class="toc-link">最佳实践</a></li>
                     </ol>
                 </nav>
 
@@ -163,10 +139,10 @@
                         <h2 class="text-2xl font-bold text-gray-900">向量检索概述</h2>
                     </div>
 
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">1.1 向量检索原理</h3>
-                    <p class="text-gray-700 mb-6">向量检索是基于向量相似度的语义搜索技术：</p>
+                    <h3 class="subsection-title">1.1 向量检索原理</h3>
+                    <p class="paragraph">向量检索是基于向量相似度的语义搜索技术：</p>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div class="grid-2col">
                         <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
                             <h4 class="font-semibold text-blue-800 mb-2">向量嵌入</h4>
                             <p class="text-blue-700 text-sm">将文本转换为高维向量表示</p>
@@ -213,76 +189,76 @@
                         <h2 class="text-2xl font-bold text-gray-900">EmbeddingStore 接口</h2>
                     </div>
 
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">2.1 核心 API 方法</h3>
-                    <p class="text-gray-700 mb-6">EmbeddingStore 是 LangChain4j 的向量存储接口，支持多种实现：</p>
+                    <h3 class="subsection-title">2.1 核心 API 方法</h3>
+                    <p class="paragraph">EmbeddingStore 是 LangChain4j 的向量存储接口，支持多种实现：</p>
 
-                    <div class="relative mb-6">
-                        <div class="absolute top-0 right-0 px-3 py-1 bg-gray-800 text-gray-400 text-xs font-medium rounded-bl-md">EmbeddingStoreExample.java</div>
-                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="text-purple-400">package</span> <span class="text-blue-300">com.example.langchain4j.search</span>;
+                    <div class="code-wrapper">
+                        <div class="code-filename-badge">EmbeddingStoreExample.java</div>
+                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="code-keyword">package</span> <span class="text-blue-300">com.example.langchain4j.search</span>;
 
-<span class="text-purple-400">import</span> <span class="text-blue-300">dev.langchain4j.data.segment.TextSegment</span>;
-<span class="text-purple-400">import</span> <span class="text-blue-300">dev.langchain4j.model.embedding.EmbeddingModel</span>;
-<span class="text-purple-400">import</span> <span class="text-blue-300">dev.langchain4j.store.embedding.EmbeddingStore</span>;
-<span class="text-purple-400">import</span> <span class="text-blue-300">dev.langchain4j.store.embedding.EmbeddingMatch</span>;
-<span class="text-purple-400">import</span> <span class="text-blue-300">org.springframework.stereotype.Service</span>;
-<span class="text-purple-400">import</span> <span class="text-blue-300">jakarta.inject.Inject</span>;
+<span class="code-keyword">import</span> <span class="text-blue-300">dev.langchain4j.data.segment.TextSegment</span>;
+<span class="code-keyword">import</span> <span class="text-blue-300">dev.langchain4j.model.embedding.EmbeddingModel</span>;
+<span class="code-keyword">import</span> <span class="text-blue-300">dev.langchain4j.store.embedding.EmbeddingStore</span>;
+<span class="code-keyword">import</span> <span class="text-blue-300">dev.langchain4j.store.embedding.EmbeddingMatch</span>;
+<span class="code-keyword">import</span> <span class="text-blue-300">org.springframework.stereotype.Service</span>;
+<span class="code-keyword">import</span> <span class="text-blue-300">jakarta.inject.Inject</span>;
 
 <span class="text-gray-500">/**
  * 向量存储服务示例
  * 演示 EmbeddingStore 的基本用法
  */</span>
-<span class="text-purple-400">@Service</span>
-<span class="text-purple-400">public class</span> <span class="text-yellow-300">EmbeddingStoreService</span> {
+<span class="code-keyword">@Service</span>
+<span class="code-keyword">public class</span> <span class="code-class">EmbeddingStoreService</span> {
 
-    <span class="text-purple-400">private final</span> <span class="text-blue-300">EmbeddingModel</span> embeddingModel;
-    <span class="text-purple-400">private final</span> <span class="text-blue-300">EmbeddingStore</span>&lt;<span class="text-blue-300">TextSegment</span>&gt; embeddingStore;
+    <span class="code-keyword">private final</span> <span class="text-blue-300">EmbeddingModel</span> embeddingModel;
+    <span class="code-keyword">private final</span> <span class="text-blue-300">EmbeddingStore</span>&lt;<span class="text-blue-300">TextSegment</span>&gt; embeddingStore;
 
-    <span class="text-purple-400">@Inject</span>
-    <span class="text-purple-400">public</span> <span class="text-yellow-300">EmbeddingStoreService</span>(<span class="text-blue-300">EmbeddingModel</span> embeddingModel,
+    <span class="code-keyword">@Inject</span>
+    <span class="code-keyword">public</span> <span class="code-class">EmbeddingStoreService</span>(<span class="text-blue-300">EmbeddingModel</span> embeddingModel,
                                <span class="text-blue-300">EmbeddingStore</span>&lt;<span class="text-blue-300">TextSegment</span>&gt; embeddingStore) {
-        <span class="text-purple-400">this</span>.embeddingModel = embeddingModel;
-        <span class="text-purple-400">this</span>.embeddingStore = embeddingStore;
+        <span class="code-keyword">this</span>.embeddingModel = embeddingModel;
+        <span class="code-keyword">this</span>.embeddingStore = embeddingStore;
     }
 
     <span class="text-gray-500">/**
      * 添加单个文档向量
      */</span>
-    <span class="text-purple-400">public void</span> <span class="text-purple-400">addDocument</span>(<span class="text-blue-300">String</span> id, <span class="text-blue-300">String</span> content) {
-        <span class="text-blue-300">TextSegment</span> segment = <span class="text-blue-300">TextSegment</span>.<span class="text-green-300">from</span>(content);
-        <span class="text-blue-300">Embedding</span> embedding = embeddingModel.<span class="text-green-300">embed</span>(segment).<span class="text-green-300">content</span>();
+    <span class="code-keyword">public void</span> <span class="code-keyword">addDocument</span>(<span class="text-blue-300">String</span> id, <span class="text-blue-300">String</span> content) {
+        <span class="text-blue-300">TextSegment</span> segment = <span class="text-blue-300">TextSegment</span>.<span class="code-string">from</span>(content);
+        <span class="text-blue-300">Embedding</span> embedding = embeddingModel.<span class="code-string">embed</span>(segment).<span class="code-string">content</span>();
         
         <span class="text-gray-500">// 将向量存储到 EmbeddingStore</span>
-        embeddingStore.<span class="text-green-300">add</span>(id, segment, embedding);
+        embeddingStore.<span class="code-string">add</span>(id, segment, embedding);
     }
 
     <span class="text-gray-500">/**
      * 搜索相似文档
      */</span>
-    <span class="text-purple-400">public</span> <span class="text-blue-300">List</span>&lt;<span class="text-blue-300">String</span>&gt; <span class="text-purple-400">search</span>(<span class="text-blue-300">String</span> query, <span class="text-blue-300">int</span> maxResults, <span class="text-blue-300">double</span> minScore) {
+    <span class="code-keyword">public</span> <span class="text-blue-300">List</span>&lt;<span class="text-blue-300">String</span>&gt; <span class="code-keyword">search</span>(<span class="text-blue-300">String</span> query, <span class="text-blue-300">int</span> maxResults, <span class="text-blue-300">double</span> minScore) {
         <span class="text-gray-500">// 1. 将查询向量化</span>
-        <span class="text-blue-300">Embedding</span> queryEmbedding = embeddingModel.<span class="text-green-300">embed</span>(query).<span class="text-green-300">content</span>();
+        <span class="text-blue-300">Embedding</span> queryEmbedding = embeddingModel.<span class="code-string">embed</span>(query).<span class="code-string">content</span>();
         
         <span class="text-gray-500">// 2. 搜索最相似的向量</span>
         <span class="text-blue-300">List</span>&lt;<span class="text-blue-300">EmbeddingMatch</span>&lt;<span class="text-blue-300">TextSegment</span>&gt;&gt; matches = 
-            embeddingStore.<span class="text-green-300">findRelevant</span>(queryEmbedding, maxResults, minScore);
+            embeddingStore.<span class="code-string">findRelevant</span>(queryEmbedding, maxResults, minScore);
         
         <span class="text-gray-500">// 3. 返回匹配的文档内容</span>
-        <span class="text-purple-400">return</span> matches.<span class="text-green-300">stream</span>()
-            .<span class="text-green-300">map</span>(match -&gt; match.<span class="text-green-300">embedded</span>().<span class="text-green-300">text</span>())
-            .<span class="text-green-300">toList</span>();
+        <span class="code-keyword">return</span> matches.<span class="code-string">stream</span>()
+            .<span class="code-string">map</span>(match -&gt; match.<span class="code-string">embedded</span>().<span class="code-string">text</span>())
+            .<span class="code-string">toList</span>();
     }
 
     <span class="text-gray-500">/**
      * 删除文档
      */</span>
-    <span class="text-purple-400">public void</span> <span class="text-purple-400">deleteDocument</span>(<span class="text-blue-300">String</span> id) {
-        embeddingStore.<span class="text-green-300">remove</span>(id);
+    <span class="code-keyword">public void</span> <span class="code-keyword">deleteDocument</span>(<span class="text-blue-300">String</span> id) {
+        embeddingStore.<span class="code-string">remove</span>(id);
     }
 }</code></pre>
                     </div>
 
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">2.2 支持的向量数据库</h3>
-                    <p class="text-gray-700 mb-6">LangChain4j 支持多种向量数据库实现：</p>
+                    <h3 class="subsection-title">2.2 支持的向量数据库</h3>
+                    <p class="paragraph">LangChain4j 支持多种向量数据库实现：</p>
 
                     <table class="w-full text-left border-collapse border border-gray-200 rounded-lg overflow-hidden mb-6">
                         <thead class="bg-gray-50">
@@ -335,61 +311,61 @@
                         <h2 class="text-2xl font-bold text-gray-900">向量检索实现</h2>
                     </div>
 
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">3.1 基础检索</h3>
-                    <p class="text-gray-700 mb-6">最简单的向量检索实现：</p>
+                    <h3 class="subsection-title">3.1 基础检索</h3>
+                    <p class="paragraph">最简单的向量检索实现：</p>
 
-                    <div class="relative mb-6">
-                        <div class="absolute top-0 right-0 px-3 py-1 bg-gray-800 text-gray-400 text-xs font-medium rounded-bl-md">BasicSearchExample.java</div>
-                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="text-purple-400">@RestController</span>
-<span class="text-purple-400">@RequestMapping</span>(<span class="text-green-300">"/api/search"</span>)
-<span class="text-purple-400">public class</span> <span class="text-yellow-300">SearchController</span> {
+                    <div class="code-wrapper">
+                        <div class="code-filename-badge">BasicSearchExample.java</div>
+                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="code-keyword">@RestController</span>
+<span class="code-keyword">@RequestMapping</span>(<span class="code-string">"/api/search"</span>)
+<span class="code-keyword">public class</span> <span class="code-class">SearchController</span> {
 
-    <span class="text-purple-400">private final</span> <span class="text-blue-300">EmbeddingStore</span>&lt;<span class="text-blue-300">TextSegment</span>&gt; embeddingStore;
-    <span class="text-purple-400">private final</span> <span class="text-blue-300">EmbeddingModel</span> embeddingModel;
+    <span class="code-keyword">private final</span> <span class="text-blue-300">EmbeddingStore</span>&lt;<span class="text-blue-300">TextSegment</span>&gt; embeddingStore;
+    <span class="code-keyword">private final</span> <span class="text-blue-300">EmbeddingModel</span> embeddingModel;
 
     <span class="text-gray-500">/**
      * 搜索接口
      */</span>
-    <span class="text-purple-400">@GetMapping</span>(<span class="text-green-300">"/documents"</span>)
-    <span class="text-purple-400">public</span> <span class="text-blue-300">SearchResult</span> <span class="text-purple-400">searchDocuments</span>(
-            <span class="text-blue-300">@RequestParam</span> <span class="text-green-300">"query"</span> <span class="text-blue-300">String</span> query,
-            <span class="text-blue-300">@RequestParam</span>(<span class="text-green-300">defaultValue</span> = <span class="text-green-300">"5"</span>) <span class="text-blue-300">int</span> limit) {
+    <span class="code-keyword">@GetMapping</span>(<span class="code-string">"/documents"</span>)
+    <span class="code-keyword">public</span> <span class="text-blue-300">SearchResult</span> <span class="code-keyword">searchDocuments</span>(
+            <span class="text-blue-300">@RequestParam</span> <span class="code-string">"query"</span> <span class="text-blue-300">String</span> query,
+            <span class="text-blue-300">@RequestParam</span>(<span class="code-string">defaultValue</span> = <span class="code-string">"5"</span>) <span class="text-blue-300">int</span> limit) {
         
         <span class="text-gray-500">// 搜索最相关的文档</span>
-        <span class="text-blue-300">List</span>&lt;<span class="text-blue-300">String</span>&gt; results = <span class="text-yellow-300">embeddingStoreService</span>.<span class="text-green-300">search</span>(query, limit, <span class="text-green-300">0.0</span>);
+        <span class="text-blue-300">List</span>&lt;<span class="text-blue-300">String</span>&gt; results = <span class="code-class">embeddingStoreService</span>.<span class="code-string">search</span>(query, limit, <span class="code-string">0.0</span>);
         
-        <span class="text-purple-400">return new</span> <span class="text-yellow-300">SearchResult</span>(query, results);
+        <span class="code-keyword">return new</span> <span class="code-class">SearchResult</span>(query, results);
     }
 }</code></pre>
                     </div>
 
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">3.2 批量检索</h3>
-                    <p class="text-gray-700 mb-6">批量检索多个查询：</p>
+                    <h3 class="subsection-title">3.2 批量检索</h3>
+                    <p class="paragraph">批量检索多个查询：</p>
 
-                    <div class="relative mb-6">
-                        <div class="absolute top-0 right-0 px-3 py-1 bg-gray-800 text-gray-400 text-xs font-medium rounded-bl-md">BatchSearchExample.java</div>
+                    <div class="code-wrapper">
+                        <div class="code-filename-badge">BatchSearchExample.java</div>
                         <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="text-gray-500">// 批量查询多个问题</span>
-<span class="text-blue-300">List</span>&lt;<span class="text-blue-300">String</span>&gt; queries = <span class="text-blue-300">List</span>.<span class="text-green-300">of</span>(
-    <span class="text-green-300">"如何使用 LangChain4j?"</span>,
-    <span class="text-green-300">"向量检索的原理是什么？"</span>,
-    <span class="text-green-300">"什么是 RAG？"</span>
+<span class="text-blue-300">List</span>&lt;<span class="text-blue-300">String</span>&gt; queries = <span class="text-blue-300">List</span>.<span class="code-string">of</span>(
+    <span class="code-string">"如何使用 LangChain4j?"</span>,
+    <span class="code-string">"向量检索的原理是什么？"</span>,
+    <span class="code-string">"什么是 RAG？"</span>
 );
 
 <span class="text-gray-500">// 并发检索所有查询</span>
-<span class="text-blue-300">Map</span>&lt;<span class="text-blue-300">String</span>, <span class="text-blue-300">List</span>&lt;<span class="text-blue-300">String</span>&gt;&gt; results = <span class="text-blue-300">queries</span>.<span class="text-green-300">parallelStream</span>()
-    .<span class="text-green-300">collect</span>(
-        <span class="text-purple-400">Collectors</span>.<span class="text-green-300">toMap</span>(
-            query -&gt; <span class="text-purple-400">Map</span>.<span class="text-green-300">entry</span>(
+<span class="text-blue-300">Map</span>&lt;<span class="text-blue-300">String</span>, <span class="text-blue-300">List</span>&lt;<span class="text-blue-300">String</span>&gt;&gt; results = <span class="text-blue-300">queries</span>.<span class="code-string">parallelStream</span>()
+    .<span class="code-string">collect</span>(
+        <span class="code-keyword">Collectors</span>.<span class="code-string">toMap</span>(
+            query -&gt; <span class="code-keyword">Map</span>.<span class="code-string">entry</span>(
                 query, 
-                <span class="text-yellow-300">embeddingStoreService</span>.<span class="text-green-300">search</span>(query, <span class="text-green-300">5</span>, <span class="text-green-300">0.0</span>)
+                <span class="code-class">embeddingStoreService</span>.<span class="code-string">search</span>(query, <span class="code-string">5</span>, <span class="code-string">0.0</span>)
             )
         )
     );
 
 <span class="text-gray-500">// 打印结果</span>
-results.<span class="text-green-300">forEach</span>((query, docs) -&gt; {
-    <span class="text-blue-300">System</span>.<span class="text-green-300">out</span>.<span class="text-green-300">println</span>(<span class="text-green-300">"Query: "</span> + query);
-    docs.<span class="text-green-300">forEach</span>(doc -&gt; <span class="text-blue-300">System</span>.<span class="text-green-300">out</span>.<span class="text-green-300">println</span>(<span class="text-green-300">"  - "</span> + doc));
+results.<span class="code-string">forEach</span>((query, docs) -&gt; {
+    <span class="text-blue-300">System</span>.<span class="code-string">out</span>.<span class="code-string">println</span>(<span class="code-string">"Query: "</span> + query);
+    docs.<span class="code-string">forEach</span>(doc -&gt; <span class="text-blue-300">System</span>.<span class="code-string">out</span>.<span class="code-string">println</span>(<span class="code-string">"  - "</span> + doc));
 });</code></pre>
                     </div>
                 </section>
@@ -401,10 +377,10 @@ results.<span class="text-green-300">forEach</span>((query, docs) -&gt; {
                         <h2 class="text-2xl font-bold text-gray-900">混合检索</h2>
                     </div>
 
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">4.1 混合检索原理</h3>
-                    <p class="text-gray-700 mb-6">结合向量检索和关键词检索提高准确性：</p>
+                    <h3 class="subsection-title">4.1 混合检索原理</h3>
+                    <p class="paragraph">结合向量检索和关键词检索提高准确性：</p>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div class="grid-2col">
                         <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
                             <h4 class="font-semibold text-blue-800 mb-2">向量检索</h4>
                             <p class="text-blue-700 text-sm mb-2">基于语义相似度的搜索</p>
@@ -425,8 +401,8 @@ results.<span class="text-green-300">forEach</span>((query, docs) -&gt; {
                         </div>
                     </div>
 
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">4.2 结果融合</h3>
-                    <p class="text-gray-700 mb-6">将两种检索结果合并并重新排序：</p>
+                    <h3 class="subsection-title">4.2 结果融合</h3>
+                    <p class="paragraph">将两种检索结果合并并重新排序：</p>
 
                     <div class="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl p-6 mb-8">
                         <h4 class="text-xl font-bold text-white mb-2">融合策略</h4>

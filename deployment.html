@@ -3,65 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <title>部署与运维 - LangChain4j 学习指南</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
-                    },
-                    colors: {
-                        primary: {
-                            50: '#eef2ff',
-                            100: '#e0e7ff',
-                            200: '#c7d2fe',
-                            500: '#6366f1',
-                            600: '#4f46e5',
-                            700: '#4338ca',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+    <!-- 模块化CSS -->
+    <link rel="stylesheet" href="css/main.css">
 </head>
-<body class="bg-white text-gray-800 antialiased">
-    <div class="flex min-h-screen">
+<body>
+    <div class="page-container">
         
 
 
-<aside class="w-[280px] fixed h-screen bg-white border-r border-gray-200 overflow-y-auto pb-8">
-  <div class="p-6">
-    <div class="flex items-center gap-3 mb-8">
-      <div class="w-10 h-10 bg-indigo-600 rounded-lg flex items-center justify-center">
-        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<aside class="sidebar">
+  <div class="sidebar-content">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-icon">
+        <svg class="sidebar-logo-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
         </svg>
       </div>
       <div>
-        <h1 class="font-bold text-gray-900">LangChain4j</h1>
-        <p class="text-xs text-gray-500">入门指南</p>
+        <h1 class="sidebar-logo-title">LangChain4j</h1>
+        <p class="sidebar-logo-subtitle">入门指南</p>
       </div>
     </div>
 
     <div class="space-y-6">
-      <div>
-        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">快速开始</h3>
-        <ul class="space-y-1">
+      <div class="sidebar-nav-group">
+        <h3 class="sidebar-nav-title">快速开始</h3>
+        <ul class="sidebar-nav-list">
           <li><a href="index.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="index">概览</a></li>
           <li><a href="getting-started.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="getting-started">环境准备</a></li>
           <li><a href="core-concepts.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="core-concepts">核心概念</a></li>
         </ul>
       </div>
 
-      <div>
-        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">核心功能</h3>
-        <ul class="space-y-1">
+      <div class="sidebar-nav-group">
+        <h3 class="sidebar-nav-title">核心功能</h3>
+        <ul class="sidebar-nav-list">
           <li><a href="embedding-models.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="embedding-models">Embedding 模型</a></li>
           <li><a href="prompt-templates.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="prompt-templates">Prompt 模板</a></li>
           <li><a href="output-parsers.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="output-parsers">输出解析</a></li>
@@ -72,9 +48,9 @@
         </ul>
       </div>
 
-       <div>
-        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">RAG 完整指南</h3>
-        <ul class="space-y-1">
+       <div class="sidebar-nav-group">
+        <h3 class="sidebar-nav-title">RAG 完整指南</h3>
+        <ul class="sidebar-nav-list">
           <li><a href="rag-intro.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="rag-intro">RAG 简介</a></li>
           <li><a href="rag-setup.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="rag-setup">RAG 环境搭建</a></li>
           <li><a href="rag-implementation.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="rag-implementation">RAG 实现</a></li>
@@ -82,9 +58,9 @@
         </ul>
       </div>
 
-      <div>
-        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">项目实战</h3>
-        <ul class="space-y-1">
+      <div class="sidebar-nav-group">
+        <h3 class="sidebar-nav-title">项目实战</h3>
+        <ul class="sidebar-nav-list">
           <li><a href="project-chatbot.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="project-chatbot">聊天机器人</a></li>
           <li><a href="project-ai-assistant.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="project-ai-assistant">AI助手</a></li>
           <li><a href="project-rag-kb.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="project-rag-kb">RAG知识库</a></li>
@@ -92,9 +68,9 @@
         </ul>
       </div>
 
-      <div>
-        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">最佳实践</h3>
-        <ul class="space-y-1">
+      <div class="sidebar-nav-group">
+        <h3 class="sidebar-nav-title">最佳实践</h3>
+        <ul class="sidebar-nav-list">
           <li><a href="best-practices.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="best-practices">最佳实践</a></li>
           <li><a href="testing-strategies.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="testing-strategies">测试策略</a></li>
           <li><a href="performance-tuning.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="performance-tuning">性能优化</a></li>
@@ -105,16 +81,16 @@
         </ul>
       </div>
 
-      <div>
-        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">面试准备</h3>
-        <ul class="space-y-1">
+      <div class="sidebar-nav-group">
+        <h3 class="sidebar-nav-title">面试准备</h3>
+        <ul class="sidebar-nav-list">
           <li><a href="interview-prep.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="interview-prep">面试准备</a></li>
         </ul>
       </div>
 
-      <div>
-        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">其他</h3>
-        <ul class="space-y-1">
+      <div class="sidebar-nav-group">
+        <h3 class="sidebar-nav-title">其他</h3>
+        <ul class="sidebar-nav-list">
           <li><a href="search.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="search">向量搜索</a></li>
           <li><a href="chat-listeners.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="chat-listeners">监听器</a></li>
           <li><a href="faq.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="faq">常见问题</a></li>
@@ -127,13 +103,13 @@
     </div>
   </div>
 </aside>
-<!-- class="block px-4 py-2.5 text-sm bg-indigo-50 text-indigo-700 font-medium rounded-md transition-all text-center" -->
-<!-- class="block px-4 py-2.5 text-sm bg-indigo-50 text-indigo-700 font-medium rounded-md transition-all text-center" -->
-<!-- class="block px-4 py-2.5 text-sm bg-indigo-50 text-indigo-700 font-medium rounded-md transition-all text-center" -->
 
 
-        <main class="flex-1 ml-[280px]">
-            <div class="max-w-7xl mx-auto px-8 py-12">
+
+
+
+        <main class="main-content">
+            <div class="content-wrapper">
                 <!-- 页面标签 -->
                 <div class="flex items-center gap-2 mb-4">
                     <span class="px-3 py-1 bg-indigo-100 text-indigo-700 text-xs font-medium rounded-full">部署与运维</span>
@@ -141,17 +117,17 @@
                     <span class="px-3 py-1 bg-green-100 text-green-700 text-xs font-medium rounded-full">Docker</span>
                 </div>
 
-                <h1 class="text-4xl font-bold text-gray-900 mb-4">部署与运维</h1>
-                <p class="text-xl text-gray-600 mb-8">LangChain4j 应用的生产环境部署与运维指南</p>
+                <h1 class="page-title">部署与运维</h1>
+                <p class="page-intro">LangChain4j 应用的生产环境部署与运维指南</p>
 
                 <!-- 目录 -->
                 <nav class="bg-gray-50 border border-gray-200 rounded-xl p-6 mb-8">
                     <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">目录</h3>
-                    <ol class="space-y-2 text-sm text-gray-700">
-                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">1.</span> <a href="#容器化部署" class="hover:text-indigo-600 transition-colors">容器化部署</a></li>
-                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">2.</span> <a href="#Kubernetes编排" class="hover:text-indigo-600 transition-colors">Kubernetes 编排</a></li>
-                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">3.</span> <a href="#CI_CD流程" class="hover:text-indigo-600 transition-colors">CI/CD 流程</a></li>
-                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">4.</span> <a href="#监控告警与日志" class="hover:text-indigo-600 transition-colors">监控告警与日志</a></li>
+                    <ol class="toc-list">
+                        <li class="toc-item"><span class="toc-number">1.</span> <a href="#容器化部署" class="toc-link">容器化部署</a></li>
+                        <li class="toc-item"><span class="toc-number">2.</span> <a href="#Kubernetes编排" class="toc-link">Kubernetes 编排</a></li>
+                        <li class="toc-item"><span class="toc-number">3.</span> <a href="#CI_CD流程" class="toc-link">CI/CD 流程</a></li>
+                        <li class="toc-item"><span class="toc-number">4.</span> <a href="#监控告警与日志" class="toc-link">监控告警与日志</a></li>
                     </ol>
                 </nav>
 
@@ -162,89 +138,89 @@
                         <h2 class="text-2xl font-bold text-gray-900">容器化部署</h2>
                     </div>
 
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">1.1 Docker 镜像构建</h3>
-                    <p class="text-gray-700 mb-6">使用 Docker 容器化 LangChain4j 应用，实现环境一致性和易于部署：</p>
+                    <h3 class="subsection-title">1.1 Docker 镜像构建</h3>
+                    <p class="paragraph">使用 Docker 容器化 LangChain4j 应用，实现环境一致性和易于部署：</p>
 
-                    <div class="relative mb-6">
-                        <div class="absolute top-0 right-0 px-3 py-1 bg-gray-800 text-gray-400 text-xs font-medium rounded-bl-md">Dockerfile</div>
+                    <div class="code-wrapper">
+                        <div class="code-filename-badge">Dockerfile</div>
                         <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="text-gray-500"># 基础镜像：使用 JDK 17</span>
-<span class="text-purple-400">FROM</span> openjdk:<span class="text-green-300">17-jdk-slim</span> <span class="text-purple-400">AS</span> builder
+<span class="code-keyword">FROM</span> openjdk:<span class="code-string">17-jdk-slim</span> <span class="code-keyword">AS</span> builder
 
 <span class="text-gray-500"># 设置工作目录</span>
-<span class="text-purple-400">WORKDIR</span> /app
+<span class="code-keyword">WORKDIR</span> /app
 
 <span class="text-gray-500"># 复制 Maven 配置文件</span>
-<span class="text-purple-400">COPY</span> pom.xml .
+<span class="code-keyword">COPY</span> pom.xml .
 
 <span class="text-gray-500"># 构建 Spring Boot 应用（依赖下载和编译）</span>
-<span class="text-purple-400">RUN</span> mvn clean package -DskipTests
+<span class="code-keyword">RUN</span> mvn clean package -DskipTests
 
 <span class="text-gray-500"># 多阶段构建：使用更小的运行时镜像</span>
-<span class="text-purple-400">FROM</span> openjdk:<span class="text-green-300">17-jre-slim</span>
+<span class="code-keyword">FROM</span> openjdk:<span class="code-string">17-jre-slim</span>
 
 <span class="text-gray-500"># 创建应用目录和非 root 用户</span>
-<span class="text-purple-400">WORKDIR</span> /app
-<span class="text-purple-400">RUN</span> groupadd -r appuser && useradd -r -g appuser appuser
+<span class="code-keyword">WORKDIR</span> /app
+<span class="code-keyword">RUN</span> groupadd -r appuser && useradd -r -g appuser appuser
 
 <span class="text-gray-500"># 从构建阶段复制 JAR 文件</span>
-<span class="text-purple-400">COPY</span> --from=builder /app/target/*.jar app.jar
+<span class="code-keyword">COPY</span> --from=builder /app/target/*.jar app.jar
 
 <span class="text-gray-500"># 设置文件权限</span>
-<span class="text-purple-400">RUN</span> chown -R appuser:appuser /app
+<span class="code-keyword">RUN</span> chown -R appuser:appuser /app
 
 <span class="text-gray-500"># 切换到非 root 用户</span>
-<span class="text-purple-400">USER</span> appuser
+<span class="code-keyword">USER</span> appuser
 
 <span class="text-gray-500"># 暴露端口</span>
-<span class="text-purple-400">EXPOSE</span> <span class="text-green-300">8080</span>
+<span class="code-keyword">EXPOSE</span> <span class="code-string">8080</span>
 
 <span class="text-gray-500"># 启动应用</span>
-<span class="text-purple-400">ENTRYPOINT</span> ["java", "-jar", "app.jar"]</code></pre>
+<span class="code-keyword">ENTRYPOINT</span> ["java", "-jar", "app.jar"]</code></pre>
                     </div>
 
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">1.2 Docker Compose 编排</h3>
-                    <p class="text-gray-700 mb-6">使用 Docker Compose 管理多容器应用：</p>
+                    <h3 class="subsection-title">1.2 Docker Compose 编排</h3>
+                    <p class="paragraph">使用 Docker Compose 管理多容器应用：</p>
 
-                    <div class="relative mb-6">
-                        <div class="absolute top-0 right-0 px-3 py-1 bg-gray-800 text-gray-400 text-xs font-medium rounded-bl-md">docker-compose.yml</div>
-                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="text-purple-400">version</span>: <span class="text-green-300">'3.8'</span>
+                    <div class="code-wrapper">
+                        <div class="code-filename-badge">docker-compose.yml</div>
+                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="code-keyword">version</span>: <span class="code-string">'3.8'</span>
 
-<span class="text-purple-400">services</span>:
+<span class="code-keyword">services</span>:
   <span class="text-gray-500"># LangChain4j 应用</span>
   app:
-    <span class="text-purple-400">build</span>: .
-    <span class="text-purple-400">ports</span>:
-      - <span class="text-green-300">"8080:8080"</span>
-    <span class="text-purple-400">environment</span>:
-      - <span class="text-green-300">SPRING_PROFILES_ACTIVE=production</span>
-      - <span class="text-green-300">OPENAI_API_KEY=${OPENAI_API_KEY}</span>
-      - <span class="text-green-300">POSTGRES_URL=jdbc:postgresql://postgres:5432/langchain4j</span>
-    <span class="text-purple-400">depends_on</span>:
+    <span class="code-keyword">build</span>: .
+    <span class="code-keyword">ports</span>:
+      - <span class="code-string">"8080:8080"</span>
+    <span class="code-keyword">environment</span>:
+      - <span class="code-string">SPRING_PROFILES_ACTIVE=production</span>
+      - <span class="code-string">OPENAI_API_KEY=${OPENAI_API_KEY}</span>
+      - <span class="code-string">POSTGRES_URL=jdbc:postgresql://postgres:5432/langchain4j</span>
+    <span class="code-keyword">depends_on</span>:
       - postgres
       - redis
-    <span class="text-purple-400">restart</span>: unless-stopped
+    <span class="code-keyword">restart</span>: unless-stopped
 
   <span class="text-gray-500"># PostgreSQL 数据库</span>
   postgres:
-    <span class="text-purple-400">image</span>: pgvector/pgvector:pg16
-    <span class="text-purple-400">environment</span>:
-      - <span class="text-green-300">POSTGRES_USER=postgres</span>
-      - <span class="text-green-300">POSTGRES_PASSWORD=postgres</span>
-      - <span class="text-green-300">POSTGRES_DB=langchain4j</span>
-    <span class="text-purple-400">volumes</span>:
+    <span class="code-keyword">image</span>: pgvector/pgvector:pg16
+    <span class="code-keyword">environment</span>:
+      - <span class="code-string">POSTGRES_USER=postgres</span>
+      - <span class="code-string">POSTGRES_PASSWORD=postgres</span>
+      - <span class="code-string">POSTGRES_DB=langchain4j</span>
+    <span class="code-keyword">volumes</span>:
       - postgres_data:/var/lib/postgresql/data
-    <span class="text-purple-400">ports</span>:
-      - <span class="text-green-300">"5432:5432"</span>
+    <span class="code-keyword">ports</span>:
+      - <span class="code-string">"5432:5432"</span>
 
   <span class="text-gray-500"># Redis 缓存</span>
   redis:
-    <span class="text-purple-400">image</span>: redis:7-alpine
-    <span class="text-purple-400">volumes</span>:
+    <span class="code-keyword">image</span>: redis:7-alpine
+    <span class="code-keyword">volumes</span>:
       - redis_data:/data
-    <span class="text-purple-400">ports</span>:
-      - <span class="text-green-300">"6379:6379"</span>
+    <span class="code-keyword">ports</span>:
+      - <span class="code-string">"6379:6379"</span>
 
-<span class="text-purple-400">volumes</span>:
+<span class="code-keyword">volumes</span>:
   postgres_data:
   redis_data:</code></pre>
                     </div>
@@ -257,86 +233,86 @@
                         <h2 class="text-2xl font-bold text-gray-900">Kubernetes 编排</h2>
                     </div>
 
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">2.1 Deployment 配置</h3>
-                    <p class="text-gray-700 mb-6">在 Kubernetes 中部署 LangChain4j 应用：</p>
+                    <h3 class="subsection-title">2.1 Deployment 配置</h3>
+                    <p class="paragraph">在 Kubernetes 中部署 LangChain4j 应用：</p>
 
-                    <div class="relative mb-6">
-                        <div class="absolute top-0 right-0 px-3 py-1 bg-gray-800 text-gray-400 text-xs font-medium rounded-bl-md">deployment.yaml</div>
-                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="text-purple-400">apiVersion</span>: apps/v1
-<span class="text-purple-400">kind</span>: Deployment
-<span class="text-purple-400">metadata</span>:
-  <span class="text-purple-400">name</span>: langchain4j-app
-  <span class="text-purple-400">labels</span>:
+                    <div class="code-wrapper">
+                        <div class="code-filename-badge">deployment.yaml</div>
+                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="code-keyword">apiVersion</span>: apps/v1
+<span class="code-keyword">kind</span>: Deployment
+<span class="code-keyword">metadata</span>:
+  <span class="code-keyword">name</span>: langchain4j-app
+  <span class="code-keyword">labels</span>:
     app: langchain4j
-<span class="text-purple-400">spec</span>:
-  <span class="text-purple-400">replicas</span>: <span class="text-green-300">3</span>  <span class="text-gray-500"># 3 个副本</span>
-  <span class="text-purple-400">selector</span>:
-    <span class="text-purple-400">matchLabels</span>:
+<span class="code-keyword">spec</span>:
+  <span class="code-keyword">replicas</span>: <span class="code-string">3</span>  <span class="text-gray-500"># 3 个副本</span>
+  <span class="code-keyword">selector</span>:
+    <span class="code-keyword">matchLabels</span>:
       app: langchain4j
-  <span class="text-purple-400">template</span>:
-    <span class="text-purple-400">metadata</span>:
-      <span class="text-purple-400">labels</span>:
+  <span class="code-keyword">template</span>:
+    <span class="code-keyword">metadata</span>:
+      <span class="code-keyword">labels</span>:
         app: langchain4j
-    <span class="text-purple-400">spec</span>:
-      <span class="text-purple-400">containers</span>:
-      - <span class="text-purple-400">name</span>: langchain4j
-        <span class="text-purple-400">image</span>: your-registry/langchain4j:latest
-        <span class="text-purple-400">ports</span>:
-        - <span class="text-purple-400">containerPort</span>: <span class="text-green-300">8080</span>
-        <span class="text-purple-400">env</span>:
-        - <span class="text-purple-400">name</span>: SPRING_PROFILES_ACTIVE
-          <span class="text-purple-400">value</span>: <span class="text-green-300">"production"</span>
-        - <span class="text-purple-400">name</span>: OPENAI_API_KEY
-          <span class="text-purple-400">valueFrom</span>:
-            <span class="text-purple-400">secretKeyRef</span>:
-              <span class="text-purple-400">name</span>: openai-api-key
-              <span class="text-purple-400">key</span>: api-key
-        <span class="text-purple-400">resources</span>:
-          <span class="text-purple-400">requests</span>:
-            <span class="text-purple-400">memory</span>: <span class="text-green-300">"512Mi"</span>
-            <span class="text-purple-400">cpu</span>: <span class="text-green-300">"500m"</span>
-          <span class="text-purple-400">limits</span>:
-            <span class="text-purple-400">memory</span>: <span class="text-green-300">"1Gi"</span>
-            <span class="text-purple-400">cpu</span>: <span class="text-green-300">"1000m"</span>
-        <span class="text-purple-400">livenessProbe</span>:
-          <span class="text-purple-400">httpGet</span>:
-            <span class="text-purple-400">path</span>: <span class="text-green-300">/actuator/health</span>
-            <span class="text-purple-400">port</span>: <span class="text-green-300">8080</span>
-          <span class="text-purple-400">initialDelaySeconds</span>: <span class="text-green-300">60</span>
-          <span class="text-purple-400">periodSeconds</span>: <span class="text-green-300">10</span>
-        <span class="text-purple-400">readinessProbe</span>:
-          <span class="text-purple-400">httpGet</span>:
-            <span class="text-purple-400">path</span>: <span class="text-green-300">/actuator/health</span>
-            <span class="text-purple-400">port</span>: <span class="text-green-300">8080</span>
-          <span class="text-purple-400">initialDelaySeconds</span>: <span class="text-green-300">30</span>
-          <span class="text-purple-400">periodSeconds</span>: <span class="text-green-300">5</span>
+    <span class="code-keyword">spec</span>:
+      <span class="code-keyword">containers</span>:
+      - <span class="code-keyword">name</span>: langchain4j
+        <span class="code-keyword">image</span>: your-registry/langchain4j:latest
+        <span class="code-keyword">ports</span>:
+        - <span class="code-keyword">containerPort</span>: <span class="code-string">8080</span>
+        <span class="code-keyword">env</span>:
+        - <span class="code-keyword">name</span>: SPRING_PROFILES_ACTIVE
+          <span class="code-keyword">value</span>: <span class="code-string">"production"</span>
+        - <span class="code-keyword">name</span>: OPENAI_API_KEY
+          <span class="code-keyword">valueFrom</span>:
+            <span class="code-keyword">secretKeyRef</span>:
+              <span class="code-keyword">name</span>: openai-api-key
+              <span class="code-keyword">key</span>: api-key
+        <span class="code-keyword">resources</span>:
+          <span class="code-keyword">requests</span>:
+            <span class="code-keyword">memory</span>: <span class="code-string">"512Mi"</span>
+            <span class="code-keyword">cpu</span>: <span class="code-string">"500m"</span>
+          <span class="code-keyword">limits</span>:
+            <span class="code-keyword">memory</span>: <span class="code-string">"1Gi"</span>
+            <span class="code-keyword">cpu</span>: <span class="code-string">"1000m"</span>
+        <span class="code-keyword">livenessProbe</span>:
+          <span class="code-keyword">httpGet</span>:
+            <span class="code-keyword">path</span>: <span class="code-string">/actuator/health</span>
+            <span class="code-keyword">port</span>: <span class="code-string">8080</span>
+          <span class="code-keyword">initialDelaySeconds</span>: <span class="code-string">60</span>
+          <span class="code-keyword">periodSeconds</span>: <span class="code-string">10</span>
+        <span class="code-keyword">readinessProbe</span>:
+          <span class="code-keyword">httpGet</span>:
+            <span class="code-keyword">path</span>: <span class="code-string">/actuator/health</span>
+            <span class="code-keyword">port</span>: <span class="code-string">8080</span>
+          <span class="code-keyword">initialDelaySeconds</span>: <span class="code-string">30</span>
+          <span class="code-keyword">periodSeconds</span>: <span class="code-string">5</span>
 ---
-<span class="text-purple-400">apiVersion</span>: v1
-<span class="text-purple-400">kind</span>: Service
-<span class="text-purple-400">metadata</span>:
-  <span class="text-purple-400">name</span>: langchain4j-service
-<span class="text-purple-400">spec</span>:
-  <span class="text-purple-400">selector</span>:
+<span class="code-keyword">apiVersion</span>: v1
+<span class="code-keyword">kind</span>: Service
+<span class="code-keyword">metadata</span>:
+  <span class="code-keyword">name</span>: langchain4j-service
+<span class="code-keyword">spec</span>:
+  <span class="code-keyword">selector</span>:
     app: langchain4j
-  <span class="text-purple-400">ports</span>:
-  - <span class="text-purple-400">protocol</span>: TCP
-    <span class="text-purple-400">port</span>: <span class="text-green-300">8080</span>
-    <span class="text-purple-400">targetPort</span>: <span class="text-green-300">8080</span>
-  <span class="text-purple-400">type</span>: LoadBalancer</span></code></pre>
+  <span class="code-keyword">ports</span>:
+  - <span class="code-keyword">protocol</span>: TCP
+    <span class="code-keyword">port</span>: <span class="code-string">8080</span>
+    <span class="code-keyword">targetPort</span>: <span class="code-string">8080</span>
+  <span class="code-keyword">type</span>: LoadBalancer</span></code></pre>
                     </div>
 
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">2.2 配置管理</h3>
-                    <p class="text-gray-700 mb-6">使用 Kubernetes ConfigMap 和 Secret 管理配置：</p>
+                    <h3 class="subsection-title">2.2 配置管理</h3>
+                    <p class="paragraph">使用 Kubernetes ConfigMap 和 Secret 管理配置：</p>
 
-                    <div class="relative mb-6">
-                        <div class="absolute top-0 right-0 px-3 py-1 bg-gray-800 text-gray-400 text-xs font-medium rounded-bl-md">config.yaml</div>
+                    <div class="code-wrapper">
+                        <div class="code-filename-badge">config.yaml</div>
                         <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="text-gray-500"># ConfigMap: 应用配置</span>
-<span class="text-purple-400">apiVersion</span>: v1
-<span class="text-purple-400">kind</span>: ConfigMap
-<span class="text-purple-400">metadata</span>:
-  <span class="text-purple-400">name</span>: langchain4j-config
-<span class="text-purple-400">data</span>:
-  <span class="text-purple-400">application.yml</span>: |
+<span class="code-keyword">apiVersion</span>: v1
+<span class="code-keyword">kind</span>: ConfigMap
+<span class="code-keyword">metadata</span>:
+  <span class="code-keyword">name</span>: langchain4j-config
+<span class="code-keyword">data</span>:
+  <span class="code-keyword">application.yml</span>: |
     spring:
       datasource:
         url: jdbc:postgresql://postgres-service:5432/langchain4j
@@ -346,13 +322,13 @@
         port: 6379
 ---
 <span class="text-gray-500"># Secret: 敏感信息</span>
-<span class="text-purple-400">apiVersion</span>: v1
-<span class="text-purple-400">kind</span>: Secret
-<span class="text-purple-400">metadata</span>:
-  <span class="text-purple-400">name</span>: openai-api-key
-<span class="text-purple-400">type</span>: Opaque
-<span class="text-purple-400">stringData</span>:
-  <span class="text-purple-400">api-key</span>: <span class="text-green-300">sk-proj-xxx</span>  <span class="text-gray-500"># base64 编码</span></code></pre>
+<span class="code-keyword">apiVersion</span>: v1
+<span class="code-keyword">kind</span>: Secret
+<span class="code-keyword">metadata</span>:
+  <span class="code-keyword">name</span>: openai-api-key
+<span class="code-keyword">type</span>: Opaque
+<span class="code-keyword">stringData</span>:
+  <span class="code-keyword">api-key</span>: <span class="code-string">sk-proj-xxx</span>  <span class="text-gray-500"># base64 编码</span></code></pre>
                     </div>
                 </section>
 
@@ -363,43 +339,43 @@
                         <h2 class="text-2xl font-bold text-gray-900">CI/CD 流程</h2>
                     </div>
 
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">3.1 GitHub Actions CI</h3>
-                    <p class="text-gray-700 mb-6">自动化构建和测试流程：</p>
+                    <h3 class="subsection-title">3.1 GitHub Actions CI</h3>
+                    <p class="paragraph">自动化构建和测试流程：</p>
 
-                    <div class="relative mb-6">
-                        <div class="absolute top-0 right-0 px-3 py-1 bg-gray-800 text-gray-400 text-xs font-medium rounded-bl-md">.github/workflows/ci.yml</div>
-                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="text-purple-400">name</span>: CI/CD Pipeline
+                    <div class="code-wrapper">
+                        <div class="code-filename-badge">.github/workflows/ci.yml</div>
+                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="code-keyword">name</span>: CI/CD Pipeline
 
-<span class="text-purple-400">on</span>:
-  <span class="text-purple-400">push</span>:
-    <span class="text-purple-400">branches</span>: [ main ]
-  <span class="text-purple-400">pull_request</span>:
+<span class="code-keyword">on</span>:
+  <span class="code-keyword">push</span>:
+    <span class="code-keyword">branches</span>: [ main ]
+  <span class="code-keyword">pull_request</span>:
 
-<span class="text-purple-400">jobs</span>:
-  <span class="text-purple-400">build</span>:
-    <span class="text-purple-400">runs-on</span>: ubuntu-latest
-    <span class="text-purple-400">steps</span>:
-    - <span class="text-purple-400">uses</span>: actions/checkout@v4
-    - <span class="text-purple-400">name</span>: Set up JDK 17
-      <span class="text-purple-400">uses</span>: actions/setup-java@v4
-      <span class="text-purple-400">with</span>:
-        java-version: <span class="text-green-300">'17'</span>
-        distribution: <span class="text-green-300">'temurin'</span>
-    - <span class="text-purple-400">name</span>: Build with Maven
-      <span class="text-purple-400">run</span>: mvn clean package -DskipTests
-    - <span class="text-purple-400">name</span>: Run Tests
-      <span class="text-purple-400">run</span>: mvn test
-    - <span class="text-purple-400">name</span>: Build Docker Image
-      <span class="text-purple-400">run</span>: docker build -t langchain4j:${{ github.sha }} .
-    - <span class="text-purple-400">name</span>: Push to Registry
-      <span class="text-purple-400">if</span>: github.ref == <span class="text-green-300">'refs/heads/main'</span>
-      <span class="text-purple-400">run</span>: |
+<span class="code-keyword">jobs</span>:
+  <span class="code-keyword">build</span>:
+    <span class="code-keyword">runs-on</span>: ubuntu-latest
+    <span class="code-keyword">steps</span>:
+    - <span class="code-keyword">uses</span>: actions/checkout@v4
+    - <span class="code-keyword">name</span>: Set up JDK 17
+      <span class="code-keyword">uses</span>: actions/setup-java@v4
+      <span class="code-keyword">with</span>:
+        java-version: <span class="code-string">'17'</span>
+        distribution: <span class="code-string">'temurin'</span>
+    - <span class="code-keyword">name</span>: Build with Maven
+      <span class="code-keyword">run</span>: mvn clean package -DskipTests
+    - <span class="code-keyword">name</span>: Run Tests
+      <span class="code-keyword">run</span>: mvn test
+    - <span class="code-keyword">name</span>: Build Docker Image
+      <span class="code-keyword">run</span>: docker build -t langchain4j:${{ github.sha }} .
+    - <span class="code-keyword">name</span>: Push to Registry
+      <span class="code-keyword">if</span>: github.ref == <span class="code-string">'refs/heads/main'</span>
+      <span class="code-keyword">run</span>: |
         echo ${{ secrets.REGISTRY_PASSWORD }} | docker login -u ${{ secrets.REGISTRY_USER }} --password-stdin
         docker push langchain4j:${{ github.sha }}</code></pre>
                     </div>
 
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">3.2 自动化部署到 K8s</h3>
-                    <p class="text-gray-700 mb-6">构建完成后自动部署到 Kubernetes：</p>
+                    <h3 class="subsection-title">3.2 自动化部署到 K8s</h3>
+                    <p class="paragraph">构建完成后自动部署到 Kubernetes：</p>
 
                     <div class="bg-green-50 border border-green-200 rounded-lg p-6">
                         <h4 class="font-semibold text-green-800 mb-3">部署步骤</h4>
@@ -420,8 +396,8 @@
                         <h2 class="text-2xl font-bold text-gray-900">监控告警与日志</h2>
                     </div>
 
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">4.1 Prometheus 监控</h3>
-                    <p class="text-gray-700 mb-6">使用 Prometheus 收集应用指标：</p>
+                    <h3 class="subsection-title">4.1 Prometheus 监控</h3>
+                    <p class="paragraph">使用 Prometheus 收集应用指标：</p>
 
                     <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6">
                         <h4 class="font-semibold text-blue-800 mb-3">关键监控指标</h4>
@@ -435,10 +411,10 @@
                         </ul>
                     </div>
 
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">4.2 Grafana 仪表板</h3>
-                    <p class="text-gray-700 mb-6">使用 Grafana 可视化监控数据：</p>
+                    <h3 class="subsection-title">4.2 Grafana 仪表板</h3>
+                    <p class="paragraph">使用 Grafana 可视化监控数据：</p>
 
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                    <div class="grid-3col">
                         <div class="bg-purple-50 border border-purple-200 rounded-lg p-4">
                             <h4 class="font-semibold text-purple-800 mb-2">API 仪表板</h4>
                             <p class="text-purple-700 text-sm">API 调用、响应时间、错误率</p>
@@ -453,41 +429,41 @@
                         </div>
                     </div>
 
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">4.3 告警规则</h3>
-                    <p class="text-gray-700 mb-6">设置合理的告警阈值：</p>
+                    <h3 class="subsection-title">4.3 告警规则</h3>
+                    <p class="paragraph">设置合理的告警阈值：</p>
 
-                    <div class="relative mb-6">
-                        <div class="absolute top-0 right-0 px-3 py-1 bg-gray-800 text-gray-400 text-xs font-medium rounded-bl-md">alerting-rules.yml</div>
-                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="text-purple-400">groups</span>:
-  - <span class="text-purple-400">name</span>: api_alerts
-    <span class="text-purple-400">rules</span>:
-      - <span class="text-purple-400">alert</span>: HighErrorRate
-        <span class="text-purple-400">expr</span>: rate(api_error_total[5m]) > <span class="text-green-300">0.05</span>  <span class="text-gray-500"># 5分钟内错误率 > 5%</span>
-        <span class="text-purple-400">for</span>: <span class="text-green-300">5m</span>
-        <span class="text-purple-400">labels</span>:
+                    <div class="code-wrapper">
+                        <div class="code-filename-badge">alerting-rules.yml</div>
+                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="code-keyword">groups</span>:
+  - <span class="code-keyword">name</span>: api_alerts
+    <span class="code-keyword">rules</span>:
+      - <span class="code-keyword">alert</span>: HighErrorRate
+        <span class="code-keyword">expr</span>: rate(api_error_total[5m]) > <span class="code-string">0.05</span>  <span class="text-gray-500"># 5分钟内错误率 > 5%</span>
+        <span class="code-keyword">for</span>: <span class="code-string">5m</span>
+        <span class="code-keyword">labels</span>:
           severity: critical
-        <span class="text-purple-400">annotations</span>:
-          summary: <span class="text-green-300">"API 错误率过高: {{ $value }}"</span>
+        <span class="code-keyword">annotations</span>:
+          summary: <span class="code-string">"API 错误率过高: {{ $value }}"</span>
 
-      - <span class="text-purple-400">alert</span>: HighLatency
-        <span class="text-purple-400">expr</span>: histogram_quantile(0.95)(api_latency_seconds[5m]) > <span class="text-green-300">5</span>  <span class="text-gray-500"># P95 延迟 > 5 秒</span>
-        <span class="text-purple-400">for</span>: <span class="text-green-300">5m</span>
-        <span class="text-purple-400">labels</span>:
+      - <span class="code-keyword">alert</span>: HighLatency
+        <span class="code-keyword">expr</span>: histogram_quantile(0.95)(api_latency_seconds[5m]) > <span class="code-string">5</span>  <span class="text-gray-500"># P95 延迟 > 5 秒</span>
+        <span class="code-keyword">for</span>: <span class="code-string">5m</span>
+        <span class="code-keyword">labels</span>:
           severity: warning
-        <span class="text-purple-400">annotations</span>:
-          summary: <span class="text-green-300">"API 延迟过高: {{ $value }}s"</span>
+        <span class="code-keyword">annotations</span>:
+          summary: <span class="code-string">"API 延迟过高: {{ $value }}s"</span>
 
-      - <span class="text-purple-400">alert</span>: BudgetExceeded
-        <span class="text-purple-400">expr</span>: sum(api_cost_total[30d]) > <span class="text-green-300">100</span>  <span class="text-gray-500"># 月度成本 > 100 美元</span>
-        <span class="text-purple-400">for</span>: <span class="text-green-300">30d</span>
-        <span class="text-purple-400">labels</span>:
+      - <span class="code-keyword">alert</span>: BudgetExceeded
+        <span class="code-keyword">expr</span>: sum(api_cost_total[30d]) > <span class="code-string">100</span>  <span class="text-gray-500"># 月度成本 > 100 美元</span>
+        <span class="code-keyword">for</span>: <span class="code-string">30d</span>
+        <span class="code-keyword">labels</span>:
           severity: critical
-        <span class="text-purple-400">annotations</span>:
-          summary: <span class="text-green-300">"预算超支: {{ $value }} 美元"</span></code></pre>
+        <span class="code-keyword">annotations</span>:
+          summary: <span class="code-string">"预算超支: {{ $value }} 美元"</span></code></pre>
                     </div>
 
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">4.4 日志聚合</h3>
-                    <p class="text-gray-700 mb-6">使用 ELK（Elasticsearch + Logstash + Kibana）或类似方案：</p>
+                    <h3 class="subsection-title">4.4 日志聚合</h3>
+                    <p class="paragraph">使用 ELK（Elasticsearch + Logstash + Kibana）或类似方案：</p>
 
                     <div class="bg-gray-50 border border-gray-200 rounded-lg p-6 mb-6">
                         <h4 class="font-semibold text-gray-900 mb-3">日志收集策略</h4>

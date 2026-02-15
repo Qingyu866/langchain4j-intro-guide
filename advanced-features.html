@@ -3,136 +3,133 @@
 <head>
     <meta charset="UTF-8">
     <title>高级特性 - LangChain4j 学习指南</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <!-- 模块化CSS -->
+    <link rel="stylesheet" href="css/main.css">
 </head>
-<body class="bg-white text-gray-800 antialiased">
-    <div class="flex min-h-screen">
+<body>
+    <div class="page-container">
         
 
 
-<aside class="w-[280px] fixed h-screen bg-white border-r border-gray-200 overflow-y-auto pb-8">
-  <div class="p-6">
-    <div class="flex items-center gap-3 mb-8">
-      <div class="w-10 h-10 bg-indigo-600 rounded-lg flex items-center justify-center">
-        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<aside class="sidebar">
+  <div class="sidebar-content">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-icon">
+        <svg class="sidebar-logo-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
         </svg>
       </div>
       <div>
-        <h1 class="font-bold text-gray-900">LangChain4j</h1>
-        <p class="text-xs text-gray-500">入门指南</p>
+        <h1 class="sidebar-logo-title">LangChain4j</h1>
+        <p class="sidebar-logo-subtitle">入门指南</p>
       </div>
     </div>
 
     <div class="space-y-6">
-      <div>
-        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">快速开始</h3>
-        <ul class="space-y-1">
-          <li><a href="index.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="index">概览</a></li>
-          <li><a href="getting-started.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="getting-started">环境准备</a></li>
-          <li><a href="core-concepts.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="core-concepts">核心概念</a></li>
+      <div class="sidebar-nav-group">
+        <h3 class="sidebar-nav-title">快速开始</h3>
+        <ul class="sidebar-nav-list">
+          <li><a href="index.html" class="sidebar-nav-link" data-page="index">概览</a></li>
+          <li><a href="getting-started.html" class="sidebar-nav-link" data-page="getting-started">环境准备</a></li>
+          <li><a href="core-concepts.html" class="sidebar-nav-link" data-page="core-concepts">核心概念</a></li>
         </ul>
       </div>
 
-      <div>
-        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">核心功能</h3>
-        <ul class="space-y-1">
-          <li><a href="embedding-models.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="embedding-models">Embedding 模型</a></li>
-          <li><a href="prompt-templates.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="prompt-templates">Prompt 模板</a></li>
-          <li><a href="output-parsers.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="output-parsers">输出解析</a></li>
-          <li><a href="model-providers.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="model-providers">模型提供商</a></li>
-          <li><a href="function-calling-deep.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="function-calling-deep">函数调用</a></li>
-          <li><a href="advanced-features.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="advanced-features">高级特性</a></li>
-          <li><a href="multimodal-full.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="multimodal-full">多模态</a></li>
+      <div class="sidebar-nav-group">
+        <h3 class="sidebar-nav-title">核心功能</h3>
+        <ul class="sidebar-nav-list">
+          <li><a href="embedding-models.html" class="sidebar-nav-link" data-page="embedding-models">Embedding 模型</a></li>
+          <li><a href="prompt-templates.html" class="sidebar-nav-link" data-page="prompt-templates">Prompt 模板</a></li>
+          <li><a href="output-parsers.html" class="sidebar-nav-link" data-page="output-parsers">输出解析</a></li>
+          <li><a href="model-providers.html" class="sidebar-nav-link" data-page="model-providers">模型提供商</a></li>
+          <li><a href="function-calling-deep.html" class="sidebar-nav-link" data-page="function-calling-deep">函数调用</a></li>
+          <li><a href="advanced-features.html" class="sidebar-nav-link" data-page="advanced-features">高级特性</a></li>
+          <li><a href="multimodal-full.html" class="sidebar-nav-link" data-page="multimodal-full">多模态</a></li>
         </ul>
       </div>
 
-       <div>
-        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">RAG 完整指南</h3>
-        <ul class="space-y-1">
-          <li><a href="rag-intro.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="rag-intro">RAG 简介</a></li>
-          <li><a href="rag-setup.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="rag-setup">RAG 环境搭建</a></li>
-          <li><a href="rag-implementation.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="rag-implementation">RAG 实现</a></li>
-          <li><a href="rag-advanced.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="rag-advanced">RAG 高级</a></li>
+       <div class="sidebar-nav-group">
+        <h3 class="sidebar-nav-title">RAG 完整指南</h3>
+        <ul class="sidebar-nav-list">
+          <li><a href="rag-intro.html" class="sidebar-nav-link" data-page="rag-intro">RAG 简介</a></li>
+          <li><a href="rag-setup.html" class="sidebar-nav-link" data-page="rag-setup">RAG 环境搭建</a></li>
+          <li><a href="rag-implementation.html" class="sidebar-nav-link" data-page="rag-implementation">RAG 实现</a></li>
+          <li><a href="rag-advanced.html" class="sidebar-nav-link" data-page="rag-advanced">RAG 高级</a></li>
         </ul>
       </div>
 
-      <div>
-        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">项目实战</h3>
-        <ul class="space-y-1">
-          <li><a href="project-chatbot.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="project-chatbot">聊天机器人</a></li>
-          <li><a href="project-ai-assistant.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="project-ai-assistant">AI助手</a></li>
-          <li><a href="project-rag-kb.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="project-rag-kb">RAG知识库</a></li>
-          <li><a href="practice.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="practice">综合实战</a></li>
+      <div class="sidebar-nav-group">
+        <h3 class="sidebar-nav-title">项目实战</h3>
+        <ul class="sidebar-nav-list">
+          <li><a href="project-chatbot.html" class="sidebar-nav-link" data-page="project-chatbot">聊天机器人</a></li>
+          <li><a href="project-ai-assistant.html" class="sidebar-nav-link" data-page="project-ai-assistant">AI助手</a></li>
+          <li><a href="project-rag-kb.html" class="sidebar-nav-link" data-page="project-rag-kb">RAG知识库</a></li>
+          <li><a href="practice.html" class="sidebar-nav-link" data-page="practice">综合实战</a></li>
         </ul>
       </div>
 
-      <div>
-        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">最佳实践</h3>
-        <ul class="space-y-1">
-          <li><a href="best-practices.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="best-practices">最佳实践</a></li>
-          <li><a href="testing-strategies.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="testing-strategies">测试策略</a></li>
-          <li><a href="performance-tuning.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="performance-tuning">性能优化</a></li>
-          <li><a href="deep-dive.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="deep-dive">深度解析</a></li>
-          <li><a href="error-handling.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="error-handling">错误处理</a></li>
-          <li><a href="moderation-safety.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="moderation-safety">内容审核</a></li>
-          <li><a href="troubleshooting.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="troubleshooting">故障排查</a></li>
+      <div class="sidebar-nav-group">
+        <h3 class="sidebar-nav-title">最佳实践</h3>
+        <ul class="sidebar-nav-list">
+          <li><a href="best-practices.html" class="sidebar-nav-link" data-page="best-practices">最佳实践</a></li>
+          <li><a href="testing-strategies.html" class="sidebar-nav-link" data-page="testing-strategies">测试策略</a></li>
+          <li><a href="performance-tuning.html" class="sidebar-nav-link" data-page="performance-tuning">性能优化</a></li>
+          <li><a href="deep-dive.html" class="sidebar-nav-link" data-page="deep-dive">深度解析</a></li>
+          <li><a href="error-handling.html" class="sidebar-nav-link" data-page="error-handling">错误处理</a></li>
+          <li><a href="moderation-safety.html" class="sidebar-nav-link" data-page="moderation-safety">内容审核</a></li>
+          <li><a href="troubleshooting.html" class="sidebar-nav-link" data-page="troubleshooting">故障排查</a></li>
         </ul>
       </div>
 
-      <div>
-        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">面试准备</h3>
-        <ul class="space-y-1">
-          <li><a href="interview-prep.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="interview-prep">面试准备</a></li>
+      <div class="sidebar-nav-group">
+        <h3 class="sidebar-nav-title">面试准备</h3>
+        <ul class="sidebar-nav-list">
+          <li><a href="interview-prep.html" class="sidebar-nav-link" data-page="interview-prep">面试准备</a></li>
         </ul>
       </div>
 
-      <div>
-        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">其他</h3>
-        <ul class="space-y-1">
-          <li><a href="search.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="search">向量搜索</a></li>
-          <li><a href="chat-listeners.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="chat-listeners">监听器</a></li>
-          <li><a href="faq.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="faq">常见问题</a></li>
-          <li><a href="cost-optimization.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="cost-optimization">成本优化</a></li>
-          <li><a href="deployment.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="deployment">部署上线</a></li>
-          <li><a href="integrations.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="integrations">框架集成</a></li>
-          <li><a href="examples.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="examples">实战示例</a></li>
+      <div class="sidebar-nav-group">
+        <h3 class="sidebar-nav-title">其他</h3>
+        <ul class="sidebar-nav-list">
+          <li><a href="search.html" class="sidebar-nav-link" data-page="search">向量搜索</a></li>
+          <li><a href="chat-listeners.html" class="sidebar-nav-link" data-page="chat-listeners">监听器</a></li>
+          <li><a href="faq.html" class="sidebar-nav-link" data-page="faq">常见问题</a></li>
+          <li><a href="cost-optimization.html" class="sidebar-nav-link" data-page="cost-optimization">成本优化</a></li>
+          <li><a href="deployment.html" class="sidebar-nav-link" data-page="deployment">部署上线</a></li>
+          <li><a href="integrations.html" class="sidebar-nav-link" data-page="integrations">框架集成</a></li>
+          <li><a href="examples.html" class="sidebar-nav-link" data-page="examples">实战示例</a></li>
         </ul>
       </div>
     </div>
   </div>
 </aside>
-<!-- class="block px-4 py-2.5 text-sm bg-indigo-50 text-indigo-700 font-medium rounded-md transition-all text-center" -->
-<!-- class="block px-4 py-2.5 text-sm bg-indigo-50 text-indigo-700 font-medium rounded-md transition-all text-center" -->
-<!-- class="block px-4 py-2.5 text-sm bg-indigo-50 text-indigo-700 font-medium rounded-md transition-all text-center" -->
 
 
-        <main class="flex-1 ml-[280px] px-8 py-12 max-w-7xl mx-auto">>
-            <section class="mb-16">
+
+
+
+        <main class="main-content">
+            <div class="content-wrapper">
                 <div class="flex items-center gap-2 mb-4">
-                    <span class="inline-flex items-center gap-1 py-1.5 px-3 bg-primary-50 border border-primary-200 rounded-full text-primary-700 text-xs font-medium">⏱️ 60分钟</span>
-                    <span class="inline-flex items-center gap-1 py-1.5 px-3 bg-orange-50 border border-orange-200 rounded-full text-orange-700 text-xs font-medium">进阶内容</span>
+                    <span class="page-tag indigo">⏱️ 60分钟</span>
+                    <span class="page-tag purple">进阶内容</span>
                 </div>
-                <h1 class="text-5xl font-bold text-gray-900 mb-6 leading-tight">LangChain4j高级特性</h1>
-                <p class="text-xl text-gray-600 max-w-4xl mb-10 leading-relaxed">
+                <h1 class="page-title">高级特性</h1>
+                <p class="text-xl text-gray-600 max-w-3xl mb-10 leading-relaxed">
                     深入探索LangChain4j的高级特性，包括流式响应、结构化输出、智能体架构等，构建更强大的AI应用。
                 </p>
-            </section>
 
-            <section class="mb-16">
-                <div class="flex items-center gap-3 mb-6">
-        <span class="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-full text-sm font-bold">1</span>
-        <h2 class="text-2xl font-bold text-gray-900">流式响应</h2>
-    </div>
+            <section class="content-section">
+                <div class="section-header">
+                    <span class="circular-number">1</span>
+                    <h2>流式响应</h2>
+                </div>
                 <div class="mb-8">
-                    <h3 class="text-2xl font-semibold text-gray-900 mb-4">1.1 什么是流式响应</h3>
+                    <h3 class="subsection-title">1.1 什么是流式响应</h3>
                     <p class="text-gray-600 mb-6 leading-relaxed">
                         流式响应允许AI应用实时显示生成的内容，而不是等待完整响应后才显示。这大大提升了用户体验，特别是在长文本生成的场景中。
                     </p>
-                    <div class="bg-green-50 border-l-4 border-green-500 p-6 rounded-r-lg mb-8">
+                    <div class="info-card info-card-green">
                         <h4 class="font-semibold text-green-900 mb-2">💡 流式响应的优势</h4>
                         <ul class="text-green-800 space-y-2 list-disc list-inside">
                             <li>更好的用户体验，无需长时间等待</li>
@@ -144,36 +141,34 @@
                 </div>
 
                 <div class="mb-8">
-                    <h3 class="text-2xl font-semibold text-gray-900 mb-4">1.2 使用StreamingChatLanguageModel</h3>
-                    <div class="bg-gray-900 border border-gray-300 rounded-xl overflow-hidden mb-6">
-                        <div class="flex items-center justify-between px-4 py-3 bg-gray-800 border-b border-gray-700">
-                            <div class="flex items-center gap-1.5">
-                                <div class="flex gap-1">
-                                    <span class="w-2.5 h-2.5 rounded-full bg-red-500"></span>
-                                    <span class="w-2.5 h-2.5 rounded-full bg-yellow-500"></span>
-                                    <span class="w-2.5 h-2.5 rounded-full bg-green-500"></span>
-                                </div>
-                                <span class="text-gray-400 text-xs font-mono ml-3">StreamingExample.java</span>
+                    <h3 class="subsection-title">1.2 使用StreamingChatLanguageModel</h3>
+                    <div class="code-preview">
+                        <div class="code-preview-header">
+                            <div class="code-preview-dots">
+                                <div class="code-preview-dot code-preview-dot-red"></div>
+                                <div class="code-preview-dot code-preview-dot-yellow"></div>
+                                <div class="code-preview-dot code-preview-dot-green"></div>
                             </div>
+                            <span class="code-preview-filename">StreamingExample.java</span>
                         </div>
-                        <div class="p-4 overflow-x-auto">
-                            <pre class="m-0 font-mono text-sm leading-relaxed text-gray-300"><code><span class="text-purple-400">import</span> <span class="text-yellow-300">dev.langchain4j.model.chat</span>.<span class="text-blue-400">StreamingChatLanguageModel</span>;
-<span class="text-purple-400">import</span> <span class="text-yellow-300">dev.langchain4j.model.openai</span>.<span class="text-blue-400">OpenAiStreamingChatModel</span>;
+                        <div class="code-preview-content">
+                            <pre><code>import dev.langchain4j.model.chat.StreamingChatLanguageModel;
+import dev.langchain4j.model.openai.OpenAiStreamingChatModel;
 
-<span class="text-purple-400">public class</span> <span class="text-yellow-300">StreamingExample</span> {
-    <span class="text-purple-400">public static void</span> <span class="text-blue-400">main</span>(<span class="text-yellow-300">String</span>[] args) {
-        <span class="text-yellow-300">StreamingChatLanguageModel</span> model = <span class="text-yellow-300">OpenAiStreamingChatModel</span>.<span class="text-blue-400">builder</span>()
-            .<span class="text-blue-400">apiKey</span>(<span class="text-yellow-300">System</span>.<span class="text-blue-400">getenv</span>(<span class="text-green-400">"OPENAI_API_KEY"</span>))
-            .<span class="text-blue-400">modelName</span>(<span class="text-green-400">"gpt-4o-mini"</span>)
-            .<span class="text-blue-400">build</span>();
+public class StreamingExample {
+    public static void main(String[] args) {
+        StreamingChatLanguageModel model = OpenAiStreamingChatModel.builder()
+            .apiKey(System.getenv("OPENAI_API_KEY"))
+            .modelName("gpt-4o-mini")
+            .build();
 
-        <span class="text-yellow-300">TokenStream</span> tokenStream = model.<span class="text-blue-400">generate</span>(<span class="text-green-400">"写一首关于AI的诗"</span>);
+        TokenStream tokenStream = model.generate("写一首关于AI的诗");
 
-        <span class="text-gray-500">// 流式处理每个token</span>
-        tokenStream.<span class="text-blue-400">onNext</span>(token -> <span class="text-yellow-300">System</span>.<span class="text-blue-400">out</span>.<span class="text-blue-400">print</span>(token))
-                   .<span class="text-blue-400">onComplete</span>(() -> <span class="text-yellow-300">System</span>.<span class="text-blue-400">out</span>.<span class="text-blue-400">println</span>(<span class="text-green-400">"\n生成完成！"</span>))
-                   .<span class="text-blue-400">onError</span>(err -> err.<span class="text-blue-400">printStackTrace</span>())
-                   .<span class="text-blue-400">start</span>();
+        // 流式处理每个token
+        tokenStream.onNext(token -> System.out.print(token))
+                   .onComplete(() -> System.out.println("\n生成完成！"))
+                   .onError(err -> err.printStackTrace())
+                   .start();
     }
 }</code></pre>
                         </div>
@@ -181,53 +176,51 @@
                 </div>
             </section>
 
-            <section class="mb-16">
-                <div class="flex items-center gap-3 mb-6">
-        <span class="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-full text-sm font-bold">2</span>
-        <h2 class="text-2xl font-bold text-gray-900">结构化输出</h2>
-    </div>
+            <section class="content-section">
+                <div class="section-header">
+                    <span class="circular-number">2</span>
+                    <h2>结构化输出</h2>
+                </div>
                 <div class="mb-8">
-                    <h3 class="text-2xl font-semibold text-gray-900 mb-4">2.1 使用OutputParser</h3>
+                    <h3 class="subsection-title">2.1 使用OutputParser</h3>
                     <p class="text-gray-600 mb-6 leading-relaxed">
                         结构化输出允许将LLM的响应直接转换为Java对象，便于程序化处理。
                     </p>
-                    <div class="bg-gray-900 border border-gray-300 rounded-xl overflow-hidden mb-6">
-                        <div class="flex items-center justify-between px-4 py-3 bg-gray-800 border-b border-gray-700">
-                            <div class="flex items-center gap-1.5">
-                                <div class="flex gap-1">
-                                    <span class="w-2.5 h-2.5 rounded-full bg-red-500"></span>
-                                    <span class="w-2.5 h-2.5 rounded-full bg-yellow-500"></span>
-                                    <span class="w-2.5 h-2.5 rounded-full bg-green-500"></span>
-                                </div>
-                                <span class="text-gray-400 text-xs font-mono ml-3">StructuredOutputExample.java</span>
+                    <div class="code-preview">
+                        <div class="code-preview-header">
+                            <div class="code-preview-dots">
+                                <div class="code-preview-dot code-preview-dot-red"></div>
+                                <div class="code-preview-dot code-preview-dot-yellow"></div>
+                                <div class="code-preview-dot code-preview-dot-green"></div>
                             </div>
+                            <span class="code-preview-filename">StructuredOutputExample.java</span>
                         </div>
-                        <div class="p-4 overflow-x-auto">
-                            <pre class="m-0 font-mono text-sm leading-relaxed text-gray-300"><code><span class="text-purple-400">public class</span> <span class="text-yellow-300">WeatherInfo</span> {
-    <span class="text-purple-400">private</span> <span class="text-yellow-300">String</span> city;
-    <span class="text-purple-400">private double</span> temperature;
-    <span class="text-purple-400">private</span> <span class="text-yellow-300">String</span> condition;
-    <span class="text-gray-500">// getters and setters</span>
+                        <div class="code-preview-content">
+                            <pre><code>public class WeatherInfo {
+    private String city;
+    private double temperature;
+    private String condition;
+    // getters and setters
 }
 
-<span class="text-purple-400">public interface</span> <span class="text-yellow-300">WeatherService</span> {
-    <span class="text-yellow-300">WeatherInfo</span> <span class="text-blue-400">getWeather</span>(<span class="text-yellow-300">String</span> city);
+public interface WeatherService {
+    WeatherInfo getWeather(String city);
 }</code></pre>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section class="mb-16">
-                <div class="flex items-center gap-3 mb-6">
-        <span class="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-full text-sm font-bold">3</span>
-        <h2 class="text-2xl font-bold text-gray-900">智能体架构</h2>
-    </div>
+            <section class="content-section">
+                <div class="section-header">
+                    <span class="circular-number">3</span>
+                    <h2>智能体架构</h2>
+                </div>
                 <div class="mb-8">
                     <p class="text-gray-600 mb-6 leading-relaxed">
                         智能体（Agent）是能够自主决策、规划任务、调用工具的高级AI应用。
                     </p>
-                    <div class="bg-indigo-50 border-l-4 border-indigo-500 p-6 rounded-r-lg mb-8">
+                    <div class="info-card info-card-blue">
                         <h4 class="font-semibold text-indigo-900 mb-2">🤖 智能体的核心能力</h4>
                         <ul class="text-indigo-800 space-y-2 list-disc list-inside">
                             <li>自主决策：根据任务目标选择合适的工具</li>
@@ -240,7 +233,7 @@
                 </div>
             </section>
 
-            <section class="mb-16 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-8 border border-indigo-100">
+            <section class="content-section summary-section">
                 <h2 class="text-2xl font-bold text-gray-900 mb-6">🎯 学习总结</h2>
                 <div class="space-y-4 text-gray-700">
                     <p>通过本章学习，你掌握了：</p>
@@ -250,11 +243,12 @@
                         <li>智能体架构的设计原理</li>
                         <li>如何结合多种高级特性构建复杂AI应用</li>
                     </ul>
-                    <div class="mt-6 pt-6 border-t border-indigo-200">
+                    <div class="mt-6 pt-6 border-t border-gray-200">
                         <p class="font-medium text-gray-900">下一步：学习 <a href="multimodal-full.html" class="text-indigo-600 hover:text-indigo-800">多模态能力</a>，探索LangChain4j在图像、文本等多模态数据处理方面的功能。</p>
                     </div>
                 </div>
             </section>
+            </div>
         </main>
     </div>
 </body>

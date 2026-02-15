@@ -3,65 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <title>成本优化 - LangChain4j 学习指南</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
-                    },
-                    colors: {
-                        primary: {
-                            50: '#eef2ff',
-                            100: '#e0e7ff',
-                            200: '#c7d2fe',
-                            500: '#6366f1',
-                            600: '#4f46e5',
-                            700: '#4338ca',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+    <!-- 模块化CSS -->
+    <link rel="stylesheet" href="css/main.css">
 </head>
-<body class="bg-white text-gray-800 antialiased">
-    <div class="flex min-h-screen">
+<body>
+    <div class="page-container">
         
 
 
-<aside class="w-[280px] fixed h-screen bg-white border-r border-gray-200 overflow-y-auto pb-8">
-  <div class="p-6">
-    <div class="flex items-center gap-3 mb-8">
-      <div class="w-10 h-10 bg-indigo-600 rounded-lg flex items-center justify-center">
-        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<aside class="sidebar">
+  <div class="sidebar-content">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-icon">
+        <svg class="sidebar-logo-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
         </svg>
       </div>
       <div>
-        <h1 class="font-bold text-gray-900">LangChain4j</h1>
-        <p class="text-xs text-gray-500">入门指南</p>
+        <h1 class="sidebar-logo-title">LangChain4j</h1>
+        <p class="sidebar-logo-subtitle">入门指南</p>
       </div>
     </div>
 
     <div class="space-y-6">
-      <div>
-        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">快速开始</h3>
-        <ul class="space-y-1">
+      <div class="sidebar-nav-group">
+        <h3 class="sidebar-nav-title">快速开始</h3>
+        <ul class="sidebar-nav-list">
           <li><a href="index.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="index">概览</a></li>
           <li><a href="getting-started.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="getting-started">环境准备</a></li>
           <li><a href="core-concepts.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="core-concepts">核心概念</a></li>
         </ul>
       </div>
 
-      <div>
-        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">核心功能</h3>
-        <ul class="space-y-1">
+      <div class="sidebar-nav-group">
+        <h3 class="sidebar-nav-title">核心功能</h3>
+        <ul class="sidebar-nav-list">
           <li><a href="embedding-models.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="embedding-models">Embedding 模型</a></li>
           <li><a href="prompt-templates.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="prompt-templates">Prompt 模板</a></li>
           <li><a href="output-parsers.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="output-parsers">输出解析</a></li>
@@ -72,9 +48,9 @@
         </ul>
       </div>
 
-       <div>
-        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">RAG 完整指南</h3>
-        <ul class="space-y-1">
+       <div class="sidebar-nav-group">
+        <h3 class="sidebar-nav-title">RAG 完整指南</h3>
+        <ul class="sidebar-nav-list">
           <li><a href="rag-intro.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="rag-intro">RAG 简介</a></li>
           <li><a href="rag-setup.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="rag-setup">RAG 环境搭建</a></li>
           <li><a href="rag-implementation.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="rag-implementation">RAG 实现</a></li>
@@ -82,9 +58,9 @@
         </ul>
       </div>
 
-      <div>
-        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">项目实战</h3>
-        <ul class="space-y-1">
+      <div class="sidebar-nav-group">
+        <h3 class="sidebar-nav-title">项目实战</h3>
+        <ul class="sidebar-nav-list">
           <li><a href="project-chatbot.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="project-chatbot">聊天机器人</a></li>
           <li><a href="project-ai-assistant.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="project-ai-assistant">AI助手</a></li>
           <li><a href="project-rag-kb.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="project-rag-kb">RAG知识库</a></li>
@@ -92,9 +68,9 @@
         </ul>
       </div>
 
-      <div>
-        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">最佳实践</h3>
-        <ul class="space-y-1">
+      <div class="sidebar-nav-group">
+        <h3 class="sidebar-nav-title">最佳实践</h3>
+        <ul class="sidebar-nav-list">
           <li><a href="best-practices.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="best-practices">最佳实践</a></li>
           <li><a href="testing-strategies.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="testing-strategies">测试策略</a></li>
           <li><a href="performance-tuning.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="performance-tuning">性能优化</a></li>
@@ -105,16 +81,16 @@
         </ul>
       </div>
 
-      <div>
-        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">面试准备</h3>
-        <ul class="space-y-1">
+      <div class="sidebar-nav-group">
+        <h3 class="sidebar-nav-title">面试准备</h3>
+        <ul class="sidebar-nav-list">
           <li><a href="interview-prep.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="interview-prep">面试准备</a></li>
         </ul>
       </div>
 
-      <div>
-        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">其他</h3>
-        <ul class="space-y-1">
+      <div class="sidebar-nav-group">
+        <h3 class="sidebar-nav-title">其他</h3>
+        <ul class="sidebar-nav-list">
           <li><a href="search.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="search">向量搜索</a></li>
           <li><a href="chat-listeners.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="chat-listeners">监听器</a></li>
           <li><a href="faq.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="faq">常见问题</a></li>
@@ -127,13 +103,13 @@
     </div>
   </div>
 </aside>
-<!-- class="block px-4 py-2.5 text-sm bg-indigo-50 text-indigo-700 font-medium rounded-md transition-all text-center" -->
-<!-- class="block px-4 py-2.5 text-sm bg-indigo-50 text-indigo-700 font-medium rounded-md transition-all text-center" -->
-<!-- class="block px-4 py-2.5 text-sm bg-indigo-50 text-indigo-700 font-medium rounded-md transition-all text-center" -->
 
 
-        <main class="flex-1 ml-[280px]">
-            <div class="max-w-7xl mx-auto px-8 py-12">
+
+
+
+        <main class="main-content">
+            <div class="content-wrapper">
                 <!-- 页面标签 -->
                 <div class="flex items-center gap-2 mb-4">
                     <span class="px-3 py-1 bg-indigo-100 text-indigo-700 text-xs font-medium rounded-full">成本优化</span>
@@ -141,19 +117,19 @@
                     <span class="px-3 py-1 bg-green-100 text-green-700 text-xs font-medium rounded-full">最佳实践</span>
                 </div>
 
-                <h1 class="text-4xl font-bold text-gray-900 mb-4">成本优化</h1>
-                <p class="text-xl text-gray-600 mb-8">LangChain4j 应用成本分析与优化策略</p>
+                <h1 class="page-title">成本优化</h1>
+                <p class="page-intro">LangChain4j 应用成本分析与优化策略</p>
 
                 <!-- 目录 -->
                 <nav class="bg-gray-50 border border-gray-200 rounded-xl p-6 mb-8">
                     <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">目录</h3>
-                    <ol class="space-y-2 text-sm text-gray-700">
-                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">1.</span> <a href="#成本分析概述" class="hover:text-indigo-600 transition-colors">成本分析概述</a></li>
-                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">2.</span> <a href="#模型选择策略" class="hover:text-indigo-600 transition-colors">模型选择策略</a></li>
-                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">3.</span> <a href="#缓存与复用" class="hover:text-indigo-600 transition-colors">缓存与复用</a></li>
-                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">4.</span> <a href="#Token优化" class="hover:text-indigo-600 transition-colors">Token 优化</a></li>
-                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">5.</span> <a href="#向量化成本优化" class="hover:text-indigo-600 transition-colors">向量化成本优化</a></li>
-                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">6.</span> <a href="#监控与预算控制" class="hover:text-indigo-600 transition-colors">监控与预算控制</a></li>
+                    <ol class="toc-list">
+                        <li class="toc-item"><span class="toc-number">1.</span> <a href="#成本分析概述" class="toc-link">成本分析概述</a></li>
+                        <li class="toc-item"><span class="toc-number">2.</span> <a href="#模型选择策略" class="toc-link">模型选择策略</a></li>
+                        <li class="toc-item"><span class="toc-number">3.</span> <a href="#缓存与复用" class="toc-link">缓存与复用</a></li>
+                        <li class="toc-item"><span class="toc-number">4.</span> <a href="#Token优化" class="toc-link">Token 优化</a></li>
+                        <li class="toc-item"><span class="toc-number">5.</span> <a href="#向量化成本优化" class="toc-link">向量化成本优化</a></li>
+                        <li class="toc-item"><span class="toc-number">6.</span> <a href="#监控与预算控制" class="toc-link">监控与预算控制</a></li>
                     </ol>
                 </nav>
 
@@ -164,10 +140,10 @@
                         <h2 class="text-2xl font-bold text-gray-900">成本分析概述</h2>
                     </div>
 
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">1.1 AI 应用成本构成</h3>
-                    <p class="text-gray-700 mb-6">LangChain4j 应用的主要成本来源包括：</p>
+                    <h3 class="subsection-title">1.1 AI 应用成本构成</h3>
+                    <p class="paragraph">LangChain4j 应用的主要成本来源包括：</p>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div class="grid-2col">
                         <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
                             <h4 class="font-semibold text-blue-800 mb-2">API 调用成本</h4>
                             <p class="text-blue-700 text-sm mb-2">LLM API 调用（最大成本项）</p>
@@ -226,8 +202,8 @@
                         <h2 class="text-2xl font-bold text-gray-900">模型选择策略</h2>
                     </div>
 
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">2.1 按场景选择模型</h3>
-                    <p class="text-gray-700 mb-6">不同场景适合不同的模型组合：</p>
+                    <h3 class="subsection-title">2.1 按场景选择模型</h3>
+                    <p class="paragraph">不同场景适合不同的模型组合：</p>
 
                     <div class="bg-gray-50 border border-gray-200 rounded-lg p-6 mb-6">
                         <h4 class="font-semibold text-gray-900 mb-4">场景模型推荐</h4>
@@ -275,26 +251,26 @@
                         </table>
                     </div>
 
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">2.2 混合模型策略</h3>
-                    <p class="text-gray-700 mb-6">在应用中混合使用多个模型以平衡成本和质量：</p>
+                    <h3 class="subsection-title">2.2 混合模型策略</h3>
+                    <p class="paragraph">在应用中混合使用多个模型以平衡成本和质量：</p>
 
-                    <div class="relative mb-6">
-                        <div class="absolute top-0 right-0 px-3 py-1 bg-gray-800 text-gray-400 text-xs font-medium rounded-bl-md">HybridModelStrategy.java</div>
-                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="text-purple-400">public class</span> <span class="text-yellow-300">HybridModelStrategy</span> {
+                    <div class="code-wrapper">
+                        <div class="code-filename-badge">HybridModelStrategy.java</div>
+                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="code-keyword">public class</span> <span class="code-class">HybridModelStrategy</span> {
 
-    <span class="text-purple-400">private final</span> <span class="text-blue-300">ChatLanguageModel</span> fastModel;   <span class="text-gray-500">// GPT-3.5-turbo</span>
-    <span class="text-purple-400">private final</span> <span class="text-blue-300">ChatLanguageModel</span> qualityModel;  <span class="text-gray-500">// GPT-4</span>
-    <span class="text-purple-400">private final</span> <span class="text-blue-300">ChatLanguageModel</span> codeModel;    <span class="text-gray-500">// Claude-3-sonnet</span>
+    <span class="code-keyword">private final</span> <span class="text-blue-300">ChatLanguageModel</span> fastModel;   <span class="text-gray-500">// GPT-3.5-turbo</span>
+    <span class="code-keyword">private final</span> <span class="text-blue-300">ChatLanguageModel</span> qualityModel;  <span class="text-gray-500">// GPT-4</span>
+    <span class="code-keyword">private final</span> <span class="text-blue-300">ChatLanguageModel</span> codeModel;    <span class="text-gray-500">// Claude-3-sonnet</span>
 
     <span class="text-gray-500">/**
      * 根据任务类型选择合适的模型
      */</span>
-    <span class="text-purple-400">public</span> <span class="text-blue-300">String</span> <span class="text-purple-400">generate</span>(<span class="text-blue-300">TaskType</span> type, <span class="text-blue-300">String</span> prompt) {
-        <span class="text-purple-400">return switch</span> (type) {
-            <span class="text-purple-400">case</span> <span class="text-green-300">SIMPLE_QA</span>, <span class="text-green-300">SUMMARY</span> -&gt; fastModel.<span class="text-green-300">generate</span>(prompt).<span class="text-green-300">content</span>();
-            <span class="text-purple-400">case</span> <span class="text-green-300">COMPLEX_REASONING</span> -&gt; qualityModel.<span class="text-green-300">generate</span>(prompt).<span class="text-green-300">content</span>();
-            <span class="text-purple-400">case</span> <span class="text-green-300">CODE_GENERATION</span> -&gt; codeModel.<span class="text-green-300">generate</span>(prompt).<span class="text-green-300">content</span>();
-            <span class="text-purple-400">default</span> -&gt; fastModel.<span class="text-green-300">generate</span>(prompt).<span class="text-green-300">content</span>();
+    <span class="code-keyword">public</span> <span class="text-blue-300">String</span> <span class="code-keyword">generate</span>(<span class="text-blue-300">TaskType</span> type, <span class="text-blue-300">String</span> prompt) {
+        <span class="code-keyword">return switch</span> (type) {
+            <span class="code-keyword">case</span> <span class="code-string">SIMPLE_QA</span>, <span class="code-string">SUMMARY</span> -&gt; fastModel.<span class="code-string">generate</span>(prompt).<span class="code-string">content</span>();
+            <span class="code-keyword">case</span> <span class="code-string">COMPLEX_REASONING</span> -&gt; qualityModel.<span class="code-string">generate</span>(prompt).<span class="code-string">content</span>();
+            <span class="code-keyword">case</span> <span class="code-string">CODE_GENERATION</span> -&gt; codeModel.<span class="code-string">generate</span>(prompt).<span class="code-string">content</span>();
+            <span class="code-keyword">default</span> -&gt; fastModel.<span class="code-string">generate</span>(prompt).<span class="code-string">content</span>();
         };
     }
 }</code></pre>
@@ -317,8 +293,8 @@
                         <h2 class="text-2xl font-bold text-gray-900">缓存与复用</h2>
                     </div>
 
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">3.1 缓存策略</h3>
-                    <p class="text-gray-700 mb-6">有效的缓存可以显著降低 API 调用次数和成本：</p>
+                    <h3 class="subsection-title">3.1 缓存策略</h3>
+                    <p class="paragraph">有效的缓存可以显著降低 API 调用次数和成本：</p>
 
                     <div class="space-y-6">
                         <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
@@ -355,35 +331,35 @@
                         </div>
                     </div>
 
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">3.2 缓存实现</h3>
+                    <h3 class="subsection-title">3.2 缓存实现</h3>
 
-                    <div class="relative mb-6">
-                        <div class="absolute top-0 right-0 px-3 py-1 bg-gray-800 text-gray-400 text-xs font-medium rounded-bl-md">CacheService.java</div>
-                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="text-purple-400">@Service</span>
-<span class="text-purple-400">public class</span> <span class="text-yellow-300">CacheService</span> {
+                    <div class="code-wrapper">
+                        <div class="code-filename-badge">CacheService.java</div>
+                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="code-keyword">@Service</span>
+<span class="code-keyword">public class</span> <span class="code-class">CacheService</span> {
 
-    <span class="text-purple-400">private final</span> <span class="text-blue-300">CacheManager</span> cacheManager;
-    <span class="text-purple-400">private final</span> <span class="text-blue-300">EmbeddingModel</span> embeddingModel;
+    <span class="code-keyword">private final</span> <span class="text-blue-300">CacheManager</span> cacheManager;
+    <span class="code-keyword">private final</span> <span class="text-blue-300">EmbeddingModel</span> embeddingModel;
 
     <span class="text-gray-500">/**
      * 带缓存的生成方法
      */</span>
-    <span class="text-purple-400">public</span> <span class="text-blue-300">String</span> <span class="text-purple-400">generateWithCache</span>(<span class="text-blue-300">String</span> prompt, <span class="text-blue-300">ChatLanguageModel</span> model) {
-        <span class="text-blue-300">String</span> cacheKey = <span class="text-yellow-300">DigestUtils</span>.<span class="text-green-300">md5Hex</span>(prompt);
+    <span class="code-keyword">public</span> <span class="text-blue-300">String</span> <span class="code-keyword">generateWithCache</span>(<span class="text-blue-300">String</span> prompt, <span class="text-blue-300">ChatLanguageModel</span> model) {
+        <span class="text-blue-300">String</span> cacheKey = <span class="code-class">DigestUtils</span>.<span class="code-string">md5Hex</span>(prompt);
         
         <span class="text-gray-500">// 尝试从缓存获取</span>
-        <span class="text-blue-300">String</span> cachedResult = cacheManager.<span class="text-green-300">get</span>(cacheKey, <span class="text-blue-300">String</span>.<span class="text-blue-300">class</span>);
-        <span class="text-purple-400">if</span> (cachedResult != <span class="text-purple-400">null</span>) {
-            <span class="text-purple-400">return</span> cachedResult;
+        <span class="text-blue-300">String</span> cachedResult = cacheManager.<span class="code-string">get</span>(cacheKey, <span class="text-blue-300">String</span>.<span class="text-blue-300">class</span>);
+        <span class="code-keyword">if</span> (cachedResult != <span class="code-keyword">null</span>) {
+            <span class="code-keyword">return</span> cachedResult;
         }
 
         <span class="text-gray-500">// 缓存未命中，调用模型</span>
-        <span class="text-blue-300">String</span> result = model.<span class="text-green-300">generate</span>(prompt).<span class="text-green-300">content</span>();
+        <span class="text-blue-300">String</span> result = model.<span class="code-string">generate</span>(prompt).<span class="code-string">content</span>();
         
         <span class="text-gray-500">// 存入缓存，设置 1 小时过期</span>
-        cacheManager.<span class="text-green-300">put</span>(cacheKey, result, <span class="text-green-300">Duration</span>.<span class="text-green-300">ofHours</span>(<span class="text-green-300">1</span>));
+        cacheManager.<span class="code-string">put</span>(cacheKey, result, <span class="code-string">Duration</span>.<span class="code-string">ofHours</span>(<span class="code-string">1</span>));
         
-        <span class="text-purple-400">return</span> result;
+        <span class="code-keyword">return</span> result;
     }
 }</code></pre>
                     </div>
@@ -396,8 +372,8 @@
                         <h2 class="text-2xl font-bold text-gray-900">Token 优化</h2>
                     </div>
 
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">4.1 Prompt 优化</h3>
-                    <p class="text-gray-700 mb-6">精简 Prompt 可以大幅减少输入 Token 成本：</p>
+                    <h3 class="subsection-title">4.1 Prompt 优化</h3>
+                    <p class="paragraph">精简 Prompt 可以大幅减少输入 Token 成本：</p>
 
                     <div class="space-y-6">
                         <div class="bg-red-50 border border-red-200 rounded-lg p-6">
@@ -412,23 +388,23 @@
                         </div>
                     </div>
 
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">4.2 输出长度控制</h3>
-                    <p class="text-gray-700 mb-6">设置合理的 maxTokens 避免不必要的成本：</p>
+                    <h3 class="subsection-title">4.2 输出长度控制</h3>
+                    <p class="paragraph">设置合理的 maxTokens 避免不必要的成本：</p>
 
-                    <div class="relative mb-6">
-                        <div class="absolute top-0 right-0 px-3 py-1 bg-gray-800 text-gray-400 text-xs font-medium rounded-bl-md">ModelConfig.java</div>
-                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="text-purple-400">public class</span> <span class="text-yellow-300">ModelConfig</span> {
+                    <div class="code-wrapper">
+                        <div class="code-filename-badge">ModelConfig.java</div>
+                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="code-keyword">public class</span> <span class="code-class">ModelConfig</span> {
 
     <span class="text-gray-500">/**
      * 按任务类型配置 Token 限制
      */</span>
-    <span class="text-purple-400">public static int</span> <span class="text-purple-400">getMaxTokens</span>(<span class="text-blue-300">TaskType</span> type) {
-        <span class="text-purple-400">return switch</span> (type) {
-            <span class="text-purple-400">case</span> <span class="text-green-300">SIMPLE_QA</span> -&gt; <span class="text-green-300">256</span>;      <span class="text-gray-500">// 简单问答：短答案</span>
-            <span class="text-purple-400">case</span> <span class="text-green-300">SUMMARY</span> -&gt; <span class="text-green-300">512</span>;      <span class="text-gray-500">// 摘要：中等长度</span>
-            <span class="text-purple-400">case</span> <span class="text-green-300">CODE_GENERATION</span> -&gt; <span class="text-green-300">1024</span>;  <span class="text-gray-500">// 代码：需要更多 Token</span>
-            <span class="text-purple-400">case</span> <span class="text-green-300">COMPLEX_REASONING</span> -&gt; <span class="text-green-300">2048</span>;  <span class="text-gray-500">// 复杂推理：长答案</span>
-            <span class="text-purple-400">default</span> -&gt; <span class="text-green-300">512</span>;
+    <span class="code-keyword">public static int</span> <span class="code-keyword">getMaxTokens</span>(<span class="text-blue-300">TaskType</span> type) {
+        <span class="code-keyword">return switch</span> (type) {
+            <span class="code-keyword">case</span> <span class="code-string">SIMPLE_QA</span> -&gt; <span class="code-string">256</span>;      <span class="text-gray-500">// 简单问答：短答案</span>
+            <span class="code-keyword">case</span> <span class="code-string">SUMMARY</span> -&gt; <span class="code-string">512</span>;      <span class="text-gray-500">// 摘要：中等长度</span>
+            <span class="code-keyword">case</span> <span class="code-string">CODE_GENERATION</span> -&gt; <span class="code-string">1024</span>;  <span class="text-gray-500">// 代码：需要更多 Token</span>
+            <span class="code-keyword">case</span> <span class="code-string">COMPLEX_REASONING</span> -&gt; <span class="code-string">2048</span>;  <span class="text-gray-500">// 复杂推理：长答案</span>
+            <span class="code-keyword">default</span> -&gt; <span class="code-string">512</span>;
         };
     }
 }</code></pre>
@@ -442,8 +418,8 @@
                         <h2 class="text-2xl font-bold text-gray-900">向量化成本优化</h2>
                     </div>
 
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">5.1 嵌入模型选择</h3>
-                    <p class="text-gray-700 mb-6">不同嵌入模型的成本差异巨大：</p>
+                    <h3 class="subsection-title">5.1 嵌入模型选择</h3>
+                    <p class="paragraph">不同嵌入模型的成本差异巨大：</p>
 
                     <table class="w-full text-left border-collapse border border-gray-200 rounded-lg overflow-hidden mb-6">
                         <thead class="bg-gray-50">
@@ -482,35 +458,35 @@
                         </tbody>
                     </table>
 
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">5.2 批处理优化</h3>
-                    <p class="text-gray-700 mb-6">批量处理文档可降低 API 调用开销：</p>
+                    <h3 class="subsection-title">5.2 批处理优化</h3>
+                    <p class="paragraph">批量处理文档可降低 API 调用开销：</p>
 
-                    <div class="relative mb-6">
-                        <div class="absolute top-0 right-0 px-3 py-1 bg-gray-800 text-gray-400 text-xs font-medium rounded-bl-md">BatchEmbedding.java</div>
-                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="text-purple-400">public class</span> <span class="text-yellow-300">BatchEmbedding</span> {
+                    <div class="code-wrapper">
+                        <div class="code-filename-badge">BatchEmbedding.java</div>
+                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="code-keyword">public class</span> <span class="code-class">BatchEmbedding</span> {
 
-    <span class="text-purple-400">private final</span> <span class="text-blue-300">EmbeddingModel</span> embeddingModel;
-    <span class="text-purple-400">private static final int</span> <span class="text-yellow-300">BATCH_SIZE</span> = <span class="text-green-300">100</span>;
+    <span class="code-keyword">private final</span> <span class="text-blue-300">EmbeddingModel</span> embeddingModel;
+    <span class="code-keyword">private static final int</span> <span class="code-class">BATCH_SIZE</span> = <span class="code-string">100</span>;
 
     <span class="text-gray-500">/**
      * 批量嵌入文本
      */</span>
-    <span class="text-purple-400">public</span> <span class="text-blue-300">List</span>&lt;<span class="text-blue-300">Embedding</span>&gt; <span class="text-purple-400">embedBatch</span>(<span class="text-blue-300">List</span>&lt;<span class="text-blue-300">String</span>&gt; texts) {
-        <span class="text-blue-300">List</span>&lt;<span class="text-blue-300">Embedding</span>&gt; allEmbeddings = <span class="text-purple-400">new</span> <span class="text-yellow-300">ArrayList</span>&lt;&gt;();
+    <span class="code-keyword">public</span> <span class="text-blue-300">List</span>&lt;<span class="text-blue-300">Embedding</span>&gt; <span class="code-keyword">embedBatch</span>(<span class="text-blue-300">List</span>&lt;<span class="text-blue-300">String</span>&gt; texts) {
+        <span class="text-blue-300">List</span>&lt;<span class="text-blue-300">Embedding</span>&gt; allEmbeddings = <span class="code-keyword">new</span> <span class="code-class">ArrayList</span>&lt;&gt;();
         
         <span class="text-gray-500">// 分批处理</span>
-        <span class="text-purple-400">for</span> (<span class="text-blue-300">int</span> i = <span class="text-green-300">0</span>; i &lt; texts.<span class="text-green-300">size</span>(); i += <span class="text-yellow-300">BATCH_SIZE</span>) {
-            <span class="text-blue-300">int</span> end = <span class="text-yellow-300">Math</span>.<span class="text-green-300">min</span>(i + <span class="text-yellow-300">BATCH_SIZE</span>, texts.<span class="text-green-300">size</span>());
-            <span class="text-blue-300">List</span>&lt;<span class="text-blue-300">String</span>&gt; batch = texts.<span class="text-green-300">subList</span>(i, end);
+        <span class="code-keyword">for</span> (<span class="text-blue-300">int</span> i = <span class="code-string">0</span>; i &lt; texts.<span class="code-string">size</span>(); i += <span class="code-class">BATCH_SIZE</span>) {
+            <span class="text-blue-300">int</span> end = <span class="code-class">Math</span>.<span class="code-string">min</span>(i + <span class="code-class">BATCH_SIZE</span>, texts.<span class="code-string">size</span>());
+            <span class="text-blue-300">List</span>&lt;<span class="text-blue-300">String</span>&gt; batch = texts.<span class="code-string">subList</span>(i, end);
             
             <span class="text-gray-500">// 批量调用嵌入 API</span>
             <span class="text-blue-300">List</span>&lt;<span class="text-blue-300">Embedding</span>&gt; batchEmbeddings = 
-                embeddingModel.<span class="text-green-300">embedAll</span>(batch).<span class="text-green-300">content</span>();
+                embeddingModel.<span class="code-string">embedAll</span>(batch).<span class="code-string">content</span>();
             
-            allEmbeddings.<span class="text-green-300">addAll</span>(batchEmbeddings);
+            allEmbeddings.<span class="code-string">addAll</span>(batchEmbeddings);
         }
         
-        <span class="text-purple-400">return</span> allEmbeddings;
+        <span class="code-keyword">return</span> allEmbeddings;
     }
 }</code></pre>
                     </div>
@@ -523,10 +499,10 @@
                         <h2 class="text-2xl font-bold text-gray-900">监控与预算控制</h2>
                     </div>
 
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">6.1 成本监控指标</h3>
-                    <p class="text-gray-700 mb-6">监控关键指标以控制成本：</p>
+                    <h3 class="subsection-title">6.1 成本监控指标</h3>
+                    <p class="paragraph">监控关键指标以控制成本：</p>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div class="grid-2col">
                         <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
                             <h4 class="font-semibold text-blue-800 mb-2">API 调用次数</h4>
                             <p class="text-blue-700 text-sm">每天/每周的 API 调用总量</p>
@@ -545,33 +521,33 @@
                         </div>
                     </div>
 
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">6.2 预算警报</h3>
-                    <p class="text-gray-700 mb-6">设置预算阈值并触发警报：</p>
+                    <h3 class="subsection-title">6.2 预算警报</h3>
+                    <p class="paragraph">设置预算阈值并触发警报：</p>
 
-                    <div class="relative mb-6">
-                        <div class="absolute top-0 right-0 px-3 py-1 bg-gray-800 text-gray-400 text-xs font-medium rounded-bl-md">BudgetMonitor.java</div>
-                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="text-purple-400">@Component</span>
-<span class="text-purple-400">public class</span> <span class="text-yellow-300">BudgetMonitor</span> {
+                    <div class="code-wrapper">
+                        <div class="code-filename-badge">BudgetMonitor.java</div>
+                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="code-keyword">@Component</span>
+<span class="code-keyword">public class</span> <span class="code-class">BudgetMonitor</span> {
 
-    <span class="text-purple-400">private static final</span> <span class="text-blue-300">BigDecimal</span> <span class="text-yellow-300">MONTHLY_BUDGET</span> = <span class="text-purple-400">new</span> <span class="text-yellow-300">BigDecimal</span>(<span class="text-green-300">"100"</span>);
-    <span class="text-purple-400">private static final</span> <span class="text-blue-300">BigDecimal</span> <span class="text-yellow-300">WARNING_THRESHOLD</span> = <span class="text-yellow-300">MONTHLY_BUDGET</span>.<span class="text-green-300">multiply</span>(<span class="text-purple-400">new</span> <span class="text-yellow-300">BigDecimal</span>(<span class="text-green-300">"0.8"</span>));
+    <span class="code-keyword">private static final</span> <span class="text-blue-300">BigDecimal</span> <span class="code-class">MONTHLY_BUDGET</span> = <span class="code-keyword">new</span> <span class="code-class">BigDecimal</span>(<span class="code-string">"100"</span>);
+    <span class="code-keyword">private static final</span> <span class="text-blue-300">BigDecimal</span> <span class="code-class">WARNING_THRESHOLD</span> = <span class="code-class">MONTHLY_BUDGET</span>.<span class="code-string">multiply</span>(<span class="code-keyword">new</span> <span class="code-class">BigDecimal</span>(<span class="code-string">"0.8"</span>));
     
-    <span class="text-purple-400">private</span> <span class="text-blue-300">BigDecimal</span> currentCost = <span class="text-yellow-300">BigDecimal</span>.<span class="text-green-300">ZERO</span>;
+    <span class="code-keyword">private</span> <span class="text-blue-300">BigDecimal</span> currentCost = <span class="code-class">BigDecimal</span>.<span class="code-string">ZERO</span>;
 
     <span class="text-gray-500">/**
      * 记录 API 调用成本并检查预算
      */</span>
-    <span class="text-purple-400">public synchronized void</span> <span class="text-purple-400">recordCost</span>(<span class="text-blue-300">BigDecimal</span> cost) {
-        currentCost = currentCost.<span class="text-green-300">add</span>(cost);
+    <span class="code-keyword">public synchronized void</span> <span class="code-keyword">recordCost</span>(<span class="text-blue-300">BigDecimal</span> cost) {
+        currentCost = currentCost.<span class="code-string">add</span>(cost);
         
         <span class="text-gray-500">// 检查是否超过警告阈值</span>
-        <span class="text-purple-400">if</span> (currentCost.<span class="text-green-300">compareTo</span>(<span class="text-yellow-300">WARNING_THRESHOLD</span>) >= <span class="text-green-300">0</span>) {
-            <span class="text-yellow-300">sendAlert</span>(<span class="text-green-300">"预算警告：已使用 "</span> + currentCost + <span class="text-green-300">"/100 美元"</span>);
+        <span class="code-keyword">if</span> (currentCost.<span class="code-string">compareTo</span>(<span class="code-class">WARNING_THRESHOLD</span>) >= <span class="code-string">0</span>) {
+            <span class="code-class">sendAlert</span>(<span class="code-string">"预算警告：已使用 "</span> + currentCost + <span class="code-string">"/100 美元"</span>);
         }
         
         <span class="text-gray-500">// 检查是否超过总预算</span>
-        <span class="text-purple-400">if</span> (currentCost.<span class="text-green-300">compareTo</span>(<span class="text-yellow-300">MONTHLY_BUDGET</span>) >= <span class="text-green-300">0</span>) {
-            <span class="text-yellow-300">sendAlert</span>(<span class="text-green-300">"预算超支："</span> + currentCost + <span class="text-green-300">"/100 美元"</span>);
+        <span class="code-keyword">if</span> (currentCost.<span class="code-string">compareTo</span>(<span class="code-class">MONTHLY_BUDGET</span>) >= <span class="code-string">0</span>) {
+            <span class="code-class">sendAlert</span>(<span class="code-string">"预算超支："</span> + currentCost + <span class="code-string">"/100 美元"</span>);
             <span class="text-gray-500">// 可选择暂停服务或降级</span>
         }
     }

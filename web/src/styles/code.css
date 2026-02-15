@@ -1,0 +1,119 @@
+/* ============================================
+ * 代码块组件
+ * ============================================ */
+
+/* 代码容器 */
+.code-container {
+  background-color: var(--color-gray-900);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-5);
+  margin-bottom: var(--spacing-4);
+  overflow-x: auto;
+}
+
+.code-container-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-3);
+}
+
+.code-container-filename {
+  font-size: var(--text-xs);
+  font-family: var(--font-mono);
+  color: var(--color-gray-400);
+  text-transform: uppercase;
+}
+
+.code-container-label {
+  font-size: var(--text-xs);
+  color: var(--color-gray-500);
+}
+
+.code-container pre {
+  margin: 0;
+  padding: 0;
+  background: none;
+}
+
+.code-container code {
+  font-size: var(--text-sm);
+  font-family: var(--font-mono);
+  color: var(--color-gray-100);
+  line-height: 1.7;
+  background: none;
+  padding: 0;
+}
+
+/* 代码预览组件 */
+.code-preview {
+  background-color: var(--color-gray-900);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.code-preview-header {
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-3) var(--spacing-4);
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.code-preview-dots {
+  display: flex;
+  gap: var(--spacing-2);
+}
+
+.code-preview-dot {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+}
+
+.code-preview-dot-red { background-color: #ef4444; }
+.code-preview-dot-yellow { background-color: #eab308; }
+.code-preview-dot-green { background-color: #22c55e; }
+
+.code-preview-filename {
+  font-size: var(--text-xs);
+  font-family: var(--font-mono);
+  color: var(--color-gray-400);
+  margin-left: auto;
+}
+
+.code-preview-content {
+  padding: var(--spacing-4);
+}
+
+.code-preview pre {
+  margin: 0;
+  background: none;
+}
+
+.code-preview code {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--color-gray-100);
+  line-height: 1.7;
+  background: none;
+  padding: 0;
+}
+
+/* 内联代码 */
+code {
+  background-color: var(--color-gray-100);
+  padding: 0.125rem 0.375rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.875em;
+  font-family: var(--font-mono);
+}
+
+/* 代码高亮颜色 */
+.code-keyword { color: #c678dd; }
+.code-string { color: #98c379; }
+.code-number { color: #d19a66; }
+.code-comment { color: #5c6370; font-style: italic; }
+.code-function { color: #61afef; }
+.code-variable { color: #e06c75; }
+.code-operator { color: #56b6c2; }
+.code-class { color: #e5c07b; }

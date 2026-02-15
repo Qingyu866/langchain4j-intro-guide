@@ -3,183 +3,160 @@
 <head>
     <meta charset="UTF-8">
     <title>RAG环境搭建 - LangChain4j 学习指南</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
-                    },
-                    colors: {
-                        primary: {
-                            50: '#eef2ff',
-                            100: '#e0e7ff',
-                            200: '#c7d2fe',
-                            500: '#6366f1',
-                            600: '#4f46e5',
-                            700: '#4338ca',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+    <!-- 模块化CSS -->
+    <link rel="stylesheet" href="css/main.css">
 </head>
-<body class="bg-white text-gray-800 antialiased">
-    <div class="flex min-h-screen">
-        <aside class="w-[280px] fixed h-screen bg-white border-r border-gray-200 overflow-y-auto pb-8">
-  <div class="p-6">
-    <div class="flex items-center gap-3 mb-8">
-      <div class="w-10 h-10 bg-indigo-600 rounded-lg flex items-center justify-center">
-        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<body>
+    <div class="page-container">
+        <aside class="sidebar">
+  <div class="sidebar-content">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-icon">
+        <svg class="sidebar-logo-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
         </svg>
       </div>
       <div>
-        <h1 class="font-bold text-gray-900">LangChain4j</h1>
-        <p class="text-xs text-gray-500">入门指南</p>
+        <h1 class="sidebar-logo-title">LangChain4j</h1>
+        <p class="sidebar-logo-subtitle">入门指南</p>
       </div>
     </div>
 
     <div class="space-y-6">
-      <div>
-        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">快速开始</h3>
-        <ul class="space-y-1">
-          <li><a href="index.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="index">概览</a></li>
-          <li><a href="getting-started.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="getting-started">环境准备</a></li>
-          <li><a href="core-concepts.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="core-concepts">核心概念</a></li>
+      <div class="sidebar-nav-group">
+        <h3 class="sidebar-nav-title">快速开始</h3>
+        <ul class="sidebar-nav-list">
+          <li><a href="index.html" class="sidebar-nav-link" data-page="index">概览</a></li>
+          <li><a href="getting-started.html" class="sidebar-nav-link" data-page="getting-started">环境准备</a></li>
+          <li><a href="core-concepts.html" class="sidebar-nav-link" data-page="core-concepts">核心概念</a></li>
         </ul>
       </div>
 
-      <div>
-        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">核心功能</h3>
-        <ul class="space-y-1">
-          <li><a href="embedding-models.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="embedding-models">Embedding 模型</a></li>
-          <li><a href="prompt-templates.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="prompt-templates">Prompt 模板</a></li>
-          <li><a href="output-parsers.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="output-parsers">输出解析</a></li>
-          <li><a href="model-providers.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="model-providers">模型提供商</a></li>
-          <li><a href="function-calling-deep.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="function-calling-deep">函数调用</a></li>
-          <li><a href="advanced-features.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="advanced-features">高级特性</a></li>
-          <li><a href="multimodal-full.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="multimodal-full">多模态</a></li>
+      <div class="sidebar-nav-group">
+        <h3 class="sidebar-nav-title">核心功能</h3>
+        <ul class="sidebar-nav-list">
+          <li><a href="embedding-models.html" class="sidebar-nav-link" data-page="embedding-models">Embedding 模型</a></li>
+          <li><a href="prompt-templates.html" class="sidebar-nav-link" data-page="prompt-templates">Prompt 模板</a></li>
+          <li><a href="output-parsers.html" class="sidebar-nav-link" data-page="output-parsers">输出解析</a></li>
+          <li><a href="model-providers.html" class="sidebar-nav-link" data-page="model-providers">模型提供商</a></li>
+          <li><a href="function-calling-deep.html" class="sidebar-nav-link" data-page="function-calling-deep">函数调用</a></li>
+          <li><a href="advanced-features.html" class="sidebar-nav-link" data-page="advanced-features">高级特性</a></li>
+          <li><a href="multimodal-full.html" class="sidebar-nav-link" data-page="multimodal-full">多模态</a></li>
         </ul>
       </div>
 
-      <div>
-        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">RAG 完整指南</h3>
-        <ul class="space-y-1">
-          <li><a href="rag-intro.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="rag-intro">RAG 简介</a></li>
-          <li><a href="rag-setup.html" class="nav-link bg-indigo-50 text-indigo-700 font-medium block px-4 py-2.5 rounded-md transition-all" data-page="rag-setup">RAG 环境搭建</a></li>
-          <li><a href="rag-implementation.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="rag-implementation">RAG 实现</a></li>
-          <li><a href="rag-advanced.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="rag-advanced">RAG 高级</a></li>
+      <div class="sidebar-nav-group">
+        <h3 class="sidebar-nav-title">RAG 完整指南</h3>
+        <ul class="sidebar-nav-list">
+          <li><a href="rag-intro.html" class="sidebar-nav-link" data-page="rag-intro">RAG 简介</a></li>
+          <li><a href="rag-setup.html" class="sidebar-nav-link active" data-page="rag-setup">RAG 环境搭建</a></li>
+          <li><a href="rag-implementation.html" class="sidebar-nav-link" data-page="rag-implementation">RAG 实现</a></li>
+          <li><a href="rag-advanced.html" class="sidebar-nav-link" data-page="rag-advanced">RAG 高级</a></li>
         </ul>
       </div>
 
-      <div>
-        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">项目实战</h3>
-        <ul class="space-y-1">
-          <li><a href="project-chatbot.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="project-chatbot">聊天机器人</a></li>
-          <li><a href="project-ai-assistant.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="project-ai-assistant">AI助手</a></li>
-          <li><a href="project-rag-kb.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="project-rag-kb">RAG知识库</a></li>
-          <li><a href="practice.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="practice">综合实战</a></li>
+      <div class="sidebar-nav-group">
+        <h3 class="sidebar-nav-title">项目实战</h3>
+        <ul class="sidebar-nav-list">
+          <li><a href="project-chatbot.html" class="sidebar-nav-link" data-page="project-chatbot">聊天机器人</a></li>
+          <li><a href="project-ai-assistant.html" class="sidebar-nav-link" data-page="project-ai-assistant">AI助手</a></li>
+          <li><a href="project-rag-kb.html" class="sidebar-nav-link" data-page="project-rag-kb">RAG知识库</a></li>
+          <li><a href="practice.html" class="sidebar-nav-link" data-page="practice">综合实战</a></li>
         </ul>
       </div>
 
-      <div>
-        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">最佳实践</h3>
-        <ul class="space-y-1">
-          <li><a href="best-practices.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="best-practices">最佳实践</a></li>
-          <li><a href="testing-strategies.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="testing-strategies">测试策略</a></li>
-          <li><a href="performance-tuning.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="performance-tuning">性能优化</a></li>
-          <li><a href="deep-dive.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="deep-dive">深度解析</a></li>
-          <li><a href="error-handling.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="error-handling">错误处理</a></li>
-          <li><a href="moderation-safety.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="moderation-safety">内容审核</a></li>
-          <li><a href="troubleshooting.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="troubleshooting">故障排查</a></li>
+      <div class="sidebar-nav-group">
+        <h3 class="sidebar-nav-title">最佳实践</h3>
+        <ul class="sidebar-nav-list">
+          <li><a href="best-practices.html" class="sidebar-nav-link" data-page="best-practices">最佳实践</a></li>
+          <li><a href="testing-strategies.html" class="sidebar-nav-link" data-page="testing-strategies">测试策略</a></li>
+          <li><a href="performance-tuning.html" class="sidebar-nav-link" data-page="performance-tuning">性能优化</a></li>
+          <li><a href="deep-dive.html" class="sidebar-nav-link" data-page="deep-dive">深度解析</a></li>
+          <li><a href="error-handling.html" class="sidebar-nav-link" data-page="error-handling">错误处理</a></li>
+          <li><a href="moderation-safety.html" class="sidebar-nav-link" data-page="moderation-safety">内容审核</a></li>
+          <li><a href="troubleshooting.html" class="sidebar-nav-link" data-page="troubleshooting">故障排查</a></li>
         </ul>
       </div>
 
-      <div>
-        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">面试准备</h3>
-        <ul class="space-y-1">
-          <li><a href="interview-prep.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="interview-prep">面试准备</a></li>
+      <div class="sidebar-nav-group">
+        <h3 class="sidebar-nav-title">面试准备</h3>
+        <ul class="sidebar-nav-list">
+          <li><a href="interview-prep.html" class="sidebar-nav-link" data-page="interview-prep">面试准备</a></li>
         </ul>
       </div>
 
-      <div>
-        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">其他</h3>
-        <ul class="space-y-1">
-          <li><a href="search.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="search">向量搜索</a></li>
-          <li><a href="chat-listeners.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="chat-listeners">监听器</a></li>
-          <li><a href="faq.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="faq">常见问题</a></li>
-          <li><a href="cost-optimization.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="cost-optimization">成本优化</a></li>
-          <li><a href="deployment.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="deployment">部署上线</a></li>
-          <li><a href="integrations.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="integrations">框架集成</a></li>
-          <li><a href="examples.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all" data-page="examples">实战示例</a></li>
+      <div class="sidebar-nav-group">
+        <h3 class="sidebar-nav-title">其他</h3>
+        <ul class="sidebar-nav-list">
+          <li><a href="search.html" class="sidebar-nav-link" data-page="search">向量搜索</a></li>
+          <li><a href="chat-listeners.html" class="sidebar-nav-link" data-page="chat-listeners">监听器</a></li>
+          <li><a href="faq.html" class="sidebar-nav-link" data-page="faq">常见问题</a></li>
+          <li><a href="cost-optimization.html" class="sidebar-nav-link" data-page="cost-optimization">成本优化</a></li>
+          <li><a href="deployment.html" class="sidebar-nav-link" data-page="deployment">部署上线</a></li>
+          <li><a href="integrations.html" class="sidebar-nav-link" data-page="integrations">框架集成</a></li>
+          <li><a href="examples.html" class="sidebar-nav-link" data-page="examples">实战示例</a></li>
         </ul>
       </div>
     </div>
   </div>
 </aside>
 
-        <main class="flex-1 ml-[280px] px-8 py-12 max-w-7xl mx-auto">
-            <section class="mb-12">
-                <div class="flex items-center gap-3 mb-8 text-sm">
-                    <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-medium">RAG</span>
-                    <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-medium">环境搭建</span>
-                    <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-medium">~30分钟</span>
+        <main class="main-content">
+            <div class="content-wrapper">
+            <section class="section">
+                <div class="page-header-tags">
+                    <span class="header-tag header-tag-blue">RAG</span>
+                    <span class="header-tag header-tag-purple">环境搭建</span>
+                    <span class="header-tag header-tag-green">~30分钟</span>
                 </div>
 
-                <h1 class="text-5xl font-bold text-gray-900 mb-6">RAG环境搭建</h1>
-                <p class="text-xl text-gray-600 mb-8 leading-relaxed max-w-4xl">
+                <h1 class="page-title">RAG环境搭建</h1>
+                <p class="page-description">
                     搭建RAG开发环境，配置必要的依赖和工具，为后续实现做准备。
                 </p>
 
-                <div class="bg-gray-50 rounded-lg p-6 mb-10">
-                    <h2 class="text-2xl font-bold text-gray-900 mb-4">📚 本章学习目标</h2>
-                    <ul class="space-y-3 text-gray-700">
-                        <li class="flex items-start gap-3">
-                            <span class="text-green-600 text-2xl font-bold">✓</span>
+                <div class="learning-objectives">
+                    <h2 class="learning-objectives-title">📚 本章学习目标</h2>
+                    <ul class="learning-objectives-list">
+                        <li>
+                            <span class="check-icon">✓</span>
                             <span class="flex-1"><strong class="text-gray-900">配置Maven依赖</strong></span>
                         </li>
-                        <li class="flex items-start gap-3">
-                            <span class="text-green-600 text-2xl font-bold">✓</span>
+                        <li>
+                            <span class="check-icon">✓</span>
                             <span class="flex-1"><strong class="text-gray-900">设置环境变量</strong></span>
                         </li>
-                        <li class="flex items-start gap-3">
-                            <span class="text-green-600 text-2xl font-bold">✓</span>
+                        <li>
+                            <span class="check-icon">✓</span>
                             <span class="flex-1"><strong class="text-gray-900">选择并配置向量数据库</strong></span>
                         </li>
-                        <li class="flex items-start gap-3">
-                            <span class="text-green-600 text-2xl font-bold">✓</span>
+                        <li>
+                            <span class="check-icon">✓</span>
                             <span class="flex-1"><strong class="text-gray-900">创建项目结构</strong></span>
                         </li>
-                        <li class="flex items-start gap-3">
-                            <span class="text-green-600 text-2xl font-bold">✓</span>
+                        <li>
+                            <span class="check-icon">✓</span>
                             <span class="flex-1"><strong class="text-gray-900">验证Hello World示例</strong></span>
                         </li>
                     </ul>
                 </div>
             </section>
 
-            <section id="maven-setup" class="mb-16">
-                <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                    <span class="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center text-indigo-600">1</span>
-                    Maven依赖配置
-                </h2>
+            <section id="maven-setup" class="section">
+                <div class="chapter-title">
+                    <span class="chapter-number">1</span>
+                    <h2>Maven依赖配置</h2>
+                </div>
 
-                <div class="bg-white rounded-lg shadow-md p-6 mb-6 border border-gray-200">
-                    <h3 class="text-lg font-bold text-gray-900 mb-4">添加LangChain4j依赖</h3>
-                    <p class="text-gray-600 mb-4">在pom.xml中添加LangChain4j核心依赖</p>
-                    <div class="bg-gray-900 rounded-lg p-5 mb-4 overflow-x-auto">
-                        <div class="flex items-center justify-between mb-3">
-                            <span class="text-xs font-mono text-gray-400 uppercase">pom.xml</span>
-                            <span class="text-xs text-gray-500">Maven配置</span>
+                <div class="content-card">
+                    <h3 class="content-card-title">添加LangChain4j依赖</h3>
+                    <p class="content-card-description">在pom.xml中添加LangChain4j核心依赖</p>
+                    <div class="code-container">
+                        <div class="code-container-header">
+                            <span class="code-container-filename">pom.xml</span>
+                            <span class="code-container-label">Maven配置</span>
                         </div>
-                        <pre class="text-gray-100 text-sm font-mono"><code>&lt;dependencies&gt;
+                        <pre><code>&lt;dependencies&gt;
     &lt;!-- 核心模块 --&gt;
     &lt;dependency&gt;
         &lt;groupId&gt;dev.langchain4j&lt;/groupId&gt;
@@ -202,9 +179,9 @@
     &lt;/dependency&gt;
 &lt;/dependencies&gt;</code></pre>
                     </div>
-                    <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-lg mt-4">
-                        <h4 class="font-bold text-blue-900 mb-2">💡 版本说明</h4>
-                        <ul class="space-y-2 text-blue-800 text-sm">
+                    <div class="tip-box tip-box-blue">
+                        <h4 class="tip-box-title">💡 版本说明</h4>
+                        <ul>
                             <li>• <strong>langchain4j-core</strong>：核心模块，包含DocumentLoader、TextSplitter、EmbeddingModel等</li>
                             <li>• <strong>langchain4j-pinecone</strong>：Pinecone向量数据库集成（可选）</li>
                             <li>• <strong>langchain4j-open-ai</strong>：OpenAI模型集成，支持GPT-4、GPT-3.5等模型</li>
@@ -214,21 +191,21 @@
                 </div>
             </section>
 
-            <section id="environment-variables" class="mb-16">
-                <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                    <span class="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center text-indigo-600">2</span>
-                    环境变量配置
-                </h2>
+            <section id="environment-variables" class="section">
+                <div class="chapter-title">
+                    <span class="chapter-number">2</span>
+                    <h2>环境变量配置</h2>
+                </div>
 
-                <div class="bg-white rounded-lg shadow-md p-6 mb-6 border border-gray-200">
-                    <h3 class="text-lg font-bold text-gray-900 mb-4">API密钥配置</h3>
-                    <p class="text-gray-600 mb-4">创建.env文件存储API密钥，确保安全性和灵活性</p>
-                    <div class="bg-gray-900 rounded-lg p-5 mb-4 overflow-x-auto">
-                        <div class="flex items-center justify-between mb-3">
-                            <span class="text-xs font-mono text-gray-400 uppercase">.env</span>
-                            <span class="text-xs text-gray-500">环境变量文件</span>
+                <div class="content-card">
+                    <h3 class="content-card-title">API密钥配置</h3>
+                    <p class="content-card-description">创建.env文件存储API密钥，确保安全性和灵活性</p>
+                    <div class="code-container">
+                        <div class="code-container-header">
+                            <span class="code-container-filename">.env</span>
+                            <span class="code-container-label">环境变量文件</span>
                         </div>
-                        <pre class="text-gray-100 text-sm font-mono"><code># OpenAI配置
+                        <pre><code># OpenAI配置
 OPENAI_API_KEY=sk-proj-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 # 模型配置（可选）
@@ -239,11 +216,11 @@ OPENAI_MAX_TOKENS=2000
 # 向量数据库配置
 PINECONE_API_KEY=xxxxxxxx-xxxx-xxxx-xxxx-xxxx-xxxx
 PINECONE_ENVIRONMENT=production
-PINECONE_INDEX=langchain4j-demo</CODE></pre>
+PINECONE_INDEX=langchain4j-demo</code></pre>
                     </div>
-                    <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-5 mt-4">
-                        <h4 class="font-bold text-yellow-900 mb-2">⚠️ 安全提示</h4>
-                        <ul class="space-y-2 text-yellow-800 text-sm">
+                    <div class="tip-box tip-box-yellow">
+                        <h4 class="tip-box-title">⚠️ 安全提示</h4>
+                        <ul>
                             <li>• <strong>永远不要</strong>将.env文件提交到Git仓库</li>
                             <li>• 使用.env.example作为模板提交</li>
                             <li>• 不同环境（开发、测试、生产）使用不同的密钥</li>
@@ -252,15 +229,15 @@ PINECONE_INDEX=langchain4j-demo</CODE></pre>
                     </div>
                 </div>
 
-                <div class="bg-white rounded-lg shadow-md p-6 mb-6 border border-gray-200">
-                    <h3 class="text-lg font-bold text-gray-900 mb-4">.env.example示例</h3>
-                    <p class="text-gray-600 mb-4">提交到Git的模板文件，不包含真实密钥</p>
-                    <div class="bg-gray-900 rounded-lg p-5 mb-4 overflow-x-auto">
-                        <div class="flex items-center justify-between mb-3">
-                            <span class="text-xs font-mono text-gray-400 uppercase">.env.example</span>
-                            <span class="text-xs text-gray-500">模板文件</span>
+                <div class="content-card">
+                    <h3 class="content-card-title">.env.example示例</h3>
+                    <p class="content-card-description">提交到Git的模板文件，不包含真实密钥</p>
+                    <div class="code-container">
+                        <div class="code-container-header">
+                            <span class="code-container-filename">.env.example</span>
+                            <span class="code-container-label">模板文件</span>
                         </div>
-                        <pre class="text-gray-100 text-sm font-mono"><code># OpenAI配置
+                        <pre><code># OpenAI配置
 OPENAI_API_KEY=your-openai-api-key-here
 
 # 模型配置（可选）
@@ -276,14 +253,14 @@ PINECONE_DIMENSION=1536</code></pre>
                     </div>
                 </div>
 
-                <div class="bg-green-50 border border-green-200 rounded-lg p-5 mb-6">
-                    <h4 class="font-bold text-green-900 mb-2">✅ Java环境变量读取</h4>
-                    <div class="bg-green-900 rounded-lg p-4 mb-3 overflow-x-auto">
-                        <div class="flex items-center justify-between mb-3">
-                            <span class="text-xs font-mono text-gray-400 uppercase">Environment.java</span>
-                            <span class="text-xs text-gray-500">配置类</span>
+                <div class="tip-box tip-box-green">
+                    <h4 class="tip-box-title">✅ Java环境变量读取</h4>
+                    <div class="code-container">
+                        <div class="code-container-header">
+                            <span class="code-container-filename">Environment.java</span>
+                            <span class="code-container-label">配置类</span>
                         </div>
-                        <pre class="text-gray-100 text-sm font-mono"><code>import java.util.Properties;
+                        <pre><code>import java.util.Properties;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -318,89 +295,81 @@ public class Environment {
                 </div>
             </section>
 
-            <section id="vector-db-setup" class="mb-16">
-                <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                    <span class="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center text-indigo-600">3</span>
-                    向量数据库选择与配置
-                </h2>
+            <section id="vector-db-setup" class="section">
+                <div class="chapter-title">
+                    <span class="chapter-number">3</span>
+                    <h2>向量数据库选择与配置</h2>
+                </div>
 
-                <div class="bg-blue-50 border-l-4 border-blue-500 p-5 rounded-r-lg mb-6">
-                    <h3 class="font-bold text-blue-900 mb-3">💡 向量数据库选择指南</h3>
-                    <p class="text-blue-800 text-base mb-3">
+                <div class="tip-box tip-box-blue">
+                    <h3 class="tip-box-title">💡 向量数据库选择指南</h3>
+                    <p class="text-blue-800">
                         选择向量数据库时，需要考虑性能、成本、可用性、扩展性等因素。
                     </p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                    <div class="bg-white border border-gray-200 rounded-xl p-5 hover:shadow-lg transition-shadow">
-                        <div class="flex items-center gap-3 mb-3">
-                            <div class="text-3xl">🌲️</div>
-                            <h4 class="font-bold text-gray-900 mb-1">Pinecone</h4>
-                        </div>
-                        <div class="space-y-2 text-gray-600 text-sm">
-                            <p class="mb-2"><strong>特点</strong>：托管服务、高性能、易集成</p>
-                            <p class="mb-2"><strong>适用</strong>：生产环境、快速原型、中小规模应用</p>
-                            <p class="mb-2"><strong>成本</strong>：按检索次数和存储计费，起步成本低</p>
-                            <p class="mb-2"><strong>优点</strong>：无需运维、自动扩展、全球CDN加速</p>
+                <div class="feature-cards">
+                    <div class="feature-card">
+                        <div class="feature-card-icon">🌲️</div>
+                        <h4 class="feature-card-title">Pinecone</h4>
+                        <div class="feature-card-content">
+                            <p><strong>特点</strong>：托管服务、高性能、易集成</p>
+                            <p><strong>适用</strong>：生产环境、快速原型、中小规模应用</p>
+                            <p><strong>成本</strong>：按检索次数和存储计费，起步成本低</p>
+                            <p><strong>优点</strong>：无需运维、自动扩展、全球CDN加速</p>
                         </div>
                     </div>
-                    <div class="bg-white border border-gray-200 rounded-xl p-5 hover:shadow-lg transition-shadow">
-                        <div class="flex items-center gap-3 mb-3">
-                            <div class="text-3xl">🗄️</div>
-                            <h4 class="font-bold text-gray-900 mb-1">Chroma</h4>
-                        </div>
-                        <div class="space-y-2 text-gray-600 text-sm">
-                            <p class="mb-2"><strong>特点</strong>：开源、本地部署、可持久化</p>
-                            <p class="mb-2"><strong>适用</strong>：数据隐私敏感、需要本地控制、开发测试</p>
-                            <p class="mb-2"><strong>成本</strong>：完全免费</p>
-                            <p class="mb-2"><strong>优点</strong>：数据完全本地、无网络延迟、可自定义</p>
+                    <div class="feature-card">
+                        <div class="feature-card-icon">🗄️</div>
+                        <h4 class="feature-card-title">Chroma</h4>
+                        <div class="feature-card-content">
+                            <p><strong>特点</strong>：开源、本地部署、可持久化</p>
+                            <p><strong>适用</strong>：数据隐私敏感、需要本地控制、开发测试</p>
+                            <p><strong>成本</strong>：完全免费</p>
+                            <p><strong>优点</strong>：数据完全本地、无网络延迟、可自定义</p>
                         </div>
                     </div>
-                    <div class="bg-white border border-gray-200 rounded-xl p-5 hover:shadow-lg transition-shadow">
-                        <div class="flex items-center gap-3 mb-3">
-                            <div class="text-3xl">🟢</div>
-                            <h4 class="font-bold text-gray-900 mb-1">Weaviate</h4>
-                        </div>
-                        <div class="space-y-2 text-gray-600 text-sm">
-                            <p class="mb-2"><strong>特点</strong>：高性能、模块化、支持多模态</p>
-                            <p class="mb-2"><strong>适用</strong>：大规模应用、需要高级功能、多模态数据</p>
-                            <p class="mb-2"><strong>成本</strong>：有免费层，付费版功能更强</p>
-                            <p class="mb-2"><strong>优点</strong>：GraphQL API、灵活的过滤、对象存储集成</p>
+                    <div class="feature-card">
+                        <div class="feature-card-icon">🟢</div>
+                        <h4 class="feature-card-title">Weaviate</h4>
+                        <div class="feature-card-content">
+                            <p><strong>特点</strong>：高性能、模块化、支持多模态</p>
+                            <p><strong>适用</strong>：大规模应用、需要高级功能、多模态数据</p>
+                            <p><strong>成本</strong>：有免费层，付费版功能更强</p>
+                            <p><strong>优点</strong>：GraphQL API、灵活的过滤、对象存储集成</p>
                         </div>
                     </div>
-                    <div class="bg-white border border-gray-200 rounded-xl p-5 hover:shadow-lg transition-shadow">
-                        <div class="flex items-center gap-3 mb-3">
-                            <div class="text-3xl">🟡</div>
-                            <h4 class="font-bold text-gray-900 mb-1">Milvus</h4>
-                        </div>
-                        <div class="space-y-2 text-gray-600 text-sm">
-                            <p class="mb-2"><strong>特点</strong>：高性能向量检索、支持GPU加速</p>
-                            <p class="mb-2"><strong>适用</strong>：超大规模数据、需要极致性能、本地部署</p>
-                            <p class="mb-2"><strong>成本</strong>：开源免费，需要自行部署运维</p>
-                            <p class="mb-2"><strong>优点</strong>：支持10亿级向量、毫秒级响应、支持分布式</p>
+                    <div class="feature-card">
+                        <div class="feature-card-icon">🟡</div>
+                        <h4 class="feature-card-title">Milvus</h4>
+                        <div class="feature-card-content">
+                            <p><strong>特点</strong>：高性能向量检索、支持GPU加速</p>
+                            <p><strong>适用</strong>：超大规模数据、需要极致性能、本地部署</p>
+                            <p><strong>成本</strong>：开源免费，需要自行部署运维</p>
+                            <p><strong>优点</strong>：支持10亿级向量、毫秒级响应、支持分布式</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-indigo-50 border-l-4 border-indigo-500 p-5 rounded-r-lg">
-                    <h4 class="font-bold text-indigo-900 mb-2">🏗️ 推荐方案</h4>
-                    <p class="text-indigo-800 text-base">
+                <div class="tip-box tip-box-indigo">
+                    <h4 class="tip-box-title">🏗️ 推荐方案</h4>
+                    <p>
                         本指南使用Pinecone作为示例，因为它易于上手且适合学习。您可以根据实际需求选择其他数据库。
                     </p>
                 </div>
             </section>
 
-            <section id="project-structure" class="mb-16">
-                <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                    <span class="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center text-indigo-600">4</span>
-                    项目结构
-                </h2>
+            <section id="project-structure" class="section">
+                <div class="chapter-title">
+                    <span class="chapter-number">4</span>
+                    <h2>项目结构</h2>
+                </div>
 
-                <div class="bg-white rounded-lg shadow-md p-6 mb-6 border border-gray-200">
-                    <h3 class="text-lg font-bold text-gray-900 mb-4">推荐项目结构</h3>
-                    <p class="text-gray-600 mb-4">清晰的项目结构有助于代码组织和团队协作</p>
-                    <div class="bg-gray-900 rounded-lg p-5 mb-4 overflow-x-auto">
-                        <pre class="text-gray-100 text-sm font-mono"><code>langchain4j-rag-demo/
+                <div class="content-card">
+                    <h3 class="content-card-title">推荐项目结构</h3>
+                    <p class="content-card-description">清晰的项目结构有助于代码组织和团队协作</p>
+                    <div class="code-container">
+                        <pre><code>langchain4j-rag-demo/
 ├── src/
 │   ├── main/
 │   │   └── java/
@@ -426,92 +395,64 @@ public class Environment {
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                    <div class="bg-white border border-gray-200 rounded-xl p-5">
-                        <h4 class="font-bold text-gray-900 mb-3">📁 src/main/java</h4>
-                        <p class="text-gray-600 text-sm mb-2">
-                            主Java源码目录，所有业务逻辑代码
-                        </p>
-                        <p class="text-gray-600 text-sm">
-                            <strong>config/</strong>：配置类（Environment、配置加载）
-                        </p>
-                        <p class="text-gray-600 text-sm">
-                            <strong>loader/</strong>：文档加载器
-                        </p>
-                        <p class="text-gray-600 text-sm">
-                            <strong>splitter/</strong>：文本分块器
-                        </p>
-                        <p class="text-gray-600 text-sm">
-                            <strong>embedding/</strong>：Embedding服务
-                        </p>
-                        <p class="text-gray-600 text-sm">
-                            <strong>retriever/</strong>：检索器实现
-                        </p>
+                <div class="feature-cards">
+                    <div class="feature-card">
+                        <h4 class="feature-card-title">📁 src/main/java</h4>
+                        <div class="feature-card-content">
+                            <p>主Java源码目录，所有业务逻辑代码</p>
+                            <p><strong>config/</strong>：配置类（Environment、配置加载）</p>
+                            <p><strong>loader/</strong>：文档加载器</p>
+                            <p><strong>splitter/</strong>：文本分块器</p>
+                            <p><strong>embedding/</strong>：Embedding服务</p>
+                            <p><strong>retriever/</strong>：检索器实现</p>
+                        </div>
                     </div>
-                    <div class="bg-white border border-gray-200 rounded-xl p-5">
-                        <h4 class="font-bold text-gray-900 mb-3">📂 resources/</h4>
-                        <p class="text-gray-600 text-sm mb-2">
-                            配置文件和资源文件
-                        </p>
-                        <p class="text-gray-600 text-sm">
-                            <strong>application.properties</strong>：Spring Boot配置
-                        </p>
-                        <p class="text-gray-600 text-sm">
-                            <strong>logback.xml</strong>：日志配置
-                        </p>
+                    <div class="feature-card">
+                        <h4 class="feature-card-title">📂 resources/</h4>
+                        <div class="feature-card-content">
+                            <p>配置文件和资源文件</p>
+                            <p><strong>application.properties</strong>：Spring Boot配置</p>
+                            <p><strong>logback.xml</strong>：日志配置</p>
+                        </div>
                     </div>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                    <div class="bg-white border border-gray-200 rounded-xl p-5">
-                        <h4 class="font-bold text-gray-900 mb-3">📄 documents/</h4>
-                        <p class="text-gray-600 text-sm mb-2">
-                            文档存储目录
-                        </p>
-                        <p class="text-gray-600 text-sm">
-                            存放待处理的原始文档
-                        </p>
-                        <p class="text-gray-600 text-sm">
-                            <strong>支持格式</strong>：TXT、PDF、MD、JSON
-                        </p>
-                        <p class="text-gray-600 text-sm">
-                            <strong>组织方式</strong>：按主题、日期或类型分类
-                        </p>
+                    <div class="feature-card">
+                        <h4 class="feature-card-title">📄 documents/</h4>
+                        <div class="feature-card-content">
+                            <p>文档存储目录</p>
+                            <p>存放待处理的原始文档</p>
+                            <p><strong>支持格式</strong>：TXT、PDF、MD、JSON</p>
+                            <p><strong>组织方式</strong>：按主题、日期或类型分类</p>
+                        </div>
                     </div>
-                    <div class="bg-white border border-gray-200 rounded-xl p-5">
-                        <h4 class="font-bold text-gray-900 mb-3">🔧 配置文件</h4>
-                        <p class="text-gray-600 text-sm mb-2">
-                            项目根目录配置文件
-                        </p>
-                        <p class="text-gray-600 text-sm">
-                            <strong>.env</strong>：环境变量（本地开发密钥）
-                        </p>
-                        <p class="text-gray-600 text-sm">
-                            <strong>.env.example</strong>：环境变量模板（Git提交）
-                        </p>
-                        <p class="text-gray-600 text-sm">
-                            <strong>.gitignore</strong>：Git忽略规则，保护敏感信息
-                        </p>
+                    <div class="feature-card">
+                        <h4 class="feature-card-title">🔧 配置文件</h4>
+                        <div class="feature-card-content">
+                            <p>项目根目录配置文件</p>
+                            <p><strong>.env</strong>：环境变量（本地开发密钥）</p>
+                            <p><strong>.env.example</strong>：环境变量模板（Git提交）</p>
+                            <p><strong>.gitignore</strong>：Git忽略规则，保护敏感信息</p>
+                        </div>
                     </div>
                 </div>
             </section>
 
-            <section id="hello-world" class="mb-16">
-                <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                    <span class="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center text-indigo-600">5</span>
-                    Hello World验证
-                </h2>
+            <section id="hello-world" class="section">
+                <div class="chapter-title">
+                    <span class="chapter-number">5</span>
+                    <h2>Hello World验证</h2>
+                </div>
 
-                <div class="bg-white rounded-lg shadow-md p-6 mb-6 border border-gray-200">
-                    <h3 class="text-lg font-bold text-gray-900 mb-4">验证环境配置</h3>
-                    <p class="text-gray-600 mb-4">
+                <div class="content-card">
+                    <h3 class="content-card-title">验证环境配置</h3>
+                    <p class="content-card-description">
                         创建一个简单的RAG系统，验证所有配置是否正确。
                     </p>
-                    <div class="bg-gray-900 rounded-lg p-5 mb-4 overflow-x-auto">
-                        <div class="flex items-center justify-between mb-3">
-                            <span class="text-xs font-mono text-gray-400 uppercase">HelloWorldRAG.java</span>
-                            <span class="text-xs text-gray-500">完整示例</span>
+                    <div class="code-container">
+                        <div class="code-container-header">
+                            <span class="code-container-filename">HelloWorldRAG.java</span>
+                            <span class="code-container-label">完整示例</span>
                         </div>
-                        <pre class="text-gray-100 text-sm font-mono"><code>import dev.langchain4j.data.document.Document;
+                        <pre><code>import dev.langchain4j.data.document.Document;
 import dev.langchain4j.data.document.loader.FileSystemDocumentLoader;
 import dev.langchain4j.data.segment.TextSegment;
 import dev.langchain4j.model.openai.OpenAiEmbeddingModel;
@@ -604,46 +545,46 @@ interface Assistant {
     String chat(String message);
 }</code></pre>
                     </div>
-                    <div class="bg-green-50 border border-green-200 rounded-lg p-5 mt-4">
-                        <h4 class="font-bold text-green-900 mb-2">💡 运行步骤</h4>
-                        <ol class="space-y-2 text-green-800 text-sm">
+                    <div class="tip-box tip-box-green">
+                        <h4 class="tip-box-title">💡 运行步骤</h4>
+                        <ul>
                             <li><strong>步骤1</strong>：创建.env和documents目录</li>
                             <li><strong>步骤2</strong>：在documents中创建sample.txt，写入测试文档</li>
                             <li><strong>步骤3</strong>：编译并运行HelloWorldRAG.java</li>
                             <li><strong>预期输出</strong>：看到各个组件创建成功的日志和最终回答</li>
-                        </ol>
+                        </ul>
                     </div>
                 </div>
             </section>
 
-            <section id="troubleshooting" class="mb-16">
-                <div class="flex items-center gap-3 mb-6">
-        <span class="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-full text-sm font-bold">1</span>
-        <h2 class="text-2xl font-bold text-gray-900">🔧 常见问题</h2>
-    </div>
-                <div class="space-y-4">
-                    <div class="bg-white border border-gray-200 rounded-xl p-5">
-                        <h4 class="font-bold text-gray-900 mb-3">Q: Maven依赖下载失败？</h4>
-                        <p class="text-gray-700 mb-2">
+            <section id="troubleshooting" class="section">
+                <div class="chapter-title">
+                    <span class="chapter-number">🔧</span>
+                    <h2>常见问题</h2>
+                </div>
+                <div class="faq-section">
+                    <div class="faq-item">
+                        <h4 class="faq-question">Q: Maven依赖下载失败？</h4>
+                        <p class="faq-answer">
                             A: 检查网络连接，确认Maven镜像源。可以尝试使用阿里云镜像或清除本地缓存。
                         </p>
                     </div>
-                    <div class="bg-white border border-gray-200 rounded-xl p-5">
-                        <h4 class="font-bold text-gray-900 mb-3">Q: .env文件读取失败？</h4>
-                        <p class="text-gray-700 mb-2">
+                    <div class="faq-item">
+                        <h4 class="faq-question">Q: .env文件读取失败？</h4>
+                        <p class="faq-answer">
                             A: 确保.env文件格式正确，每行一个变量，等号后无空格。检查文件编码是否为UTF-8。
                         </p>
                     </div>
-                    <div class="bg-white border border-gray-200 rounded-xl p-5">
-                        <h4 class="font-bold text-gray-900 mb-3">Q: API密钥无效？</h4>
-                        <p class="text-gray-700 mb-2">
-                            A: 访问OpenAI和Pinecone控制台，重新生成API密钥。确保密钥有足够的权限。
+                    <div class="faq-item">
+                        <h4 class="faq-question">Q: API密钥无效？</h4>
+                        <p class="faq-answer">
+                            A: 确认API密钥有效且未过期。检查账户余额是否充足。确保密钥格式正确（OpenAI以sk-开头）。
                         </p>
                     </div>
-                    <div class="bg-white border border-gray-200 rounded-xl p-5">
-                        <h4 class="font-bold text-gray-900 mb-3">Q: 向量数据库连接失败？</h4>
-                        <p class="text-gray-700 mb-2">
-                            A: 检查API密钥和索引名称是否正确，确认向量数据库服务状态。
+                    <div class="faq-item">
+                        <h4 class="faq-question">Q: Pinecone连接失败？</h4>
+                        <p class="faq-answer">
+                            A: 检查Pinecone环境名称和索引名称是否正确。确认API密钥有效。检查网络连接。
                         </p>
                     </div>
                 </div>

@@ -1,0 +1,1183 @@
+/* ============================================
+ * 补充组件样式
+ * ============================================ */
+
+/* --------------------------------------------
+   侧边栏补充样式
+   -------------------------------------------- */
+
+.sidebar-nav-link-active {
+  background-color: var(--color-indigo-50);
+  color: var(--color-indigo-700);
+  font-weight: 500;
+}
+
+.sidebar-logo-text {
+  font-weight: 700;
+  color: var(--color-gray-900);
+}
+
+.sidebar-logo-subtitle {
+  font-size: var(--text-xs);
+  color: var(--color-gray-500);
+}
+
+/* --------------------------------------------
+   面包屑导航
+   -------------------------------------------- */
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  margin-bottom: var(--spacing-4);
+}
+
+.breadcrumb-item {
+  color: var(--color-gray-500);
+  font-size: var(--text-sm);
+}
+
+.breadcrumb-separator {
+  color: var(--color-gray-400);
+}
+
+.breadcrumb-current {
+  color: var(--color-gray-900);
+  font-weight: 500;
+}
+
+/* --------------------------------------------
+   卡片变体
+   -------------------------------------------- */
+
+.card-info {
+  background-color: var(--color-blue-50);
+  border: 1px solid var(--color-blue-200);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-4);
+}
+
+.card-blue {
+  background-color: var(--color-blue-50);
+  border: 1px solid var(--color-blue-200);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-4);
+}
+
+.card-purple {
+  background-color: var(--color-purple-100);
+  border: 1px solid #e9d5ff;
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-4);
+}
+
+.card-orange {
+  background-color: var(--color-orange-50);
+  border: 1px solid var(--color-orange-200);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-4);
+}
+
+.card-green {
+  background-color: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-4);
+}
+
+.card-gradient {
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-4);
+}
+
+.card-gradient-indigo {
+  background: linear-gradient(135deg, var(--color-indigo-50), var(--color-blue-50));
+}
+
+.card-gradient-purple {
+  background: linear-gradient(135deg, var(--color-purple-100), var(--color-indigo-50));
+}
+
+.card-gradient-orange {
+  background: linear-gradient(135deg, var(--color-orange-50), #fef3c7);
+}
+
+.card-title-blue {
+  color: var(--color-blue-800);
+  font-weight: 600;
+  margin-bottom: var(--spacing-2);
+}
+
+.card-title-purple {
+  color: var(--color-purple-800);
+  font-weight: 600;
+  margin-bottom: var(--spacing-2);
+}
+
+.card-title-orange {
+  color: var(--color-orange-800);
+  font-weight: 600;
+  margin-bottom: var(--spacing-2);
+}
+
+.card-title-green {
+  color: var(--color-green-800);
+  font-weight: 600;
+  margin-bottom: var(--spacing-2);
+}
+
+.card-description-blue {
+  color: var(--color-blue-700);
+  font-size: var(--text-sm);
+  margin-bottom: var(--spacing-3);
+}
+
+.card-description-purple {
+  color: var(--color-purple-700);
+  font-size: var(--text-sm);
+  margin-bottom: var(--spacing-3);
+}
+
+.card-description-orange {
+  color: var(--color-orange-700);
+  font-size: var(--text-sm);
+  margin-bottom: var(--spacing-3);
+}
+
+.card-description-green {
+  color: var(--color-green-700);
+  font-size: var(--text-sm);
+  margin-bottom: var(--spacing-3);
+}
+
+/* --------------------------------------------
+   标签组件
+   -------------------------------------------- */
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--spacing-1) var(--spacing-3);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  border-radius: var(--radius-full);
+}
+
+.tag-indigo {
+  background-color: var(--color-indigo-100);
+  color: var(--color-indigo-700);
+}
+
+.tag-purple {
+  background-color: var(--color-purple-100);
+  color: var(--color-purple-700);
+}
+
+.tag-green {
+  background-color: var(--color-green-100);
+  color: var(--color-green-700);
+}
+
+.tag-blue {
+  background-color: var(--color-blue-100);
+  color: var(--color-blue-700);
+}
+
+.tag-orange {
+  background-color: var(--color-orange-100);
+  color: var(--color-orange-700);
+}
+
+/* --------------------------------------------
+   步骤标记
+   -------------------------------------------- */
+
+.step-marker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  background-color: var(--color-indigo-100);
+  color: var(--color-indigo-600);
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: var(--text-sm);
+  flex-shrink: 0;
+}
+
+/* --------------------------------------------
+   章节标题
+   -------------------------------------------- */
+
+.section {
+  margin-bottom: var(--spacing-16);
+}
+
+.section-title {
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: var(--color-gray-900);
+  margin-bottom: var(--spacing-6);
+}
+
+/* --------------------------------------------
+   目录导航补充
+   -------------------------------------------- */
+
+.toc-nav-title {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-gray-500);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--spacing-4);
+}
+
+.toc-nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.toc-nav-list li {
+  margin-bottom: var(--spacing-2);
+}
+
+.toc-nav-list a {
+  color: var(--color-gray-700);
+  font-size: var(--text-sm);
+  transition: color var(--transition-fast);
+}
+
+.toc-nav-list a:hover {
+  color: var(--color-indigo-600);
+}
+
+/* --------------------------------------------
+   代码块补充样式
+   -------------------------------------------- */
+
+.code-block {
+  background-color: var(--color-gray-900);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.code-block-title {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--color-gray-300);
+  padding: var(--spacing-3) var(--spacing-4);
+  background-color: rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.code-type {
+  color: #93c5fd;
+}
+
+/* --------------------------------------------
+   表格容器
+   -------------------------------------------- */
+
+.table-container {
+  overflow-x: auto;
+  margin-bottom: var(--spacing-6);
+}
+
+/* --------------------------------------------
+   列表样式
+   -------------------------------------------- */
+
+.list-disc {
+  list-style-type: disc;
+  padding-left: var(--spacing-6);
+}
+
+.list-inside {
+  list-style-position: inside;
+}
+
+/* --------------------------------------------
+   渐变背景
+   -------------------------------------------- */
+
+.bg-gradient-to-r {
+  background: linear-gradient(to right, var(--color-indigo-50), var(--color-purple-50));
+}
+
+/* --------------------------------------------
+   其他工具类
+   -------------------------------------------- */
+
+.uppercase { text-transform: uppercase; }
+.tracking-wider { letter-spacing: 0.05em; }
+.inline-block { display: inline-block; }
+.border-r { border-right-width: 1px; border-right-style: solid; }
+.border-t { border-top-width: 1px; border-top-style: solid; }
+.rounded-bl-md { border-bottom-left-radius: var(--radius-md); }
+.h-screen { height: 100vh; }
+.items-end { align-items: flex-end; }
+.justify-end { justify-content: flex-end; }
+
+/* --------------------------------------------
+   目录列表样式
+   -------------------------------------------- */
+
+.toc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.toc-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-2);
+  margin-bottom: var(--spacing-2);
+  font-size: var(--text-sm);
+  color: var(--color-gray-700);
+}
+
+.toc-number {
+  color: var(--color-indigo-600);
+  font-weight: 500;
+}
+
+.toc-link {
+  color: var(--color-gray-700);
+  transition: color var(--transition-fast);
+}
+
+.toc-link:hover {
+  color: var(--color-indigo-600);
+}
+
+/* --------------------------------------------
+   列表样式
+   -------------------------------------------- */
+
+.list-styled {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.list-styled li {
+  margin-bottom: var(--spacing-1);
+  padding-left: 0;
+}
+
+.list-blue li {
+  color: var(--color-blue-700);
+}
+
+.list-green li {
+  color: var(--color-green-700);
+}
+
+.list-gray li {
+  color: var(--color-gray-700);
+}
+
+/* --------------------------------------------
+   代码块包装器
+   -------------------------------------------- */
+
+.code-wrapper {
+  position: relative;
+  margin-bottom: var(--spacing-6);
+}
+
+.code-filename-badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: var(--spacing-1) var(--spacing-3);
+  background-color: var(--color-gray-800);
+  color: var(--color-gray-400);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  border-bottom-left-radius: var(--radius-md);
+}
+
+/* --------------------------------------------
+   网格布局
+   -------------------------------------------- */
+
+.grid-2col {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-6);
+  margin-bottom: var(--spacing-6);
+}
+
+@media (min-width: 768px) {
+  .grid-2col {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.grid-3col {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-6);
+  margin-bottom: var(--spacing-6);
+}
+
+@media (min-width: 768px) {
+  .grid-3col {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* --------------------------------------------
+   外部链接
+   -------------------------------------------- */
+
+.link-external {
+  color: var(--color-blue-600);
+}
+
+.link-external:hover {
+  text-decoration: underline;
+}
+
+/* --------------------------------------------
+   代码块样式补充
+   -------------------------------------------- */
+
+.code-block-content {
+  background-color: var(--color-gray-900);
+  color: var(--color-gray-100);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-5);
+  overflow-x: auto;
+}
+
+.code-text {
+  font-size: var(--text-sm);
+  font-family: var(--font-mono);
+  line-height: 1.7;
+}
+
+.code-output {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--color-gray-100);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-3);
+  display: inline;
+}
+
+.code-badge {
+  display: inline-flex;
+  padding: var(--spacing-1) var(--spacing-3);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  border-radius: var(--radius-full);
+}
+
+.code-badge-green {
+  background-color: var(--color-green-100);
+  color: var(--color-green-700);
+}
+
+.code-number {
+  color: #fde047;
+}
+
+.code-variable {
+  color: #e879f9;
+}
+
+/* --------------------------------------------
+   提示框样式补充
+   -------------------------------------------- */
+
+.tip-box-gradient {
+  background: linear-gradient(to right, var(--color-indigo-600), var(--color-purple-600));
+  border: none;
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-6);
+  margin-bottom: var(--spacing-8);
+}
+
+.tip-box-title-white {
+  color: var(--color-white);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  margin-bottom: var(--spacing-2);
+}
+
+.tip-box-list-light {
+  list-style: disc;
+  padding-left: var(--spacing-5);
+  margin: 0;
+}
+
+.tip-box-list-light li {
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: var(--spacing-2);
+}
+
+/* --------------------------------------------
+   总结区块样式补充
+   -------------------------------------------- */
+
+.summary-gradient {
+  background: linear-gradient(to right, var(--color-indigo-600), var(--color-purple-600));
+  color: var(--color-white);
+}
+
+.summary-gradient h3 {
+  color: var(--color-white);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  margin-bottom: var(--spacing-4);
+}
+
+.summary-gradient p {
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: var(--spacing-4);
+}
+
+.summary-gradient ul {
+  list-style: disc;
+  padding-left: var(--spacing-5);
+  margin-bottom: var(--spacing-6);
+}
+
+.summary-gradient li {
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: var(--spacing-2);
+}
+
+.summary-gradient .border-top {
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  padding-top: var(--spacing-6);
+}
+
+.link-light {
+  color: var(--color-white);
+}
+
+.link-light:hover {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* --------------------------------------------
+   列表项样式
+   -------------------------------------------- */
+
+.list-item-flex {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-2);
+}
+
+.bullet-indigo {
+  color: var(--color-indigo-600);
+}
+
+.list-decimal {
+  list-style-type: decimal;
+  padding-left: var(--spacing-6);
+}
+
+.list-decimal li {
+  margin-bottom: var(--spacing-3);
+  color: var(--color-gray-600);
+}
+
+/* --------------------------------------------
+   信息卡片
+   -------------------------------------------- */
+
+.info-card {
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-4);
+  margin-bottom: var(--spacing-4);
+}
+
+.info-card-blue {
+  background-color: var(--color-blue-50);
+  border: 1px solid var(--color-blue-200);
+}
+
+.info-card-green {
+  background-color: #f0fdf4;
+  border: 1px solid #bbf7d0;
+}
+
+.info-card-purple {
+  background-color: var(--color-purple-100);
+  border: 1px solid #e9d5ff;
+}
+
+.info-card-orange {
+  background-color: var(--color-orange-50);
+  border: 1px solid var(--color-orange-200);
+}
+
+/* --------------------------------------------
+   内联代码块
+   -------------------------------------------- */
+
+.code-inline {
+  background-color: var(--color-gray-100);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-3);
+  font-size: var(--text-xs);
+  font-family: var(--font-mono);
+  color: var(--color-gray-700);
+}
+
+/* --------------------------------------------
+   卡片描述
+   -------------------------------------------- */
+
+.card-description {
+  font-size: var(--text-sm);
+  color: var(--color-gray-600);
+  margin-bottom: var(--spacing-3);
+}
+
+/* --------------------------------------------
+   Tailwind 风格工具类
+   -------------------------------------------- */
+
+.from-indigo-600 {
+  --tw-gradient-from: #4f46e5;
+}
+
+.to-purple-600 {
+  --tw-gradient-to: #9333ea;
+}
+
+.from-indigo-600.to-purple-600 {
+  background: linear-gradient(to right, #4f46e5, #9333ea);
+}
+
+.text-white {
+  color: #ffffff;
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+.mb-6 {
+  margin-bottom: 1.5rem;
+}
+
+.mb-8 {
+  margin-bottom: 2rem;
+}
+
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+
+.mb-3 {
+  margin-bottom: 0.75rem;
+}
+
+.p-4 {
+  padding: 1rem;
+}
+
+.p-6 {
+  padding: 1.5rem;
+}
+
+.p-8 {
+  padding: 2rem;
+}
+
+.rounded-lg {
+  border-radius: 0.5rem;
+}
+
+.rounded-xl {
+  border-radius: 0.75rem;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+}
+
+.text-purple-800 {
+  color: #6b21a8;
+}
+
+.text-purple-700 {
+  color: #7e22ce;
+}
+
+.text-purple-600 {
+  color: #9333ea;
+}
+
+.text-blue-800 {
+  color: #1e40af;
+}
+
+.text-blue-700 {
+  color: #1d4ed8;
+}
+
+.text-blue-600 {
+  color: #2563eb;
+}
+
+.text-green-800 {
+  color: #166534;
+}
+
+.text-green-700 {
+  color: #15803d;
+}
+
+.text-green-600 {
+  color: #16a34a;
+}
+
+.text-orange-800 {
+  color: #9a3412;
+}
+
+.text-orange-700 {
+  color: #c2410c;
+}
+
+.text-orange-600 {
+  color: #ea580c;
+}
+
+.text-indigo-100 {
+  color: #e0e7ff;
+}
+
+.text-indigo-200 {
+  color: #c7d2fe;
+}
+
+.text-indigo-400 {
+  color: #818cf8;
+}
+
+.text-gray-600 {
+  color: #4b5563;
+}
+
+.text-gray-700 {
+  color: #374151;
+}
+
+.text-gray-900 {
+  color: #111827;
+}
+
+.bg-purple-50 {
+  background-color: #faf5ff;
+}
+
+.bg-blue-50 {
+  background-color: #eff6ff;
+}
+
+.bg-green-50 {
+  background-color: #f0fdf4;
+}
+
+.bg-orange-50 {
+  background-color: #fff7ed;
+}
+
+.border-purple-200 {
+  border-color: #e9d5ff;
+}
+
+.border-blue-200 {
+  border-color: #bfdbfe;
+}
+
+.border-green-200 {
+  border-color: #bbf7d0;
+}
+
+.border-orange-200 {
+  border-color: #fed7aa;
+}
+
+.border-indigo-400 {
+  border-color: #818cf8;
+}
+
+.font-semibold {
+  font-weight: 600;
+}
+
+.space-y-2 > * + * {
+  margin-top: 0.5rem;
+}
+
+.gap-2 {
+  gap: 0.5rem;
+}
+
+.gap-6 {
+  gap: 1.5rem;
+}
+
+.inline-flex {
+  display: inline-flex;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.opacity-80 {
+  opacity: 0.8;
+}
+
+.transition-colors {
+  transition-property: color, background-color, border-color;
+  transition-duration: 150ms;
+}
+
+.hover\:underline:hover {
+  text-decoration: underline;
+}
+
+.hover\:text-indigo-200:hover {
+  color: #c7d2fe;
+}
+
+.grid {
+  display: grid;
+}
+
+.grid-cols-1 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+@media (min-width: 768px) {
+  .md\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.pt-6 {
+  padding-top: 1.5rem;
+}
+
+/* --------------------------------------------
+   总结卡片样式
+   -------------------------------------------- */
+
+.summary-card {
+  background: linear-gradient(to right, var(--color-indigo-600), var(--color-purple-600));
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-8);
+  color: var(--color-white);
+  margin-top: var(--spacing-8);
+}
+
+.summary-title {
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: var(--color-white);
+  margin-bottom: var(--spacing-4);
+}
+
+.summary-card p {
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: var(--spacing-4);
+}
+
+.summary-card ul {
+  list-style: disc;
+  padding-left: var(--spacing-5);
+  margin-bottom: var(--spacing-6);
+}
+
+.summary-card li {
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: var(--spacing-2);
+}
+
+.summary-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  padding-top: var(--spacing-6);
+  margin-top: var(--spacing-4);
+}
+
+.summary-next {
+  font-size: var(--text-sm);
+  opacity: 0.8;
+  margin-bottom: var(--spacing-2);
+}
+
+.summary-link {
+  color: var(--color-white);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.summary-link:hover {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* --------------------------------------------
+   目录标题样式
+   -------------------------------------------- */
+
+.toc-title {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-gray-500);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--spacing-4);
+}
+
+/* --------------------------------------------
+   信息卡片灰色样式
+   -------------------------------------------- */
+
+.info-card-gray {
+  background-color: var(--color-gray-50);
+  border: 1px solid var(--color-gray-200);
+}
+
+/* --------------------------------------------
+   数据表格样式
+   -------------------------------------------- */
+
+.table-wrapper {
+  overflow-x: auto;
+  margin-bottom: var(--spacing-6);
+}
+
+.data-table {
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.data-table thead {
+  background-color: var(--color-gray-50);
+}
+
+.data-table th {
+  padding: var(--spacing-3) var(--spacing-6);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-gray-500);
+  border-bottom: 1px solid var(--color-gray-200);
+}
+
+.data-table td {
+  padding: var(--spacing-3) var(--spacing-6);
+  border-bottom: 1px solid var(--color-gray-200);
+}
+
+.data-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* --------------------------------------------
+   TipBox 额外类型样式
+   -------------------------------------------- */
+
+.tip-box-info {
+  background-color: var(--color-blue-50);
+  border-left: 4px solid var(--color-blue-600);
+}
+
+.tip-box-info .tip-box-title {
+  color: var(--color-blue-900);
+}
+
+.tip-box-info p,
+.tip-box-info li {
+  color: var(--color-blue-800);
+}
+
+.tip-box-warning {
+  background-color: var(--color-orange-50);
+  border-left: 4px solid var(--color-orange-600);
+}
+
+.tip-box-warning .tip-box-title {
+  color: var(--color-orange-900);
+}
+
+.tip-box-warning p,
+.tip-box-warning li {
+  color: var(--color-orange-800);
+}
+
+.tip-box-tip {
+  background-color: #fefce8;
+  border-left: 4px solid #ca8a04;
+}
+
+.tip-box-tip .tip-box-title {
+  color: #713f12;
+}
+
+.tip-box-tip p,
+.tip-box-tip li {
+  color: #854d0e;
+}
+
+.tip-box-success {
+  background-color: #f0fdf4;
+  border-left: 4px solid var(--color-green-600);
+}
+
+.tip-box-success .tip-box-title {
+  color: var(--color-green-900);
+}
+
+.tip-box-success p,
+.tip-box-success li {
+  color: var(--color-green-800);
+}
+
+/* --------------------------------------------
+   Summary Section 样式 (HomePage 使用)
+   -------------------------------------------- */
+
+.summary-section {
+  background: linear-gradient(135deg, var(--color-indigo-600) 0%, var(--color-purple-600) 100%);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-8);
+  color: var(--color-white);
+  margin-top: var(--spacing-8);
+}
+
+.summary-section h3 {
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: var(--color-white);
+  margin-bottom: var(--spacing-4);
+}
+
+.summary-section > p {
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: var(--spacing-4);
+}
+
+.summary-section ul {
+  list-style: disc;
+  padding-left: var(--spacing-5);
+  margin-bottom: var(--spacing-6);
+}
+
+.summary-section li {
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: var(--spacing-2);
+}
+
+.summary-section .border-top {
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  padding-top: var(--spacing-6);
+  margin-top: var(--spacing-4);
+}
+
+.summary-section .border-top p {
+  color: rgba(255, 255, 255, 0.95);
+  margin: 0;
+}
+
+/* --------------------------------------------
+   按钮样式补充
+   -------------------------------------------- */
+
+.btn-lg {
+  padding: var(--spacing-4) var(--spacing-8);
+  font-size: var(--text-lg);
+  border-radius: var(--radius-lg);
+}
+
+/* 按钮容器上边距 */
+.content-section .text-center {
+  margin-top: var(--spacing-8);
+}
+
+/* --------------------------------------------
+   目录导航样式
+   -------------------------------------------- */
+
+.toc-nav-title {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-gray-900);
+  margin-bottom: var(--spacing-3);
+}
+
+.toc-list {
+  list-style: decimal;
+  padding-left: var(--spacing-5);
+  margin: 0;
+}
+
+.toc-item {
+  margin-bottom: var(--spacing-2);
+}
+
+.toc-link {
+  color: var(--color-gray-600);
+  font-size: var(--text-sm);
+  text-decoration: none;
+}
+
+.toc-link:hover {
+  color: var(--color-indigo-600);
+}
+
+.toc-number {
+  margin-right: var(--spacing-2);
+}
+
+/* --------------------------------------------
+   卡片网格布局（两列并排）
+   -------------------------------------------- */
+
+.grid-2col {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-6);
+  margin-bottom: var(--spacing-6);
+}
+
+.grid-3col {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-6);
+  margin-bottom: var(--spacing-6);
+}
+
+@media (max-width: 768px) {
+  .grid-2col,
+  .grid-3col {
+    grid-template-columns: 1fr;
+  }
+}
