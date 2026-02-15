@@ -7,13 +7,32 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            200: '#c7d2fe',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
 </head>
 <body class="bg-white text-gray-800 antialiased">
     <div class="flex min-h-screen">
-        
-
-
-<aside class="w-[280px] fixed h-screen bg-white border-r border-gray-200 overflow-y-auto pb-8">
+        <aside class="w-[280px] fixed h-screen bg-white border-r border-gray-200 overflow-y-auto pb-8">
   <div class="p-6">
     <div class="flex items-center gap-3 mb-8">
       <div class="w-10 h-10 bg-indigo-600 rounded-lg flex items-center justify-center">
@@ -50,11 +69,11 @@
         </ul>
       </div>
 
-       <div>
+      <div>
         <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">RAG 完整指南</h3>
         <ul class="space-y-1">
           <li><a href="rag-intro.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all text-center" data-page="rag-intro">RAG 简介</a></li>
-          <li><a href="rag-setup.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all text-center" data-page="rag-setup">RAG 环境搭建</a></li>
+          <li><a href="rag-setup.html" class="nav-link bg-indigo-50 text-indigo-700 font-medium block px-4 py-2.5 rounded-md transition-all text-center" data-page="rag-setup">RAG 环境搭建</a></li>
           <li><a href="rag-implementation.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all text-center" data-page="rag-implementation">RAG 实现</a></li>
           <li><a href="rag-advanced.html" class="nav-link block px-4 py-2.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition-all text-center" data-page="rag-advanced">RAG 高级</a></li>
         </ul>
@@ -105,106 +124,561 @@
     </div>
   </div>
 </aside>
-<!-- class="block px-4 py-2.5 text-sm bg-indigo-50 text-indigo-700 font-medium rounded-md transition-all text-center" -->
-<!-- class="block px-4 py-2.5 text-sm bg-indigo-50 text-indigo-700 font-medium rounded-md transition-all text-center" -->
-<!-- class="block px-4 py-2.5 text-sm bg-indigo-50 text-indigo-700 font-medium rounded-md transition-all text-center" -->
-
 
         <main class="flex-1 ml-[280px] px-8 py-12 max-w-7xl mx-auto">
             <section class="mb-12">
-                <h1 class="text-4xl font-bold text-gray-900 mb-8 leading-tight">RAG环境搭建</h1>
-                <p class="text-lg text-gray-600 max-w-3xl mb-10 leading-relaxed">
-                    搭建RAG开发环境，配置必要的依赖和工具。
+                <div class="flex items-center gap-3 mb-8 text-sm">
+                    <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-medium">RAG</span>
+                    <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-medium">环境搭建</span>
+                    <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-medium">~30分钟</span>
+                </div>
+
+                <h1 class="text-5xl font-bold text-gray-900 mb-6">RAG环境搭建</h1>
+                <p class="text-xl text-gray-600 mb-8 leading-relaxed max-w-4xl">
+                    搭建RAG开发环境，配置必要的依赖和工具，为后续实现做准备。
                 </p>
+
+                <div class="bg-gray-50 rounded-lg p-6 mb-10">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">📚 本章学习目标</h2>
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex items-start gap-3">
+                            <span class="text-green-600 text-2xl font-bold">✓</span>
+                            <span class="flex-1"><strong class="text-gray-900">配置Maven依赖</strong></span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-green-600 text-2xl font-bold">✓</span>
+                            <span class="flex-1"><strong class="text-gray-900">设置环境变量</strong></span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-green-600 text-2xl font-bold">✓</span>
+                            <span class="flex-1"><strong class="text-gray-900">选择并配置向量数据库</strong></span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-green-600 text-2xl font-bold">✓</span>
+                            <span class="flex-1"><strong class="text-gray-900">创建项目结构</strong></span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-green-600 text-2xl font-bold">✓</span>
+                            <span class="flex-1"><strong class="text-gray-900">验证Hello World示例</strong></span>
+                        </li>
+                    </ul>
+                </div>
             </section>
 
-            <section class="mb-12">
-                <h2 class="text-2xl font-semibold text-gray-900 mb-6 pb-3 border-b border-gray-200">什么是RAG？</h2>
-                <div class="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-lg p-6 mb-6">
-                    <p class="text-gray-700 mb-4">
-                        <strong>检索增强生成（Retrieval-Augmented Generation，RAG）</strong>是一种技术，
-                        通过在将用户问题发送给LLM之前，先从外部数据源检索相关信息，然后将这些信息注入到提示词中。
-                        这样可以让LLM访问它训练数据之外的私有、实时或特定领域的知识。
-                    </p>
+            <section id="maven-setup" class="mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                    <span class="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center text-indigo-600">1</span>
+                    Maven依赖配置
+                </h2>
+
+                <div class="bg-white rounded-lg shadow-md p-6 mb-6 border border-gray-200">
+                    <h3 class="text-lg font-bold text-gray-900 mb-4">添加LangChain4j依赖</h3>
+                    <p class="text-gray-600 mb-4">在pom.xml中添加LangChain4j核心依赖</p>
+                    <div class="bg-gray-900 rounded-lg p-5 mb-4 overflow-x-auto">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-mono text-gray-400 uppercase">pom.xml</span>
+                            <span class="text-xs text-gray-500">Maven配置</span>
+                        </div>
+                        <pre class="text-gray-100 text-sm font-mono"><code>&lt;dependencies&gt;
+    &lt;!-- 核心模块 --&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;dev.langchain4j&lt;/groupId&gt;
+        &lt;artifactId&gt;langchain4j-core&lt;/artifactId&gt;
+        &lt;version&gt;0.35.0&lt;/version&gt;
+    &lt;/dependency&gt;
+
+    &lt;!-- 向量存储 --&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;dev.langchain4j&lt;/groupId&gt;
+        &lt;artifactId&gt;langchain4j-pinecone&lt;/artifactId&gt;
+        &lt;version&gt;0.35.0&lt;/version&gt;
+    &lt;/dependency&gt;
+
+    &lt;!-- OpenAI模型 --&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;dev.langchain4j&lt;/groupId&gt;
+        &lt;artifactId&gt;langchain4j-open-ai&lt;/artifactId&gt;
+        &lt;version&gt;0.35.0&lt;/version&gt;
+    &lt;/dependency&gt;
+&lt;/dependencies&gt;</code></pre>
+                    </div>
+                    <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-lg mt-4">
+                        <h4 class="font-bold text-blue-900 mb-2">💡 版本说明</h4>
+                        <ul class="space-y-2 text-blue-800 text-sm">
+                            <li>• <strong>langchain4j-core</strong>：核心模块，包含DocumentLoader、TextSplitter、EmbeddingModel等</li>
+                            <li>• <strong>langchain4j-pinecone</strong>：Pinecone向量数据库集成（可选）</li>
+                            <li>• <strong>langchain4j-open-ai</strong>：OpenAI模型集成，支持GPT-4、GPT-3.5等模型</li>
+                            <li>• 访问 <a href="https://docs.langchain4j.dev" class="text-blue-600 hover:underline" target="_blank">官方文档</a> 获取最新版本</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="environment-variables" class="mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                    <span class="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center text-indigo-600">2</span>
+                    环境变量配置
+                </h2>
+
+                <div class="bg-white rounded-lg shadow-md p-6 mb-6 border border-gray-200">
+                    <h3 class="text-lg font-bold text-gray-900 mb-4">API密钥配置</h3>
+                    <p class="text-gray-600 mb-4">创建.env文件存储API密钥，确保安全性和灵活性</p>
+                    <div class="bg-gray-900 rounded-lg p-5 mb-4 overflow-x-auto">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-mono text-gray-400 uppercase">.env</span>
+                            <span class="text-xs text-gray-500">环境变量文件</span>
+                        </div>
+                        <pre class="text-gray-100 text-sm font-mono"><code># OpenAI配置
+OPENAI_API_KEY=sk-proj-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+# 模型配置（可选）
+OPENAI_MODEL=gpt-4
+OPENAI_TEMPERATURE=0.7
+OPENAI_MAX_TOKENS=2000
+
+# 向量数据库配置
+PINECONE_API_KEY=xxxxxxxx-xxxx-xxxx-xxxx-xxxx-xxxx
+PINECONE_ENVIRONMENT=production
+PINECONE_INDEX=langchain4j-demo</CODE></pre>
+                    </div>
+                    <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-5 mt-4">
+                        <h4 class="font-bold text-yellow-900 mb-2">⚠️ 安全提示</h4>
+                        <ul class="space-y-2 text-yellow-800 text-sm">
+                            <li>• <strong>永远不要</strong>将.env文件提交到Git仓库</li>
+                            <li>• 使用.env.example作为模板提交</li>
+                            <li>• 不同环境（开发、测试、生产）使用不同的密钥</li>
+                            <li>• 定期轮换API密钥</li>
+                        </ul>
+                    </div>
                 </div>
 
                 <div class="bg-white rounded-lg shadow-md p-6 mb-6 border border-gray-200">
-                    <h4 class="font-semibold text-gray-900 mb-4 text-xl">RAG工作流程</h4>
-                    <ol class="space-y-3 text-gray-600 ml-6">
-                        <li><strong>1. 文档摄入（Ingestion）</strong> - 加载原始文档，进行清理、分块、生成Embedding</li>
-                        <li><strong>2. 向量存储</strong> - 将Embedding存储到向量数据库中</li>
-                        <li><strong>3. 检索（Retrieval）</strong> - 用户提问时，将问题也转为Embedding，检索相关文档</li>
-                        <li><strong>4. 增强（Augmentation）</strong> - 将检索到的文档和问题一起组装成提示词</li>
-                        <li><strong>5. 生成（Generation）</strong> - LLM基于增强的提示词生成回答</li>
-                    </ol>
+                    <h3 class="text-lg font-bold text-gray-900 mb-4">.env.example示例</h3>
+                    <p class="text-gray-600 mb-4">提交到Git的模板文件，不包含真实密钥</p>
+                    <div class="bg-gray-900 rounded-lg p-5 mb-4 overflow-x-auto">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-mono text-gray-400 uppercase">.env.example</span>
+                            <span class="text-xs text-gray-500">模板文件</span>
+                        </div>
+                        <pre class="text-gray-100 text-sm font-mono"><code># OpenAI配置
+OPENAI_API_KEY=your-openai-api-key-here
+
+# 模型配置（可选）
+OPENAI_MODEL=gpt-4
+OPENAI_TEMPERATURE=0.7
+OPENAI_MAX_TOKENS=2000
+
+# 向量数据库配置
+PINECONE_API_KEY=your-pinecone-api-key-here
+PINECONE_ENVIRONMENT=production
+PINECONE_INDEX=your-index-name
+PINECONE_DIMENSION=1536</code></pre>
+                    </div>
                 </div>
 
-                <p class="text-gray-600">
-                    RAG解决了传统LLM的几个关键问题：
-                </p>
-                <ul class="list-none space-y-2 text-gray-600 ml-6">
-                    <li class="flex items-start gap-2">
-                        <span class="text-indigo-600">✓</span>
-                        <span><strong>知识截止</strong> - 可以访问训练数据之外的信息</span>
-                    </li>
-                    <li class="flex items-start gap-2">
-                        <span class="text-indigo-600">✓</span>
-                        <span><strong>幻觉</strong> - 基于检索的事实减少胡编乱造</span>
-                    </li>
-                    <li class="flex items-start gap-2">
-                        <span class="text-indigo-600">✓</span>
-                        <span><strong>领域知识</strong> - 可以访问企业内部文档、特定领域知识</span>
-                    </li>
-                    <li class="flex items-start gap-2">
-                        <span class="text-indigo-600">✓</span>
-                        <span><strong>数据隐私</strong> - 私有数据可以本地存储，无需上传到公有云</span>
-                    </li>
-                </ul>
+                <div class="bg-green-50 border border-green-200 rounded-lg p-5 mb-6">
+                    <h4 class="font-bold text-green-900 mb-2">✅ Java环境变量读取</h4>
+                    <div class="bg-green-900 rounded-lg p-4 mb-3 overflow-x-auto">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-mono text-gray-400 uppercase">Environment.java</span>
+                            <span class="text-xs text-gray-500">配置类</span>
+                        </div>
+                        <pre class="text-gray-100 text-sm font-mono"><code>import java.util.Properties;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
+public class Environment {
+    private static final Properties props = new Properties();
+
+    static {
+        try (InputStream is = Files.newInputStream(
+                Paths.get(".env"))) {
+            props.load(is);
+        }
+    }
+
+    public static String get(String key) {
+        return props.getProperty(key, "");
+    }
+
+    public static String getOpenAiApiKey() {
+        return get("OPENAI_API_KEY");
+    }
+
+    public static String getPineconeApiKey() {
+        return get("PINECONE_API_KEY");
+    }
+
+    public static String getPineconeIndex() {
+        return get("PINECONE_INDEX");
+    }
+}</code></pre>
+                    </div>
+                </div>
             </section>
 
-            <section class="mb-12">
-                <h2 class="text-2xl font-semibold text-gray-900 mb-6 pb-3 border-b border-gray-200">为什么需要RAG？</h2>
+            <section id="vector-db-setup" class="mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                    <span class="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center text-indigo-600">3</span>
+                    向量数据库选择与配置
+                </h2>
+
+                <div class="bg-blue-50 border-l-4 border-blue-500 p-5 rounded-r-lg mb-6">
+                    <h3 class="font-bold text-blue-900 mb-3">💡 向量数据库选择指南</h3>
+                    <p class="text-blue-800 text-base mb-3">
+                        选择向量数据库时，需要考虑性能、成本、可用性、扩展性等因素。
+                    </p>
+                </div>
+
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                    <div class="bg-white border border-gray-200 rounded-xl p-6">
-                        <h4 class="text-lg font-semibold text-gray-900 mb-3">传统LLM的局限</h4>
-                        <ul class="space-y-2 text-gray-600 text-sm">
-                            <li>• 知识截止到训练时间</li>
-                            <li>• 无法访问私有数据</li>
-                            <li>• 容易产生幻觉</li>
-                            <li>• 缺乏领域特定知识</li>
-                        </ul>
+                    <div class="bg-white border border-gray-200 rounded-xl p-5 hover:shadow-lg transition-shadow">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="text-3xl">🌲️</div>
+                            <h4 class="font-bold text-gray-900 mb-1">Pinecone</h4>
+                        </div>
+                        <div class="space-y-2 text-gray-600 text-sm">
+                            <p class="mb-2"><strong>特点</strong>：托管服务、高性能、易集成</p>
+                            <p class="mb-2"><strong>适用</strong>：生产环境、快速原型、中小规模应用</p>
+                            <p class="mb-2"><strong>成本</strong>：按检索次数和存储计费，起步成本低</p>
+                            <p class="mb-2"><strong>优点</strong>：无需运维、自动扩展、全球CDN加速</p>
+                        </div>
                     </div>
-                    <div class="bg-white border border-gray-200 rounded-xl p-6">
-                        <h4 class="text-lg font-semibold text-gray-900 mb-3">RAG的优势</h4>
-                        <ul class="space-y-2 text-gray-600 text-sm">
-                            <li>• 实时访问外部知识</li>
-                            <li>• 支持私有数据源</li>
-                            <li>• 基于事实减少幻觉</li>
-                            <li>• 可扩展领域知识库</li>
-                        </ul>
+                    <div class="bg-white border border-gray-200 rounded-xl p-5 hover:shadow-lg transition-shadow">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="text-3xl">🗄️</div>
+                            <h4 class="font-bold text-gray-900 mb-1">Chroma</h4>
+                        </div>
+                        <div class="space-y-2 text-gray-600 text-sm">
+                            <p class="mb-2"><strong>特点</strong>：开源、本地部署、可持久化</p>
+                            <p class="mb-2"><strong>适用</strong>：数据隐私敏感、需要本地控制、开发测试</p>
+                            <p class="mb-2"><strong>成本</strong>：完全免费</p>
+                            <p class="mb-2"><strong>优点</strong>：数据完全本地、无网络延迟、可自定义</p>
+                        </div>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-xl p-5 hover:shadow-lg transition-shadow">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="text-3xl">🟢</div>
+                            <h4 class="font-bold text-gray-900 mb-1">Weaviate</h4>
+                        </div>
+                        <div class="space-y-2 text-gray-600 text-sm">
+                            <p class="mb-2"><strong>特点</strong>：高性能、模块化、支持多模态</p>
+                            <p class="mb-2"><strong>适用</strong>：大规模应用、需要高级功能、多模态数据</p>
+                            <p class="mb-2"><strong>成本</strong>：有免费层，付费版功能更强</p>
+                            <p class="mb-2"><strong>优点</strong>：GraphQL API、灵活的过滤、对象存储集成</p>
+                        </div>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-xl p-5 hover:shadow-lg transition-shadow">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="text-3xl">🟡</div>
+                            <h4 class="font-bold text-gray-900 mb-1">Milvus</h4>
+                        </div>
+                        <div class="space-y-2 text-gray-600 text-sm">
+                            <p class="mb-2"><strong>特点</strong>：高性能向量检索、支持GPU加速</p>
+                            <p class="mb-2"><strong>适用</strong>：超大规模数据、需要极致性能、本地部署</p>
+                            <p class="mb-2"><strong>成本</strong>：开源免费，需要自行部署运维</p>
+                            <p class="mb-2"><strong>优点</strong>：支持10亿级向量、毫秒级响应、支持分布式</p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 mb-6">
-                    <h3 class="text-lg font-semibold text-gray-900 mb-3">典型应用场景</h3>
-                    <ul class="list-none space-y-2 text-gray-600">
-                        <li class="flex items-start gap-2">
-                            <span class="text-indigo-600">📚</span>
-                            <span>企业知识库问答 - 基于公司文档回答问题</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-indigo-600">📖</span>
-                            <span>技术文档助手 - 基于产品文档提供支持</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-indigo-600">🔍</span>
-                            <span>研究助手 - 基于论文库进行文献检索</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-indigo-600">💼</span>
-                            <span>法律文档分析 - 基于法律条文和案例提供咨询</span>
-                        </li>
-                    </ul>
+                <div class="bg-indigo-50 border-l-4 border-indigo-500 p-5 rounded-r-lg">
+                    <h4 class="font-bold text-indigo-900 mb-2">🏗️ 推荐方案</h4>
+                    <p class="text-indigo-800 text-base">
+                        本指南使用Pinecone作为示例，因为它易于上手且适合学习。您可以根据实际需求选择其他数据库。
+                    </p>
+                </div>
+            </section>
+
+            <section id="project-structure" class="mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                    <span class="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center text-indigo-600">4</span>
+                    项目结构
+                </h2>
+
+                <div class="bg-white rounded-lg shadow-md p-6 mb-6 border border-gray-200">
+                    <h3 class="text-lg font-bold text-gray-900 mb-4">推荐项目结构</h3>
+                    <p class="text-gray-600 mb-4">清晰的项目结构有助于代码组织和团队协作</p>
+                    <div class="bg-gray-900 rounded-lg p-5 mb-4 overflow-x-auto">
+                        <pre class="text-gray-100 text-sm font-mono"><code>langchain4j-rag-demo/
+├── src/
+│   ├── main/
+│   │   └── java/
+│   │       └── com/example/rag/
+│   │           ├── Main.java
+│   │           ├── config/
+│   │           │   └── Environment.java
+│   │           ├── loader/
+│   │           │   └── DocumentLoader.java
+│   │           ├── splitter/
+│   │           │   └── TextSplitter.java
+│   │           ├── embedding/
+│   │           │   └── EmbeddingService.java
+│   │           └── retriever/
+│   │               └── VectorRetriever.java
+├── resources/
+│   └── application.properties
+├── documents/
+│   └── sample.txt
+├── .env
+├── .env.example
+└── pom.xml</code></pre>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <div class="bg-white border border-gray-200 rounded-xl p-5">
+                        <h4 class="font-bold text-gray-900 mb-3">📁 src/main/java</h4>
+                        <p class="text-gray-600 text-sm mb-2">
+                            主Java源码目录，所有业务逻辑代码
+                        </p>
+                        <p class="text-gray-600 text-sm">
+                            <strong>config/</strong>：配置类（Environment、配置加载）
+                        </p>
+                        <p class="text-gray-600 text-sm">
+                            <strong>loader/</strong>：文档加载器
+                        </p>
+                        <p class="text-gray-600 text-sm">
+                            <strong>splitter/</strong>：文本分块器
+                        </p>
+                        <p class="text-gray-600 text-sm">
+                            <strong>embedding/</strong>：Embedding服务
+                        </p>
+                        <p class="text-gray-600 text-sm">
+                            <strong>retriever/</strong>：检索器实现
+                        </p>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-xl p-5">
+                        <h4 class="font-bold text-gray-900 mb-3">📂 resources/</h4>
+                        <p class="text-gray-600 text-sm mb-2">
+                            配置文件和资源文件
+                        </p>
+                        <p class="text-gray-600 text-sm">
+                            <strong>application.properties</strong>：Spring Boot配置
+                        </p>
+                        <p class="text-gray-600 text-sm">
+                            <strong>logback.xml</strong>：日志配置
+                        </p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <div class="bg-white border border-gray-200 rounded-xl p-5">
+                        <h4 class="font-bold text-gray-900 mb-3">📄 documents/</h4>
+                        <p class="text-gray-600 text-sm mb-2">
+                            文档存储目录
+                        </p>
+                        <p class="text-gray-600 text-sm">
+                            存放待处理的原始文档
+                        </p>
+                        <p class="text-gray-600 text-sm">
+                            <strong>支持格式</strong>：TXT、PDF、MD、JSON
+                        </p>
+                        <p class="text-gray-600 text-sm">
+                            <strong>组织方式</strong>：按主题、日期或类型分类
+                        </p>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-xl p-5">
+                        <h4 class="font-bold text-gray-900 mb-3">🔧 配置文件</h4>
+                        <p class="text-gray-600 text-sm mb-2">
+                            项目根目录配置文件
+                        </p>
+                        <p class="text-gray-600 text-sm">
+                            <strong>.env</strong>：环境变量（本地开发密钥）
+                        </p>
+                        <p class="text-gray-600 text-sm">
+                            <strong>.env.example</strong>：环境变量模板（Git提交）
+                        </p>
+                        <p class="text-gray-600 text-sm">
+                            <strong>.gitignore</strong>：Git忽略规则，保护敏感信息
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="hello-world" class="mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                    <span class="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center text-indigo-600">5</span>
+                    Hello World验证
+                </h2>
+
+                <div class="bg-white rounded-lg shadow-md p-6 mb-6 border border-gray-200">
+                    <h3 class="text-lg font-bold text-gray-900 mb-4">验证环境配置</h3>
+                    <p class="text-gray-600 mb-4">
+                        创建一个简单的RAG系统，验证所有配置是否正确。
+                    </p>
+                    <div class="bg-gray-900 rounded-lg p-5 mb-4 overflow-x-auto">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-mono text-gray-400 uppercase">HelloWorldRAG.java</span>
+                            <span class="text-xs text-gray-500">完整示例</span>
+                        </div>
+                        <pre class="text-gray-100 text-sm font-mono"><code>import dev.langchain4j.data.document.Document;
+import dev.langchain4j.data.document.loader.FileSystemDocumentLoader;
+import dev.langchain4j.data.segment.TextSegment;
+import dev.langchain4j.model.openai.OpenAiEmbeddingModel;
+import dev.langchain4j.model.openai.OpenAiChatModel;
+import dev.langchain4j.model.openai.OpenAiChatModelName;
+import dev.langchain4j.model.output.JsonOutputParser;
+import dev.langchain4j.rag.content.retriever.ContentRetriever;
+import dev.langchain4j.rag.content.retriever.EmbeddingStoreContentRetriever;
+import dev.langchain4j.store.embedding.EmbeddingStore;
+import dev.langchain4j.store.embedding.inmemory.InMemoryEmbeddingStore;
+
+import java.util.List;
+
+public class HelloWorldRAG {
+
+    private static final String API_KEY = System.getenv("OPENAI_API_KEY");
+    private static final String PINECONE_API_KEY = System.getenv("PINECONE_API_KEY");
+
+    public static void main(String[] args) {
+        System.out.println("=== RAG Hello World ===");
+        
+        try {
+            // 1. 创建Embedding模型
+            EmbeddingModel embeddingModel = OpenAiEmbeddingModel.builder()
+                .apiKey(API_KEY)
+                .modelName("text-embedding-3-small")
+                .build();
+            
+            System.out.println("✓ Embedding模型创建成功");
+            
+            // 2. 加载示例文档
+            DocumentLoader loader = FileSystemDocumentLoader.builder()
+                .build();
+            
+            List&lt;Document&gt; documents = loader.load("documents/sample.txt");
+            
+            System.out.println("✓ 文档加载成功，共 " + documents.size() + " 个文档");
+            
+            // 3. 创建向量存储（内存存储）
+            EmbeddingStore&lt;TextSegment&gt; store = InMemoryEmbeddingStore.create();
+            
+            System.out.println("✓ 向量存储创建成功");
+            
+            // 4. 将文档添加到存储
+            store.addAll(embeddingModel.embedAll(documents));
+            
+            System.out.println("✓ 文档向量化成功");
+            
+            // 5. 创建检索器
+            ContentRetriever retriever = EmbeddingStoreContentRetriever.builder()
+                .embeddingModel(embeddingModel)
+                .embeddingStore(store)
+                .maxResults(3)
+                .build();
+            
+            System.out.println("✓ 检索器创建成功");
+            
+            // 6. 创建Chat模型
+            ChatLanguageModel chatModel = OpenAiChatModel.builder()
+                .apiKey(API_KEY)
+                .modelName(OpenAiChatModelName.GPT_4)
+                .build();
+            
+            System.out.println("✓ Chat模型创建成功");
+            
+            // 7. 创建AI Service
+            Assistant assistant = AiServices.builder(Assistant.class)
+                .chatLanguageModel(chatModel)
+                .contentRetriever(retriever)
+                .build();
+            
+            System.out.println("✓ RAG系统创建成功\n");
+            
+            // 8. 测试查询
+            String question = "什么是LangChain4j？";
+            System.out.println("\n测试查询: " + question);
+            String answer = assistant.chat(question);
+            
+            System.out.println("\n=== RAG回答 ===");
+            System.out.println(answer);
+            
+        } catch (Exception e) {
+            System.err.println("✗ 错误: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+}
+
+interface Assistant {
+    String chat(String message);
+}</code></pre>
+                    </div>
+                    <div class="bg-green-50 border border-green-200 rounded-lg p-5 mt-4">
+                        <h4 class="font-bold text-green-900 mb-2">💡 运行步骤</h4>
+                        <ol class="space-y-2 text-green-800 text-sm">
+                            <li><strong>步骤1</strong>：创建.env和documents目录</li>
+                            <li><strong>步骤2</strong>：在documents中创建sample.txt，写入测试文档</li>
+                            <li><strong>步骤3</strong>：编译并运行HelloWorldRAG.java</li>
+                            <li><strong>预期输出</strong>：看到各个组件创建成功的日志和最终回答</li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+
+            <section id="troubleshooting" class="mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6">🔧 常见问题</h2>
+                <div class="space-y-4">
+                    <div class="bg-white border border-gray-200 rounded-xl p-5">
+                        <h4 class="font-bold text-gray-900 mb-3">Q: Maven依赖下载失败？</h4>
+                        <p class="text-gray-700 mb-2">
+                            A: 检查网络连接，确认Maven镜像源。可以尝试使用阿里云镜像或清除本地缓存。
+                        </p>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-xl p-5">
+                        <h4 class="font-bold text-gray-900 mb-3">Q: .env文件读取失败？</h4>
+                        <p class="text-gray-700 mb-2">
+                            A: 确保.env文件格式正确，每行一个变量，等号后无空格。检查文件编码是否为UTF-8。
+                        </p>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-xl p-5">
+                        <h4 class="font-bold text-gray-900 mb-3">Q: API密钥无效？</h4>
+                        <p class="text-gray-700 mb-2">
+                            A: 访问OpenAI和Pinecone控制台，重新生成API密钥。确保密钥有足够的权限。
+                        </p>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-xl p-5">
+                        <h4 class="font-bold text-gray-900 mb-3">Q: 向量数据库连接失败？</h4>
+                        <p class="text-gray-700 mb-2">
+                            A: 检查API密钥和索引名称是否正确，确认向量数据库服务状态。
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="best-practices" class="mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6">✨ 最佳实践</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <div class="bg-white border border-gray-200 rounded-xl p-5 hover:shadow-lg transition-shadow">
+                        <h4 class="font-bold text-gray-900 mb-3">🔒 安全实践</h4>
+                        <ul class="space-y-2 text-gray-600 text-sm">
+                            <li>• 使用环境变量管理敏感信息</li>
+                            <li>• 永远不要提交.env到版本控制</li>
+                            <li>• 定期轮换API密钥</li>
+                            <li>• 限制API密钥的权限范围</li>
+                            <li>• 生产环境使用专用密钥</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-xl p-5 hover:shadow-lg transition-shadow">
+                        <h4 class="font-bold text-gray-900 mb-3">⚡ 性能优化</h4>
+                        <ul class="space-y-2 text-gray-600 text-sm">
+                            <li>• 使用批量Embedding生成</li>
+                            <li>• 实现检索结果缓存</li>
+                            <li>• 选择合适的向量维度（1536是常用值）</li>
+                            <li>• 使用更小的模型进行检索</li>
+                            <li>• 限制每次检索的文档数量</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-xl p-5 hover:shadow-lg transition-shadow">
+                        <h4 class="font-bold text-gray-900 mb-3">📝 开发建议</h4>
+                        <ul class="space-y-2 text-gray-600 text-sm">
+                            <li>• 先在内存向量数据库上测试原型</li>
+                            <li>• 使用日志记录调试RAG流程</li>
+                            <li>• 实现分步测试，先测试各组件</li>
+                            <li>• 添加检索质量监控指标</li>
+                            <li>• 编写单元测试验证检索结果</li>
+                        </ul>
+                    </div>
                 </div>
             </section>
 
