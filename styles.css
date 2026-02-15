@@ -601,3 +601,24 @@ body {
         grid-template-columns: 1fr;
     }
 }
+
+/* 内容容器居中样式 - 容器居中但文字左对齐 */
+.content-container {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.content-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* 响应式内容容器 */
+@media (max-width: 768px) {
+    .content-container,
+    .content-wrapper {
+        max-width: 100%;
+        padding: 0;
+    }
+}

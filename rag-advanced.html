@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>Embedding模型 - LangChain4j 学习指南</title>
+    <title>RAG高级 - LangChain4j 学习指南</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -110,85 +110,108 @@
 <!-- class="block px-4 py-2.5 text-sm bg-indigo-50 text-indigo-700 font-medium rounded-md transition-all text-center" -->
 
 
-        <main class="flex-1 ml-[280px] px-8 py-12 max-w-7xl mx-auto">>
+        <main class="flex-1 ml-[280px] px-8 py-12 max-w-7xl mx-auto">
             <section class="mb-12">
-                <h1 class="text-4xl font-bold text-gray-900 mb-8 leading-tight">Embedding模型</h1>
+                <h1 class="text-4xl font-bold text-gray-900 mb-8 leading-tight">RAG高级</h1>
                 <p class="text-lg text-gray-600 max-w-3xl mb-10 leading-relaxed">
-                    掌握Embedding模型与向量化技术，理解文本语义、相似度计算，为RAG系统打下基础。
+                    探索RAG的高级技巧，如混合检索、重排序、多轮对话等。
                 </p>
             </section>
 
             <section class="mb-12">
-                <h2 class="text-2xl font-semibold text-gray-900 mb-6 pb-3 border-b border-gray-200">什么是Embedding</h2>
-                <p class="text-gray-600 mb-4">
-                    Embedding是将文本、图像等内容转换为高维向量数字的技术。向量表示保留了语义信息，使得计算机可以计算内容之间的相似度。
+                <h2 class="text-2xl font-semibold text-gray-900 mb-6 pb-3 border-b border-gray-200">什么是RAG？</h2>
+                <div class="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-lg p-6 mb-6">
+                    <p class="text-gray-700 mb-4">
+                        <strong>检索增强生成（Retrieval-Augmented Generation，RAG）</strong>是一种技术，
+                        通过在将用户问题发送给LLM之前，先从外部数据源检索相关信息，然后将这些信息注入到提示词中。
+                        这样可以让LLM访问它训练数据之外的私有、实时或特定领域的知识。
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-6 mb-6 border border-gray-200">
+                    <h4 class="font-semibold text-gray-900 mb-4 text-xl">RAG工作流程</h4>
+                    <ol class="space-y-3 text-gray-600 ml-6">
+                        <li><strong>1. 文档摄入（Ingestion）</strong> - 加载原始文档，进行清理、分块、生成Embedding</li>
+                        <li><strong>2. 向量存储</strong> - 将Embedding存储到向量数据库中</li>
+                        <li><strong>3. 检索（Retrieval）</strong> - 用户提问时，将问题也转为Embedding，检索相关文档</li>
+                        <li><strong>4. 增强（Augmentation）</strong> - 将检索到的文档和问题一起组装成提示词</li>
+                        <li><strong>5. 生成（Generation）</strong> - LLM基于增强的提示词生成回答</li>
+                    </ol>
+                </div>
+
+                <p class="text-gray-600">
+                    RAG解决了传统LLM的几个关键问题：
                 </p>
-                <div class="bg-gray-50 border border-gray-200 rounded-xl p-6">
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">主要特性</h3>
-                    <ul class="list-none space-y-3 text-gray-600 ml-6">
+                <ul class="list-none space-y-2 text-gray-600 ml-6">
+                    <li class="flex items-start gap-2">
+                        <span class="text-indigo-600">✓</span>
+                        <span><strong>知识截止</strong> - 可以访问训练数据之外的信息</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-indigo-600">✓</span>
+                        <span><strong>幻觉</strong> - 基于检索的事实减少胡编乱造</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-indigo-600">✓</span>
+                        <span><strong>领域知识</strong> - 可以访问企业内部文档、特定领域知识</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-indigo-600">✓</span>
+                        <span><strong>数据隐私</strong> - 私有数据可以本地存储，无需上传到公有云</span>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold text-gray-900 mb-6 pb-3 border-b border-gray-200">为什么需要RAG？</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-white border border-gray-200 rounded-xl p-6">
+                        <h4 class="text-lg font-semibold text-gray-900 mb-3">传统LLM的局限</h4>
+                        <ul class="space-y-2 text-gray-600 text-sm">
+                            <li>• 知识截止到训练时间</li>
+                            <li>• 无法访问私有数据</li>
+                            <li>• 容易产生幻觉</li>
+                            <li>• 缺乏领域特定知识</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-xl p-6">
+                        <h4 class="text-lg font-semibold text-gray-900 mb-3">RAG的优势</h4>
+                        <ul class="space-y-2 text-gray-600 text-sm">
+                            <li>• 实时访问外部知识</li>
+                            <li>• 支持私有数据源</li>
+                            <li>• 基于事实减少幻觉</li>
+                            <li>• 可扩展领域知识库</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 mb-6">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-3">典型应用场景</h3>
+                    <ul class="list-none space-y-2 text-gray-600">
                         <li class="flex items-start gap-2">
-                            <span class="text-indigo-600">•</span>
-                            <span>将文本转换为固定长度的向量</span>
+                            <span class="text-indigo-600">📚</span>
+                            <span>企业知识库问答 - 基于公司文档回答问题</span>
                         </li>
                         <li class="flex items-start gap-2">
-                            <span class="text-indigo-600">•</span>
-                            <span>语义相似的文本在向量空间中距离更近</span>
+                            <span class="text-indigo-600">📖</span>
+                            <span>技术文档助手 - 基于产品文档提供支持</span>
                         </li>
                         <li class="flex items-start gap-2">
-                            <span class="text-indigo-600">•</span>
-                            <span>支持多种模型：OpenAI、Hugging Face等</span>
+                            <span class="text-indigo-600">🔍</span>
+                            <span>研究助手 - 基于论文库进行文献检索</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-indigo-600">💼</span>
+                            <span>法律文档分析 - 基于法律条文和案例提供咨询</span>
                         </li>
                     </ul>
                 </div>
             </section>
 
             <section class="mb-12">
-                <h2 class="text-2xl font-semibold text-gray-900 mb-6 pb-3 border-b border-gray-200">在LangChain4j中使用</h2>
-                <div class="bg-gray-900 border border-gray-300 rounded-lg overflow-hidden mb-6">
-                    <div class="flex items-center justify-between px-4 py-3 bg-gray-800 border-b border-gray-700">
-                        <div class="flex items-center gap-1.5">
-                            <div class="flex gap-1">
-                                <span class="w-2.5 h-2.5 rounded-full bg-red-500"></span>
-                                <span class="w-2.5 h-2.5 rounded-full bg-yellow-500"></span>
-                                <span class="w-2.5 h-2.5 rounded-full bg-green-500"></span>
-                            </div>
-                            <span class="text-gray-400 text-xs font-mono ml-3">EmbeddingModelExample.java</span>
-                        </div>
-                    </div>
-                    <pre class="m-0 font-mono text-sm leading-relaxed text-gray-300 p-4"><code>EmbeddingModel model = OpenAiEmbeddingModel.builder()
-    .apiKey(System.getenv("OPENAI_API_KEY"))
-    .build();
-
-Response response = model.embed("Hello LangChain4j!");
-float[] embedding = response.content()[0].vector();
-System.out.println("Vector dimension: " + embedding.length);</code></pre>
-                </div>
-            </section>
-
-            <section class="mb-12">
-                <h2 class="text-2xl font-semibold text-gray-900 mb-6 pb-3 border-b border-gray-200">常用操作</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="bg-white border border-gray-200 rounded-xl p-6">
-                        <h3 class="text-lg font-semibold text-gray-900 mb-3">生成Embedding</h3>
-                        <p class="text-sm text-gray-600 mb-3">将单个文本转换为向量</p>
-                        <div class="bg-gray-100 rounded-md p-3 text-xs font-mono text-gray-700">
-                            model.embed("text");
-                        </div>
-                    </div>
-                    <div class="bg-white border border-gray-200 rounded-xl p-6">
-                        <h3 class="text-lg font-semibold text-gray-900 mb-3">批量Embedding</h3>
-                        <p class="text-sm text-gray-600 mb-3">同时处理多个文本，提高效率</p>
-                        <div class="bg-gray-100 rounded-md p-3 text-xs font-mono text-gray-700">
-                            model.embedAll(Arrays.asList("text1", "text2"));
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="mb-12">
                 <div class="text-center">
-                    <a href="prompt-templates.html" class="inline-flex items-center gap-2 px-6 py-3 bg-indigo-600 text-white rounded-md font-medium hover:bg-indigo-700 transition-all shadow-md">
-                        继续学习 Prompt模板 →
+                    <a href="project-rag-kb.html" class="inline-flex items-center gap-2 px-6 py-3 bg-indigo-600 text-white rounded-md font-medium hover:bg-indigo-700 transition-all shadow-md">
+                        查看实战项目 →
                     </a>
                 </div>
             </section>
