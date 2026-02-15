@@ -398,24 +398,24 @@ Prompt prompt = template.apply(variables);`;
 
         <div className="grid-2col">
           <div className="card">
-            <h4 className="card-title">{{it}} - 单个变量</h4>
+            <h4 className="card-title">{"{{it}}"} - 单个变量</h4>
             <p className="card-description">用于简单场景，表示"它"</p>
-            <div className="code-inline">{{it}}</div>
+            <div className="code-inline">{"{{it}}"}</div>
           </div>
           <div className="card">
-            <h4 className="card-title">{{variable}} - 命名变量</h4>
+            <h4 className="card-title">{"{{variable}}"} - 命名变量</h4>
             <p className="card-description">用于多变量场景，描述性命名</p>
-            <div className="code-inline">{{user_name}}</div>
+            <div className="code-inline">{"{{user_name}}"}</div>
           </div>
           <div className="card">
-            <h4 className="card-title">{{current_date}} - 特殊变量</h4>
+            <h4 className="card-title">{"{{current_date}}"} - 特殊变量</h4>
             <p className="card-description">自动填充当前日期</p>
-            <div className="code-inline">{{current_date}}</div>
+            <div className="code-inline">{"{{current_date}}"}</div>
           </div>
           <div className="card">
-            <h4 className="card-title">{{current_time}} - 特殊变量</h4>
+            <h4 className="card-title">{"{{current_time}}"} - 特殊变量</h4>
             <p className="card-description">自动填充当前时间</p>
-            <div className="code-inline">{{current_time}}</div>
+            <div className="code-inline">{"{{current_time}}"}</div>
           </div>
         </div>
 
@@ -437,12 +437,12 @@ Prompt prompt = template.apply(variables);`;
       <section id="创建和使用模板" className="content-section">
         <SectionHeader number={2} title="创建和使用模板" />
 
-        <h3 className="subsection-title">2.1 使用单个变量（{{it}}）</h3>
+        <h3 className="subsection-title">2.1 使用单个变量（{"{{it}}"}）</h3>
         <p className="paragraph">最简单的使用场景，只有一个变量的模板：</p>
 
         <CodeBlock language="java" filename="ApplySingleVariable.java" code={applySingleVar} />
 
-        <TipBox type="tip" title="何时使用{{it}}？">
+        <TipBox type="tip" title={`何时使用{{it}}？`}>
           <ul className="tip-box-list">
             <li>简单的单参数场景（如文本摘要、翻译）</li>
             <li>不需要变量名的上下文</li>
@@ -457,9 +457,9 @@ Prompt prompt = template.apply(variables);`;
 
         <TipBox type="success" title="特殊变量说明">
           <ul className="tip-box-list">
-            <li><code>{{current_date}}</code>：自动填充LocalDate.now()</li>
-            <li><code>{{current_time}}</code>：自动填充LocalTime.now()</li>
-            <li><code>{{current_date_time}}</code>：自动填充LocalDateTime.now()</li>
+            <li><code>{"{{current_date}}"}</code>：自动填充LocalDate.now()</li>
+            <li><code>{"{{current_time}}"}</code>：自动填充LocalTime.now()</li>
+            <li><code>{"{{current_date_time}}"}</code>：自动填充LocalDateTime.now()</li>
             <li>无需手动设置这些变量的值</li>
           </ul>
         </TipBox>
@@ -500,14 +500,14 @@ Prompt prompt = template.apply(variables);`;
 
         <div className="code-preview">
           <div className="code-preview-content">
-            <pre><code>interface MyService {
-    @UserMessage("Process {{item}} with {{option}} enabled")
+            <pre><code>interface MyService {'{'}
+    @UserMessage("Process {"{{item}}"} with {"{{option}}"} enabled")
     String process(
-        @V("item") String item,      // → {{item}}
-        @V("option") boolean option,    // → {{option}}
+        @V("item") String item,      // → {"{{item}}"}
+        @V("option") boolean option,    // → {"{{option}}"}
         String unmarkedParam               // 不映射到任何变量
     );
-}</code></pre>
+{'}'}</code></pre>
           </div>
         </div>
 
@@ -530,10 +530,10 @@ Prompt prompt = template.apply(variables);`;
 
         <TipBox type="info" title="语法说明">
           <ul className="tip-box-list">
-            <li><code>{% if condition %}</code>：开始条件块</li>
-            <li><code>{% else %}</code>：否则分支（可选）</li>
-            <li><code>{% endif %}</code>：结束条件块</li>
-            <li>支持布尔表达式：<code>{% if is_premium and has_access %}</code></li>
+            <li><code>{"{% if condition %}"}</code>：开始条件块</li>
+            <li><code>{"{% else %}"}</code>：否则分支（可选）</li>
+            <li><code>{"{% endif %}"}</code>：结束条件块</li>
+            <li>支持布尔表达式：<code>{"{% if is_premium and has_access %}"}</code></li>
           </ul>
         </TipBox>
 
@@ -547,7 +547,7 @@ Prompt prompt = template.apply(variables);`;
             <li><strong>性能考虑</strong>：大列表可能消耗较多token</li>
             <li><strong>格式化</strong>：在循环内添加适当的分隔符</li>
             <li><strong>嵌套</strong>：支持多层嵌套循环</li>
-            <li><strong>索引访问</strong>：使用<code>{{item}}</code>或<code>{{loop.index}}</code></li>
+            <li><strong>索引访问</strong>：使用<code>{"{{item}}"}</code>或<code>{"{{loop.index}}"}</code></li>
           </ul>
         </TipBox>
 
@@ -556,24 +556,24 @@ Prompt prompt = template.apply(variables);`;
 
         <div className="grid-2col">
           <div className="card-blue">
-            <h4 className="card-title-blue">{{current_date}}</h4>
+            <h4 className="card-title-blue">{"{{current_date}}"}</h4>
             <p className="card-description-blue">当前日期：LocalDate.now()</p>
             <div className="code-inline">格式：2025-02-16</div>
           </div>
           <div className="card-blue">
-            <h4 className="card-title-blue">{{current_time}}</h4>
+            <h4 className="card-title-blue">{"{{current_time}}"}</h4>
             <p className="card-description-blue">当前时间：LocalTime.now()</p>
             <div className="code-inline">格式：20:30:45</div>
           </div>
           <div className="card-blue">
-            <h4 className="card-title-blue">{{current_date_time}}</h4>
+            <h4 className="card-title-blue">{"{{current_date_time}}"}</h4>
             <p className="card-description-blue">当前日期时间：LocalDateTime.now()</p>
             <div className="code-inline">格式：2025-02-16T20:30:45</div>
           </div>
           <div className="card-green">
             <h4 className="card-title-green">自定义变量</h4>
             <p className="card-description-green">任何你定义的变量</p>
-            <div className="code-inline">{{user_input}}、{{name}}等</div>
+            <div className="code-inline">{"{{user_input}}"}、{"{{name}}"}等</div>
           </div>
         </div>
       </section>
@@ -715,7 +715,7 @@ Prompt prompt = template.apply(variables);`;
             <h4 className="faq-question">Q: 可以在一个模板中使用多次相同的变量吗？</h4>
             <p className="faq-answer">
               A: 可以。同一个变量可以在模板中多次出现，apply时会全部替换为相同的值。
-              例如：<code>Repeat {{word}} three times: {{word}}, {{word}}, {{word}}</code>
+              例如：<code>Repeat {"{{word}}"} three times: {"{{word}}"}, {"{{word}}"}, {"{{word}}"}</code>
             </p>
           </div>
 
@@ -740,7 +740,7 @@ Prompt prompt = template.apply(variables);`;
             <h4 className="faq-question">Q: 如何实现多语言支持？</h4>
             <p className="faq-answer">
               A: 为每种语言创建单独的模板，或使用条件渲染：
-              <code>{% if language == 'zh' %} 欢迎 {% else %} Welcome {% endif %}</code>
+              <code>{"{% if language == 'zh' %}"} 欢迎 {"{% else %}"} Welcome {"{% endif %}"}</code>
               可以结合配置文件或数据库管理多语言模板。
             </p>
           </div>

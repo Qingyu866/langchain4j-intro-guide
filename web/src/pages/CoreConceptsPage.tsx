@@ -402,7 +402,7 @@ String response = assistant.chat("What's the weather in Beijing and add 5 and 3?
               <tr>
                 <td>@UserMessage</td>
                 <td>定义用户消息模板</td>
-                <td>"Translate to {{language}}: {{text}}"</td>
+                <td>"Translate to {"{{language}}"}: {"{{text}}"}"</td>
               </tr>
               <tr>
                 <td>@V</td>

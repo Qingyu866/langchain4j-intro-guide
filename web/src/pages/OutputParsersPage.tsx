@@ -357,15 +357,15 @@ for (String doc : documents) {
 
         <div className="info-card info-card-purple">
           <h4 className="card-title-purple">复杂JSON示例</h4>
-          <pre className="code-text">{
+          <pre className="code-text">{'{'}
   "articles": [
-    {
+    {'{'}
       "title": "Introduction to LangChain4j",
       "content": "...",
       "tags": ["ai", "java"]
-    }
+    {'}'}
   ]
-}</pre>
+{'}'}</pre>
           <p className="card-description-purple">支持嵌套对象、数组、混合类型的数据结构</p>
         </div>
       </section>
