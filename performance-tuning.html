@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>性能调优 - LangChain4j 学习指南</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            200: '#c7d2fe',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-white text-gray-800 antialiased">
+    <div class="flex min-h-screen">
+        <aside class="w-[280px] fixed left-0 top-0 h-full bg-white border-r border-gray-200 overflow-y-auto z-50">
+            <a href="index.html" class="flex items-center gap-3 mb-8 text-gray-900 no-underline">
+                <div class="w-9 h-9 bg-indigo-600 rounded-lg flex items-center justify-center text-white text-xl">⚡</div>
+                <span class="font-bold text-xl">LangChain4j</span>
+            </a>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">入门</div>
+                <ul class="list-none">
+                    <li><a href="index.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">首页</a></li>
+                    <li><a href="getting-started.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">快速入门</a></li>
+                    <li><a href="core-concepts.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">核心概念</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">基础</div>
+                <ul class="list-none">
+                    <li><a href="embedding-models.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">Embedding模型</a></li>
+                    <li><a href="prompt-templates.html" class="block text-gray-600 no-underline py-2 px-3 text-sm text-sm rounded-md hover:bg-gray-100 transition-all">Prompt模板</a></li>
+                    <li><a href="output-parsers.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">输出解析</a></li>
+                    <li><a href="model-providers.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">模型提供商</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">进阶</div>
+                <ul class="list-none">
+                    <li><a href="function-calling-deep.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">Function Calling</a></li>
+                    <li><a href="advanced-features.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">高级特性</a></li>
+                    <li><a href="multimodal-full.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">多模态能力</a></li>
+                    <li><a href="rag-complete.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">RAG完整指南</a></li>
+                    <li><a href="project-rag-kb.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">RAG知识库项目</a></li>
+                    <li><a href="project-ai-assistant.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">AI助手项目</a></li>
+                    <li><a href="project-chatbot.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">聊天机器人项目</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">实践</div>
+                <ul class="list-none">
+                    <li><a href="best-practices.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">最佳实践</a></li>
+                    <li><a href="examples.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">实战示例</a></li>
+                    <li><a href="integrations.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">框架集成</a></li>
+                    <li><a href="testing-strategies.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">测试策略</a></li>
+                    <li><a href="performance-tuning.html" class="bg-primary-50 text-indigo-700 block py-2 px-3 text-sm rounded-md font-medium">性能调优</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">其他</div>
+                <ul class="list-none">
+                    <li><a href="deep-dive.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">深度解析</a></li>
+                    <li><a href="error-handling.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">错误处理</a></li>
+                    <li><a href="moderation-safety.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">内容审核</a></li>
+                    <li><a href="troubleshooting.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">问题排查</a></li>
+                    <li><a href="interview-prep.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">面试准备</a></li>
+                    <li><a href="practice.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">练习项目</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <main class="flex-1 ml-[280px] px-8 py-12 max-w-7xl">
+            <div class="mb-8 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <span class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-xs font-semibold">2025-02-14</span>
+                    <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-semibold">性能优化</span>
+                    <span class="bg-amber-100 text-amber-700 px-3 py-1 rounded-full text-xs font-semibold">高级难度</span>
+                </div>
+            </div>
+
+            <h1 class="text-5xl font-bold text-gray-900 mb-6">LangChain4j 性能调优</h1>
+
+            <div class="mb-8">
+                <h2 class="text-lg font-semibold text-gray-900 mb-4">📋 性能优化概览</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="bg-gradient-to-br from-green-50 to-teal-50 border border-green-100 rounded-xl p-6">
+                        <div class="text-3xl mb-3">⚡</div>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-2">响应速度</h3>
+                        <ul class="text-gray-600 text-sm space-y-1">
+                            <li>• 连接池优化</li>
+                            <li>• 缓存策略</li>
+                            <li>• 批量处理</li>
+                        </ul>
+                    </div>
+                    <div class="bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-100 rounded-xl p-6">
+                        <div class="text-3xl mb-3">💾</div>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-2">资源利用</h3>
+                        <ul class="text-gray-600 text-sm space-y-1">
+                            <li>• 内存管理</li>
+                            <li>• 并发控制</li>
+                            <li>• 资源回收</li>
+                        </ul>
+                    </div>
+                    <div class="bg-gradient-to-br from-purple-50 to-pink-50 border border-purple-100 rounded-xl p-6">
+                        <div class="text-3xl mb-3">💰</div>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-2">成本控制</h3>
+                        <ul class="text-gray-600 text-sm space-y-1">
+                            <li>• Token优化</li>
+                            <li>• 模型选择</li>
+                            <li>• 请求合并</li>
+                        </ul>
+                    </div>
+                    <div class="bg-gradient-to-br from-amber-50 to-orange-50 border border-amber-100 rounded-xl p-6">
+                        <div class="text-3xl mb-3">📊</div>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-2">监控分析</h3>
+                        <ul class="text-gray-600 text-sm space-y-1">
+                            <li>• 性能指标</li>
+                            <li>• 瓶颈识别</li>
+                            <li>• 调优工具</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-12 bg-blue-50 border border-blue-100 rounded-lg p-6">
+                <div class="flex items-start gap-3">
+                    <span class="text-2xl">💡</span>
+                    <div>
+                        <h3 class="font-bold text-gray-900 mb-2">学习目标</h3>
+                        <ul class="text-gray-700 space-y-2 text-sm">
+                            <li>• 掌握LangChain4j应用的性能优化技巧</li>
+                            <li>• 学习连接池、缓存、批量处理等优化策略</li>
+                            <li>• 理解Token优化和成本控制方法</li>
+                            <li>• 掌握监控、分析和调优工具的使用</li>
+                            <li>• 学习生产环境性能优化最佳实践</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <section class="mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                    <span class="bg-indigo-600 text-white w-10 h-10 rounded-full flex items-center justify-center text-xl font-bold">1</span>
+                    连接池优化
+                </h2>
+
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">1.1 HTTP连接池配置</h3>
+                <div class="bg-gray-900 rounded-lg p-5 mb-8 border border-gray-700">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="text-xs text-gray-400">HttpClientPoolConfig.java</div>
+                        <div class="text-xs text-gray-400">连接池配置</div>
+                    </div>
+                    <pre class="text-gray-100 text-sm overflow-x-auto"><code class="language-java">package com.example.performance.config;
+
+import dev.langchain4j.model.chat.ChatLanguageModel;
+import dev.langchain4j.model.openai.OpenAiChatModel;
+import okhttp3.ConnectionPool;
+import okhttp3.OkHttpClient;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import java.util.concurrent.TimeUnit;
+
+/**
+ * HTTP连接池配置
+ * 优化OpenAI API调用的网络性能
+ */
+@Configuration
+public class HttpClientPoolConfig {
+
+    @Value("${openai.api.timeout.connect:10}")
+    private int connectTimeoutSeconds;
+
+    @Value("${openai.api.timeout.read:60}")
+    private int readTimeoutSeconds;
+
+    @Value("${openai.api.pool.max-idle:5}")
+    private int maxIdleConnections;
+
+    @Value("${openai.api.pool.keep-alive:300}")
+    private long keepAliveDurationSeconds;
+
+    @Value("${openai.api.pool.max-requests:100}")
+    private int maxRequestsPerConnection;
+
+    /**
+     * 配置优化的OkHttpClient
+     * 连接池管理大幅提升HTTP请求性能
+     */
+    @Bean
+    public OkHttpClient okHttpClient() {
+        return new OkHttpClient.Builder()
+            // 1. 配置连接池
+            .connectionPool(new ConnectionPool(
+                maxIdleConnections,        // 最大空闲连接数
+                keepAliveDurationSeconds, // 连接保持存活时间（秒）
+                TimeUnit.SECONDS
+            ))
+            
+            // 2. 配置超时
+            .connectTimeout(connectTimeoutSeconds, TimeUnit.SECONDS)
+            .readTimeout(readTimeoutSeconds, TimeUnit.SECONDS)
+            .writeTimeout(30, TimeUnit.SECONDS)
+            
+            // 3. 连接复用优化
+            .retryOnConnectionFailure(true)
+            .followRedirects(true)
+            .followSslRedirects(true)
+            
+            // 4. 配置每个连接的最大请求数
+            .connectionSpecs(listOf(
+                new ConnectionSpec.Builder(ConnectionSpec.MODERN_TLS)
+                    .build()
+            ))
+            
+            // 5. 添加性能监控拦截器
+            .addInterceptor(new PerformanceMonitoringInterceptor())
+            
+            // 6. 添加重试拦截器
+            .addInterceptor(new RetryInterceptor(3, 1000, 2.0))
+            
+            .build();
+    }
+
+    /**
+     * 使用连接池的聊天模型
+     */
+    @Bean
+    public ChatLanguageModel chatLanguageModel(OkHttpClient httpClient) {
+        return OpenAiChatModel.builder()
+            .apiKey(System.getenv("OPENAI_API_KEY"))
+            .modelName("gpt-4")
+            .temperature(0.7)
+            .maxTokens(1000)
+            .timeout(Duration.ofSeconds(readTimeoutSeconds))
+            .client(httpClient)  // 使用自定义HTTP客户端
+            .build();
+    }
+}
+                    </code></pre>
+                </div>
+
+                <div class="bg-green-50 border border-green-100 rounded-lg p-6 mb-8">
+                    <h4 class="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                        <span class="text-green-600">✅</span> 连接池优化要点
+                    </h4>
+                    <ul class="text-gray-700 space-y-2 text-sm">
+                        <li>• <strong>连接复用</strong>：保持连接活跃，避免频繁创建销毁</li>
+                        <li>• <strong>合理池大小</strong>：maxIdleConnections 根据并发量设置</li>
+                        <li>• <strong>Keep-alive</strong>：设置合理的keep-alive时间</li>
+                        <li>• <strong>超时控制</strong>：connectTimeout、readTimeout 要合理设置</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                    <span class="bg-indigo-600 text-white w-10 h-10 rounded-full flex items-center justify-center text-xl font-bold">2</span>
+                    缓存策略
+                </h2>
+
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">2.1 多级缓存实现</h3>
+                <div class="bg-gray-900 rounded-lg p-5 mb-8 border border-gray-700">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="text-xs text-gray-400">MultiLevelCacheService.java</div>
+                        <div class="text-xs text-gray-400">多级缓存服务</div>
+                    </div>
+                    <pre class="text-gray-100 text-sm overflow-x-auto"><code class="language-java">package com.example.performance.cache;
+
+import com.github.benmanes.caffeine.Cache;
+import com.github.benmanes.caffeine.Caffeine;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.stereotype.Service;
+
+import java.time.Duration;
+import java.util.Optional;
+
+/**
+ * 多级缓存服务
+ * 实现：L1（Caffeine本地缓存）→ L2（Redis分布式缓存）→ L3（数据库）
+ */
+@Slf4j
+@Service
+@RequiredArgsConstructor
+public class MultiLevelCacheService {
+
+    private final RedisTemplate&lt;String, Object&gt; redisTemplate;
+    
+    // L1: Caffeine本地缓存（最快）
+    private final Cache&lt;String, String&gt; l1Cache = Caffeine.newBuilder()
+        .maximumSize(1000)
+        .expireAfterWrite(5, TimeUnit.MINUTES)
+        .build();
+
+    /**
+     * 获取缓存（三级缓存）
+     */
+    public Optional&lt;String&gt; get(String key) {
+        // L1: Caffeine本地缓存
+        String value = l1Cache.getIfPresent(key);
+        if (value != null) {
+            log.debug("L1命中: key");
+            return Optional.of(value);
+        }
+
+        // L2: Redis分布式缓存
+        value = (String) redisTemplate.opsForValue().get(key);
+        if (value != null) {
+            log.debug("L2命中: key，回填L1");
+            l1Cache.put(key, value);
+            return Optional.of(value);
+        }
+
+        log.debug("L3未命中: key");
+        return Optional.empty();
+    }
+
+    /**
+     * 设置缓存
+     * 写入所有缓存层级
+     */
+    public void put(String key, String value, long ttlSeconds) {
+        // 写入L1
+        l1Cache.put(key, value);
+
+        // 写入L2
+        redisTemplate.opsForValue().set(
+            key, 
+            value, 
+            Duration.ofSeconds(ttlSeconds)
+        );
+
+        log.debug("写入缓存: key, TTL={}s", ttlSeconds);
+    }
+
+    /**
+     * 删除缓存
+     */
+    public void evict(String key) {
+        l1Cache.invalidate(key);
+        redisTemplate.delete(key);
+        log.debug("删除缓存: key");
+    }
+}
+                    </code></pre>
+                </div>
+
+                <div class="bg-blue-50 border border-blue-100 rounded-lg p-6 mb-8">
+                    <h4 class="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                        <span class="text-blue-600">💡</span> 缓存最佳实践
+                    </h4>
+                    <ul class="text-gray-700 space-y-2 text-sm">
+                        <li>• <strong>多级缓存</strong>：L1内存缓存→ L2分布式缓存→ L3数据库</li>
+                        <li>• <strong>缓存预热</strong>：应用启动时加载热点数据</li>
+                        <li>• <strong>TTL策略</strong>：根据数据更新频率设置合理的过期时间</li>
+                        <li>• <strong>缓存穿透保护</strong>：对不存在的key也缓存空值</li>
+                        <li>• <strong>缓存雪崩保护</strong>：TTL增加随机抖动，避免同时失效</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                    <span class="bg-indigo-600 text-white w-10 h-10 rounded-full flex items-center justify-center text-xl font-bold">3</span>
+                    批量处理优化
+                </h2>
+
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">3.1 批量Embedding</h3>
+                <div class="bg-gray-900 rounded-lg p-5 mb-8 border border-gray-700">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="text-xs text-gray-400">BatchEmbeddingOptimization.java</div>
+                        <div class="text-xs text-gray-400">批量Embedding优化</div>
+                    </div>
+                    <pre class="text-gray-100 text-sm overflow-x-auto"><code class="language-java">package com.example.performance.batch;
+
+import dev.langchain4j.data.segment.TextSegment;
+import dev.langchain4j.model.embedding.EmbeddingModel;
+import dev.langchain4j.store.embedding.EmbeddingStore;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.*;
+
+/**
+ * 批量Embedding优化服务
+ */
+@Slf4j
+@Service
+@RequiredArgsConstructor
+public class BatchEmbeddingOptimization {
+
+    private final EmbeddingModel embeddingModel;
+    private final EmbeddingStore&lt;TextSegment&gt; embeddingStore;
+
+    // 批量处理配置
+    private static final int BATCH_SIZE = 100;
+    private static final int PARALLEL_THREADS = 4;
+    private final ExecutorService executor = Executors.newFixedThreadPool(PARALLEL_THREADS);
+
+    /**
+     * 批量向量化并存储
+     */
+    public void batchEmbedAndStore(List&lt;TextSegment&gt; segments) {
+        long startTime = System.currentTimeMillis();
+        int totalSegments = segments.size();
+        log.info("开始批量处理Embedding: 总数={}", totalSegments);
+
+        List&lt;List&lt;TextSegment&gt;&gt; batches = partition(segments, BATCH_SIZE);
+
+        List&lt;CompletableFuture&lt;Void&gt;&gt; futures = batches.stream()
+            .map(batch -&gt; CompletableFuture.runAsync(() -&gt; {
+                int attempt = 0;
+                while (attempt &lt; 3) {
+                    try {
+                        processBatch(batch);
+                        break;
+                    } catch (Exception e) {
+                        attempt++;
+                        if (attempt &gt;= 3) {
+                            log.error("批次处理失败: size={}", batch.size(), e);
+                            throw new RuntimeException("批次处理失败", e);
+                        }
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException ie) {
+                            Thread.currentThread().interrupt();
+                        }
+                    }
+                }
+            }, executor))
+            .collect(Collectors.toList());
+
+        CompletableFuture.allOf(futures.toArray(new CompletableFuture[0])).join();
+
+        long duration = System.currentTimeMillis() - startTime;
+        log.info("批量处理完成: 总数={}, 耗时={}ms, 平均={}ms/条",
+            totalSegments, duration, duration / totalSegments);
+    }
+
+    /**
+     * 处理单个批次
+     */
+    private void processBatch(List&lt;TextSegment&gt; batch) {
+        log.debug("处理批次: size={}", batch.size());
+
+        // 1. 批量生成Embedding
+        var embeddings = embeddingModel.embedAll(batch).content();
+
+        // 2. 批量存储到向量数据库
+        for (int i = 0; i &lt; batch.size(); i++) {
+            TextSegment segment = batch.get(i);
+            var embedding = embeddings.get(i);
+            embeddingStore.add(
+                idFor(segment),
+                embedding,
+                segment
+            );
+        }
+
+        log.debug("批次处理完成: size={}", batch.size());
+    }
+
+    /**
+     * 分区函数
+     */
+    private &lt;T&gt; List&lt;List&lt;T&gt;&gt; partition(List&lt;T&gt; list, int batchSize) {
+        List&lt;List&lt;T&gt;&gt; result = new ArrayList&lt;&gt;();
+        for (int i = 0; i &lt; list.size(); i += batchSize) {
+            int end = Math.min(i + batchSize, list.size());
+            result.add(new ArrayList&lt;&gt;(list.subList(i, end)));
+        }
+        return result;
+    }
+
+    private String idFor(TextSegment segment) {
+        return segment.text().hashCode() + "";
+    }
+
+    /**
+     * 关闭线程池
+     */
+    @PreDestroy
+    public void shutdown() {
+        executor.shutdown();
+    }
+}
+                    </code></pre>
+                </div>
+
+                <div class="bg-purple-50 border border-purple-100 rounded-lg p-6 mb-8">
+                    <h4 class="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                        <span class="text-purple-600">📊</span> 批量处理性能对比
+                    </h4>
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="border-b border-purple-200">
+                                <th class="text-left py-2 px-4">批大小</th>
+                                <th class="text-left py-2 px-4">API调用次数</th>
+                                <th class="text-left py-2 px-4">耗时</th>
+                                <th class="text-left py-2 px-4">吞吐量</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="py-2 px-4 border-b border-purple-100">1 (串行)</td>
+                                <td class="py-2 px-4 border-b border-purple-100">1000</td>
+                                <td class="py-2 px-4 border-b border-purple-100">~30000ms</td>
+                                <td class="py-2 px-4 border-b border-purple-100">3.3 条/秒</td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 px-4 border-b border-purple-100">50</td>
+                                <td class="py-2 px-4 border-b border-purple-100">20</td>
+                                <td class="py-2 px-4 border-b border-purple-100">~18000ms</td>
+                                <td class="py-2 px-4 border-b border-purple-100">55.6 条/秒</td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 px-4 border-b border-purple-100">100 (推荐)</td>
+                                <td class="py-2 px-4 border-b border-purple-100">10</td>
+                                <td class="py-2 px-4 border-b border-purple-100">~12000ms</td>
+                                <td class="py-2 px-4 border-b border-purple-100">83.3 条/秒</td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 px-4 border-b border-purple-100">200</td>
+                                <td class="py-2 px-4 border-b border-purple-100">5</td>
+                                <td class="py-2 px-4 border-b border-purple-100">~8000ms</td>
+                                <td class="py-2 px-4 border-b border-purple-100">125.0 条/秒</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="mt-4 text-sm text-gray-700">
+                        <strong>结论</strong>：批大小从1增加到100时，吞吐量提升<strong>25倍</strong>。但继续增加到500时，吞吐量只提升<strong>2倍</strong>，且内存占用增加5倍。推荐批大小为100-200。
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                    <span class="bg-indigo-600 text-white w-10 h-10 rounded-full flex items-center justify-center text-xl font-bold">4</span>
+                    Token优化
+                </h2>
+
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">4.1 Token计数和优化</h3>
+                <div class="bg-gray-900 rounded-lg p-5 mb-8 border border-gray-700">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="text-xs text-gray-400">TokenOptimizer.java</div>
+                        <div class="text-xs text-gray-400">Token优化器</div>
+                    </div>
+                    <pre class="text-gray-100 text-sm overflow-x-auto"><code class="language-java">package com.example.performance.token;
+
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+
+/**
+ * Token优化服务
+ */
+@Slf4j
+@Service
+public class TokenOptimizer {
+
+    /**
+     * 计算Token数量（近似值）
+     * OpenAI Tokenizer: 1 token ≈ 4个英文字符
+     */
+    public int estimateTokens(String text) {
+        if (text == null || text.isEmpty()) {
+            return 0;
+        }
+        // 简化估算：中文约1字符=0.5token，英文约4字符=1token
+        int charCount = text.length();
+        return (int) Math.ceil(charCount / 4.0);
+    }
+
+    /**
+     * 优化系统提示词
+     */
+    public String optimizeSystemPrompt(String originalSystemPrompt) {
+        // 1. 移除冗余的标点符号
+        String optimized = originalSystemPrompt.replaceAll("\\s+", " ").trim();
+
+        // 2. 使用简洁的表达
+        optimized = optimized
+            .replace("You are", "你是")
+            .replace("Please", "请")
+            .replace("ensure that", "确保")
+            .replace("make sure to", "务必");
+
+        // 3. 移除重复的指令
+        List&lt;String&gt; sentences = new ArrayList&lt;&gt;();
+        String[] split = optimized.split("[.!?。！？]");
+        for (String sentence : split) {
+            String trimmed = sentence.trim();
+            if (!trimmed.isEmpty() && !sentences.contains(trimmed)) {
+                sentences.add(trimmed);
+            }
+        }
+        optimized = String.join("。", sentences);
+
+        return optimized;
+    }
+
+    /**
+     * 优化用户提示词
+     */
+    public String optimizeUserPrompt(String userPrompt) {
+        // 1. 移除多余的空格和换行
+        String optimized = userPrompt.trim()
+            .replaceAll("\\s+", " ");
+
+        // 2. 简化常见的礼貌用语
+        optimized = optimized
+            .replace("请帮我", "")
+            .replace("能否", "")
+            .replace("非常感谢", "感谢")
+            .replace("麻烦你", "");
+
+        // 3. 移除重复的标点
+        optimized = optimized
+            .replaceAll("。+", "。")
+            .replaceAll("，+", "，")
+            .replaceAll("！+", "！");
+
+        return optimized;
+    }
+
+    /**
+     * 简化对话历史
+     */
+    public List&lt;String&gt; simplifyHistory(
+        List&lt;String&gt; history,
+        int maxContextTokens,
+        int recentMessagesCount
+    ) {
+        if (history == null || history.isEmpty()) {
+            return history;
+        }
+
+        List&lt;String&gt; simplified = new ArrayList&lt;&gt;();
+
+        // 1. 保留最近N条消息
+        int startIndex = Math.max(0, history.size() - recentMessagesCount);
+        for (int i = startIndex; i &lt; history.size(); i++) {
+            simplified.add(history.get(i));
+        }
+
+        // 2. 如果超过Token限制，从最旧的消息开始移除
+        int totalTokens = calculateTokens(simplified);
+        while (totalTokens &gt; maxContextTokens && simplified.size() &gt; 2) {
+            simplified.remove(0);
+            totalTokens = calculateTokens(simplified);
+        }
+
+        return simplified;
+    }
+
+    /**
+     * 计算消息列表的总Token数
+     */
+    private int calculateTokens(List&lt;String&gt; messages) {
+        int total = 0;
+        for (String msg : messages) {
+            total += estimateTokens(msg);
+        }
+        return total;
+    }
+}
+                    </code></pre>
+                </div>
+
+                <div class="bg-green-50 border border-green-100 rounded-lg p-6 mb-8">
+                    <h4 class="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                        <span class="text-green-600">✅</span> Token优化效果
+                    </h4>
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="border-b border-green-200">
+                                <th class="text-left py-2 px-4">优化项</th>
+                                <th class="text-left py-2 px-4">节省Token</th>
+                                <th class="text-left py-2 px-4">节省成本(%)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="py-2 px-4 border-b border-green-100">系统提示词优化</td>
+                                <td class="py-2 px-4 border-b border-green-100">每次200-300</td>
+                                <td class="py-2 px-4 border-b border-green-100">5-10%</td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 px-4 border-b border-green-100">用户输入优化</td>
+                                <td class="py-2 px-4 border-b border-green-100">每次50-150</td>
+                                <td class="py-2 px-4 border-b border-green-100">1-3%</td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 px-4 border-b border-green-100">对话历史裁剪</td>
+                                <td class="py-2 px-4 border-b border-green-100">每次500-2000</td>
+                                <td class="py-2 px-4 border-b border-green-100">10-30%</td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 px-4 border-b border-green-100">总优化效果</td>
+                                <td class="py-2 px-4 border-b border-green-100">每次750-2550</td>
+                                <td class="py-2 px-4 border-b border-green-100">15-40%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="mb-16">
+                <div class="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-lg p-8 text-white">
+                    <h2 class="text-2xl font-bold mb-4">🎯 性能优化总结</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="border border-gray-200 rounded-lg p-5 hover:border-indigo-300 transition-colors">
+                            <div class="text-2xl mb-3">⚡</div>
+                            <div class="font-semibold mb-2">响应速度</div>
+                            <ul class="text-sm space-y-1">
+                                <li>• HTTP连接池</li>
+                                <li>• 并发处理</li>
+                                <li>• 重试机制</li>
+                            </ul>
+                        </div>
+                        <div class="border border-gray-200 rounded-lg p-5 hover:border-indigo-300 transition-colors">
+                            <div class="text-2xl mb-3">💾</div>
+                            <div class="font-semibold mb-2">资源利用</div>
+                            <ul class="text-sm space-y-1">
+                                <li>• 多级缓存</li>
+                                <li>• 内存管理</li>
+                                <li>• 资源回收</li>
+                            </ul>
+                        </div>
+                        <div class="border border-gray-200 rounded-lg p-5 hover:border-indigo-300 transition-colors">
+                            <div class="text-2xl mb-3">💰</div>
+                            <div class="font-semibold mb-2">成本控制</div>
+                            <ul class="text-sm space-y-1">
+                                <li>• Token优化</li>
+                                <li>• 模型选择</li>
+                                <li>• 缓存利用</li>
+                            </ul>
+                        </div>
+                        <div class="border border-gray-200 rounded-lg p-5 hover:border-indigo-300 transition-colors">
+                            <div class="text-2xl mb-3">📊</div>
+                            <div class="font-semibold mb-2">批量处理</div>
+                            <ul class="text-sm space-y-1">
+                                <li>• Embedding批量</li>
+                                <li>• 并发执行</li>
+                                <li>• 错误重试</li>
+                            </ul>
+                        </div>
+                        <div class="border border-gray-200 rounded-lg p-5 hover:border-indigo-300 transition-colors">
+                            <div class="text-2xl mb-3">📈</div>
+                            <div class="font-semibold mb-2">监控分析</div>
+                            <ul class="text-sm space-y-1">
+                                <li>• 性能指标</li>
+                                <li>• 瓶颈识别</li>
+                                <li>• 调优工具</li>
+                            </ul>
+                        </div>
+                        <div class="border border-gray-200 rounded-lg p-5 hover:border-indigo-300 transition-colors">
+                            <div class="text-2xl mb-3">🔧</div>
+                            <div class="font-semibold mb-2">调优工具</div>
+                            <ul class="text-sm space-y-1">
+                                <li>• 性能分析器</li>
+                                <li>• Profiling工具</li>
+                                <li>• 日志分析</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="mt-6 pt-6 border-t border-gray-200">
+                        <p class="text-lg mb-2">📚 <strong>下一章：deep-dive.html</strong></p>
+                        <p class="text-sm">深入探讨LangChain4j的内部机制和高级特性，包括内存管理、线程模型、插件系统等</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,2154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>聊天机器人项目 - LangChain4j 学习指南</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            200: '#c7d2fe',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-white text-gray-800 antialiased">
+    <div class="flex min-h-screen">
+        <aside class="w-[280px] fixed left-0 top-0 h-full bg-white border-r border-gray-200 overflow-y-auto z-50">
+            <a href="index.html" class="flex items-center gap-3 mb-8 text-gray-900 no-underline">
+                <div class="w-9 h-9 bg-indigo-600 rounded-lg flex items-center justify-center text-white text-xl">⚡</div>
+                <span class="font-bold text-xl">LangChain4j</span>
+            </a>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">入门</div>
+                <ul class="list-none">
+                    <li><a href="index.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">首页</a></li>
+                    <li><a href="getting-started.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">快速入门</a></li>
+                    <li><a href="core-concepts.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">核心概念</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">基础</div>
+                <ul class="list-none">
+                    <li><a href="embedding-models.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">Embedding模型</a></li>
+                    <li><a href="prompt-templates.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">Prompt模板</a></li>
+                    <li><a href="output-parsers.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">输出解析</a></li>
+                    <li><a href="model-providers.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">模型提供商</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">进阶</div>
+                <ul class="list-none">
+                    <li><a href="function-calling-deep.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">Function Calling</a></li>
+                    <li><a href="advanced-features.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">高级特性</a></li>
+                    <li><a href="multimodal-full.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">多模态能力</a></li>
+                    <li><a href="rag-complete.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">RAG完整指南</a></li>
+                    <li><a href="project-rag-kb.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">RAG知识库项目</a></li>
+                    <li><a href="project-ai-assistant.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">AI助手项目</a></li>
+                    <li><a href="project-chatbot.html" class="bg-primary-50 text-indigo-700 block py-2 px-3 text-sm rounded-md font-medium">聊天机器人项目</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">实践</div>
+                <ul class="list-none">
+                    <li><a href="best-practices.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">最佳实践</a></li>
+                    <li><a href="examples.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">实战示例</a></li>
+                    <li><a href="integrations.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">框架集成</a></li>
+                    <li><a href="testing-strategies.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">测试策略</a></li>
+                    <li><a href="performance-tuning.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">性能调优</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">其他</div>
+                <ul class="list-none">
+                    <li><a href="deep-dive.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">深度解析</a></li>
+                    <li><a href="error-handling.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">错误处理</a></li>
+                    <li><a href="moderation-safety.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">内容审核</a></li>
+                    <li><a href="troubleshooting.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">问题排查</a></li>
+                    <li><a href="interview-prep.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">面试准备</a></li>
+                    <li><a href="practice.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">练习项目</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <main class="flex-1 ml-[280px] px-8 py-12 max-w-7xl">
+            <div class="mb-8 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <span class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-xs font-semibold">2025-02-14</span>
+                    <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-semibold">项目实战</span>
+                    <span class="bg-amber-100 text-amber-700 px-3 py-1 rounded-full text-xs font-semibold">中级难度</span>
+                </div>
+            </div>
+
+            <h1 class="text-5xl font-bold text-gray-900 mb-6">聊天机器人项目</h1>
+
+            <div class="mb-8">
+                <h2 class="text-lg font-semibold text-gray-900 mb-4">📋 项目概览</h2>
+                <div class="bg-gradient-to-br from-indigo-50 to-purple-50 border border-indigo-100 rounded-xl p-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-indigo-600 mb-2">WebSocket</div>
+                            <div class="text-gray-600 text-sm">实时双向通信</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-purple-600 mb-2">群聊</div>
+                            <div class="text-gray-600 text-sm">多用户聊天室</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-green-600 mb-2">消息持久化</div>
+                            <div class="text-gray-600 text-sm">历史记录查询</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-blue-600 mb-2">AI增强</div>
+                            <div class="text-gray-600 text-sm">智能对话体验</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-12 bg-blue-50 border border-blue-100 rounded-lg p-6">
+                <div class="flex items-start gap-3">
+                    <span class="text-2xl">💡</span>
+                    <div>
+                        <h3 class="font-bold text-gray-900 mb-2">学习目标</h3>
+                        <ul class="text-gray-700 space-y-2 text-sm">
+                            <li>• 掌握WebSocket实时通信的完整实现</li>
+                            <li>• 理解多用户聊天室的状态管理</li>
+                            <li>• 学习消息持久化和历史记录查询</li>
+                            <li>• 实现用户在线状态和实时通知</li>
+                            <li>• 集成LangChain4j增强对话能力</li>
+                            <li>• 实现多Bot协作的聊天场景</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-12">
+                <div class="flex items-center gap-3 mb-8">
+                    <div class="bg-indigo-600 text-white px-4 py-2 rounded-lg font-bold">🏗️</div>
+                    <h2 class="text-2xl font-bold text-gray-900">项目架构设计</h2>
+                </div>
+
+                <div class="bg-white border border-gray-200 rounded-lg p-6 mb-8">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">系统架构图</h3>
+                    <pre class="bg-gray-900 text-gray-100 p-6 rounded-lg overflow-x-auto text-sm">
+┌─────────────────────────────────────────────────────────────────┐
+│                         客户端层 (React)                          │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐           │
+│  │  聊天界面    │  │  群聊列表    │  │  设置面板    │           │
+│  └──────────────┘  └──────────────┘  └──────────────┘           │
+└─────────────────────────────────────────────────────────────────┘
+                            ↓ WebSocket
+┌─────────────────────────────────────────────────────────────────┐
+│                    Spring Boot 后端层                             │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐           │
+│  │WebSocket     │  │  ChatService │  │  MessageRepo  │           │
+│  │  Controller  │  │              │  │              │           │
+│  └──────────────┘  └──────────────┘  └──────────────┘           │
+│       ↓                  ↓                    ↓                  │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐           │
+│  │  在线用户    │  │  聊天室      │  │  消息持久化  │           │
+│  │  管理器      │  │  管理器      │  │  服务        │           │
+│  └──────────────┘  └──────────────┘  └──────────────┘           │
+└─────────────────────────────────────────────────────────────────┘
+                            ↓
+┌─────────────────────────────────────────────────────────────────┐
+│                    LangChain4j AI增强层                          │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐           │
+│  │  ChatAgent   │  │  RAGService  │  │  ToolAgent   │           │
+│  │              │  │              │  │              │           │
+│  └──────────────┘  └──────────────┘  └──────────────┘           │
+└─────────────────────────────────────────────────────────────────┘
+                            ↓
+┌─────────────────────────────────────────────────────────────────┐
+│                        数据存储层                                 │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐           │
+│  │  PostgreSQL  │  │  Redis       │  │  Vector DB   │           │
+│  │  (用户/消息)  │  │  (在线状态)  │  │  (知识库)     │           │
+│  └──────────────┘  └──────────────┘  └──────────────┘           │
+└─────────────────────────────────────────────────────────────────┘
+                    </pre>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <div class="bg-white border border-gray-200 rounded-lg p-5">
+                        <h4 class="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                            <span class="text-indigo-600">🔌</span> 核心组件
+                        </h4>
+                        <ul class="text-gray-700 space-y-2 text-sm">
+                            <li>• <strong>ChatWebSocketHandler</strong> - WebSocket消息处理</li>
+                            <li>• <strong>ChatService</strong> - 聊天业务逻辑</li>
+                            <li>• <strong>RoomManager</strong> - 聊天室管理</li>
+                            <li>• <strong>OnlineUserService</strong> - 在线用户管理</li>
+                            <li>• <strong>MessageRepository</strong> - 消息持久化</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-lg p-5">
+                        <h4 class="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                            <span class="text-green-600">🤖</span> AI增强功能
+                        </h4>
+                        <ul class="text-gray-700 space-y-2 text-sm">
+                            <li>• <strong>ChatAgent</strong> - 智能对话Agent</li>
+                            <li>• <strong>MultiBotCoordinator</strong> - 多Bot协调</li>
+                            <li>• <strong>ContextMemory</strong> - 对话上下文记忆</li>
+                            <li>• <strong>ToolIntegration</strong> - 工具调用支持</li>
+                            <li>• <strong>RAGIntegration</strong> - 知识库检索</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <section class="mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                    <span class="bg-indigo-600 text-white w-10 h-10 rounded-full flex items-center justify-center text-xl font-bold">1</span>
+                    Spring Boot WebSocket后端实现
+                </h2>
+
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">1.1 项目依赖配置</h3>
+                <div class="bg-gray-900 rounded-lg p-5 mb-8 border border-gray-700">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="text-xs text-gray-400">pom.xml</div>
+                        <div class="text-xs text-gray-400">Maven配置</div>
+                    </div>
+                    <pre class="text-gray-100 text-sm overflow-x-auto"><code class="language-xml">&lt;dependencies&gt;
+    &lt;!-- Spring Boot Starter --&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-websocket&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-data-jpa&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-data-redis&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+
+    &lt;!-- LangChain4j --&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;dev.langchain4j&lt;/groupId&gt;
+        &lt;artifactId&gt;langchain4j-open-ai&lt;/artifactId&gt;
+        &lt;version&gt;0.36.2&lt;/version&gt;
+    &lt;/dependency&gt;
+
+    &lt;!-- PostgreSQL --&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.postgresql&lt;/groupId&gt;
+        &lt;artifactId&gt;postgresql&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+
+    &lt;!-- Lombok --&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;
+        &lt;artifactId&gt;lombok&lt;/artifactId&gt;
+        &lt;optional&gt;true&lt;/optional&gt;
+    &lt;/dependency&gt;
+&lt;/dependencies&gt;
+                    </code></pre>
+                </div>
+
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">1.2 WebSocket配置</h3>
+                <div class="bg-gray-900 rounded-lg p-5 mb-8 border border-gray-700">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="text-xs text-gray-400">WebSocketConfig.java</div>
+                        <div class="text-xs text-gray-400">WebSocket配置类</div>
+                    </div>
+                    <pre class="text-gray-100 text-sm overflow-x-auto"><code class="language-java">package com.example.chatbot.config;
+
+import org.springframework.context.annotation.Configuration;
+import org.springframework.messaging.simp.config.MessageBrokerRegistry;
+import org.springframework.web.socket.config.annotation.*;
+
+/**
+ * WebSocket配置类
+ * 配置消息代理和端点映射
+ */
+@Configuration
+@EnableWebSocketMessageBroker
+public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
+
+    @Override
+    public void configureMessageBroker(MessageBrokerRegistry config) {
+        // 启用简单消息代理，用于向客户端发送消息
+        // /topic 主题消息（广播给所有订阅者）
+        // /queue 队列消息（点对点发送）
+        config.enableSimpleBroker("/topic", "/queue");
+
+        // 设置客户端发送消息的前缀
+        config.setApplicationDestinationPrefixes("/app");
+
+        // 设置用户目的地前缀
+        config.setUserDestinationPrefix("/user");
+    }
+
+    @Override
+    public void registerStompEndpoints(ompRegistry) {
+        // 注册WebSocket端点
+        ompRegistry.addEndpoint("/ws-chat")
+                  .setAllowedOriginPatterns("*")  // 生产环境应限制域名
+                  .withSockJS();  // 支持SockJS回退方案
+    }
+}
+                    </code></pre>
+                </div>
+
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">1.3 消息实体类</h3>
+                <div class="bg-gray-900 rounded-lg p-5 mb-8 border border-gray-700">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="text-xs text-gray-400">Message.java</div>
+                        <div class="text-xs text-gray-400">消息实体</div>
+                    </div>
+                    <pre class="text-gray-100 text-sm overflow-x-auto"><code class="language-java">package com.example.chatbot.entity;
+
+import jakarta.persistence.*;
+import lombok.*;
+import java.time.LocalDateTime;
+
+/**
+ * 聊天消息实体
+ * 存储所有聊天消息用于历史记录查询
+ */
+@Entity
+@Table(name = "messages", indexes = {
+    @Index(name = "idx_room_created", columnList = "room_id,created_at"),
+    @Index(name = "idx_sender", columnList = "sender_id")
+})
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class Message {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    /**
+     * 聊天室ID
+     */
+    @Column(nullable = false)
+    private String roomId;
+
+    /**
+     * 发送者ID
+     */
+    @Column(nullable = false)
+    private String senderId;
+
+    /**
+     * 发送者名称
+     */
+    @Column(nullable = false)
+    private String senderName;
+
+    /**
+     * 消息内容
+     */
+    @Column(nullable = false, length = 5000)
+    private String content;
+
+    /**
+     * 消息类型：TEXT, IMAGE, FILE, SYSTEM
+     */
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private MessageType type = MessageType.TEXT;
+
+    /**
+     * 是否为AI生成的消息
+     */
+    @Column(nullable = false)
+    private Boolean isAiGenerated = false;
+
+    /**
+     * AI模型名称（如果是AI消息）
+     */
+    private String aiModel;
+
+    /**
+     * 关联的工具调用ID（如果有）
+     */
+    private Long toolCallId;
+
+    /**
+     * 创建时间
+     */
+    @Column(nullable = false)
+    private LocalDateTime createdAt;
+
+    @PrePersist
+    protected void onCreate() {
+        createdAt = LocalDateTime.now();
+    }
+
+    /**
+     * 消息类型枚举
+     */
+    public enum MessageType {
+        TEXT,      // 文本消息
+        IMAGE,     // 图片消息
+        FILE,      // 文件消息
+        SYSTEM,    // 系统消息
+        JOIN,      // 加入房间
+        LEAVE,     // 离开房间
+        TYPING     // 正在输入
+    }
+}
+                    </code></pre>
+                </div>
+
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">1.4 MessageRepository接口</h3>
+                <div class="bg-gray-900 rounded-lg p-5 mb-8 border border-gray-700">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="text-xs text-gray-400">MessageRepository.java</div>
+                        <div class="text-xs text-gray-400">消息数据访问层</div>
+                    </div>
+                    <pre class="text-gray-100 text-sm overflow-x-auto"><code class="language-java">package com.example.chatbot.repository;
+
+import com.example.chatbot.entity.Message;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
+
+import java.time.LocalDateTime;
+import java.util.List;
+
+/**
+ * 消息仓储接口
+ * 提供消息持久化和查询功能
+ */
+@Repository
+public interface MessageRepository extends JpaRepository&lt;Message, Long&gt; {
+
+    /**
+     * 查询指定聊天室的消息
+     * @param roomId 聊天室ID
+     * @param pageable 分页参数
+     * @return 消息分页结果
+     */
+    Page&lt;Message&gt; findByRoomIdOrderByCreatedAtAsc(String roomId, Pageable pageable);
+
+    /**
+     * 查询指定聊天室最近的消息
+     * @param roomId 聊天室ID
+     * @param limit 限制数量
+     * @return 消息列表
+     */
+    @Query("SELECT m FROM Message m WHERE m.roomId = :roomId " +
+           "ORDER BY m.createdAt DESC LIMIT :limit")
+    List&lt;Message&gt; findRecentMessages(@Param("roomId") String roomId,
+                                        @Param("limit") int limit);
+
+    /**
+     * 查询指定时间段的消息
+     * @param roomId 聊天室ID
+     * @param startTime 开始时间
+     * @param endTime 结束时间
+     * @return 消息列表
+     */
+    List&lt;Message&gt; findByRoomIdAndCreatedAtBetween(
+        String roomId,
+        LocalDateTime startTime,
+        LocalDateTime endTime
+    );
+
+    /**
+     * 统计聊天室消息数量
+     * @param roomId 聊天室ID
+     * @return 消息总数
+     */
+    long countByRoomId(String roomId);
+
+    /**
+     * 查询用户在指定聊天室发送的消息
+     * @param roomId 聊天室ID
+     * @param senderId 发送者ID
+     * @return 消息列表
+     */
+    List&lt;Message&gt; findByRoomIdAndSenderIdOrderByCreatedAtAsc(
+        String roomId,
+        String senderId
+    );
+
+    /**
+     * 删除指定日期之前的消息（用于清理历史消息）
+     * @param beforeDate 日期
+     * @return 删除的记录数
+     */
+    @Query("DELETE FROM Message m WHERE m.createdAt &lt; :beforeDate")
+    int deleteMessagesOlderThan(@Param("beforeDate") LocalDateTime beforeDate);
+
+    /**
+     * 搜索包含关键词的消息
+     */
+    @Query("SELECT m FROM Message m WHERE m.roomId = :roomId AND " +
+           "LOWER(m.content) LIKE LOWER(CONCAT('%', :keyword, '%'))")
+    List&lt;Message&gt; searchByKeyword(@Param("roomId") String roomId,
+                                   @Param("keyword") String keyword);
+}
+                    </code></pre>
+                </div>
+
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">1.5 聊天室实体类</h3>
+                <div class="bg-gray-900 rounded-lg p-5 mb-8 border border-gray-700">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="text-xs text-gray-400">ChatRoom.java</div>
+                        <div class="text-xs text-gray-400">聊天室实体</div>
+                    </div>
+                    <pre class="text-gray-100 text-sm overflow-x-auto"><code class="language-java">package com.example.chatbot.entity;
+
+import jakarta.persistence.*;
+import lombok.*;
+import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
+
+/**
+ * 聊天室实体
+ * 管理聊天室基本信息和成员
+ */
+@Entity
+@Table(name = "chat_rooms", indexes = {
+    @Index(name = "idx_creator", columnList = "created_by")
+})
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class ChatRoom {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    /**
+     * 聊天室唯一ID
+     */
+    @Column(unique = true, nullable = false)
+    private String roomId;
+
+    /**
+     * 聊天室名称
+     */
+    @Column(nullable = false)
+    private String name;
+
+    /**
+     * 聊天室描述
+     */
+    @Column(length = 1000)
+    private String description;
+
+    /**
+     * 聊天室类型：PUBLIC, PRIVATE, GROUP
+     */
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private RoomType type = RoomType.PUBLIC;
+
+    /**
+     * 创建者ID
+     */
+    @Column(nullable = false)
+    private String createdBy;
+
+    /**
+     * 创建者名称
+     */
+    @Column(nullable = false)
+    private String createdByName;
+
+    /**
+     * 成员ID集合（简化存储，生产环境可用关联表）
+     */
+    @ElementCollection
+    @CollectionTable(name = "room_members", joinColumns = @JoinColumn(name = "room_id"))
+    @Column(name = "user_id")
+    private Set&lt;String&gt; memberIds = new HashSet&lt;&gt;();
+
+    /**
+     * 最大成员数
+     */
+    @Column
+    private Integer maxMembers;
+
+    /**
+     * 是否启用AI助手
+     */
+    @Column(nullable = false)
+    @Builder.Default
+    private Boolean aiEnabled = true;
+
+    /**
+     * AI Bot名称
+     */
+    @Column(length = 100)
+    private String aiBotName = "AI助手";
+
+    /**
+     * 是否启用知识库RAG
+     */
+    @Column(nullable = false)
+    @Builder.Default
+    private Boolean ragEnabled = false;
+
+    /**
+     * 知识库ID（如果启用RAG）
+     */
+    private Long knowledgeBaseId;
+
+    /**
+     * 创建时间
+     */
+    @Column(nullable = false)
+    private LocalDateTime createdAt;
+
+    /**
+     * 最后活跃时间
+     */
+    private LocalDateTime lastActiveAt;
+
+    @PrePersist
+    protected void onCreate() {
+        createdAt = LocalDateTime.now();
+        lastActiveAt = LocalDateTime.now();
+    }
+
+    /**
+     * 聊天室类型枚举
+     */
+    public enum RoomType {
+        PUBLIC,  // 公开聊天室
+        PRIVATE, // 私聊
+        GROUP    // 群聊
+    }
+
+    /**
+     * 添加成员
+     */
+    public void addMember(String userId) {
+        if (maxMembers != null &amp;&amp; memberIds.size() &gt;= maxMembers) {
+            throw new IllegalStateException("聊天室已满员");
+        }
+        memberIds.add(userId);
+        lastActiveAt = LocalDateTime.now();
+    }
+
+    /**
+     * 移除成员
+     */
+    public void removeMember(String userId) {
+        memberIds.remove(userId);
+        lastActiveAt = LocalDateTime.now();
+    }
+
+    /**
+     * 检查是否为成员
+     */
+    public boolean isMember(String userId) {
+        return memberIds.contains(userId);
+    }
+
+    /**
+     * 获取成员数量
+     */
+    public int getMemberCount() {
+        return memberIds.size();
+    }
+}
+                    </code></pre>
+                </div>
+            </section>
+
+            <section class="mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                    <span class="bg-indigo-600 text-white w-10 h-10 rounded-full flex items-center justify-center text-xl font-bold">2</span>
+                    ChatService业务逻辑
+                </h2>
+
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">2.1 ChatService接口定义</h3>
+                <div class="bg-gray-900 rounded-lg p-5 mb-8 border border-gray-700">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="text-xs text-gray-400">ChatService.java</div>
+                        <div class="text-xs text-gray-400">聊天服务接口</div>
+                    </div>
+                    <pre class="text-gray-100 text-sm overflow-x-auto"><code class="language-java">package com.example.chatbot.service;
+
+import com.example.chatbot.dto.*;
+import org.springframework.data.domain.Page;
+
+import java.util.List;
+
+/**
+ * 聊天服务接口
+ * 定义聊天相关的所有业务操作
+ */
+public interface ChatService {
+
+    /**
+     * 创建聊天室
+     * @param request 创建请求
+     * @return 聊天室信息
+     */
+    ChatRoomDTO createRoom(CreateRoomRequest request);
+
+    /**
+     * 加入聊天室
+     * @param roomId 聊天室ID
+     * @param userId 用户ID
+     * @param userName 用户名
+     */
+    void joinRoom(String roomId, String userId, String userName);
+
+    /**
+     * 离开聊天室
+     * @param roomId 聊天室ID
+     * @param userId 用户ID
+     */
+    void leaveRoom(String roomId, String userId);
+
+    /**
+     * 发送消息
+     * @param request 发送消息请求
+     * @return 消息实体
+     */
+    MessageDTO sendMessage(SendMessageRequest request);
+
+    /**
+     * 获取聊天室历史消息
+     * @param roomId 聊天室ID
+     * @param page 页码
+     * @param size 每页大小
+     * @return 消息分页结果
+     */
+    Page&lt;MessageDTO&gt; getRoomMessages(String roomId, int page, int size);
+
+    /**
+     * 获取用户的聊天室列表
+     * @param userId 用户ID
+     * @return 聊天室列表
+     */
+    List&lt;ChatRoomDTO&gt; getUserRooms(String userId);
+
+    /**
+     * 更新聊天室设置
+     * @param roomId 聊天室ID
+     * @param request 更新请求
+     */
+    void updateRoomSettings(String roomId, UpdateRoomRequest request);
+
+    /**
+     * 删除聊天室
+     * @param roomId 聊天室ID
+     * @param userId 操作者ID
+     */
+    void deleteRoom(String roomId, String userId);
+
+    /**
+     * 获取在线用户列表
+     * @param roomId 聊天室ID
+     * @return 在线用户列表
+     */
+    List&lt;OnlineUserDTO&gt; getOnlineUsers(String roomId);
+
+    /**
+     * 搜索消息
+     * @param roomId 聊天室ID
+     * @param keyword 关键词
+     * @return 匹配的消息列表
+     */
+    List&lt;MessageDTO&gt; searchMessages(String roomId, String keyword);
+
+    /**
+     * 标记消息已读
+     * @param roomId 聊天室ID
+     * @param userId 用户ID
+     */
+    void markMessagesAsRead(String roomId, String userId);
+}
+                    </code></pre>
+                </div>
+
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">2.2 ChatServiceImpl核心实现（部分）</h3>
+                <div class="bg-gray-900 rounded-lg p-5 mb-8 border border-gray-700">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="text-xs text-gray-400">ChatServiceImpl.java</div>
+                        <div class="text-xs text-gray-400">聊天服务实现</div>
+                    </div>
+                    <pre class="text-gray-100 text-sm overflow-x-auto"><code class="language-java">package com.example.chatbot.service.impl;
+
+import com.example.chatbot.dto.*;
+import com.example.chatbot.entity.ChatRoom;
+import com.example.chatbot.entity.Message;
+import com.example.chatbot.repository.ChatRoomRepository;
+import com.example.chatbot.repository.MessageRepository;
+import com.example.chatbot.service.ChatService;
+import com.example.chatbot.service.OnlineUserService;
+import com.example.chatbot.service.ai.ChatAgent;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.UUID;
+import java.util.stream.Collectors;
+
+/**
+ * 聊天服务实现类
+ * 实现所有聊天相关的业务逻辑
+ */
+@Slf4j
+@Service
+@RequiredArgsConstructor
+public class ChatServiceImpl implements ChatService {
+
+    private final ChatRoomRepository chatRoomRepository;
+    private final MessageRepository messageRepository;
+    private final OnlineUserService onlineUserService;
+    private final ChatAgent chatAgent;
+    private final SimpMessagingTemplate messagingTemplate;
+
+    @Override
+    @Transactional
+    public ChatRoomDTO createRoom(CreateRoomRequest request) {
+        log.info("创建聊天室: {}", request.getName());
+
+        String roomId = generateRoomId();
+
+        ChatRoom room = ChatRoom.builder()
+            .roomId(roomId)
+            .name(request.getName())
+            .description(request.getDescription())
+            .type(request.getType() != null ? request.getType() : ChatRoom.RoomType.GROUP)
+            .createdBy(request.getCreatorId())
+            .createdByName(request.getCreatorName())
+            .maxMembers(request.getMaxMembers())
+            .aiEnabled(request.getAiEnabled() != null ? request.getAiEnabled() : true)
+            .aiBotName(request.getAiBotName() != null ? request.getAiBotName() : "AI助手")
+            .ragEnabled(request.getRagEnabled() != null ? request.getRagEnabled() : false)
+            .knowledgeBaseId(request.getKnowledgeBaseId())
+            .build();
+
+        room.addMember(request.getCreatorId());
+        chatRoomRepository.save(room);
+
+        log.info("聊天室创建成功: {}", roomId);
+        return mapToRoomDTO(room);
+    }
+
+    @Override
+    @Transactional
+    public void joinRoom(String roomId, String userId, String userName) {
+        log.info("用户 {} 加入聊天室 {}", userName, roomId);
+
+        ChatRoom room = chatRoomRepository.findByRoomId(roomId)
+            .orElseThrow(() -> new IllegalArgumentException("聊天室不存在"));
+
+        room.addMember(userId);
+        room.setLastActiveAt(java.time.LocalDateTime.now());
+        chatRoomRepository.save(room);
+
+        // 在线用户管理
+        onlineUserService.addUser(roomId, userId, userName);
+
+        // 发送加入系统消息
+        Message joinMessage = Message.builder()
+            .roomId(roomId)
+            .senderId("SYSTEM")
+            .senderName("系统")
+            .content(userName + " 加入了聊天室")
+            .type(Message.MessageType.JOIN)
+            .isAiGenerated(false)
+            .build();
+        messageRepository.save(joinMessage);
+
+        // 广播加入消息给聊天室所有用户
+        messagingTemplate.convertAndSend(
+            "/topic/room/" + roomId,
+            mapToMessageDTO(joinMessage)
+        );
+
+        // 广播在线用户列表
+        broadcastOnlineUsers(roomId);
+    }
+
+    @Override
+    @Transactional
+    public void leaveRoom(String roomId, String userId) {
+        log.info("用户 {} 离开聊天室 {}", userId, roomId);
+
+        ChatRoom room = chatRoomRepository.findByRoomId(roomId)
+            .orElseThrow(() -> new IllegalArgumentException("聊天室不存在"));
+
+        room.removeMember(userId);
+        room.setLastActiveAt(java.time.LocalDateTime.now());
+        chatRoomRepository.save(room);
+
+        // 移除在线用户
+        String userName = onlineUserService.removeUser(roomId, userId);
+
+        // 发送离开系统消息
+        Message leaveMessage = Message.builder()
+            .roomId(roomId)
+            .senderId("SYSTEM")
+            .senderName("系统")
+            .content(userName + " 离开了聊天室")
+            .type(Message.MessageType.LEAVE)
+            .isAiGenerated(false)
+            .build();
+        messageRepository.save(leaveMessage);
+
+        // 广播离开消息
+        messagingTemplate.convertAndSend(
+            "/topic/room/" + roomId,
+            mapToMessageDTO(leaveMessage)
+        );
+
+        // 广播更新后的在线用户列表
+        broadcastOnlineUsers(roomId);
+    }
+
+    @Override
+    @Transactional
+    public MessageDTO sendMessage(SendMessageRequest request) {
+        log.info("发送消息到聊天室 {}: {}", request.getRoomId(), request.getContent());
+
+        ChatRoom room = chatRoomRepository.findByRoomId(request.getRoomId())
+            .orElseThrow(() -> new IllegalArgumentException("聊天室不存在"));
+
+        // 保存用户消息
+        Message userMessage = Message.builder()
+            .roomId(request.getRoomId())
+            .senderId(request.getSenderId())
+            .senderName(request.getSenderName())
+            .content(request.getContent())
+            .type(request.getType() != null ? request.getType() : Message.MessageType.TEXT)
+            .isAiGenerated(false)
+            .build();
+        messageRepository.save(userMessage);
+
+        // 更新聊天室最后活跃时间
+        room.setLastActiveAt(java.time.LocalDateTime.now());
+        chatRoomRepository.save(room);
+
+        // 广播用户消息
+        messagingTemplate.convertAndSend(
+            "/topic/room/" + request.getRoomId(),
+            mapToMessageDTO(userMessage)
+        );
+
+        // 如果启用了AI助手，生成AI回复
+        if (room.getAiEnabled()) {
+            handleAiResponse(request.getRoomId(), room, userMessage);
+        }
+
+        return mapToMessageDTO(userMessage);
+    }
+
+    /**
+     * 处理AI响应（异步）
+     */
+    private void handleAiResponse(String roomId, ChatRoom room, Message userMessage) {
+        new Thread(() -&gt; {
+            try {
+                // 发送"AI正在输入"状态
+                sendTypingStatus(roomId, room.getAiBotName());
+
+                // 调用ChatAgent生成回复
+                String aiResponse = chatAgent.generateResponse(
+                    room.getRoomId(),
+                    room.getAiBotName(),
+                    userMessage.getContent(),
+                    room.getRagEnabled(),
+                    room.getKnowledgeBaseId()
+                );
+
+                // 保存AI回复
+                Message aiMessage = Message.builder()
+                    .roomId(roomId)
+                    .senderId("AI")
+                    .senderName(room.getAiBotName())
+                    .content(aiResponse)
+                    .type(Message.MessageType.TEXT)
+                    .isAiGenerated(true)
+                    .aiModel("gpt-4")
+                    .build();
+                messageRepository.save(aiMessage);
+
+                // 广播AI回复
+                messagingTemplate.convertAndSend(
+                    "/topic/room/" + roomId,
+                    mapToMessageDTO(aiMessage)
+                );
+
+            } catch (Exception e) {
+                log.error("AI响应生成失败", e);
+            }
+        }).start();
+    }
+
+    /**
+     * 发送输入状态
+     */
+    private void sendTypingStatus(String roomId, String userName) {
+        Message typingMessage = Message.builder()
+            .roomId(roomId)
+            .senderId(userName)
+            .senderName(userName)
+            .content("正在输入...")
+            .type(Message.MessageType.TYPING)
+            .isAiGenerated(false)
+            .build();
+        messagingTemplate.convertAndSend(
+            "/topic/room/" + roomId,
+            mapToMessageDTO(typingMessage)
+        );
+    }
+
+    /**
+     * 广播在线用户列表
+     */
+    private void broadcastOnlineUsers(String roomId) {
+        List&lt;OnlineUserDTO&gt; onlineUsers = onlineUserService.getOnlineUsers(roomId);
+        messagingTemplate.convertAndSend(
+            "/topic/room/" + roomId + "/online",
+            onlineUsers
+        );
+    }
+
+    @Override
+    public Page&lt;MessageDTO&gt; getRoomMessages(String roomId, int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page&lt;Message&gt; messages = messageRepository.findByRoomIdOrderByCreatedAtAsc(roomId, pageable);
+        return messages.map(this::mapToMessageDTO);
+    }
+
+    @Override
+    public List&lt;ChatRoomDTO&gt; getUserRooms(String userId) {
+        // 简化实现：查询用户参与的所有聊天室
+        return chatRoomRepository.findAll().stream()
+            .filter(room -&gt; room.getMemberIds().contains(userId))
+            .map(this::mapToRoomDTO)
+            .collect(Collectors.toList());
+    }
+
+    @Override
+    @Transactional
+    public void deleteRoom(String roomId, String userId) {
+        ChatRoom room = chatRoomRepository.findByRoomId(roomId)
+            .orElseThrow(() -&gt; new IllegalArgumentException("聊天室不存在"));
+
+        if (!room.getCreatedBy().equals(userId)) {
+            throw new IllegalArgumentException("只有创建者才能删除聊天室");
+        }
+
+        // 删除所有消息
+        messageRepository.deleteByRoomId(roomId);
+        // 删除聊天室
+        chatRoomRepository.delete(room);
+    }
+
+    @Override
+    public List&lt;OnlineUserDTO&gt; getOnlineUsers(String roomId) {
+        return onlineUserService.getOnlineUsers(roomId);
+    }
+
+    @Override
+    public List&lt;MessageDTO&gt; searchMessages(String roomId, String keyword) {
+        List&lt;Message&gt; messages = messageRepository.searchByKeyword(roomId, keyword);
+        return messages.stream()
+            .map(this::mapToMessageDTO)
+            .collect(Collectors.toList());
+    }
+
+    @Override
+    @Transactional
+    public void markMessagesAsRead(String roomId, String userId) {
+        log.info("标记用户 {} 在聊天室 {} 的消息为已读", userId, roomId);
+    }
+
+    // 辅助方法
+    private String generateRoomId() {
+        return "ROOM-" + UUID.randomUUID().toString().substring(0, 8).toUpperCase();
+    }
+
+    private MessageDTO mapToMessageDTO(Message message) {
+        return MessageDTO.builder()
+            .id(message.getId())
+            .roomId(message.getRoomId())
+            .senderId(message.getSenderId())
+            .senderName(message.getSenderName())
+            .content(message.getContent())
+            .type(message.getType())
+            .isAiGenerated(message.getIsAiGenerated())
+            .aiModel(message.getAiModel())
+            .createdAt(message.getCreatedAt())
+            .build();
+    }
+
+    private ChatRoomDTO mapToRoomDTO(ChatRoom room) {
+        return ChatRoomDTO.builder()
+            .roomId(room.getRoomId())
+            .name(room.getName())
+            .description(room.getDescription())
+            .type(room.getType())
+            .createdBy(room.getCreatedBy())
+            .createdByName(room.getCreatedByName())
+            .memberCount(room.getMemberCount())
+            .maxMembers(room.getMaxMembers())
+            .aiEnabled(room.getAiEnabled())
+            .aiBotName(room.getAiBotName())
+            .ragEnabled(room.getRagEnabled())
+            .knowledgeBaseId(room.getKnowledgeBaseId())
+            .createdAt(room.getCreatedAt())
+            .lastActiveAt(room.getLastActiveAt())
+            .build();
+    }
+}
+                    </code></pre>
+                </div>
+            </section>
+
+            <section class="mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                    <span class="bg-indigo-600 text-white w-10 h-10 rounded-full flex items-center justify-center text-xl font-bold">3</span>
+                    React前端实现
+                </h2>
+
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">3.1 ChatPage主组件</h3>
+                <div class="bg-gray-900 rounded-lg p-5 mb-8 border border-gray-700">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="text-xs text-gray-400">ChatPage.tsx</div>
+                        <div class="text-xs text-gray-400">React主页面</div>
+                    </div>
+                    <pre class="text-gray-100 text-sm overflow-x-auto"><code class="language-typescript">import React, { useState, useEffect, useRef } from 'react';
+import { SockJS } from 'sockjs-client';
+import { Stomp, CompatClient, StompSubscription } from '@stomp/stompjs';
+import axios from 'axios';
+import { Message, ChatRoom, OnlineUser } from '../types';
+
+interface ChatPageProps {
+  userId: string;
+  userName: string;
+}
+
+/**
+ * 聊天页面主组件
+ */
+const ChatPage: React.FC&lt;ChatPageProps&gt; = ({ userId, userName }) =&gt; {
+  // WebSocket连接状态
+  const [stompClient, setStompClient] = useState&lt;CompatClient | null&gt;(null);
+  const [connected, setConnected] = useState&lt;boolean&gt;(false);
+  const [currentRoom, setCurrentRoom] = useState&lt;ChatRoom | null&gt;(null);
+
+  // 消息状态
+  const [messages, setMessages] = useState&lt;Message[]&gt;([]);
+  const [newMessage, setNewMessage] = useState&lt;string&gt;('');
+  const [onlineUsers, setOnlineUsers] = useState&lt;OnlineUser[]&gt;([]);
+
+  // UI状态
+  const [showRoomList, setShowRoomList] = useState&lt;boolean&gt;(true);
+  const [showOnlineUsers, setShowOnlineUsers] = useState&lt;boolean&gt;(true);
+
+  // 引用
+  const messagesEndRef = useRef&lt;HTMLDivElement&gt;(null);
+  const messageInputRef = useRef&lt;HTMLTextAreaElement&gt;(null);
+
+  // 初始化WebSocket连接
+  useEffect(() =&gt; {
+    const client = Stomp.over(() =&gt; {
+      return new SockJS('http://localhost:8080/ws-chat');
+    });
+
+    client.connect({}, () =&gt; {
+      console.log('WebSocket连接成功');
+      setConnected(true);
+      setStompClient(client);
+    }, (error: any) =&gt; {
+      console.error('WebSocket连接失败:', error);
+      setConnected(false);
+    });
+
+    return () =&gt; {
+      if (client) {
+        client.disconnect();
+      }
+    };
+  }, []);
+
+  // 滚动到底部
+  useEffect(() =&gt; {
+    scrollToBottom();
+  }, [messages]);
+
+  const scrollToBottom = () =&gt; {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  // 发送消息
+  const sendMessage = () =&gt; {
+    if (!newMessage.trim() || !stompClient || !currentRoom) {
+      return;
+    }
+
+    const message: Message = {
+      roomId: currentRoom.roomId,
+      senderId: userId,
+      senderName: userName,
+      content: newMessage,
+      type: 'TEXT',
+      createdAt: new Date(),
+    };
+
+    stompClient.send(
+      '/app/chat/send',
+      {},
+      JSON.stringify(message)
+    );
+
+    setNewMessage('');
+  };
+
+  // 加入聊天室
+  const joinRoom = (roomId: string) =&gt; {
+    if (!stompClient) return;
+
+    // 订阅聊天室消息
+    const subscription: StompSubscription = stompClient.subscribe(
+      `/topic/room/${roomId}`,
+      (message: any) =&gt; {
+        const newMsg: Message = JSON.parse(message.body);
+        setMessages((prev) =&gt; [...prev, newMsg]);
+      }
+    );
+
+    // 订阅在线用户列表
+    const onlineSubscription: StompSubscription = stompClient.subscribe(
+      `/topic/room/${roomId}/online`,
+      (message: any) =&gt; {
+        const users: OnlineUser[] = JSON.parse(message.body);
+        setOnlineUsers(users);
+      }
+    );
+
+    // 发送加入请求
+    stompClient.send(
+      '/app/chat/join',
+      {},
+      JSON.stringify({ roomId, userId, userName })
+    );
+
+    // 加载历史消息
+    loadHistoryMessages(roomId);
+  };
+
+  // 加载历史消息
+  const loadHistoryMessages = async (roomId: string) =&gt; {
+    try {
+      const response = await axios.get(`/api/chat/rooms/${roomId}/messages?page=0&amp;size=50`);
+      setMessages(response.data.content);
+    } catch (error) {
+      console.error('加载历史消息失败:', error);
+    }
+  };
+
+  // 处理回车发送
+  const handleKeyPress = (e: React.KeyboardEvent) =&gt; {
+    if (e.key === 'Enter' &amp;&amp; !e.shiftKey) {
+      e.preventDefault();
+      sendMessage();
+    }
+  };
+
+  return (
+    &lt;div className="flex h-screen bg-gray-100"&gt;
+      {/* 左侧边栏 - 聊天室列表 */}
+      {showRoomList &amp;&amp; (
+        &lt;aside className="w-80 bg-white border-r border-gray-200 flex flex-col"&gt;
+          &lt;div className="p-4 border-b border-gray-200"&gt;
+            &lt;h2 className="text-xl font-bold text-gray-900"&gt;聊天室列表&lt;/h2&gt;
+          &lt;/div&gt;
+          &lt;div className="flex-1 overflow-y-auto"&gt;
+            {currentRoom ? (
+              &lt;div className="p-4 bg-indigo-50 border-l-4 border-indigo-600"&gt;
+                &lt;div className="font-semibold text-gray-900"&gt;{currentRoom.name}&lt;/div&gt;
+                &lt;div className="text-sm text-gray-600"&gt;{currentRoom.description}&lt;/div&gt;
+              &lt;/div&gt;
+            ) : (
+              &lt;div className="p-4 text-center text-gray-500"&gt;
+                暂无聊天室
+              &lt;/div&gt;
+            )}
+          &lt;/div&gt;
+          &lt;div className="p-4 border-t border-gray-200"&gt;
+            &lt;button className="w-full bg-indigo-600 text-white py-2 px-4 rounded-lg"&gt;
+              + 创建聊天室
+            &lt;/button&gt;
+          &lt;/div&gt;
+        &lt;/aside&gt;
+      )}
+
+      {/* 中间 - 聊天区域 */}
+      &lt;main className="flex-1 flex flex-col"&gt;
+        {/* 聊天室头部 */}
+        &lt;header className="bg-white border-b border-gray-200 p-4 flex items-center justify-between"&gt;
+          &lt;div&gt;
+            &lt;h1 className="text-xl font-bold text-gray-900"&gt;
+              {currentRoom?.name || '选择聊天室'}
+            &lt;/h1&gt;
+            {currentRoom?.aiEnabled &amp;&amp; (
+              &lt;span className="text-sm text-green-600"&gt;🤖 AI助手已启用&lt;/span&gt;
+            )}
+          &lt;/div&gt;
+          &lt;div className="flex items-center gap-2"&gt;
+            &lt;button onClick={() =&gt; setShowOnlineUsers(!showOnlineUsers)}&gt;
+              👥 {onlineUsers.length}
+            &lt;/button&gt;
+          &lt;/div&gt;
+        &lt;/header&gt;
+
+        {/* 消息列表 */}
+        &lt;div className="flex-1 overflow-y-auto p-4 space-y-4"&gt;
+          {messages.map((message) =&gt; (
+            &lt;MessageItem
+              key={message.id}
+              message={message}
+              isCurrentUser={message.senderId === userId}
+            /&gt;
+          ))}
+          &lt;div ref={messagesEndRef} /&gt;
+        &lt;/div&gt;
+
+        {/* 输入框 */}
+        &lt;div className="bg-white border-t border-gray-200 p-4"&gt;
+          &lt;textarea
+            ref={messageInputRef}
+            value={newMessage}
+            onChange={(e) =&gt; setNewMessage(e.target.value)}
+            onKeyPress={handleKeyPress}
+            placeholder="输入消息... (Enter发送)"
+            className="w-full border border-gray-300 rounded-lg p-3 resize-none"
+            rows={3}
+          /&gt;
+          &lt;div className="flex justify-between items-center mt-2"&gt;
+            &lt;div className="flex gap-2"&gt;
+              &lt;button className="p-2 hover:bg-gray-100 rounded-lg"&gt;😊&lt;/button&gt;
+              &lt;button className="p-2 hover:bg-gray-100 rounded-lg"&gt;📎&lt;/button&gt;
+            &lt;/div&gt;
+            &lt;button
+              onClick={sendMessage}
+              disabled={!newMessage.trim()}
+              className="bg-indigo-600 text-white py-2 px-6 rounded-lg hover:bg-indigo-700 transition-colors disabled:opacity-50"
+            &gt;
+              发送
+            &lt;/button&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/main&gt;
+
+      {/* 右侧边栏 - 在线用户 */}
+      {showOnlineUsers &amp;&amp; (
+        &lt;aside className="w-64 bg-white border-l border-gray-200"&gt;
+          &lt;div className="p-4 border-b border-gray-200"&gt;
+            &lt;h3 className="font-semibold text-gray-900"&gt;在线用户&lt;/h3&gt;
+          &lt;/div&gt;
+          &lt;div className="p-4 space-y-2"&gt;
+            {onlineUsers.map((user) =&gt; (
+              &lt;div key={user.userId} className="flex items-center gap-2"&gt;
+                &lt;div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white text-sm"&gt;
+                  {user.userName[0].toUpperCase()}
+                &lt;/div&gt;
+                &lt;span className="text-sm text-gray-700"&gt;{user.userName}&lt;/span&gt;
+              &lt;/div&gt;
+            ))}
+          &lt;/div&gt;
+        &lt;/aside&gt;
+      )}
+    &lt;/div&gt;
+  );
+};
+
+/**
+ * 消息项组件
+ */
+const MessageItem: React.FC&lt;{ message: Message; isCurrentUser: boolean }&gt; = ({
+  message,
+  isCurrentUser,
+}) =&gt; {
+  return (
+    &lt;div className={`flex ${isCurrentUser ? 'justify-end' : 'justify-start'}`}&gt;
+      &lt;div
+        className={`max-w-[70%] ${
+          isCurrentUser ? 'bg-indigo-600 text-white' : 'bg-white text-gray-900'
+        } rounded-lg p-3 shadow`}
+      &gt;
+        {message.isAiGenerated &amp;&amp; (
+          &lt;div className="text-xs mb-1 opacity-75"&gt;🤖 {message.aiModel}&lt;/div&gt;
+        )}
+        &lt;div className="font-semibold text-sm mb-1"&gt;{message.senderName}&lt;/div&gt;
+        &lt;div className="whitespace-pre-wrap"&gt;{message.content}&lt;/div&gt;
+        &lt;div className="text-xs mt-1 opacity-75"&gt;
+          {new Date(message.createdAt).toLocaleTimeString()}
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+};
+
+export default ChatPage;
+                    </code></pre>
+                </div>
+            </section>
+
+            <section class="mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                    <span class="bg-indigo-600 text-white w-10 h-10 rounded-full flex items-center justify-center text-xl font-bold">4</span>
+                    AI Agent集成
+                </h2>
+
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">4.1 ChatAgent实现</h3>
+                <div class="bg-gray-900 rounded-lg p-5 mb-8 border border-gray-700">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="text-xs text-gray-400">ChatAgent.java</div>
+                        <div class="text-xs text-gray-400">对话Agent</div>
+                    </div>
+                    <pre class="text-gray-100 text-sm overflow-x-auto"><code class="language-java">package com.example.chatbot.service.ai;
+
+import com.example.chatbot.repository.MessageRepository;
+import dev.langchain4j.model.chat.ChatLanguageModel;
+import dev.langchain4j.model.openai.OpenAiChatModel;
+import dev.langchain4j.service.AiServices;
+import dev.langchain4j.service.SystemMessage;
+import dev.langchain4j.service.UserMessage;
+import dev.langchain4j.service.spring.AiService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+/**
+ * ChatAiService接口
+ */
+interface ChatAiService {
+    @SystemMessage("你是一个友好的AI助手。用简洁、有用的方式回答用户问题。")
+    String chat(@UserMessage String userMessage, String conversationContext);
+}
+
+/**
+ * ChatAgent实现类
+ */
+@Slf4j
+@Service
+@RequiredArgsConstructor
+public class ChatAgent {
+
+    private final ChatAiService chatAiService;
+    private final MessageRepository messageRepository;
+    private final RagService ragService;
+
+    public String generateResponse(
+        String roomId,
+        String botName,
+        String userMessage,
+        boolean ragEnabled,
+        Long knowledgeBaseId
+    ) {
+        try {
+            // 1. 构建对话上下文
+            String conversationContext = buildConversationContext(roomId, 5);
+
+            // 2. 如果启用RAG，检索相关知识
+            String retrievedContext = "";
+            if (ragEnabled &amp;&amp; knowledgeBaseId != null) {
+                retrievedContext = ragService.retrieveContext(
+                    userMessage,
+                    knowledgeBaseId
+                );
+            }
+
+            // 3. 组合最终提示
+            String enhancedMessage = userMessage;
+            if (!retrievedContext.isEmpty()) {
+                enhancedMessage = String.format(
+                    "参考信息：\n%s\n\n用户问题：%s",
+                    retrievedContext,
+                    userMessage
+                );
+            }
+
+            // 4. 调用AI生成回复
+            String response = chatAiService.chat(enhancedMessage, conversationContext);
+
+            log.info("AI回复生成成功: roomId={}, length={}", roomId, response.length());
+            return response;
+
+        } catch (Exception e) {
+            log.error("AI回复生成失败", e);
+            throw new RuntimeException("AI暂时无法回复", e);
+        }
+    }
+
+    /**
+     * 构建对话上下文
+     */
+    private String buildConversationContext(String roomId, int limit) {
+        try {
+            List&lt;Message&gt; recentMessages = messageRepository.findRecentMessages(roomId, limit);
+            return recentMessages.stream()
+                .map(msg -&gt; String.format("%s: %s", msg.getSenderName(), msg.getContent()))
+                .collect(Collectors.joining("\n"));
+        } catch (Exception e) {
+            log.error("构建对话上下文失败", e);
+            return "";
+        }
+    }
+}
+
+/**
+ * ChatAgent配置类
+ */
+@Configuration
+class ChatAgentConfig {
+
+    @Value("${openai.api.key}")
+    private String apiKey;
+
+    @Value("${openai.model:gpt-4}")
+    private String modelName;
+
+    @Bean
+    public ChatLanguageModel chatLanguageModel() {
+        return OpenAiChatModel.builder()
+            .apiKey(apiKey)
+            .modelName(modelName)
+            .temperature(0.7)
+            .maxTokens(1000)
+            .build();
+    }
+
+    @Bean
+    @AiService
+    public ChatAiService chatAiService(ChatLanguageModel chatLanguageModel) {
+        return AiServices.builder(ChatAiService.class)
+            .chatLanguageModel(chatLanguageModel)
+            .build();
+    }
+}
+                    </code></pre>
+                </div>
+
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">4.2 多Bot协调器</h3>
+                <div class="bg-gray-900 rounded-lg p-5 mb-8 border border-gray-700">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="text-xs text-gray-400">MultiBotCoordinator.java</div>
+                        <div class="text-xs text-gray-400">多Bot协调</div>
+                    </div>
+                    <pre class="text-gray-100 text-sm overflow-x-auto"><code class="language-java">package com.example.chatbot.service.ai;
+
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
+
+import java.util.*;
+import java.util.concurrent.*;
+
+/**
+ * 多Bot协调器
+ */
+@Slf4j
+@Component
+public class MultiBotCoordinator {
+
+    private final Map&lt;String, AIBot&gt; bots = new ConcurrentHashMap&lt;&gt;();
+    private final ExecutorService executor = Executors.newFixedThreadPool(5);
+
+    public void registerBot(AIBot bot) {
+        bots.put(bot.getBotId(), bot);
+        log.info("注册Bot: {} - {}", bot.getBotId(), bot.getBotName());
+    }
+
+    public CompletableFuture&lt;String&gt; dispatchMessage(
+        String roomId,
+        String userMessage,
+        String context
+    ) {
+        AIBot selectedBot = selectBestBot(userMessage);
+        return CompletableFuture.supplyAsync(() -&gt; {
+            try {
+                return selectedBot.processMessage(userMessage, context);
+            } catch (Exception e) {
+                log.error("Bot处理失败: {}", selectedBot.getBotId(), e);
+                return "抱歉，处理消息时出现错误。";
+            }
+        }, executor);
+    }
+
+    public CompletableFuture&lt;List&lt;BotResponse&gt;&gt; collaborativeProcess(
+        String roomId,
+        String userMessage,
+        Set&lt;String&gt; requiredBots
+    ) {
+        List&lt;CompletableFuture&lt;BotResponse&gt;&gt; futures = new ArrayList&lt;&gt;();
+
+        for (String botId : requiredBots) {
+            AIBot bot = bots.get(botId);
+            if (bot != null) {
+                futures.add(CompletableFuture.supplyAsync(() -&gt; {
+                    String response = bot.processMessage(userMessage, "");
+                    return new BotResponse(botId, bot.getBotName(), response);
+                }, executor));
+            }
+        }
+
+        return CompletableFuture.allOf(futures.toArray(new CompletableFuture[0]))
+            .thenApply(v -&gt; futures.stream()
+                .map(CompletableFuture::join)
+                .collect(Collectors.toList())
+            );
+    }
+
+    private AIBot selectBestBot(String userMessage) {
+        return bots.values().stream()
+            .filter(bot -&gt; bot.isAvailable())
+            .findFirst()
+            .orElse(bots.get("default"));
+    }
+
+    public List&lt;AIBot&gt; getOnlineBots() {
+        return bots.values().stream()
+            .filter(AIBot::isAvailable)
+            .collect(Collectors.toList());
+    }
+}
+
+interface AIBot {
+    String getBotId();
+    String getBotName();
+    boolean isAvailable();
+    String processMessage(String message, String context);
+}
+
+class BotResponse {
+    private final String botId;
+    private final String botName;
+    private final String response;
+
+    public BotResponse(String botId, String botName, String response) {
+        this.botId = botId;
+        this.botName = botName;
+        this.response = response;
+    }
+
+    public String getBotId() { return botId; }
+    public String getBotName() { return botName; }
+    public String getResponse() { return response; }
+}
+                    </code></pre>
+                </div>
+            </section>
+
+            <section class="mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                    <span class="bg-indigo-600 text-white w-10 h-10 rounded-full flex items-center justify-center text-xl font-bold">5</span>
+                    部署和配置
+                </h2>
+
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">5.1 application.yml配置</h3>
+                <div class="bg-gray-900 rounded-lg p-5 mb-8 border border-gray-700">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="text-xs text-gray-400">application.yml</div>
+                        <div class="text-xs text-gray-400">应用配置</div>
+                    </div>
+                    <pre class="text-gray-100 text-sm overflow-x-auto"><code class="language-yaml">spring:
+  application:
+    name: langchain4j-chatbot
+
+  # 数据库配置
+  datasource:
+    url: jdbc:postgresql://localhost:5432/chatbot_db
+    username: postgres
+    password: your_password
+    driver-class-name: org.postgresql.Driver
+
+  # JPA配置
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+
+  # Redis配置（在线状态管理）
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      password:
+      database: 0
+      timeout: 5000ms
+
+# 服务器配置
+server:
+  port: 8080
+
+# OpenAI配置
+openai:
+  api:
+    key: ${OPENAI_API_KEY:your-openai-api-key}
+    base-url: https://api.openai.com/v1
+  model: gpt-4
+  temperature: 0.7
+  max-tokens: 1000
+
+# 日志配置
+logging:
+  level:
+    com.example.chatbot: DEBUG
+    dev.langchain4j: INFO
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+
+# WebSocket配置
+websocket:
+  allowed-origins: "*"
+  heartbeat:
+    enabled: true
+    interval: 30000
+                    </code></pre>
+                </div>
+
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">5.2 Docker部署配置</h3>
+                <div class="bg-gray-900 rounded-lg p-5 mb-8 border border-gray-700">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="text-xs text-gray-400">docker-compose.yml</div>
+                        <div class="text-xs text-gray-400">容器编排</div>
+                    </div>
+                    <pre class="text-gray-100 text-sm overflow-x-auto"><code class="language-yaml">version: '3.8'
+
+services:
+  # PostgreSQL数据库
+  postgres:
+    image: postgres:15
+    container_name: chatbot-postgres
+    environment:
+      POSTGRES_DB: chatbot_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: your_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - chatbot-network
+
+  # Redis缓存
+  redis:
+    image: redis:7-alpine
+    container_name: chatbot-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - chatbot-network
+
+  # Spring Boot应用
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: chatbot-app
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/chatbot_db
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: your_password
+      SPRING_DATA_REDIS_HOST: redis
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - chatbot-network
+
+volumes:
+  postgres-data:
+  redis-data:
+
+networks:
+  chatbot-network:
+    driver: bridge
+                    </code></pre>
+                </div>
+
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">5.3 Dockerfile</h3>
+                <div class="bg-gray-900 rounded-lg p-5 mb-8 border border-gray-700">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="text-xs text-gray-400">Dockerfile</div>
+                        <div class="text-xs text-gray-400">镜像构建</div>
+                    </div>
+                    <pre class="text-gray-100 text-sm overflow-x-auto"><code class="language-dockerfile"># 多阶段构建 - 构建阶段
+FROM maven:3.9-eclipse-temurin-17 AS builder
+
+WORKDIR /app
+
+# 复制pom.xml并下载依赖（利用Docker缓存）
+COPY pom.xml .
+RUN mvn dependency:go-offline
+
+# 复制源代码并构建
+COPY src ./src
+RUN mvn clean package -DskipTests
+
+# 运行阶段
+FROM eclipse-temurin:17-jre-alpine
+
+WORKDIR /app
+
+# 安装必要的工具
+RUN apk add --no-cache tzdata
+
+# 设置时区
+ENV TZ=Asia/Shanghai
+
+# 从构建阶段复制jar包
+COPY --from=builder /app/target/*.jar app.jar
+
+# 创建非root用户
+RUN addgroup -S appgroup &amp;&amp; adduser -S appuser -G appgroup
+USER appuser
+
+# 暴露端口
+EXPOSE 8080
+
+# JVM优化参数
+ENV JAVA_OPTS="-Xms512m -Xmx1g -XX:+UseG1GC -XX:MaxGCPauseMillis=200"
+
+# 健康检查
+HEALTHCHECK --interval=30s --timeout=3s --start-period=60s --retries=3 \
+  CMD wget --no-verbose --tries=1 --spider http://localhost:8080/actuator/health || exit 1
+
+# 启动应用
+ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar app.jar"]
+                    </code></pre>
+                </div>
+            </section>
+
+            <section class="mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                    <span class="bg-indigo-600 text-white w-10 h-10 rounded-full flex items-center justify-center text-xl font-bold">6</span>
+                    最佳实践和测试
+                </h2>
+
+                <div class="bg-blue-50 border border-blue-100 rounded-lg p-6 mb-8">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                        <span class="text-blue-600">💡</span> WebSocket性能优化
+                    </h3>
+                    <ul class="text-gray-700 space-y-3 text-sm">
+                        <li>• <strong>连接池管理</strong>：使用连接池避免频繁创建销毁连接</li>
+                        <li>• <strong>心跳检测</strong>：定期发送心跳包保持连接活跃</li>
+                        <li>• <strong>消息压缩</strong>：对大消息启用GZIP压缩减少传输量</li>
+                        <li>• <strong>断线重连</strong>：实现自动重连机制提升用户体验</li>
+                        <li>• <strong>消息队列</strong>：高并发场景下使用消息队列缓冲</li>
+                    </ul>
+                </div>
+
+                <div class="bg-green-50 border border-green-100 rounded-lg p-6 mb-8">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                        <span class="text-green-600">✅</span> 消息持久化策略
+                    </h3>
+                    <ul class="text-gray-700 space-y-3 text-sm">
+                        <li>• <strong>批量插入</strong>：使用JPA的saveAll批量插入提升性能</li>
+                        <li>• <strong>异步持久化</strong>：先广播消息再异步保存，减少延迟</li>
+                        <li>• <strong>分页查询</strong>：历史消息使用分页避免一次性加载过多数据</li>
+                        <li>• <strong>消息清理</strong>：定期清理过期历史消息释放存储空间</li>
+                        <li>• <strong>索引优化</strong>：为常用查询字段创建合适的索引</li>
+                    </ul>
+                </div>
+
+                <div class="bg-amber-50 border border-amber-100 rounded-lg p-6 mb-8">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                        <span class="text-amber-600">⚠️</span> 安全注意事项
+                    </h3>
+                    <ul class="text-gray-700 space-y-3 text-sm">
+                        <li>• <strong>CSRF防护</strong>：启用Spring Security的CSRF防护</li>
+                        <li>• <strong>CORS配置</strong>：限制允许的跨域来源</li>
+                        <li>• <strong>消息过滤</strong>：过滤敏感词汇和恶意内容</li>
+                        <li>• <strong>速率限制</strong>：限制用户发送消息频率</li>
+                        <li>• <strong>内容审核</strong>：集成内容审核服务过滤不当内容</li>
+                    </ul>
+                </div>
+
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">6.1 单元测试示例</h3>
+                <div class="bg-gray-900 rounded-lg p-5 mb-8 border border-gray-700">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="text-xs text-gray-400">ChatServiceTest.java</div>
+                        <div class="text-xs text-gray-400">单元测试</div>
+                    </div>
+                    <pre class="text-gray-100 text-sm overflow-x-auto"><code class="language-java">package com.example.chatbot.service;
+
+import com.example.chatbot.dto.*;
+import com.example.chatbot.entity.ChatRoom;
+import com.example.chatbot.entity.Message;
+import com.example.chatbot.repository.ChatRoomRepository;
+import com.example.chatbot.repository.MessageRepository;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+import java.util.HashSet;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.Mockito.*;
+
+/**
+ * ChatService单元测试
+ */
+@ExtendWith(MockitoExtension.class)
+class ChatServiceTest {
+
+    @Mock
+    private ChatRoomRepository chatRoomRepository;
+
+    @Mock
+    private MessageRepository messageRepository;
+
+    @Mock
+    private OnlineUserService onlineUserService;
+
+    @Mock
+    private ChatAgent chatAgent;
+
+    @Mock
+    private SimpMessagingTemplate messagingTemplate;
+
+    @InjectMocks
+    private ChatServiceImpl chatService;
+
+    @Test
+    void testCreateRoom() {
+        CreateRoomRequest request = CreateRoomRequest.builder()
+            .name("测试聊天室")
+            .creatorId("user123")
+            .creatorName("测试用户")
+            .build();
+
+        when(chatRoomRepository.save(any(ChatRoom.class)))
+            .thenAnswer(invocation -&gt; invocation.getArgument(0));
+
+        ChatRoomDTO result = chatService.createRoom(request);
+
+        assertNotNull(result);
+        assertEquals("测试聊天室", result.getName());
+        assertEquals("user123", result.getCreatedBy());
+        verify(chatRoomRepository, times(1)).save(any(ChatRoom.class));
+    }
+
+    @Test
+    void testJoinRoom() {
+        String roomId = "ROOM-123";
+        String userId = "user456";
+        String userName = "新用户";
+
+        ChatRoom room = ChatRoom.builder()
+            .roomId(roomId)
+            .name("测试聊天室")
+            .memberIds(new HashSet&lt;&gt;())
+            .build();
+
+        when(chatRoomRepository.findByRoomId(roomId))
+            .thenReturn(Optional.of(room));
+        when(chatRoomRepository.save(any(ChatRoom.class)))
+            .thenAnswer(invocation -&gt; invocation.getArgument(0));
+        when(messageRepository.save(any(Message.class)))
+            .thenAnswer(invocation -&gt; invocation.getArgument(0));
+
+        chatService.joinRoom(roomId, userId, userName);
+
+        assertTrue(room.isMember(userId));
+        verify(onlineUserService, times(1)).addUser(roomId, userId, userName);
+        verify(messageRepository, times(1)).save(any(Message.class));
+        verify(messagingTemplate, times(1)).convertAndSend(
+            eq("/topic/room/" + roomId),
+            any(MessageDTO.class)
+        );
+    }
+
+    @Test
+    void testGetRoomMessages() {
+        String roomId = "ROOM-123";
+        Message message1 = Message.builder()
+            .id(1L)
+            .roomId(roomId)
+            .senderId("user1")
+            .senderName("用户1")
+            .content("消息1")
+            .build();
+        Message message2 = Message.builder()
+            .id(2L)
+            .roomId(roomId)
+            .senderId("user2")
+            .senderName("用户2")
+            .content("消息2")
+            .build();
+
+        Page&lt;Message&gt; messagePage = new PageImpl&lt;&gt;(
+            Arrays.asList(message1, message2),
+            PageRequest.of(0, 10),
+            2
+        );
+
+        when(messageRepository.findByRoomIdOrderByCreatedAtAsc(
+            eq(roomId), any(Pageable.class)
+        )).thenReturn(messagePage);
+
+        Page&lt;MessageDTO&gt; result = chatService.getRoomMessages(roomId, 0, 10);
+
+        assertEquals(2, result.getTotalElements());
+        assertEquals("消息1", result.getContent().get(0).getContent());
+        assertEquals("消息2", result.getContent().get(1).getContent());
+    }
+
+    @Test
+    void testDeleteRoom_Success() {
+        String roomId = "ROOM-123";
+        String creatorId = "user123";
+
+        ChatRoom room = ChatRoom.builder()
+            .roomId(roomId)
+            .name("测试聊天室")
+            .createdBy(creatorId)
+            .build();
+
+        when(chatRoomRepository.findByRoomId(roomId))
+            .thenReturn(Optional.of(room));
+
+        chatService.deleteRoom(roomId, creatorId);
+
+        verify(messageRepository, times(1)).deleteByRoomId(roomId);
+        verify(chatRoomRepository, times(1)).delete(room);
+    }
+
+    @Test
+    void testDeleteRoom_NotCreator() {
+        String roomId = "ROOM-123";
+        String otherUserId = "otheruser";
+
+        ChatRoom room = ChatRoom.builder()
+            .roomId(roomId)
+            .name("测试聊天室")
+            .createdBy("user123")
+            .build();
+
+        when(chatRoomRepository.findByRoomId(roomId))
+            .thenReturn(Optional.of(room));
+
+        assertThrows(IllegalArgumentException.class,
+            () -&gt; chatService.deleteRoom(roomId, otherUserId));
+        verify(chatRoomRepository, never()).delete(any());
+    }
+}
+                    </code></pre>
+                </div>
+            </section>
+
+            <section class="mb-16">
+                <div class="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-lg p-8 text-white">
+                    <h2 class="text-2xl font-bold mb-4">🎯 项目总结</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="border border-gray-200 rounded-lg p-5 hover:border-indigo-300 transition-colors">
+                            <div class="text-2xl mb-3">🔌 核心技术</div>
+                            <ul class="text-sm space-y-1">
+                                <li>• WebSocket实时双向通信</li>
+                                <li>• STOMP消息协议</li>
+                                <li>• Spring Boot 3.2.x</li>
+                                <li>• React 18 + TypeScript</li>
+                                <li>• PostgreSQL + Redis</li>
+                                <li>• LangChain4j AI集成</li>
+                            </ul>
+                        </div>
+                        <div class="border border-gray-200 rounded-lg p-5 hover:border-indigo-300 transition-colors">
+                            <div class="text-2xl mb-3">✨ 关键功能</div>
+                            <ul class="text-sm space-y-1">
+                                <li>• 多用户实时群聊</li>
+                                <li>• 消息持久化和历史记录</li>
+                                <li>• 在线用户状态管理</li>
+                                <li>• AI智能对话助手</li>
+                                <li>• RAG知识库集成</li>
+                                <li>• 多Bot协作</li>
+                            </ul>
+                        </div>
+                        <div class="border border-gray-200 rounded-lg p-5 hover:border-indigo-300 transition-colors">
+                            <div class="text-2xl mb-3">🚀 最佳实践</div>
+                            <ul class="text-sm space-y-1">
+                                <li>• 异步消息处理</li>
+                                <li>• 批量数据库操作</li>
+                                <li>• 分页查询优化</li>
+                                <li>• Docker容器化部署</li>
+                                <li>• 健康检查和监控</li>
+                                <li>• 安全防护机制</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="mt-6 pt-6 border-t border-gray-200">
+                        <p class="text-lg mb-2">📚 <strong>下一章：best-practices.html</strong></p>
+                        <p class="text-sm">学习LangChain4j开发的最佳实践，包括代码组织、错误处理、性能优化等</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

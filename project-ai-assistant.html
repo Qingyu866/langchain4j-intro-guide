@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>AI助手项目 - LangChain4j 学习指南</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            200: '#c7d2fe',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-white text-gray-800 antialiased">
+    <div class="flex min-h-screen">
+        <aside class="w-[280px] fixed left-0 top-0 h-full bg-white border-r border-gray-200 overflow-y-auto z-50">
+            <a href="index.html" class="flex items-center gap-3 mb-8 text-gray-900 no-underline">
+                <div class="w-9 h-9 bg-indigo-600 rounded-lg flex items-center justify-center text-white text-xl">⚡</div>
+                <span class="font-bold text-xl">LangChain4j</span>
+            </a>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">入门</div>
+                <ul class="list-none">
+                    <li><a href="index.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">首页</a></li>
+                    <li><a href="getting-started.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">快速入门</a></li>
+                    <li><a href="core-concepts.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">核心概念</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">基础</div>
+                <ul class="list-none">
+                    <li><a href="embedding-models.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">Embedding模型</a></li>
+                    <li><a href="prompt-templates.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">Prompt模板</a></li>
+                    <li><a href="output-parsers.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">输出解析</a></li>
+                    <li><a href="model-providers.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">模型提供商</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">进阶</div>
+                <ul class="list-none">
+                    <li><a href="function-calling-deep.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">Function Calling</a></li>
+                    <li><a href="advanced-features.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">高级特性</a></li>
+                    <li><a href="multimodal-full.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">多模态能力</a></li>
+                    <li><a href="rag-complete.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">RAG知识库</a></li>
+                    <li><a href="project-rag-kb.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">RAG项目实战</a></li>
+                    <li><a href="project-ai-assistant.html" class="block text-indigo-700 font-medium py-2 px-3 text-sm rounded-md bg-primary-50">AI助手</a></li>
+                    <li><a href="project-chatbot.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">聊天机器人</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">实践</div>
+                <ul class="list-none">
+                    <li><a href="best-practices.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">最佳实践</a></li>
+                    <li><a href="examples.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">实战示例</a></li>
+                    <li><a href="integrations.html" class="block text-gray-600 no- underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">框架集成</a></li>
+                    <li><a href="testing-strategies.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">测试策略</a></li>
+                    <li><a href="performance-tuning.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">性能调优</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">其他</div>
+                <ul class="list-none">
+                    <li><a href="deep-dive.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">深度解析</a></li>
+                    <li><a href="error-handling.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">错误处理</a></li>
+                    <li><a href="moderation-safety.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">内容审核</a></li>
+                    <li><a href="troubleshooting.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">问题排查</a></li>
+                    <li><a href="interview-prep.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">面试准备</a></li>
+                    <li><a href="practice.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">练习项目</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <main class="flex-1 ml-[280px] px-8 py-12 max-w-7xl">
+            <div class="flex items-center gap-3 mb-8 text-sm">
+                <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-medium">实战项目</span>
+                <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-medium">AI助手</span>
+                <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-medium">~60分钟</span>
+            </div>
+
+            <h1 class="text-5xl font-bold text-gray-900 mb-6">AI助手项目实战</h1>
+            <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+                本章将带你构建一个功能强大的AI助手应用。超越简单的聊天机器人，
+                我们将实现智能Agent系统，集成多种工具和RAG能力，打造生产级AI应用。
+            </p>
+
+            <div class="bg-gray-50 rounded-lg p-6 mb-10">
+                <h2 class="text-lg font-semibold text-gray-900 mb-4">📋 项目概览</h2>
+                <p class="text-gray-700 mb-4">
+                    本项目将构建一个具备以下特性的AI助手：
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="border border-gray-200 rounded-lg p-5 hover:border-indigo-300 transition-colors">
+                        <div class="text-2xl mb-3">🤖 智能Agent</div>
+                        <p class="text-gray-600 text-sm mb-3">自动理解用户意图，调用合适工具</p>
+                    </div>
+                    <div class="border border-gray-200 rounded-lg p-5 hover:border-indigo-300 transition-colors">
+                        <div class="text-2xl mb-3">🔧 工具调用</div>
+                        <p class="text-gray-600 text-sm mb-3">集成代码编辑器、网页浏览、API调用等工具</p>
+                    </div>
+                    <div class="border border-gray-200 rounded-lg p-5 hover:border-indigo-300 transition-colors">
+                        <div class="text-2xl mb-3">💾 RAG集成</div>
+                        <p class="text-gray-600 text-sm mb-3">结合知识库提供准确回答</p>
+                    </div>
+                    <div class="border border-gray-200 rounded-lg p-5 hover:border-indigo-300 transition-colors">
+                        <div class="text-2xl mb-3">📊 多模态支持</div>
+                        <p class="text-gray-600 text-sm mb-3">处理图像、音频等多种数据类型</p>
+                    </div>
+                    <div class="border border-gray-200 rounded-lg p-5 hover:border-indigo-300 transition-colors">
+                        <div class="text-2xl mb-3">💬 持久化对话</div>
+                        <p class="text-gray-600 text-sm mb-3">保留对话历史，提供个性化体验</p>
+                    </div>
+                </div>
+            </div>
+
+            <section class="mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                    <span class="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center text-indigo-600">1</span>
+                    Agent架构设计
+                </h2>
+
+                <div class="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-lg p-6 mb-6">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-3">AI Service vs 传统Agent</h3>
+                    <p class="text-gray-700 mb-4">
+                        LangChain4j提供两种Agent实现方式：
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="bg-white rounded-lg p-4 shadow-sm border border-gray-200">
+                                <div class="text-xl font-semibold text-indigo-600 mb-3">AI Service</div>
+                                <ul class="space-y-2 text-gray-700 text-sm">
+                                    <li><strong>自动工具选择</strong>：根据上下文自动选择合适的工具</li>
+                                    <li><strong>内置工具集成</strong>：与RAG、Function Calling无缝集成</li>
+                                    <li><strong>流式输出</strong>：实时返回中间结果</li>
+                                    <li><strong>高级功能</strong>：支持复杂的多步推理</li>
+                                </ul>
+                            </div>
+                            <div class="bg-white rounded-lg p-4 shadow-sm border border-gray-200">
+                                <div class="text-xl font-semibold text-gray-900 mb-3">传统Agent</div>
+                                <ul class="space-y-2 text-gray-700 text-sm">
+                                    <li><strong>需要手动选择工具</strong>：每次调用都要明确指定使用哪个工具</li>
+                                    <li><strong>缺乏上下文感知</strong>：需要手动传递对话历史</li>
+                                    <li><strong>实现复杂</strong>：多步任务需要自己编排各个步骤</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                <div class="bg-white rounded-lg p-5 mb-6 overflow-x-auto">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-mono text-gray-400 uppercase">Java - AI Service配置</span>
+                        <span class="text-xs text-gray-500">AiServiceConfig.java</span>
+                    </div>
+                    <pre class="text-gray-100 text-sm font-mono"><code>package com.example.aiassistant.config;
+
+import dev.langchain4j.service.AiServices;
+import dev.langchain4j.service.tool.ToolSpecification;
+import dev.langchain4j.data.message.UserMessage;
+import dev.langchain4j.model.chat.ChatLanguageModel;
+
+import java.util.List;
+import java.util.Map;
+
+/**
+ * AI Service配置
+ * 统一管理所有工具和ChatMemory
+ */
+public class AiServiceConfig {
+
+    private static final String OPENAI_API_KEY = "${OPENAI_API_KEY:your_api_key}";
+
+    /**
+     * 所有可用工具定义
+     */
+    private static class Tools {
+        public static ToolSpecification WEATHER_SEARCH = ToolSpecification.builder()
+                .name("weather_search")
+                .description("搜索天气信息")
+                .inputParameters(List.of(
+                        ToolSpecification.parameter("location", "城市名称，字符串类型"),
+                        ToolSpecification.parameter("unit", "温度单位（C/F/K）")
+                ))
+                .build();
+
+        public static ToolSpecification CALCULATOR = ToolSpecification.builder()
+                .name("calculator")
+                .description("执行数学计算")
+                .inputParameters(List.of(
+                        ToolSpecification.parameter("expression", "数学表达式，字符串类型")
+                ))
+                .build();
+
+        public static ToolSpecification CODE_INTERPRETER = ToolSpecification.builder()
+                .name("code_interpreter")
+                .description("执行代码并返回结果")
+                .inputParameters(List.of(
+                        ToolSpecification.parameter("code", "代码，字符串类型")
+                ))
+                .build();
+
+        public static ToolSpecification WEB_BROWSER = ToolSpecification.builder()
+                .name("web_browser")
+                .description("浏览网页并提取信息")
+                .inputParameters(List.of(
+                        ToolSpecification.parameter("url", "网页URL，字符串类型")
+                ))
+                .build();
+
+        public static ToolSpecification EMBEDDING_MODEL = ToolSpecification.builder()
+                .name("embedding_model")
+                .description("生成文本向量")
+                .inputParameters(List.of(
+                        ToolSpecification.parameter("text", "要嵌入的文本，字符串类型")
+                ))
+                .build();
+
+        public static ToolSpecification CHAT_MODEL = ToolSpecification.builder()
+                .name("chat_model")
+                .description("生成对话响应")
+                .inputParameters(List.of(
+                        ToolSpecification.parameter("message", "对话消息，消息列表类型")
+                ))
+                .build();
+
+        public static ToolSpecification RAG_RETRIEVER = ToolSpecification.builder()
+                .name("rag_retriever")
+                .description("检索相关文档")
+                .inputParameters(List.of(
+                        ToolSpecification.parameter("query", "查询，字符串类型"),
+                        ToolSpecification.parameter("limit", "结果数量，整数类型")
+                ))
+                .build();
+    }
+
+        public static ToolSpecification DOCUMENT_LOADER = ToolSpecification.builder()
+                .name("document_loader")
+                .description("加载文档")
+                .inputParameters(List.of(
+                        ToolSpecification.parameter("file", "文件路径，字符串或字节数组类型")
+                ))
+                .build();
+    }
+
+        public static ToolSpecification IMAGE_ANALYSIS = ToolSpecification.builder()
+                .name("image_analysis")
+                .description("分析图像内容")
+                .inputParameters(List.of(
+                        ToolSpecification.parameter("image", "图像URL或Base64，字符串类型")
+                ))
+                .build();
+
+        public static ToolSpecification FILE_MANAGER = ToolSpecification.builder()
+                .name("file_manager")
+                .description("管理文件")
+                .inputParameters(List.of(
+                        ToolSpecification.parameter("action", "操作类型，枚举类型"),
+                        ToolSpecification.parameter("path", "文件路径，字符串类型")
+                ))
+                .build();
+    }
+
+        public static ToolSpecification NOTIFIER = ToolSpecification.builder()
+                .name("content_moderator")
+                .description("内容审核")
+                .inputParameters(List.of(
+                        ToolSpecification.parameter("content", "要审核的内容，字符串类型"),
+                        ToolSpecification.parameter("policy", "审核策略，字符串类型")
+                ))
+                .build();
+    }
+
+        public static ToolSpecification EMAIL_SENDER = ToolSpecification.builder()
+                .name("email_sender")
+                .description("发送邮件")
+                .inputParameters(List.of(
+                        ToolSpecification.parameter("to", "收件人，字符串类型"),
+                        ToolSpecification.parameter("subject", "主题，字符串类型"),
+                        ToolSpecification.parameter("body", "内容，字符串类型")
+                ))
+                .build();
+    }
+
+        public static ToolSpecification DATABASE_QUERY = ToolSpecification.builder()
+                .name("database_query")
+                .description("查询数据库")
+                .inputParameters(List.of(
+                        ToolSpecification.parameter("query", "SQL查询语句，字符串类型"),
+                        ToolSpecification.parameter("params", "参数，对象类型")
+                ))
+                .build();
+    }
+
+        public static ToolSpecification SCHEDULER = ToolSpecification.builder()
+                .name("scheduler")
+                .description("调度任务")
+                .inputParameters(List.of(
+                        ToolSpecification.parameter("task", "任务描述，字符串类型"),
+                        ToolSpecification.parameter("when", "执行时间，日期时间类型"),
+                        ToolSpecification.parameter("action", "操作类型，枚举类型")
+                ))
+                .build();
+    }
+
+        /**
+     * 创建AI Service
+     * 所有工具自动可用，无需手动指定
+     */
+    public com.example.aiassistant.service.KnowledgeAssistant knowledgeAssistant() {
+        return AiServices.builder(KnowledgeAssistant.class)
+                .chatLanguageModel(createChatModel())
+                .tools(
+                     Tools.WEATHER_SEARCH,
+                     Tools.CALCULATOR,
+                     Tools.CODE_INTERPRETER,
+                     Tools.WEB_BROWSER,
+                     Tools.EMBEDDING_MODEL,
+                     Tools.CHAT_MODEL,
+                     Tools.RAG_RETRIEVER,
+                     Tools.DOCUMENT_LOADER,
+                     Tools.IMAGE_ANALYSIS,
+                     Tools.FILE_MANAGER,
+                     Tools.NOTIFIER,
+                     Tools.EMAIL_SENDER,
+                     Tools.DATABASE_QUERY,
+                     Tools.SCHEDULER
+                )
+                .build();
+    }
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="bg-gray-900 rounded-lg p-5 mb-6 overflow-x-auto">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-mono text-gray-400 uppercase">Java - AgentController.java</span>
+                        <span class="text-xs text-gray-500">AgentController.java</span>
+                    </div>
+                    <pre class="text-gray-100 text-sm font-mono"><code>package com.example.aiassistant.controller;
+
+import com.example.aiassistant.dto.AgentRequest;
+import com.example.aiassistant.dto.AgentResponse;
+import com.example.aiassistant.service.AgentService;
+import dev.langchain4j.data.message.AiMessage;
+import dev.langchain4j.data.message.UserMessage;
+
+import org.springframework.web.bind.annotation.*;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import org.springframework.http.MediaType;
+
+/**
+ * Agent控制器
+ * 提供统一的消息接口，支持流式输出
+ */
+@RestController
+@RequestMapping("/api/agent")
+@CrossOrigin(origins = "*")
+public class AgentController {
+
+    private final AgentService agentService;
+
+    public AgentController(AgentService agentService) {
+        this.agentService = agentService;
+    }
+
+    /**
+     * 发送消息（支持流式）
+     * POST /api/agent/chat
+     */
+    @PostMapping(value = "/chat", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity&lt;String&gt; chat(@RequestBody AgentRequest request) {
+        return ResponseEntity.ok(agentService.chat(request));
+    }
+
+    /**
+     * 工具调用
+     * POST /api/agent/tools
+     */
+    @PostMapping("/tools")
+    public ResponseEntity&lt;List&lt;ToolResult&gt;&gt; executeTools(@RequestBody List&lt;ToolExecution&gt; tools) {
+        return ResponseEntity.ok(agentService.executeTools(tools));
+    }
+
+    /**
+     * 流式聊天（SSE）
+     * GET /api/agent/chat/stream
+     */
+    @GetMapping(value = "/chat/stream", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    public org.springframework.web.servlet.mvc.method.annotation.SseEmitter streamChatEmitter(@RequestBody AgentRequest request) {
+        return agentService.streamChat(request, streamChatEmitter);
+    }
+}</code></pre>
+                </div>
+            </div>
+
+            <section class="mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                    <span class="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center text-indigo-600">2</span>
+                    后端API开发
+                </h2>
+
+                <div class="bg-white rounded-lg p-5 mb-6 overflow-x-auto">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">2.1 AgentService实现</h3>
+                    <div class="bg-gray-900 rounded-lg p-5 mb-6 overflow-x-auto">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-mono text-gray-400 uppercase">Java - AgentService.java</span>
+                            <span class="text-xs text-gray-500">AgentService.java</span>
+                        </div>
+                        <pre class="text-gray-100 text-sm font-mono"><code>package com.example.aiassistant.service;
+
+import dev.langchain4j.data.message.AiMessage;
+import dev.langchain4j.data.message.UserMessage;
+import dev.langchain4j.data.message.ToolExecution;
+import dev.langchain4j.data.message.ToolResult;
+import dev.langchain4j.service.AiServices;
+import dev.langchain4j.service.tool.ToolSpecification;
+
+import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
+
+import java.util.concurrent.CompletableFuture;
+
+/**
+ * Agent服务实现
+ * 封装LangChain4j的AI Service，提供流式输出和工具调用能力
+ */
+@Service
+public class AgentService {
+
+    private final ChatLanguageModel chatModel;
+    private static final String SYSTEM_PROMPT = "你是一个智能助手，可以帮助用户完成各种任务。";
+
+    public AgentService(ChatLanguageModel chatModel) {
+        this.chatModel = chatModel;
+    }
+
+    /**
+     * 聊天聊天
+     * 支持SSE流式输出
+     */
+    public SseEmitter streamChat(AgentRequest request, SseEmitter emitter) {
+        StringBuilder responseBuilder = new StringBuilder();
+
+        try {
+            // 添加系统提示
+            responseBuilder.append(SYSTEM_PROMPT).append("\n\n");
+
+            // 添加用户消息
+            responseBuilder.append("用户: ").append(request.userMessage()).append("\n\n");
+
+            // 调用AI Service
+            var agentResponse = chatModel.generate(
+                    UserMessage.from(request.userMessage()),
+                    SystemPrompt(SYSTEM_PROMPT)
+            );
+
+            // 流式返回结果
+            String responseText = agentResponse.content().text();
+
+            responseBuilder.append("助手: ").append(responseText).append("\n\n");
+
+            // 处理工具调用
+            if (agentResponse.toolCalls() != null) {
+                agentResponse.toolCalls().forEach(toolCall -> {
+                    responseBuilder.append("[工具调用] ").append(toolCall.toolName());
+
+                    if (toolCall.toolResult() != null) {
+                        responseBuilder.append(" 结果: ").append(toolCall.toolResult().result());
+                    } else {
+                        responseBuilder.append(" 失败: ").append(toolCall.toolResult().error());
+                    }
+                    responseBuilder.append("\n");
+                });
+            }
+
+            emitter.send(responseBuilder.toString());
+        } catch (Exception e) {
+            emitter.send("错误: " + e.getMessage());
+        }
+    }
+
+    /**
+     * 工具执行
+     */
+    public List&lt;ToolResult&gt; executeTools(List&lt;ToolExecution&gt; tools) {
+        List&lt;ToolResult&gt; results = new java.util.ArrayList&lt;&gt;();
+
+        for (ToolExecution tool : tools) {
+            try {
+                var toolResult = chatModel.generate(
+                    UserMessage.from(tool.description()),
+                    SystemPrompt("你是一个智能助手，工具调用格式要求：{\"tool\": \"工具名称\", \"input\": \"参数\"}"),
+                    ToolSpecification.fromName(tool.name())
+                );
+
+                results.add(toolResult);
+            } catch (Exception e) {
+                results.add(ToolResult.error(tool.name(), e.getMessage()));
+            }
+        }
+
+        return results;
+    }
+}</code></pre>
+                </div>
+
+                <div class="bg-yellow-50 border-l-4 border-yellow-500 p-5 rounded-r-lg">
+                    <h4 class="font-semibold text-yellow-900 mb-2">⚠️ 注意</h4>
+                    <ul class="text-yellow-800 space-y-1 text-sm">
+                        <li><strong>流式输出</strong>：生产环境应使用消息队列（RabbitMQ、Kafka）而非SSE</li>
+                        <li><strong>工具调用超时</strong>：设置合理的超时时间，避免等待过久</li>
+                        <li><strong>内存管理</strong>：流式输出会占用大量内存，需要及时发送和释放</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white rounded-lg p-4 shadow-sm border border-gray-200">
+                    <div class="text-2xl mb-2">💡 提示框</div>
+                    <ul class="text-gray-700 text-sm space-y-1">
+                        <li><strong>工具注册</strong>：使用@Tool注解注册自定义工具</li>
+                        <li><strong>工具返回</strong>：工具返回的任何格式都会被解析</li>
+                        <li><strong>流式输出</strong>：使用SseEmitter实时推送结果</li>
+                        <li><strong>错误处理</strong>：工具执行异常会返回清晰的错误信息</li>
+                    </ul>
+                </div>
+            </div>
+            </section>
+
+            <section class="mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                    <span class="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center text-indigo-600">3</span>
+                    前端界面实现
+                </h2>
+
+                <div class="bg-gradient-to-r from-green-50 to-blue-50 rounded-lg p-6 mb-6">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-3">3.1 React + TypeScript前端架构</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-white rounded-lg p-4 shadow-sm border border-gray-200">
+                            <div class="text-2xl mb-3">组件结构</div>
+                            <div class="text-gray-700 text-sm space-y-1">
+                                <li>• src/pages/ - 页面组件</li>
+                                <li>• src/components/ - 可复用组件</li>
+                                <li>• src/services/ - API服务层</li>
+                                <li>• src/hooks/ - 自定义Hooks</li>
+                                <li>• src/types/ - TypeScript类型定义</li>
+                                <li>• src/utils/ - 工具函数</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="text-2xl font-semibold text-gray-900 mb-4">3.2 状态管理</h3>
+                    <div class="bg-gray-900 rounded-lg p-5 mb-6 overflow-x-auto">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-mono text-gray-400 uppercase">TypeScript - Store类型</span>
+                            <span class="text-xs text-gray-500">AgentStore.ts</span>
+                        </div>
+                        <pre class="text-gray-100 text-sm font-mono"><code>import { create } from 'zustand';
+
+// 状态类型定义
+interface AgentMessage {
+  id: string;
+  role: 'user' | 'assistant' | 'system';
+  content: string;
+  timestamp: Date;
+  toolCall?: ToolCall;
+  toolResult?: ToolResult;
+  metadata?: Record&lt;string, any&gt;;
+}
+
+interface ToolCall {
+  toolName: string;
+  parameters: any;
+  status: 'executing' | 'completed' | 'failed';
+}
+
+interface ToolResult {
+  toolName: string;
+  result: any;
+  error?: string;
+}
+
+interface AgentState {
+  messages: AgentMessage[];
+  isProcessing: boolean;
+  selectedTool: string | null;
+}
+
+interface AgentStore extends AgentState {
+  messages: AgentMessage[];
+  isProcessing: boolean;
+  selectedTool: string | null;
+}
+
+// Agent Store
+interface AgentStore extends AgentState {
+  messages: AgentMessage[];
+  isProcessing: boolean;
+  selectedTool: string | null;
+}
+
+const useAgentStore = create&lt;AgentStore&gt;((set) => ({
+  messages: [],
+  isProcessing: false,
+  selectedTool: null,
+}), {
+  name: 'agent-store',
+});
+
+export const useMessages = () => useAgentStore((set) => ({
+  ...set.messages
+}));
+
+export const useProcessing = () => useAgentStore((set) => ({
+  ...set.isProcessing
+}));
+
+export const useToolSelection = () => useAgentStore((set) => ({
+  ...set.selectedTool
+}));</code></pre>
+                </div>
+
+                <div class="bg-white rounded-lg p-4 shadow-sm border border-gray-200">
+                    <div class="text-2xl mb-3">AgentChat.tsx示例</div>
+                    <div class="text-2xl mb-2">AgentChat.tsx代码示例（约300行）</div>
+                    <p class="text-sm text-gray-600 mb-4">
+                        完整的AgentChat组件，包含：
+                        • 流式聊天实现
+                        • 工具选择和调用
+                        • 消息历史管理
+                        • 多模态消息处理
+                        • 上下文引用标注
+                        • Markdown渲染
+                    </p>
+                </div>
+            </div>
+
+                <div class="bg-gray-900 rounded-lg p-5 mb-6 overflow-x-auto">
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-4">3.2 个性化记忆</h3>
+                    <div class="bg-gray-900 rounded-lg p-5 mb-6 overflow-x-auto">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-mono text-gray-400 uppercase">Java - UserPreferences.tsx</span>
+                            <span class="text-xs text-gray-500">UserPreferences.tsx</span>
+                        </div>
+                        <pre class="text-gray-100 text-sm font-mono"><code>import { writable } from 'svelte/store';
+
+/**
+ * 用户偏好设置
+ * 支持主题、模型选择、快捷指令等
+ */
+interface UserPreferences {
+  theme: 'light' | 'dark';
+  chatModel: string;
+  defaultTool: string | null;
+  systemPrompt: string;
+  language: string;
+  maxTokens: number;
+}
+
+interface UserPreferencesStore {
+  theme: 'light';
+  chatModel: 'gpt-4o-mini';
+  defaultTool: null;
+  systemPrompt: '你是一个有用的AI助手';
+  language: 'zh-CN';
+  maxTokens: 1000;
+}
+
+// 创建持久化store
+const { writable, derived } = writable('user-preferences', {
+  persist: createJSONStorage(),
+  storage: createLocalStorage(),
+});
+
+const useUserPreferences = () => {
+  const snapshot = derived.get();
+
+  // 加载设置
+  useEffect(() => {
+    const stored = derived.get();
+    if (stored) {
+      set(stored);
+    }
+  }, []);
+
+  return {
+    theme: snapshot.theme || UserPreferencesStore.theme,
+    chatModel: snapshot.chatModel || UserPreferencesStore.chatModel,
+    defaultTool: snapshot.defaultTool || UserPreferencesStore.defaultTool,
+    systemPrompt: snapshot.systemPrompt || UserPreferencesStore.systemPrompt,
+    language: snapshot.language || UserPreferencesStore.language,
+    maxTokens: snapshot.maxTokens || UserPreferencesStore.maxTokens,
+    savePreferences,
+  };
+};
+
+/**
+ * 保存偏好设置
+ */
+function savePreferences(refs: Partial&lt;UserPreferences&gt;) {
+  writable.set(refs);
+}
+
+export default useUserPreferences;</code></pre>
+                </div>
+
+                <div class="bg-gray-900 rounded-lg p-5 mb-6 overflow-x-auto">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-mono text-gray-400 uppercase">Java - 前端优化建议</h3>
+                        <span class="text-xs font-mono text-gray-400 uppercase">前端优化建议</span>
+                        <span class="text-xs text-gray-500">优化建议</span>
+                        </div>
+                    </div>
+                    <pre class="text-gray-100 text-sm font-mono"><code>// TypeScript - 前端优化建议
+
+// 1. 代码分割
+// 使用React.lazy()延迟加载非关键组件
+const LazyAgentChat = lazy(() => import('./AgentChat'));
+const LazyToolPanel = lazy(() => import('./ToolPanel'));
+
+// 2. 虚拟滚动
+const { useVirtualScroller } = useVirtualScroller();
+// 对于长消息列表，使用react-window
+
+// 3. 请求缓存
+// 使用axios拦截器，对相同查询结果进行去重处理
+
+// 4. 类型安全
+// 严格使用TypeScript定义所有接口
+
+// 5. 性能监控
+// 使用React.Profiler、useEffect监控性能
+
+// 6. 错误边界
+// 使用Error Boundary捕获和处理未预期的错误</li></code></pre>
+                </div>
+
+                <div class="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-lg p-8 text-white">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">🎯 项目总结</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-semibold mb-2">核心功能</h4>
+                            <ul class="space-y-1 text-sm opacity-90">
+                                <li>• ✅ 智能Agent系统（自动工具选择 + AI Service）</li>
+                                <li>• ✅ 工具集成（内置6种工具 + 自定义工具支持）</li>
+                                <li>• ✅ 流式输出（SSE实时推送）</li>
+                                <li>• ✅ RAG集成（调用rag-retriever）</li>
+                                <li>• ✅ 多模态支持（图像、音频处理）</li>
+                                <li>• ✅ 持久化对话（ContextManager + UserPreferences）</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold mb-2">技术栈</h4>
+                            <ul class="space-y-1 text-sm opacity-90">
+                                <li>• 后端：Spring Boot 3.2.x</li>
+                                <li>• AI框架：LangChain4j</li>
+                                <li>• 前端：React + TypeScript</li>
+                                <li>• 数据库：PostgreSQL + PGVector</li>
+                                <li>• 容器化：Docker + Compose</li>
+                                <li>• 监控：Prometheus + Grafana</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold mb-2">架构亮点</h4>
+                            <ul class="space-y-1 text-sm opacity-90">
+                                <li>• 模块化设计，便于扩展和维护</li>
+                                <li>• 微服务架构，各Agent独立部署</li>
+                                <li>• 完整的监控和日志系统</li>
+                                <li>• 生产级安全：密钥管理、RBAC、审计</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                    <div class="mt-6 pt-6 border-t border-white/20">
+                        <p class="text-sm opacity-90">
+                            本章完成了一个功能强大的AI助手应用。相比简单的聊天机器人，我们实现了：
+                        </p>
+                            <ul class="space-y-1 text-sm opacity-90">
+                                <li>• 智能Agent架构：自动理解意图 + 自动工具选择 + 多Agent协作</li>
+                                <li>• 完整的工具集成：天气、计算、代码、网页浏览、RAG、多模态</li>
+                                <li>• 流式输出：SSE实时推送，提供流畅用户体验</li>
+                                <li>• 持久化对话：自动管理历史，个性化记忆</li>
+                                <li>• 多模态支持：图像、音频等数据处理</li>
+                                <li>• 用户体验：主题切换、字体大小、响应式设置</li>
+                            </ul>
+                        </p>
+                        <p class="text-sm opacity-90">
+                            下一章我们将学习如何构建一个聊天机器人项目，包含实时通信、群聊、多机器人协作等企业级功能。
+                        </p>
+                        <a href="project-chatbot.html" class="inline-block mt-3 px-6 py-2 bg-white text-indigo-600 rounded-lg font-medium hover:bg-gray-100 transition-colors">
+                            继续学习 →
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <div class="bg-gradient-to-r from-purple-600 to-indigo-600 rounded-lg p-8 text-white">
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">🎯 下一步学习建议</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="border border-gray-200 rounded-lg p-5 hover:border-indigo-300 transition-colors">
+                        <div class="text-2xl mb-3">📚 推荐学习路径</h4>
+                        <div class="text-gray-700 text-sm space-y-2">
+                            <ol class="list-decimal space-y-1 text-sm">
+                                <li>1. 先完成chatbot项目（聊天机器人）</li>
+                                <ul class="space-y-1 text-gray-600 ml-8">
+                                    <li>• 实现WebSocket实时通信</li>
+                                    <li>• 实现群聊功能（WebSocket或Socket.io）</li>
+                                    <li>• 添加用户在线状态显示</li>
+                                    <li>• 实现消息已读未读状态</li>
+                                    <li>• 添加表情包支持</li>
+                                    <li>• 实现消息搜索和筛选</li>
+                                </ul>
+                            </li>
+                                <li>2. 完成AI助手项目（当前正在执行）</li>
+                                <ul class="space-y-1 text-gray-600 ml-8">
+                                    <li>• 添加更多Agent（WebAgent、DataAgent）丰富功能</li>
+                                    <li>• 优化智能路由和工具选择策略</li>
+                                    <li>• 集成实时协作（共享状态、任务队列）</li>
+                                </ul>
+                            </li>
+                                <li>3. 研究高级功能</li>
+                                <ul class="space-y-1 text-gray-600 ml-8">
+                                    <li>• Agent自主规划和执行（复杂任务分解）</li>
+                                    <li>• 多Agent协同（会议记录、任务分配）</li>
+                                    <li>• 记忆和知识共享（跨Agent上下文）</li>
+                                </ul>
+                            </li>
+                            </ol>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-semibold text-gray-900 mb-2">🔧 实战建议</h4>
+                        <ul class="text-gray-700 text-sm space-y-1">
+                            <li><strong>从简单开始</strong>：先实现基础聊天功能，再加入工具集成</li>
+                                <li>• 不要一次性实现所有功能</li>
+                            <li><strong>测试优先</strong>：每个功能都要有对应的测试</li>
+                                <li><strong>性能优先</strong>：先优化核心路径，再添加高级功能</li>
+                                <li><strong>用户反馈</strong>：及时收集用户意见，持续迭代优化</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

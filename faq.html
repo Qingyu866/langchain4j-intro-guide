@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>常见问题 - LangChain4j 学习指南</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            200: '#c7d2fe',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-white text-gray-800 antialiased">
+    <div class="flex min-h-screen">
+        <aside class="w-[280px] fixed left-0 top-0 h-full bg-white border-r border-gray-200 overflow-y-auto z-50">
+            <a href="index.html" class="flex items-center gap-3 mb-8 text-gray-900 no-underline">
+                <div class="w-9 h-9 bg-indigo-600 rounded-lg flex items-center justify-center text-white text-xl">⚡</div>
+                <span class="font-bold text-xl">LangChain4j</span>
+            </a>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">入门</div>
+                <ul class="list-none">
+                    <li><a href="index.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">首页</a></li>
+                    <li><a href="getting-started.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">快速入门</a></li>
+                    <li><a href="core-concepts.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">核心概念</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">核心功能</div>
+                <ul class="list-none">
+                    <li><a href="embedding-models.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">嵌入模型</a></li>
+                    <li><a href="prompt-templates.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">提示模板</a></li>
+                    <li><a href="output-parsers.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">输出解析</a></li>
+                    <li><a href="function-calling-deep.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">函数调用</a></li>
+                    <li><a href="advanced-features.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">高级特性</a></li>
+                    <li><a href="multimodal-full.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">多模态处理</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">RAG 完整指南</div>
+                <ul class="list-none">
+                    <li><a href="rag-complete.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">RAG 完整指南</a></li>
+                    <li><a href="project-rag-kb.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">RAG 知识库项目</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">项目实战</div>
+                <ul class="list-none">
+                    <li><a href="project-ai-assistant.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">AI 助手项目</a></li>
+                    <li><a href="project-chatbot.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">聊天机器人项目</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">深入与最佳实践</div>
+                <ul class="list-none">
+                    <li><a href="best-practices.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">最佳实践</a></li>
+                    <li><a href="examples.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">代码示例</a></li>
+                    <li><a href="integrations.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">框架集成</a></li>
+                    <li><a href="testing-strategies.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">测试策略</a></li>
+                    <li><a href="performance-tuning.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">性能调优</a></li>
+                    <li><a href="deep-dive.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">深度解析</a></li>
+                    <li><a href="error-handling.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">错误处理</a></li>
+                    <li><a href="moderation-safety.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">内容审核与安全</a></li>
+                    <li><a href="troubleshooting.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">故障排查</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">高级主题</div>
+                <ul class="list-none">
+                    <li><a href="interview-prep.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">面试准备</a></li>
+                    <li><a href="practice.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">实战练习</a></li>
+                    <li><a href="search.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">搜索功能</a></li>
+                    <li><a href="chat-listeners.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">聊天监听器</a></li>
+                    <li><a href="faq.html" class="block bg-primary-50 text-indigo-700 no-underline py-2 px-3 text-sm rounded-md font-medium">常见问题</a></li>
+                    <li><a href="cost-optimization.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">成本优化</a></li>
+                    <li><a href="deployment.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">部署与运维</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <main class="flex-1 ml-[280px]">
+            <div class="max-w-7xl mx-auto px-8 py-12">
+                <!-- 页面标签 -->
+                <div class="flex items-center gap-2 mb-4">
+                    <span class="px-3 py-1 bg-indigo-100 text-indigo-700 text-xs font-medium rounded-full">常见问题</span>
+                    <span class="px-3 py-1 bg-purple-100 text-purple-700 text-xs font-medium rounded-full">问答</span>
+                    <span class="px-3 py-1 bg-green-100 text-green-700 text-xs font-medium rounded-full">快速参考</span>
+                </div>
+
+                <h1 class="text-4xl font-bold text-gray-900 mb-4">常见问题</h1>
+                <p class="text-xl text-gray-600 mb-8">LangChain4j 开发过程中的常见问题解答和最佳实践</p>
+
+                <!-- 目录 -->
+                <nav class="bg-gray-50 border border-gray-200 rounded-xl p-6 mb-8">
+                    <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">目录</h3>
+                    <ol class="space-y-2 text-sm text-gray-700">
+                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">1.</span> <a href="#基础概念" class="hover:text-indigo-600 transition-colors">基础概念</a></li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">2.</span> <a href="#嵌入模型" class="hover:text-indigo-600 transition-colors">嵌入模型</a></li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">3.</span> <a href="#RAG相关" class="hover:text-indigo-600 transition-colors">RAG 相关</a></li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">4.</span> <a href="#函数调用" class="hover:text-indigo-600 transition-colors">函数调用</a></li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">5.</span> <a href="#性能与优化" class="hover:text-indigo-600 transition-colors">性能与优化</a></li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">6.</span> <a href="#生产部署" class="hover:text-indigo-600 transition-colors">生产部署</a></li>
+                    </ol>
+                </nav>
+
+                <!-- 第1节：基础概念 -->
+                <section id="基础概念" class="mb-16">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-full text-sm font-bold">1</span>
+                        <h2 class="text-2xl font-bold text-gray-900">基础概念</h2>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-3">Q: LangChain4j 与 LangChain 有什么区别？</h3>
+                            <p class="text-gray-700"><strong>A:</strong> LangChain4j 是 LangChain 的 Java 实现，专门为 Java 生态系统设计。主要区别：</p>
+                            <ul class="list-disc list-inside mt-3 space-y-1 text-gray-600">
+                                <li><strong>编程语言</strong>：LangChain4j 是 Java，原版 LangChain 是 Python</li>
+                                <li><strong>类型安全</strong>：LangChain4j 提供强类型 API，编译时检查</li>
+                                <li><strong>企业集成</strong>：更好地与 Spring Boot 等 Java 企业框架集成</li>
+                                <li><strong>性能</strong>：Java 的 JVM 优化提供更好的并发性能</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-3">Q: 如何选择合适的 ChatLanguageModel？</h3>
+                            <p class="text-gray-700"><strong>A:</strong> 根据需求和场景选择：</p>
+                            <ul class="list-disc list-inside mt-3 space-y-1 text-gray-600">
+                                <li><strong>快速原型</strong>：使用 HuggingFace 本地模型，免费且无需 API Key</li>
+                                <li><strong>高质量输出</strong>：使用 OpenAI GPT-4 或 Anthropic Claude</li>
+                                <li><strong>成本敏感</strong>：使用 GPT-3.5-turbo 或开源模型</li>
+                                <li><strong>数据隐私</strong>：使用本地部署的开源模型</li>
+                                <li><strong>中文优化</strong>：考虑使用专门训练的中文模型</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-3">Q: LangChain4j 支持哪些模型提供商？</h3>
+                            <p class="text-gray-700"><strong>A:</strong> LangChain4j 支持主流的 AI 模型提供商：</p>
+                            <ul class="list-disc list-inside mt-3 space-y-1 text-gray-600">
+                                <li><strong>OpenAI</strong>：GPT-4、GPT-3.5-turbo、Embeddings</li>
+                                <li><strong>Anthropic</strong>：Claude-3-opus、Claude-3-sonnet、Claude-3-haiku</li>
+                                <li><strong>Google</strong>：Gemini Pro、Gemini Ultra</li>
+                                <li><strong>HuggingFace</strong>：各种开源模型（Llama 2、Mistral、Falcon 等）</li>
+                                <li><strong>Azure OpenAI</strong>：企业级 OpenAI 服务</li>
+                                <li><strong>本地模型</strong>：Ollama、LocalAI 等本地推理引擎</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-3">Q: 什么是 Chain？</h3>
+                            <p class="text-gray-700"><strong>A:</strong> Chain 是 LangChain4j 的核心概念，表示将多个 AI 组件串联起来形成工作流：</p>
+                            <ul class="list-disc list-inside mt-3 space-y-1 text-gray-600">
+                                <li><strong>简单 Chain</strong>：单个操作（如文本生成、向量检索）</li>
+                                <li><strong>顺序 Chain</strong>：多个操作按顺序执行</li>
+                                <li><strong>条件 Chain</strong>：根据条件选择不同路径</li>
+                                <li><strong>循环 Chain</strong>：重复执行直到满足条件</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 第2节：嵌入模型 -->
+                <section id="嵌入模型" class="mb-16">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-full text-sm font-bold">2</span>
+                        <h2 class="text-2xl font-bold text-gray-900">嵌入模型</h2>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-3">Q: 嵌入向量是什么？</h3>
+                            <p class="text-gray-700"><strong>A:</strong> 嵌入向量是将文本、图像等数据转换为数值向量的表示方法：</p>
+                            <ul class="list-disc list-inside mt-3 space-y-1 text-gray-600">
+                                <li><strong>数值表示</strong>：通常为浮点数数组（如 [0.1, -0.3, 0.8, ...]）</li>
+                                <li><strong>语义相似</strong>：语义相近的文本在向量空间中距离更近</li>
+                                <li><strong>维度固定</strong>：同一个模型生成的向量维度相同（如 1536 维）</li>
+                                <li><strong>用于检索</strong>：通过计算向量相似度实现语义搜索</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-3">Q: 如何选择嵌入模型？</h3>
+                            <p class="text-gray-700"><strong>A:</strong> 根据语言、性能和场景选择：</p>
+                            <ul class="list-disc list-inside mt-3 space-y-1 text-gray-600">
+                                <li><strong>多语言</strong>：OpenAI text-embedding-ada-002、Cohere embed-multilingual-v3</li>
+                                <li><strong>纯中文</strong>：text2vec、bge-large-zh 等中文模型</li>
+                                <li><strong>高性能</strong>：HuggingFace 的 small 或 base 模型</li>
+                                <li><strong>高精度</strong>：OpenAI text-embedding-3-large、Cohere embed-english-v3</li>
+                                <li><strong>本地部署</strong>：sentence-transformers 模型</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-3">Q: 如何计算向量相似度？</h3>
+                            <p class="text-gray-700"><strong>A:</strong> 常用的向量相似度计算方法：</p>
+                            <ul class="list-disc list-inside mt-3 space-y-1 text-gray-600">
+                                <li><strong>余弦相似度</strong>：最常用，值域 [-1, 1]，1 表示完全相同</li>
+                                <li><strong>欧氏距离</strong>：向量空间的直线距离，值越小越相似</li>
+                                <li><strong>点积</strong>：未归一化的余弦相似度，计算更高效</li>
+                                <li><strong>曼哈顿距离</strong>：各维度绝对差之和，对异常值更鲁棒</li>
+                            </ul>
+                            <p class="text-gray-700 mt-3"><strong>推荐</strong>：大多数情况下使用余弦相似度，除非向量已经归一化，则使用点积。</p>
+                        </div>
+
+                        <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-3">Q: 文本分块（Chunking）策略有哪些？</h3>
+                            <p class="text-gray-700"><strong>A:</strong> 常见的文本分块策略：</p>
+                            <ul class="list-disc list-inside mt-3 space-y-1 text-gray-600">
+                                <li><strong>固定大小</strong>：按字符数切分（如 1000 字符），简单但可能截断语义</li>
+                                <li><strong>递归分块</strong>：优先按段落、句子等自然边界切分，保持语义完整性</li>
+                                <li><strong>语义分块</strong>：基于句子相似度确定切分点，更精确但计算成本高</li>
+                                <li><strong>文档结构分块</strong>：利用 Markdown、HTML 等标记语言的结构信息</li>
+                            </ul>
+                            <p class="text-gray-700 mt-3"><strong>推荐</strong>：递归分块是大多数场景的最佳选择，平衡了性能和效果。</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 第3节：RAG 相关 -->
+                <section id="RAG相关" class="mb-16">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-full text-sm font-bold">3</span>
+                        <h2 class="text-2xl font-bold text-gray-900">RAG 相关</h2>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-3">Q: 什么是 RAG？</h3>
+                            <p class="text-gray-700"><strong>A:</strong> RAG（Retrieval-Augmented Generation，检索增强生成）是一种结合知识检索和 LLM 生成的技术：</p>
+                            <ul class="list-disc list-inside mt-3 space-y-1 text-gray-600">
+                                <li><strong>问题</strong>：用户提出问题</li>
+                                <li><strong>检索</strong>：从知识库中检索相关文档</li>
+                                <li><strong>增强</strong>：将检索到的文档作为上下文添加到 Prompt 中</li>
+                                <li><strong>生成</strong>：LLM 基于上下文生成准确答案</li>
+                            </ul>
+                            <p class="text-gray-700 mt-3"><strong>优势</strong>：减少幻觉、提供最新信息、可解释性强、成本可控。</p>
+                        </div>
+
+                        <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-3">Q: 如何选择向量数据库？</h3>
+                            <p class="text-gray-700"><strong>A:</strong> 根据需求和场景选择向量数据库：</p>
+                            <ul class="list-disc list-inside mt-3 space-y-1 text-gray-600">
+                                <li><strong>PostgreSQL + PGVector</strong>：已有 PostgreSQL 环境，易集成，性能中等</li>
+                                <li><strong>Pinecone</strong>：全托管，易用，性能优秀，但成本较高</li>
+                                <li><strong>Weaviate</strong>：开源，支持多种数据类型，可本地部署</li>
+                                <li><strong>Milvus</strong>：高性能，适合大规模向量检索，开源</li>
+                                <li><strong>Qdrant</strong>：轻量级，易于部署，性能好</li>
+                            </ul>
+                            <p class="text-gray-700 mt-3"><strong>推荐</strong>：学习和中小型项目使用 PGVector，生产环境考虑 Pinecone 或 Milvus。</p>
+                        </div>
+
+                        <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-3">Q: 如何提高 RAG 检索质量？</h3>
+                            <p class="text-gray-700"><strong>A:</strong> 提高检索质量的常用策略：</p>
+                            <ul class="list-disc list-inside mt-3 space-y-1 text-gray-600">
+                                <li><strong>优化分块</strong>：使用递归分块，设置合理的 chunk size 和 overlap</li>
+                                <li><strong>混合检索</strong>：结合向量检索和关键词检索（BM25）</li>
+                                <li><strong>重排序</strong>：使用 Cross-Encoder 对检索结果重新排序</li>
+                                <li><strong>查询扩展</strong>：使用 LLM 扩展或改写用户查询</li>
+                                <li><strong>元数据过滤</strong>：利用文档元数据进行精准筛选</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-3">Q: RAG 常见问题如何解决？</h3>
+                            <p class="text-gray-700"><strong>A:</strong> 常见问题及解决方案：</p>
+                            <ul class="list-disc list-inside mt-3 space-y-1 text-gray-600">
+                                <li><strong>检索不准确</strong>：增加 chunk size、使用重排序、调整检索参数</li>
+                                <li><strong>答案不相关</strong>：优化 Prompt、增加检索文档数量、过滤低分结果</li>
+                                <li><strong>响应慢</strong>：缓存检索结果、使用更快的向量库、并行处理</li>
+                                <li><strong>成本高</strong>：使用更小的嵌入模型、批量处理、本地部署</li>
+                                <li><strong>幻觉</strong>：明确指示 LLM 仅使用提供的信息、添加验证步骤</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 第4节：函数调用 -->
+                <section id="函数调用" class="mb-16">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-full text-sm font-bold">4</span>
+                        <h2 class="text-2xl font-bold text-gray-900">函数调用</h2>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-3">Q: 什么是函数调用（Function Calling）？</h3>
+                            <p class="text-gray-700"><strong>A:</strong> 函数调用允许 LLM 调用外部工具和 API，扩展其能力：</p>
+                            <ul class="list-disc list-inside mt-3 space-y-1 text-gray-600">
+                                <li><strong>定义工具</strong>：使用 @Tool 注解定义可调用函数</li>
+                                <li><strong>参数描述</strong>：为函数参数提供清晰的描述</li>
+                                <li><strong>模型决策</strong>：LLM 自动决定是否调用哪个函数</li>
+                                <li><strong>执行调用</strong>：框架自动执行函数并返回结果</li>
+                                <li><strong>生成答案</strong>：LLM 基于函数结果生成最终回答</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-3">Q: 如何设计良好的工具函数？</h3>
+                            <p class="text-gray-700"><strong>A:</strong> 设计工具函数的最佳实践：</p>
+                            <ul class="list-disc list-inside mt-3 space-y-1 text-gray-600">
+                                <li><strong>单一职责</strong>：每个函数只做一件事</li>
+                                <li><strong>清晰命名</strong>：函数名应准确描述其功能</li>
+                                <li><strong>详细描述</strong>：使用 @Tool 注解提供清晰的函数说明</li>
+                                <li><strong>参数描述</strong>：为每个参数提供 @ToolParam 描述</li>
+                                <li><strong>类型明确</strong>：使用强类型参数，避免模糊类型</li>
+                                <li><strong>错误处理</strong>：妥善处理异常，返回有意义的错误信息</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-3">Q: 函数调用失败如何处理？</h3>
+                            <p class="text-gray-700"><strong>A:</strong> 函数调用失败的常见原因和解决方案：</p>
+                            <ul class="list-disc list-inside mt-3 space-y-1 text-gray-600">
+                                <li><strong>参数不匹配</strong>：检查参数名称和类型是否正确</li>
+                                <li><strong>工具未注册</strong>：确保工具已正确注入到 AI 服务中</li>
+                                <li><strong>API 限制</strong>：处理速率限制和超时</li>
+                                <li><strong>LLM 误解</strong>：提供更清晰的工具描述和参数说明</li>
+                                <li><strong>返回值格式</strong>：确保返回值是 LLM 可以理解的格式</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 第5节：性能与优化 -->
+                <section id="性能与优化" class="mb-16">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-full text-sm font-bold">5</span>
+                        <h2 class="text-2xl font-bold text-gray-900">性能与优化</h2>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-3">Q: 如何提高 LangChain4j 应用性能？</h3>
+                            <p class="text-gray-700"><strong>A:</strong> 性能优化的关键策略：</p>
+                            <ul class="list-disc list-inside mt-3 space-y-1 text-gray-600">
+                                <li><strong>缓存</strong>：缓存嵌入向量、API 响应、检索结果</li>
+                                <li><strong>批处理</strong>：批量调用嵌入模型和聊天模型</li>
+                                <li><strong>异步</strong>：使用异步 API 提高并发性能</li>
+                                <li><strong>连接池</strong>：配置 HTTP 连接池减少连接开销</li>
+                                <li><strong>选择合适的模型</strong>：使用更小更快的模型满足需求</li>
+                                <li><strong>向量索引</strong>：为向量数据库创建合适的索引</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-3">Q: 如何降低 LangChain4j 成本？</h3>
+                            <p class="text-gray-700"><strong>A:</strong> 降低成本的策略：</p>
+                            <ul class="list-disc list-inside mt-3 space-y-1 text-gray-600">
+                                <li><strong>模型选择</strong>：使用更便宜的模型（如 GPT-3.5-turbo）</li>
+                                <li><strong>缓存复用</strong>：缓存相似查询的结果</li>
+                                <li><strong>本地模型</strong>：使用开源模型替代 API 调用</li>
+                                <li><strong>精简 Prompt</strong>：减少不必要的上下文和说明</li>
+                                <li><strong>批量处理</strong>：批量请求降低 API 调用次数</li>
+                                <li><strong>监控成本</strong>：实时监控 API 使用量和费用</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-3">Q: 如何处理并发请求？</h3>
+                            <p class="text-gray-700"><strong>A:</strong> 并发处理的最佳实践：</p>
+                            <ul class="list-disc list-inside mt-3 space-y-1 text-gray-600">
+                                <li><strong>异步 API</strong>：使用 LangChain4j 的异步接口</li>
+                                <li><strong>线程池</strong>：配置合适的线程池大小</li>
+                                <li><strong>限流</strong>：实现请求限流避免过载</li>
+                                <li><strong>连接池</strong>：复用 HTTP 连接减少开销</li>
+                                <li><strong>幂等性</strong>：确保操作可以安全重试</li>
+                                <li><strong>超时控制</strong>：设置合理的超时时间</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 第6节：生产部署 -->
+                <section id="生产部署" class="mb-16">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-full text-sm font-bold">6</span>
+                        <h2 class="text-2xl font-bold text-gray-900">生产部署</h2>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-3">Q: 如何部署 LangChain4j 应用？</h3>
+                            <p class="text-gray-700"><strong>A:</strong> 生产环境部署建议：</p>
+                            <ul class="list-disc list-inside mt-3 space-y-1 text-gray-600">
+                                <li><strong>容器化</strong>：使用 Docker 容器化应用</li>
+                                <li><strong>Kubernetes</strong>：使用 K8s 进行编排和扩展</li>
+                                <li><strong>配置管理</strong>：使用环境变量或配置中心管理敏感信息</li>
+                                <li><strong>日志聚合</strong>：使用 ELK 或类似方案收集日志</li>
+                                <li><strong>监控告警</strong>：监控 API 调用、延迟、错误率</li>
+                                <li><strong>负载均衡</strong>：使用 Nginx 或云厂商负载均衡</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-3">Q: 如何保护 API Key？</h3>
+                            <p class="text-gray-700"><strong>A:</strong> API Key 安全管理策略：</p>
+                            <ul class="list-disc list-inside mt-3 space-y-1 text-gray-600">
+                                <li><strong>环境变量</strong>：使用环境变量存储敏感信息</li>
+                                <li><strong>密钥管理</strong>：使用 AWS Secrets Manager、Azure Key Vault 等服务</li>
+                                <li><strong>访问控制</strong>：限制 API Key 的访问权限和使用范围</li>
+                                <li><strong>定期轮换</strong>：定期更换 API Key</li>
+                                <li><strong>不提交代码</strong>：确保 .gitignore 包含 .env 文件</li>
+                                <li><strong>审计日志</strong>：记录所有 API Key 的使用情况</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-3">Q: 如何监控 LangChain4j 应用？</h3>
+                            <p class="text-gray-700"><strong>A:</strong> 监控关键指标：</p>
+                            <ul class="list-disc list-inside mt-3 space-y-1 text-gray-600">
+                                <li><strong>API 调用</strong>：调用次数、成功/失败率、响应时间</li>
+                                <li><strong>Token 使用</strong>：输入/输出 Token 数量、成本</li>
+                                <li><strong>向量检索</strong>：检索延迟、命中率</li>
+                                <li><strong>错误率</strong>：各类型的错误数量和频率</li>
+                                <li><strong>系统资源</strong>：CPU、内存、网络使用情况</li>
+                                <li><strong>用户行为</strong>：查询模式、功能使用频率</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 总结 -->
+                <div class="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl p-8 text-white">
+                    <h3 class="text-2xl font-bold mb-4">本节小结</h3>
+                    <p class="mb-4">本节涵盖了 LangChain4j 开发过程中的常见问题，包括：</p>
+                    <ul class="list-disc list-inside space-y-2 mb-6">
+                        <li><strong>基础概念</strong>：LangChain4j 与 LangChain 的区别、模型选择、Chain 概念</li>
+                        <li><strong>嵌入模型</strong>：嵌入向量原理、模型选择、相似度计算、分块策略</li>
+                        <li><strong>RAG 相关</strong>：RAG 原理、向量数据库选择、检索质量优化</li>
+                        <li><strong>函数调用</strong>：函数调用原理、工具设计、错误处理</li>
+                        <li><strong>性能与优化</strong>：性能优化策略、成本控制、并发处理</li>
+                        <li><strong>生产部署</strong>：部署方案、API Key 管理、监控告警</li>
+                    </ul>
+                    <div class="border-t border-indigo-400 pt-6">
+                        <p class="text-sm opacity-80 mb-2">下一步</p>
+                        <a href="cost-optimization.html" class="inline-flex items-center gap-2 text-white hover:text-indigo-200 transition-colors">
+                            下一章：成本优化 →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

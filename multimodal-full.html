@@ -1,0 +1,1312 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>多模态能力 - LangChain4j 学习指南</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            200: '#c7d2fe',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-white text-gray-800 antialiased">
+    <div class="flex min-h-screen">
+        <aside class="w-[280px] fixed left-0 top-0 h-full bg-white border-r border-gray-200 overflow-y-auto z-50">
+            <a href="index.html" class="flex items-center gap-3 mb-8 text-gray-900 no-underline">
+                <div class="w-9 h-9 bg-indigo-600 rounded-lg flex items-center justify-center text-white text-xl">⚡</div>
+                <span class="font-bold text-xl">LangChain4j</span>
+            </a>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">入门</div>
+                <ul class="list-none">
+                    <li><a href="index.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">首页</a></li>
+                    <li><a href="getting-started.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">快速入门</a></li>
+                    <li><a href="core-concepts.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">核心概念</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">基础</div>
+                <ul class="list-none">
+                    <li><a href="embedding-models.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">Embedding模型</a></li>
+                    <li><a href="prompt-templates.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">Prompt模板</a></li>
+                    <li><a href="output-parsers.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">输出解析</a></li>
+                    <li><a href="model-providers.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">模型提供商</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">进阶</div>
+                <ul class="list-none">
+                    <li><a href="function-calling-deep.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">Function Calling</a></li>
+                    <li><a href="advanced-features.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">高级特性</a></li>
+                    <li><a href="multimodal-full.html" class="block text-indigo-700 font-medium py-2 px-3 text-sm rounded-md bg-primary-50">多模态能力</a></li>
+                    <li><a href="rag-complete.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">RAG知识库</a></li>
+                    <li><a href="project-rag-kb.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">RAG项目实战</a></li>
+                    <li><a href="project-ai-assistant.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">AI助手</a></li>
+                    <li><a href="project-chatbot.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">聊天机器人</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">实践</div>
+                <ul class="list-none">
+                    <li><a href="best-practices.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">最佳实践</a></li>
+                    <li><a href="examples.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">实战示例</a></li>
+                    <li><a href="integrations.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">框架集成</a></li>
+                    <li><a href="testing-strategies.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">测试策略</a></li>
+                    <li><a href="performance-tuning.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">性能调优</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">其他</div>
+                <ul class="list-none">
+                    <li><a href="deep-dive.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">深度解析</a></li>
+                    <li><a href="error-handling.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">错误处理</a></li>
+                    <li><a href="moderation-safety.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">内容审核</a></li>
+                    <li><a href="troubleshooting.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">问题排查</a></li>
+                    <li><a href="interview-prep.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">面试准备</a></li>
+                    <li><a href="practice.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">练习项目</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <main class="flex-1 ml-[280px] px-8 py-12 max-w-7xl">
+            <!-- 页面标签 -->
+            <div class="flex items-center gap-3 mb-8 text-sm">
+                <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-medium">多模态AI</span>
+                <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-medium">进阶</span>
+                <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-medium">~15分钟</span>
+            </div>
+
+            <!-- 页面标题 -->
+            <h1 class="text-5xl font-bold text-gray-900 mb-6">多模态能力</h1>
+            <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+                LangChain4j提供了强大的多模态AI能力，让你的应用不仅能理解文本，还能处理图像、音频等多种数据类型。
+                本章将深入探讨多模态模型的集成、使用方法以及多模态RAG系统的构建。
+            </p>
+
+            <!-- 章节目录 -->
+            <div class="bg-gray-50 rounded-lg p-6 mb-10">
+                <h2 class="text-lg font-semibold text-gray-900 mb-4">📋 本章目录</h2>
+                <ol class="space-y-2 text-gray-700">
+                    <li class="flex items-start gap-2">
+                        <span class="text-indigo-600 font-mono">1.</span>
+                        <span><a href="#overview" class="text-indigo-600 hover:underline">多模态AI概述</a></span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-indigo-600 font-mono">2.</span>
+                        <span><a href="#image-generation" class="text-indigo-600 hover:underline">图像生成能力</a></span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-indigo-600 font-mono">3.</span>
+                        <span><a href="#image-understanding" class="text-indigo-600 hover:underline">图像理解能力</a></span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-indigo-600 font-mono">4.</span>
+                        <span><a href="#chat-multimodal" class="text-indigo-600 hover:underline">多模态对话</a></span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-indigo-600 font-mono">5.</span>
+                        <span><a href="#multimodal-rag" class="text-indigo-600 hover:underline">多模态RAG系统</a></span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-indigo-600 font-mono">6.</span>
+                        <span><a href="#best-practices" class="text-indigo-600 hover:underline">最佳实践与优化</a></span>
+                    </li>
+                </ol>
+            </div>
+
+            <!-- 第1节：多模态AI概述 -->
+            <section id="overview" class="mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                    <span class="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center text-indigo-600">1</span>
+                    多模态AI概述
+                </h2>
+
+                <div class="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-lg p-6 mb-6">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-3">什么是多模态AI？</h3>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        多模态AI是指能够理解和处理多种类型数据（如文本、图像、音频、视频等）的AI系统。
+                        与仅能处理文本的传统LLM不同，多模态模型可以：
+                    </p>
+                    <ul class="space-y-2 text-gray-700">
+                        <li class="flex items-start gap-2">
+                            <span class="text-green-500 mt-1">✓</span>
+                            <span><strong>理解图像内容</strong>：分析图片中的物体、场景、文字等</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-green-500 mt-1">✓</span>
+                            <span><strong>生成图像</strong>：根据文本描述创建图像</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-green-500 mt-1">✓</span>
+                            <span><strong>跨模态推理</strong>：结合文本和图像信息进行综合分析</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-green-500 mt-1">✓</span>
+                            <span><strong>多模态对话</strong>：在对话中处理图片和文本混合输入</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div class="border border-gray-200 rounded-lg p-5 hover:border-indigo-300 transition-colors">
+                        <div class="text-2xl mb-3">🖼️</div>
+                        <h4 class="font-semibold text-gray-900 mb-2">图像生成</h4>
+                        <p class="text-sm text-gray-600">使用DALL-E、Imagen等模型，将文本转换为精美的图像</p>
+                    </div>
+                    <div class="border border-gray-200 rounded-lg p-5 hover:border-indigo-300 transition-colors">
+                        <div class="text-2xl mb-3">👁️</div>
+                        <h4 class="font-semibold text-gray-900 mb-2">图像理解</h4>
+                        <p class="text-sm text-gray-600">使用GPT-4V、Claude-3等模型，分析图像内容并生成描述</p>
+                    </div>
+                    <div class="border border-gray-200 rounded-lg p-5 hover:border-indigo-300 transition-colors">
+                        <div class="text-2xl mb-3">🔄</div>
+                        <h4 class="font-semibold text-gray-900 mb-2">多模态对话</h4>
+                        <p class="text-sm text-gray-600">在聊天中同时处理文本和图像，实现自然交互</p>
+                    </div>
+                    <div class="border border-gray-200 rounded-lg p-5 hover:border-indigo-300 transition-colors">
+                        <div class="text-2xl mb-3">📚</div>
+                        <h4 class="font-semibold text-gray-900 mb-2">多模态RAG</h4>
+                        <p class="text-sm text-gray-600">检索和生成结合，支持图像、文档等多模态数据</p>
+                    </div>
+                </div>
+
+                <div class="bg-blue-50 border-l-4 border-blue-500 p-5 rounded-r-lg">
+                    <h4 class="font-semibold text-blue-900 mb-2">💡 应用场景</h4>
+                    <p class="text-blue-800">
+                        多模态能力可以应用于众多场景：智能客服（分析用户上传的截图）、内容审核（识别图片中的不当内容）、
+                        图像检索（根据图片描述搜索相关图像）、文档分析（从PDF提取图文信息）、创意设计（AI辅助绘图）等。
+                    </p>
+                </div>
+            </section>
+
+            <!-- 第2节：图像生成能力 -->
+            <section id="image-generation" class="mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                    <span class="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center text-indigo-600">2</span>
+                    图像生成能力
+                </h2>
+
+                <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-5 mb-6">
+                    <h4 class="font-semibold text-yellow-900 mb-2">⚠️ 重要提示</h4>
+                    <p class="text-yellow-800 text-sm">
+                        图像生成功能需要单独的API和不同的模型（如DALL-E、Imagen等），
+                        与文本生成模型不同。请确保你有相应的API密钥和权限。
+                    </p>
+                </div>
+
+                <h3 class="text-2xl font-semibold text-gray-900 mb-4">2.1 基础图像生成</h3>
+                <p class="text-gray-700 mb-4">
+                    LangChain4j提供了统一的图像生成API，支持多种图像生成模型。
+                    以下是一个使用OpenAI DALL-E 3生成图像的示例：
+                </p>
+
+                <div class="bg-gray-900 rounded-lg p-5 mb-6 overflow-x-auto">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-mono text-gray-400 uppercase">Java - DALL-E图像生成</span>
+                        <span class="text-xs text-gray-500">ImageGenerationExample.java</span>
+                    </div>
+                    <pre class="text-gray-100 text-sm font-mono"><code>import dev.langchain4j.data.image.Image;
+import dev.langchain4j.model.image.ImageModel;
+import dev.langchain4j.model.openai.OpenAiImageModel;
+import dev.langchain4j.model.output.Response;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+import static dev.langchain4j.model.openai.OpenAiImageModelName.DALL_E_3;
+
+/**
+ * 图像生成基础示例
+ * 演示如何使用DALL-E 3生成图像
+ */
+public class ImageGenerationExample {
+
+    public static void main(String[] args) {
+        // 1. 创建图像模型
+        ImageModel imageModel = OpenAiImageModel.builder()
+                .apiKey("your-api-key")  // 替换为你的OpenAI API密钥
+                .modelName(DALL_E_3)      // 使用DALL-E 3模型
+                .size("1024x1024")        // 图像尺寸
+                .quality("standard")         // 质量：standard或hd
+                .style("vivid")            // 风格：vivid或natural
+                .build();
+
+        // 2. 生成图像
+        String prompt = "一只在宇宙中漂浮的猫，赛博朋克风格，霓虹灯效果";
+        Response&lt;Image&gt; response = imageModel.generate(prompt);
+
+        // 3. 处理响应
+        Image image = response.content();
+        System.out.println("生成图像的URL: " + image.url());
+
+        // 可选：下载图像到本地
+        if (image.url() != null) {
+            downloadImage(image.url(), "generated-cat.png");
+        }
+    }
+
+    /**
+     * 下载图像到本地
+     */
+    private static void downloadImage(String imageUrl, String fileName) {
+        try {
+            // 使用Java HTTP客户端下载图像（简化示例）
+            // 实际项目中建议使用Apache HttpClient或OkHttp
+            Path targetPath = Paths.get(fileName);
+            // ... 下载逻辑
+            System.out.println("图像已保存到: " + targetPath.toAbsolutePath());
+        } catch (Exception e) {
+            System.err.println("下载图像失败: " + e.getMessage());
+        }
+    }
+}</code></pre>
+                </div>
+
+                <div class="bg-green-50 border-l-4 border-green-500 p-5 rounded-r-lg mb-6">
+                    <h4 class="font-semibold text-green-900 mb-2">✅ 关键参数说明</h4>
+                    <ul class="text-green-800 space-y-1 text-sm">
+                        <li><strong>modelName</strong>: 使用的图像模型（DALL_E_3, DALL_E_2等）</li>
+                        <li><strong>size</strong>: 图像尺寸（256x256, 512x512, 1024x1024, 1792x1024等）</li>
+                        <li><strong>quality</strong>: 图像质量（standard标准，hd高清）</li>
+                        <li><strong>style</strong>: 生成风格（vivid生动，natural自然）</li>
+                        <li><strong>n</strong>: 生成图像数量（默认为1，最大为10）</li>
+                    </ul>
+                </div>
+
+                <h3 class="text-2xl font-semibold text-gray-900 mb-4">2.2 Google Imagen集成</h3>
+                <p class="text-gray-700 mb-4">
+                    除了OpenAI的DALL-E，LangChain4j还支持Google的Imagen图像生成模型：
+                </p>
+
+                <div class="bg-gray-900 rounded-lg p-5 mb-6 overflow-x-auto">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-mono text-gray-400 uppercase">Java - Imagen图像生成</span>
+                        <span class="text-xs text-gray-500">ImagenGenerationExample.java</span>
+                    </div>
+                    <pre class="text-gray-100 text-sm font-mono"><code>import dev.langchain4j.data.image.Image;
+import dev.langchain4j.model.image.ImageModel;
+import dev.langchain4j.model.google.GoogleImageModel;
+import dev.langchain4j.model.output.Response;
+
+/**
+ * Google Imagen图像生成示例
+ */
+public class ImagenGenerationExample {
+
+    public static void main(String[] args) {
+        // 1. 创建Imagen模型
+        ImageModel imageModel = GoogleImageModel.builder()
+                .apiKey("your-google-api-key")
+                .modelName("imagen-3.0-generate-001")  // Imagen 3.0
+                .build();
+
+        // 2. 生成图像
+        String prompt = "一幅展现春天的油画，色彩鲜艳，细节丰富";
+        Response&lt;Image&gt; response = imageModel.generate(prompt);
+
+        // 3. 处理响应
+        if (response.content() != null) {
+            System.out.println("生成成功！");
+            System.out.println("图像URL: " + response.content().url());
+        }
+    }
+}</code></pre>
+                </div>
+
+                <h3 class="text-2xl font-semibold text-gray-900 mb-4">2.3 高级图像生成配置</h3>
+                <p class="text-gray-700 mb-4">
+                    对于更复杂的图像生成需求，可以进行精细化配置：
+                </p>
+
+                <div class="bg-gray-900 rounded-lg p-5 mb-6 overflow-x-auto">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-mono text-gray-400 uppercase">Java - 高级图像生成</span>
+                        <span class="text-xs text-gray-500">AdvancedImageGeneration.java</span>
+                    </div>
+                    <pre class="text-gray-100 text-sm font-mono"><code>import dev.langchain4j.data.image.Image;
+import dev.langchain4j.model.image.ImageModel;
+import dev.langchain4j.model.openai.OpenAiImageModel;
+import dev.langchain4j.model.output.Response;
+
+import java.util.List;
+
+/**
+ * 高级图像生成配置示例
+ */
+public class AdvancedImageGeneration {
+
+    public static void main(String[] args) {
+        ImageModel imageModel = OpenAiImageModel.builder()
+                .apiKey("your-api-key")
+                .modelName(DALL_E_3)
+                .size("1792x1024")      // 宽屏尺寸
+                .quality("hd")              // 高清质量
+                .style("vivid")             // 生动风格
+                .responseFormat("b64_json")  // 返回Base64编码而非URL
+                .build();
+
+        String prompt = """
+            一幅未来城市的全景图，
+            高楼大厦直插云霄，
+            飞行汽车穿梭其中，
+            全息广告牌闪烁，
+            赛博朋克风格，
+            电影级光效
+            """;
+
+        // 生成多张图像
+        int numberOfImages = 2;
+        List&lt;Response&lt;Image&gt;&gt; responses = imageModel.generate(prompt, numberOfImages);
+
+        // 处理每张图像
+        for (int i = 0; i &lt; responses.size(); i++) {
+            Response&lt;Image&gt; response = responses.get(i);
+            Image image = response.content();
+            System.out.printf("图像 %d: %s%n", i + 1,
+                image.url() != null ? image.url() : "[Base64数据]");
+        }
+    }
+}</code></pre>
+                </div>
+
+                <div class="bg-red-50 border-l-4 border-red-500 p-5 rounded-r-lg">
+                    <h4 class="font-semibold text-red-900 mb-2">⚠️ 成本与限制</h4>
+                    <p class="text-red-800 text-sm">
+                        图像生成API通常比文本生成API昂贵。DALL-E 3的高清图像（1024x1024）每次调用可能成本$0.04-$0.08。
+                        建议在开发时使用小尺寸（256x256）进行测试，生产环境再使用高分辨率。
+                        同时注意API调用频率限制（RPM）。
+                    </p>
+                </div>
+            </section>
+
+            <!-- 第3节：图像理解能力 -->
+            <section id="image-understanding" class="mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                    <span class="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center text-indigo-600">3</span>
+                    图像理解能力
+                </h2>
+
+                <div class="bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg p-6 mb-6">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-3">支持的视觉模型</h3>
+                    <p class="text-gray-700 mb-4">
+                        LangChain4j支持多种多模态模型，可以理解图像内容并生成文本描述：
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="bg-white rounded-lg p-4 shadow-sm">
+                            <div class="font-semibold text-gray-900 mb-2">GPT-4 Vision</div>
+                            <p class="text-sm text-gray-600">OpenAI的视觉模型，强大的图像理解能力</p>
+                        </div>
+                        <div class="bg-white rounded-lg p-4 shadow-sm">
+                            <div class="font-semibold text-gray-900 mb-2">Claude-3 Vision</div>
+                            <p class="text-sm text-gray-600">Anthropic的多模态模型，细节分析出色</p>
+                        </div>
+                        <div class="bg-white rounded-lg p-4 shadow-sm">
+                            <div class="font-semibold text-gray-900 mb-2">Gemini Pro Vision</div>
+                            <p class="text-sm text-gray-600">Google的多模态模型，成本效益高</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="text-2xl font-semibold text-gray-900 mb-4">3.1 基础图像分析</h3>
+                <p class="text-gray-700 mb-4">
+                    使用ChatModel的ImageMessage可以发送图像给模型进行分析：
+                </p>
+
+                <div class="bg-gray-900 rounded-lg p-5 mb-6 overflow-x-auto">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-mono text-gray-400 uppercase">Java - 图像理解</span>
+                        <span class="text-xs text-gray-500">ImageUnderstandingExample.java</span>
+                    </div>
+                    <pre class="text-gray-100 text-sm font-mono"><code>import dev.langchain4j.data.image.Image;
+import dev.langchain4j.data.message.ImageContent;
+import dev.langchain4j.data.message.UserMessage;
+import dev.langchain4j.model.chat.ChatLanguageModel;
+import dev.langchain4j.model.openai.OpenAiChatModel;
+import dev.langchain4j.model.output.Response;
+
+/**
+ * 图像理解基础示例
+ * 演示如何让AI分析图像内容
+ */
+public class ImageUnderstandingExample {
+
+    public static void main(String[] args) {
+        // 1. 创建支持视觉的聊天模型
+        ChatLanguageModel visionModel = OpenAiChatModel.builder()
+                .apiKey("your-api-key")
+                .modelName("gpt-4o")  // 或 "gpt-4-vision-preview"
+                .build();
+
+        // 2. 创建图像内容（可以是URL或Base64）
+        Image image = Image.from("https://example.com/image.jpg");
+
+        // 3. 创建包含图像的用户消息
+        UserMessage userMessage = UserMessage.from(
+                ImageContent.from(image),
+                "请详细描述这张图片中的内容"
+        );
+
+        // 4. 发送给模型
+        Response&lt;AiMessage&gt; response = visionModel.generate(userMessage);
+
+        // 5. 获取分析结果
+        System.out.println("AI分析结果:");
+        System.out.println(response.content().text());
+    }
+}</code></pre>
+                </div>
+
+                <h3 class="text-2xl font-semibold text-gray-900 mb-4">3.2 从本地文件加载图像</h3>
+                <p class="text-gray-700 mb-4">
+                    除了URL，你也可以从本地文件加载图像：
+                </p>
+
+                <div class="bg-gray-900 rounded-lg p-5 mb-6 overflow-x-auto">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-mono text-gray-400 uppercase">Java - 本地图像处理</span>
+                        <span class="text-xs text-gray-500">LocalImageExample.java</span>
+                    </div>
+                    <pre class="text-gray-100 text-sm font-mono"><code>import dev.langchain4j.data.image.Image;
+import dev.langchain4j.data.message.ImageContent;
+import dev.langchain4j.data.message.UserMessage;
+import dev.langchain4j.model.chat.ChatLanguageModel;
+import dev.langchain4j.model.openai.OpenAiChatModel;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Base64;
+
+/**
+ * 从本地文件加载图像示例
+ */
+public class LocalImageExample {
+
+    public static void main(String[] args) throws IOException {
+        ChatLanguageModel visionModel = OpenAiChatModel.builder()
+                .apiKey("your-api-key")
+                .modelName("gpt-4o")
+                .build();
+
+        // 1. 读取本地图像文件
+        Path imagePath = Paths.get("path/to/your/image.jpg");
+        byte[] imageBytes = Files.readAllBytes(imagePath);
+
+        // 2. 转换为Base64编码
+        String base64Image = Base64.getEncoder()
+                .encodeToString(imageBytes);
+
+        // 3. 创建Image对象，指定MIME类型
+        String mimeType = Files.probeContentType(imagePath);
+        Image image = Image.from("data:" + mimeType + ";base64," + base64Image);
+
+        // 4. 创建用户消息
+        UserMessage userMessage = UserMessage.from(
+                ImageContent.from(image),
+                "这张图片里有什么？请列出所有主要物体"
+        );
+
+        // 5. 发送给模型分析
+        var response = visionModel.generate(userMessage);
+        System.out.println(response.content().text());
+    }
+}</code></pre>
+                </div>
+
+                <h3 class="text-2xl font-semibold text-gray-900 mb-4">3.3 提取结构化信息</h3>
+                <p class="text-gray-700 mb-4">
+                    图像理解不仅可以描述内容，还可以提取结构化数据：
+                </p>
+
+                <div class="bg-gray-900 rounded-lg p-5 mb-6 overflow-x-auto">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-mono text-gray-400 uppercase">Java - 结构化数据提取</span>
+                        <span class="text-xs text-gray-500">StructuredExtraction.java</span>
+                    </div>
+                    <pre class="text-gray-100 text-sm font-mono"><code>import dev.langchain4j.data.image.Image;
+import dev.langchain4j.data.message.ImageContent;
+import dev.langchain4j.data.message.UserMessage;
+import dev.langchain4j.model.chat.ChatLanguageModel;
+import dev.langchain4j.model.openai.OpenAiChatModel;
+
+/**
+ * 从图像提取结构化信息示例
+ */
+public class StructuredExtraction {
+
+    public static void main(String[] args) {
+        ChatLanguageModel visionModel = OpenAiChatModel.builder()
+                .apiKey("your-api-key")
+                .modelName("gpt-4o")
+                .build();
+
+        Image image = Image.from("https://example.com/invoice.jpg");
+
+        // 提示词要求JSON格式的结构化输出
+        UserMessage userMessage = UserMessage.from(
+                ImageContent.from(image),
+                """
+                请分析这张发票，并以JSON格式返回以下信息：
+                {
+                    "invoice_number": "发票号码",
+                    "date": "日期",
+                    "total_amount": "总金额",
+                    "vendor": "供应商名称",
+                    "line_items": [
+                        {"item": "商品名称", "quantity": 数量, "price": 价格}
+                    ]
+                }
+
+                只返回JSON，不要其他文本。
+                """
+        );
+
+        var response = visionModel.generate(userMessage);
+        String result = response.content().text();
+
+        // 这里可以使用OutputParser解析JSON（参考output-parsers章节）
+        System.out.println("提取的发票信息:");
+        System.out.println(result);
+    }
+}</code></pre>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-blue-50 border border-blue-200 rounded-lg p-5">
+                        <h4 class="font-semibold text-blue-900 mb-3">💡 常见应用场景</h4>
+                        <ul class="text-blue-800 space-y-2 text-sm">
+                            <li>• OCR文档识别（发票、收据、身份证）</li>
+                            <li>• 产品缺陷检测（制造业质检）</li>
+                            <li>• 医疗影像分析（X光片、CT扫描）</li>
+                            <li>• 图像内容审核（识别不当内容）</li>
+                            <li>• 电商商品分类（自动标注）</li>
+                        </ul>
+                    </div>
+                    <div class="bg-orange-50 border border-orange-200 rounded-lg p-5">
+                        <h4 class="font-semibold text-orange-900 mb-3">⚠️ 性能优化建议</h4>
+                        <ul class="text-orange-800 space-y-2 text-sm">
+                            <li>• 压缩图像分辨率（减少Token消耗）</li>
+                            <li>• 裁剪感兴趣区域（降低复杂度）</li>
+                            <li>• 使用小模型进行初筛（节省成本）</li>
+                            <li>• 缓存图像嵌入（避免重复分析）</li>
+                            <li>• 批量处理而非单张分析</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 第4节：多模态对话 -->
+            <section id="chat-multimodal" class="mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                    <span class="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center text-indigo-600">4</span>
+                    多模态对话
+                </h2>
+
+                <div class="bg-gray-50 rounded-lg p-6 mb-6">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-3">对话中的多模态支持</h3>
+                    <p class="text-gray-700 mb-4">
+                        LangChain4j的ChatModel支持在对话中混合使用文本和图像。
+                        你可以：
+                    </p>
+                    <ul class="space-y-2 text-gray-700">
+                        <li class="flex items-start gap-2">
+                            <span class="text-indigo-600 font-bold">1.</span>
+                            <span>在UserMessage中同时包含文本和ImageContent</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-indigo-600 font-bold">2.</span>
+                            <span>在多轮对话中保持上下文</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-indigo-600 font-bold">3.</span>
+                            <span>让AI根据图像内容进行推理和回答</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <h3 class="text-2xl font-semibold text-gray-900 mb-4">4.1 多轮图像对话示例</h3>
+                <div class="bg-gray-900 rounded-lg p-5 mb-6 overflow-x-auto">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-mono text-gray-400 uppercase">Java - 多轮多模态对话</span>
+                        <span class="text-xs text-gray-500">MultimodalChat.java</span>
+                    </div>
+                    <pre class="text-gray-100 text-sm font-mono"><code>import dev.langchain4j.data.image.Image;
+import dev.langchain4j.data.message.*;
+import dev.langchain4j.model.chat.ChatLanguageModel;
+import dev.langchain4j.model.openai.OpenAiChatModel;
+import dev.langchain4j.model.openai.OpenAiChatModelName;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * 多模态对话示例
+ * 演示如何在对话中混合使用文本和图像
+ */
+public class MultimodalChat {
+
+    public static void main(String[] args) {
+        ChatLanguageModel model = OpenAiChatModel.builder()
+                .apiKey("your-api-key")
+                .modelName(OpenAiChatModelName.GPT_4O)
+                .build();
+
+        // 第一轮：发送图片
+        System.out.println("=== 第一轮 ===");
+        List&lt;ChatMessage&gt; messages1 = new ArrayList&lt;&gt;();
+        Image chartImage = Image.from("https://example.com/sales-chart.jpg");
+
+        messages1.add(UserMessage.from(
+                ImageContent.from(chartImage),
+                "请分析这张销售图表的主要趋势"
+        ));
+
+        Response&lt;AiMessage&gt; response1 = model.generate(messages1);
+        System.out.println("AI: " + response1.content().text());
+        messages1.add(response1.content());
+
+        // 第二轮：追问细节
+        System.out.println("\n=== 第二轮 ===");
+        List&lt;ChatMessage&gt; messages2 = new ArrayList&lt;&gt;(messages1);
+        messages2.add(UserMessage.from(
+                "图表中的第3个月份的数据是多少？为什么会出现这个峰值？"
+        ));
+
+        Response&lt;AiMessage&gt; response2 = model.generate(messages2);
+        System.out.println("AI: " + response2.content().text());
+
+        // 第三轮：上传新图片并关联讨论
+        System.out.println("\n=== 第三轮 ===");
+        List&lt;ChatMessage&gt; messages3 = new ArrayList&lt;&gt;(messages2);
+        Image competitorChart = Image.from("https://example.com/competitor-chart.jpg");
+
+        messages3.add(UserMessage.from(
+                ImageContent.from(competitorChart),
+                "对比这两张图表，我们的产品有什么优势？"
+        ));
+
+        Response&lt;AiMessage&gt; response3 = model.generate(messages3);
+        System.out.println("AI: " + response3.content().text());
+    }
+}</code></pre>
+                </div>
+
+                <h3 class="text-2xl font-semibold text-gray-900 mb-4">4.2 AI Service中的多模态</h3>
+                <p class="text-gray-700 mb-4">
+                    使用LangChain4j的AI Service高级API，可以更优雅地处理多模态对话：
+                </p>
+
+                <div class="bg-gray-900 rounded-lg p-5 mb-6 overflow-x-auto">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-mono text-gray-400 uppercase">Java - AI Service多模态</span>
+                        <span class="text-xs text-gray-500">MultimodalService.java</span>
+                    </div>
+                    <pre class="text-gray-100 text-sm font-mono"><code>import dev.langchain4j.data.image.Image;
+import dev.langchain4j.data.message.ImageContent;
+import dev.langchain4j.service.AiServices;
+import dev.langchain4j.service.memory.ChatMemoryProvider;
+import dev.langchain4j.service.memory.MessageWindowChatMemory;
+import dev.langchain4j.data.message.UserMessage;
+import dev.langchain4j.data.message.AiMessage;
+import dev.langchain4j.model.chat.ChatLanguageModel;
+import dev.langchain4j.model.openai.OpenAiChatModel;
+
+import static java.util.Collections.singletonList;
+
+/**
+ * 使用AI Service处理多模态对话
+ */
+public class MultimodalService {
+
+    interface ImageAssistant {
+        String analyzeImage(String imageDescription);
+        String followUpQuestion(String question);
+    }
+
+    public static void main(String[] args) {
+        // 1. 创建支持视觉的模型
+        ChatLanguageModel model = OpenAiChatModel.builder()
+                .apiKey("your-api-key")
+                .modelName("gpt-4o")
+                .build();
+
+        // 2. 配置ChatMemory保持对话历史
+        MessageWindowChatMemory chatMemory = MessageWindowChatMemory.withMaxMessages(10);
+        ChatMemoryProvider memoryProvider = (memoryId) -> chatMemory;
+
+        // 3. 创建AI Service
+        ImageAssistant assistant = AiServices.builder(ImageAssistant.class)
+                .chatLanguageModel(model)
+                .chatMemoryProvider(memoryProvider)
+                .build();
+
+        // 4. 模拟用户上传图片
+        String imageDescription = "用户上传了一张包含多个产品的照片";
+        System.out.println("用户：上传了一张图片 - " + imageDescription);
+        String response1 = assistant.analyzeImage(imageDescription);
+        System.out.println("AI：" + response1);
+
+        // 5. 后续问答
+        String question = "第一个产品的价格是多少？";
+        System.out.println("用户：" + question);
+        String response2 = assistant.followUpQuestion(question);
+        System.out.println("AI：" + response2);
+    }
+}</code></pre>
+                </div>
+
+                <div class="bg-green-50 border-l-4 border-green-500 p-5 rounded-r-lg">
+                    <h4 class="font-semibold text-green-900 mb-2">✅ 最佳实践</h4>
+                    <ul class="text-green-800 space-y-1 text-sm">
+                        <li><strong>提示词设计</strong>：明确告诉AI图像的内容和你的目标，避免歧义</li>
+                        <li><strong>图像质量</strong>：确保上传的图像清晰度足够，关键信息可见</li>
+                        <li><strong>上下文保持</strong>：在多轮对话中合理管理ChatMemory，避免Token超限</li>
+                        <li><strong>错误处理</strong>：图像上传可能失败，要有优雅的错误处理和重试机制</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- 第5节：多模态RAG系统 -->
+            <section id="multimodal-rag" class="mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                    <span class="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center text-indigo-600">5</span>
+                    多模态RAG系统
+                </h2>
+
+                <div class="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-lg p-6 mb-6">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-3">什么是多模态RAG？</h3>
+                    <p class="text-gray-700 mb-4">
+                        传统RAG系统主要处理文本数据，而多模态RAG可以：
+                    </p>
+                    <ul class="space-y-2 text-gray-700">
+                        <li class="flex items-start gap-2">
+                            <span class="text-blue-600 font-bold">•</span>
+                            <span><strong>检索图像</strong>：根据文本或图像查询相似的图像</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-blue-600 font-bold">•</span>
+                            <span><strong>跨模态检索</strong>：用图像查询文本，或用文本查询图像</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-blue-600 font-bold">•</span>
+                            <span><strong>混合检索</strong>：同时检索文本和图像，综合生成回答</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <h3 class="text-2xl font-semibold text-gray-900 mb-4">5.1 图像RAG架构</h3>
+                <p class="text-gray-700 mb-4">
+                    以下是一个图像RAG系统的典型架构：
+                </p>
+
+                <div class="bg-gray-100 rounded-lg p-6 mb-6">
+                    <div class="font-mono text-sm space-y-2">
+                        <div class="flex items-center gap-2">
+                            <span class="px-2 py-1 bg-blue-600 text-white rounded text-xs">输入</span>
+                            <span>用户查询（文本或图像）</span>
+                        </div>
+                        <div class="text-center text-gray-400">↓</div>
+                        <div class="flex items-center gap-2">
+                            <span class="px-2 py-1 bg-purple-600 text-white rounded text-xs">嵌入</span>
+                            <span>使用多模态嵌入模型转换为向量</span>
+                        </div>
+                        <div class="text-center text-gray-400">↓</div>
+                        <div class="flex items-center gap-2">
+                            <span class="px-2 py-1 bg-green-600 text-white rounded text-xs">检索</span>
+                            <span>从向量数据库检索相似的图像/文本</span>
+                        </div>
+                        <div class="text-center text-gray-400">↓</div>
+                        <div class="flex items-center gap-2">
+                            <span class="px-2 py-1 bg-orange-600 text-white rounded text-xs">生成</span>
+                            <span>将检索结果输入LLM生成回答</span>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="text-2xl font-semibold text-gray-900 mb-4">5.2 图像RAG实现示例</h3>
+                <div class="bg-gray-900 rounded-lg p-5 mb-6 overflow-x-auto">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-mono text-gray-400 uppercase">Java - 图像RAG系统</span>
+                        <span class="text-xs text-gray-500">ImageRagExample.java</span>
+                    </div>
+                    <pre class="text-gray-100 text-sm font-mono"><code>import dev.langchain4j.data.image.Image;
+import dev.langchain4j.data.message.*;
+import dev.langchain4j.model.chat.ChatLanguageModel;
+import dev.langchain4j.model.openai.OpenAiChatModel;
+import dev.langchain4j.rag.content.retriever.ContentRetriever;
+import dev.langchain4j.rag.query.Query;
+
+import java.util.List;
+
+/**
+ * 图像RAG系统示例
+ * 演示如何检索相关图像并生成回答
+ */
+public class ImageRagExample {
+
+    // 假设的图像检索器接口
+    interface ImageRetriever extends ContentRetriever {
+        List&lt;RetrievedImage&gt; retrieveByImage(Image queryImage);
+        List&lt;RetrievedImage&gt; retrieveByText(String textQuery);
+    }
+
+    public static void main(String[] args) {
+        // 1. 创建视觉模型
+        ChatLanguageModel visionModel = OpenAiChatModel.builder()
+                .apiKey("your-api-key")
+                .modelName("gpt-4o")
+                .build();
+
+        // 2. 创建图像检索器（实际项目中需要实现或使用现有的）
+        ImageRetriever retriever = createImageRetriever();
+
+        // 3. 用户输入文本查询
+        String userQuery = "我想找一张有蓝天白云的风景照";
+        System.out.println("用户查询: " + userQuery);
+
+        // 4. 检索相关图像
+        List&lt;RetrievedImage&gt; retrievedImages = retriever.retrieveByText(userQuery);
+        System.out.println("检索到 " + retrievedImages.size() + " 张相关图像");
+
+        // 5. 构建包含检索结果的Prompt
+        StringBuilder contextBuilder = new StringBuilder();
+        contextBuilder.append("以下是一些相关图像的描述：\n\n");
+
+        for (int i = 0; i &lt; retrievedImages.size() &amp;&amp; i &lt; 3; i++) {
+            RetrievedImage img = retrievedImages.get(i);
+            contextBuilder.append(String.format(
+                    "图像 %d: %s (URL: %s)\n",
+                    i + 1, img.description(), img.url()
+            ));
+        }
+
+        contextBuilder.append("\n用户问题: ").append(userQuery);
+
+        // 6. 生成回答
+        List&lt;ChatMessage&gt; messages = List.of(
+                UserMessage.from(contextBuilder.toString())
+        );
+
+        var response = visionModel.generate(messages);
+        System.out.println("\nAI回答:");
+        System.out.println(response.content().text());
+    }
+
+    private static ImageRetriever createImageRetriever() {
+        // 实际实现需要：
+        // 1. 图像嵌入模型（如CLIP）
+        // 2. 向量数据库（如Milvus、Pinecone）
+        // 3. 相似度搜索
+        return new ImageRetriever() {
+            @Override
+            public List&lt;RetrievedImage&gt; retrieve(Query query) {
+                // 实现检索逻辑
+                return List.of();
+            }
+            // ... 其他方法
+        };
+    }
+
+    // 假设的检索结果类
+    static class RetrievedImage {
+        private final String url;
+        private final String description;
+        private final double score;
+
+        public RetrievedImage(String url, String description, double score) {
+            this.url = url;
+            this.description = description;
+            this.score = score;
+        }
+
+        public String url() { return url; }
+        public String description() { return description; }
+        public double score() { return score; }
+    }
+}</code></pre>
+                </div>
+
+                <h3 class="text-2xl font-semibold text-gray-900 mb-4">5.3 PDF多模态RAG</h3>
+                <p class="text-gray-700 mb-4">
+                    处理包含图像的PDF是多模态RAG的典型应用场景：
+                </p>
+
+                <div class="bg-gray-900 rounded-lg p-5 mb-6 overflow-x-auto">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-mono text-gray-400 uppercase">Java - PDF多模态处理</span>
+                        <span class="text-xs text-gray-500">PdfMultimodalRag.java</span>
+                    </div>
+                    <pre class="text-gray-100 text-sm font-mono"><code>import dev.langchain4j.data.image.Image;
+import dev.langchain4j.data.message.*;
+import dev.langchain4j.model.chat.ChatLanguageModel;
+import dev.langchain4j.model.openai.OpenAiChatModel;
+
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.rendering.PDFRenderer;
+
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * PDF多模态RAG示例
+ * 提取PDF中的文本和图像，进行混合检索
+ */
+public class PdfMultimodalRag {
+
+    public static void main(String[] args) throws IOException {
+        String pdfPath = "document.pdf";
+        ChatLanguageModel visionModel = OpenAiChatModel.builder()
+                .apiKey("your-api-key")
+                .modelName("gpt-4o")
+                .build();
+
+        // 1. 提取PDF内容
+        PdfContent content = extractPdfContent(pdfPath);
+
+        // 2. 用户查询
+        String query = "这个文档中提到了哪些关键概念？";
+
+        // 3. 检索相关内容（文本+图像）
+        List&lt;RelevantContent&gt; relevant = retrieveRelevantContent(content, query);
+
+        // 4. 构建Context
+        StringBuilder context = new StringBuilder();
+        context.append("相关文本片段:\n");
+        for (RelevantContent.TextSegment ts : relevant.textSegments()) {
+            context.append("- ").append(ts.text()).append("\n");
+        }
+
+        context.append("\n相关图像:\n");
+        for (RelevantContent.ImageSegment is : relevant.imageSegments()) {
+            context.append("- ").append(is.description()).append("\n");
+        }
+
+        // 5. 生成回答
+        String prompt = """
+            以下是从PDF文档中检索到的相关内容：
+
+            %s
+
+            基于这些内容回答用户问题：%s
+            """.formatted(context.toString(), query);
+
+        List&lt;ChatMessage&gt; messages = List.of(UserMessage.from(prompt));
+        var response = visionModel.generate(messages);
+
+        System.out.println("回答: " + response.content().text());
+    }
+
+    /**
+     * 提取PDF中的文本和图像
+     */
+    private static PdfContent extractPdfContent(String pdfPath) throws IOException {
+        PdfContent content = new PdfContent();
+
+        try (PDDocument document = PDDocument.load(new File(pdfPath))) {
+            PDFRenderer renderer = new PDFRenderer(document);
+
+            // 提取文本（使用PDFBox或Tika）
+            // content.addText(...);
+
+            // 提取图像
+            for (int pageNum = 0; pageNum &lt; document.getNumberOfPages(); pageNum++) {
+                BufferedImage image = renderer.renderImageWithDPI(pageNum, 150);
+                // 保存图像或转换为Base64
+                // content.addImage(...);
+            }
+        }
+
+        return content;
+    }
+
+    // 假设的数据类
+    static class PdfContent {
+        private final List&lt;String&gt; textSegments = new ArrayList&lt;&gt;();
+        private final List&lt;ImageInfo&gt; images = new ArrayList&lt;&gt;();
+
+        public void addText(String text) { textSegments.add(text); }
+        public void addImage(ImageInfo image) { images.add(image); }
+        public List&lt;String&gt; getTextSegments() { return textSegments; }
+        public List&lt;ImageInfo&gt; getImages() { return images; }
+    }
+
+    static class ImageInfo {
+        private final Image image;
+        private final int pageNumber;
+
+        public ImageInfo(Image image, int pageNumber) {
+            this.image = image;
+            this.pageNumber = pageNumber;
+        }
+    }
+}</code></pre>
+                </div>
+
+                <div class="bg-indigo-50 border-l-4 border-indigo-500 p-5 rounded-r-lg mb-6">
+                    <h4 class="font-semibold text-indigo-900 mb-2">💡 多模态RAG优势</h4>
+                    <ul class="text-indigo-800 space-y-1 text-sm">
+                        <li><strong>更丰富的检索</strong>：不仅检索文本，还能检索图像、表格等</li>
+                        <li><strong>更好的理解</strong>：视觉信息能提供文本无法表达的上下文</li>
+                        <li><strong>跨模态查询</strong>：可以用图像找图像，或文本找图像</li>
+                        <li><strong>提升准确率</strong>：多源信息融合，减少幻觉</li>
+                    </ul>
+                </div>
+
+                <div class="bg-red-50 border-l-4 border-red-500 p-5 rounded-r-lg">
+                    <h4 class="font-semibold text-red-900 mb-2">⚠️ 技术挑战</h4>
+                    <ul class="text-red-800 space-y-1 text-sm">
+                        <li><strong>多模态嵌入</strong>：需要能处理图像+文本的嵌入模型（如CLIP）</li>
+                        <li><strong>存储成本</strong>：图像嵌入向量比文本大得多</li>
+                        <li><strong>检索速度</strong>：大规模图像向量检索性能优化</li>
+                        <li><strong>Context窗口</strong>：多张图像+文本可能超过LLM的Token限制</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- 第6节：最佳实践与优化 -->
+            <section id="best-practices" class="mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                    <span class="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center text-indigo-600">6</span>
+                    最佳实践与优化
+                </h2>
+
+                <h3 class="text-2xl font-semibold text-gray-900 mb-4">6.1 性能优化策略</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div class="border border-gray-200 rounded-lg p-5">
+                        <h4 class="font-semibold text-gray-900 mb-3">🚀 图像处理优化</h4>
+                        <ul class="space-y-2 text-gray-700 text-sm">
+                            <li><strong>分辨率控制</strong>：最大边长不超过2048像素</li>
+                            <li><strong>格式选择</strong>：使用WebP而非PNG，减少大小</li>
+                            <li><strong>懒加载</strong>：只在需要时加载高分辨率图像</li>
+                            <li><strong>缓存机制</strong>：缓存分析结果，避免重复调用</li>
+                        </ul>
+                    </div>
+                    <div class="border border-gray-200 rounded-lg p-5">
+                        <h4 class="font-semibold text-gray-900 mb-3">💰 成本优化</h4>
+                        <ul class="space-y-2 text-gray-700 text-sm">
+                            <li><strong>模型选择</strong>：GPT-4o-mini比GPT-4o便宜60%</li>
+                            <li><strong>批量处理</strong>：一次处理多张图而非单张</li>
+                            <li><strong>预筛选</strong>：用低成本模型先过滤</li>
+                            <li><strong>Token预算</strong>：设置maxTokens避免超支</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3 class="text-2xl font-semibold text-gray-900 mb-4">6.2 常见错误处理</h3>
+                <div class="bg-gray-900 rounded-lg p-5 mb-6 overflow-x-auto">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-mono text-gray-400 uppercase">Java - 错误处理最佳实践</span>
+                        <span class="text-xs text-gray-500">ErrorHandling.java</span>
+                    </div>
+                    <pre class="text-gray-100 text-sm font-mono"><code>import dev.langchain4j.data.image.Image;
+import dev.langchain4j.data.message.ImageContent;
+import dev.langchain4j.data.message.UserMessage;
+import dev.langchain4j.model.chat.ChatLanguageModel;
+import dev.langchain4j.model.openai.OpenAiChatModel;
+import dev.langchain4j.model.openai.OpenAiChatModelName;
+import dev.langchain4j.model.output.Response;
+
+/**
+ * 多模态应用的错误处理最佳实践
+ */
+public class ErrorHandling {
+
+    private static final int MAX_RETRIES = 3;
+    private static final long RETRY_DELAY_MS = 1000;
+
+    public static void main(String[] args) {
+        ChatLanguageModel model = OpenAiChatModel.builder()
+                .apiKey("your-api-key")
+                .modelName(OpenAiChatModelName.GPT_4O)
+                .timeout(Duration.ofSeconds(30))  // 设置超时
+                .maxRetries(2)                   // 自动重试次数
+                .build();
+
+        String imageUrl = "https://example.com/image.jpg";
+
+        // 1. 带重试的图像分析
+        String result = analyzeImageWithRetry(model, imageUrl);
+        if (result != null) {
+            System.out.println("分析成功: " + result);
+        } else {
+            System.err.println("图像分析失败，请检查图像URL或稍后重试");
+        }
+
+        // 2. 验证图像URL
+        if (!isValidImageUrl(imageUrl)) {
+            System.err.println("无效的图像URL: " + imageUrl);
+            return;
+        }
+
+        // 3. 处理大图像（可能导致超限）
+        Image largeImage = loadAndResizeImage(imageUrl);
+        if (largeImage == null) {
+            System.err.println("图像加载失败");
+            return;
+        }
+    }
+
+    /**
+     * 带重试机制的图像分析
+     */
+    private static String analyzeImageWithRetry(
+            ChatLanguageModel model,
+            String imageUrl
+    ) {
+        int attempt = 0;
+        Exception lastException = null;
+
+        while (attempt &lt; MAX_RETRIES) {
+            try {
+                Image image = Image.from(imageUrl);
+                UserMessage message = UserMessage.from(
+                        ImageContent.from(image),
+                        "请描述这张图片"
+                );
+
+                Response&lt;AiMessage&gt; response = model.generate(message);
+                return response.content().text();
+
+            } catch (Exception e) {
+                lastException = e;
+                attempt++;
+
+                // 指数退避
+                if (attempt &lt; MAX_RETRIES) {
+                    try {
+                        Thread.sleep(RETRY_DELAY_MS * (1L &lt;&lt; attempt));
+                    } catch (InterruptedException ie) {
+                        Thread.currentThread().interrupt();
+                        return null;
+                    }
+                }
+            }
+        }
+
+        // 记录失败原因
+        System.err.println("图像分析失败: " + lastException.getMessage());
+
+        // 判断错误类型
+        if (lastException.getMessage().contains("429")) {
+            System.err.println("API速率限制，请稍后重试");
+        } else if (lastException.getMessage().contains("400")) {
+            System.err.println("图像格式不支持或损坏");
+        } else if (lastException.getMessage().contains("timeout")) {
+            System.err.println("请求超时，图像可能过大");
+        }
+
+        return null;
+    }
+
+    /**
+     * 验证图像URL
+     */
+    private static boolean isValidImageUrl(String url) {
+        if (url == null || url.trim().isEmpty()) {
+            return false;
+        }
+
+        // 检查URL格式
+        return url.matches("https?://.+\\.(jpg|jpeg|png|gif|webp).*");
+    }
+
+    /**
+     * 加载并调整图像大小（伪代码）
+     */
+    private static Image loadAndResizeImage(String url) {
+        try {
+            // 实际项目中使用ImageIO或其他库
+            // 1. 下载图像
+            // 2. 检查尺寸
+            // 3. 如果超过2048x2048，等比缩放
+            // 4. 返回调整后的图像
+            return Image.from(url);
+        } catch (Exception e) {
+            System.err.println("图像处理失败: " + e.getMessage());
+            return null;
+        }
+    }
+}</code></pre>
+                </div>
+
+                <h3 class="text-2xl font-semibold text-gray-900 mb-4">6.3 安全与合规</h3>
+                <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-5 mb-6">
+                    <h4 class="font-semibold text-yellow-900 mb-3">⚠️ 多模态安全注意事项</h4>
+                    <ul class="text-yellow-800 space-y-2 text-sm">
+                        <li><strong>内容过滤</strong>：使用OpenAI的Moderation API过滤不当内容</li>
+                        <li><strong>隐私保护</strong>：不要上传包含PII（个人身份信息）的图像</li>
+                        <li><strong>水印检测</strong>：识别并处理带水印的图像</li>
+                        <li><strong>版权合规</strong>：确保有权利上传和分析图像</li>
+                        <li><strong>数据本地化</strong>：敏感数据确保存储在合规区域</li>
+                    </ul>
+                </div>
+
+                <!-- 总结部分 -->
+                <div class="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-lg p-8 text-white">
+                    <h3 class="text-2xl font-bold mb-4">🎯 本章总结</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-semibold mb-2">核心概念</h4>
+                            <ul class="space-y-1 text-sm opacity-90">
+                                <li>• 多模态AI支持文本、图像、音频等多种数据</li>
+                                <li>• 图像生成使用ImageModel（DALL-E、Imagen）</li>
+                                <li>• 图像理解使用ChatModel（GPT-4V、Claude-3）</li>
+                                <li>• 多模态RAG支持图像检索和跨模态查询</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold mb-2">关键API</h4>
+                            <ul class="space-y-1 text-sm font-mono opacity-90">
+                                <li>• ImageModel.generate()</li>
+                                <li>• UserMessage.from(ImageContent, text)</li>
+                                <li>• Image.from(url/base64)</li>
+                                <li>• ContentRetriever（自定义检索器）</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="mt-6 pt-6 border-t border-white/20">
+                        <p class="text-sm opacity-90">
+                            下一章我们将学习如何构建完整的RAG知识库系统，包括文档加载、嵌入生成、向量存储和智能检索。
+                        </p>
+                        <a href="rag-complete.html" class="inline-block mt-3 px-6 py-2 bg-white text-indigo-600 rounded-lg font-medium hover:bg-gray-100 transition-colors">
+                            继续学习 →
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

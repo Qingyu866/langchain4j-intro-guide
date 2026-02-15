@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>部署与运维 - LangChain4j 学习指南</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            200: '#c7d2fe',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-white text-gray-800 antialiased">
+    <div class="flex min-h-screen">
+        <aside class="w-[280px] fixed left-0 top-0 h-full bg-white border-r border-gray-200 overflow-y-auto z-50">
+            <a href="index.html" class="flex items-center gap-3 mb-8 text-gray-900 no-underline">
+                <div class="w-9 h-9 bg-indigo-600 rounded-lg flex items-center justify-center text-white text-xl">⚡</div>
+                <span class="font-bold text-xl">LangChain4j</span>
+            </a>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">入门</div>
+                <ul class="list-none">
+                    <li><a href="index.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">首页</a></li>
+                    <li><a href="getting-started.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">快速入门</a></li>
+                    <li><a href="core-concepts.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">核心概念</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">核心功能</div>
+                <ul class="list-none">
+                    <li><a href="embedding-models.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">嵌入模型</a></li>
+                    <li><a href="prompt-templates.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">提示模板</a></li>
+                    <li><a href="output-parsers.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">输出解析</a></li>
+                    <li><a href="function-calling-deep.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">函数调用</a></li>
+                    <li><a href="advanced-features.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">高级特性</a></li>
+                    <li><a href="multimodal-full.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">多模态处理</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">RAG 完整指南</div>
+                <ul class="list-none">
+                    <li><a href="rag-complete.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">RAG 完整指南</a></li>
+                    <li><a href="project-rag-kb.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">RAG 知识库项目</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">项目实战</div>
+                <ul class="list-none">
+                    <li><a href="project-ai-assistant.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">AI 助手项目</a></li>
+                    <li><a href="project-chatbot.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">聊天机器人项目</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">深入与最佳实践</div>
+                <ul class="list-none">
+                    <li><a href="best-practices.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">最佳实践</a></li>
+                    <li><a href="examples.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">代码示例</a></li>
+                    <li><a href="integrations.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">框架集成</a></li>
+                    <li><a href="testing-strategies.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">测试策略</a></li>
+                    <li><a href="performance-tuning.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">性能调优</a></li>
+                    <li><a href="deep-dive.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">深度解析</a></li>
+                    <li><a href="error-handling.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">错误处理</a></li>
+                    <li><a href="moderation-safety.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">内容审核与安全</a></li>
+                    <li><a href="troubleshooting.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">故障排查</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">高级主题</div>
+                <ul class="list-none">
+                    <li><a href="interview-prep.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">面试准备</a></li>
+                    <li><a href="practice.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">实战练习</a></li>
+                    <li><a href="search.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">搜索功能</a></li>
+                    <li><a href="chat-listeners.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">聊天监听器</a></li>
+                    <li><a href="faq.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">常见问题</a></li>
+                    <li><a href="cost-optimization.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">成本优化</a></li>
+                    <li><a href="deployment.html" class="block bg-primary-50 text-indigo-700 no-underline py-2 px-3 text-sm rounded-md font-medium">部署与运维</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <main class="flex-1 ml-[280px]">
+            <div class="max-w-7xl mx-auto px-8 py-12">
+                <!-- 页面标签 -->
+                <div class="flex items-center gap-2 mb-4">
+                    <span class="px-3 py-1 bg-indigo-100 text-indigo-700 text-xs font-medium rounded-full">部署与运维</span>
+                    <span class="px-3 py-1 bg-purple-100 text-purple-700 text-xs font-medium rounded-full">生产环境</span>
+                    <span class="px-3 py-1 bg-green-100 text-green-700 text-xs font-medium rounded-full">Docker</span>
+                </div>
+
+                <h1 class="text-4xl font-bold text-gray-900 mb-4">部署与运维</h1>
+                <p class="text-xl text-gray-600 mb-8">LangChain4j 应用的生产环境部署与运维指南</p>
+
+                <!-- 目录 -->
+                <nav class="bg-gray-50 border border-gray-200 rounded-xl p-6 mb-8">
+                    <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">目录</h3>
+                    <ol class="space-y-2 text-sm text-gray-700">
+                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">1.</span> <a href="#容器化部署" class="hover:text-indigo-600 transition-colors">容器化部署</a></li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">2.</span> <a href="#Kubernetes编排" class="hover:text-indigo-600 transition-colors">Kubernetes 编排</a></li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">3.</span> <a href="#CI_CD流程" class="hover:text-indigo-600 transition-colors">CI/CD 流程</a></li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">4.</span> <a href="#监控告警与日志" class="hover:text-indigo-600 transition-colors">监控告警与日志</a></li>
+                    </ol>
+                </nav>
+
+                <!-- 第1节：容器化部署 -->
+                <section id="容器化部署" class="mb-16">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-full text-sm font-bold">1</span>
+                        <h2 class="text-2xl font-bold text-gray-900">容器化部署</h2>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">1.1 Docker 镜像构建</h3>
+                    <p class="text-gray-700 mb-6">使用 Docker 容器化 LangChain4j 应用，实现环境一致性和易于部署：</p>
+
+                    <div class="relative mb-6">
+                        <div class="absolute top-0 right-0 px-3 py-1 bg-gray-800 text-gray-400 text-xs font-medium rounded-bl-md">Dockerfile</div>
+                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="text-gray-500"># 基础镜像：使用 JDK 17</span>
+<span class="text-purple-400">FROM</span> openjdk:<span class="text-green-300">17-jdk-slim</span> <span class="text-purple-400">AS</span> builder
+
+<span class="text-gray-500"># 设置工作目录</span>
+<span class="text-purple-400">WORKDIR</span> /app
+
+<span class="text-gray-500"># 复制 Maven 配置文件</span>
+<span class="text-purple-400">COPY</span> pom.xml .
+
+<span class="text-gray-500"># 构建 Spring Boot 应用（依赖下载和编译）</span>
+<span class="text-purple-400">RUN</span> mvn clean package -DskipTests
+
+<span class="text-gray-500"># 多阶段构建：使用更小的运行时镜像</span>
+<span class="text-purple-400">FROM</span> openjdk:<span class="text-green-300">17-jre-slim</span>
+
+<span class="text-gray-500"># 创建应用目录和非 root 用户</span>
+<span class="text-purple-400">WORKDIR</span> /app
+<span class="text-purple-400">RUN</span> groupadd -r appuser && useradd -r -g appuser appuser
+
+<span class="text-gray-500"># 从构建阶段复制 JAR 文件</span>
+<span class="text-purple-400">COPY</span> --from=builder /app/target/*.jar app.jar
+
+<span class="text-gray-500"># 设置文件权限</span>
+<span class="text-purple-400">RUN</span> chown -R appuser:appuser /app
+
+<span class="text-gray-500"># 切换到非 root 用户</span>
+<span class="text-purple-400">USER</span> appuser
+
+<span class="text-gray-500"># 暴露端口</span>
+<span class="text-purple-400">EXPOSE</span> <span class="text-green-300">8080</span>
+
+<span class="text-gray-500"># 启动应用</span>
+<span class="text-purple-400">ENTRYPOINT</span> ["java", "-jar", "app.jar"]</code></pre>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">1.2 Docker Compose 编排</h3>
+                    <p class="text-gray-700 mb-6">使用 Docker Compose 管理多容器应用：</p>
+
+                    <div class="relative mb-6">
+                        <div class="absolute top-0 right-0 px-3 py-1 bg-gray-800 text-gray-400 text-xs font-medium rounded-bl-md">docker-compose.yml</div>
+                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="text-purple-400">version</span>: <span class="text-green-300">'3.8'</span>
+
+<span class="text-purple-400">services</span>:
+  <span class="text-gray-500"># LangChain4j 应用</span>
+  app:
+    <span class="text-purple-400">build</span>: .
+    <span class="text-purple-400">ports</span>:
+      - <span class="text-green-300">"8080:8080"</span>
+    <span class="text-purple-400">environment</span>:
+      - <span class="text-green-300">SPRING_PROFILES_ACTIVE=production</span>
+      - <span class="text-green-300">OPENAI_API_KEY=${OPENAI_API_KEY}</span>
+      - <span class="text-green-300">POSTGRES_URL=jdbc:postgresql://postgres:5432/langchain4j</span>
+    <span class="text-purple-400">depends_on</span>:
+      - postgres
+      - redis
+    <span class="text-purple-400">restart</span>: unless-stopped
+
+  <span class="text-gray-500"># PostgreSQL 数据库</span>
+  postgres:
+    <span class="text-purple-400">image</span>: pgvector/pgvector:pg16
+    <span class="text-purple-400">environment</span>:
+      - <span class="text-green-300">POSTGRES_USER=postgres</span>
+      - <span class="text-green-300">POSTGRES_PASSWORD=postgres</span>
+      - <span class="text-green-300">POSTGRES_DB=langchain4j</span>
+    <span class="text-purple-400">volumes</span>:
+      - postgres_data:/var/lib/postgresql/data
+    <span class="text-purple-400">ports</span>:
+      - <span class="text-green-300">"5432:5432"</span>
+
+  <span class="text-gray-500"># Redis 缓存</span>
+  redis:
+    <span class="text-purple-400">image</span>: redis:7-alpine
+    <span class="text-purple-400">volumes</span>:
+      - redis_data:/data
+    <span class="text-purple-400">ports</span>:
+      - <span class="text-green-300">"6379:6379"</span>
+
+<span class="text-purple-400">volumes</span>:
+  postgres_data:
+  redis_data:</code></pre>
+                    </div>
+                </section>
+
+                <!-- 第2节：Kubernetes 编排 -->
+                <section id="Kubernetes编排" class="mb-16">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-full text-sm font-bold">2</span>
+                        <h2 class="text-2xl font-bold text-gray-900">Kubernetes 编排</h2>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">2.1 Deployment 配置</h3>
+                    <p class="text-gray-700 mb-6">在 Kubernetes 中部署 LangChain4j 应用：</p>
+
+                    <div class="relative mb-6">
+                        <div class="absolute top-0 right-0 px-3 py-1 bg-gray-800 text-gray-400 text-xs font-medium rounded-bl-md">deployment.yaml</div>
+                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="text-purple-400">apiVersion</span>: apps/v1
+<span class="text-purple-400">kind</span>: Deployment
+<span class="text-purple-400">metadata</span>:
+  <span class="text-purple-400">name</span>: langchain4j-app
+  <span class="text-purple-400">labels</span>:
+    app: langchain4j
+<span class="text-purple-400">spec</span>:
+  <span class="text-purple-400">replicas</span>: <span class="text-green-300">3</span>  <span class="text-gray-500"># 3 个副本</span>
+  <span class="text-purple-400">selector</span>:
+    <span class="text-purple-400">matchLabels</span>:
+      app: langchain4j
+  <span class="text-purple-400">template</span>:
+    <span class="text-purple-400">metadata</span>:
+      <span class="text-purple-400">labels</span>:
+        app: langchain4j
+    <span class="text-purple-400">spec</span>:
+      <span class="text-purple-400">containers</span>:
+      - <span class="text-purple-400">name</span>: langchain4j
+        <span class="text-purple-400">image</span>: your-registry/langchain4j:latest
+        <span class="text-purple-400">ports</span>:
+        - <span class="text-purple-400">containerPort</span>: <span class="text-green-300">8080</span>
+        <span class="text-purple-400">env</span>:
+        - <span class="text-purple-400">name</span>: SPRING_PROFILES_ACTIVE
+          <span class="text-purple-400">value</span>: <span class="text-green-300">"production"</span>
+        - <span class="text-purple-400">name</span>: OPENAI_API_KEY
+          <span class="text-purple-400">valueFrom</span>:
+            <span class="text-purple-400">secretKeyRef</span>:
+              <span class="text-purple-400">name</span>: openai-api-key
+              <span class="text-purple-400">key</span>: api-key
+        <span class="text-purple-400">resources</span>:
+          <span class="text-purple-400">requests</span>:
+            <span class="text-purple-400">memory</span>: <span class="text-green-300">"512Mi"</span>
+            <span class="text-purple-400">cpu</span>: <span class="text-green-300">"500m"</span>
+          <span class="text-purple-400">limits</span>:
+            <span class="text-purple-400">memory</span>: <span class="text-green-300">"1Gi"</span>
+            <span class="text-purple-400">cpu</span>: <span class="text-green-300">"1000m"</span>
+        <span class="text-purple-400">livenessProbe</span>:
+          <span class="text-purple-400">httpGet</span>:
+            <span class="text-purple-400">path</span>: <span class="text-green-300">/actuator/health</span>
+            <span class="text-purple-400">port</span>: <span class="text-green-300">8080</span>
+          <span class="text-purple-400">initialDelaySeconds</span>: <span class="text-green-300">60</span>
+          <span class="text-purple-400">periodSeconds</span>: <span class="text-green-300">10</span>
+        <span class="text-purple-400">readinessProbe</span>:
+          <span class="text-purple-400">httpGet</span>:
+            <span class="text-purple-400">path</span>: <span class="text-green-300">/actuator/health</span>
+            <span class="text-purple-400">port</span>: <span class="text-green-300">8080</span>
+          <span class="text-purple-400">initialDelaySeconds</span>: <span class="text-green-300">30</span>
+          <span class="text-purple-400">periodSeconds</span>: <span class="text-green-300">5</span>
+---
+<span class="text-purple-400">apiVersion</span>: v1
+<span class="text-purple-400">kind</span>: Service
+<span class="text-purple-400">metadata</span>:
+  <span class="text-purple-400">name</span>: langchain4j-service
+<span class="text-purple-400">spec</span>:
+  <span class="text-purple-400">selector</span>:
+    app: langchain4j
+  <span class="text-purple-400">ports</span>:
+  - <span class="text-purple-400">protocol</span>: TCP
+    <span class="text-purple-400">port</span>: <span class="text-green-300">8080</span>
+    <span class="text-purple-400">targetPort</span>: <span class="text-green-300">8080</span>
+  <span class="text-purple-400">type</span>: LoadBalancer</span></code></pre>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">2.2 配置管理</h3>
+                    <p class="text-gray-700 mb-6">使用 Kubernetes ConfigMap 和 Secret 管理配置：</p>
+
+                    <div class="relative mb-6">
+                        <div class="absolute top-0 right-0 px-3 py-1 bg-gray-800 text-gray-400 text-xs font-medium rounded-bl-md">config.yaml</div>
+                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="text-gray-500"># ConfigMap: 应用配置</span>
+<span class="text-purple-400">apiVersion</span>: v1
+<span class="text-purple-400">kind</span>: ConfigMap
+<span class="text-purple-400">metadata</span>:
+  <span class="text-purple-400">name</span>: langchain4j-config
+<span class="text-purple-400">data</span>:
+  <span class="text-purple-400">application.yml</span>: |
+    spring:
+      datasource:
+        url: jdbc:postgresql://postgres-service:5432/langchain4j
+        username: postgres
+      redis:
+        host: redis-service
+        port: 6379
+---
+<span class="text-gray-500"># Secret: 敏感信息</span>
+<span class="text-purple-400">apiVersion</span>: v1
+<span class="text-purple-400">kind</span>: Secret
+<span class="text-purple-400">metadata</span>:
+  <span class="text-purple-400">name</span>: openai-api-key
+<span class="text-purple-400">type</span>: Opaque
+<span class="text-purple-400">stringData</span>:
+  <span class="text-purple-400">api-key</span>: <span class="text-green-300">sk-proj-xxx</span>  <span class="text-gray-500"># base64 编码</span></code></pre>
+                    </div>
+                </section>
+
+                <!-- 第3节：CI/CD 流程 -->
+                <section id="CI_CD流程" class="mb-16">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-full text-sm font-bold">3</span>
+                        <h2 class="text-2xl font-bold text-gray-900">CI/CD 流程</h2>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">3.1 GitHub Actions CI</h3>
+                    <p class="text-gray-700 mb-6">自动化构建和测试流程：</p>
+
+                    <div class="relative mb-6">
+                        <div class="absolute top-0 right-0 px-3 py-1 bg-gray-800 text-gray-400 text-xs font-medium rounded-bl-md">.github/workflows/ci.yml</div>
+                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="text-purple-400">name</span>: CI/CD Pipeline
+
+<span class="text-purple-400">on</span>:
+  <span class="text-purple-400">push</span>:
+    <span class="text-purple-400">branches</span>: [ main ]
+  <span class="text-purple-400">pull_request</span>:
+
+<span class="text-purple-400">jobs</span>:
+  <span class="text-purple-400">build</span>:
+    <span class="text-purple-400">runs-on</span>: ubuntu-latest
+    <span class="text-purple-400">steps</span>:
+    - <span class="text-purple-400">uses</span>: actions/checkout@v4
+    - <span class="text-purple-400">name</span>: Set up JDK 17
+      <span class="text-purple-400">uses</span>: actions/setup-java@v4
+      <span class="text-purple-400">with</span>:
+        java-version: <span class="text-green-300">'17'</span>
+        distribution: <span class="text-green-300">'temurin'</span>
+    - <span class="text-purple-400">name</span>: Build with Maven
+      <span class="text-purple-400">run</span>: mvn clean package -DskipTests
+    - <span class="text-purple-400">name</span>: Run Tests
+      <span class="text-purple-400">run</span>: mvn test
+    - <span class="text-purple-400">name</span>: Build Docker Image
+      <span class="text-purple-400">run</span>: docker build -t langchain4j:${{ github.sha }} .
+    - <span class="text-purple-400">name</span>: Push to Registry
+      <span class="text-purple-400">if</span>: github.ref == <span class="text-green-300">'refs/heads/main'</span>
+      <span class="text-purple-400">run</span>: |
+        echo ${{ secrets.REGISTRY_PASSWORD }} | docker login -u ${{ secrets.REGISTRY_USER }} --password-stdin
+        docker push langchain4j:${{ github.sha }}</code></pre>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">3.2 自动化部署到 K8s</h3>
+                    <p class="text-gray-700 mb-6">构建完成后自动部署到 Kubernetes：</p>
+
+                    <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+                        <h4 class="font-semibold text-green-800 mb-3">部署步骤</h4>
+                        <ol class="list-decimal list-inside text-green-700 space-y-2">
+                            <li><strong>构建镜像</strong>：CI 流程构建并推送 Docker 镜像到镜像仓库</li>
+                            <li><strong>更新部署</strong>：使用 `kubectl set image` 更新 Deployment 镜像版本</li>
+                            <li><strong>滚动更新</strong>：Kubernetes 自动执行滚动更新，零停机部署</li>
+                            <li><strong>健康检查</strong>：验证新 Pod 健康状态</li>
+                            <li><strong>回滚</strong>：如果检测到问题，自动回滚到上一个稳定版本</li>
+                        </ol>
+                    </div>
+                </section>
+
+                <!-- 第4节：监控告警与日志 -->
+                <section id="监控告警与日志" class="mb-16">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-full text-sm font-bold">4</span>
+                        <h2 class="text-2xl font-bold text-gray-900">监控告警与日志</h2>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">4.1 Prometheus 监控</h3>
+                    <p class="text-gray-700 mb-6">使用 Prometheus 收集应用指标：</p>
+
+                    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6">
+                        <h4 class="font-semibold text-blue-800 mb-3">关键监控指标</h4>
+                        <ul class="text-blue-700 space-y-2">
+                            <li><strong>API 调用次数</strong>：每分钟/小时的 API 调用总量</li>
+                            <li><strong>响应时间</strong>：API 请求的平均、P95、P99 延迟</li>
+                            <li><strong>错误率</strong>：API 调用失败率（目标 < 1%）</li>
+                            <li><strong>Token 使用量</strong>：输入/输出 Token 数量和成本</li>
+                            <li><strong>缓存命中率</strong>：缓存成功的请求比例</li>
+                            <li><strong>JVM 指标</strong>：堆内存、GC 次数、线程数</li>
+                        </ul>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">4.2 Grafana 仪表板</h3>
+                    <p class="text-gray-700 mb-6">使用 Grafana 可视化监控数据：</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                        <div class="bg-purple-50 border border-purple-200 rounded-lg p-4">
+                            <h4 class="font-semibold text-purple-800 mb-2">API 仪表板</h4>
+                            <p class="text-purple-700 text-sm">API 调用、响应时间、错误率</p>
+                        </div>
+                        <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+                            <h4 class="font-semibold text-green-800 mb-2">成本仪表板</h4>
+                            <p class="text-green-700 text-sm">Token 使用、API 费用、预算对比</p>
+                        </div>
+                        <div class="bg-orange-50 border border-orange-200 rounded-lg p-4">
+                            <h4 class="font-semibold text-orange-800 mb-2">系统仪表板</h4>
+                            <p class="text-purple-700 text-sm">CPU、内存、网络 I/O</p>
+                        </div>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">4.3 告警规则</h3>
+                    <p class="text-gray-700 mb-6">设置合理的告警阈值：</p>
+
+                    <div class="relative mb-6">
+                        <div class="absolute top-0 right-0 px-3 py-1 bg-gray-800 text-gray-400 text-xs font-medium rounded-bl-md">alerting-rules.yml</div>
+                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="text-purple-400">groups</span>:
+  - <span class="text-purple-400">name</span>: api_alerts
+    <span class="text-purple-400">rules</span>:
+      - <span class="text-purple-400">alert</span>: HighErrorRate
+        <span class="text-purple-400">expr</span>: rate(api_error_total[5m]) > <span class="text-green-300">0.05</span>  <span class="text-gray-500"># 5分钟内错误率 > 5%</span>
+        <span class="text-purple-400">for</span>: <span class="text-green-300">5m</span>
+        <span class="text-purple-400">labels</span>:
+          severity: critical
+        <span class="text-purple-400">annotations</span>:
+          summary: <span class="text-green-300">"API 错误率过高: {{ $value }}"</span>
+
+      - <span class="text-purple-400">alert</span>: HighLatency
+        <span class="text-purple-400">expr</span>: histogram_quantile(0.95)(api_latency_seconds[5m]) > <span class="text-green-300">5</span>  <span class="text-gray-500"># P95 延迟 > 5 秒</span>
+        <span class="text-purple-400">for</span>: <span class="text-green-300">5m</span>
+        <span class="text-purple-400">labels</span>:
+          severity: warning
+        <span class="text-purple-400">annotations</span>:
+          summary: <span class="text-green-300">"API 延迟过高: {{ $value }}s"</span>
+
+      - <span class="text-purple-400">alert</span>: BudgetExceeded
+        <span class="text-purple-400">expr</span>: sum(api_cost_total[30d]) > <span class="text-green-300">100</span>  <span class="text-gray-500"># 月度成本 > 100 美元</span>
+        <span class="text-purple-400">for</span>: <span class="text-green-300">30d</span>
+        <span class="text-purple-400">labels</span>:
+          severity: critical
+        <span class="text-purple-400">annotations</span>:
+          summary: <span class="text-green-300">"预算超支: {{ $value }} 美元"</span></code></pre>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">4.4 日志聚合</h3>
+                    <p class="text-gray-700 mb-6">使用 ELK（Elasticsearch + Logstash + Kibana）或类似方案：</p>
+
+                    <div class="bg-gray-50 border border-gray-200 rounded-lg p-6 mb-6">
+                        <h4 class="font-semibold text-gray-900 mb-3">日志收集策略</h4>
+                        <ul class="text-gray-700 space-y-2">
+                            <li><strong>结构化日志</strong>：使用 JSON 格式记录日志，便于查询和分析</li>
+                            <li><strong>日志级别</strong>：生产环境使用 INFO 级别，开发环境使用 DEBUG</li>
+                            <li><strong>关联追踪</strong>：为每个请求分配唯一的 trace ID</li>
+                            <li><strong>保留策略</strong>：日志保留 7-30 天，根据需求调整</li>
+                            <li><strong>敏感信息</strong>：过滤掉 API Key、用户密码等敏感信息</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl p-6 mb-8">
+                        <h3 class="text-xl font-bold text-white mb-2">💡 部署最佳实践</h3>
+                        <ul class="text-indigo-100 space-y-2">
+                            <li><strong>多环境隔离</strong>：开发、测试、生产环境完全隔离</li>
+                            <li><strong>渐进式部署</strong>：使用蓝绿部署或金丝雀发布</li>
+                            <li><strong>配置管理</strong>：使用 ConfigMap/Secret 管理配置，避免硬编码</li>
+                            <li><strong>健康检查</strong>：配置 liveness 和 readiness 探针</li>
+                            <li><strong>资源限制</strong>：设置 CPU 和内存 requests/limits</li>
+                            <li><strong>监控告警</strong>：监控关键指标，设置合理告警阈值</li>
+                            <li><strong>备份策略</strong>：定期备份数据库和配置</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- 总结 -->
+                <div class="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl p-8 text-white">
+                    <h3 class="text-2xl font-bold mb-4">本节小结</h3>
+                    <p class="mb-4">本节完整介绍了 LangChain4j 应用的部署与运维策略，包括：</p>
+                    <ul class="list-disc list-inside space-y-2 mb-6">
+                        <li><strong>容器化部署</strong>：Docker 镜像构建、Docker Compose 多容器编排</li>
+                        <li><strong>Kubernetes 编排</strong>：Deployment 配置、Service 暴露、ConfigMap/Secret 管理</li>
+                        <li><strong>CI/CD 流程</strong>：GitHub Actions 自动化构建、测试、部署</li>
+                        <li><strong>监控告警</strong>：Prometheus 指标收集、Grafana 可视化、告警规则</li>
+                        <li><strong>日志聚合</strong>：ELK 日志收集、结构化日志、日志保留策略</li>
+                    </ul>
+                    <div class="border-t border-indigo-400 pt-6">
+                        <p class="text-sm opacity-80 mb-2">下一步</p>
+                        <p class="text-indigo-100 mb-2">所有主要页面已完成！剩余 2 个较低优先级页面（search.html 和 chat-listeners.html）可根据需要补充。</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

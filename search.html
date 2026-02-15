@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>搜索功能 - LangChain4j 学习指南</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            200: '#c7d2fe',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-white text-gray-800 antialiased">
+    <div class="flex min-h-screen">
+        <aside class="w-[280px] fixed left-0 top-0 h-full bg-white border-r border-gray-200 overflow-y-auto z-50">
+            <a href="index.html" class="flex items-center gap-3 mb-8 text-gray-900 no-underline">
+                <div class="w-9 h-9 bg-indigo-600 rounded-lg flex items-center justify-center text-white text-xl">⚡</div>
+                <span class="font-bold text-xl">LangChain4j</span>
+            </a>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">入门</div>
+                <ul class="list-none">
+                    <li><a href="index.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">首页</a></li>
+                    <li><a href="getting-started.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">快速入门</a></li>
+                    <li><a href="core-concepts.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">核心概念</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">核心功能</div>
+                <ul class="list-none">
+                    <li><a href="embedding-models.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">嵌入模型</a></li>
+                    <li><a href="prompt-templates.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">提示模板</a></li>
+                    <li><a href="output-parsers.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">输出解析</a></li>
+                    <li><a href="function-calling-deep.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">函数调用</a></li>
+                    <li><a href="advanced-features.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">高级特性</a></li>
+                    <li><a href="multimodal-full.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">多模态处理</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">RAG 完整指南</div>
+                <ul class="list-none">
+                    <li><a href="rag-complete.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">RAG 完整指南</a></li>
+                    <li><a href="project-rag-kb.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">RAG 知识库项目</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">项目实战</div>
+                <ul class="list-none">
+                    <li><a href="project-ai-assistant.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">AI 助手项目</a></li>
+                    <li><a href="project-chatbot.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">聊天机器人项目</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">深入与最佳实践</div>
+                <ul class="list-none">
+                    <li><a href="best-practices.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">最佳实践</a></li>
+                    <li><a href="examples.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">代码示例</a></li>
+                    <li><a href="integrations.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">框架集成</a></li>
+                    <li><a href="testing-strategies.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">测试策略</a></li>
+                    <li><a href="performance-tuning.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">性能调优</a></li>
+                    <li><a href="deep-dive.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">深度解析</a></li>
+                    <li><a href="error-handling.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">错误处理</a></li>
+                    <li><a href="moderation-safety.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">内容审核与安全</a></li>
+                    <li><a href="troubleshooting.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">故障排查</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">高级主题</div>
+                <ul class="list-none">
+                    <li><a href="interview-prep.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">面试准备</a></li>
+                    <li><a href="practice.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">实战练习</a></li>
+                    <li><a href="search.html" class="block bg-primary-50 text-indigo-700 no-underline py-2 px-3 text-sm rounded-md font-medium">搜索功能</a></li>
+                    <li><a href="chat-listeners.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">聊天监听器</a></li>
+                    <li><a href="faq.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">常见问题</a></li>
+                    <li><a href="cost-optimization.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">成本优化</a></li>
+                    <li><a href="deployment.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">部署与运维</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <main class="flex-1 ml-[280px]">
+            <div class="max-w-7xl mx-auto px-8 py-12">
+                <!-- 页面标签 -->
+                <div class="flex items-center gap-2 mb-4">
+                    <span class="px-3 py-1 bg-indigo-100 text-indigo-700 text-xs font-medium rounded-full">搜索功能</span>
+                    <span class="px-3 py-1 bg-purple-100 text-purple-700 text-xs font-medium rounded-full">向量检索</span>
+                    <span class="px-3 py-1 bg-green-100 text-green-700 text-xs font-medium rounded-full">语义搜索</span>
+                </div>
+
+                <h1 class="text-4xl font-bold text-gray-900 mb-4">搜索功能</h1>
+                <p class="text-xl text-gray-600 mb-8">LangChain4j 的向量检索和语义搜索实现</p>
+
+                <!-- 目录 -->
+                <nav class="bg-gray-50 border border-gray-200 rounded-xl p-6 mb-8">
+                    <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">目录</h3>
+                    <ol class="space-y-2 text-sm text-gray-700">
+                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">1.</span> <a href="#向量检索概述" class="hover:text-indigo-600 transition-colors">向量检索概述</a></li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">2.</span> <a href="#EmbeddingStore接口" class="hover:text-indigo-600 transition-colors">EmbeddingStore 接口</a></li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">3.</span> <a href="#向量检索实现" class="hover:text-indigo-600 transition-colors">向量检索实现</a></li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">4.</span> <a href="#混合检索" class="hover:text-indigo-600 transition-colors">混合检索</a></li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">5.</span> <a href="#最佳实践" class="hover:text-indigo-600 transition-colors">最佳实践</a></li>
+                    </ol>
+                </nav>
+
+                <!-- 第1节：向量检索概述 -->
+                <section id="向量检索概述" class="mb-16">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-full text-sm font-bold">1</span>
+                        <h2 class="text-2xl font-bold text-gray-900">向量检索概述</h2>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">1.1 向量检索原理</h3>
+                    <p class="text-gray-700 mb-6">向量检索是基于向量相似度的语义搜索技术：</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                            <h4 class="font-semibold text-blue-800 mb-2">向量嵌入</h4>
+                            <p class="text-blue-700 text-sm">将文本转换为高维向量表示</p>
+                            <ul class="text-blue-600 text-xs mt-2 space-y-1">
+                                <li>• 相似语义的文本在向量空间中距离相近</li>
+                                <li>• 使用 Embedding 模型生成向量</li>
+                                <li>• 向量维度通常为 768-3072</li>
+                            </ul>
+                        </div>
+                        <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+                            <h4 class="font-semibold text-green-800 mb-2">相似度计算</h4>
+                            <p class="text-green-700 text-sm">计算查询向量与文档向量的相似度</p>
+                            <ul class="text-green-600 text-xs mt-2 space-y-1">
+                                <li>• 余弦相似度：最常用，值域 [-1, 1]</li>
+                                <li>• 欧氏距离：向量空间直线距离</li>
+                                <li>• 点积：未归一化向量的余弦相似度</li>
+                            </ul>
+                        </div>
+                        <div class="bg-purple-50 border border-purple-200 rounded-lg p-4">
+                            <h4 class="font-semibold text-purple-800 mb-2">返回结果</h4>
+                            <p class="text-purple-700 text-sm">按相似度排序返回最相关的文档</p>
+                            <ul class="text-purple-600 text-xs mt-2 space-y-1">
+                                <li>• 返回前 K 个最相似的结果</li>
+                                <li>• 包含文档内容和相似度分数</li>
+                                <li>• 可设置最小相似度阈值过滤</li>
+                            </ul>
+                        </div>
+                        <div class="bg-orange-50 border border-orange-200 rounded-lg p-4">
+                            <h4 class="font-semibold text-orange-800 mb-2">性能优势</h4>
+                            <p class="text-orange-700 text-sm">相比关键词搜索的性能优势</p>
+                            <ul class="text-orange-600 text-xs mt-2 space-y-1">
+                                <li>• 理解语义而非字面匹配</li>
+                                <li>• 处理多语言和多义词</li>
+                                <li>• 可扩展到百万级文档</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 第2节：EmbeddingStore 接口 -->
+                <section id="EmbeddingStore接口" class="mb-16">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-full text-sm font-bold">2</span>
+                        <h2 class="text-2xl font-bold text-gray-900">EmbeddingStore 接口</h2>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">2.1 核心 API 方法</h3>
+                    <p class="text-gray-700 mb-6">EmbeddingStore 是 LangChain4j 的向量存储接口，支持多种实现：</p>
+
+                    <div class="relative mb-6">
+                        <div class="absolute top-0 right-0 px-3 py-1 bg-gray-800 text-gray-400 text-xs font-medium rounded-bl-md">EmbeddingStoreExample.java</div>
+                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="text-purple-400">package</span> <span class="text-blue-300">com.example.langchain4j.search</span>;
+
+<span class="text-purple-400">import</span> <span class="text-blue-300">dev.langchain4j.data.segment.TextSegment</span>;
+<span class="text-purple-400">import</span> <span class="text-blue-300">dev.langchain4j.model.embedding.EmbeddingModel</span>;
+<span class="text-purple-400">import</span> <span class="text-blue-300">dev.langchain4j.store.embedding.EmbeddingStore</span>;
+<span class="text-purple-400">import</span> <span class="text-blue-300">dev.langchain4j.store.embedding.EmbeddingMatch</span>;
+<span class="text-purple-400">import</span> <span class="text-blue-300">org.springframework.stereotype.Service</span>;
+<span class="text-purple-400">import</span> <span class="text-blue-300">jakarta.inject.Inject</span>;
+
+<span class="text-gray-500">/**
+ * 向量存储服务示例
+ * 演示 EmbeddingStore 的基本用法
+ */</span>
+<span class="text-purple-400">@Service</span>
+<span class="text-purple-400">public class</span> <span class="text-yellow-300">EmbeddingStoreService</span> {
+
+    <span class="text-purple-400">private final</span> <span class="text-blue-300">EmbeddingModel</span> embeddingModel;
+    <span class="text-purple-400">private final</span> <span class="text-blue-300">EmbeddingStore</span>&lt;<span class="text-blue-300">TextSegment</span>&gt; embeddingStore;
+
+    <span class="text-purple-400">@Inject</span>
+    <span class="text-purple-400">public</span> <span class="text-yellow-300">EmbeddingStoreService</span>(<span class="text-blue-300">EmbeddingModel</span> embeddingModel,
+                               <span class="text-blue-300">EmbeddingStore</span>&lt;<span class="text-blue-300">TextSegment</span>&gt; embeddingStore) {
+        <span class="text-purple-400">this</span>.embeddingModel = embeddingModel;
+        <span class="text-purple-400">this</span>.embeddingStore = embeddingStore;
+    }
+
+    <span class="text-gray-500">/**
+     * 添加单个文档向量
+     */</span>
+    <span class="text-purple-400">public void</span> <span class="text-purple-400">addDocument</span>(<span class="text-blue-300">String</span> id, <span class="text-blue-300">String</span> content) {
+        <span class="text-blue-300">TextSegment</span> segment = <span class="text-blue-300">TextSegment</span>.<span class="text-green-300">from</span>(content);
+        <span class="text-blue-300">Embedding</span> embedding = embeddingModel.<span class="text-green-300">embed</span>(segment).<span class="text-green-300">content</span>();
+        
+        <span class="text-gray-500">// 将向量存储到 EmbeddingStore</span>
+        embeddingStore.<span class="text-green-300">add</span>(id, segment, embedding);
+    }
+
+    <span class="text-gray-500">/**
+     * 搜索相似文档
+     */</span>
+    <span class="text-purple-400">public</span> <span class="text-blue-300">List</span>&lt;<span class="text-blue-300">String</span>&gt; <span class="text-purple-400">search</span>(<span class="text-blue-300">String</span> query, <span class="text-blue-300">int</span> maxResults, <span class="text-blue-300">double</span> minScore) {
+        <span class="text-gray-500">// 1. 将查询向量化</span>
+        <span class="text-blue-300">Embedding</span> queryEmbedding = embeddingModel.<span class="text-green-300">embed</span>(query).<span class="text-green-300">content</span>();
+        
+        <span class="text-gray-500">// 2. 搜索最相似的向量</span>
+        <span class="text-blue-300">List</span>&lt;<span class="text-blue-300">EmbeddingMatch</span>&lt;<span class="text-blue-300">TextSegment</span>&gt;&gt; matches = 
+            embeddingStore.<span class="text-green-300">findRelevant</span>(queryEmbedding, maxResults, minScore);
+        
+        <span class="text-gray-500">// 3. 返回匹配的文档内容</span>
+        <span class="text-purple-400">return</span> matches.<span class="text-green-300">stream</span>()
+            .<span class="text-green-300">map</span>(match -&gt; match.<span class="text-green-300">embedded</span>().<span class="text-green-300">text</span>())
+            .<span class="text-green-300">toList</span>();
+    }
+
+    <span class="text-gray-500">/**
+     * 删除文档
+     */</span>
+    <span class="text-purple-400">public void</span> <span class="text-purple-400">deleteDocument</span>(<span class="text-blue-300">String</span> id) {
+        embeddingStore.<span class="text-green-300">remove</span>(id);
+    }
+}</code></pre>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">2.2 支持的向量数据库</h3>
+                    <p class="text-gray-700 mb-6">LangChain4j 支持多种向量数据库实现：</p>
+
+                    <table class="w-full text-left border-collapse border border-gray-200 rounded-lg overflow-hidden mb-6">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-sm font-semibold text-gray-500">数据库</th>
+                                <th class="px-6 py-3 text-sm font-semibold text-gray-500">类型</th>
+                                <th class="px-6 py-3 text-sm font-semibold text-gray-500">规模</th>
+                                <th class="px-6 py-3 text-sm font-semibold text-gray-500">适用场景</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-gray-200">
+                                <td class="px-6 py-3">InMemory EmbeddingStore</td>
+                                <td class="px-6 py-3">内存</td>
+                                <td class="px-6 py-3">小（&lt;10K）</td>
+                                <td class="px-6 py-3">开发、测试、原型</td>
+                            </tr>
+                            <tr class="border-b border-gray-200">
+                                <td class="px-6 py-3">PGVector</td>
+                                <td class="px-6 py-3">数据库</td>
+                                <td class="px-6 py-3">中（10K-1M）</td>
+                                <td class="px-6 py-3">小型生产、已有 PostgreSQL</td>
+                            </tr>
+                            <tr class="border-b border-gray-200">
+                                <td class="px-6 py-3">Pinecone</td>
+                                <td class="px-6 py-3">云服务</td>
+                                <td class="px-6 py-3">大（&gt;1M）</td>
+                                <td class="px-6 py-3">快速原型、生产环境</td>
+                            </tr>
+                            <tr class="border-b border-gray-200">
+                                <td class="px-6 py-3">Weaviate</td>
+                                <td class="px-6 py-3">开源/云服务</td>
+                                <td class="px-6 py-3">大（&gt;1M）</td>
+                                <td class="px-6 py-3">需要高级功能、本地部署</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-3">Milvus</td>
+                                <td class="px-6 py-3">开源</td>
+                                <td class="px-6 py-3">超大（&gt;10M）</td>
+                                <td class="px-6 py-3">大规模生产、高性能需求</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <!-- 第3节：向量检索实现 -->
+                <section id="向量检索实现" class="mb-16">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-full text-sm font-bold">3</span>
+                        <h2 class="text-2xl font-bold text-gray-900">向量检索实现</h2>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">3.1 基础检索</h3>
+                    <p class="text-gray-700 mb-6">最简单的向量检索实现：</p>
+
+                    <div class="relative mb-6">
+                        <div class="absolute top-0 right-0 px-3 py-1 bg-gray-800 text-gray-400 text-xs font-medium rounded-bl-md">BasicSearchExample.java</div>
+                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="text-purple-400">@RestController</span>
+<span class="text-purple-400">@RequestMapping</span>(<span class="text-green-300">"/api/search"</span>)
+<span class="text-purple-400">public class</span> <span class="text-yellow-300">SearchController</span> {
+
+    <span class="text-purple-400">private final</span> <span class="text-blue-300">EmbeddingStore</span>&lt;<span class="text-blue-300">TextSegment</span>&gt; embeddingStore;
+    <span class="text-purple-400">private final</span> <span class="text-blue-300">EmbeddingModel</span> embeddingModel;
+
+    <span class="text-gray-500">/**
+     * 搜索接口
+     */</span>
+    <span class="text-purple-400">@GetMapping</span>(<span class="text-green-300">"/documents"</span>)
+    <span class="text-purple-400">public</span> <span class="text-blue-300">SearchResult</span> <span class="text-purple-400">searchDocuments</span>(
+            <span class="text-blue-300">@RequestParam</span> <span class="text-green-300">"query"</span> <span class="text-blue-300">String</span> query,
+            <span class="text-blue-300">@RequestParam</span>(<span class="text-green-300">defaultValue</span> = <span class="text-green-300">"5"</span>) <span class="text-blue-300">int</span> limit) {
+        
+        <span class="text-gray-500">// 搜索最相关的文档</span>
+        <span class="text-blue-300">List</span>&lt;<span class="text-blue-300">String</span>&gt; results = <span class="text-yellow-300">embeddingStoreService</span>.<span class="text-green-300">search</span>(query, limit, <span class="text-green-300">0.0</span>);
+        
+        <span class="text-purple-400">return new</span> <span class="text-yellow-300">SearchResult</span>(query, results);
+    }
+}</code></pre>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">3.2 批量检索</h3>
+                    <p class="text-gray-700 mb-6">批量检索多个查询：</p>
+
+                    <div class="relative mb-6">
+                        <div class="absolute top-0 right-0 px-3 py-1 bg-gray-800 text-gray-400 text-xs font-medium rounded-bl-md">BatchSearchExample.java</div>
+                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="text-gray-500">// 批量查询多个问题</span>
+<span class="text-blue-300">List</span>&lt;<span class="text-blue-300">String</span>&gt; queries = <span class="text-blue-300">List</span>.<span class="text-green-300">of</span>(
+    <span class="text-green-300">"如何使用 LangChain4j?"</span>,
+    <span class="text-green-300">"向量检索的原理是什么？"</span>,
+    <span class="text-green-300">"什么是 RAG？"</span>
+);
+
+<span class="text-gray-500">// 并发检索所有查询</span>
+<span class="text-blue-300">Map</span>&lt;<span class="text-blue-300">String</span>, <span class="text-blue-300">List</span>&lt;<span class="text-blue-300">String</span>&gt;&gt; results = <span class="text-blue-300">queries</span>.<span class="text-green-300">parallelStream</span>()
+    .<span class="text-green-300">collect</span>(
+        <span class="text-purple-400">Collectors</span>.<span class="text-green-300">toMap</span>(
+            query -&gt; <span class="text-purple-400">Map</span>.<span class="text-green-300">entry</span>(
+                query, 
+                <span class="text-yellow-300">embeddingStoreService</span>.<span class="text-green-300">search</span>(query, <span class="text-green-300">5</span>, <span class="text-green-300">0.0</span>)
+            )
+        )
+    );
+
+<span class="text-gray-500">// 打印结果</span>
+results.<span class="text-green-300">forEach</span>((query, docs) -&gt; {
+    <span class="text-blue-300">System</span>.<span class="text-green-300">out</span>.<span class="text-green-300">println</span>(<span class="text-green-300">"Query: "</span> + query);
+    docs.<span class="text-green-300">forEach</span>(doc -&gt; <span class="text-blue-300">System</span>.<span class="text-green-300">out</span>.<span class="text-green-300">println</span>(<span class="text-green-300">"  - "</span> + doc));
+});</code></pre>
+                    </div>
+                </section>
+
+                <!-- 第4节：混合检索 -->
+                <section id="混合检索" class="mb-16">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-full text-sm font-bold">4</span>
+                        <h2 class="text-2xl font-bold text-gray-900">混合检索</h2>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">4.1 混合检索原理</h3>
+                    <p class="text-gray-700 mb-6">结合向量检索和关键词检索提高准确性：</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                            <h4 class="font-semibold text-blue-800 mb-2">向量检索</h4>
+                            <p class="text-blue-700 text-sm mb-2">基于语义相似度的搜索</p>
+                            <ul class="text-blue-600 text-xs space-y-1">
+                                <li>• 优势：理解语义、处理多义词</li>
+                                <li>• 劣势：可能错过精确匹配</li>
+                                <li>• 使用：OpenAI embeddings、Cohere</li>
+                            </ul>
+                        </div>
+                        <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+                            <h4 class="font-semibold text-green-800 mb-2">关键词检索</h4>
+                            <p class="text-green-700 text-sm mb-2">基于 BM25 等算法的搜索</p>
+                            <ul class="text-green-600 text-xs space-y-1">
+                                <li>• 优势：精确匹配、快速</li>
+                                <li>• 劣势：无法理解语义</li>
+                                <li>• 使用：Elasticsearch、Lucene</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">4.2 结果融合</h3>
+                    <p class="text-gray-700 mb-6">将两种检索结果合并并重新排序：</p>
+
+                    <div class="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl p-6 mb-8">
+                        <h4 class="text-xl font-bold text-white mb-2">融合策略</h4>
+                        <ul class="text-indigo-100 space-y-3">
+                            <li><strong>加权平均</strong>：vector_results * 0.6 + keyword_results * 0.4</li>
+                            <li><strong>倒排融合（RRF）</strong>：vector_rank + keyword_rank</li>
+                            <li><strong>重排序</strong>：使用 Cross-Encoder 重新排序</li>
+                            <li><strong>最小阈值</strong>：两种方法都返回结果才融合</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- 第5节：最佳实践 -->
+                <section id="最佳实践" class="mb-16">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-full text-sm font-bold">5</span>
+                        <h2 class="text-2xl font-bold text-gray-900">最佳实践</h2>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
+                            <h4 class="font-semibold text-gray-900 mb-3">🎯 向量优化</h4>
+                            <ul class="text-gray-700 space-y-2">
+                                <li><strong>归一化向量</strong>：使用 L2 归一化提高余弦相似度计算效率</li>
+                                <li><strong>选择合适的维度</strong>：在精度和性能之间平衡（通常 768-1536 维）</li>
+                                <li><strong>批量处理</strong>：批量向量化减少 API 调用次数</li>
+                                <li><strong>缓存向量</strong>：缓存常用文档的向量避免重复计算</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
+                            <h4 class="font-semibold text-gray-900 mb-3">⚡ 性能优化</h4>
+                            <ul class="text-gray-700 space-y-2">
+                                <li><strong>索引优化</strong>：为向量数据库创建合适的索引（如 HNSW）</li>
+                                <li><strong>连接池</strong>：复用数据库连接减少连接开销</li>
+                                <li><strong>异步处理</strong>：使用异步 API 提高并发性能</li>
+                                <li><strong>分片策略</strong>：大规模数据集使用分片提高吞吐量</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
+                            <h4 class="font-semibold text-gray-900 mb-3">🔍 检索优化</h4>
+                            <ul class="text-gray-700 space-y-2">
+                                <li><strong>Top-K 优化</strong>：根据场景选择合适的 K 值（通常 3-10）</li>
+                                <li><strong>相似度阈值</strong>：设置最小相似度阈值过滤低质量结果</li>
+                                <li><strong>元数据过滤</strong>：使用文档元数据精确筛选结果</li>
+                                <li><strong>查询扩展</strong>：使用 LLM 扩展或改写用户查询</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 总结 -->
+                <div class="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl p-8 text-white">
+                    <h3 class="text-2xl font-bold mb-4">本节小结</h3>
+                    <p class="mb-4">本节完整介绍了 LangChain4j 的向量检索功能，包括：</p>
+                    <ul class="list-disc list-inside space-y-2 mb-6">
+                        <li><strong>向量检索概述</strong>：向量嵌入原理、相似度计算、返回结果</li>
+                        <li><strong>EmbeddingStore 接口</strong>：核心 API 方法、支持的向量数据库</li>
+                        <li><strong>向量检索实现</strong>：基础检索、批量检索、代码示例</li>
+                        <li><strong>混合检索</strong>：向量检索 + 关键词检索、结果融合策略</li>
+                        <li><strong>最佳实践</strong>：向量优化、性能优化、检索优化</li>
+                    </ul>
+                    <div class="border-t border-indigo-400 pt-6">
+                        <p class="text-sm opacity-80 mb-2">下一步</p>
+                        <a href="chat-listeners.html" class="inline-flex items-center gap-2 text-white hover:text-indigo-200 transition-colors">
+                            下一章：聊天监听器 →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

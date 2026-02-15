@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>内容审核与安全 - LangChain4j 学习指南</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            200: '#c7d2fe',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-white text-gray-800 antialiased">
+    <div class="flex min-h-screen">
+        <aside class="w-[280px] fixed left-0 top-0 h-full bg-white border-r border-gray-200 overflow-y-auto z-50">
+            <a href="index.html" class="flex items-center gap-3 mb-8 text-gray-900 no-underline">
+                <div class="w-9 h-9 bg-indigo-600 rounded-lg flex items-center justify-center text-white text-xl">⚡</div>
+                <span class="font-bold text-xl">LangChain4j</span>
+            </a>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">入门</div>
+                <ul class="list-none">
+                    <li><a href="index.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">首页</a></li>
+                    <li><a href="getting-started.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">快速入门</a></li>
+                    <li><a href="core-concepts.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">核心概念</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">核心功能</div>
+                <ul class="list-none">
+                    <li><a href="embedding-models.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">嵌入模型</a></li>
+                    <li><a href="prompt-templates.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">提示模板</a></li>
+                    <li><a href="output-parsers.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">输出解析</a></li>
+                    <li><a href="function-calling-deep.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">函数调用</a></li>
+                    <li><a href="advanced-features.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">高级特性</a></li>
+                    <li><a href="multimodal-full.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">多模态处理</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">RAG 完整指南</div>
+                <ul class="list-none">
+                    <li><a href="rag-complete.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">RAG 完整指南</a></li>
+                    <li><a href="project-rag-kb.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">RAG 知识库项目</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">项目实战</div>
+                <ul class="list-none">
+                    <li><a href="project-ai-assistant.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">AI 助手项目</a></li>
+                    <li><a href="project-chatbot.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">聊天机器人项目</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">深入与最佳实践</div>
+                <ul class="list-none">
+                    <li><a href="best-practices.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">最佳实践</a></li>
+                    <li><a href="examples.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">代码示例</a></li>
+                    <li><a href="integrations.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">框架集成</a></li>
+                    <li><a href="testing-strategies.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">测试策略</a></li>
+                    <li><a href="performance-tuning.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">性能调优</a></li>
+                    <li><a href="deep-dive.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">深度解析</a></li>
+                    <li><a href="error-handling.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">错误处理</a></li>
+                    <li><a href="moderation-safety.html" class="block bg-primary-50 text-indigo-700 no-underline py-2 px-3 text-sm rounded-md font-medium">内容审核与安全</a></li>
+                    <li><a href="troubleshooting.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">故障排查</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">高级主题</div>
+                <ul class="list-none">
+                    <li><a href="interview-prep.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">面试准备</a></li>
+                    <li><a href="practice.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">实战练习</a></li>
+                    <li><a href="search.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">搜索功能</a></li>
+                    <li><a href="chat-listeners.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">聊天监听器</a></li>
+                    <li><a href="faq.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">常见问题</a></li>
+                    <li><a href="cost-optimization.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">成本优化</a></li>
+                    <li><a href="deployment.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">部署与运维</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <main class="flex-1 ml-[280px]">
+            <div class="max-w-7xl mx-auto px-8 py-12">
+                <!-- 页面标签 -->
+                <div class="flex items-center gap-2 mb-4">
+                    <span class="px-3 py-1 bg-indigo-100 text-indigo-700 text-xs font-medium rounded-full">内容审核</span>
+                    <span class="px-3 py-1 bg-red-100 text-red-700 text-xs font-medium rounded-full">安全防护</span>
+                    <span class="px-3 py-1 bg-green-100 text-green-700 text-xs font-medium rounded-full">合规管理</span>
+                </div>
+
+                <h1 class="text-4xl font-bold text-gray-900 mb-4">内容审核与安全</h1>
+                <p class="text-xl text-gray-600 mb-8">构建安全的 AI 应用，保护用户和平台</p>
+
+                <!-- 目录 -->
+                <nav class="bg-gray-50 border border-gray-200 rounded-xl p-6 mb-8">
+                    <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">目录</h3>
+                    <ol class="space-y-2 text-sm text-gray-700">
+                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">1.</span> <a href="#内容审核概述" class="hover:text-indigo-600 transition-colors">内容审核概述</a></li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">2.</span> <a href="#预审核（pre-moderation）" class="hover:text-indigo-600 transition-colors">预审核</a></li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">3.</span> <a href="#后审核（post-moderation）" class="hover:text-indigo-600 transition-colors">后审核</a></li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">4.</span> <a href="#内容审核API集成" class="hover:text-indigo-600 transition-colors">内容审核 API 集成</a></li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">5.</span> <a href="#安全最佳实践" class="hover:text-indigo-600 transition-colors">安全最佳实践</a></li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">6.</span> <a href="#实战示例" class="hover:text-indigo-600 transition-colors">实战示例：完整的内容审核流程</a></li>
+                    </ol>
+                </nav>
+
+                <!-- 第1节：内容审核概述 -->
+                <section id="内容审核概述" class="mb-16">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-full text-sm font-bold">1</span>
+                        <h2 class="text-2xl font-bold text-gray-900">内容审核概述</h2>
+                    </div>
+
+                    <p class="text-gray-700 mb-6">内容审核是构建安全 AI 应用的关键环节。本节介绍内容审核的重要性、常见风险类型和 LangChain4j 的审核能力。</p>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">1.1 为什么需要内容审核</h3>
+                    <p class="text-gray-700 mb-4">内容审核对于 AI 应用至关重要：</p>
+
+                    <ul class="list-disc list-inside text-gray-700 mb-6 space-y-2">
+                        <li><strong>法律合规</strong>: 遵守各国法律法规（如 GDPR、COPPA）</li>
+                        <li><strong>平台政策</strong>: 符合应用商店和支付平台的内容政策</li>
+                        <li><strong>品牌保护</strong>: 维护品牌声誉，避免负面舆论</li>
+                        <li><strong>用户保护</strong>: 保护用户免受有害内容的影响</li>
+                        <li><strong>风险管控</strong>: 降低法律风险和运营风险</li>
+                    </ul>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">1.2 常见的内容风险</h3>
+                    <p class="text-gray-700 mb-4">需要重点关注以下风险类型：</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                        <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+                            <h4 class="font-semibold text-red-800 mb-2">仇恨言论</h4>
+                            <p class="text-red-700 text-sm">针对种族、宗教、性别等的歧视性言论</p>
+                        </div>
+                        <div class="bg-orange-50 border border-orange-200 rounded-lg p-4">
+                            <h4 class="font-semibold text-orange-800 mb-2">暴力内容</h4>
+                            <p class="text-orange-700 text-sm">描述暴力、恐怖主义、自残的内容</p>
+                        </div>
+                        <div class="bg-pink-50 border border-pink-200 rounded-lg p-4">
+                            <h4 class="font-semibold text-pink-800 mb-2">色情内容</h4>
+                            <p class="text-pink-700 text-sm">成人内容、露骨的性暗示</p>
+                        </div>
+                        <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                            <h4 class="font-semibold text-yellow-800 mb-2">欺诈信息</h4>
+                            <p class="text-yellow-700 text-sm">诈骗、虚假信息、钓鱼链接</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 第2节：预审核 -->
+                <section id="预审核（pre-moderation）" class="mb-16">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-full text-sm font-bold">2</span>
+                        <h2 class="text-2xl font-bold text-gray-900">预审核</h2>
+                    </div>
+
+                    <p class="text-gray-700 mb-6">预审核在用户输入提交给 LLM 之前进行，可以拦截潜在的有害内容。</p>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">2.1 关键词过滤</h3>
+                    <p class="text-gray-700 mb-4">使用关键词列表快速拦截明显违规的内容：</p>
+
+                    <div class="relative mb-6">
+                        <div class="absolute top-0 right-0 px-3 py-1 bg-gray-800 text-gray-400 text-xs font-medium rounded-bl-md">KeywordFilter.java</div>
+                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="text-purple-400">package</span> <span class="text-blue-300">com.example.langchain4j.moderation</span>;
+
+<span class="text-purple-400">import</span> <span class="text-blue-300">java.util.List</span>;
+<span class="text-purple-400">import</span> <span class="text-blue-300">java.util.Set</span>;
+<span class="text-purple-400">import</span> <span class="text-blue-300">java.util.HashSet</span>;
+
+<span class="text-gray-500">/**
+ * 关键词过滤器
+ * 快速拦截明显违规的内容
+ */</span>
+<span class="text-purple-400">public class</span> <span class="text-yellow-300">KeywordFilter</span> {
+
+    <span class="text-purple-400">private final</span> <span class="text-blue-300">Set&lt;String&gt;</span> blockedWords;
+    <span class="text-purple-400">private final boolean</span> caseSensitive;
+
+    <span class="text-purple-400">public</span> <span class="text-yellow-300">KeywordFilter</span>(<span class="text-blue-300">List&lt;String&gt;</span> words, <span class="text-blue-300">boolean</span> caseSensitive) {
+        <span class="text-purple-400">this</span>.blockedWords = <span class="text-purple-400">new</span> <span class="text-blue-300">HashSet</span>&lt;&gt;();
+        <span class="text-purple-400">for</span> (<span class="text-blue-300">String</span> word : words) {
+            blockedWords.<span class="text-yellow-300">add</span>(caseSensitive ? word : word.<span class="text-yellow-300">toLowerCase</span>());
+        }
+        <span class="text-purple-400">this</span>.caseSensitive = caseSensitive;
+    }
+
+    <span class="text-gray-500">/**
+     * 检查内容是否包含关键词
+     */</span>
+    <span class="text-purple-400">public boolean</span> <span class="text-yellow-300">containsBlockedWord</span>(<span class="text-blue-300">String</span> content) {
+        <span class="text-blue-300">String</span> textToCheck = caseSensitive ? content : content.<span class="text-yellow-300">toLowerCase</span>();
+        
+        <span class="text-purple-400">for</span> (<span class="text-blue-300">String</span> word : blockedWords) {
+            <span class="text-purple-400">if</span> (textToCheck.<span class="text-yellow-300">contains</span>(word)) {
+                <span class="text-purple-400">return true</span>;
+            }
+        }
+        <span class="text-purple-400">return false</span>;
+    }
+}</code></pre>
+                    </div>
+                </section>
+
+                <!-- 第3节：后审核 -->
+                <section id="后审核（post-moderation）" class="mb-16">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-full text-sm font-bold">3</span>
+                        <h2 class="text-2xl font-bold text-gray-900">后审核</h2>
+                    </div>
+
+                    <p class="text-gray-700 mb-6">后审核在 LLM 输出内容后进行，确保输出符合内容政策。</p>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">3.1 自动化审核</h3>
+                    <p class="text-gray-700 mb-4">使用 AI 模型自动审核输出内容：</p>
+
+                    <ul class="list-disc list-inside text-gray-700 mb-6 space-y-2">
+                        <li><strong>快速审核</strong>: 使用轻量级审核模型</li>
+                        <li><strong>高准确率</strong>: 结合多个审核维度</li>
+                        <li><strong>实时处理</strong>: 不影响用户体验</li>
+                    </ul>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">3.2 人工审核</h3>
+                    <p class="text-gray-700 mb-4">对高风险内容进行人工审核：</p>
+
+                    <ul class="list-disc list-inside text-gray-700 mb-6 space-y-2">
+                        <li><strong>优先级队列</strong>: 根据风险等级排序</li>
+                        <li><strong>审核工具</strong>: 提供便捷的审核界面</li>
+                        <li><strong>审核记录</strong>: 记录审核决策和理由</li>
+                    </ul>
+                </section>
+
+                <!-- 第4节：内容审核API集成 -->
+                <section id="内容审核API集成" class="mb-16">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-full text-sm font-bold">4</span>
+                        <h2 class="text-2xl font-bold text-gray-900">内容审核 API 集成</h2>
+                    </div>
+
+                    <p class="text-gray-700 mb-6">集成第三方内容审核 API，提供专业的审核能力。</p>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">4.1 OpenAI Moderation API</h3>
+                    <p class="text-gray-700 mb-4">使用 OpenAI 的 Moderation API 进行内容审核：</p>
+
+                    <div class="relative mb-6">
+                        <div class="absolute top-0 right-0 px-3 py-1 bg-gray-800 text-gray-400 text-xs font-medium rounded-bl-md">OpenAIModeration.java</div>
+                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="text-purple-400">package</span> <span class="text-blue-300">com.example.langchain4j.moderation</span>;
+
+<span class="text-purple-400">import</span> <span class="text-blue-300">dev.langchain4j.model.openai.OpenAiModerationModel</span>;
+
+<span class="text-gray-500">/**
+ * OpenAI Moderation API 集成
+ * 使用 OpenAI 的专业内容审核能力
+ */</span>
+<span class="text-purple-400">public class</span> <span class="text-yellow-300">OpenAIModeration</span> {
+
+    <span class="text-purple-400">private final</span> <span class="text-blue-300">OpenAiModerationModel</span> moderationModel;
+
+    <span class="text-purple-400">public</span> <span class="text-yellow-300">OpenAIModeration</span>(<span class="text-blue-300">String</span> apiKey) {
+        <span class="text-purple-400">this</span>.moderationModel = <span class="text-blue-300">OpenAiModerationModel</span>.<span class="text-yellow-300">builder</span>()
+            .<span class="text-yellow-300">apiKey</span>(apiKey)
+            .<span class="text-yellow-300">build</span>();
+    }
+
+    <span class="text-gray-500">/**
+     * 审核内容
+     */</span>
+    <span class="text-purple-400">public</span> <span class="text-blue-300">boolean</span> <span class="text-yellow-300">isContentSafe</span>(<span class="text-blue-300">String</span> content) {
+        <span class="text-blue-300">var</span> result = moderationModel.<span class="text-yellow-300">moderate</span>(content);
+        <span class="text-purple-400">return</span> !result.<span class="text-yellow-300">isFlagged</span>();
+    }
+}</code></pre>
+                    </div>
+                </section>
+
+                <!-- 第5节：安全最佳实践 -->
+                <section id="安全最佳实践" class="mb-16">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-full text-sm font-bold">5</span>
+                        <h2 class="text-2xl font-bold text-gray-900">安全最佳实践</h2>
+                    </div>
+
+                    <p class="text-gray-700 mb-6">遵循安全最佳实践，构建安全可靠的 AI 应用。</p>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">5.1 最小权限原则</h3>
+                    <p class="text-gray-700 mb-4">只授予必要的权限，减少安全风险：</p>
+
+                    <ul class="list-disc list-inside text-gray-700 mb-6 space-y-2">
+                        <li><strong>API Key 管理</strong>: 使用环境变量存储敏感信息</li>
+                        <li><strong>权限隔离</strong>: 不同功能使用不同的权限级别</li>
+                        <li><strong>定期轮换</strong>: 定期更新 API Key 和密码</li>
+                    </ul>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">5.2 数据加密</h3>
+                    <p class="text-gray-700 mb-4">对敏感数据进行加密保护：</p>
+
+                    <ul class="list-disc list-inside text-gray-700 mb-6 space-y-2">
+                        <li><strong>传输加密</strong>: 使用 HTTPS/TLS 加密网络通信</li>
+                        <li><strong>存储加密</strong>: 使用 AES 等算法加密数据库</li>
+                        <li><strong>密钥管理</strong>: 使用专业的密钥管理服务</li>
+                    </ul>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">5.3 用户隐私保护</h3>
+                    <p class="text-gray-700 mb-4">保护用户隐私，符合隐私法规：</p>
+
+                    <ul class="list-disc list-inside text-gray-700 mb-6 space-y-2">
+                        <li><strong>数据最小化</strong>: 只收集必要的用户数据</li>
+                        <li><strong>匿名化处理</strong>: 对用户数据进行匿名化处理</li>
+                        <li><strong>用户同意</strong>: 明确告知数据用途，获取用户同意</li>
+                        <li><strong>数据删除</strong>: 提供用户删除个人数据的途径</li>
+                    </ul>
+                </section>
+
+                <!-- 第6节：实战示例 -->
+                <section id="实战示例" class="mb-16">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-full text-sm font-bold">6</span>
+                        <h2 class="text-2xl font-bold text-gray-900">实战示例：完整的内容审核流程</h2>
+                    </div>
+
+                    <p class="text-gray-700 mb-6">本节将所有审核和安全策略整合到一个完整的示例中。</p>
+
+                    <div class="relative mb-6">
+                        <div class="absolute top-0 right-0 px-3 py-1 bg-gray-800 text-gray-400 text-xs font-medium rounded-bl-md">ModerationService.java</div>
+                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="text-purple-400">package</span> <span class="text-blue-300">com.example.langchain4j.service</span>;
+
+<span class="text-purple-400">import</span> <span class="text-blue-300">dev.langchain4j.model.chat.ChatLanguageModel</span>;
+
+<span class="text-gray-500">/**
+ * 完整的内容审核服务
+ * 整合预审核、后审核、API集成等所有审核策略
+ */</span>
+<span class="text-purple-400">public class</span> <span class="text-yellow-300">ModerationService</span> {
+
+    <span class="text-purple-400">private final</span> <span class="text-blue-300">ChatLanguageModel</span> model;
+    <span class="text-purple-400">private final</span> <span class="text-blue-300">KeywordFilter</span> keywordFilter;
+    <span class="text-purple-400">private final</span> <span class="text-blue-300">OpenAIModeration</span> openAIModeration;
+
+    <span class="text-purple-400">public</span> <span class="text-yellow-300">ModerationService</span>(<span class="text-blue-300">ChatLanguageModel</span> model, <span class="text-blue-300">String</span> openaiApiKey) {
+        <span class="text-purple-400">this</span>.model = model;
+        <span class="text-purple-400">this</span>.keywordFilter = <span class="text-purple-400">new</span> <span class="text-blue-300">KeywordFilter</span>(<span class="text-blue-300">List</span>.<span class="text-yellow-300">of</span>(<span class="text-green-300">"暴力"</span>, <span class="text-green-300">"恐怖"</span>, <span class="text-green-300">"自杀"</span>), <span class="text-purple-400">false</span>);
+        <span class="text-purple-400">this</span>.openAIModeration = <span class="text-purple-400">new</span> <span class="text-blue-300">OpenAIModeration</span>(openaiApiKey);
+    }
+
+    <span class="text-gray-500">/**
+     * 生成响应（带完整的内容审核）
+     */</span>
+    <span class="text-purple-400">public</span> <span class="text-blue-300">String</span> <span class="text-yellow-300">generateWithModeration</span>(<span class="text-blue-300">String</span> prompt) {
+        <span class="text-gray-500">// 1. 预审核用户输入</span>
+        <span class="text-purple-400">if</span> (keywordFilter.<span class="text-yellow-300">containsBlockedWord</span>(prompt)) {
+            <span class="text-purple-400">return</span> <span class="text-green-300">"您的内容违反了内容政策，请修改后重试。"</span>;
+        }
+
+        <span class="text-purple-400">try</span> {
+            <span class="text-gray-500">// 2. 调用 LLM 生成响应</span>
+            <span class="text-blue-300">String</span> response = model.<span class="text-yellow-300">generate</span>(prompt).<span class="text-yellow-300">content</span>();
+
+            <span class="text-gray-500">// 3. 后审核输出内容</span>
+            <span class="text-purple-400">if</span> (!openAIModeration.<span class="text-yellow-300">isContentSafe</span>(response)) {
+                <span class="text-purple-400">return</span> <span class="text-green-300">"抱歉，我无法生成该内容。"</span>;
+            }
+
+            <span class="text-purple-400">return</span> response;
+
+        } <span class="text-purple-400">catch</span> (<span class="text-blue-300">Exception</span> e) {
+            <span class="text-purple-400">return</span> <span class="text-green-300">"服务暂时不可用，请稍后重试。"</span>;
+        }
+    }
+}</code></pre>
+                    </div>
+                </section>
+
+                <!-- 总结 -->
+                <div class="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl p-8 text-white">
+                    <h3 class="text-2xl font-bold mb-4">本章小结</h3>
+                    <p class="mb-4">全面介绍了内容审核与安全策略。通过掌握这些技巧，您可以：</p>
+                    <ul class="list-disc list-inside space-y-2 mb-6">
+                        <li><strong>预防风险</strong>：通过预审核拦截潜在有害内容</li>
+                        <li><strong>保护用户</strong>：确保用户不会接触到违规内容</li>
+                        <li><strong>合规运营</strong>：满足法律和平台政策要求</li>
+                        <li><strong>降低成本</strong>：减少因违规内容导致的罚款和下架</li>
+                    </ul>
+                    <div class="border-t border-indigo-400 pt-6">
+                        <p class="text-sm opacity-80 mb-2">核心特性</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-white/20 rounded-full text-sm">预审核</span>
+                            <span class="px-3 py-1 bg-white/20 rounded-full text-sm">后审核</span>
+                            <span class="px-3 py-1 bg-white/20 rounded-full text-sm">API集成</span>
+                            <span class="px-3 py-1 bg-white/20 rounded-full text-sm">数据加密</span>
+                            <span class="px-3 py-1 bg-white/20 rounded-full text-sm">隐私保护</span>
+                        </div>
+                        <p class="text-sm opacity-80 mb-2">技术栈</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-white/20 rounded-full text-sm">LangChain4j</span>
+                            <span class="px-3 py-1 bg-white/20 rounded-full text-sm">OpenAI Moderation API</span>
+                            <span class="px-3 py-1 bg-white/20 rounded-full text-sm">Keycloak</span>
+                        </div>
+                        <a href="troubleshooting.html" class="inline-flex items-center gap-2 text-white hover:text-indigo-200 transition-colors">
+                            下一章：故障排查 →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>错误处理 - LangChain4j 学习指南</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            200: '#c7d2fe',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-white text-gray-800 antialiased">
+    <div class="flex min-h-screen">
+        <aside class="w-[280px] fixed left-0 top-0 h-full bg-white border-r border-gray-200 overflow-y-auto z-50">
+            <a href="index.html" class="flex items-center gap-3 mb-8 text-gray-900 no-underline">
+                <div class="w-9 h-9 bg-indigo-600 rounded-lg flex items-center justify-center text-white text-xl">⚡</div>
+                <span class="font-bold text-xl">LangChain4j</span>
+            </a>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">入门</div>
+                <ul class="list-none">
+                    <li><a href="index.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">首页</a></li>
+                    <li><a href="getting-started.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">快速入门</a></li>
+                    <li><a href="core-concepts.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">核心概念</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">核心功能</div>
+                <ul class="list-none">
+                    <li><a href="embedding-models.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">嵌入模型</a></li>
+                    <li><a href="prompt-templates.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">提示模板</a></li>
+                    <li><a href="output-parsers.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">输出解析</a></li>
+                    <li><a href="function-calling-deep.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">函数调用</a></li>
+                    <li><a href="advanced-features.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">高级特性</a></li>
+                    <li><a href="multimodal-full.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">多模态处理</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">RAG 完整指南</div>
+                <ul class="list-none">
+                    <li><a href="rag-complete.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">RAG 完整指南</a></li>
+                    <li><a href="project-rag-kb.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">RAG 知识库项目</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">项目实战</div>
+                <ul class="list-none">
+                    <li><a href="project-ai-assistant.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">AI 助手项目</a></li>
+                    <li><a href="project-chatbot.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">聊天机器人项目</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">深入与最佳实践</div>
+                <ul class="list-none">
+                    <li><a href="best-practices.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">最佳实践</a></li>
+                    <li><a href="examples.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">代码示例</a></li>
+                    <li><a href="integrations.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">框架集成</a></li>
+                    <li><a href="testing-strategies.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">测试策略</a></li>
+                    <li><a href="performance-tuning.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">性能调优</a></li>
+                    <li><a href="deep-dive.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">深度解析</a></li>
+                    <li><a href="error-handling.html" class="block bg-primary-50 text-indigo-700 no-underline py-2 px-3 text-sm rounded-md font-medium">错误处理</a></li>
+                    <li><a href="moderation-safety.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">内容审核与安全</a></li>
+                    <li><a href="troubleshooting.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">故障排查</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">高级主题</div>
+                <ul class="list-none">
+                    <li><a href="interview-prep.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">面试准备</a></li>
+                    <li><a href="practice.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">实战练习</a></li>
+                    <li><a href="search.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">搜索功能</a></li>
+                    <li><a href="chat-listeners.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">聊天监听器</a></li>
+                    <li><a href="faq.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">常见问题</a></li>
+                    <li><a href="cost-optimization.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">成本优化</a></li>
+                    <li><a href="deployment.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">部署与运维</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <main class="flex-1 ml-[280px]">
+            <div class="max-w-7xl mx-auto px-8 py-12">
+                <!-- 页面标签 -->
+                <div class="flex items-center gap-2 mb-4">
+                    <span class="px-3 py-1 bg-indigo-100 text-indigo-700 text-xs font-medium rounded-full">错误处理</span>
+                    <span class="px-3 py-1 bg-red-100 text-red-700 text-xs font-medium rounded-full">异常管理</span>
+                    <span class="px-3 py-1 bg-orange-100 text-orange-700 text-xs font-medium rounded-full">生产实践</span>
+                </div>
+
+                <h1 class="text-4xl font-bold text-gray-900 mb-4">错误处理</h1>
+                <p class="text-xl text-gray-600 mb-8">全面掌握 LangChain4j 的异常处理策略，构建健壮的 AI 应用</p>
+
+                <!-- 目录 -->
+                <nav class="bg-gray-50 border border-gray-200 rounded-xl p-6 mb-8">
+                    <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">目录</h3>
+                    <ol class="space-y-2 text-sm text-gray-700">
+                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">1.</span> <a href="#错误分类与处理策略" class="hover:text-indigo-600 transition-colors">错误分类与处理策略</a></li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">2.</span> <a href="#网络错误处理" class="hover:text-indigo-600 transition-colors">网络错误处理</a></li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">3.</span> <a href="#认证与授权错误" class="hover:text-indigo-600 transition-colors">认证与授权错误</a></li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">4.</span> <a href="#模型调用错误" class="hover:text-indigo-600 transition-colors">模型调用错误</a></li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">5.</span> <a href="#工具调用错误" class="hover:text-indigo-600 transition-colors">工具调用错误</a></li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">6.</span> <a href="#日志与监控" class="hover:text-indigo-600 transition-colors">日志与监控</a></li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">7.</span> <a href="#综合示例" class="hover:text-indigo-600 transition-colors">综合示例：完整的错误处理框架</a></li>
+                    </ol>
+                </nav>
+
+                <!-- 第1节：错误分类与处理策略 -->
+                <section id="错误分类与处理策略" class="mb-16">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-full text-sm font-bold">1</span>
+                        <h2 class="text-2xl font-bold text-gray-900">错误分类与处理策略</h2>
+                    </div>
+
+                    <p class="text-gray-700 mb-6">在生产环境中，LLM 调用可能遇到各种错误。本节介绍如何分类和处理这些错误，确保应用的稳定性。</p>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">1.1 LangChain4j 异常体系</h3>
+                    <p class="text-gray-700 mb-4">LangChain4j 提供了丰富的异常类型，帮助开发者定位和处理不同类型的错误：</p>
+
+                    <div class="relative mb-6">
+                        <div class="absolute top-0 right-0 px-3 py-1 bg-gray-800 text-gray-400 text-xs font-medium rounded-bl-md">ExceptionHierarchy.java</div>
+                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="text-purple-400">package</span> <span class="text-blue-300">com.example.langchain4j.exception</span>;
+
+<span class="text-purple-400">import</span> <span class="text-blue-300">dev.langchain4j.exception</span>.*;
+
+<span class="text-gray-500">/**
+ * LangChain4j 异常体系示例
+ * 演示不同类型的异常及其继承关系
+ */</span>
+<span class="text-purple-400">public class</span> <span class="text-yellow-300">ExceptionHierarchy</span> {
+
+    <span class="text-gray-500">/**
+     * 异常分类演示
+     */</span>
+    <span class="text-purple-400">public static void</span> <span class="text-yellow-300">demonstrateExceptions</span>() {
+        <span class="text-purple-400">try</span> {
+            <span class="text-gray-500">// 1. 网络相关异常</span>
+            <span class="text-gray-500">// ConnectionException: HTTP 连接失败</span>
+            <span class="text-gray-500">// TimeoutException: 请求超时</span>
+
+            <span class="text-gray-500">// 2. 认证相关异常</span>
+            <span class="text-gray-500">// AuthenticationException: API Key 无效</span>
+            <span class="text-gray-500">// AuthorizationException: 权限不足</span>
+            <span class="text-gray-500">// RateLimitExceededException: 配额超限</span>
+
+            <span class="text-gray-500">// 3. 模型相关异常</span>
+            <span class="text-gray-500">// ModelUnreachableException: 模型不可用</span>
+            <span class="text-gray-500">// TokenLimitExceededException: Token 超限</span>
+            <span class="text-gray-500">// ContentPolicyViolationException: 内容违规</span>
+
+            <span class="text-gray-500">// 4. 工具相关异常</span>
+            <span class="text-gray-500">// ToolExecutionException: 工具执行失败</span>
+            <span class="text-gray-500">// ToolParameterValidationException: 参数验证失败</span>
+
+        } <span class="text-purple-400">catch</span> (<span class="text-blue-300">ConnectionException</span> e) {
+            <span class="text-blue-300">System</span>.<span class="text-yellow-300">err</span>.<span class="text-yellow-300">println</span>(<span class="text-green-300">"网络连接失败: "</span> + e.<span class="text-yellow-300">getMessage</span>());
+        } <span class="text-purple-400">catch</span> (<span class="text-blue-300">AuthenticationException</span> e) {
+            <span class="text-blue-300">System</span>.<span class="text-yellow-300">err</span>.<span class="text-yellow-300">println</span>(<span class="text-green-300">"认证失败: "</span> + e.<span class="text-yellow-300">getMessage</span>());
+        } <span class="text-purple-400">catch</span> (<span class="text-blue-300">ModelUnreachableException</span> e) {
+            <span class="text-blue-300">System</span>.<span class="text-yellow-300">err</span>.<span class="text-yellow-300">println</span>(<span class="text-green-300">"模型不可用: "</span> + e.<span class="text-yellow-300">getMessage</span>());
+        }
+    }
+}</code></pre>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">1.2 错误处理最佳实践</h3>
+                    <p class="text-gray-700 mb-4">遵循以下最佳实践，构建健壮的错误处理机制：</p>
+
+                    <ul class="list-disc list-inside text-gray-700 mb-6 space-y-2">
+                        <li><strong>分类处理</strong>: 不同类型的错误使用不同的处理策略</li>
+                        <li><strong>优雅降级</strong>: 错误发生时提供友好的降级方案</li>
+                        <li><strong>重试机制</strong>: 对临时性错误（如网络抖动）自动重试</li>
+                        <li><strong>日志记录</strong>: 详细记录错误信息，便于排查问题</li>
+                        <li><strong>告警通知</strong>: 对严重错误及时通知运维人员</li>
+                        <li><strong>用户反馈</strong>: 向用户清晰的错误提示，避免技术术语</li>
+                    </ul>
+                </section>
+
+                <!-- 第2节：网络错误处理 -->
+                <section id="网络错误处理" class="mb-16">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-full text-sm font-bold">2</span>
+                        <h2 class="text-2xl font-bold text-gray-900">网络错误处理</h2>
+                    </div>
+
+                    <p class="text-gray-700 mb-6">网络错误是最常见的错误类型。本节介绍如何处理 HTTP 连接异常、超时错误，以及实现重试机制和熔断器模式。</p>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">2.1 重试机制</h3>
+                    <p class="text-gray-700 mb-4">使用指数退避算法实现智能重试：</p>
+
+                    <div class="relative mb-6">
+                        <div class="absolute top-0 right-0 px-3 py-1 bg-gray-800 text-gray-400 text-xs font-medium rounded-bl-md">RetryHandler.java</div>
+                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="text-purple-400">package</span> <span class="text-blue-300">com.example.langchain4j.retry</span>;
+
+<span class="text-purple-400">import</span> <span class="text-blue-300">java.time.Duration</span>;
+
+<span class="text-gray-500">/**
+ * 重试处理器
+ * 实现指数退避重试机制
+ */</span>
+<span class="text-purple-400">public class</span> <span class="text-yellow-300">RetryHandler</span> {
+
+    <span class="text-purple-400">private final int</span> maxRetries;
+    <span class="text-purple-400">private final</span> <span class="text-blue-300">Duration</span> initialDelay;
+    <span class="text-purple-400">private final</span> <span class="text-blue-300">Duration</span> maxDelay;
+
+    <span class="text-purple-400">public</span> <span class="text-yellow-300">RetryHandler</span>(<span class="text-blue-300">int</span> maxRetries, <span class="text-blue-300">Duration</span> initialDelay, <span class="text-blue-300">Duration</span> maxDelay) {
+        <span class="text-purple-400">this</span>.maxRetries = maxRetries;
+        <span class="text-purple-400">this</span>.initialDelay = initialDelay;
+        <span class="text-purple-400">this</span>.maxDelay = maxDelay;
+    }
+
+    <span class="text-gray-500">/**
+     * 执行重试
+     * @param task 要执行的任务
+     * @param &lt;T&gt; 返回类型
+     * @return 执行结果
+     */</span>
+    <span class="text-purple-400">public &lt;T&gt; T</span> <span class="text-yellow-300">executeWithRetry</span>(<span class="text-blue-300">RetryableTask&lt;T&gt;</span> task) <span class="text-purple-400">throws</span> <span class="text-blue-300">Exception</span> {
+        <span class="text-blue-300">Exception</span> lastError = <span class="text-purple-400">null</span>;
+
+        <span class="text-purple-400">for</span> (<span class="text-blue-300">int</span> attempt = <span class="text-orange-300">0</span>; attempt <= maxRetries; attempt++) {
+            <span class="text-purple-400">try</span> {
+                <span class="text-purple-400">if</span> (attempt > <span class="text-orange-300">0</span>) {
+                    <span class="text-blue-300">Duration</span> delay = <span class="text-yellow-300">getRetryDelay</span>(attempt - <span class="text-orange-300">1</span>);
+                    <span class="text-blue-300">Thread</span>.<span class="text-yellow-300">sleep</span>(delay.<span class="text-yellow-300">toMillis</span>());
+                }
+                <span class="text-purple-400">return</span> task.<span class="text-yellow-300">execute</span>();
+            } <span class="text-purple-400">catch</span> (<span class="text-blue-300">Exception</span> e) {
+                lastError = e;
+                <span class="text-purple-400">if</span> (!<span class="text-yellow-300">shouldRetry</span>(e) || attempt == maxRetries) {
+                    <span class="text-purple-400">throw</span> e;
+                }
+            }
+        }
+        <span class="text-purple-400">throw</span> lastError;
+    }
+
+    <span class="text-purple-400">public</span> <span class="text-blue-300">Duration</span> <span class="text-yellow-300">getRetryDelay</span>(<span class="text-blue-300">int</span> attempt) {
+        <span class="text-blue-300">long</span> delayMillis = (<span class="text-blue-300">long</span>) (initialDelay.<span class="text-yellow-300">toMillis</span>() * <span class="text-blue-300">Math</span>.<span class="text-yellow-300">pow</span>(<span class="text-orange-300">2</span>, attempt));
+        <span class="text-blue-300">long</span> jitter = (<span class="text-blue-300">long</span>) (<span class="text-blue-300">Math</span>.<span class="text-yellow-300">random</span>() * delayMillis * <span class="text-orange-300">0.1</span>);
+        delayMillis += jitter;
+        <span class="text-blue-300">Duration</span> delay = <span class="text-blue-300">Duration</span>.<span class="text-yellow-300">ofMillis</span>(delayMillis);
+        <span class="text-purple-400">return</span> delay.<span class="text-yellow-300">compareTo</span>(maxDelay) < <span class="text-orange-300">0</span> ? delay : maxDelay;
+    }
+
+    <span class="text-purple-400">public boolean</span> <span class="text-yellow-300">shouldRetry</span>(<span class="text-blue-300">Exception</span> e) {
+        <span class="text-purple-400">return</span> e <span class="text-purple-400">instanceof</span> <span class="text-blue-300">ConnectionException</span> || e <span class="text-purple-400">instanceof</span> <span class="text-blue-300">TimeoutException</span>;
+    }
+
+    <span class="text-purple-400">public interface</span> <span class="text-yellow-300">RetryableTask&lt;T&gt;</span> {
+        <span class="text-blue-300">T</span> <span class="text-yellow-300">execute</span>() <span class="text-purple-400">throws</span> <span class="text-blue-300">Exception</span>;
+    }
+}</code></pre>
+                    </div>
+                </section>
+
+                <!-- 第3节：认证与授权错误 -->
+                <section id="认证与授权错误" class="mb-16">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-full text-sm font-bold">3</span>
+                        <h2 class="text-2xl font-bold text-gray-900">认证与授权错误</h2>
+                    </div>
+
+                    <p class="text-gray-700 mb-6">认证和授权错误通常需要人工干预。本节介绍如何安全地处理这些错误。</p>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">3.1 安全处理认证错误</h3>
+                    <p class="text-gray-700 mb-4">处理认证错误时，必须遵循安全最佳实践：</p>
+
+                    <ul class="list-disc list-inside text-gray-700 mb-6 space-y-2">
+                        <li><strong>不暴露敏感信息</strong>: 不要向用户显示 API Key 或详细错误</li>
+                        <li><strong>日志脱敏</strong>: 在日志中隐藏 API Key 等敏感信息</li>
+                        <li><strong>限流</strong>: 防止暴力破解 API Key</li>
+                        <li><strong>告警</strong>: 及时通知管理员认证失败事件</li>
+                    </ul>
+                </section>
+
+                <!-- 第4节：模型调用错误 -->
+                <section id="模型调用错误" class="mb-16">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-full text-sm font-bold">4</span>
+                        <h2 class="text-2xl font-bold text-gray-900">模型调用错误</h2>
+                    </div>
+
+                    <p class="text-gray-700 mb-6">模型调用可能因各种原因失败。本节介绍如何处理模型不可用、Token 超限、内容违规等错误。</p>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">4.1 模型故障转移</h3>
+                    <p class="text-gray-700 mb-4">当模型不可用时，应该实施故障转移策略：</p>
+
+                    <div class="relative mb-6">
+                        <div class="absolute top-0 right-0 px-3 py-1 bg-gray-800 text-gray-400 text-xs font-medium rounded-bl-md">ModelFailover.java</div>
+                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="text-purple-400">package</span> <span class="text-blue-300">com.example.langchain4j.failover</span>;
+
+<span class="text-purple-400">import</span> <span class="text-blue-300">dev.langchain4j.model.chat.ChatLanguageModel</span>;
+<span class="text-purple-400">import</span> <span class="text-blue-300">dev.langchain4j.data.message.UserMessage</span>;
+
+<span class="text-gray-500">/**
+ * 模型故障转移处理器
+ * 当主模型不可用时，自动切换到备用模型
+ */</span>
+<span class="text-purple-400">public class</span> <span class="text-yellow-300">ModelFailover</span> {
+
+    <span class="text-purple-400">private final</span> <span class="text-blue-300">List&lt;ChatLanguageModel&gt;</span> models;
+    <span class="text-purple-400">private volatile int</span> currentIndex = <span class="text-orange-300">0</span>;
+
+    <span class="text-purple-400">public</span> <span class="text-yellow-300">ModelFailover</span>(<span class="text-blue-300">ChatLanguageModel</span>... models) {
+        <span class="text-purple-400">this</span>.models = <span class="text-blue-300">List</span>.<span class="text-yellow-300">of</span>(models);
+    }
+
+    <span class="text-purple-400">public</span> <span class="text-blue-300">String</span> <span class="text-yellow-300">generateWithFailover</span>(<span class="text-blue-300">String</span> prompt) {
+        <span class="text-purple-400">for</span> (<span class="text-blue-300">int</span> i = <span class="text-orange-300">0</span>; i < models.<span class="text-yellow-300">size</span>(); i++) {
+            <span class="text-purple-400">try</span> {
+                <span class="text-blue-300">ChatLanguageModel</span> model = models.<span class="text-yellow-300">get</span>(currentIndex);
+                <span class="text-blue-300">String</span> response = model.<span class="text-yellow-300">generate</span>(<span class="text-purple-400">new</span> <span class="text-yellow-300">UserMessage</span>(prompt));
+                <span class="text-purple-400">return</span> response;
+            } <span class="text-purple-400">catch</span> (<span class="text-blue-300">Exception</span> e) {
+                currentIndex = (currentIndex + <span class="text-orange-300">1</span>) % models.<span class="text-yellow-300">size</span>();
+            }
+        }
+        <span class="text-purple-400">throw new</span> <span class="text-yellow-300">RuntimeException</span>(<span class="text-green-300">"所有 AI 模型都不可用"</span>);
+    }
+}</code></pre>
+                    </div>
+                </section>
+
+                <!-- 第5节：工具调用错误 -->
+                <section id="工具调用错误" class="mb-16">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-full text-sm font-bold">5</span>
+                        <h2 class="text-2xl font-bold text-gray-900">工具调用错误</h2>
+                    </div>
+
+                    <p class="text-gray-700 mb-6">工具调用可能因各种原因失败。本节介绍如何处理工具执行异常、参数验证错误和返回值处理异常。</p>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">5.1 工具错误恢复策略</h3>
+                    <p class="text-gray-700 mb-4">工具执行失败时，应该根据错误类型采取不同的处理策略：</p>
+
+                    <ul class="list-disc list-inside text-gray-700 mb-6 space-y-2">
+                        <li><strong>备用工具</strong>: 尝试使用备用工具</li>
+                        <li><strong>缓存结果</strong>: 使用缓存的历史结果</li>
+                        <li><strong>降级响应</strong>: 返回默认或简化响应</li>
+                    </ul>
+                </section>
+
+                <!-- 第6节：日志与监控 -->
+                <section id="日志与监控" class="mb-16">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-full text-sm font-bold">6</span>
+                        <h2 class="text-2xl font-bold text-gray-900">日志与监控</h2>
+                    </div>
+
+                    <p class="text-gray-700 mb-6">完善的日志和监控系统可以帮助快速定位问题。本节介绍如何记录错误日志、监控性能指标和设置告警。</p>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">6.1 结构化日志</h3>
+                    <p class="text-gray-700 mb-4">使用结构化日志记录错误信息：</p>
+
+                    <div class="relative mb-6">
+                        <div class="absolute top-0 right-0 px-3 py-1 bg-gray-800 text-gray-400 text-xs font-medium rounded-bl-md">ErrorLogger.java</div>
+                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="text-purple-400">package</span> <span class="text-blue-300">com.example.langchain4j.logging</span>;
+
+<span class="text-purple-400">import</span> <span class="text-blue-300">org.slf4j.Logger</span>;
+<span class="text-purple-400">import</span> <span class="text-blue-300">org.slf4j.LoggerFactory</span>;
+
+<span class="text-gray-500">/**
+ * 错误日志记录器
+ * 使用结构化日志记录错误信息
+ */</span>
+<span class="text-purple-400">public class</span> <span class="text-yellow-300">ErrorLogger</span> {
+
+    <span class="text-purple-400">private static final</span> <span class="text-blue-300">Logger</span> logger = <span class="text-blue-300">LoggerFactory</span>.<span class="text-yellow-300">getLogger</span>(<span class="text-yellow-300">ErrorLogger</span>.<span class="text-yellow-300">class</span>);
+
+    <span class="text-gray-500">/**
+     * 记录错误
+     */</span>
+    <span class="text-purple-400">public static void</span> <span class="text-yellow-300">logError</span>(<span class="text-blue-300">Exception</span> error, <span class="text-blue-300">String</span> context) {
+        logger.<span class="text-yellow-300">error</span>(<span class="text-green-300">"错误类型: {}, 消息: {}, 上下文: {}"</span>,
+            error.<span class="text-yellow-300">getClass</span>().<span class="text-yellow-300">getSimpleName</span>(),
+            error.<span class="text-yellow-300">getMessage</span>(),
+            context
+        );
+    }
+}</code></pre>
+                    </div>
+                </section>
+
+                <!-- 第7节：综合示例 -->
+                <section id="综合示例" class="mb-16">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-full text-sm font-bold">7</span>
+                        <h2 class="text-2xl font-bold text-gray-900">综合示例：完整的错误处理框架</h2>
+                    </div>
+
+                    <p class="text-gray-700 mb-6">本节将所有错误处理策略整合到一个完整的框架中，展示如何构建生产级的错误处理系统。</p>
+
+                    <div class="relative mb-6">
+                        <div class="absolute top-0 right-0 px-3 py-1 bg-gray-800 text-gray-400 text-xs font-medium rounded-bl-md">ComprehensiveErrorHandler.java</div>
+                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="text-purple-400">package</span> <span class="text-blue-300">com.example.langchain4j.framework</span>;
+
+<span class="text-purple-400">import</span> <span class="text-blue-300">dev.langchain4j.model.chat.ChatLanguageModel</span>;
+<span class="text-purple-400">import</span> <span class="text-blue-300">dev.langchain4j.data.message.UserMessage</span>;
+
+<span class="text-gray-500">/**
+ * 综合错误处理框架
+ * 整合所有错误处理策略
+ */</span>
+<span class="text-purple-400">public class</span> <span class="text-yellow-300">ComprehensiveErrorHandler</span> {
+
+    <span class="text-purple-400">private final</span> <span class="text-blue-300">ChatLanguageModel</span> model;
+    <span class="text-purple-400">private final</span> <span class="text-blue-300">RetryHandler</span> retryHandler;
+
+    <span class="text-purple-400">public</span> <span class="text-yellow-300">ComprehensiveErrorHandler</span>(<span class="text-blue-300">ChatLanguageModel</span> model) {
+        <span class="text-purple-400">this</span>.model = model;
+        <span class="text-purple-400">this</span>.retryHandler = <span class="text-purple-400">new</span> <span class="text-blue-300">RetryHandler</span>(<span class="text-orange-300">3</span>,
+            <span class="text-blue-300">java.time.Duration</span>.<span class="text-yellow-300">ofSeconds</span>(<span class="text-orange-300">1</span>),
+            <span class="text-blue-300">java.time.Duration</span>.<span class="text-yellow-300">ofSeconds</span>(<span class="text-orange-300">10</span>)
+        );
+    }
+
+    <span class="text-purple-400">public</span> <span class="text-blue-300">String</span> <span class="text-yellow-300">generateWithFullErrorHandling</span>(<span class="text-blue-300">String</span> prompt) {
+        <span class="text-purple-400">try</span> {
+            <span class="text-blue-300">String</span> response = retryHandler.<span class="text-yellow-300">executeWithRetry</span>(() -> {
+                <span class="text-purple-400">return</span> model.<span class="text-yellow-300">generate</span>(<span class="text-purple-400">new</span> <span class="text-yellow-300">UserMessage</span>(prompt)).<span class="text-yellow-300">content</span>();
+            });
+            <span class="text-purple-400">return</span> response;
+        } <span class="text-purple-400">catch</span> (<span class="text-blue-300">Exception</span> e) {
+            <span class="text-blue-300">ErrorLogger</span>.<span class="text-yellow-300">logError</span>(e, <span class="text-green-300">"generateWithFullErrorHandling"</span>);
+            <span class="text-purple-400">return</span> <span class="text-yellow-300">handleException</span>(e);
+        }
+    }
+
+    <span class="text-purple-400">private</span> <span class="text-blue-300">String</span> <span class="text-yellow-300">handleException</span>(<span class="text-blue-300">Exception</span> e) {
+        <span class="text-purple-400">if</span> (e <span class="text-purple-400">instanceof</span> <span class="text-blue-300">AuthenticationException</span>) {
+            <span class="text-purple-400">return</span> <span class="text-green-300">"无法连接到 AI 服务，请联系管理员"</span>;
+        }
+        <span class="text-purple-400">if</span> (e <span class="text-purple-400">instanceof</span> <span class="text-blue-300">RateLimitExceededException</span>) {
+            <span class="text-purple-400">return</span> <span class="text-green-300">"请求过于频繁，请稍后重试"</span>;
+        }
+        <span class="text-purple-400">return</span> <span class="text-green-300">"服务暂时不可用，请稍后重试"</span>;
+    }
+}</code></pre>
+                    </div>
+                </section>
+
+                <!-- 总结 -->
+                <div class="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl p-8 text-white">
+                    <h3 class="text-2xl font-bold mb-4">本章小结</h3>
+                    <p class="mb-4">全面介绍了 LangChain4j 的错误处理策略。通过掌握这些技巧，您可以：</p>
+                    <ul class="list-disc list-inside space-y-2 mb-6">
+                        <li><strong>分类处理</strong>：根据错误类型采用不同的处理策略</li>
+                        <li><strong>智能重试</strong>：使用指数退避算法自动重试临时性错误</li>
+                        <li><strong>故障转移</strong>：当主模型或工具不可用时自动切换到备用</li>
+                        <li><strong>安全处理</strong>：妥善处理认证错误，避免泄露敏感信息</li>
+                        <li><strong>监控告警</strong>：建立完善的日志和监控系统，及时发现异常</li>
+                    </ul>
+                    <div class="border-t border-indigo-400 pt-6">
+                        <p class="text-sm opacity-80 mb-2">核心特性</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-white/20 rounded-full text-sm">异常分类</span>
+                            <span class="px-3 py-1 bg-white/20 rounded-full text-sm">重试机制</span>
+                            <span class="px-3 py-1 bg-white/20 rounded-full text-sm">熔断器</span>
+                            <span class="px-3 py-1 bg-white/20 rounded-full text-sm">故障转移</span>
+                            <span class="px-3 py-1 bg-white/20 rounded-full text-sm">日志监控</span>
+                        </div>
+                        <p class="text-sm opacity-80 mb-2">技术栈</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-white/20 rounded-full text-sm">LangChain4j</span>
+                            <span class="px-3 py-1 bg-white/20 rounded-full text-sm">SLF4J</span>
+                            <span class="px-3 py-1 bg-white/20 rounded-full text-sm">Exponential Backoff</span>
+                        </div>
+                        <a href="moderation-safety.html" class="inline-flex items-center gap-2 text-white hover:text-indigo-200 transition-colors">
+                            下一章：内容审核与安全 →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>核心概念 - LangChain4j 学习指南</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body class="bg-white text-gray-800 antialiased">
+    <div class="flex min-h-screen">
+        <aside class="w-[280px] fixed left-0 top-0 h-full bg-white border-r border-gray-200 overflow-y-auto z-50">
+            <a href="index.html" class="flex items-center gap-3 mb-8 text-gray-900 no-underline">
+                <div class="w-9 h-9 bg-indigo-600 rounded-lg flex items-center justify-center text-white text-xl">⚡</div>
+                <span class="font-bold text-xl">LangChain4j</span>
+            </a>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">入门</div>
+                <ul class="list-none">
+                    <li><a href="index.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">首页</a></li>
+                    <li><a href="getting-started.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">快速入门</a></li>
+                    <li><a href="core-concepts.html" class="block text-indigo-700 font-medium py-2 px-3 text-sm rounded-md bg-primary-50">核心概念</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">基础</div>
+                <ul class="list-none">
+                    <li><a href="embedding-models.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">Embedding模型</a></li>
+                    <li><a href="prompt-templates.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">Prompt模板</a></li>
+                    <li><a href="output-parsers.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">输出解析</a></li>
+                    <li><a href="model-providers.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">模型提供商</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">进阶</div>
+                <ul class="list-none">
+                    <li><a href="function-calling-deep.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">Function Calling</a></li>
+                    <li><a href="advanced-features.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">高级特性</a></li>
+                    <li><a href="multimodal-full.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">多模态能力</a></li>
+                    <li><a href="project-rag-kb.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">RAG知识库</a></li>
+                    <li><a href="project-ai-assistant.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">AI助手</a></li>
+                    <li><a href="project-chatbot.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">聊天机器人</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">实践</div>
+                <ul class="list-none">
+                    <li><a href="best-practices.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">最佳实践</a></li>
+                    <li><a href="examples.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">实战示例</a></li>
+                    <li><a href="integrations.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">框架集成</a></li>
+                    <li><a href="testing-strategies.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">测试策略</a></li>
+                    <li><a href="performance-tuning.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">性能调优</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">其他</div>
+                <ul class="list-none">
+                    <li><a href="deep-dive.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">深度解析</a></li>
+                    <li><a href="error-handling.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">错误处理</a></li>
+                    <li><a href="moderation-safety.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">内容审核</a></li>
+                    <li><a href="troubleshooting.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">问题排查</a></li>
+                    <li><a href="interview-prep.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">面试准备</a></li>
+                    <li><a href="practice.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">练习项目</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <ul class="list-none">
+                    <li><a href="https://docs.langchain4j.dev" target="_blank" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">📖 官方文档</a></li>
+                    <li><a href="https://github.com/langchain4j/langchain4j" target="_blank" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">🔗 GitHub</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <main class="flex-1 ml-[280px] px-8 py-12 max-w-7xl">
+            <section class="mb-12">
+                <h1 class="text-4xl font-bold text-gray-900 mb-8 leading-tight">核心概念</h1>
+                <p class="text-lg text-gray-600 max-w-3xl mb-10 leading-relaxed">
+                    深入理解 LangChain4j 的核心概念，掌握框架的设计哲学和基础架构。
+                </p>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold text-gray-900 mb-6 pb-3 border-b border-gray-200">ChatModel</h2>
+                <p class="text-gray-600 mb-4">ChatModel 是与 LLM 交互的核心接口，支持多种模型提供商。</p>
+                <div class="bg-gray-900 border border-gray-300 rounded-lg overflow-hidden mb-6">
+                    <div class="px-4 py-3 bg-gray-800 border-b border-gray-700">
+                        <span class="text-gray-400 text-xs font-mono">Java</span>
+                    </div>
+                    <pre class="m-0 font-mono text-sm leading-relaxed text-gray-300 p-4"><code>ChatLanguageModel model = OpenAiChatModel.builder()
+    .apiKey(System.getenv("OPENAI_API_KEY"))
+    .build();
+
+String response = model.generate("Hello!");</code></pre>
+                </div>
+                <p class="text-gray-600">通过统一的接口，轻松切换不同的 LLM 提供商。</p>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold text-gray-900 mb-6 pb-3 border-b border-gray-200">AI Services</h2>
+                <p class="text-gray-600 mb-4">AI Services 是 LangChain4j 的核心特性，通过声明式接口大幅简化开发。</p>
+                <div class="bg-gray-900 border border-gray-300 rounded-lg overflow-hidden mb-6">
+                    <div class="px-4 py-3 bg-gray-800 border-b border-gray-700">
+                        <span class="text-gray-400 text-xs font-mono">Java</span>
+                    </div>
+                    <pre class="m-0 font-mono text-sm leading-relaxed text-gray-300 p-4"><code>interface Assistant {
+    String chat(String message);
+}
+
+Assistant assistant = AiServices.builder(Assistant.class)
+    .chatLanguageModel(model)
+    .build();
+
+String response = assistant.chat("Hello!");</code></pre>
+                </div>
+                <p class="text-gray-600">类似 Spring Data JPA 的体验，无需手动处理 prompt、token 管理。</p>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold text-gray-900 mb-6 pb-3 border-b border-gray-200">ChatMemory</h2>
+                <p class="text-gray-600 mb-4">ChatMemory 用于管理对话历史，实现多轮对话。</p>
+                <ul class="list-none space-y-2 text-gray-600 ml-6">
+                    <li class="flex items-start gap-2">
+                        <span class="text-indigo-600">•</span>
+                        <span>MessageWindowChatMemory - 保留最近 N 条消息</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-indigo-600">•</span>
+                        <span>TokenWindowChatMemory - 基于 token 数量管理</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-indigo-600">•</span>
+                        <span>ChatMemoryProvider - 支持数据库持久化</span>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold text-gray-900 mb-6 pb-3 border-b border-gray-200">RAG</h2>
+                <p class="text-gray-600 mb-4">检索增强生成（RAG）结合检索和生成，提升 AI 回答的准确性。</p>
+                <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 mb-6">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-3">RAG 工作流程</h3>
+                    <ol class="list-decimal space-y-3 text-gray-600 ml-6">
+                        <li>将文档切片并转换为 embedding</li>
+                        <li>存储到向量数据库</li>
+                        <li>用户提问时检索相关文档</li>
+                        <li>将检索结果和问题一起发送给 LLM</li>
+                    </ol>
+                </div>
+            </section>
+
+            <section class="mb-12">
+                <div class="text-center">
+                    <a href="embedding-models.html" class="inline-flex items-center gap-2 px-6 py-3 bg-indigo-600 text-white rounded-md font-medium hover:bg-indigo-700 transition-all shadow-md">
+                        继续学习 Embedding模型 →
+                    </a>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

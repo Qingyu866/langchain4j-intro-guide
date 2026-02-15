@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>面试准备 - LangChain4j 学习指南</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            200: '#c7d2fe',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-white text-gray-800 antialiased">
+    <div class="flex min-h-screen">
+        <aside class="w-[280px] fixed left-0 top-0 h-full bg-white border-r border-gray-200 overflow-y-auto z-50">
+            <a href="index.html" class="flex items-center gap-3 mb-8 text-gray-900 no-underline">
+                <div class="w-9 h-9 bg-indigo-600 rounded-lg flex items-center justify-center text-white text-xl">⚡</div>
+                <span class="font-bold text-xl">LangChain4j</span>
+            </a>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">入门</div>
+                <ul class="list-none">
+                    <li><a href="index.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">首页</a></li>
+                    <li><a href="getting-started.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">快速入门</a></li>
+                    <li><a href="core-concepts.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">核心概念</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">核心功能</div>
+                <ul class="list-none">
+                    <li><a href="embedding-models.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">嵌入模型</a></li>
+                    <li><a href="prompt-templates.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">提示模板</a></li>
+                    <li><a href="output-parsers.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">输出解析</a></li>
+                    <li><a href="function-calling-deep.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">函数调用</a></li>
+                    <li><a href="advanced-features.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">高级特性</a></li>
+                    <li><a href="multimodal-full.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">多模态处理</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">RAG 完整指南</div>
+                <ul class="list-none">
+                    <li><a href="rag-complete.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">RAG 完整指南</a></li>
+                    <li><a href="project-rag-kb.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">RAG 知识库项目</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">项目实战</div>
+                <ul class="list-none">
+                    <li><a href="project-ai-assistant.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">AI 助手项目</a></li>
+                    <li><a href="project-chatbot.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">聊天机器人项目</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">深入与最佳实践</div>
+                <ul class="list-none">
+                    <li><a href="best-practices.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">最佳实践</a></li>
+                    <li><a href="examples.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">代码示例</a></li>
+                    <li><a href="integrations.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">框架集成</a></li>
+                    <li><a href="testing-strategies.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">测试策略</a></li>
+                    <li><a href="performance-tuning.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">性能调优</a></li>
+                    <li><a href="deep-dive.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">深度解析</a></li>
+                    <li><a href="error-handling.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">错误处理</a></li>
+                    <li><a href="moderation-safety.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">内容审核与安全</a></li>
+                    <li><a href="troubleshooting.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">故障排查</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">高级主题</div>
+                <ul class="list-none">
+                    <li><a href="interview-prep.html" class="block bg-primary-50 text-indigo-700 no-underline py-2 px-3 text-sm rounded-md font-medium">面试准备</a></li>
+                    <li><a href="practice.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">实战练习</a></li>
+                    <li><a href="search.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">搜索功能</a></li>
+                    <li><a href="chat-listeners.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">聊天监听器</a></li>
+                    <li><a href="faq.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">常见问题</a></li>
+                    <li><a href="cost-optimization.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">成本优化</a></li>
+                    <li><a href="deployment.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">部署与运维</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <main class="flex-1 ml-[280px]">
+            <div class="max-w-7xl mx-auto px-8 py-12">
+                <!-- 页面标签 -->
+                <div class="flex items-center gap-2 mb-4">
+                    <span class="px-3 py-1 bg-indigo-100 text-indigo-700 text-xs font-medium rounded-full">面试准备</span>
+                    <span class="px-3 py-1 bg-orange-100 text-orange-700 text-xs font-medium rounded-full">面试技巧</span>
+                    <span class="px-3 py-1 bg-green-100 text-green-700 text-xs font-medium rounded-full">实战演练</span>
+                </div>
+
+                <h1 class="text-4xl font-bold text-gray-900 mb-4">面试准备</h1>
+                <p class="text-xl text-gray-600 mb-8">全面掌握 LangChain4j 面试知识点和技巧，顺利通过面试</p>
+
+                <!-- 目录 -->
+                <nav class="bg-gray-50 border border-gray-200 rounded-xl p-6 mb-8">
+                    <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">目录</h3>
+                    <ol class="space-y-2 text-sm text-gray-700">
+                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">1.</span> <a href="#面试题型分类" class="hover:text-indigo-600 transition-colors">面试题型分类</a></li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">2.</span> <a href="#核心知识点" class="hover:text-indigo-600 transition-colors">核心知识点</a></li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">3.</span> <a href="#模拟面试技巧" class="hover:text-indigo-600 transition-colors">模拟面试技巧</a></li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">4.</span> <a href="#实战演练" class="hover:text-indigo-600 transition-colors">实战演练</a></li>
+                    </ol>
+                </nav>
+
+                <!-- 第1节：面试题型分类 -->
+                <section id="面试题型分类" class="mb-16">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-full text-sm font-bold">1</span>
+                        <h2 class="text-2xl font-bold text-gray-900">面试题型分类</h2>
+                    </div>
+
+                    <p class="text-gray-700 mb-6">了解 LangChain4j 面试中常见的题型，针对性准备。</p>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">1.1 概念理解题</h3>
+                    <p class="text-gray-700 mb-4">考察对 LangChain4j 核心概念的理解深度：</p>
+
+                    <ul class="list-disc list-inside text-gray-700 mb-6 space-y-2">
+                        <li><strong>核心组件</strong>: ChatLanguageModel、Tool、Memory、Chain 的作用和关系</li>
+                        <li><strong>函数调用</strong>: Function Calling 的原理和应用场景</li>
+                        <li><strong>RAG 原理</strong>: 检索增强生成的原理和优势</li>
+                        <li><strong>向量数据库</strong>: 向量存储和相似度搜索</li>
+                        <li><strong>流式输出</strong>: StreamingChatModel 的工作原理</li>
+                    </ul>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">1.2 代码实现题</h3>
+                    <p class="text-gray-700 mb-4">考察实际编码能力，需要手写完整实现：</p>
+
+                    <ul class="list-disc list-inside text-gray-700 mb-6 space-y-2">
+                        <li><strong>自定义 ChatModel</strong>: 实现一个简单的 LLM 适配器</li>
+                        <li><strong>自定义 Tool</strong>: 实现一个工具并集成到 AI 服务中</li>
+                        <li><strong>Memory 管理</strong>: 实现对话历史的存储和检索</li>
+                        <li><strong>RAG 链</strong>: 实现完整的 RAG 流程</li>
+                    </ul>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">1.3 架构设计题</h3>
+                    <p class="text-gray-700 mb-4">考察系统设计和架构能力：</p>
+
+                    <ul class="list-disc list-inside text-gray-700 mb-6 space-y-2">
+                        <li><strong>系统分层</strong>: 展示层、服务层、数据层的划分</li>
+                        <li><strong>扩展性设计</strong>: 如何设计灵活的扩展点</li>
+                        <li><strong>并发处理</strong>: 如何处理高并发场景</li>
+                        <li><strong>容错设计</strong>: 如何实现故障转移和降级</li>
+                    </ul>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">1.4 场景题</h3>
+                    <p class="text-gray-700 mb-4">结合实际业务场景考察问题解决能力：</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                        <div class="bg-indigo-50 border border-indigo-200 rounded-lg p-4">
+                            <h4 class="font-semibold text-indigo-800 mb-2">高并发场景</h4>
+                            <p class="text-indigo-700 text-sm">同时处理 1000+ 请求的架构设计</p>
+                        </div>
+                        <div class="bg-purple-50 border border-purple-200 rounded-lg p-4">
+                            <h4 class="font-semibold text-purple-800 mb-2">大 Token 场景</h4>
+                            <p class="text-purple-700 text-sm">处理超长文档的优化策略</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 第2节：核心知识点 -->
+                <section id="核心知识点" class="mb-16">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-full text-sm font-bold">2</span>
+                        <h2 class="text-2xl font-bold text-gray-900">核心知识点</h2>
+                    </div>
+
+                    <p class="text-gray-700 mb-6">以下是 LangChain4j 面试中的高频核心知识点：</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                        <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                            <h4 class="font-semibold text-blue-800 mb-2">ChatLanguageModel</h4>
+                            <ul class="text-blue-700 text-sm space-y-1">
+                                <li>• generate() 和 generateAsync() 方法</li>
+                                <li>• 流式输出和批量处理</li>
+                                <li>• Builder 模式的配置方式</li>
+                                <li>• 超时和重试机制</li>
+                            </ul>
+                        </div>
+                        <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+                            <h4 class="font-semibold text-green-800 mb-2">Tool</h4>
+                            <ul class="text-green-700 text-sm space-y-1">
+                                <li>• ToolSpecification 的定义</li>
+                                <li>• @Tool 注解的使用</li>
+                                <li>• 参数验证和类型转换</li>
+                                <li>• 工具执行的错误处理</li>
+                            </ul>
+                        </div>
+                        <div class="bg-purple-50 border border-purple-200 rounded-lg p-4">
+                            <h4 class="font-semibold text-purple-800 mb-2">Memory</h4>
+                            <ul class="text-purple-700 text-sm space-y-1">
+                                <li>• MessageWindow 和 TokenChatMemory</li>
+                                <li>• 持久化存储策略</li>
+                                <li>• 上下文窗口管理</li>
+                                <li>• 跨会话的内存共享</li>
+                            </ul>
+                        </div>
+                        <div class="bg-orange-50 border border-orange-200 rounded-lg p-4">
+                            <h4 class="font-semibold text-orange-800 mb-2">Chain</h4>
+                            <ul class="text-orange-700 text-sm space-y-1">
+                                <li>• Chain 接口的设计</li>
+                                <li>• 顺序执行和条件跳转</li>
+                                <li>• 分支和循环</li>
+                                <li>• 与 Tool 的集成</li>
+                            </ul>
+                        </div>
+                        <div class="bg-pink-50 border border-pink-200 rounded-lg p-4">
+                            <h4 class="font-semibold text-pink-800 mb-2">Function Calling</h4>
+                            <ul class="text-pink-700 text-sm space-y-1">
+                                <li>• 函数定义和描述</li>
+                                <li>• 自动参数匹配</li>
+                                <li>• 并发函数调用</li>
+                                <li>• 返回结果处理</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">2.1 最佳实践</h3>
+                    <p class="text-gray-700 mb-4">生产环境中的最佳实践：</p>
+
+                    <ul class="list-disc list-inside text-gray-700 mb-6 space-y-2">
+                        <li><strong>错误处理</strong>: 完善的异常处理和重试机制</li>
+                        <li><strong>性能优化</strong>: 连接池、缓存、批量处理</li>
+                        <li><strong>安全实践</strong>: API Key 管理、内容审核、数据加密</li>
+                        <li><strong>监控日志</strong>: 结构化日志、性能监控、告警通知</li>
+                        <li><strong>测试覆盖</strong>: 单元测试、集成测试、E2E 测试</li>
+                    </ul>
+                </section>
+
+                <!-- 第3节：模拟面试技巧 -->
+                <section id="模拟面试技巧" class="mb-16">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-full text-sm font-bold">3</span>
+                        <h2 class="text-2xl font-bold text-gray-900">模拟面试技巧</h2>
+                    </div>
+
+                    <p class="text-gray-700 mb-6">掌握模拟面试的技巧，提升面试表现。</p>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">3.1 自我介绍策略</h3>
+                    <p class="text-gray-700 mb-4">自我介绍是面试的第一印象，需要精心准备：</p>
+
+                    <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-6 mb-6">
+                        <h4 class="font-semibold text-yellow-800 mb-3">三段式介绍法</h4>
+                        <p class="text-yellow-700 mb-3">将自我介绍分为三个部分：</p>
+                        <ol class="text-yellow-700 text-sm space-y-2 ml-6">
+                            <li><strong>第一部分</strong>: 个人基本信息（姓名、教育背景、工作经验）</li>
+                            <div class="bg-white border border-yellow-300 rounded p-3 mt-2">
+                                <p class="text-sm text-gray-700 mb-2">示例：</p>
+                                <p class="text-gray-700 text-sm">"我是张三，有 5 年 Java 后端开发经验，最近 2 年专注于 LLM 应用开发。熟悉 LangChain4j、Spring Boot、Redis、PostgreSQL 等技术栈。"</p>
+                            </div>
+                        <li><strong>第二部分</strong>: 技术专长和项目经验</li>
+                            <div class="bg-white border border-yellow-300 rounded p-3 mt-2">
+                                <p class="text-sm text-gray-700 mb-2">示例：</p>
+                                <p class="text-gray-700 text-sm">"我擅长 RAG 系统的设计和实现，曾主导过一个知识库问答系统，支持百万级文档的向量化检索和相似度匹配。"</p>
+                            </div>
+                        </li>
+                        <li><strong>第三部分</strong>: 对职位的理解和职业规划</li>
+                            <div class="bg-white border border-yellow-300 rounded p-3 mt-2">
+                                <p class="text-sm text-gray-700 mb-2">示例：</p>
+                                <p class="text-gray-700 text-sm">"我对贵公司在 AI 领域的产品很感兴趣，希望能将我的 RAG 技术应用到实际场景中，为用户提供更好的智能交互体验。"</p>
+                            </div>
+                        </ol>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">3.2 项目经验介绍</h3>
+                    <p class="text-gray-700 mb-4">用 STAR 法（Situation, Task, Action, Result）描述项目经验：</p>
+
+                    <div class="relative mb-6">
+                        <div class="absolute top-0 right-0 px-3 py-1 bg-gray-800 text-gray-400 text-xs font-medium rounded-bl-md">StarExample.java</div>
+                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="text-purple-400">public class</span> <span class="text-yellow-300">STARProjectExperience</span> {
+
+    <span class="text-gray-500">/**
+     * 描述项目经验（STAR 法）
+     */</span>
+    <span class="text-purple-400">public</span> <span class="text-blue-300">String</span> <span class="text-yellow-300">describeProject</span>() {
+        <span class="text-blue-300">String</span> situation = <span class="text-green-300">"在一个企业知识库项目中，文档检索速度慢，影响用户体验。"</span>;
+        <span class="text-blue-300">String</span> task = <span class="text-green-300">"优化向量检索性能，将查询时间从 3 秒降低到 500 毫秒。"</span>;
+        <span class="text-blue-300">String</span> action = <span class="text-green-300">"重新设计向量索引策略，使用 HNSW 算法替代暴力搜索，添加二级索引（部门+文档类型）。"</span>;
+        <span class="text-blue-300">String</span> result = <span class="text-green-300">"检索速度提升 83%，用户满意度提升 40%。"</span>;
+
+        <span class="text-purple-400">return</span> <span class="text-blue-300">String</span>.<span class="text-yellow-300">format</span>(<span class="text-green-300">"S: %s\nT: %s\nA: %s\nR: %s"</span>,
+            situation, task, action, result);
+    }
+}</code></pre>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">3.3 技术难点准备</h3>
+                    <p class="text-gray-700 mb-4">提前准备可能的技术难点和应对策略：</p>
+
+                    <ul class="list-disc list-inside text-gray-700 mb-6 space-y-2">
+                        <li><strong>Token 超限</strong>: 如何处理超长文档（截断、分批处理）</li>
+                        <li><strong>并发冲突</strong>: 如何处理内存竞争和数据一致性</li>
+                        <li><strong>性能瓶颈</strong>: 如何优化响应时间和资源使用</li>
+                        <li><strong>错误恢复</strong>: 如何实现优雅的故障转移和降级</li>
+                    </ul>
+                </section>
+
+                <!-- 第4节：实战演练 -->
+                <section id="实战演练" class="mb-16">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-full text-sm font-bold">4</span>
+                        <h2 class="text-2xl font-bold text-gray-900">实战演练</h2>
+                    </div>
+
+                    <p class="text-gray-700 mb-6">通过完整的面试流程演示，提升实战能力。</p>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">4.1 完整面试流程</h3>
+                    <p class="text-gray-700 mb-4">一个完整的 LangChain4j 面试流程包含以下环节：</p>
+
+                    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6">
+                        <h4 class="font-semibold text-blue-800 mb-3">面试流程图</h4>
+                        <div class="text-blue-700 text-sm space-y-2">
+                            <p>1. <strong>自我介绍（3 分钟）</strong></p>
+                            <p>2. <strong>项目经验（5-10 分钟）</strong></p>
+                            <p>3. <strong>技术问题（15-20 分钟）</strong></p>
+                            <p>4. <strong>代码题（15-20 分钟）</strong></p>
+                            <p>5. <strong>系统设计题（10-15 分钟）</strong></p>
+                            <p>6. <strong>HR 问题（5-10 分钟）</span></p>
+                            <p>7. <strong>反问环节（5-10 分钟）</strong></p>
+                            <p>8. <strong>结束语（2-3 分钟）</strong></p>
+                        </div>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-900 mb-4">4.2 代码评审技巧</h3>
+                    <p class="text-gray-700 mb-4">面试中的代码编写技巧：</p>
+
+                    <ul class="list-disc list-inside text-gray-700 mb-6 space-y-2">
+                        <li><strong>先思考后编写</strong>: 先在脑海中设计接口和实现逻辑</li>
+                        <li><strong>先写测试用例</strong>: 考虑边界条件和异常情况</li>
+                        <li><strong>边说边写</strong>: 大声说明设计思路，展示思考过程</li>
+                        <strong>代码简洁</strong>: 避免过度设计，保持代码简洁清晰</li>
+                        <li><strong>注释清晰</strong>: 关键逻辑添加注释，但不过度注释</li>
+                    </ul>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">4.3 代码题示例</h3>
+                    <p class="text-gray-700 mb-4">以下是两道典型的 LangChain4j 代码题示例：</p>
+
+                    <div class="relative mb-6">
+                        <div class="absolute top-0 right-0 px-3 py-1 bg-gray-800 text-gray-400 text-xs font-medium rounded-bl-md">CodingQuestion1.java</div>
+                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="text-purple-400">/**
+ * 面试题 1: 实现自定义 ChatModel
+ */</span>
+<span class="text-gray-500">// 面试官要求实现一个简单的 ChatModel
+// 要求：支持同步和异步调用，带重试机制</span>
+
+<span class="text-purple-400">public class</span> <span class="text-yellow-300">SimpleChatModel</span> <span class="text-purple-400">implements</span> <span class="text-green-300">ChatLanguageModel</span> {
+
+    <span class="text-purple-400">private final</span> <span class="text-blue-300">String</span> baseUrl;
+    <span class="text-purple-400">private final int</span> maxRetries;
+
+    <span class="text-purple-400">public</span> <span class="text-yellow-300">SimpleChatModel</span>(<span class="text-blue-300">String</span> baseUrl, <span class="text-blue-300">int</span> maxRetries) {
+        <span class="text-purple-400">this</span>.baseUrl = baseUrl;
+        <span class="text-purple-400">this</span>.maxRetries = maxRetries;
+    }
+
+    <span class="text-gray-500">@Override</span>
+    <span class="text-purple-400">public</span> <span class="text-blue-300">AiMessage</span> <span class="text-yellow-300">generate</span>(<span class="text-blue-300">List&lt;ChatMessage&gt;</span> messages) {
+        <span class="text-purple-400">int</span> attempt = <span class="text-orange-300">0</span>;
+        <span class="text-purple-400">while</span> (attempt <= maxRetries) {
+            <span class="text-purple-400">try</span> {
+                <span class="text-gray-500">// 模拟 HTTP 调用</span>
+                <span class="text-blue-300">String</span> response = <span class="text-yellow-300">callLLMAPI</span>(messages);
+                <span class="text-purple-400">return new</span> <span class="text-yellow-300">AiMessage</span>(response);
+            } <span class="text-purple-400">catch</span> (<span class="text-blue-300">Exception</span> e) {
+                <span class="text-purple-400">if</span> (++attempt < maxRetries) {
+                    <span class="text-blue-300">Thread</span>.<span class="text-yellow-300">sleep</span>(<span class="text-orange-300">1000</span>);
+                    <span class="text-purple-400">continue</span>;
+                }
+                <span class="text-purple-400">throw new</span> <span class="text-yellow-300">RuntimeException</span>(<span class="text-green-300">"LLM 调用失败: "</span> + e.<span class="text-yellow-300">getMessage</span>());
+            }
+        }
+    }
+
+    <span class="text-purple-400">private</span> <span class="text-blue-300">String</span> <span class="text-yellow-300">callLLMAPI</span>(<span class="text-blue-300">List&lt;ChatMessage&gt;</span> messages) {
+        <span class="text-gray-500">// 模拟 API 调用</span>
+        <span class="text-purple-400">return</span> <span class="text-green-300">"这是模拟的响应"</span>;
+    }
+}</code></pre>
+                    </div>
+
+                    <div class="relative mb-6">
+                        <div class="absolute top-0 right-0 px-3 py-1 bg-gray-800 text-gray-400 text-xs font-medium rounded-bl-md">CodingQuestion2.java</div>
+                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="text-purple-400">/**
+ * 面试题 2: 实现自定义 Tool
+ */</span>
+<span class="text-gray-500">// 面试官要求实现一个文档搜索工具
+// 要求：支持关键词搜索、模糊搜索、结果分页</span>
+
+<span class="text-purple-400">public class</span> <span class="text-yellow-300">DocumentSearchTool</span> <span class="text-purple-400">implements</span> <span class="text-green-300">Tool</span> {
+
+    <span class="text-purple-400">private final</span> <span class="text-blue-300">VectorStore</span> vectorStore;
+
+    <span class="text-purple-400">public</span> <span class="text-yellow-300">DocumentSearchTool</span>(<span class="text-blue-300">VectorStore</span> vectorStore) {
+        <span class="text-purple-400">this</span>.vectorStore = vectorStore;
+    }
+
+    <span class="text-gray-500">@Tool</span>(<span class="text-blue-300">"</span>)
+    <span class="text-purple-400">public</span> <span class="text-blue-300">List&lt;Document&gt;</span> <span class="text-yellow-300">search</span>(<span class="text-blue-300">String</span> query, <span class="text-blue-300">int</span> topK) {
+        <span class="text-gray-500">// 1. 将查询向量化</span>
+        <span class="text-blue-300">List&lt;Float&gt;</span> queryVector = <span class="text-yellow-300">embedText</span>(query);
+
+        <span class="text-gray-500">// 2. 在向量库中搜索最相似的文档</span>
+        <span class="text-blue-300">List&lt;Document&gt;</span> results = vectorStore.<span class="text-yellow-300">searchSimilar</span>(queryVector, topK);
+
+        <span class="text-gray-500">// 3. 按相似度排序并返回</span>
+        <span class="text-purple-400">return</span> results.<span class="text-yellow-300">stream</span>()
+            .<span class="text-yellow-300">sorted</span>((a, b) -> <span class="text-blue-300">Float</span>.<span class="text-yellow-300">compare</span>(b.<span class="text-yellow-300">similarity</span>, a.<span class="text-yellow-300">similarity</span>))
+            .<span class="text-yellow-300">map</span>(doc -> <span class="text-yellow-300">doc</span>.<span class="text-yellow-300">toMap</span>())
+            .<span class="text-yellow-300">collect</span>(<span class="text-blue-300">Collectors</span>.<span class="text-yellow-300">toList</span>());
+    }
+
+    <span class="text-gray-500">/**
+     * 文本嵌入（简化版）
+     */</span>
+    <span class="text-purple-400">private</span> <span class="text-blue-300">List&lt;Float&gt;</span> <span class="text-yellow-300">embedText</span>(<span class="text-blue-300">String</span> text) {
+        <span class="text-purple-400">return</span> <span class="text-blue-300">Arrays</span>.<span class="text-yellow-300">stream</span>(<span class="text-purple-400">new</span> <span class="text-blue-300">float</span>[<span class="text-orange-300">0.1f</span>] * text.<span class="text-yellow-300">length</span>());
+    }
+}</code></pre>
+                    </div>
+                </section>
+
+                <!-- 总结 -->
+                <div class="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl p-8 text-white">
+                    <h3 class="text-2xl font-bold mb-4">本章小结</h3>
+                    <p class="mb-4">全面介绍了 LangChain4j 面试的准备策略和实战技巧。通过掌握这些技能，您可以：</p>
+                    <ul class="list-disc list-inside space-y-2 mb-6">
+                        <li><strong>系统准备</strong>：有针对性地复习核心知识点，形成知识体系</li>
+                        <li><strong>模拟演练</strong>：通过模拟面试提升实战能力</li>
+                        <li><strong>项目经验</strong>:用 STAR 法清晰描述项目成果</li>
+                        <li><strong>代码技巧</strong>：边写边说，展示设计思路</li>
+                        <li><strong>心态调整</strong>：保持自信，展示解决问题的能力</li>
+                    </ul>
+                    <div class="border-t border-indigo-400 pt-6">
+                        <p class="text-sm opacity-80 mb-2">核心特性</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-white/20 rounded-full text-sm">题型分类</span>
+                            <span class="px-3 py-1 bg-white/20 rounded-full text-sm">核心知识点</span>
+                            <span class="px-3 py-1 bg-white/20 rounded-full text-sm">模拟技巧</span>
+                            <span class="px-3 py-1 bg-white/20 rounded-full text-sm">实战演练</span>
+                        </div>
+                        <p class="text-sm opacity-80 mb-2">技术栈</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-white/20 rounded-full text-sm">LangChain4j</span>
+                            <span class="px-3 py-1 bg-white/20 rounded-full text-sm">Spring Boot</span>
+                            <span class="px-3 py-1 bg-white/20 rounded-full text-sm">PostgreSQL</span>
+                            <span class="px-3 py-1 bg-white/20 rounded-full text-sm">Redis</span>
+                        </div>
+                        <a href="practice.html" class="inline-flex items-center gap-2 text-white hover:text-indigo-200 transition-colors">
+                            下一章：实战练习 →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>快速入门 - LangChain4j 学习指南</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            200: '#c7d2fe',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-white text-gray-800 antialiased">
+    <div class="flex min-h-screen">
+        <aside class="w-[280px] fixed left-0 top-0 h-full bg-white border-r border-gray-200 overflow-y-auto z-50">
+            <a href="index.html" class="flex items-center gap-3 mb-8 text-gray-900 no-underline">
+                <div class="w-9 h-9 bg-indigo-600 rounded-lg flex items-center justify-center text-white text-xl">⚡</div>
+                <span class="font-bold text-xl">LangChain4j</span>
+            </a>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">入门</div>
+                <ul class="list-none">
+                    <li><a href="index.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">首页</a></li>
+                    <li><a href="getting-started.html" class="block bg-primary-50 text-indigo-700 no-underline py-2 px-3 text-sm rounded-md font-medium">快速入门</a></li>
+                    <li><a href="core-concepts.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">核心概念</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">核心功能</div>
+                <ul class="list-none">
+                    <li><a href="embedding-models.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">嵌入模型</a></li>
+                    <li><a href="prompt-templates.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">提示模板</a></li>
+                    <li><a href="output-parsers.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">输出解析</a></li>
+                    <li><a href="function-calling-deep.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">函数调用</a></li>
+                    <li><a href="advanced-features.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">高级特性</a></li>
+                    <li><a href="multimodal-full.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">多模态处理</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">RAG 完整指南</div>
+                <ul class="list-none">
+                    <li><a href="rag-complete.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">RAG 完整指南</a></li>
+                    <li><a href="project-rag-kb.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">RAG 知识库项目</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">项目实战</div>
+                <ul class="list-none">
+                    <li><a href="project-ai-assistant.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">AI 助手项目</a></li>
+                    <li><a href="project-chatbot.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">聊天机器人项目</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">深入与最佳实践</div>
+                <ul class="list-none">
+                    <li><a href="best-practices.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">最佳实践</a></li>
+                    <li><a href="examples.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">代码示例</a></li>
+                    <li><a href="integrations.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">框架集成</a></li>
+                    <li><a href="testing-strategies.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">测试策略</a></li>
+                    <li><a href="performance-tuning.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">性能调优</a></li>
+                    <li><a href="deep-dive.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">深度解析</a></li>
+                    <li><a href="error-handling.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">错误处理</a></li>
+                    <li><a href="moderation-safety.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">内容审核与安全</a></li>
+                    <li><a href="troubleshooting.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">故障排查</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">高级主题</div>
+                <ul class="list-none">
+                    <li><a href="interview-prep.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">面试准备</a></li>
+                    <li><a href="practice.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">实战练习</a></li>
+                    <li><a href="search.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">搜索功能</a></li>
+                    <li><a href="chat-listeners.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">聊天监听器</a></li>
+                    <li><a href="faq.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">常见问题</a></li>
+                    <li><a href="cost-optimization.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">成本优化</a></li>
+                    <li><a href="deployment.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">部署与运维</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <main class="flex-1 ml-[280px]">
+            <div class="max-w-7xl mx-auto px-8 py-12">
+                <!-- 页面标签 -->
+                <div class="flex items-center gap-2 mb-4">
+                    <span class="px-3 py-1 bg-green-100 text-green-700 text-xs font-medium rounded-full">5分钟</span>
+                    <span class="px-3 py-1 bg-primary-100 text-indigo-700 text-xs font-medium rounded-full">新手友好</span>
+                </div>
+
+                <h1 class="text-4xl font-bold text-gray-900 mb-4">快速入门 LangChain4j</h1>
+                <p class="text-xl text-gray-600 mb-8">从零开始，5分钟内创建你的第一个 LangChain4j AI 应用</p>
+
+                <!-- 目录 -->
+                <nav class="bg-gray-50 border border-gray-200 rounded-xl p-6 mb-8">
+                    <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">目录</h3>
+                    <ol class="space-y-2 text-sm text-gray-700">
+                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">1.</span> <a href="#环境准备" class="hover:text-indigo-600 transition-colors">环境准备</a></li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">2.</span> <a href="#创建项目" class="hover:text-indigo-600 transition-colors">创建项目</a></li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">3.</span> <a href="#第一个示例" class="hover:text-indigo-600 transition-colors">第一个示例：Hello World</a></li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">4.</span> <a href="#聊天功能" class="hover:text-indigo-600 transition-colors">聊天功能</a></li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">5.</span> <a href="#下一步" class="hover:text-indigo-600 transition-colors">下一步</a></li>
+                    </ol>
+                </nav>
+
+                <!-- 第1节：环境准备 -->
+                <section id="环境准备" class="mb-16">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-full text-sm font-bold">1</span>
+                        <h2 class="text-2xl font-bold text-gray-900">环境准备</h2>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">1.1 系统要求</h3>
+                    <p class="text-gray-700 mb-6">在开始之前，请确保你的开发环境满足以下要求：</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                            <h4 class="font-semibold text-blue-800 mb-2">Java 环境</h4>
+                            <ul class="text-blue-700 space-y-1">
+                                <li>• JDK 17 或更高</li>
+                                <li>• Maven 3.8.x 或 Gradle 8.x</li>
+                                <li>• IDE（IntelliJ IDEA、Eclipse、VS Code 等）</li>
+                            </ul>
+                        </div>
+                        <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+                            <h4 class="font-semibold text-green-800 mb-2">API Key</h4>
+                            <ul class="text-green-700 space-y-1">
+                                <li>• OpenAI API Key（推荐用于快速开始）</li>
+                                <li>• 或者 Huggingface.co Access Token（免费替代方案）</li>
+                                <li> 获取方式：<a href="https://platform.openai.com/api-keys" target="_blank" class="text-blue-600 hover:underline">OpenAI</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">1.2 项目依赖</h3>
+                    <p class="text-gray-700 mb-6">创建 Maven 或 Gradle 项目并添加 LangChain4j 依赖：</p>
+
+                    <div class="relative mb-6">
+                        <div class="absolute top-0 right-0 px-3 py-1 bg-gray-800 text-gray-400 text-xs font-medium rounded-bl-md">pom.xml</div>
+                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm">&lt;?xml version=<span class="text-green-300">"1.0"</span> encoding=<span class="text-green-300">"UTF-8"</span>?&gt;
+&lt;project&gt;
+    &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+    
+    &lt;groupId&gt;com.example&lt;/groupId&gt;
+    &lt;artifactId&gt;langchain4j-demo&lt;/artifactId&gt;
+    &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
+    
+    &lt;dependencies&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;dev.langchain4j&lt;/groupId&gt;
+            &lt;artifactId&gt;langchain4j&lt;/artifactId&gt;
+            &lt;version&gt;0.50.0&lt;/version&gt;
+        &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+&lt;/project&gt;</code></pre>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">1.3 快速开始选项</h3>
+                    <p class="text-gray-700 mb-6">根据你的场景选择最快的开始方式：</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                        <div class="bg-purple-50 border border-purple-200 rounded-lg p-4">
+                            <h4 class="font-semibold text-purple-800 mb-2">🚀 使用 Spring Initializr</h4>
+                            <p class="text-purple-700 text-sm mb-3">快速生成 Spring Boot 项目脚手架</p>
+                            <a href="https://start.spring.io" target="_blank" class="text-purple-600 hover:underline">Spring Initializr</a>
+                        </div>
+                        <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                            <h4 class="font-semibold text-blue-800 mb-2">📦 使用 Huggingface</h4>
+                            <p class="text-blue-700 text-sm mb-3">免费的开源模型，无需 API Key</p>
+                            <a href="https://huggingface.co/docs/langchain4j" target="_blank" class="text-blue-600 hover:underline">Huggingface 指南</a>
+                        </div>
+                        <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+                            <h4 class="font-semibold text-green-800 mb-2">🎯 本地测试</h4>
+                            <p class="text-green-700 text-sm mb-3">使用本地模型（Llama2、mistral）完全离线</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 第2节：创建项目 -->
+                <section id="创建项目" class="mb-16">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-full text-sm font-bold">2</span>
+                        <h2 class="text-2xl font-bold text-gray-900">创建项目</h2>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">2.1 项目结构</h3>
+                    <p class="text-gray-700 mb-6">推荐的 LangChain4j 项目结构：</p>
+
+                    <div class="bg-gray-50 border border-gray-200 rounded-lg p-6 mb-6">
+                        <pre class="text-gray-700 text-sm">langchain4j-demo/
+├── src/main/java/          # Java 源代码
+├── src/main/resources/       # 配置文件
+│   ├── application.yml         # Spring Boot 配置
+│   └── application-dev.yml    # 开发环境配置
+├── src/test/java/           # 测试代码
+├── pom.xml                # Maven 配置
+└── Dockerfile              # 容器化配置</</div>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">2.2 Main 类</h3>
+                    <p class="text-gray-700 mb-6">创建主启动类：</p>
+
+                    <div class="relative mb-6">
+                        <div class="absolute top-0 right-0 px-3 py-1 bg-gray-800 text-gray-400 text-xs font-medium rounded-bl-md">MainApplication.java</div>
+                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="text-purple-400">package</span> <span class="text-blue-300">com.example.langchain4j</span>;
+
+<span class="text-purple-400">import</span> <span class="text-blue-300">dev.langchain4j.model.chat.ChatLanguageModel</span>;
+<span class="text-purple-400">import</span> <span class="text-blue-300">dev.langchain4j.model.openai.OpenAiChatModel</span>;
+<span class="text-gray-500">/**
+ * LangChain4j 快速入门主类
+ * 演示最简单的聊天功能
+ */</span>
+<span class="text-purple-400">@SpringBootApplication</span>
+<span class="text-purple-400">public class</span> <span class="text-yellow-300">MainApplication</span> {
+
+    <span class="text-gray-500">/**
+     * 配置 OpenAI Chat 模型
+     * 使用环境变量或硬编码（仅用于演示）
+     */</span>
+    <span class="text-purple-400">private</span> <span class="text-blue-300">ChatLanguageModel</span> <span class="text-yellow-300">chatModel</span> = <span class="text-purple-400">OpenAiChatModel</span>.<span class="text-green-300">builder</span>()
+            .<span class="text-green-300">apiKey</span>(<span class="text-green-300">"your-api-key-here"</span>)
+            .<span class="text-green-300">modelName</span>(<span class="text-green-300">"gpt-3.5-turbo"</span>)
+            .<span class="text-green-300">temperature</span>(<span class="text-green-300">0.7</span>)
+            .<span class="text-green-300">build</span>();
+
+    <span class="text-gray-500">/**
+     * 简单的聊天端点
+     * 返回固定的回答
+     */</span>
+    <span class="text-purple-400">@GetMapping</span>(<span class="text-green-300">"/chat"</span>)
+    <span class="text-purple-400">public</span> <span class="text-blue-300">String</span> <span class="text-purple-400">chat</span>(<span class="text-blue-300">@RequestParam</span>(<span class="text-green-300">"message"</span>) message) {
+        <span class="text-purple-400">return</span> chatModel.<span class="text-green-300">generate</span>(message);
+    }
+}</code></pre>
+                    </div>
+
+                    <div class="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl p-6 mb-8">
+                        <h3 class="text-xl font-bold text-white mb-2">项目结构说明</h3>
+                        <ul class="list-disc list-inside text-indigo-100 space-y-2 mb-4">
+                            <li><strong>主类</strong>：使用 @SpringBootApplication 标记，配置自动配置</li>
+                            <li><strong>依赖管理</strong>：通过 pom.xml 管理 LangChain4j 依赖</li>
+                            <li><strong>配置文件</strong>application.yml 用于环境区分</li>
+                            <li><strong>分层结构</span>：controller、service、config 等</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- 第3节：第一个示例：Hello World -->
+                <section id="第一个示例：Hello World" class="mb-16">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-full text-sm font-bold">3</span>
+                        <h2 class="text-2xl font-bold text-gray-900">第一个示例：Hello World</h2>
+                    </div>
+
+                    <p class="text-gray-700 mb-6">最简单的 LangChain4j 应用，只需 30 行代码：</p>
+
+                    <div class="bg-gray-900 text-white rounded-xl p-6">
+                        <div class="flex items-center gap-2 mb-4">
+                            <span class="px-3 py-1 bg-green-100 text-green-700 text-xs font-medium rounded-full">MainApplication.java</span>
+                            <pre class="text-gray-100 text-green-100 rounded-lg p-3 inline">import org.springframework.boot.autoconfigure.SpringBootApplication;
+import dev.langchain4j.model.openai.OpenAiChatModel;
+
+@SpringBootApplication
+public class MainApplication {
+    public static void main(String[] args) {
+        ChatLanguageModel model = OpenAiChatModel.builder()
+                .apiKey("your-api-key-here")
+                .modelName("gpt-3.5-turbo")
+                .build();
+        
+        System.out.println(model.generate("Hello, LangChain4j!"));
+    }
+}</pre>
+                            <span class="text-purple-400">输出：</span>
+                            <pre class="text-gray-100 text-green-100 rounded-lg p-3 inline">Hello, LangChain4j!</pre>
+                        </div>
+                    </div>
+
+                    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+                        <h4 class="font-semibold text-blue-800 mb-3">代码说明</h4>
+                        <ul class="text-blue-700 text-sm space-y-1">
+                            <li><strong>模型创建</strong>：使用 Builder 模式链式配置模型</li>
+                            <li><strong>生成调用</strong>：generate() 方法返回完整的 AI 回答</li>
+                            <li><strong>可扩展</li>：后续可以轻松添加更多功能（上下文、监听器等）</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- 第4节：聊天功能 -->
+                <section id="聊天功能" class="mb-16">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-full text-sm font-bold">4</span>
+                        <h2 class="text-2xl font-bold text-gray-900">聊天功能</h2>
+                    </div>
+
+                    <p class="text-gray-700 mb-6">扩展应用，支持真正的聊天对话：</p>
+
+                    <div class="relative mb-6">
+                        <div class="absolute top-0 right-0 px-3 py-1 bg-gray-800 text-gray-400 text-xs font-medium rounded-bl-md">ChatController.java</div>
+                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="text-purple-400">package</span> <span class="text-blue-300">com.example.langchain4j</span>;
+
+<span class="text-purple-400">import</span> <span class="text-blue-300">dev.langchain4j.model.chat.ChatLanguageModel</span>;
+<span class="text-purple-400">import</span> <span class="text-blue-300">org.springframework.web.bind.annotation.*</span>;
+<span class="text-purple-400">import</span> <span class="text-blue-300">java.util.List</span>;
+
+<span class="text-gray-500">/**
+ * 聊天控制器
+ * 演示多轮对话功能
+ */</span>
+<span class="text-purple-400">@RestController</span>
+<span class="text-purple-400">@RequestMapping</span>(<span class="text-green-300">"/api/chat"</span>)
+<span class="text-purple-400">public class</span> <span class="text-yellow-300">ChatController</span> {
+
+    <span class="text-purple-400">private final</span> <span class="text-blue-300">ChatLanguageModel</span> chatModel;
+
+    <span class="text-purple-400">private</span> <span class="text-blue-300">List</span>&lt;<span class="text-blue-300">String</span>&gt; messageHistory = <span class="text-purple-400">new</span> <span class="text-blue-300">ArrayList</span>&lt;&gt;();
+
+    <span class="text-gray-500">/**
+     * 发送消息并记录历史
+     */</span>
+    <span class="text-purple-400">@PostMapping</span>(<span class="text-green-300">"/send"</span>)
+    <span class="text-purple-400">public</span> <span class="text-blue-300">String</span> <span class="text-yellow-300">sendMessage</span>(<span class="text-blue-300">@RequestBody</span> <span class="text-blue-300">MessageRequest</span> request) {
+        messageHistory.<span class="text-green-300">add</span>(request.getMessage());
+        
+        <span class="text-gray-500">// 生成 AI 回复</span>
+        <span class="text-blue-300">String</span> response = chatModel.<span class="text-green-300">generate</span>(messageHistory);
+        
+        <span class="text-gray-500">// 记录 AI 回复</span>
+        messageHistory.<span class="text-green-300">add</span>(response);
+        
+        <span class="text-purple-400">return new</span> <span class="text-yellow-300">ChatResponse</span>(response);
+    }
+
+    <span class="text-gray-500">/**
+     * 获取聊天历史
+     */</span>
+    <span class="text-purple-400">@GetMapping</span>(<span class="text-green-300">"/history"</span>)
+    <span class="text-purple-400">public</span> <span class="text-yellow-300">List</span>&lt;<span class="text-blue-300">ChatMessage</span>&gt; <span class="text-blue-300">getHistory</span>() {
+        <span class="text-purple-400">return</span> <span class="text-blue-300">messageHistory</span>;
+    }
+
+    <span class="text-gray-500">/**
+     * 清除历史
+     */</span>
+    <span class="text-purple-400">@DeleteMapping</span>(<span class="text-green-300">"/history"</span>)
+    <span class="text-purple-400">public</span> <span class="text-blue-300">void</span> <span class="text-purple-400">clearHistory</span>() {
+        messageHistory.<span class="text-green-300">clear</span>();
+    }
+}</code></pre>
+                    </div>
+
+                    <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+                        <h4 class="font-semibold text-green-800 mb-3">功能说明</h4>
+                        <ul class="text-green-700 space-y-2">
+                            <li><strong>多轮对话</strong>：自动维护对话历史</li>
+                            <li><strong>流式 API</strong>：/send 端点添加，/history 端点查询</li>
+                            <li><strong>会话隔离</span>：每个用户独立的历史</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- 第5节：下一步 -->
+                <section id="下一步" class="mb-16">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-full text-sm font-bold">5</span>
+                        <h2 class="text-2xl font-bold text-gray-900">下一步</h2>
+                    </div>
+
+                    <p class="text-gray-700 mb-6">恭喜你已完成第一个 LangChain4j 应用！接下来可以学习：</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                        <div class="bg-purple-50 border border-purple-200 rounded-lg p-4">
+                            <h4 class="font-semibold text-purple-800 mb-2">📖 学习核心概念</h4>
+                            <p class="text-purple-700 text-sm mb-3">了解 ChatLanguageModel、EmbeddingModel 等核心接口</p>
+                            <a href="core-concepts.html" class="text-purple-600 hover:underline">核心概念 →</a>
+                        </div>
+                        <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                            <h4 class="font-semibold text-blue-800 mb-2">🎨 学习嵌入模型</h4>
+                            <p class="text-blue-700 text-sm mb-3">掌握文本向量和向量相似度</p>
+                            <a href="embedding-models.html" class="text-blue-600 hover:underline">嵌入模型 →</a>
+                        </div>
+                        <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+                            <h4 class="font-semibold text-green-800 mb-2">🚀 尝试函数调用</h4>
+                            <p class="text-green-700 text-sm mb-3">让 AI 调用外部工具</p>
+                            <a href="function-calling-deep.html" class="text-green-600 hover:underline">函数调用 →</a>
+                        </div>
+                        <div class="bg-orange-50 border border-orange-200 rounded-lg p-4">
+                            <h4 class="font-semibold text-orange-800 mb-2">🎯 学习高级特性</h4>
+                            <p class="text-orange-700 text-sm mb-3">多模态、流式 API 等</p>
+                            <a href="advanced-features.html" class="text-orange-600 hover:underline">高级特性 →</a>
+                        </div>
+                    </div>
+
+                    <div class="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl p-8 text-white">
+                        <h3 class="text-2xl font-bold mb-4">本节小结</h3>
+                        <p class="mb-4">本节帮助你快速上手 LangChain4j：</p>
+                        <ul class="list-disc list-inside text-indigo-100 space-y-2 mb-6">
+                            <li><strong>环境准备</strong>：JDK 17+、API Key、项目结构</li>
+                            <li><strong>Hello World</strong>：最简单的 30 行代码示例</li>
+                            <li><strong>聊天功能</strong>：多轮对话的实现</li>
+                            <li><strong>可扩展性</strong>：易于添加更多高级功能</li>
+                        </ul>
+                        <div class="border-t border-indigo-400 pt-6">
+                            <p class="text-sm opacity-80 mb-2">下一步</p>
+                            <a href="core-concepts.html" class="inline-flex items-center gap-2 text-white hover:text-indigo-200 transition-colors">
+                                核心概念 →
+                            </a>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

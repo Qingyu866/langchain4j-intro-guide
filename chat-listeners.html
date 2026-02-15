@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>聊天监听器 - LangChain4j 学习指南</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            200: '#c7d2fe',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-white text-gray-800 antialiased">
+    <div class="flex min-h-screen">
+        <aside class="w-[280px] fixed left-0 top-0 h-full bg-white border-r border-gray-200 overflow-y-auto z-50">
+            <a href="index.html" class="flex items-center gap-3 mb-8 text-gray-900 no-underline">
+                <div class="w-9 h-9 bg-indigo-600 rounded-lg flex items-center justify-center text-white text-xl">⚡</div>
+                <span class="font-bold text-xl">LangChain4j</span>
+            </a>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">入门</div>
+                <ul class="list-none">
+                    <li><a href="index.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">首页</a></li>
+                    <li><a href="getting-started.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">快速入门</a></li>
+                    <li><a href="core-concepts.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">核心概念</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">核心功能</div>
+                <ul class="list-none">
+                    <li><a href="embedding-models.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">嵌入模型</a></li>
+                    <li><a href="prompt-templates.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">提示模板</a></li>
+                    <li><a href="output-parsers.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">输出解析</a></li>
+                    <li><a href="function-calling-deep.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">函数调用</a></li>
+                    <li><a href="advanced-features.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">高级特性</a></li>
+                    <li><a href="multimodal-full.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">多模态处理</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">RAG 完整指南</div>
+                <ul class="list-none">
+                    <li><a href="rag-complete.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">RAG 完整指南</a></li>
+                    <li><a href="project-rag-kb.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">RAG 知识库项目</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">项目实战</div>
+                <ul class="list-none">
+                    <li><a href="project-ai-assistant.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">AI 助手项目</a></li>
+                    <li><a href="project-chatbot.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">聊天机器人项目</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">深入与最佳实践</div>
+                <ul class="list-none">
+                    <li><a href="best-practices.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">最佳实践</a></li>
+                    <li><a href="examples.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">代码示例</a></li>
+                    <li><a href="integrations.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">框架集成</a></li>
+                    <li><a href="testing-strategies.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">测试策略</a></li>
+                    <li><a href="performance-tuning.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">性能调优</a></li>
+                    <li><a href="deep-dive.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">深度解析</a></li>
+                    <li><a href="error-handling.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">错误处理</a></li>
+                    <li><a href="moderation-safety.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">测试策略</a></li>
+                    <li><a href="troubleshooting.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">故障排查</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">高级主题</div>
+                <ul class="list-none">
+                    <li><a href="interview-prep.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">面试准备</a></li>
+                    <li><a href="practice.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">实战练习</a></li>
+                    <li><a href="search.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">搜索功能</a></li>
+                    <li><a href="chat-listeners.html" class="block bg-primary-50 text-indigo-700 no-underline py-2 px-3 text-sm rounded-md font-medium">聊天监听器</a></li>
+                    <li><a href="faq.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">常见问题</a></li>
+                    <li><a href="cost-optimization.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">成本优化</a></li>
+                    <li><a href="deployment.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">部署与运维</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <main class="flex-1 ml-[280px]">
+            <div class="max-w-7xl mx-auto px-8 py-12">
+                <!-- 页面标签 -->
+                <div class="flex items-center gap-2 mb-4">
+                    <span class="px-3 py-1 bg-indigo-100 text-indigo-700 text-xs font-medium rounded-full">聊天监听器</span>
+                    <span class="px-3 py-1 bg-purple-100 text-purple-700 text-xs font-medium rounded-full">事件处理</span>
+                    <span class="px-3 py-1 bg-green-100 text-green-700 text-xs font-medium rounded-full">异步编程</span>
+                </div>
+
+                <h1 class="text-4xl font-bold text-gray-900 mb-4">聊天监听器</h1>
+                <p class="text-xl text-gray-600 mb-8">LangChain4j 的聊天监听器机制与事件处理</p>
+
+                <!-- 目录 -->
+                <nav class="bg-gray-50 border border-gray-200 rounded-xl p-6 mb-8">
+                    <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">目录</h3>
+                    <ol class="space-y-2 text-sm text-gray-700">
+                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">1.</span> <a href="#监听器概述" class="hover:text-indigo-600 transition-colors">监听器概述</a></li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">2.</span> <a href="#监听器类型" class="hover:text-indigo-600 transition-colors">监听器类型</a></li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">3.</span> <a href="#监听器实现" class="hover:text-indigo-600 transition-colors">监听器实现</a></li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">4.</span> <a href="#实战应用" class="hover:text-indigo-600 transition-colors">实战应用</a></li>
+                    </ol>
+                </nav>
+
+                <!-- 第1节：监听器概述 -->
+                <section id="监听器概述" class="mb-16">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-full text-sm font-bold">1</span>
+                        <h2 class="text-2xl font-bold text-gray-900">监听器概述</h2>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">1.1 监听器概念</h3>
+                    <p class="text-gray-700 mb-6">聊天监听器是 LangChain4j 提供的一种事件驱动机制，用于监听和响应聊天过程中的各种事件：</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                        <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                            <h4 class="font-semibold text-blue-800 mb-2">事件类型</h4>
+                            <p class="text-blue-700 text-sm">监听器可以响应多种事件：</p>
+                            <ul class="text-blue-600 text-xs space-y-1">
+                                <li>• 消息发送前</li>
+                                <li>• 消息发送后</li>
+                                <li>• 模型开始生成</li>
+                                <li>• 模型生成完成</li>
+                                <li>• Token 使用更新</li>
+                            </ul>
+                        </div>
+                        <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+                            <h4 class="font-semibold text-green-800 mb-2">应用场景</h4>
+                            <p class="text-green-700 text-sm">监听器的典型应用场景：</p>
+                            <ul class="text-green-600 text-xs space-y-1">
+                                <li>• 日志记录和审计</li>
+                                <li>• Token 使用监控</li>
+                                <li>• 消息中间件处理</li>
+                                <li>• 自定义业务逻辑触发</li>
+                                <li>• 流程控制和拦截</li>
+                            </ul>
+                        </div>
+                        <div class="purple-50 border border-purple-200 rounded-lg p-4">
+                            <h4 class="font-semibold text-purple-800 mb-2">核心优势</h4>
+                            <p class="text-purple-700 text-sm">使用监听器的优势：</p>
+                            <ul class="text-purple-600 text-xs space-y-1">
+                                <li>• 解耦：将业务逻辑从主流程中分离</li>
+                                <li>• 可测试：独立测试监听器逻辑</li>
+                                <li>• 可扩展：动态添加和移除监听器</li>
+                                <li>• 观察者模式：易于实现复杂的事件链</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 第2节：监听器类型 -->
+                <section id="监听器类型" class="mb-16">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-full text-sm font-bold">2</span>
+                        <h2 class="text-2xl font-bold text-gray-900">监听器类型</h2>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">2.1 内置监听器</h3>
+                    <p class="text-gray-700 mb-6">LangChain4j 提供了多种内置监听器：</p>
+
+                    <table class="w-full text-left border-collapse border border-gray-200 rounded-lg overflow-hidden mb-6">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-sm font-semibold text-gray-500">监听器</th>
+                                <th class="px-6 py-3 text-sm font-semibold text-gray-500">触发时机</th>
+                                <th class="px-6 py-3 text-sm font-semibold text-gray-500">用途</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-gray-200">
+                                <td class="px-6 py-3"><strong>ModelListener</strong></td>
+                                <td class="px-6 py-3">模型生成过程中</td>
+                                <td class="px-6 py-3">监控模型响应、流式输出处理</td>
+                            </tr>
+                            <tr class="border-b border-gray-200">
+                                <td class="px-6 py-3"><strong>TokenListener</strong></td>
+                                <td class="px-6 py-3">Token 使用时</td>
+                                <td class="px-6 py-3">实时监控 Token 消耗、预算控制</td>
+                            </tr>
+                            <tr class="border-b border-gray-200">
+                                <td class="px-6 py-3"><strong>ChatMemoryListener</strong></td>
+                                <td class="px-6 py-3">聊天记忆更新时</td>
+                                <td class="px-6 py-3">记忆持久化、上下文管理</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-3"><strong>ToolExecutionListener</strong></td>
+                                <td class="px-6 py-3">工具执行时</td>
+                                <td class="px-6 py-3">日志记录、权限检查、结果处理</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <!-- 第3节：监听器实现 -->
+                <section id="监听器实现" class="mb-16">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-full text-sm font-bold">3</span>
+                        <h2 class="text-2xl font-bold text-gray-900">监听器实现</h2>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">3.1 ModelListener 示例</h3>
+                    <p class="text-gray-700 mb-6">使用 ModelListener 监控模型生成过程：</p>
+
+                    <div class="relative mb-6">
+                        <div class="absolute top-0 right-0 px-3 py-1 bg-gray-800 text-gray-400 text-xs font-medium rounded-bl-md">ModelListenerExample.java</div>
+                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="text-purple-400">package</span> <span class="text-blue-300">com.example.langchain4j.listeners</span>;
+
+<span class="text-purple-400">import</span> <span class="text-blue-300">dev.langchain4j.model.chat.listener.ModelListener</span>;
+<span class="text-purple-400">import</span> <span class="text-blue-300">dev.langchain4j.model.chat.ChatLanguageModel</span>;
+<span class="text-purple-400">import</span> <span class="text-blue-300">dev.langchain4j.model.chat.listener.ChatMemoryContext</span>;
+<span class="text-purple-400">import</span> <span class="text-blue-300">dev.langchain4j.model.chat.listener.ChatMemoryId</span>;
+
+<span class="text-gray-500">/**
+ * 模型监听器示例
+ * 监控模型生成过程并记录日志
+ */</span>
+<span class="text-purple-400">public class</span> <span class="text-yellow-300">LoggingModelListener</span> <span class="text-purple-400">implements</span> <span class="text-blue-300">ModelListener</span> {
+
+    <span class="text-purple-400">@Override</span>
+    <span class="text-purple-400">public void</span> <span class="text-purple-400">onRequest</span>(<span class="text-blue-300">ChatMemoryContext</span> context, <span class="text-blue-300">ChatMemoryId</span> memoryId) {
+        <span class="text-gray-500">// 记录请求开始</span>
+        <span class="text-blue-300">System</span>.<span class="text-green-300">out</span>.<span class="text-green-300">printf</span>(<span class="text-green-300">"[%s] 请求开始 - Memory ID: %s"</span>, 
+            context.<span class="text-green-300">chatMemoryId</span>(), memoryId);
+    }
+
+    <span class="text-purple-400">@Override</span>
+    <span class="text-purple-400">public void</span> <span class="text-purple-400">onResponse</span>(<span class="text-blue-300">ChatMemoryContext</span> context, <span class="text-blue-300">ChatMemoryId</span> memoryId, <span class="text-blue-300">AiMessage</span> response) {
+        <span class="text-gray-500">// 记录响应完成</span>
+        <span class="text-blue-300">System</span>.<span class="text-green-300">out</span>.<span class="text-green-300">printf</span>(<span class="text-green-300">"[%s] 响应完成 - Memory ID: %s - 内容: %s"</span>,
+            context.<span class="text-green-300">chatMemoryId</span>(), memoryId, response.<span class="text-green-300">text</span>());
+    }
+
+    <span class="text-purple-400">@Override</span>
+    <span class="text-purple-400">public void</span> <span class="text-purple-400">onError</span>(<span class="text-blue-300">ChatMemoryContext</span> context, <span class="text-blue-300">ChatMemoryId</span> memoryId, <span class="text-blue-300">Throwable</span> error) {
+        <span class="text-gray-500">// 记录错误</span>
+        <span class="text-blue-300">System</span>.<span class="text-green-300">err</span>.<span class="text-green-300">println</span>(<span class="text-green-300">"[%s] 错误发生 - Memory ID: %s - Error: %s"</span>,
+            context.<span class="text-green-300">chatMemoryId</span>(), memoryId, error.<span class="text-green-300">getMessage</span>());
+    }
+}</code></pre>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">3.2 TokenListener 示例</h3>
+                    <p class="text-gray-700 mb-6">使用 TokenListener 监控 Token 使用：</p>
+
+                    <div class="relative mb-6">
+                        <div class="absolute top-0 right-0 px-3 py-1 bg-gray-800 text-gray-400 text-xs font-medium rounded-bl-md">TokenListenerExample.java</div>
+                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="text-purple-400">package</span> <span class="text-blue-300">com.example.langchain4j.listeners</span>;
+
+<span class="text-purple-400">import</span> <span class="text-blue-300">dev.langchain4j.model.chat.listener.TokenListener</span>;
+<span class="text-purple-400">import</span> <span class="text-blue-300">java.util.concurrent.atomic.AtomicLong</span>;
+
+<span class="text-gray-500">/**
+ * Token 使用监听器示例
+ * 实时监控 Token 消耗和成本
+ */</span>
+<span class="text-purple-400">public class</span> <span class="text-yellow-300">BudgetTokenListener</span> <span class="text-purple-400">implements</span> <span class="text-blue-300">TokenListener</span> {
+
+    <span class="text-purple-400">private final</span> <span class="text-blue-300">AtomicLong</span> totalTokens = <span class="text-purple-400">new</span> <span class="text-blue-300">AtomicLong</span>(<span class="text-green-300">0</span>);
+    <span class="text-purple-400">private static final</span> <span class="text-blue-300">double</span> <span class="text-yellow-300">BUDGET_THRESHOLD</span> = <span class="text-green-300">100000</span>; <span class="text-gray-500">// 预算阈值：10 万 tokens</span>
+
+    <span class="text-purple-400">@Override</</span>
+    <span class="text-purple-400">public void</span> <span class="text-purple-400">onToken</span>(<span class="text-blue-300">int</span> tokens, <span class="text-blue-300">TokenRequest</span> request) {
+        <span class="text-blue-300">long</span> currentTotal = totalTokens.<span class="text-green-300">addAndGet</span>(tokens);
+        
+        <span class="text-gray-500">// 检查是否超过预算</span>
+        <span class="text-purple-400">if</span> (currentTotal &gt; <span class="text-yellow-300">BUDGET_THRESHOLD</span>) {
+            <span class="text-blue-300">System</span>.<span class="text-green-300">out</span>.<span class="text-green-300">println</span>(<span class="text-green-300">"⚠️  警告：Token 使用超过预算！当前: "</span> + currentTotal + <span class="text-green-300">"</span>);
+            <span class="text-gray-500">// 可选择：抛出异常、降低模型质量、拒绝请求</span>
+        }
+    }
+}</code></pre>
+                    </div>
+                </section>
+
+                <!-- 第4节：实战应用 -->
+                <section id="实战应用" class="mb-16">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-full text-sm font-bold">4</span>
+                        <h2 class="text-2xl font-font-bold text-gray-900">实战应用</h2>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">4.1 集成监听器</h3>
+                    <p class="text-gray-700">将监听器集成到 ChatLanguageModel：</p>
+
+                    <div class="relative mb-6">
+                        <div class="absolute top-0 right-0 px-3 py-1 bg-gray-800 text-gray-400 text-xs font-medium rounded-bl-md">ListenerIntegration.java</div>
+                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="text-purple-400">public class</span> <span class="text-yellow-300">ListenerIntegration</span> {
+
+    <span class="text-purple-400">private final</span> <span class="text-blue-300">ChatLanguageModel</span> chatModel;
+    <span class="text-purple-400">private final</span> <span class="text-blue-300">ModelListener</span> loggingListener;
+    <span class="text-purple-400">private final</span> <span class="text-blue-300">TokenListener</span> tokenListener;
+
+    <span class="text-purple-400">public</span> <span class="text-yellow-300">ListenerIntegration</span>(<span class="text-blue-300">ChatLanguageModel</span> chatModel) {
+        <span class="text-purple-400">this</span>.chatModel = chatModel;
+        <span class="text-purple-400">this</span>.loggingListener = <span class="text-purple-400">new</span> <span class="text-yellow-300">LoggingModelListener</span>();
+        <span class="text-purple-400">this</span>.tokenListener = <span class="text-purple-400">new</span> <span class="text-yellow-300">BudgetTokenListener</span>();
+        
+        <span class="text-gray-500">// 注册监听器</span>
+        chatModel.<span class="text-green-300">addListener</span>(loggingListener);
+        chatModel.<span class="text-green-300">addListener</span>(tokenListener);
+    }
+
+    <span class="text-gray-500">/**
+     * 发送消息并使用监听器
+     */</span>
+    <span class="text-purple-400">public</span> <span class="text-blue-300">String</span> <span class="text-purple-400">sendMessageWithListeners</span>(<span class="text-blue-300">String</span> message) {
+        <span class="text-purple-400">return</span> chatModel.<span class="text-green-300">generate</span>(message);
+    }
+}</code></pre>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">4.2 异步处理</h3>
+                    <p class="text-text-gray-700 mb-6">监听器中的异步处理最佳实践：</p>
+
+                    <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+                        <h4 class="font-semibold text-green-800 mb-3">异步注意事项</h4>
+                        <ul class="text-green-700 space-y-2">
+                            <li><strong>避免阻塞</strong>：监听器中不要执行耗时操作，使用异步 API</li>
+                            <li><strong>错误处理</strong>：监听器中的错误不应影响主流程</li>
+                            <li><strong>幂等性</strong>：确保监听器逻辑可以安全重试</li>
+                            <li><strong>线程安全</strong>：监听器必须是线程安全的</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl p-6 mb-8">
+                        <h3 class="text-xl font-bold text-white mb-2">💡 最佳实践总结</h3>
+                        <ul class="text-indigo-100 space-y-2">
+                            <li><strong>轻量级监听器</strong>：快速执行，避免影响主流程性能</li>
+                            <li><strong>合理使用日志</strong>：适当级别记录关键事件，避免过度日志</li>
+                            <li><strong>组合监听器</strong>：多个监听器可以协同工作实现复杂逻辑</li>
+                            <li><strong>测试覆盖</strong>：为监听器逻辑编写单元测试</li>
+                            <li><strong>监控告警</strong>：使用监听器实现成本控制和异常告警</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- 总结 -->
+                <div class="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl p-8 text-white">
+                    <h3 class="text-2xl font-bold mb-4">本节小结</h3>
+                    <p class="mb-4">本节完整介绍了 LangChain4j 的聊天监听器机制，包括：</p>
+                    <ul class="list-disc list-inside space-y-2 mb-6">
+                        <li><strong>监听器概述</strong>：事件类型、应用场景、核心优势</li>
+                        <li><strong>监听器类型</strong>：ModelListener、TokenListener、ChatMemoryListener、ToolExecutionListener</li>
+                        <li><strong>监听器实现</strong>：完整的代码示例、集成方法</li>
+                        <li><strong>实战应用</strong>：监听器集成、异步处理、最佳实践</li>
+                    </ul>
+                    <div class="border-t border-indigo-400 pt-6">
+                        <p class="text-sm opacity-80 mb-2">🎉 恭喜！</p>
+                        <p class="text-indigo-100 mb-2">所有高级主题页面已完成！剩余 6 个入门页面可根据需要补充。</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

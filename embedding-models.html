@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Embedding模型 - LangChain4j 学习指南</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body class="bg-white text-gray-800 antialiased">
+    <div class="flex min-h-screen">
+        <aside class="w-[280px] fixed left-0 top-0 h-full bg-white border-r border-gray-200 overflow-y-auto z-50">
+            <a href="index.html" class="flex items-center gap-3 mb-8 text-gray-900 no-underline">
+                <div class="w-9 h-9 bg-indigo-600 rounded-lg flex items-center justify-center text-white text-xl">⚡</div>
+                <span class="font-bold text-xl">LangChain4j</span>
+            </a>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">入门</div>
+                <ul class="list-none">
+                    <li><a href="index.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">首页</a></li>
+                    <li><a href="getting-started.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">快速入门</a></li>
+                    <li><a href="core-concepts.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">核心概念</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">基础</div>
+                <ul class="list-none">
+                    <li><a href="embedding-models.html" class="block text-indigo-700 font-medium py-2 px-3 text-sm rounded-md bg-primary-50">Embedding模型</a></li>
+                    <li><a href="prompt-templates.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">Prompt模板</a></li>
+                    <li><a href="output-parsers.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">输出解析</a></li>
+                    <li><a href="model-providers.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">模型提供商</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">进阶</div>
+                <ul class="list-none">
+                    <li><a href="function-calling-deep.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">Function Calling</a></li>
+                    <li><a href="advanced-features.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">高级特性</a></li>
+                    <li><a href="multimodal-full.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">多模态能力</a></li>
+                    <li><a href="project-rag-kb.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">RAG知识库</a></li>
+                    <li><a href="project-ai-assistant.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">AI助手</a></li>
+                    <li><a href="project-chatbot.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">聊天机器人</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">实践</div>
+                <ul class="list-none">
+                    <li><a href="best-practices.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">最佳实践</a></li>
+                    <li><a href="examples.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">实战示例</a></li>
+                    <li><a href="integrations.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">框架集成</a></li>
+                    <li><a href="testing-strategies.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">测试策略</a></li>
+                    <li><a href="performance-tuning.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">性能调优</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">其他</div>
+                <ul class="list-none">
+                    <li><a href="deep-dive.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">深度解析</a></li>
+                    <li><a href="error-handling.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">错误处理</a></li>
+                    <li><a href="moderation-safety.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">内容审核</a></li>
+                    <li><a href="troubleshooting.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">问题排查</a></li>
+                    <li><a href="interview-prep.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">面试准备</a></li>
+                    <li><a href="practice.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">练习项目</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <ul class="list-none">
+                    <li><a href="https://docs.langchain4j.dev" target="_blank" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">📖 官方文档</a></li>
+                    <li><a href="https://github.com/langchain4j/langchain4j" target="_blank" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">🔗 GitHub</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <main class="flex-1 ml-[280px] px-8 py-12 max-w-7xl">
+            <section class="mb-12">
+                <h1 class="text-4xl font-bold text-gray-900 mb-8 leading-tight">Embedding模型</h1>
+                <p class="text-lg text-gray-600 max-w-3xl mb-10 leading-relaxed">
+                    掌握Embedding模型与向量化技术，理解文本语义、相似度计算，为RAG系统打下基础。
+                </p>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold text-gray-900 mb-6 pb-3 border-b border-gray-200">什么是Embedding</h2>
+                <p class="text-gray-600 mb-4">
+                    Embedding是将文本、图像等内容转换为高维向量数字的技术。向量表示保留了语义信息，使得计算机可以计算内容之间的相似度。
+                </p>
+                <div class="bg-gray-50 border border-gray-200 rounded-xl p-6">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">主要特性</h3>
+                    <ul class="list-none space-y-3 text-gray-600 ml-6">
+                        <li class="flex items-start gap-2">
+                            <span class="text-indigo-600">•</span>
+                            <span>将文本转换为固定长度的向量</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-indigo-600">•</span>
+                            <span>语义相似的文本在向量空间中距离更近</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-indigo-600">•</span>
+                            <span>支持多种模型：OpenAI、Hugging Face等</span>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold text-gray-900 mb-6 pb-3 border-b border-gray-200">在LangChain4j中使用</h2>
+                <div class="bg-gray-900 border border-gray-300 rounded-lg overflow-hidden mb-6">
+                    <div class="flex items-center justify-between px-4 py-3 bg-gray-800 border-b border-gray-700">
+                        <div class="flex items-center gap-1.5">
+                            <div class="flex gap-1">
+                                <span class="w-2.5 h-2.5 rounded-full bg-red-500"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-yellow-500"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-green-500"></span>
+                            </div>
+                            <span class="text-gray-400 text-xs font-mono ml-3">EmbeddingModelExample.java</span>
+                        </div>
+                    </div>
+                    <pre class="m-0 font-mono text-sm leading-relaxed text-gray-300 p-4"><code>EmbeddingModel model = OpenAiEmbeddingModel.builder()
+    .apiKey(System.getenv("OPENAI_API_KEY"))
+    .build();
+
+Response response = model.embed("Hello LangChain4j!");
+float[] embedding = response.content()[0].vector();
+System.out.println("Vector dimension: " + embedding.length);</code></pre>
+                </div>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold text-gray-900 mb-6 pb-3 border-b border-gray-200">常用操作</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white border border-gray-200 rounded-xl p-6">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-3">生成Embedding</h3>
+                        <p class="text-sm text-gray-600 mb-3">将单个文本转换为向量</p>
+                        <div class="bg-gray-100 rounded-md p-3 text-xs font-mono text-gray-700">
+                            model.embed("text");
+                        </div>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-xl p-6">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-3">批量Embedding</h3>
+                        <p class="text-sm text-gray-600 mb-3">同时处理多个文本，提高效率</p>
+                        <div class="bg-gray-100 rounded-md p-3 text-xs font-mono text-gray-700">
+                            model.embedAll(Arrays.asList("text1", "text2"));
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-12">
+                <div class="text-center">
+                    <a href="prompt-templates.html" class="inline-flex items-center gap-2 px-6 py-3 bg-indigo-600 text-white rounded-md font-medium hover:bg-indigo-700 transition-all shadow-md">
+                        继续学习 Prompt模板 →
+                    </a>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

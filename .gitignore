@@ -1,0 +1,18 @@
+# 临时文件
+.ai_temp/
+*.tmp
+*.log
+
+# 操作系统
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Node modules (如果有)
+node_modules/

@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>故障排查 - LangChain4j 学习指南</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            200: '#c7d2fe',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-white text-gray-800 antialiased">
+    <div class="flex min-h-screen">
+        <aside class="w-[280px] fixed left-0 top-0 h-full bg-white border-r border-gray-200 overflow-y-auto z-50">
+            <a href="index.html" class="flex items-center gap-3 mb-8 text-gray-900 no-underline">
+                <div class="w-9 h-9 bg-indigo-600 rounded-lg flex items-center justify-center text-white text-xl">⚡</div>
+                <span class="font-bold text-xl">LangChain4j</span>
+            </a>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">入门</div>
+                <ul class="list-none">
+                    <li><a href="index.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">首页</a></li>
+                    <li><a href="getting-started.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">快速入门</a></li>
+                    <li><a href="core-concepts.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">核心概念</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">核心功能</div>
+                <ul class="list-none">
+                    <li><a href="embedding-models.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">嵌入模型</a></li>
+                    <li><a href="prompt-templates.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">提示模板</a></li>
+                    <li><a href="output-parsers.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">输出解析</a></li>
+                    <li><a href="function-calling-deep.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">函数调用</a></li>
+                    <li><a href="advanced-features.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">高级特性</a></li>
+                    <li><a href="multimodal-full.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">多模态处理</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">RAG 完整指南</div>
+                <ul class="list-none">
+                    <li><a href="rag-complete.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">RAG 完整指南</a></li>
+                    <li><a href="project-rag-kb.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">RAG 知识库项目</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">项目实战</div>
+                <ul class="list-none">
+                    <li><a href="project-ai-assistant.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">AI 助手项目</a></li>
+                    <li><a href="project-chatbot.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">聊天机器人项目</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">深入与最佳实践</div>
+                <ul class="list-none">
+                    <li><a href="best-practices.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">最佳实践</a></li>
+                    <li><a href="examples.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">代码示例</a></li>
+                    <li><a href="integrations.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">框架集成</a></li>
+                    <li><a href="testing-strategies.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">测试策略</a></li>
+                    <li><a href="performance-tuning.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">性能调优</a></li>
+                    <li><a href="deep-dive.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">深度解析</a></li>
+                    <li><a href="error-handling.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">错误处理</a></li>
+                    <li><a href="moderation-safety.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">内容审核与安全</a></li>
+                    <li><a href="troubleshooting.html" class="block bg-primary-50 text-indigo-700 no-underline py-2 px-3 text-sm rounded-md font-medium">故障排查</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">高级主题</div>
+                <ul class="list-none">
+                    <li><a href="interview-prep.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">面试准备</a></li>
+                    <li><a href="practice.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">实战练习</a></li>
+                    <li><a href="search.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">搜索功能</a></li>
+                    <li><a href="chat-listeners.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">聊天监听器</a></li>
+                    <li><a href="faq.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">常见问题</a></li>
+                    <li><a href="cost-optimization.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">成本优化</a></li>
+                    <li><a href="deployment.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">部署与运维</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <main class="flex-1 ml-[280px]">
+            <div class="max-w-7xl mx-auto px-8 py-12">
+                <!-- 页面标签 -->
+                <div class="flex items-center gap-2 mb-4">
+                    <span class="px-3 py-1 bg-indigo-100 text-indigo-700 text-xs font-medium rounded-full">故障排查</span>
+                    <span class="px-3 py-1 bg-orange-100 text-orange-700 text-xs font-medium rounded-full">问题诊断</span>
+                    <span class="px-3 py-1 bg-red-100 text-red-700 text-xs font-medium rounded-full">调试技巧</span>
+                </div>
+
+                <h1 class="text-4xl font-bold text-gray-900 mb-4">故障排查</h1>
+                <p class="text-xl text-gray-600 mb-8">常见问题诊断与调试指南，快速定位和解决问题</p>
+
+                <!-- 目录 -->
+                <nav class="bg-gray-50 border border-gray-200 rounded-xl p-6 mb-8">
+                    <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">目录</h3>
+                    <ol class="space-y-2 text-sm text-gray-700">
+                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">1.</span> <a href="#常见问题诊断" class="hover:text-indigo-600 transition-colors">常见问题诊断</a></li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">2.</span> <a href="#调试技巧" class="hover:text-indigo-600 transition-colors">调试技巧</a></li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">3.</span> <a href="#性能问题排查" class="hover:text-indigo-600 transition-colors">性能问题排查</a></li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">4.</span> <a href="#错误处理排查" class="hover:text-indigo-600 transition-colors">错误处理排查</a></li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">5.</span> <a href="#配置问题排查" class="hover:text-indigo-600 transition-colors">配置问题排查</a></li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">6.</span> <a href="#实战案例" class="hover:text-indigo-600 transition-colors">实战案例</a></li>
+                    </ol>
+                </nav>
+
+                <!-- 第1节：常见问题诊断 -->
+                <section id="常见问题诊断" class="mb-16">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-full text-sm font-bold">1</span>
+                        <h2 class="text-2xl font-bold text-gray-900">常见问题诊断</h2>
+                    </div>
+
+                    <p class="text-gray-700 mb-6">本节介绍 LangChain4j 应用中常见的各种问题及其诊断方法。</p>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">1.1 网络连接问题</h3>
+                    <p class="text-gray-700 mb-4">网络连接失败是常见问题，可能的原因和解决方案：</p>
+
+                    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
+                        <h4 class="font-semibold text-blue-800 mb-2">问题现象</h4>
+                        <p class="text-blue-700 text-sm">连接超时、DNS 解析失败、HTTP 错误</p>
+                    </div>
+
+                    <div class="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
+                        <h4 class="font-semibold text-green-800 mb-2">可能原因</h4>
+                        <ul class="text-green-700 text-sm space-y-1">
+                            <li>• 网络配置错误（代理、防火墙）</li>
+                            <li>• API 服务端不可用</li>
+                            <li>• 超时设置过短</li>
+                        </ul>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">1.2 认证失败问题</h3>
+                    <p class="text-gray-700 mb-4">API Key 认证失败的常见原因：</p>
+
+                    <ul class="list-disc list-inside text-gray-700 mb-6 space-y-2">
+                        <li><strong>API Key 无效</strong>: 检查 API Key 是否正确复制</li>
+                        <li><strong>API Key 过期</strong>: 重新生成或更新 API Key</li>
+                        <li><strong>权限不足</strong>: 检查 API Key 的访问权限</li>
+                        <li><strong>配额超限</strong>: 检查账户余额和使用量</li>
+                    </ul>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">1.3 性能问题</h3>
+                    <p class="text-gray-700 mb-4">响应慢、内存占用高是性能问题的典型表现：</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                        <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                            <h4 class="font-semibold text-yellow-800 mb-2">响应慢</h4>
+                            <p class="text-yellow-700 text-sm">单次请求超过 10 秒</p>
+                        </div>
+                        <div class="bg-orange-50 border border-orange-200 rounded-lg p-4">
+                            <h4 class="font-semibold text-orange-800 mb-2">内存占用高</h4>
+                            <p class="text-orange-700 text-sm">JVM 内存占用超过 80%</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 第2节：调试技巧 -->
+                <section id="调试技巧" class="mb-16">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-full text-sm font-bold">2</span>
+                        <h2 class="text-2xl font-bold text-gray-900">调试技巧</h2>
+                    </div>
+
+                    <p class="text-gray-700 mb-6">使用以下调试技巧快速定位问题：</p>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">2.1 启用调试日志</h3>
+                    <div class="relative mb-6">
+                        <div class="absolute top-0 right-0 px-3 py-1 bg-gray-800 text-gray-400 text-xs font-medium rounded-bl-md">DebugLogging.java</div>
+                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="text-purple-400">package</span> <span class="text-blue-300">com.example.langchain4j.debug</span>;
+
+<span class="text-purple-400">import</span> <span class="text-blue-300">org.slf4j.Logger</span>;
+<span class="text-purple-400">import</span> <span class="text-blue-300">org.slf4j.LoggerFactory</span>;
+
+<span class="text-gray-500">/**
+ * 调试日志工具
+ * 启用详细的调试日志输出
+ */</span>
+<span class="text-purple-400">public class</span> <span class="text-yellow-300">DebugLogging</span> {
+
+    <span class="text-purple-400">private static final</span> <span class="text-blue-300">Logger</span> logger = <span class="text-blue-300">LoggerFactory</span>.<span class="text-yellow-300">getLogger</span>(<span class="text-yellow-300">DebugLogging</span>.<span class="text-yellow-300">class</span>);
+
+    <span class="text-gray-500">/**
+     * 开启调试日志
+     */</span>
+    <span class="text-purple-400">public static void</span> <span class="text-yellow-300">enableDebugLogging</span>() {
+        <span class="text-blue-300">System</span>.<span class="text-yellow-300">setProperty</span>(<span class="text-green-300">"dev.langchain4j.logging.level"</span>, <span class="text-green-300">"DEBUG"</span>);
+        logger.<span class="text-yellow-300">info</span>(<span class="text-green-300">"调试日志已启用"</span>);
+    }
+
+    <span class="text-gray-500">/**
+     * 记录请求详情
+     */</span>
+    <span class="text-purple-400">public static void</span> <span class="text-yellow-300">logRequestDetails</span>(<span class="text-blue-300">String</span> prompt, <span class="text-blue-300">String</span> modelName) {
+        logger.<span class="text-yellow-300">debug</span>(<span class="text-green-300">"请求详情 - Prompt: {}, Model: {}"</span>, prompt, modelName);
+    }
+}</code></pre>
+                    </div>
+                </section>
+
+                <!-- 第3节：性能问题排查 -->
+                <section id="性能问题排查" class="mb-16">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-full text-sm font-bold">3</span>
+                        <h2 class="text-2xl font-bold text-gray-900">性能问题排查</h2>
+                    </div>
+
+                    <p class="text-gray-700 mb-6">使用以下方法排查和解决性能问题：</p>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">3.1 响应时间分析</h3>
+                    <ul class="list-disc list-inside text-gray-700 mb-6 space-y-2">
+                        <li><strong>监控 P95/P99 响应时间</strong>: 使用 APM 工具监控</li>
+                        <li><strong>分析慢请求</strong>: 记录响应时间超过阈值的请求</li>
+                        <li><strong>优化超时配置</strong>: 根据实际响应时间调整超时设置</li>
+                    </ul>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">3.2 连接池配置</h3>
+                    <p class="text-gray-700 mb-4">优化 HTTP 连接池配置提升性能：</p>
+
+                    <ul class="list-disc list-inside text-gray-700 mb-6 space-y-2">
+                        <li><strong>最大连接数</strong>: 设置合理的最大连接数（通常 20-50）</li>
+                        <li><strong>连接超时</strong>: 设置合理的连接超时（通常 5-10 秒）</li>
+                        <li><strong>空闲连接回收</strong>: 及时回收空闲连接</li>
+                    </ul>
+                </section>
+
+                <!-- 第4节：错误处理排查 -->
+                <section id="错误处理排查" class="mb-16">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-full text-sm font-bold">4</span>
+                        <h2 class="text-2xl font-bold text-gray-900">错误处理排查</h2>
+                    </div>
+
+                    <p class="text-gray-700 mb-6">系统地排查和处理错误：</p>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">4.1 异常堆栈分析</h3>
+                    <p class="text-gray-700 mb-4">通过分析异常堆栈定位问题根源：</p>
+
+                    <ul class="list-disc list-inside text-gray-700 mb-6 space-y-2">
+                        <li><strong>查看顶层异常</strong>: 关注最外层的异常类型</li>
+                        <li><strong>查看异常原因</strong>: 检查 cause 属性获取根本原因</li>
+                        <li><strong>定位异常位置</strong>: 查看堆栈中的类名和方法名</li>
+                    </ul>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">4.2 日志聚合工具</h3>
+                    <p class="text-gray-700 mb-4">使用专业的日志聚合工具分析错误：</p>
+
+                    <ul class="list-disc list-inside text-gray-700 mb-6 space-y-2">
+                        <li><strong>ELK Stack</strong>: Elasticsearch + Logstash + Kibana</li>
+                        <li><strong>Splunk</strong>: 企业级日志分析平台</li>
+                        <li><strong>Grafana</strong>: 配合 Prometheus 进行可视化监控</li>
+                    </ul>
+                </section>
+
+                <!-- 第5节：配置问题排查 -->
+                <section id="配置问题排查" class="mb-16">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-full text-sm font-bold">5</span>
+                        <h2 class="text-2xl font-bold text-gray-900">配置问题排查</h2>
+                    </div>
+
+                    <p class="text-gray-700 mb-6">排查和优化各种配置问题：</p>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">5.1 API Key 配置</h3>
+                    <ul class="list-disc list-inside text-gray-700 mb-6 space-y-2">
+                        <li><strong>环境变量</strong>: 使用环境变量存储 API Key，避免硬编码</li>
+                        <li><strong>配置验证</strong>: 启动时验证 API Key 有效性</li>
+                        <li><strong>密钥轮换</strong>: 定期轮换 API Key 提升安全性</li>
+                    </ul>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">5.2 超时设置</h3>
+                    <p class="text-gray-700 mb-4">合理配置超时参数平衡响应速度和稳定性：</p>
+
+                    <ul class="list-disc list-inside text-gray-700 mb-6 space-y-2">
+                        <li><strong>连接超时</strong>: 5-10 秒（网络不稳定时适当延长）</li>
+                        <li><strong>读取超时</strong>: 根据模型复杂度调整（GPT-4: 60 秒，GPT-3.5: 30 秒）</li>
+                        <li><strong>重试超时</strong>: 考虑重试总时长（超时次数 × 单次超时）</li>
+                    </ul>
+                </section>
+
+                <!-- 第6节：实战案例 -->
+                <section id="实战案例" class="mb-16">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-full text-sm font-bold">6</span>
+                        <h2 class="text-2xl font-bold text-gray-900">实战案例：完整的故障排查流程</h2>
+                    </div>
+
+                    <p class="text-gray-700 mb-6">本节通过完整的实战案例，演示故障排查的完整流程。</p>
+
+                    <div class="relative mb-6">
+                        <div class="absolute top-0 right-0 px-3 py-1 bg-gray-800 text-gray-400 text-xs font-medium rounded-bl-md">TroubleshootingWorkflow.java</div>
+                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="text-purple-400">package</span> <span class="text-blue-300">com.example.langchain4j.troubleshooting</span>;
+
+<span class="text-purple-400">import</span> <span class="text-blue-300">dev.langchain4j.model.chat.ChatLanguageModel</span>;
+<span class="text-purple-400">import</span> <span class="text-blue-300">dev.langchain4j.data.message.UserMessage</span>;
+
+<span class="text-gray-500">/**
+ * 故障排查工作流
+ * 完整的 5 步故障排查流程
+ */</span>
+<span class="text-purple-400">public class</span> <span class="text-yellow-300">TroubleshootingWorkflow</span> {
+
+    <span class="text-purple-400">public static void</span> <span class="text-yellow-300">troubleshoot</span>(<span class="text-blue-300">ChatLanguageModel</span> model, <span class="text-blue-300">String</span> problem) {
+        
+        <span class="text-gray-500">// 步骤 1: 识别问题现象</span>
+        <span class="text-blue-300">String</span> symptom = <span class="text-yellow-300">identifySymptom</span>(problem);
+        <span class="text-blue-300">System</span>.<span class="text-yellow-300">out</span>.<span class="text-yellow-300">println</span>(<span class="text-green-300">"[步骤1] 问题现象: "</span> + symptom);
+        
+        <span class="text-gray-500">// 步骤 2: 诊断过程</span>
+        <span class="text-blue-300">String</span> diagnosis = <span class="text-yellow-300">diagnoseProblem</span>(symptom, model);
+        <span class="text-blue-300">System</span>.<span class="text-yellow-300">out</span>.<span class="text-yellow-300">println</span>(<span class="text-green-300">"[步骤2] 诊断结果: "</span> + diagnosis);
+        
+        <span class="text-gray-500">// 步骤 3: 分析根因</span>
+        <span class="text-blue-300">String</span> rootCause = <span class="text-yellow-300">analyzeRootCause</span>(diagnosis);
+        <span class="text-blue-300">System</span>.<span class="text-yellow-300">out</span>.<span class="text-yellow-300">println</span>(<span class="text-green-300">"[步骤3] 根本原因: "</span> + rootCause);
+        
+        <span class="text-gray-500">// 步骤 4: 提出解决方案</span>
+        <span class="text-blue-300">String</span> solution = <span class="text-yellow-300">proposeSolution</span>(rootCause);
+        <span class="text-blue-300">System</span>.<span class="text-yellow-300">out</span>.<span class="text-yellow-300">println</span>(<span class="text-green-300">"[步骤4] 解决方案: "</span> + solution);
+        
+        <span class="text-gray-500">// 步骤 5: 预防措施</span>
+        <span class="text-blue-300">String</span> prevention = <span class="text-yellow-300">definePrevention</span>(rootCause);
+        <span class="text-blue-300">System</span>.<span class="text-yellow-300">out</span>.<span class="text-yellow-300">println</span>(<span class="text-green-300">"[步骤5] 预防措施: "</span> + prevention);
+    }
+
+    <span class="text-purple-400">private static</span> <span class="text-blue-300">String</span> <span class="text-yellow-300">identifySymptom</span>(<span class="text-blue-300">String</span> problem) {
+        <span class="text-purple-400">return</span> <span class="text-green-300">"响应时间超过 30 秒"</span>;
+    }
+
+    <span class="text-purple-400">private static</span> <span class="text-blue-300">String</span> <span class="text-yellow-300">diagnoseProblem</span>(<span class="text-blue-300">String</span> symptom, <span class="text-blue-300">ChatLanguageModel</span> model) {
+        <span class="text-purple-400">return</span> <span class="text-green-300">"网络延迟高或超时设置过短"</span>;
+    }
+
+    <span class="text-purple-400">private static</span> <span class="text-blue-300">String</span> <span class="text-yellow-300">analyzeRootCause</span>(<span class="text-blue-300">String</span> diagnosis) {
+        <span class="text-purple-400">return</span> <span class="text-green-300">"超时配置不合理或网络不稳定"</span>;
+    }
+
+    <span class="text-purple-400">private static</span> <span class="text-blue-300">String</span> <span class="text-yellow-300">proposeSolution</span>(<span class="text-blue-300">String</span> rootCause) {
+        <span class="text-purple-400">return</span> <span class="text-green-300">"增加超时时间至 60 秒，添加重试机制"</span>;
+    }
+
+    <span class="text-purple-400">private static</span> <span class="text-blue-300">String</span> <span class="text-yellow-300">definePrevention</span>(<span class="text-blue-300">String</span> rootCause) {
+        <span class="text-purple-400">return</span> <span class="text-green-300">"监控响应时间，设置合理的超时阈值"</span>;
+    }
+}</code></pre>
+                    </div>
+                </section>
+
+                <!-- 总结 -->
+                <div class="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl p-8 text-white">
+                    <h3 class="text-2xl font-bold mb-4">本章小结</h3>
+                    <p class="mb-4">全面介绍了故障排查的方法和技巧。通过掌握这些技能，您可以：</p>
+                    <ul class="list-disc list-inside space-y-2 mb-6">
+                        <li><strong>快速定位</strong>：系统地定位问题根源，避免盲目试错</li>
+                        <li><strong>高效调试</strong>：使用调试工具和日志快速发现问题</li>
+                        <li><strong>优化性能</strong>：识别性能瓶颈，提升应用响应速度</li>
+                        <li><strong>预防问题</strong>：通过监控和日志预防潜在问题</li>
+                    </ul>
+                    <div class="border-t border-indigo-400 pt-6">
+                        <p class="text-sm opacity-80 mb-2">核心特性</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-white/20 rounded-full text-sm">问题诊断</span>
+                            <span class="px-3 py-1 bg-white/20 rounded-full text-sm">调试技巧</span>
+                            <span class="px-3 py-1 bg-white/20 rounded-full text-sm">性能分析</span>
+                            <span class="px-3 py-1 bg-white/20 rounded-full text-sm">日志聚合</span>
+                            <span class="px-3 py-1 bg-white/20 rounded-full text-sm">配置优化</span>
+                        </div>
+                        <p class="text-sm opacity-80 mb-2">技术栈</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-white/20 rounded-full text-sm">LangChain4j</span>
+                            <span class="px-3 py-1 bg-white/20 rounded-full text-sm">SLF4J</span>
+                            <span class="px-3 py-1 bg-white/20 rounded-full text-sm">ELK</span>
+                            <span class="px-3 py-1 bg-white/20 rounded-full text-sm">APM</span>
+                        </div>
+                        <a href="interview-prep.html" class="inline-flex items-center gap-2 text-white hover:text-indigo-200 transition-colors">
+                            下一章：面试准备 →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

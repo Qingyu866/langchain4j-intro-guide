@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>实战练习 - LangChain4j 学习指南</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            200: '#c7d2fe',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-white text-gray-800 antialiased">
+    <div class="flex min-h-screen">
+        <aside class="w-[280px] fixed left-0 top-0 h-full bg-white border-r border-gray-200 overflow-y-auto z-50">
+            <a href="index.html" class="flex items-center gap-3 mb-8 text-gray-900 no-underline">
+                <div class="w-9 h-9 bg-indigo-600 rounded-lg flex items-center justify-center text-white text-xl">⚡</div>
+                <span class="font-bold text-xl">LangChain4j</span>
+            </a>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">入门</div>
+                <ul class="list-none">
+                    <li><a href="index.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">首页</a></li>
+                    <li><a href="getting-started.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">快速入门</a></li>
+                    <li><a href="core-concepts.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">核心概念</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">核心功能</div>
+                <ul class="list-none">
+                    <li><a href="embedding-models.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">嵌入模型</a></li>
+                    <li><a href="prompt-templates.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">提示模板</a></li>
+                    <li><a href="output-parsers.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">输出解析</a></li>
+                    <li><a href="function-calling-deep.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">函数调用</a></li>
+                    <li><a href="advanced-features.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">高级特性</a></li>
+                    <li><a href="multimodal-full.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">多模态处理</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">RAG 完整指南</div>
+                <ul class="list-none">
+                    <li><a href="rag-complete.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">RAG 完整指南</a></li>
+                    <li><a href="project-rag-kb.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">RAG 知识库项目</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">项目实战</div>
+                <ul class="list-none">
+                    <li><a href="project-ai-assistant.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">AI 助手项目</a></li>
+                    <li><a href="project-chatbot.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">聊天机器人项目</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">深入与最佳实践</div>
+                <ul class="list-none">
+                    <li><a href="best-practices.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">最佳实践</a></li>
+                    <li><a href="examples.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">代码示例</a></li>
+                    <li><a href="integrations.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">框架集成</a></li>
+                    <li><a href="testing-strategies.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">测试策略</a></li>
+                    <li><a href="performance-tuning.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">性能调优</a></li>
+                    <li><a href="deep-dive.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">深度解析</a></li>
+                    <li><a href="error-handling.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">错误处理</a></li>
+                    <li><a href="moderation-safety.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">内容审核与安全</a></li>
+                    <li><a href="troubleshooting.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">故障排查</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">高级主题</div>
+                <ul class="list-none">
+                    <li><a href="interview-prep.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">面试准备</a></li>
+                    <li><a href="practice.html" class="block bg-primary-50 text-indigo-700 no-underline py-2 px-3 text-sm rounded-md font-medium">实战练习</a></li>
+                    <li><a href="search.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">搜索功能</a></li>
+                    <li><a href="chat-listeners.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">聊天监听器</a></li>
+                    <li><a href="faq.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">常见问题</a></li>
+                    <li><a href="cost-optimization.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">成本优化</a></li>
+                    <li><a href="deployment.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">部署与运维</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <main class="flex-1 ml-[280px]">
+            <div class="max-w-7xl mx-auto px-8 py-12">
+                <!-- 页面标签 -->
+                <div class="flex items-center gap-2 mb-4">
+                    <span class="px-3 py-1 bg-indigo-100 text-indigo-700 text-xs font-medium rounded-full">实战练习</span>
+                    <span class="px-3 py-1 bg-purple-100 text-purple-700 text-xs font-medium rounded-full">项目实战</span>
+                    <span class="px-3 py-1 bg-green-100 text-green-700 text-xs font-medium rounded-full">完整流程</span>
+                </div>
+
+                <h1 class="text-4xl font-bold text-gray-900 mb-4">实战练习</h1>
+                <p class="text-xl text-gray-600 mb-8">通过三个完整的实战项目，掌握 LangChain4j 的实际应用开发</p>
+
+                <!-- 目录 -->
+                <nav class="bg-gray-50 border border-gray-200 rounded-xl p-6 mb-8">
+                    <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">目录</h3>
+                    <ol class="space-y-2 text-sm text-gray-700">
+                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">1.</span> <a href="#实战项目概述" class="hover:text-indigo-600 transition-colors">实战项目概述</a></li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">2.</span> <a href="#rag知识库项目实战" class="hover:text-indigo-600 transition-colors">RAG 知识库项目</a></li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">3.</span> <a href="#ai助手项目实战" class="hover:text-indigo-600 transition-colors">AI 助手项目</a></li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">4.</span> <a href="#聊天机器人项目实战" class="hover:text-indigo-600 transition-colors">聊天机器人项目</a></li>
+                    </ol>
+                </nav>
+
+                <!-- 第1节：实战项目概述 -->
+                <section id="实战项目概述" class="mb-16">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-full text-sm font-bold">1</span>
+                        <h2 class="text-2xl font-bold text-gray-900">实战项目概述</h2>
+                    </div>
+
+                    <p class="text-gray-700 mb-6">本节介绍三个实战项目的整体设计思路、技术栈选择和项目复杂度，帮助您在实际开发中做出正确的技术决策。</p>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">1.1 项目类型与复杂度</h3>
+                    <p class="text-gray-700 mb-4">三个实战项目代表了 LangChain4j 的典型应用场景：</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                        <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                            <h4 class="font-semibold text-blue-800 mb-2">RAG 知识库项目</h4>
+                            <p class="text-blue-700 text-sm mb-2">企业级文档管理系统</p>
+                            <p class="text-blue-600 text-sm">• 复杂度：⭐⭐⭐⭐</p>
+                            <p class="text-blue-600 text-sm">• 核心功能：文档向量化、语义检索、相似度匹配</p>
+                        </div>
+                        <div class="bg-purple-50 border border-purple-200 rounded-lg p-4">
+                            <h4 class="font-semibold text-purple-800 mb-2">AI 助手项目</h4>
+                            <p class="text-purple-700 text-sm mb-2">企业级智能助手</p>
+                            <p class="text-purple-600 text-sm">• 复杂度：⭐⭐⭐</p>
+                            <p class="text-purple-600 text-sm">• 核心功能：多模型支持、上下文管理、函数调用</p>
+                        </div>
+                        <div class="bg-orange-50 border-orange-200 rounded-lg p-4">
+                            <h4 class="font-semibold text-orange-800 mb-2">聊天机器人项目</h4>
+                            <p class="text-orange-700 text-sm mb-2">实时聊天应用</p>
+                            <p class="text-orange-600 text-sm">• 复杂度：⭐⭐⭐</p>
+                            <p class="text-orange-600 text-sm">• 核心功能：实时通信、多用户支持、WebSocket 连接</p>
+                        </div>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">1.2 技术栈选择</h3>
+                    <p class="text-gray-700 mb-4">三个项目统一使用以下技术栈：</p>
+
+                    <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
+                        <ul class="space-y-2 text-gray-700 mb-4">
+                            <li><strong>LangChain4j</strong>: AI 框架的核心，提供统一的 API</li>
+                            <li><strong>Spring Boot 3.2.x</strong>: 企业级应用框架，提供依赖注入和自动配置</li>
+                            <li><strong>PostgreSQL</strong>: 向量数据库，支持 PGVector 扩展</li>
+                            <li><strong>Redis</strong>: 缓存和会话存储</li>
+                            <li><strong>React</strong>: 现代化前端框架（聊天机器人）</li>
+                            <li><strong>Docker</strong>: 容器化部署和微服务架构</li>
+                            <li><strong>PGVector</strong>: 向量数据库向量扩展，高效相似度搜索</li>
+                        </ul>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">1.3 项目规模与时间估算</h3>
+                    <p class="text-gray-700 mb-4">三个项目的规模和开发时间估算：</p>
+
+                    <div class="table-auto border-collapse border border-gray-200 rounded-lg overflow-hidden">
+                        <table class="w-full text-left">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-sm font-semibold text-gray-500">项目</th>
+                                    <th class="后端复杂度</th>
+                                    <th class="px-6 py-3 text-left text-sm font-semibold text-gray-500">前端复杂度</th>
+                                    <th class="px-6 py-3 text-left text-sm font-semibold text-gray-500">预估开发周期</th>
+                                </tr>
+                                <th class="px-6 py-3 text-left text-sm font-semibold text-gray-500">代码行数</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="px-6 py-3">RAG 知识库</td>
+                                    <td class="px-6 py-3">⭐⭐⭐⭐</td>
+                                    <td class="px-6 py-3">⭐⭐</td>
+                                    <td class="px-6 py-3">3-4 周</td>
+                                    <td class="px-6 py-3">3000-4000 行</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-3">AI 助手</td>
+                                    <td class="px-6 py-3">⭐⭐⭐⭐</td>
+                                    <td class="px-6 py-3">⭐⭐</td>
+                                    <td class="px-6 py-3">4-6 周</td>
+                                    <td class="px-6 py-3">4000-5000 行</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-3">聊天机器人</td>
+                                    <td class="px-6 py-3">⭐⭐⭐⭐</td>
+                                    <td class="px-6 py-3">⭐⭐</td>
+                                    <td class="px-6 py-3">5-6 周</td>
+                                    <td class="px-6 py-3">5000-6000 行</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- 第2节：RAG 知识库项目实战 -->
+                <section id="rag知识库项目实战" class="mb-16">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-full text-sm font-bold">2</span>
+                        <h2 class="text-2xl font-bold text-gray-900">RAG 知识库项目实战</h2>
+                    </div>
+
+                    <p class="text-gray-700 mb-6">构建一个完整的企业级文档管理系统，实现文档向量化、语义检索和智能问答。</p>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">2.1 系统架构设计</h3>
+                    <p class="text-gray-700 mb-4">使用分层架构，确保系统的可扩展性和可维护性：</p>
+
+                    <div class="relative mb-6">
+                        <div class="absolute top-0 right-0 px-3 py-1 bg-gray-800 text-gray-400 text-xs font-medium rounded-bl-md">RAGArchitecture.java</div>
+                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="text-purple-400">package</span> <span class="text-blue-300">com.example.langchain4j.rag</span>;
+
+<span class="text-purple-400">import</span> <span class="text-blue-300">org.springframework.boot.SpringApplication</span>;
+<span class="text-purple-400">import</span> <span class="text-blue-300">org.springframework.web.bind.annotation.RestController</span>;
+
+<span class="text-gray-500">/**
+ * RAG 知识库项目架构
+ * 企业级文档管理系统架构
+ */</span>
+<span class="text-purple-400">@RestController</span>
+<span class="text-yellow-300">RequestMapping</span>(<span class="text-green-300">"/api/documents"</span>)
+<span class="text-purple-400">public class</span> <span class="text-blue-300">class</span> <span class="text-yellow-300">RagController</span> {
+
+    <span class="text-gray-500">/**
+     * 上传文档接口
+     */</span>
+    <span class="text-purple-400">@PostMapping</span>(<span class="text-green-300">"/upload"</span>)
+    <span class="text-blue-300">public</span> <span class="text-yellow-300">Document</span> <span class="text-purple-400">uploadDocument</span>(<span class="text-blue-300">@RequestParam</span>(<span class="text-green-300">"file"</span>) <span class="text-blue-300">MultipartFile</span> file) {
+        <span class="text-purple-400">// 保存文件到向量数据库</span>
+        <span class="text-blue-300">String</span> fileId = <span class="text-yellow-300">documentService</span>.<span class="text-green-300">saveDocument</span>(file);
+        <span class="text-purple-400">return</span> <span class="text-blue-300">fileId</span>;
+    }
+
+    <span class="text-gray-500">/**
+     * 搜索接口
+     */</span>
+    <span class="text-purple-400">@GetMapping</span>(<span class="text-green-300">"/search"</span>)
+    <span class="text-blue-300">public</span> <span class="text-yellow-300">SearchResponse</span> <span class="text-purple-400">search</span>(<span class="text-blue-300">@RequestParam</span>(<span class="text-green-300">"query"</span>) <span class="text-blue-300">String</span> query) {
+        <span class="text-purple-400">// 调用向量搜索服务</span>
+        <span class="text-blue-300">List&lt;Document&gt;</span> documents = <span class="text-yellow-300">documentService</span>.<span class="text-green-300">searchDocuments</span>(query);
+        <span class="text-purple-400">return</span> <span class="text-blue-300">new</span> <span class="text-yellow-300">SearchResponse</span>(<span class="text-green-300">documents</span>);
+    }
+}</code></pre>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">2.2 向量数据库配置</h3>
+                    <p class="text-gray-700 mb-4">配置 PostgreSQL + PGVector 扩展，实现高效的向量存储和相似度计算：</p>
+
+                    <div class="relative mb-6">
+                        <div class="absolute top-0 right-0 px-3 py-1 bg-gray-800 text-gray-400 text-xs font-medium rounded-bl-md">PGVectorConfig.java</div>
+                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="text-purple-400">package</span> <span class="text-blue-300">com.example.langchain4j.rag</span>;
+
+<span class="text-purple-400">import</span> <span class="text-blue-300">org.springframework.context.annotation.Configuration</span>;
+
+<span class="text-gray-500">/**
+ * 向量数据库配置
+ * 使用 PGVector 扩展实现向量存储
+ */</span>
+<span class="text-purple-400">@Configuration</span>
+<span class="text-yellow-300">public class</span> <span class="text-blue-300">class</span> <span class="text-yellow-300">PGVectorConfig</span> {
+
+    <span class="text-gray-500">/**
+     * 向量维度配置
+     */</span>
+    <span class="text-purple-400">private</span> <span class="text-blue-300">int</span> <span class="text-yellow-300">vectorDimension = <span class="text-green-300">1536</span>;
+
+    <span class="text-gray-500">/**
+     * 创建 PGVector 扩展
+     */</span>
+    <span class="text-purple-400">@Bean</span>
+    <span class="text-yellow-300">public</span> <span class="text-green-300">org.springframework.context.annotation.Bean</span>;
+    <span class="text-blue-300">Extension</span> <span class="text-yellow-300">createExtension</span>(<span class="text-green-300">"pgvector"</span>, <span class="text-blue-300">PGVectorExtension</span>.<span class="text-yellow-300">class</span>);
+}</code></pre>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">2.3 文档向量化</h3>
+                    <p class="text-gray-700 mb-4">使用 Embedding 模型将文档转换为向量：</p>
+
+                    <div class="relative mb-6">
+                        <div class="absolute top-0 right-0 px-3 py-1 bg-gray-800 text-gray-400 text-xs font-medium rounded-bl-md">DocumentEmbedder.java</div>
+                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="text-purple-400">package</span> <span class="text-blue-300">com.example.langchain4j.rag</span>;
+
+<span class="text-purple-400">import</span> <span class="text-blue-300">dev.langchain4j.model.embedding.EmbeddingModel</span>;
+<span class="text-purple-400">import</span> <span class="text-blue-300">java.util.List</span>;
+
+<span class="text-gray-500">/**
+ * 文档向量化工具
+ */</span>
+<span class="text-purple-400">public class</span> <span class="text-yellow-300">DocumentEmbedder</span> {
+
+    <span class="text-purple-400">private final</span> <span class="text-blue-300">EmbeddingModel</span> <span class="text-yellow-300">embeddingModel</span>;
+
+    <span class="text-gray-500">/**
+     * 向量化文档
+     */</span>
+    <span class="text-purple-400">public</span> <span class="text-blue-300">float</span> <span class="text-yellow-300">embed</span>(<span class="text-green-300">String</span> text) {
+        <span class="text-purple-400">// 调用嵌入模型</span>
+        <span class="text-blue-300">return</span> <span class="text-yellow-300">embeddingModel</span>.<span class="text-green-300">embed</span>(text).<span class="text-blue-300">content</span>());
+    }
+}</code></pre>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">2.4 相似度计算</h3>
+                    <p class="text-gray-700 mb-4">使用余弦相似度算法计算文档相似度：</p>
+
+                    <div class="relative mb-6">
+                        <div class="absolute top-0 right-0 px-3 py-1 bg-gray-800 text-gray-400 text-xs font-medium rounded-bl-md">SimilarityCalculator.java</div>
+                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="text-purple-400">package</span> <span class="text-blue-300">com.example.langchain4j.rag</span>;
+
+<span class="text-purple-400">import</span> <span class="text-blue-300">java.util.List</span>;
+<span class="text-purple-400">import</span> <span class="text-blue-300">java.util.Map</span>;
+
+<span class="text-gray-500">/**
+ * 相似度计算器
+ * 使用余弦相似度计算文档相似度
+ */</span>
+<span class="text-purple-400">public class</span> <span class="text-yellow-300">SimilarityCalculator</span> {
+
+    <span class="text-purple-400">private static</span> <span class="text-blue-300">float</span> <span class="text-yellow-300">cosineSimilarity</span>(<span class="text-green-300">String</span> text1, <span class="text-blue-300">String</span> text2) {
+        <span class="text-purple-400">// 计算两个字符串的余弦相似度</span>
+        <span class="text-blue-300">int</span> len1 = <span class="text-yellow-300">text1</span>.<span class="text-green-300">length</span>();
+        <span class="text-purple-400">int</span> len2 = <span class="text-blue-300">text2</span>.<span class="text-yellow-300">length</span>.<span class="text-green-300">length</span>();
+
+        <span class="text-purple-400">// 简化的余弦相似度计算</span>
+        <span class="text-blue-300">return</span> <span class="text-yellow-300">0.0</span>;
+    }
+
+    <span class="text-gray-500">/**
+     * 计算余弦相似度（完整版）
+     */</span>
+    <span class="text-purple-400">public static</span> <span class="text-blue-300">float</span> <span class="text-yellow-300">cosineSimilarityFull</span>(<span class="text-green-300">String</span> text1, <span class="text-blue-300">String</span> text2) {
+        <span class="text-purple-400">// 考虑大小写、空格、标点符号</span>
+        <span class="text-blue-300">String</span> t1 = <span class="text-yellow-300">text1</span>.<span class="text-green-300">toLowerCase</span>();
+        <span class="text-purple-400">String</span> t2 = <span class="text-blue-300">text2</span>.<span class="text-yellow-300">toLowerCase</</span>();
+
+        <span class="text-gray-500">// 计算 Jaccard 相似度</span>
+        <span class="text-purple-400">int</span> intersectionSize = <span class="text-blue-300">0</span>;
+        <span class="text-yellow-300">int</span> maxDistance = <span class="text-green-300">Math</span>.<span class="text-blue-300">min</span>(text1.<span class="text-yellow-300">length</span>(), text2.<span class="text-green-300">length</span>()) / <span class="text-blue-300">2</span>;
+
+        <span class="text-gray-500">// 计算 Levenshtein 距离</span>
+        <span class="text-purple-400">for</span> (<span class="text-blue-300">int</span> i = <span class="text-yellow-300">0</span>; i <= maxDistance; i++) {
+            <span class="text-green-300">if</span> (i >= t1.<span class="text-blue-300">length</span>()) <span class="text-yellow-300">intersectionSize</span>++;
+            <span class="text-purple-400">if</span> (t2.<span class="text-blue-300">length</span>() > <span class="text-yellow-300">i</span> t1.<span class="text-green-300">length</span>()) <span class="text-blue-300">intersectionSize</span>++;
+        }
+
+        <span class="text-gray-500">// 计算相似度（Jaccard / (1 + Levenshtein)）</span>
+        <span class="text-purple-400">float</span> jaccard = (<span class="text-blue-300">1</span> - <span class="text-yellow-300">jaccard</span>(<span class="text-green-300">2</span>) / <span class="text-blue-300">(1</span> + <span class="text-yellow-300">0.5f</span>);
+        <span class="text-purple-400">float</span> levenshtein = <span class="text-blue-300">levenshtein</span>(<span class="text-green-300">1</span> <span class="text-blue-300">t1</span>.<span class="text-yellow-300">substring</span>(<span class="text-green-300">0</span>, i, <span class="text-blue-300">Math</span>.<span class="text-yellow-300">min</span>(i + <span class="text-purple-400">len2</span>(), <span class="text-blue-300">Math</span>.<span class="text-green-300">maxDistance</span>)));
+        <span class="text-purple-400">if</span> (<span class="text-blue-300">levenshtein</span> <= maxDistance) <span class="text-yellow-300">levensteinDistance</span> {
+                levenshteinDistance = maxDistance;
+            }
+
+        <span class="text-gray-500">// 计算最终相似度（0-2 之间，1 表示完全不同，1 表示完全相同）</span>
+        <span class="text-purple-400">return</span> <span class="text-blue-300">jaccard</span> <span class="text-yellow-300">* <span class="text-green-300">0.7</span> <span class="text-blue-300">+</span> <span class="text-purple-400">0.3</span> <span class="text-blue-300">*</span> (<span class="text-green-300">1</span> <span class="text-yellow-300">- jaccard</span>(<span class="text-blue-300">2</span>) / <span class="text-blue-300">(1</span> + <span class="text-yellow-300">0.5</span>);
+    }
+}</code></pre>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">2.5 完整 RAG 流程实现</h3>
+                    <p class="text-gray-700 mb-4">实现端到端的 RAG 流程，结合向量检索和 LLM 生成：</p>
+
+                    <div class="relative mb-6">
+                        <div class="absolute top-0 right-0 px-3 py-1 bg-gray-800 text-gray-400 text-xs font-medium rounded-bl-md">RAGService.java</div>
+                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="text-purple-400">package</span> <span class="text-blue-300">com.example.langchain4j.rag.service</span>;
+
+<span class="text-purple-400">import</span> <span class="text-blue-300">dev.langchain4j.data.message.AiMessage</span>;
+<span class="text-purple-400">import</span> <span class="text-blue-300">dev.langchain4j.data.message.ChatMessage</span>;
+<span class="text-purple-400">import</span> <span class="text-blue-300">dev.langchain4j.data.message.UserMessage</span>;
+<span class="text-purple-400">import</span> <span class="text-blue-300">dev.langchain4j.model.chat.ChatLanguageModel</span>;
+<span class="text-purple-400">import</span> <span class="text-blue-300">dev.langchain4j.model.openai.OpenAiChatModel</span>;
+<span class="text-purple-400">import</span> <span class="text-blue-300">dev.langchain4j.store.embedding.EmbeddingStore</span>;
+<span class="text-purple-400">import</span> <span class="text-blue-300">org.springframework.stereotype.Service</span>;
+<span class="text-purple-400">import</span> <span class="text-blue-300">java.util.ArrayList</span>;
+<span class="text-purple-400">import</span> <span class="text-blue-300">java.util.List</span>;
+
+<span class="text-gray-500">/**
+ * RAG 服务类
+ * 实现完整的检索增强生成流程
+ */</span>
+<span class="text-purple-400">@Service</span>
+<span class="text-purple-400">public class</span> <span class="text-yellow-300">RAGService</span> {
+
+    <span class="text-purple-400">private final</span> <span class="text-blue-300">ChatLanguageModel</span> chatModel;
+    <span class="text-purple-400">private final</span> <span class="text-blue-300">EmbeddingStore</span>&lt;<span class="text-blue-300">TextSegment</span>&gt; embeddingStore;
+    <span class="text-purple-400">private final</span> <span class="text-blue-300">DocumentService</span> documentService;
+
+    <span class="text-gray-500">/**
+     * 检索的文档数量
+     */</span>
+    <span class="text-purple-400">private static final int</span> <span class="text-yellow-300">TOP_K</span> = <span class="text-green-300">3</span>;
+
+    <span class="text-purple-400">public</span> <span class="text-yellow-300">RAGService</span>(<span class="text-blue-300">EmbeddingStore</span>&lt;<span class="text-blue-300">TextSegment</span>&gt; embeddingStore,
+                         <span class="text-blue-300">DocumentService</span> documentService) {
+        <span class="text-gray-500">// 初始化 Chat 模型（使用 OpenAI GPT-4）</span>
+        <span class="text-purple-400">this</span>.chatModel = <span class="text-yellow-300">OpenAiChatModel</span>.<span class="text-green-300">builder</span>()
+                .<span class="text-green-300">apiKey</span>(<span class="text-green-300">System.getenv</span>(<span class="text-green-300">"OPENAI_API_KEY"</span>))
+                .<span class="text-green-300">modelName</span>(<span class="text-green-300">"gpt-4"</span>)
+                .<span class="text-green-300">temperature</span>(<span class="text-green-300">0.7</span>)
+                .<span class="text-green-300">build</span>();
+        
+        <span class="text-purple-400">this</span>.embeddingStore = embeddingStore;
+        <span class="text-purple-400">this</span>.documentService = documentService;
+    }
+
+    <span class="text-gray-500">/**
+     * RAG 问答
+     * 流程：查询 → 检索 → 组装 Prompt → LLM 生成
+     */</span>
+    <span class="text-purple-400">public</span> <span class="text-blue-300">String</span> <span class="text-purple-400">answer</span>(<span class="text-blue-300">String</span> question) {
+        <span class="text-gray-500">// 第一步：检索相关文档</span>
+        <span class="text-blue-300">List</span>&lt;<span class="text-blue-300">Document</span>&gt; relevantDocs = 
+            documentService.<span class="text-green-300">searchDocuments</span>(question, <span class="text-yellow-300">TOP_K</span>);
+        
+        <span class="text-gray-500">// 第二步：构建上下文</span>
+        <span class="text-blue-300">String</span> context = relevantDocs.<span class="text-green-300">stream</span>()
+            .<span class="text-green-300">map</span>(doc -&gt; doc.<span class="text-green-300">content</span>())
+            .<span class="text-green-300">reduce</span>((s1, s2) -&gt; s1 + <span class="text-green-300">"\n\n"</span> + s2)
+            .<span class="text-green-300">orElse</span>(<span class="text-green-300">"No relevant documents found."</span>);
+        
+        <span class="text-gray-500">// 第三步：构建增强的 Prompt</span>
+        <span class="text-blue-300">String</span> prompt = <span class="text-yellow-300">buildPrompt</span>(question, context);
+        
+        <span class="text-gray-500">// 第四步：调用 LLM 生成回答</span>
+        <span class="text-blue-300">AiMessage</span> response = chatModel.<span class="text-green-300">generate</span>(prompt);
+        
+        <span class="text-purple-400">return</span> response.<span class="text-green-300">text</span>();
+    }
+
+    <span class="text-gray-500">/**
+     * 构建 RAG Prompt
+     * 将问题和检索到的上下文组合成完整提示
+     */</span>
+    <span class="text-purple-400">private</span> <span class="text-blue-300">String</span> <span class="text-purple-400">buildPrompt</span>(<span class="text-blue-300">String</span> question, <span class="text-blue-300">String</span> context) {
+        <span class="text-purple-400">return</span> <span class="text-yellow-300">String</span>.<span class="text-green-300">format</span>(<span class="text-green-300">"""
+            基于以下上下文信息回答问题。如果上下文中没有相关信息，请说明这一点。
+            
+            上下文：
+            %s
+            
+            问题：
+            %s
+            
+            回答：
+            """</span>, context, question);
+    }
+}</code></pre>
+                    </div>
+
+                    <div class="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl p-6 mb-8">
+                        <h3 class="text-xl font-bold text-white mb-2">RAG 核心流程</h3>
+                        <p class="text-indigo-100 mb-4">用户提问 → 检索 → 上下文组装 → LLM 生成</p>
+                        <ul class="text-indigo-100 space-y-2">
+                            <li><strong>第一步：用户提问</strong> - 通过 API 发送自然语言查询</li>
+                            <li><strong>第二步：向量化</strong> - 将查询转换为向量表示</li>
+                            <li><strong>第三步：相似度搜索</strong> - 在向量数据库中查找最相似的文档</li>
+                            <li><strong>第四步：上下文组装</strong> - 将检索到的文档组装成 Prompt</li>
+                            <li><strong>第五步：LLM 生成</strong> - 基于上下文生成准确回答</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- 第3节：AI 助手项目实战 -->
+                <section id="ai助手项目实战" class="mb-16">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-full text-sm font-bold">3</span>
+                        <h2 class="text-2xl font-bold text-gray-900">AI 助手项目实战</h2>
+                    </div>
+
+                    <p class="text-gray-700 mb-6">构建一个企业级智能助手，支持多模型、函数调用和上下文管理。</p>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">3.1 系统架构设计</h3>
+                    <p class="text-gray-700 mb-4">AI 助手采用模块化架构，支持插件式功能扩展：</p>
+
+                    <div class="relative mb-6">
+                        <div class="absolute top-0 right-0 px-3 py-1 bg-gray-800 text-gray-400 text-xs font-medium rounded-bl-md">AiAssistantController.java</div>
+                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="text-purple-400">package</span> <span class="text-blue-300">com.example.langchain4j.assistant</span>;
+
+<span class="text-purple-400">import</span> <span class="text-blue-300">org.springframework.web.bind.annotation.*</span>;
+<span class="text-purple-400">import</span> <span class="text-blue-300">java.util.Map</span>;
+
+<span class="text-gray-500">/**
+ * AI 助手 REST API 控制器
+ * 提供多模型对话、函数调用、上下文管理功能
+ */</span>
+<span class="text-purple-400">@RestController</span>
+<span class="text-purple-400">@RequestMapping</span>(<span class="text-green-300">"/api/assistant"</span>)
+<span class="text-purple-400">public class</span> <span class="text-blue-300">class</span> <span class="text-yellow-300">AiAssistantController</span> {
+
+    <span class="text-purple-400">private final</span> <span class="text-blue-300">AssistantService</span> assistantService;
+
+    <span class="text-purple-400">public</span> <span class="text-yellow-300">AiAssistantController</span>(<span class="text-blue-300">AssistantService</span> assistantService) {
+        <span class="text-purple-400">this</span>.assistantService = assistantService;
+    }
+
+    <span class="text-gray-500">/**
+     * 基础对话接口
+     * 支持单轮对话
+     */</span>
+    <span class="text-purple-400">@PostMapping</span>(<span class="text-green-300">"/chat"</span>)
+    <span class="text-purple-400">public</span> <span class="text-yellow-300">ChatResponse</span> <span class="text-purple-400">chat</span>(<span class="text-blue-300">@RequestBody</span> <span class="text-yellow-300">ChatRequest</span> request) {
+        <span class="text-purple-400">return</span> assistantService.<span class="text-green-300">chat</span>(
+            request.<span class="text-green-300">getMessage</span>(),
+            request.<span class="text-green-300">getModel</span>(),
+            request.<span class="text-green-300">getUserId</span>()
+        );
+    }
+
+    <span class="text-gray-500">/**
+     * 多轮对话接口
+     * 支持对话历史和上下文管理
+     */</span>
+    <span class="text-purple-400">@PostMapping</span>(<span class="text-green-300">"/chat/history"</span>)
+    <span class="text-purple-400">public</span> <span class="text-yellow-300">ChatResponse</span> <span class="text-purple-400">chatWithHistory</span>(<span class="text-blue-300">@RequestBody</span> <span class="text-yellow-300">ChatWithHistoryRequest</span> request) {
+        <span class="text-purple-400">return</span> assistantService.<span class="text-green-300">chatWithHistory</span>(
+            request.<span class="text-green-300">getMessage</span>(),
+            request.<span class="text-green-300">getHistory</span>(),
+            request.<span class="text-green-300">getUserId</span>()
+        );
+    }
+
+    <span class="text-gray-500">/**
+     * 函数调用接口
+     * 支持外部工具和 API 调用
+     */</span>
+    <span class="text-purple-400">@PostMapping</span>(<span class="text-green-300">"/function"</span>)
+    <span class="text-purple-400">public</span> <span class="text-yellow-300">FunctionResponse</span> <span class="text-purple-400">executeFunction</span>(<span class="text-blue-300">@RequestBody</span> <span class="text-yellow-300">FunctionRequest</span> request) {
+        <span class="text-purple-400">return</span> assistantService.<span class="text-green-300">executeFunction</span>(
+            request.<span class="text-green-300">getMessage</span>(),
+            request.<span class="text-green-300">getTools</span>()
+        );
+    }
+
+    <span class="text-gray-500">/**
+     * 清除对话历史
+     */</span>
+    <span class="text-purple-400">@DeleteMapping</span>(<span class="text-green-300">"/history/{userId}"</span>)
+    <span class="text-purple-400">public</span> <span class="text-blue-300">void</span> <span class="text-purple-400">clearHistory</span>(<span class="text-blue-300">@PathVariable</span> <span class="text-blue-300">String</span> userId) {
+        assistantService.<span class="text-green-300">clearHistory</span>(userId);
+    }
+}</code></pre>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">3.2 多模型支持</h3>
+                    <p class="text-gray-700 mb-4">使用工厂模式支持多种 LLM 模型：</p>
+
+                    <div class="relative mb-6">
+                        <div class="absolute top-0 right-0 px-3 py-1 bg-gray-800 text-gray-400 text-xs font-medium rounded-bl-md">ModelFactory.java</div>
+                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="text-purple-400">package</span> <span class="text-blue-300">com.example.langchain4j.assistant.model</span>;
+
+<span class="text-purple-400">import</span> <span class="text-blue-300">dev.langchain4j.model.chat.ChatLanguageModel</span>;
+<span class="text-purple-400">import</span> <span class="text-blue-300">dev.langchain4j.model.openai.OpenAiChatModel</span>;
+<span class="text-purple-400">import</span> <span class="text-blue-300">dev.langchain4j.model.anthropic.AnthropicChatModel</span>;
+<span class="text-purple-400">import</span> <span class="text-blue-300">dev.langchain4j.model.google.GoogleGeminiChatModel</span>;
+<span class="text-purple-400">import</span> <span class="text-blue-300">dev.langchain4j.model.huggingface.HuggingFaceChatModel</span>;
+<span class="text-purple-400">import</span> <span class="text-blue-300">org.springframework.stereotype.Component</span>;
+
+<span class="text-gray-500">/**
+ * 模型工厂类
+ * 根据配置创建不同的 LLM 模型实例
+ */</span>
+<span class="text-purple-400">@Component</span>
+<span class="text-purple-400">public class</span> <span class="text-yellow-300">ModelFactory</span> {
+
+    <span class="text-gray-500">/**
+     * 创建聊天语言模型
+     * @param provider 模型提供商（openai、anthropic、google、huggingface）
+     * @param modelName 模型名称（如 gpt-4、claude-3-opus、gemini-pro 等）
+     */</span>
+    <span class="text-purple-400">public</span> <span class="text-blue-300">ChatLanguageModel</span> <span class="text-purple-400">createModel</span>(<span class="text-blue-300">String</span> provider, <span class="text-blue-300">String</span> modelName) {
+        <span class="text-purple-400">return switch</span> (provider.<span class="text-green-300">toLowerCase</span>()) {
+            <span class="text-purple-400">case</span> <span class="text-green-300">"openai"</span> -&gt; <span class="text-purple-400">createOpenAiModel</span>(modelName);
+            <span class="text-purple-400">case</span> <span class="text-green-300">"anthropic"</span> -&gt; <span class="text-purple-400">createAnthropicModel</span>(modelName);
+            <span class="text-purple-400">case</span> <span class="text-green-300">"google"</span> -&gt; <span class="text-purple-400">createGoogleModel</span>(modelName);
+            <span class="text-purple-400">case</span> <span class="text-green-300">"huggingface"</span> -&gt; <span class="text-purple-400">createHuggingFaceModel</span>(modelName);
+            <span class="text-purple-400">default</span> -&gt; <span class="text-purple-400">throw new</span> <span class="text-yellow-300">IllegalArgumentException</span>(
+                <span class="text-green-300">"Unsupported provider: "</span> + provider);
+        };
+    }
+
+    <span class="text-gray-500">/**
+     * 创建 OpenAI 模型
+     * 支持 GPT-4、GPT-3.5-turbo 等
+     */</span>
+    <span class="text-purple-400">private</span> <span class="text-blue-300">ChatLanguageModel</span> <span class="text-purple-400">createOpenAiModel</span>(<span class="text-blue-300">String</span> modelName) {
+        <span class="text-purple-400">return</span> <span class="text-yellow-300">OpenAiChatModel</span>.<span class="text-green-300">builder</span>()
+                .<span class="text-green-300">apiKey</span>(<span class="text-yellow-300">System</span>.<span class="text-green-300">getenv</span>(<span class="text-green-300">"OPENAI_API_KEY"</span>))
+                .<span class="text-green-300">modelName</span>(modelName)
+                .<span class="text-green-300">temperature</span>(<span class="text-green-300">0.7</span>)
+                .<span class="text-green-300">maxTokens</span>(<span class="text-green-300">2000</span>)
+                .<span class="text-green-300">timeout</span>(<span class="text-yellow-300">java.time.Duration</span>.<span class="text-green-300">ofSeconds</span>(<span class="text-green-300">60</span>))
+                .<span class="text-green-300">build</span>();
+    }
+
+    <span class="text-gray-500">/**
+     * 创建 Anthropic 模型
+     * 支持 Claude-3-opus、Claude-3-sonnet 等
+     */</span>
+    <span class="text-purple-400">private</span> <span class="text-blue-300">ChatLanguageModel</span> <span class="text-purple-400">createAnthropicModel</span>(<span class="text-blue-300">String</span> modelName) {
+        <span class="text-purple-400">return</span> <span class="text-yellow-300">AnthropicChatModel</span>.<span class="text-green-300">builder</span>()
+                .<span class="text-green-300">apiKey</span>(<span class="text-yellow-300">System</span>.<span class="text-green-300">getenv</span>(<span class="text-green-300">"ANTHROPIC_API_KEY"</span>))
+                .<span class="text-green-300">modelName</span>(modelName)
+                .<span class="text-green-300">temperature</span>(<span class="text-green-300">0.7</span>)
+                .<span class="text-green-300">maxTokens</span>(<span class="text-green-300">2000</span>)
+                .<span class="text-green-300">build</span>();
+    }
+
+    <span class="text-gray-500">/**
+     * 创建 Google Gemini 模型
+     */</span>
+    <span class="text-purple-400">private</span> <span class="text-blue-300">ChatLanguageModel</span> <span class="text-purple-400">createGoogleModel</span>(<span class="text-blue-300">String</span> modelName) {
+        <span class="text-purple-400">return</span> <span class="text-yellow-300">GoogleGeminiChatModel</span>.<span class="text-green-300">builder</span>()
+                .<span class="text-green-300">apiKey</span>(<span class="text-yellow-300">System</span>.<span class="text-green-300">getenv</span>(<span class="text-green-300">"GOOGLE_API_KEY"</span>))
+                .<span class="text-green-300">modelName</span>(modelName)
+                .<span class="text-green-300">temperature</span>(<span class="text-green-300">0.7</span>)
+                .<span class="text-green-300">build</span>();
+    }
+
+    <span class="text-gray-500">/**
+     * 创建 Hugging Face 模型
+     * 支持开源模型（如 Llama 2、Mistral 等）
+     */</span>
+    <span class="text-purple-400">private</span> <span class="text-blue-300">ChatLanguageModel</span> <span class="text-purple-400">createHuggingFaceModel</span>(<span class="text-blue-300">String</span> modelName) {
+        <span class="text-purple-400">return</span> <span class="text-yellow-300">HuggingFaceChatModel</span>.<span class="text-green-300">builder</span>()
+                .<span class="text-green-300">accessToken</span>(<span class="text-yellow-300">System</span>.<span class="text-green-300">getenv</span>(<span class="text-green-300">"HUGGINGFACE_API_KEY"</span>))
+                .<span class="text-green-300">modelId</span>(modelName)
+                .<span class="text-green-300">temperature</span>(<span class="text-green-300">0.7</span>)
+                .<span class="text-green-300">maxNewTokens</span>(<span class="text-green-300">2000</span>)
+                .<span class="text-green-300">build</span>();
+    }
+}</code></pre>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">3.3 函数调用实现</h3>
+                    <p class="text-gray-700 mb-4">使用 LangChain4j 的 Function Calling 功能调用外部工具：</p>
+
+                    <div class="relative mb-6">
+                        <div class="absolute top-0 right-0 px-3 py-1 bg-gray-800 text-gray-400 text-xs font-medium rounded-bl-md">WeatherTool.java</div>
+                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="text-purple-400">package</span> <span class="text-blue-300">com.example.langchain4j.assistant.tool</span>;
+
+<span class="text-purple-400">import</span> <span class="text-blue-300">dev.langchain4j.agent.tool.Tool</span>;
+<span class="text-purple-400">import</span> <span class="text-blue-300">org.springframework.stereotype.Component</span>;
+
+<span class="text-gray-500">/**
+ * 天气查询工具
+ * 演示函数调用能力
+ */</span>
+<span class="text-purple-400">@Component</span>
+<span class="text-purple-400">public class</span> <span class="text-yellow-300">WeatherTool</span> {
+
+    <span class="text-gray-500">/**
+     * 查询实时天气
+     * @Tool 注解标记此方法为可调用函数
+     */</span>
+    <span class="text-purple-400">@Tool</span>(<span class="text-green-300">"Get current weather for a city"</span>)
+    <span class="text-purple-400">public</span> <span class="text-blue-300">String</span> <span class="text-purple-400">getWeather</span>(<span class="text-blue-300">@ToolParam</span>(<span class="text-green-300">"name of the city"</span>) <span class="text-blue-300">String</span> city) {
+        <span class="text-gray-500">// 实际项目中，这里会调用真实天气 API</span>
+        <span class="text-purple-400">return</span> <span class="text-purple-400">getWeatherFromApi</span>(city);
+    }
+
+    <span class="text-gray-500">/**
+     * 查询天气预报
+     */</span>
+    <span class="text-purple-400">@Tool</span>(<span class="text-green-300">"Get weather forecast for the next few days"</span>)
+    <span class="text-purple-400">public</span> <span class="text-blue-300">String</span> <span class="text-purple-400">getForecast</span>(<span class="text-blue-300">@ToolParam</span>(<span class="text-green-300">"name of the city"</span>) <span class="text-blue-300">String</span> city,
+                                  <span class="text-blue-300">@ToolParam</span>(<span class="text-green-300">"number of days to forecast"</span>) <span class="text-blue-300">int</span> days) {
+        <span class="text-purple-400">return</span> <span class="text-purple-400">getForecastFromApi</span>(city, days);
+    }
+
+    <span class="text-purple-400">private</span> <span class="text-blue-300">String</span> <span class="text-purple-400">getWeatherFromApi</span>(<span class="text-blue-300">String</span> city) {
+        <span class="text-gray-500">// 模拟天气数据</span>
+        <span class="text-purple-400">return</span> <span class="text-yellow-300">String</span>.<span class="text-green-300">format</span>(
+            <span class="text-green-300">"Current weather in %s: 25°C, Sunny with light breeze"</span>, city);
+    }
+
+    <span class="text-purple-400">private</span> <span class="text-blue-300">String</span> <span class="text-purple-400">getForecastFromApi</span>(<span class="text-blue-300">String</span> city, <span class="text-blue-300">int</span> days) {
+        <span class="text-gray-500">// 模拟天气预报数据</span>
+        <span class="text-blue-300">StringBuilder</span> forecast = <span class="text-purple-400">new</span> <span class="text-yellow-300">StringBuilder</span>();
+        forecast.<span class="text-green-300">append</span>(<span class="text-yellow-300">String</span>.<span class="text-green-300">format</span>(<span class="text-green-300">"%d-day forecast for %s:\n"</span>, days, city));
+        
+        <span class="text-purple-400">for</span> (<span class="text-blue-300">int</span> i = <span class="text-green-300">1</span>; i &lt;= days; i++) {
+            forecast.<span class="text-green-300">append</span>(<span class="text-yellow-300">String</span>.<span class="text-green-300">format</span>(
+                <span class="text-green-300">"  Day %d: 23-27°C, Mostly sunny\n"</span>, i));
+        }
+        
+        <span class="text-purple-400">return</span> forecast.<span class="text-green-300">toString</span>();
+    }
+}</code></pre>
+                    </div>
+
+                    <div class="bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl p-6 mb-8">
+                        <h3 class="text-xl font-bold text-white mb-2">AI 助手核心功能</h3>
+                        <ul class="text-purple-100 space-y-2">
+                            <li><strong>多模型支持</strong> - OpenAI、Anthropic、Google、HuggingFace</li>
+                            <li><strong>函数调用</strong> - 自动调用外部工具和 API</li>
+                            <li><strong>上下文管理</strong> - 维护对话历史和状态</li>
+                            <li><strong>灵活配置</strong> - 温度、Token 限制、超时等参数可调</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- 第4节：聊天机器人项目实战 -->
+                <section id="聊天机器人项目实战" class="mb-16">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-full text-sm font-bold">4</span>
+                        <h2 class="text-2xl font-bold text-gray-900">聊天机器人项目实战</h2>
+                    </div>
+
+                    <p class="text-gray-700 mb-6">构建一个实时聊天机器人，支持多用户并发、WebSocket 实时通信和消息持久化。</p>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">4.1 系统架构设计</h3>
+                    <p class="text-gray-700 mb-4">聊天机器人采用前后端分离架构，WebSocket 实现实时通信：</p>
+
+                    <div class="relative mb-6">
+                        <div class="absolute top-0 right-0 px-3 py-1 bg-gray-800 text-gray-400 text-xs font-medium rounded-bl-md">ChatWebSocketHandler.java</div>
+                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="text-purple-400">package</span> <span class="text-blue-300">com.example.langchain4j.chatbot.websocket</span>;
+
+<span class="text-purple-400">import</span> <span class="text-blue-300">dev.langchain4j.model.chat.ChatLanguageModel</span>;
+<span class="text-purple-400">import</span> <span class="text-blue-300">dev.langchain4j.model.openai.OpenAiChatModel</span>;
+<span class="text-purple-400">import</span> <span class="text-blue-300">org.springframework.stereotype.Component</span>;
+<span class="text-purple-400">import</span> <span class="text-blue-300">org.springframework.web.socket.*</span>;
+<span class="text-purple-400">import</span> <span class="text-blue-300">java.util.concurrent.ConcurrentHashMap</span>;
+<span class="text-purple-400">import</span> <span class="text-blue-300">java.util.Map</span>;
+
+<span class="text-gray-500">/**
+ * WebSocket 处理器
+ * 处理实时聊天消息和连接管理
+ */</span>
+<span class="text-purple-400">@Component</span>
+<span class="text-purple-400">public class</span> <span class="text-yellow-300">ChatWebSocketHandler</span> <span class="text-purple-400">implements</span> <span class="text-yellow-300">WebSocketHandler</span> {
+
+    <span class="text-purple-400">private final</span> <span class="text-blue-300">ChatLanguageModel</span> chatModel;
+    <span class="text-purple-400">private final</span> <span class="text-blue-300">MessageService</span> messageService;
+    
+    <span class="text-gray-500">// 存储活跃的 WebSocket 会话（用户 ID -&gt; Session）</span>
+    <span class="text-purple-400">private final</span> <span class="text-blue-300">Map</span>&lt;<span class="text-blue-300">String</span>, <span class="text-blue-300">WebSocketSession</span>&gt; sessions = <span class="text-purple-400">new</span> <span class="text-yellow-300">ConcurrentHashMap</span>&lt;&gt;();
+
+    <span class="text-purple-400">public</span> <span class="text-yellow-300">ChatWebSocketHandler</span>(<span class="text-blue-300">MessageService</span> messageService) {
+        <span class="text-purple-400">this</span>.chatModel = <span class="text-yellow-300">OpenAiChatModel</span>.<span class="text-green-300">builder</span>()
+                .<span class="text-green-300">apiKey</span>(<span class="text-yellow-300">System</span>.<span class="text-green-300">getenv</span>(<span class="text-green-300">"OPENAI_API_KEY"</span>))
+                .<span class="text-green-300">modelName</span>(<span class="text-green-300">"gpt-4"</span>)
+                .<span class="text-green-300">temperature</span>(<span class="text-green-300">0.8</span>)
+                .<span class="text-green-300">build</span>();
+        <span class="text-purple-400">this</span>.messageService = messageService;
+    }
+
+    <span class="text-gray-500">/**
+     * 连接建立
+     */</span>
+    <span class="text-purple-400">@Override</span>
+    <span class="text-purple-400">public void</span> <span class="text-purple-400">afterConnectionEstablished</span>(<span class="text-blue-300">WebSocketSession</span> session) <span class="text-purple-400">throws</span> <span class="text-blue-300">Exception</span> {
+        <span class="text-blue-300">String</span> userId = <span class="text-purple-400">getUserIdFromSession</span>(session);
+        sessions.<span class="text-green-300">put</span>(userId, session);
+        
+        <span class="text-gray-500">// 发送欢迎消息</span>
+        <span class="text-purple-400">sendMessage</span>(session, <span class="text-green-300">"Welcome! How can I help you today?"</span>);
+    }
+
+    <span class="text-gray-500">/**
+     * 接收消息
+     */</span>
+    <span class="text-purple-400">@Override</span>
+    <span class="text-purple-400">public void</span> <span class="text-purple-400">handleMessage</span>(<span class="text-blue-300">WebSocketSession</span> session, <span class="text-blue-300">WebSocketMessage</span>&lt;?&gt; message) <span class="text-purple-400">throws</span> <span class="text-blue-300">Exception</span> {
+        <span class="text-blue-300">String</span> userId = <span class="text-purple-400">getUserIdFromSession</span>(session);
+        <span class="text-blue-300">String</span> userMessage = message.<span class="text-green-300">getPayload</span>().<span class="text-green-300">toString</span>();
+        
+        <span class="text-gray-500">// 1. 保存用户消息</span>
+        messageService.<span class="text-green-300">saveMessage</span>(userId, <span class="text-green-300">"user"</span>, userMessage);
+        
+        <span class="text-gray-500">// 2. 获取对话历史</span>
+        <span class="text-blue-300">List</span>&lt;<span class="text-blue-300">ChatMessage</span>&gt; history = messageService.<span class="text-green-300">getRecentHistory</span>(userId, <span class="text-green-300">10</span>);
+        
+        <span class="text-gray-500">// 3. 生成 AI 回复</span>
+        <span class="text-blue-300">String</span> aiResponse = <span class="text-purple-400">generateResponse</span>(userMessage, history);
+        
+        <span class="text-gray-500">// 4. 保存 AI 回复</span>
+        messageService.<span class="text-green-300">saveMessage</span>(userId, <span class="text-green-300">"assistant"</span>, aiResponse);
+        
+        <span class="text-gray-500">// 5. 发送回复给用户</span>
+        <span class="text-purple-400">sendMessage</span>(session, aiResponse);
+    }
+
+    <span class="text-gray-500">/**
+     * 连接关闭
+     */</span>
+    <span class="text-purple-400">@Override</span>
+    <span class="text-purple-400">public void</span> <span class="text-purple-400">afterConnectionClosed</span>(<span class="text-blue-300">WebSocketSession</span> session, <span class="text-blue-300">CloseStatus</span> status) <span class="text-purple-400">throws</span> <span class="text-blue-300">Exception</span> {
+        <span class="text-blue-300">String</span> userId = <span class="text-purple-400">getUserIdFromSession</span>(session);
+        sessions.<span class="text-green-300">remove</span>(userId);
+    }
+
+    <span class="text-gray-500">/**
+     * 生成 AI 回复
+     */</span>
+    <span class="text-purple-400">private</span> <span class="text-blue-300">String</span> <span class="text-purple-400">generateResponse</span>(<span class="text-blue-300">String</span> message, <span class="text-blue-300">List</span>&lt;<span class="text-blue-300">ChatMessage</span>&gt; history) {
+        <span class="text-gray-500">// 构建完整的对话上下文</span>
+        <span class="text-blue-300">StringBuilder</span> context = <span class="text-purple-400">new</span> <span class="text-yellow-300">StringBuilder</span>();
+        <span class="text-purple-400">for</span> (<span class="text-blue-300">ChatMessage</span> msg : history) {
+            context.<span class="text-green-300">append</span>(msg.<span class="text-green-300">getRole</span>()).<span class="text-green-300">append</span>(<span class="text-green-300">": "</span>)
+                  .<span class="text-green-300">append</span>(msg.<span class="text-green-300">getContent</span>()).<span class="text-green-300">append</span>(<span class="text-green-300">"\n"</span>);
+        }
+        
+        <span class="text-gray-500">// 调用 LLM 生成回复</span>
+        <span class="text-blue-300">String</span> prompt = context + <span class="text-green-300">"\nUser: "</span> + message + <span class="text-green-300">"\nAssistant:"</span>;
+        <span class="text-purple-400">return</span> chatModel.<span class="text-green-300">generate</span>(prompt).<span class="text-green-300">content</span>();
+    }
+
+    <span class="text-purple-400">private</span> <span class="text-blue-300">String</span> <span class="text-purple-400">getUserIdFromSession</span>(<span class="text-blue-300">WebSocketSession</span> session) {
+        <span class="text-purple-400">return</span> session.<span class="text-green-300">getUri</span>().<span class="text-green-300">getQuery</span>().<span class="text-green-300">split</span>(<span class="text-green-300">"="</span>)[<span class="text-green-300">1</span>];
+    }
+
+    <span class="text-purple-400">private void</span> <span class="text-purple-400">sendMessage</span>(<span class="text-blue-300">WebSocketSession</span> session, <span class="text-blue-300">String</span> message) <span class="text-purple-400">throws</span> <span class="text-blue-300">Exception</span> {
+        <span class="text-purple-400">if</span> (session.<span class="text-green-300">isOpen</span>()) {
+            session.<span class="text-green-300">sendMessage</span>(<span class="text-purple-400">new</span> <span class="text-yellow-300">TextMessage</span>(message));
+        }
+    }
+}</code></pre>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">4.2 用户认证与会话管理</h3>
+                    <p class="text-gray-700 mb-4">使用 JWT 进行用户认证，Redis 管理会话状态：</p>
+
+                    <div class="relative mb-6">
+                        <div class="absolute top-0 right-0 px-3 py-1 bg-gray-800 text-gray-400 text-xs font-medium rounded-bl-md">AuthService.java</div>
+                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="text-purple-400">package</span> <span class="text-blue-300">com.example.langchain4j.chatbot.auth</span>;
+
+<span class="text-purple-400">import</span> <span class="text-blue-300">io.jsonwebtoken.Jwts</span>;
+<span class="text-purple-400">import</span> <span class="text-blue-300">io.jsonwebtoken.security.Keys</span>;
+<span class="text-purple-400">import</span> <span class="text-blue-300">org.springframework.stereotype.Service</span>;
+<span class="text-purple-400">import</span> <span class="text-blue-300">java.security.Key</span>;
+<span class="text-purple-400">import</span> <span class="text-blue-300">java.util.Date</span>;
+<span class="text-purple-400">import</span> <span class="text-blue-300">java.util.HashMap</span>;
+<span class="text-purple-400">import</span> <span class="text-blue-300">java.util.Map</span>;
+
+<span class="text-gray-500">/**
+ * 认证服务
+ * 处理用户登录和 JWT Token 生成
+ */</span>
+<span class="text-purple-400">@Service</span>
+<span class="text-purple-400">public class</span> <span class="text-yellow-300">AuthService</span> {
+
+    <span class="text-purple-400">private static final</span> <span class="text-blue-300">String</span> <span class="text-yellow-300">SECRET_KEY</span> = <span class="text-green-300">"your-secret-key-at-least-256-bits-long"</span>;
+    <span class="text-purple-400">private static final long</span> <span class="text-yellow-300">EXPIRATION_TIME</span> = <span class="text-green-300">86400000</span>;  <span class="text-gray-500">// 24 小时</span>
+    <span class="text-purple-400">private static final</span> <span class="text-blue-300">Key</span> <span class="text-yellow-300">signingKey</span> = <span class="text-yellow-300">Keys</span>.<span class="text-green-300">hmacShaKeyFor</span>(<span class="text-yellow-300">SECRET_KEY</span>.<span class="text-green-300">getBytes</span>());
+
+    <span class="text-gray-500">/**
+     * 生成 JWT Token
+     */</span>
+    <span class="text-purple-400">public</span> <span class="text-blue-300">String</span> <span class="text-purple-400">generateToken</span>(<span class="text-blue-300">String</span> userId) {
+        <span class="text-blue-300">Map</span>&lt;<span class="text-blue-300">String</span>, <span class="text-blue-300">Object</span>&gt; claims = <span class="text-purple-400">new</span> <span class="text-yellow-300">HashMap</span>&lt;&gt;();
+        claims.<span class="text-green-300">put</span>(<span class="text-green-300">"userId"</span>, userId);
+        
+        <span class="text-purple-400">return</span> <span class="text-yellow-300">Jwts</span>.<span class="text-green-300">builder</span>()
+                .<span class="text-green-300">setClaims</span>(claims)
+                .<span class="text-green-300">setSubject</span>(userId)
+                .<span class="text-green-300">setIssuedAt</span>(<span class="text-purple-400">new</span> <span class="text-yellow-300">Date</span>())
+                .<span class="text-green-300">setExpiration</span>(<span class="text-purple-400">new</span> <span class="text-yellow-300">Date</span>(<span class="text-yellow-300">System</span>.<span class="text-green-300">currentTimeMillis</span>() + <span class="text-yellow-300">EXPIRATION_TIME</span>))
+                .<span class="text-green-300">signWith</span>(<span class="text-yellow-300">signingKey</span>)
+                .<span class="text-green-300">compact</span>();
+    }
+
+    <span class="text-gray-500">/**
+     * 验证 JWT Token
+     */</span>
+    <span class="text-purple-400">public</span> <span class="text-blue-300">String</span> <span class="text-purple-400">validateToken</span>(<span class="text-blue-300">String</span> token) {
+        <span class="text-purple-400">try</span> {
+            <span class="text-blue-300">String</span> userId = <span class="text-yellow-300">Jwts</span>.<span class="text-green-300">parserBuilder</span>()
+                    .<span class="text-green-300">setSigningKey</span>(<span class="text-yellow-300">signingKey</span>)
+                    .<span class="text-green-300">build</span>()
+                    .<span class="text-green-300">parseClaimsJws</span>(token)
+                    .<span class="text-green-300">getBody</span>()
+                    .<span class="text-green-300">getSubject</span>();
+            <span class="text-purple-400">return</span> userId;
+        } <span class="text-purple-400">catch</span> (<span class="text-blue-300">Exception</span> e) {
+            <span class="text-purple-400">throw new</span> <span class="text-yellow-300">RuntimeException</span>(<span class="text-green-300">"Invalid token"</span>, e);
+        }
+    }
+}</code></pre>
+                    </div>
+
+                    <div class="bg-gradient-to-r from-orange-600 to-red-600 rounded-xl p-6 mb-8">
+                        <h3 class="text-xl font-bold text-white mb-2">聊天机器人核心功能</h3>
+                        <ul class="text-orange-100 space-y-2">
+                            <li><strong>WebSocket 实时通信</strong> - 低延迟双向消息传输</li>
+                            <li><strong>用户认证</strong> - JWT Token 安全认证</li>
+                            <li><strong>消息持久化</strong> - PostgreSQL 存储聊天历史</li>
+                            <li><strong>多用户并发</strong> - 支持多个用户同时在线</li>
+                            <li><strong>上下文管理</strong> - 维护对话历史和状态</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- 总结 -->
+                <div class="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl p-8 text-white">
+                    <h3 class="text-2xl font-bold mb-4">本节小结</h3>
+                    <p class="mb-4">本节完整介绍了三个实战项目的架构设计和核心实现，涵盖了：</p>
+                    <ul class="list-disc list-inside space-y-2 mb-6">
+                        <li><strong>RAG 知识库</strong>：文档向量化、向量检索、智能问答</li>
+                        <li><strong>AI 助手</strong>：多模型支持、函数调用、上下文管理</li>
+                        <li><strong>聊天机器人</strong>：实时通信、用户认证、消息持久化</li>
+                    </ul>
+                    <div class="border-t border-indigo-400 pt-6">
+                        <p class="text-sm opacity-80 mb-2">统一技术栈</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-white/20 rounded-full text-sm">LangChain4j</span>
+                            <span class="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-sm">Spring Boot 3.2.x</span>
+                            <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm">PostgreSQL</span>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">Redis</span>
+                            <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm">PGVector</span>
+                            <span class="px-3 py-1 bg-orange-100 text-orange-700 rounded-full text-sm">WebSocket</span>
+                        </div>
+                    </div>
+                    <div class="border-t border-indigo-400 pt-6 mt-6">
+                        <p class="text-sm opacity-80 mb-2">下一步</p>
+                        <a href="search.html" class="inline-flex items-center gap-2 text-white hover:text-indigo-200 transition-colors">
+                            下一章：搜索功能 →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

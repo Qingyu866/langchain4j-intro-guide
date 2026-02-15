@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>成本优化 - LangChain4j 学习指南</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            200: '#c7d2fe',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-white text-gray-800 antialiased">
+    <div class="flex min-h-screen">
+        <aside class="w-[280px] fixed left-0 top-0 h-full bg-white border-r border-gray-200 overflow-y-auto z-50">
+            <a href="index.html" class="flex items-center gap-3 mb-8 text-gray-900 no-underline">
+                <div class="w-9 h-9 bg-indigo-600 rounded-lg flex items-center justify-center text-white text-xl">⚡</div>
+                <span class="font-bold text-xl">LangChain4j</span>
+            </a>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">入门</div>
+                <ul class="list-none">
+                    <li><a href="index.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">首页</a></li>
+                    <li><a href="getting-started.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">快速入门</a></li>
+                    <li><a href="core-concepts.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">核心概念</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">核心功能</div>
+                <ul class="list-none">
+                    <li><a href="embedding-models.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">嵌入模型</a></li>
+                    <li><a href="prompt-templates.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">提示模板</a></li>
+                    <li><a href="output-parsers.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">输出解析</a></li>
+                    <li><a href="function-calling-deep.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">函数调用</a></li>
+                    <li><a href="advanced-features.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">高级特性</a></li>
+                    <li><a href="multimodal-full.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">多模态处理</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">RAG 完整指南</div>
+                <ul class="list-none">
+                    <li><a href="rag-complete.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">RAG 完整指南</a></li>
+                    <li><a href="project-rag-kb.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">RAG 知识库项目</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">项目实战</div>
+                <ul class="list-none">
+                    <li><a href="project-ai-assistant.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">AI 助手项目</a></li>
+                    <li><a href="project-chatbot.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">聊天机器人项目</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">深入与最佳实践</div>
+                <ul class="list-none">
+                    <li><a href="best-practices.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">最佳实践</a></li>
+                    <li><a href="examples.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">代码示例</a></li>
+                    <li><a href="integrations.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">框架集成</a></li>
+                    <li><a href="testing-strategies.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">测试策略</a></li>
+                    <li><a href="performance-tuning.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">性能调优</a></li>
+                    <li><a href="deep-dive.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">深度解析</a></li>
+                    <li><a href="error-handling.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">错误处理</a></li>
+                    <li><a href="moderation-safety.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">内容审核与安全</a></li>
+                    <li><a href="troubleshooting.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">故障排查</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">高级主题</div>
+                <ul class="list-none">
+                    <li><a href="interview-prep.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">面试准备</a></li>
+                    <li><a href="practice.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">实战练习</a></li>
+                    <li><a href="search.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">搜索功能</a></li>
+                    <li><a href="chat-listeners.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">聊天监听器</a></li>
+                    <li><a href="faq.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">常见问题</a></li>
+                    <li><a href="cost-optimization.html" class="block bg-primary-50 text-indigo-700 no-underline py-2 px-3 text-sm rounded-md font-medium">成本优化</a></li>
+                    <li><a href="deployment.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">部署与运维</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <main class="flex-1 ml-[280px]">
+            <div class="max-w-7xl mx-auto px-8 py-12">
+                <!-- 页面标签 -->
+                <div class="flex items-center gap-2 mb-4">
+                    <span class="px-3 py-1 bg-indigo-100 text-indigo-700 text-xs font-medium rounded-full">成本优化</span>
+                    <span class="px-3 py-1 bg-purple-100 text-purple-700 text-xs font-medium rounded-full">性能优化</span>
+                    <span class="px-3 py-1 bg-green-100 text-green-700 text-xs font-medium rounded-full">最佳实践</span>
+                </div>
+
+                <h1 class="text-4xl font-bold text-gray-900 mb-4">成本优化</h1>
+                <p class="text-xl text-gray-600 mb-8">LangChain4j 应用成本分析与优化策略</p>
+
+                <!-- 目录 -->
+                <nav class="bg-gray-50 border border-gray-200 rounded-xl p-6 mb-8">
+                    <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">目录</h3>
+                    <ol class="space-y-2 text-sm text-gray-700">
+                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">1.</span> <a href="#成本分析概述" class="hover:text-indigo-600 transition-colors">成本分析概述</a></li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">2.</span> <a href="#模型选择策略" class="hover:text-indigo-600 transition-colors">模型选择策略</a></li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">3.</span> <a href="#缓存与复用" class="hover:text-indigo-600 transition-colors">缓存与复用</a></li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">4.</span> <a href="#Token优化" class="hover:text-indigo-600 transition-colors">Token 优化</a></li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">5.</span> <a href="#向量化成本优化" class="hover:text-indigo-600 transition-colors">向量化成本优化</a></li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-600 font-medium">6.</span> <a href="#监控与预算控制" class="hover:text-indigo-600 transition-colors">监控与预算控制</a></li>
+                    </ol>
+                </nav>
+
+                <!-- 第1节：成本分析概述 -->
+                <section id="成本分析概述" class="mb-16">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-full text-sm font-bold">1</span>
+                        <h2 class="text-2xl font-bold text-gray-900">成本分析概述</h2>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">1.1 AI 应用成本构成</h3>
+                    <p class="text-gray-700 mb-6">LangChain4j 应用的主要成本来源包括：</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                            <h4 class="font-semibold text-blue-800 mb-2">API 调用成本</h4>
+                            <p class="text-blue-700 text-sm mb-2">LLM API 调用（最大成本项）</p>
+                            <ul class="text-blue-600 text-xs space-y-1">
+                                <li>• 输入 Token：$0.005/1K tokens (GPT-3.5)</li>
+                                <li>• 输出 Token：$0.015/1K tokens (GPT-3.5)</li>
+                                <li>• GPT-4：成本为 GPT-3.5 的 10-20 倍</li>
+                            </ul>
+                        </div>
+                        <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+                            <h4 class="font-semibold text-green-800 mb-2">嵌入模型成本</h4>
+                            <p class="text-green-700 text-sm mb-2">文本向量嵌入（中等成本）</p>
+                            <ul class="text-green-600 text-xs space-y-1">
+                                <li>• OpenAI embeddings：$0.0001/1K tokens</li>
+                                <li>• 本地模型：零 API 成本，但需要硬件</li>
+                                <li>• HuggingFace：按使用量或免费层级</li>
+                            </ul>
+                        </div>
+                        <div class="bg-purple-50 border border-purple-200 rounded-lg p-4">
+                            <h4 class="font-semibold text-purple-800 mb-2">向量数据库成本</h4>
+                            <p class="text-purple-700 text-sm mb-2">向量存储和检索（可变成本）</p>
+                            <ul class="text-purple-600 text-xs space-y-1">
+                                <li>• Pinecone：$70/月起步</li>
+                                <li>• PGVector：PostgreSQL 基础成本</li>
+                                <li>• Milvus：开源免费，需自行部署</li>
+                            </ul>
+                        </div>
+                        <div class="bg-orange-50 border border-orange-200 rounded-lg p-4">
+                            <h4 class="font-semibold text-orange-800 mb-2">基础设施成本</h4>
+                            <p class="text-orange-700 text-sm mb-2">服务器、存储、带宽（固定成本）</p>
+                            <ul class="text-orange-600 text-xs space-y-1">
+                                <li>• 云服务器：$20-200/月</li>
+                                <li>• GPU 实例：$300-1000/月（本地模型）</li>
+                                <li>• 存储、CDN、带宽</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
+                        <h4 class="font-semibold text-yellow-800 mb-3">💡 成本优化优先级</h4>
+                        <p class="text-yellow-700 mb-4">按照成本影响和优化难度排序：</p>
+                        <ol class="list-decimal list-inside text-yellow-800 space-y-2">
+                            <li><strong>模型选择</strong>（高影响，低难度）- 选择合适的模型是最有效的优化手段</li>
+                            <li><strong>缓存策略</strong>（高影响，中难度） - 缓存重复请求可节省 50-80% 成本</li>
+                            <li><strong>Token 优化</strong>（中影响，低难度） - 精简 Prompt 和响应长度</li>
+                            <li><strong>批处理</strong>（中影响，中难度） - 批量处理降低 API 调用开销</li>
+                            <li><strong>本地模型</strong>（高影响，高难度） - 完全消除 API 成本，但需要硬件投入</li>
+                        </ol>
+                    </div>
+                </section>
+
+                <!-- 第2节：模型选择策略 -->
+                <section id="模型选择策略" class="mb-16">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-full text-sm font-bold">2</span>
+                        <h2 class="text-2xl font-bold text-gray-900">模型选择策略</h2>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">2.1 按场景选择模型</h3>
+                    <p class="text-gray-700 mb-6">不同场景适合不同的模型组合：</p>
+
+                    <div class="bg-gray-50 border border-gray-200 rounded-lg p-6 mb-6">
+                        <h4 class="font-semibold text-gray-900 mb-4">场景模型推荐</h4>
+                        <table class="w-full text-left">
+                            <thead>
+                                <tr class="border-b border-gray-300">
+                                    <th class="px-4 py-2 text-sm font-semibold text-gray-600">场景</th>
+                                    <th class="px-4 py-2 text-sm font-semibold text-gray-600">推荐模型</th>
+                                    <th class="px-4 py-2 text-sm font-semibold text-gray-600">成本估算</th>
+                                    <th class="px-4 py-2 text-sm font-semibold text-gray-600">说明</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b border-gray-200">
+                                    <td class="px-4 py-3">简单问答</td>
+                                    <td class="px-4 py-3">GPT-3.5-turbo</td>
+                                    <td class="px-4 py-3">$0.002/1K tokens</td>
+                                    <td class="px-4 py-3">快速响应，成本最低</td>
+                                </tr>
+                                <tr class="border-b border-gray-200">
+                                    <td class="px-4 py-3">复杂推理</td>
+                                    <td class="px-4 py-3">GPT-4 / Claude-3</td>
+                                    <td class="px-4 py-3">$0.03-0.12/1K tokens</td>
+                                    <td class="px-4 py-3">高准确度，但成本高</td>
+                                </tr>
+                                <tr class="border-b border-gray-200">
+                                    <td class="px-4 py-3">代码生成</td>
+                                    <td class="px-4 py-3">Claude-3-sonnet</td>
+                                    <td class="px-4 py-3">$0.03/1K tokens</td>
+                                    <td class="px-4 py-3">代码质量最佳</td>
+                                </tr>
+                                <tr class="border-b border-gray-200">
+                                    <td class="px-4 py-3">摘要生成</td>
+                                    <td class="px-4 py-3">GPT-3.5-turbo</td>
+                                    <td class="px-4 py-3">$0.002/1K tokens</td>
+                                    <td class="px-4 py-3">长文本处理，成本敏感</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-3">中文场景</td>
+                                    <td class="px-4 py-3">Qwen / Baichuan</td>
+                                    <td class="px-4 py-3">本地部署</td>
+                                    <td class="px-4 py-3">中文优化，开源免费</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">2.2 混合模型策略</h3>
+                    <p class="text-gray-700 mb-6">在应用中混合使用多个模型以平衡成本和质量：</p>
+
+                    <div class="relative mb-6">
+                        <div class="absolute top-0 right-0 px-3 py-1 bg-gray-800 text-gray-400 text-xs font-medium rounded-bl-md">HybridModelStrategy.java</div>
+                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="text-purple-400">public class</span> <span class="text-yellow-300">HybridModelStrategy</span> {
+
+    <span class="text-purple-400">private final</span> <span class="text-blue-300">ChatLanguageModel</span> fastModel;   <span class="text-gray-500">// GPT-3.5-turbo</span>
+    <span class="text-purple-400">private final</span> <span class="text-blue-300">ChatLanguageModel</span> qualityModel;  <span class="text-gray-500">// GPT-4</span>
+    <span class="text-purple-400">private final</span> <span class="text-blue-300">ChatLanguageModel</span> codeModel;    <span class="text-gray-500">// Claude-3-sonnet</span>
+
+    <span class="text-gray-500">/**
+     * 根据任务类型选择合适的模型
+     */</span>
+    <span class="text-purple-400">public</span> <span class="text-blue-300">String</span> <span class="text-purple-400">generate</span>(<span class="text-blue-300">TaskType</span> type, <span class="text-blue-300">String</span> prompt) {
+        <span class="text-purple-400">return switch</span> (type) {
+            <span class="text-purple-400">case</span> <span class="text-green-300">SIMPLE_QA</span>, <span class="text-green-300">SUMMARY</span> -&gt; fastModel.<span class="text-green-300">generate</span>(prompt).<span class="text-green-300">content</span>();
+            <span class="text-purple-400">case</span> <span class="text-green-300">COMPLEX_REASONING</span> -&gt; qualityModel.<span class="text-green-300">generate</span>(prompt).<span class="text-green-300">content</span>();
+            <span class="text-purple-400">case</span> <span class="text-green-300">CODE_GENERATION</span> -&gt; codeModel.<span class="text-green-300">generate</span>(prompt).<span class="text-green-300">content</span>();
+            <span class="text-purple-400">default</span> -&gt; fastModel.<span class="text-green-300">generate</span>(prompt).<span class="text-green-300">content</span>();
+        };
+    }
+}</code></pre>
+                    </div>
+
+                    <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+                        <h4 class="font-semibold text-green-800 mb-3">💰 成本节省效果</h4>
+                        <ul class="text-green-700 space-y-2">
+                            <li>• 混合使用 GPT-3.5 和 GPT-4，可节省 <strong>60-80%</strong> 成本</li>
+                            <li>• 简单任务使用快速模型，复杂任务使用高质量模型</li>
+                            <li>• 根据查询复杂度动态选择模型</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- 第3节：缓存与复用 -->
+                <section id="缓存与复用" class="mb-16">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-full text-sm font-bold">3</span>
+                        <h2 class="text-2xl font-bold text-gray-900">缓存与复用</h2>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">3.1 缓存策略</h3>
+                    <p class="text-gray-700 mb-6">有效的缓存可以显著降低 API 调用次数和成本：</p>
+
+                    <div class="space-y-6">
+                        <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+                            <h4 class="font-semibold text-blue-800 mb-3">语义缓存（Semantic Caching）</h4>
+                            <p class="text-blue-700 mb-3">缓存相似的查询，即使文本不完全相同：</p>
+                            <ul class="text-blue-600 text-sm space-y-1">
+                                <li>• 将查询转换为向量</li>
+                                <li>• 计算与缓存查询的余弦相似度</li>
+                                <li>• 相似度 > 0.95 则返回缓存结果</li>
+                                <li>• 节省率：30-70%</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-purple-50 border border-purple-200 rounded-lg p-6">
+                            <h4 class="font-semibold text-purple-800 mb-3">精确缓存（Exact Caching）</h4>
+                            <p class="text-purple-700 mb-3">完全相同的查询直接返回缓存：</p>
+                            <ul class="text-purple-600 text-sm space-y-1">
+                                <li>• 使用 Redis 或内存缓存</li>
+                                <li>• 设置合理的过期时间（如 1 小时）</li>
+                                <li>• 适用于重复率高的场景</li>
+                                <li>• 节省率：50-90%</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+                            <h4 class="font-semibold text-green-800 mb-3">向量缓存</h4>
+                            <p class="text-green-700 mb-3">缓存嵌入向量，避免重复计算：</p>
+                            <ul class="text-green-600 text-sm space-y-1">
+                                <li>• 缓存文档和查询的嵌入向量</li>
+                                <li>• 使用文本哈希作为缓存键</li>
+                                <li>• 节省嵌入模型 API 调用成本</li>
+                                <li>• 节省率：80-95%（文本重复场景）</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">3.2 缓存实现</h3>
+
+                    <div class="relative mb-6">
+                        <div class="absolute top-0 right-0 px-3 py-1 bg-gray-800 text-gray-400 text-xs font-medium rounded-bl-md">CacheService.java</div>
+                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="text-purple-400">@Service</span>
+<span class="text-purple-400">public class</span> <span class="text-yellow-300">CacheService</span> {
+
+    <span class="text-purple-400">private final</span> <span class="text-blue-300">CacheManager</span> cacheManager;
+    <span class="text-purple-400">private final</span> <span class="text-blue-300">EmbeddingModel</span> embeddingModel;
+
+    <span class="text-gray-500">/**
+     * 带缓存的生成方法
+     */</span>
+    <span class="text-purple-400">public</span> <span class="text-blue-300">String</span> <span class="text-purple-400">generateWithCache</span>(<span class="text-blue-300">String</span> prompt, <span class="text-blue-300">ChatLanguageModel</span> model) {
+        <span class="text-blue-300">String</span> cacheKey = <span class="text-yellow-300">DigestUtils</span>.<span class="text-green-300">md5Hex</span>(prompt);
+        
+        <span class="text-gray-500">// 尝试从缓存获取</span>
+        <span class="text-blue-300">String</span> cachedResult = cacheManager.<span class="text-green-300">get</span>(cacheKey, <span class="text-blue-300">String</span>.<span class="text-blue-300">class</span>);
+        <span class="text-purple-400">if</span> (cachedResult != <span class="text-purple-400">null</span>) {
+            <span class="text-purple-400">return</span> cachedResult;
+        }
+
+        <span class="text-gray-500">// 缓存未命中，调用模型</span>
+        <span class="text-blue-300">String</span> result = model.<span class="text-green-300">generate</span>(prompt).<span class="text-green-300">content</span>();
+        
+        <span class="text-gray-500">// 存入缓存，设置 1 小时过期</span>
+        cacheManager.<span class="text-green-300">put</span>(cacheKey, result, <span class="text-green-300">Duration</span>.<span class="text-green-300">ofHours</span>(<span class="text-green-300">1</span>));
+        
+        <span class="text-purple-400">return</span> result;
+    }
+}</code></pre>
+                    </div>
+                </section>
+
+                <!-- 第4节：Token 优化 -->
+                <section id="Token优化" class="mb-16">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-full text-sm font-bold">4</span>
+                        <h2 class="text-2xl font-bold text-gray-900">Token 优化</h2>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">4.1 Prompt 优化</h3>
+                    <p class="text-gray-700 mb-6">精简 Prompt 可以大幅减少输入 Token 成本：</p>
+
+                    <div class="space-y-6">
+                        <div class="bg-red-50 border border-red-200 rounded-lg p-6">
+                            <h4 class="font-semibold text-red-800 mb-3">❌ 避免：冗长的 Prompt</h4>
+                            <pre class="bg-red-900 text-red-100 rounded-lg p-4 text-sm overflow-x-auto">"请仔细阅读下面的文档内容，然后根据文档中的信息，针对用户提出的问题，给出一个详细、准确、有条理的答案。答案应该包含引用，并且要确保准确性。如果文档中没有相关信息，请明确说明。"</pre>
+                        </div>
+
+                        <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+                            <h4 class="font-semibold text-green-800 mb-3">✅ 推荐：简洁的 Prompt</h4>
+                            <pre class="bg-green-900 text-green-100 rounded-lg p-4 text-sm overflow-x-auto">"基于以下文档回答问题。如果没有相关信息，请说明。"</pre>
+                            <p class="text-green-700 mt-3 text-sm">节省约 80% 的 Token</p>
+                        </div>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">4.2 输出长度控制</h3>
+                    <p class="text-gray-700 mb-6">设置合理的 maxTokens 避免不必要的成本：</p>
+
+                    <div class="relative mb-6">
+                        <div class="absolute top-0 right-0 px-3 py-1 bg-gray-800 text-gray-400 text-xs font-medium rounded-bl-md">ModelConfig.java</div>
+                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="text-purple-400">public class</span> <span class="text-yellow-300">ModelConfig</span> {
+
+    <span class="text-gray-500">/**
+     * 按任务类型配置 Token 限制
+     */</span>
+    <span class="text-purple-400">public static int</span> <span class="text-purple-400">getMaxTokens</span>(<span class="text-blue-300">TaskType</span> type) {
+        <span class="text-purple-400">return switch</span> (type) {
+            <span class="text-purple-400">case</span> <span class="text-green-300">SIMPLE_QA</span> -&gt; <span class="text-green-300">256</span>;      <span class="text-gray-500">// 简单问答：短答案</span>
+            <span class="text-purple-400">case</span> <span class="text-green-300">SUMMARY</span> -&gt; <span class="text-green-300">512</span>;      <span class="text-gray-500">// 摘要：中等长度</span>
+            <span class="text-purple-400">case</span> <span class="text-green-300">CODE_GENERATION</span> -&gt; <span class="text-green-300">1024</span>;  <span class="text-gray-500">// 代码：需要更多 Token</span>
+            <span class="text-purple-400">case</span> <span class="text-green-300">COMPLEX_REASONING</span> -&gt; <span class="text-green-300">2048</span>;  <span class="text-gray-500">// 复杂推理：长答案</span>
+            <span class="text-purple-400">default</span> -&gt; <span class="text-green-300">512</span>;
+        };
+    }
+}</code></pre>
+                    </div>
+                </section>
+
+                <!-- 第5节：向量化成本优化 -->
+                <section id="向量化成本优化" class="mb-16">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-full text-sm font-bold">5</span>
+                        <h2 class="text-2xl font-bold text-gray-900">向量化成本优化</h2>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">5.1 嵌入模型选择</h3>
+                    <p class="text-gray-700 mb-6">不同嵌入模型的成本差异巨大：</p>
+
+                    <table class="w-full text-left border-collapse border border-gray-200 rounded-lg overflow-hidden mb-6">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-sm font-semibold text-gray-500">模型</th>
+                                <th class="px-6 py-3 text-sm font-semibold text-gray-500">成本</th>
+                                <th class="px-6 py-3 text-sm font-semibold text-gray-500">维度</th>
+                                <th class="px-6 py-3 text-sm font-semibold text-gray-500">适用场景</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-gray-200">
+                                <td class="px-6 py-3">OpenAI text-embedding-3-small</td>
+                                <td class="px-6 py-3">$0.00002/1K tokens</td>
+                                <td class="px-6 py-3">1536</td>
+                                <td class="px-6 py-3">通用场景</td>
+                            </tr>
+                            <tr class="border-b border-gray-200">
+                                <td class="px-6 py-3">OpenAI text-embedding-3-large</td>
+                                <td class="px-6 py-3">$0.00013/1K tokens</td>
+                                <td class="px-6 py-3">3072</td>
+                                <td class="px-6 py-3">高精度需求</td>
+                            </tr>
+                            <tr class="border-b border-gray-200">
+                                <td class="px-6 py-3">HuggingFace sentence-transformers</td>
+                                <td class="px-6 py-3">免费（本地）</td>
+                                <td class="px-6 py-3">768</td>
+                                <td class="px-6 py-3">大规模、低成本</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-3">Jina AI embeddings</td>
+                                <td class="px-6 py-3">$0.000002/1K tokens</td>
+                                <td class="px-6 py-3">768</td>
+                                <td class="px-6 py-3">超低成本</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">5.2 批处理优化</h3>
+                    <p class="text-gray-700 mb-6">批量处理文档可降低 API 调用开销：</p>
+
+                    <div class="relative mb-6">
+                        <div class="absolute top-0 right-0 px-3 py-1 bg-gray-800 text-gray-400 text-xs font-medium rounded-bl-md">BatchEmbedding.java</div>
+                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="text-purple-400">public class</span> <span class="text-yellow-300">BatchEmbedding</span> {
+
+    <span class="text-purple-400">private final</span> <span class="text-blue-300">EmbeddingModel</span> embeddingModel;
+    <span class="text-purple-400">private static final int</span> <span class="text-yellow-300">BATCH_SIZE</span> = <span class="text-green-300">100</span>;
+
+    <span class="text-gray-500">/**
+     * 批量嵌入文本
+     */</span>
+    <span class="text-purple-400">public</span> <span class="text-blue-300">List</span>&lt;<span class="text-blue-300">Embedding</span>&gt; <span class="text-purple-400">embedBatch</span>(<span class="text-blue-300">List</span>&lt;<span class="text-blue-300">String</span>&gt; texts) {
+        <span class="text-blue-300">List</span>&lt;<span class="text-blue-300">Embedding</span>&gt; allEmbeddings = <span class="text-purple-400">new</span> <span class="text-yellow-300">ArrayList</span>&lt;&gt;();
+        
+        <span class="text-gray-500">// 分批处理</span>
+        <span class="text-purple-400">for</span> (<span class="text-blue-300">int</span> i = <span class="text-green-300">0</span>; i &lt; texts.<span class="text-green-300">size</span>(); i += <span class="text-yellow-300">BATCH_SIZE</span>) {
+            <span class="text-blue-300">int</span> end = <span class="text-yellow-300">Math</span>.<span class="text-green-300">min</span>(i + <span class="text-yellow-300">BATCH_SIZE</span>, texts.<span class="text-green-300">size</span>());
+            <span class="text-blue-300">List</span>&lt;<span class="text-blue-300">String</span>&gt; batch = texts.<span class="text-green-300">subList</span>(i, end);
+            
+            <span class="text-gray-500">// 批量调用嵌入 API</span>
+            <span class="text-blue-300">List</span>&lt;<span class="text-blue-300">Embedding</span>&gt; batchEmbeddings = 
+                embeddingModel.<span class="text-green-300">embedAll</span>(batch).<span class="text-green-300">content</span>();
+            
+            allEmbeddings.<span class="text-green-300">addAll</span>(batchEmbeddings);
+        }
+        
+        <span class="text-purple-400">return</span> allEmbeddings;
+    }
+}</code></pre>
+                    </div>
+                </section>
+
+                <!-- 第6节：监控与预算控制 -->
+                <section id="监控与预算控制" class="mb-16">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-full text-sm font-bold">6</span>
+                        <h2 class="text-2xl font-bold text-gray-900">监控与预算控制</h2>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">6.1 成本监控指标</h3>
+                    <p class="text-gray-700 mb-6">监控关键指标以控制成本：</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                            <h4 class="font-semibold text-blue-800 mb-2">API 调用次数</h4>
+                            <p class="text-blue-700 text-sm">每天/每周的 API 调用总量</p>
+                        </div>
+                        <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+                            <h4 class="font-semibold text-green-800 mb-2">Token 使用量</h4>
+                            <p class="text-green-700 text-sm">输入/输出 Token 数量及成本</p>
+                        </div>
+                        <div class="bg-purple-50 border border-purple-200 rounded-lg p-4">
+                            <h4 class="font-semibold text-purple-800 mb-2">缓存命中率</h4>
+                            <p class="text-purple-700 text-sm">缓存成功命中占总请求的比例</p>
+                        </div>
+                        <div class="bg-orange-50 border border-orange-200 rounded-lg p-4">
+                            <h4 class="font-semibold text-orange-800 mb-2">平均响应成本</h4>
+                            <p class="text-orange-700 text-sm">每次请求的平均 API 成本</p>
+                        </div>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">6.2 预算警报</h3>
+                    <p class="text-gray-700 mb-6">设置预算阈值并触发警报：</p>
+
+                    <div class="relative mb-6">
+                        <div class="absolute top-0 right-0 px-3 py-1 bg-gray-800 text-gray-400 text-xs font-medium rounded-bl-md">BudgetMonitor.java</div>
+                        <pre class="bg-gray-900 text-gray-100 rounded-lg p-5 overflow-x-auto"><code class="text-sm"><span class="text-purple-400">@Component</span>
+<span class="text-purple-400">public class</span> <span class="text-yellow-300">BudgetMonitor</span> {
+
+    <span class="text-purple-400">private static final</span> <span class="text-blue-300">BigDecimal</span> <span class="text-yellow-300">MONTHLY_BUDGET</span> = <span class="text-purple-400">new</span> <span class="text-yellow-300">BigDecimal</span>(<span class="text-green-300">"100"</span>);
+    <span class="text-purple-400">private static final</span> <span class="text-blue-300">BigDecimal</span> <span class="text-yellow-300">WARNING_THRESHOLD</span> = <span class="text-yellow-300">MONTHLY_BUDGET</span>.<span class="text-green-300">multiply</span>(<span class="text-purple-400">new</span> <span class="text-yellow-300">BigDecimal</span>(<span class="text-green-300">"0.8"</span>));
+    
+    <span class="text-purple-400">private</span> <span class="text-blue-300">BigDecimal</span> currentCost = <span class="text-yellow-300">BigDecimal</span>.<span class="text-green-300">ZERO</span>;
+
+    <span class="text-gray-500">/**
+     * 记录 API 调用成本并检查预算
+     */</span>
+    <span class="text-purple-400">public synchronized void</span> <span class="text-purple-400">recordCost</span>(<span class="text-blue-300">BigDecimal</span> cost) {
+        currentCost = currentCost.<span class="text-green-300">add</span>(cost);
+        
+        <span class="text-gray-500">// 检查是否超过警告阈值</span>
+        <span class="text-purple-400">if</span> (currentCost.<span class="text-green-300">compareTo</span>(<span class="text-yellow-300">WARNING_THRESHOLD</span>) >= <span class="text-green-300">0</span>) {
+            <span class="text-yellow-300">sendAlert</span>(<span class="text-green-300">"预算警告：已使用 "</span> + currentCost + <span class="text-green-300">"/100 美元"</span>);
+        }
+        
+        <span class="text-gray-500">// 检查是否超过总预算</span>
+        <span class="text-purple-400">if</span> (currentCost.<span class="text-green-300">compareTo</span>(<span class="text-yellow-300">MONTHLY_BUDGET</span>) >= <span class="text-green-300">0</span>) {
+            <span class="text-yellow-300">sendAlert</span>(<span class="text-green-300">"预算超支："</span> + currentCost + <span class="text-green-300">"/100 美元"</span>);
+            <span class="text-gray-500">// 可选择暂停服务或降级</span>
+        }
+    }
+}</code></pre>
+                    </div>
+
+                    <div class="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl p-6 mb-8">
+                        <h3 class="text-xl font-bold text-white mb-2">💡 成本优化总结</h3>
+                        <ul class="text-indigo-100 space-y-2">
+                            <li><strong>模型选择</strong>：合理选择模型可节省 60-80% 成本</li>
+                            <li><strong>缓存策略</strong>：缓存可节省 50-90% 重复请求成本</li>
+                            <li><strong>Token 优化</strong>：精简 Prompt 和设置 maxTokens 可节省 20-50%</li>
+                            <li><strong>批处理</strong>：批量处理降低 API 调用开销</li>
+                            <li><strong>监控预警</strong>：实时监控成本，设置预算限制</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- 总结 -->
+                <div class="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl p-8 text-white">
+                    <h3 class="text-2xl font-bold mb-4">本节小结</h3>
+                    <p class="mb-4">本节完整介绍了 LangChain4j 应用的成本优化策略，包括：</p>
+                    <ul class="list-disc list-inside space-y-2 mb-6">
+                        <li><strong>成本分析</strong>：API 调用、嵌入模型、向量数据库、基础设施成本构成</li>
+                        <li><strong>模型选择</strong>：按场景选择模型、混合模型策略</li>
+                        <li><strong>缓存策略</strong>：语义缓存、精确缓存、向量缓存</li>
+                        <li><strong>Token 优化</strong>：Prompt 精简、输出长度控制</li>
+                        <li><strong>向量化优化</strong>：嵌入模型选择、批处理优化</li>
+                        <li><strong>监控与预算</strong>：关键指标监控、预算警报设置</li>
+                    </ul>
+                    <div class="border-t border-indigo-400 pt-6">
+                        <p class="text-sm opacity-80 mb-2">下一步</p>
+                        <a href="deployment.html" class="inline-flex items-center gap-2 text-white hover:text-indigo-200 transition-colors">
+                            下一章：部署与运维 →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

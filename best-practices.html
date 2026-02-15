@@ -1,0 +1,1971 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>最佳实践 - LangChain4j 学习指南</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            200: '#c7d2fe',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-white text-gray-800 antialiased">
+    <div class="flex min-h-screen">
+        <aside class="w-[280px] fixed left-0 top-0 h-full bg-white border-r border-gray-200 overflow-y-auto z-50">
+            <a href="index.html" class="flex items-center gap-3 mb-8 text-gray-900 no-underline">
+                <div class="w-9 h-9 bg-indigo-600 rounded-lg flex items-center justify-center text-white text-xl">⚡</div>
+                <span class="font-bold text-xl">LangChain4j</span>
+            </a>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">入门</div>
+                <ul class="list-none">
+                    <li><a href="index.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">首页</a></li>
+                    <li><a href="getting-started.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">快速入门</a></li>
+                    <li><a href="core-concepts.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">核心概念</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">基础</div>
+                <ul class="list-none">
+                    <li><a href="embedding-models.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">Embedding模型</a></li>
+                    <li><a href="prompt-templates.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">Prompt模板</a></li>
+                    <li><a href="output-parsers.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">输出解析</a></li>
+                    <li><a href="model-providers.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">模型提供商</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">进阶</div>
+                <ul class="list-none">
+                    <li><a href="function-calling-deep.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">Function Calling</a></li>
+                    <li><a href="advanced-features.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">高级特性</a></li>
+                    <li><a href="multimodal-full.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">多模态能力</a></li>
+                    <li><a href="rag-complete.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">RAG完整指南</a></li>
+                    <li><a href="project-rag-kb.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">RAG知识库项目</a></li>
+                    <li><a href="project-ai-assistant.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">AI助手项目</a></li>
+                    <li><a href="project-chatbot.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">聊天机器人项目</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">实践</div>
+                <ul class="list-none">
+                    <li><a href="best-practices.html" class="bg-primary-50 text-indigo-700 block py-2 px-3 text-sm rounded-md font-medium">最佳实践</a></li>
+                    <li><a href="examples.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">实战示例</a></li>
+                    <li><a href="integrations.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">框架集成</a></li>
+                    <li><a href="testing-strategies.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">测试策略</a></li>
+                    <li><a href="performance-tuning.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">性能调优</a></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">其他</div>
+                <ul class="list-none">
+                    <li><a href="deep-dive.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">深度解析</a></li>
+                    <li><a href="error-handling.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">错误处理</a></li>
+                    <li><a href="moderation-safety.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">内容审核</a></li>
+                    <li><a href="troubleshooting.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">问题排查</a></li>
+                    <li><a href="interview-prep.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">面试准备</a></li>
+                    <li><a href="practice.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">练习项目</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <main class="flex-1 ml-[280px] px-8 py-12 max-w-7xl">
+            <div class="mb-8 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <span class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-xs font-semibold">2025-02-14</span>
+                    <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-semibold">生产实践</span>
+                    <span class="bg-amber-100 text-amber-700 px-3 py-1 rounded-full text-xs font-semibold">高级难度</span>
+                </div>
+            </div>
+
+            <h1 class="text-5xl font-bold text-gray-900 mb-6">LangChain4j 最佳实践</h1>
+
+            <div class="mb-8">
+                <h2 class="text-lg font-semibold text-gray-900 mb-4">📋 章节概览</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-gradient-to-br from-blue-50 to-indigo-50 border border-indigo-100 rounded-xl p-6">
+                        <div class="text-3xl mb-3">🏗️</div>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-2">架构设计</h3>
+                        <ul class="text-gray-600 text-sm space-y-1">
+                            <li>• 分层架构模式</li>
+                            <li>• 服务拆分原则</li>
+                            <li>• 模块化设计</li>
+                        </ul>
+                    </div>
+                    <div class="bg-gradient-to-br from-purple-50 to-pink-50 border border-purple-100 rounded-xl p-6">
+                        <div class="text-3xl mb-3">⚡</div>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-2">性能优化</h3>
+                        <ul class="text-gray-600 text-sm space-y-1">
+                            <li>• 连接池管理</li>
+                            <li>• 批量处理</li>
+                            <li>• 缓存策略</li>
+                        </ul>
+                    </div>
+                    <div class="bg-gradient-to-br from-green-50 to-teal-50 border border-green-100 rounded-xl p-6">
+                        <div class="text-3xl mb-3">🛡️</div>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-2">安全实践</h3>
+                        <ul class="text-gray-600 text-sm space-y-1">
+                            <li>• API密钥管理</li>
+                            <li>• 输入验证</li>
+                            <li>• 内容过滤</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-12 bg-blue-50 border border-blue-100 rounded-lg p-6">
+                <div class="flex items-start gap-3">
+                    <span class="text-2xl">💡</span>
+                    <div>
+                        <h3 class="font-bold text-gray-900 mb-2">学习目标</h3>
+                        <ul class="text-gray-700 space-y-2 text-sm">
+                            <li>• 掌握 LangChain4j 应用的架构设计原则</li>
+                            <li>• 学习性能优化技巧和最佳实践</li>
+                            <li>• 理解错误处理和容错机制</li>
+                            <li>• 掌握安全防护和合规要求</li>
+                            <li>• 学习监控、日志和调试技巧</li>
+                            <li>• 了解测试策略和CI/CD集成</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <section class="mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                    <span class="bg-indigo-600 text-white w-10 h-10 rounded-full flex items-center justify-center text-xl font-bold">1</span>
+                    架构设计原则
+                </h2>
+
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">1.1 分层架构</h3>
+                <div class="bg-gray-900 rounded-lg p-5 mb-8 border border-gray-700">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="text-xs text-gray-400">推荐的项目结构</div>
+                    </div>
+                    <pre class="text-gray-100 text-sm overflow-x-auto"><code class="language-plaintext">src/main/java/com/example/langchain4j/
+├── config/                    # 配置层
+│   ├── AiModelConfig.java    # AI模型配置
+│   ├── EmbeddingConfig.java  # Embedding配置
+│   ├── VectorStoreConfig.java # 向量存储配置
+│   └── CacheConfig.java      # 缓存配置
+│
+├── model/                     # 数据模型层
+│   ├── dto/                  # 数据传输对象
+│   ├── entity/               # 数据库实体
+│   └── vo/                   # 视图对象
+│
+├── repository/                # 数据访问层
+│   ├── DocumentRepository.java
+│   ├── ChatRepository.java
+│   └── UserRepository.java
+│
+├── service/                   # 业务逻辑层
+│   ├── chat/                 # 聊天服务
+│   │   ├── ChatService.java  # 服务接口
+│   │   └── impl/             # 服务实现
+│   ├── rag/                  # RAG服务
+│   │   ├── RagService.java
+│   │   └── impl/
+│   └── ai/                   # AI服务
+│       ├── AiAgent.java      # AI代理
+│       ├── ToolService.java  # 工具服务
+│       └── MemoryService.java # 记忆服务
+│
+├── controller/                # 控制器层
+│   ├── ChatController.java
+│   ├── RagController.java
+│   └── DocumentController.java
+│
+├── exception/                 # 异常处理
+│   ├── AiException.java
+│   └── GlobalExceptionHandler.java
+│
+└── util/                      # 工具类
+    ├── PromptTemplate.java
+    ├── TextSplitter.java
+    └── Tokenizer.java
+                    </code></pre>
+                </div>
+
+                <div class="bg-green-50 border border-green-100 rounded-lg p-6 mb-8">
+                    <h4 class="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                        <span class="text-green-600">✅</span> 推荐做法
+                    </h4>
+                    <ul class="text-gray-700 space-y-2 text-sm">
+                        <li>• <strong>清晰的职责分离</strong>：Controller负责请求处理，Service负责业务逻辑，Repository负责数据访问</li>
+                        <li>• <strong>面向接口编程</strong>：Service层定义接口，impl包中实现，便于测试和扩展</li>
+                        <li>• <strong>配置集中管理</strong>：所有AI模型、向量存储等配置统一放在config包</li>
+                        <li>• <strong>异常统一处理</strong>：定义业务异常类，使用全局异常处理器统一返回</li>
+                    </ul>
+                </div>
+
+                <div class="bg-red-50 border border-red-100 rounded-lg p-6 mb-8">
+                    <h4 class="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                        <span class="text-red-600">❌</span> 避免的做法
+                    </h4>
+                    <ul class="text-gray-700 space-y-2 text-sm">
+                        <li>• <strong>在Controller中直接调用AI模型</strong>：应该通过Service层封装</li>
+                        <li>• <strong>硬编码API密钥</strong>：应使用环境变量或配置管理服务</li>
+                        <li>• <strong>Service之间循环依赖</strong>：通过共享Service或事件机制解耦</li>
+                        <li>• <strong>异常吞掉或直接返回</strong>：应该记录日志并转换为适当的错误响应</li>
+                    </ul>
+                </div>
+
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">1.2 服务拆分示例</h3>
+                <div class="bg-gray-900 rounded-lg p-5 mb-8 border border-gray-700">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="text-xs text-gray-400">ChatService.java</div>
+                        <div class="text-xs text-gray-400">服务接口定义</div>
+                    </div>
+                    <pre class="text-gray-100 text-sm overflow-x-auto"><code class="language-java">package com.example.langchain4j.service.chat;
+
+import com.example.langchain4j.model.dto.ChatRequest;
+import com.example.langchain4j.model.dto.ChatResponse;
+
+/**
+ * 聊天服务接口
+ * 定义聊天相关的业务操作
+ */
+public interface ChatService {
+
+    /**
+     * 发送聊天消息
+     * @param request 聊天请求
+     * @return 聊天响应
+     */
+    ChatResponse chat(ChatRequest request);
+
+    /**
+     * 流式聊天
+     * @param request 聊天请求
+     * @return 流式响应
+     */
+    Flux&lt;ChatResponse&gt; chatStream(ChatRequest request);
+
+    /**
+     * 清除对话历史
+     * @param sessionId 会话ID
+     */
+    void clearHistory(String sessionId);
+}
+                    </code></pre>
+                </div>
+
+                <div class="bg-gray-900 rounded-lg p-5 mb-8 border border-gray-700">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="text-xs text-gray-400">ChatServiceImpl.java</div>
+                        <div class="text-xs text-gray-400">服务实现</div>
+                    </div>
+                    <pre class="text-gray-100 text-sm overflow-x-auto"><code class="language-java">package com.example.langchain4j.service.chat.impl;
+
+import com.example.langchain4j.model.dto.ChatRequest;
+import com.example.langchain4j.model.dto.ChatResponse;
+import com.example.langchain4j.service.ai.AiAgent;
+import com.example.langchain4j.service.chat.ChatService;
+import com.example.langchain4j.service.ai.MemoryService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
+
+/**
+ * 聊天服务实现
+ */
+@Slf4j
+@Service
+@RequiredArgsConstructor
+public class ChatServiceImpl implements ChatService {
+
+    private final AiAgent aiAgent;
+    private final MemoryService memoryService;
+
+    @Override
+    public ChatResponse chat(ChatRequest request) {
+        log.debug("处理聊天请求: sessionId={}, user={}",
+            request.getSessionId(), request.getUserId());
+
+        try {
+            // 1. 获取历史对话上下文
+            String context = memoryService.getContext(request.getSessionId());
+
+            // 2. 调用AI生成响应
+            String response = aiAgent.generate(
+                request.getMessage(),
+                context,
+                request.getModel()
+            );
+
+            // 3. 保存对话历史
+            memoryService.saveMessage(
+                request.getSessionId(),
+                request.getUserId(),
+                request.getMessage(),
+                response
+            );
+
+            // 4. 构建响应
+            return ChatResponse.builder()
+                .sessionId(request.getSessionId())
+                .message(response)
+                .model(request.getModel())
+                .timestamp(System.currentTimeMillis())
+                .build();
+
+        } catch (Exception e) {
+            log.error("聊天处理失败: sessionId={}", request.getSessionId(), e);
+            throw new ChatException("AI处理失败", e);
+        }
+    }
+
+    @Override
+    public Flux&lt;ChatResponse&gt; chatStream(ChatRequest request) {
+        log.debug("处理流式聊天请求: sessionId={}", request.getSessionId());
+
+        try {
+            // 1. 获取历史对话上下文
+            String context = memoryService.getContext(request.getSessionId());
+
+            // 2. 调用流式AI生成
+            Flux&lt;String&gt; responseStream = aiAgent.generateStream(
+                request.getMessage(),
+                context,
+                request.getModel()
+            );
+
+            // 3. 转换为响应流并保存历史
+            return responseStream
+                .map(chunk -&gt; ChatResponse.builder()
+                    .sessionId(request.getSessionId())
+                    .message(chunk)
+                    .model(request.getModel())
+                    .timestamp(System.currentTimeMillis())
+                    .build()
+                )
+                .doOnComplete(() -&gt; {
+                    // 流结束后保存完整对话
+                    String fullResponse = collectFullResponse(responseStream);
+                    memoryService.saveMessage(
+                        request.getSessionId(),
+                        request.getUserId(),
+                        request.getMessage(),
+                        fullResponse
+                    );
+                });
+
+        } catch (Exception e) {
+            log.error("流式聊天处理失败", e);
+            return Flux.error(new ChatException("流式处理失败", e));
+        }
+    }
+
+    @Override
+    public void clearHistory(String sessionId) {
+        log.info("清除对话历史: sessionId={}", sessionId);
+        memoryService.clear(sessionId);
+    }
+
+    private String collectFullResponse(Flux&lt;String&gt; stream) {
+        // 简化实现：收集所有chunk
+        return stream.collectList().block().stream()
+            .reduce("", (a, b) -&gt; a + b);
+    }
+}
+                    </code></pre>
+                </div>
+            </section>
+
+            <section class="mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                    <span class="bg-indigo-600 text-white w-10 h-10 rounded-full flex items-center justify-center text-xl font-bold">2</span>
+                    性能优化
+                </h2>
+
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">2.1 连接池管理</h3>
+                <div class="bg-gray-900 rounded-lg p-5 mb-8 border border-gray-700">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="text-xs text-gray-400">HttpClientConfig.java</div>
+                        <div class="text-xs text-gray-400">HTTP连接池配置</div>
+                    </div>
+                    <pre class="text-gray-100 text-sm overflow-x-auto"><code class="language-java">package com.example.langchain4j.config;
+
+import dev.langchain4j.model.openai.OpenAiChatModel;
+import okhttp3.ConnectionPool;
+import okhttp3.OkHttpClient;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import java.util.concurrent.TimeUnit;
+
+/**
+ * HTTP客户端配置
+ * 优化OpenAI API调用性能
+ */
+@Configuration
+public class HttpClientConfig {
+
+    @Value("${openai.api.timeout.connect:10}")
+    private int connectTimeout;
+
+    @Value("${openai.api.timeout.read:60}")
+    private int readTimeout;
+
+    @Value("${openai.api.timeout.write:30}")
+    private int writeTimeout;
+
+    @Value("${openai.api.connection-pool.max-idle:5}")
+    private int maxIdleConnections;
+
+    @Value("${openai.api.connection-pool.keep-alive:300}")
+    private long keepAliveDuration;
+
+    /**
+     * 配置OkHttpClient连接池
+     * 提升HTTP请求性能
+     */
+    @Bean
+    public OkHttpClient okHttpClient() {
+        return new OkHttpClient.Builder()
+            .connectionPool(new ConnectionPool(
+                maxIdleConnections,      // 最大空闲连接数
+                keepAliveDuration,        // 保持存活时间（秒）
+                TimeUnit.SECONDS
+            ))
+            .connectTimeout(connectTimeout, TimeUnit.SECONDS)
+            .readTimeout(readTimeout, TimeUnit.SECONDS)
+            .writeTimeout(writeTimeout, TimeUnit.SECONDS)
+            // 添加重试拦截器
+            .addInterceptor(new RetryInterceptor())
+            // 添加日志拦截器
+            .addInterceptor(new LoggingInterceptor())
+            .build();
+    }
+
+    /**
+     * 使用连接池配置的聊天模型
+     */
+    @Bean
+    public OpenAiChatModel chatLanguageModel(OkHttpClient httpClient) {
+        return OpenAiChatModel.builder()
+            .apiKey(System.getenv("OPENAI_API_KEY"))
+            .modelName("gpt-4")
+            .temperature(0.7)
+            .maxTokens(1000)
+            .timeout(Duration.ofSeconds(readTimeout))
+            .client(httpClient)  // 使用自定义HTTP客户端
+            .build();
+    }
+}
+
+/**
+ * 重试拦截器
+ * 自动重试失败的请求
+ */
+class RetryInterceptor implements Interceptor {
+    private static final int MAX_RETRIES = 3;
+    private static final long RETRY_DELAY_MS = 1000;
+
+    @Override
+    public Response intercept(Chain chain) throws IOException {
+        Request request = chain.request();
+        IOException lastException = null;
+
+        for (int i = 0; i &lt;= MAX_RETRIES; i++) {
+            try {
+                Response response = chain.proceed(request);
+                if (response.isSuccessful()) {
+                    return response;
+                }
+                response.close();
+            } catch (IOException e) {
+                lastException = e;
+                if (i &lt; MAX_RETRIES) {
+                    try {
+                        Thread.sleep(RETRY_DELAY_MS);
+                    } catch (InterruptedException ie) {
+                        Thread.currentThread().interrupt();
+                        throw new IOException("重试被中断", ie);
+                    }
+                }
+            }
+        }
+
+        throw new IOException("请求失败，已重试" + MAX_RETRIES + "次", lastException);
+    }
+}
+
+/**
+ * 日志拦截器
+ * 记录API请求和响应
+ */
+class LoggingInterceptor implements Interceptor {
+    private static final Logger logger = LoggerFactory.getLogger(LoggingInterceptor.class);
+
+    @Override
+    public Response intercept(Chain chain) throws IOException {
+        Request request = chain.request();
+
+        long startTime = System.currentTimeMillis();
+        logger.debug("API请求: {} {}", request.method(), request.url());
+
+        try {
+            Response response = chain.proceed(request);
+            long duration = System.currentTimeMillis() - startTime;
+
+            logger.debug("API响应: {} - 状态码: {}, 耗时: {}ms",
+                request.url(), response.code(), duration);
+
+            return response;
+        } catch (IOException e) {
+            long duration = System.currentTimeMillis() - startTime;
+            logger.error("API请求失败: {} - 耗时: {}ms, 错误: {}",
+                request.url(), duration, e.getMessage());
+            throw e;
+        }
+    }
+}
+                    </code></pre>
+                </div>
+
+                <div class="bg-blue-50 border border-blue-100 rounded-lg p-6 mb-8">
+                    <h4 class="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                        <span class="text-blue-600">💡</span> 性能优化要点
+                    </h4>
+                    <ul class="text-gray-700 space-y-2 text-sm">
+                        <li>• <strong>连接复用</strong>：使用连接池避免频繁建立HTTP连接</li>
+                        <li>• <strong>超时配置</strong>：合理设置连接、读取、写入超时</li>
+                        <li>• <strong>自动重试</strong>：对临时性错误（如网络抖动）自动重试</li>
+                        <li>• <strong>日志记录</strong>：记录API调用耗时，便于性能分析</li>
+                        <li>• <strong>连接保活</strong>：设置合理的keep-alive时间</li>
+                    </ul>
+                </div>
+
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">2.2 批量处理优化</h3>
+                <div class="bg-gray-900 rounded-lg p-5 mb-8 border border-gray-700">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="text-xs text-gray-400">BatchEmbeddingService.java</div>
+                        <div class="text-xs text-gray-400">批量Embedding服务</div>
+                    </div>
+                    <pre class="text-gray-100 text-sm overflow-x-auto"><code class="language-java">package com.example.langchain4j.service.rag;
+
+import dev.langchain4j.data.segment.TextSegment;
+import dev.langchain4j.model.embedding.EmbeddingModel;
+import dev.langchain4j.store.embedding.EmbeddingStore;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.stream.Collectors;
+
+/**
+ * 批量Embedding服务
+ * 优化大批量文档的向量化处理
+ */
+@Slf4j
+@Service
+@RequiredArgsConstructor
+public class BatchEmbeddingService {
+
+    private final EmbeddingModel embeddingModel;
+    private final EmbeddingStore&lt;TextSegment&gt; embeddingStore;
+
+    // 并发处理线程池
+    private static final int BATCH_SIZE = 100;          // 每批处理数量
+    private static final int PARALLEL_THREADS = 4;       // 并发线程数
+
+    private final ExecutorService executor = Executors.newFixedThreadPool(PARALLEL_THREADS);
+
+    /**
+     * 批量生成Embedding并存储
+     * @param segments 文本片段列表
+     */
+    public void batchEmbedAndStore(List&lt;TextSegment&gt; segments) {
+        log.info("开始批量处理Embedding: 总数={}", segments.size());
+        long startTime = System.currentTimeMillis();
+
+        // 1. 分批处理
+        List&lt;List&lt;TextSegment&gt;&gt; batches = partition(segments, BATCH_SIZE);
+
+        // 2. 并发处理每批
+        List&lt;CompletableFuture&lt;Void&gt;&gt; futures = batches.stream()
+            .map(batch -&gt; CompletableFuture.runAsync(() -&gt; {
+                try {
+                    processBatch(batch);
+                } catch (Exception e) {
+                    log.error("批次处理失败: size={}", batch.size(), e);
+                    throw new RuntimeException(e);
+                }
+            }, executor))
+            .collect(Collectors.toList());
+
+        // 3. 等待所有批次完成
+        CompletableFuture.allOf(futures.toArray(new CompletableFuture[0])).join();
+
+        long duration = System.currentTimeMillis() - startTime;
+        log.info("批量处理完成: 总数={}, 耗时={}ms, 平均={}ms/条",
+            segments.size(), duration, duration / segments.size());
+    }
+
+    /**
+     * 处理单个批次
+     */
+    private void processBatch(List&lt;TextSegment&gt; batch) {
+        log.debug("处理批次: size={}", batch.size());
+
+        // 1. 批量生成Embedding
+        List&lt;Embedding&gt; embeddings = embeddingModel.embedAll(batch).content();
+
+        // 2. 批量存储到向量数据库
+        for (int i = 0; i &lt; batch.size(); i++) {
+            TextSegment segment = batch.get(i);
+            Embedding embedding = embeddings.get(i);
+
+            embeddingStore.add(
+                idFor(segment),
+                embedding,
+                segment
+            );
+        }
+
+        log.debug("批次处理完成: size={}", batch.size());
+    }
+
+    /**
+     * 分区函数
+     */
+    private &lt;T&gt; List&lt;List&lt;T&gt;&gt; partition(List&lt;T&gt; list, int batchSize) {
+        List&lt;List&lt;T&gt;&gt; result = new ArrayList&lt;&gt;();
+        for (int i = 0; i &lt; list.size(); i += batchSize) {
+            result.add(list.subList(i, Math.min(i + batchSize, list.size())));
+        }
+        return result;
+    }
+
+    /**
+     * 生成唯一ID
+     */
+    private String idFor(TextSegment segment) {
+        return segment.text().hashCode() + "";
+    }
+
+    /**
+     * 关闭线程池
+     */
+    @PreDestroy
+    public void shutdown() {
+        executor.shutdown();
+    }
+}
+                    </code></pre>
+                </div>
+
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">2.3 缓存策略</h3>
+                <div class="bg-gray-900 rounded-lg p-5 mb-8 border border-gray-700">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="text-xs text-gray-400">CacheConfig.java</div>
+                        <div class="text-xs text-gray-400">缓存配置</div>
+                    </div>
+                    <pre class="text-gray-100 text-sm overflow-x-auto"><code class="language-java">package com.example.langchain4j.config;
+
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.cache.RedisCacheConfiguration;
+import org.springframework.data.redis.cache.RedisCacheManager;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
+import org.springframework.data.redis.serializer.RedisSerializationContext;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
+
+import java.time.Duration;
+
+/**
+ * 缓存配置
+ * 使用Redis作为缓存后端
+ */
+@Configuration
+@EnableCaching
+public class CacheConfig {
+
+    /**
+     * 缓存管理器配置
+     */
+    @Bean
+    public CacheManager cacheManager(RedisConnectionFactory factory) {
+        RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig()
+            // 缓存过期时间
+            .entryTtl(Duration.ofHours(1))
+            // Key序列化
+            .serializeKeysWith(RedisSerializationContext.SerializationPair
+                .fromSerializer(new StringRedisSerializer()))
+            // Value序列化（JSON）
+            .serializeValuesWith(RedisSerializationContext.SerializationPair
+                .fromSerializer(new GenericJackson2JsonRedisSerializer()))
+            // 禁用缓存null值
+            .disableCachingNullValues();
+
+        return RedisCacheManager.builder(factory)
+            .cacheDefaults(config)
+            // 针对不同缓存设置不同过期时间
+            .withCacheConfiguration("embedding", config.entryTtl(Duration.ofDays(7)))
+            .withCacheConfiguration("chat", config.entryTtl(Duration.ofHours(2)))
+            .withCacheConfiguration("rag", config.entryTtl(Duration.ofMinutes(30)))
+            .transactionAware()
+            .build();
+    }
+}
+
+/**
+ * 带缓存的服务示例
+ */
+@Service
+public class CachedRagService {
+
+    private final EmbeddingStore&lt;TextSegment&gt; embeddingStore;
+    private final EmbeddingModel embeddingModel;
+
+    /**
+     * 检索相关文档（带缓存）
+     * 缓存key: "rag:query:{query的hash}"
+     * 缓存时长: 30分钟
+     */
+    @Cacheable(
+        value = "rag",
+        key = "'query:' + #query.hashCode()",
+        unless = "#result.isEmpty()"
+    )
+    public List&lt;TextSegment&gt; retrieve(String query, int topK) {
+        log.debug("执行RAG检索: query={}, topK={}", query, topK);
+
+        // 1. 生成查询向量
+        Embedding queryEmbedding = embeddingModel.embed(query).content();
+
+        // 2. 检索相关文档
+        List&lt;EmbeddingMatch&lt;TextSegment&gt;&gt; matches = embeddingStore.findRelevant(
+            queryEmbedding,
+            topK,
+            0.7  // 相似度阈值
+        );
+
+        // 3. 返回匹配的文档
+        return matches.stream()
+            .filter(match -&gt; match.score() &gt;= 0.7)
+            .map(EmbeddingMatch::embedded)
+            .collect(Collectors.toList());
+    }
+
+    /**
+     * 清除缓存
+     */
+    @CacheEvict(value = "rag", allEntries = true)
+    public void clearCache() {
+        log.info("清除RAG缓存");
+    }
+}
+                    </code></pre>
+                </div>
+
+                <div class="bg-green-50 border border-green-100 rounded-lg p-6 mb-8">
+                    <h4 class="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                        <span class="text-green-600">✅</span> 缓存最佳实践
+                    </h4>
+                    <ul class="text-gray-700 space-y-2 text-sm">
+                        <li>• <strong>分级缓存</strong>：Embedding结果缓存7天，RAG检索缓存30分钟，对话缓存2小时</li>
+                        <li>• <strong>合理TTL</strong>：根据数据更新频率设置合适的过期时间</li>
+                        <li>• <strong>避免缓存雪崩</strong>：设置随机TTL抖动</li>
+                        <li>• <strong>缓存穿透保护</strong>：使用unless参数避免缓存空值</li>
+                        <li>• <strong>异步刷新</strong>：使用@CachePut在后台更新缓存</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                    <span class="bg-indigo-600 text-white w-10 h-10 rounded-full flex items-center justify-center text-xl font-bold">3</span>
+                    错误处理和容错
+                </h2>
+
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">3.1 异常分类和处理</h3>
+                <div class="bg-gray-900 rounded-lg p-5 mb-8 border border-gray-700">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="text-xs text-gray-400">AiException.java</div>
+                        <div class="text-xs text-gray-400">AI异常基类</div>
+                    </div>
+                    <pre class="text-gray-100 text-sm overflow-x-auto"><code class="language-java">package com.example.langchain4j.exception;
+
+import lombok.Getter;
+
+/**
+ * AI异常基类
+ */
+@Getter
+public class AiException extends RuntimeException {
+
+    private final String errorCode;
+    private final boolean retryable;
+
+    public AiException(String message) {
+        super(message);
+        this.errorCode = "AI_ERROR";
+        this.retryable = false;
+    }
+
+    public AiException(String message, Throwable cause) {
+        super(message, cause);
+        this.errorCode = "AI_ERROR";
+        this.retryable = isRetryable(cause);
+    }
+
+    public AiException(String errorCode, String message) {
+        super(message);
+        this.errorCode = errorCode;
+        this.retryable = false;
+    }
+
+    public AiException(String errorCode, String message, boolean retryable) {
+        super(message);
+        this.errorCode = errorCode;
+        this.retryable = retryable;
+    }
+
+    /**
+     * 判断异常是否可重试
+     */
+    private boolean isRetryable(Throwable cause) {
+        if (cause == null) return false;
+
+        String message = cause.getMessage();
+        if (message == null) return false;
+
+        // 可重试的错误
+        if (message.contains("timeout") ||
+            message.contains("connection") ||
+            message.contains("503") ||
+            message.contains("429")) {
+            return true;
+        }
+
+        return false;
+    }
+}
+
+/**
+ * API密钥异常
+ */
+class ApiKeyException extends AiException {
+    public ApiKeyException() {
+        super("API_KEY_MISSING", "API密钥未配置");
+    }
+}
+
+/**
+ * 配额超限异常
+ */
+class QuotaExceededException extends AiException {
+    public QuotaExceededException(String message) {
+        super("QUOTA_EXCEEDED", message, false);
+    }
+}
+
+/**
+ * 模型不可用异常
+ */
+class ModelUnavailableException extends AiException {
+    public ModelUnavailableException(String modelName) {
+        super("MODEL_UNAVAILABLE", "模型不可用: " + modelName, true);
+    }
+}
+
+/**
+ * 内容审核失败异常
+ */
+class ModerationException extends AiException {
+    public ModerationException(String reason) {
+        super("MODERATION_FAILED", "内容审核失败: " + reason, false);
+    }
+}
+                    </code></pre>
+                </div>
+
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">3.2 全局异常处理</h3>
+                <div class="bg-gray-900 rounded-lg p-5 mb-8 border border-gray-700">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="text-xs text-gray-400">GlobalExceptionHandler.java</div>
+                        <div class="text-xs text-gray-400">全局异常处理器</div>
+                    </div>
+                    <pre class="text-gray-100 text-sm overflow-x-auto"><code class="language-java">package com.example.langchain4j.exception;
+
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * 全局异常处理器
+ * 统一处理所有异常，返回标准化错误响应
+ */
+@Slf4j
+@RestControllerAdvice
+public class GlobalExceptionHandler {
+
+    /**
+     * 处理AI异常
+     */
+    @ExceptionHandler(AiException.class)
+    public ResponseEntity&lt;ErrorResponse&gt; handleAiException(AiException e) {
+        log.error("AI异常: {} - {}", e.getErrorCode(), e.getMessage(), e);
+
+        HttpStatus status = e.isRetryable()
+            ? HttpStatus.SERVICE_UNAVAILABLE
+            : HttpStatus.BAD_REQUEST;
+
+        return ResponseEntity.status(status)
+            .body(ErrorResponse.builder()
+                .timestamp(LocalDateTime.now())
+                .status(status.value())
+                .error(status.getReasonPhrase())
+                .message(e.getMessage())
+                .code(e.getErrorCode())
+                .retryable(e.isRetryable())
+                .build());
+    }
+
+    /**
+     * 处理API密钥异常
+     */
+    @ExceptionHandler(ApiKeyException.class)
+    public ResponseEntity&lt;ErrorResponse&gt; handleApiKeyException(ApiKeyException e) {
+        log.error("API密钥异常", e);
+
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+            .body(ErrorResponse.builder()
+                .timestamp(LocalDateTime.now())
+                .status(500)
+                .error("Configuration Error")
+                .message("API密钥未配置，请联系管理员")
+                .code("API_KEY_MISSING")
+                .retryable(false)
+                .build());
+    }
+
+    /**
+     * 处理配额超限异常
+     */
+    @ExceptionHandler(QuotaExceededException.class)
+    public ResponseEntity&lt;ErrorResponse&gt; handleQuotaExceededException(QuotaExceededException e) {
+        log.warn("配额超限: {}", e.getMessage());
+
+        return ResponseEntity.status(HttpStatus.TOO_MANY_REQUESTS)
+            .body(ErrorResponse.builder()
+                .timestamp(LocalDateTime.now())
+                .status(429)
+                .error("Too Many Requests")
+                .message(e.getMessage())
+                .code("QUOTA_EXCEEDED")
+                .retryable(true)
+                .build());
+    }
+
+    /**
+     * 处理内容审核异常
+     */
+    @ExceptionHandler(ModerationException.class)
+    public ResponseEntity&lt;ErrorResponse&gt; handleModerationException(ModerationException e) {
+        log.warn("内容审核失败: {}", e.getMessage());
+
+        return ResponseEntity.status(HttpStatus.FORBIDDEN)
+            .body(ErrorResponse.builder()
+                .timestamp(LocalDateTime.now())
+                .status(403)
+                .error("Content Moderation")
+                .message(e.getMessage())
+                .code("MODERATION_FAILED")
+                .retryable(false)
+                .build());
+    }
+
+    /**
+     * 处理其他未捕获异常
+     */
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity&lt;ErrorResponse&gt; handleGenericException(Exception e) {
+        log.error("未捕获异常", e);
+
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+            .body(ErrorResponse.builder()
+                .timestamp(LocalDateTime.now())
+                .status(500)
+                .error("Internal Server Error")
+                .message("服务器内部错误，请稍后重试")
+                .code("INTERNAL_ERROR")
+                .retryable(true)
+                .build());
+    }
+}
+
+/**
+ * 标准错误响应
+ */
+@Data
+@Builder
+class ErrorResponse {
+    private LocalDateTime timestamp;
+    private int status;
+    private String error;
+    private String message;
+    private String code;
+    private boolean retryable;
+}
+                    </code></pre>
+                </div>
+
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">3.3 重试机制</h3>
+                <div class="bg-gray-900 rounded-lg p-5 mb-8 border border-gray-700">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="text-xs text-gray-400">RetryTemplate.java</div>
+                        <div class="text-xs text-gray-400">重试模板</div>
+                    </div>
+                    <pre class="text-gray-100 text-sm overflow-x-auto"><code class="language-java">package com.example.langchain4j.util;
+
+import lombok.extern.slf4j.Slf4j;
+
+import java.util.function.Supplier;
+
+/**
+ * 重试模板
+ * 提供可配置的重试机制
+ */
+@Slf4j
+public class RetryTemplate {
+
+    private final int maxAttempts;
+    private final long delayMs;
+    private final double backoffMultiplier;
+
+    public RetryTemplate(int maxAttempts, long delayMs, double backoffMultiplier) {
+        this.maxAttempts = maxAttempts;
+        this.delayMs = delayMs;
+        this.backoffMultiplier = backoffMultiplier;
+    }
+
+    /**
+     * 执行带重试的操作
+     * @param operation 要执行的操作
+     * @param &lt;T&gt; 返回类型
+     * @return 操作结果
+     */
+    public &lt;T&gt; T execute(Supplier&lt;T&gt; operation) {
+        int attempt = 0;
+        long currentDelay = delayMs;
+        Exception lastException = null;
+
+        while (attempt &lt; maxAttempts) {
+            attempt++;
+
+            try {
+                log.debug("执行操作: attempt={}/{}", attempt, maxAttempts);
+                T result = operation.get();
+                if (attempt &gt; 1) {
+                    log.info("重试成功: attempt={}/{}", attempt, maxAttempts);
+                }
+                return result;
+
+            } catch (Exception e) {
+                lastException = e;
+                log.warn("操作失败: attempt={}/{}, error={}",
+                    attempt, maxAttempts, e.getMessage());
+
+                if (attempt &lt; maxAttempts) {
+                    try {
+                        Thread.sleep(currentDelay);
+                        currentDelay *= backoffMultiplier;
+                    } catch (InterruptedException ie) {
+                        Thread.currentThread().interrupt();
+                        throw new RuntimeException("重试被中断", ie);
+                    }
+                }
+            }
+        }
+
+        log.error("重试失败，已达最大尝试次数: {}", maxAttempts);
+        throw new RuntimeException(
+            String.format("操作失败，已重试%d次", maxAttempts),
+            lastException
+        );
+    }
+
+    /**
+     * 默认重试模板
+     * 最多重试3次，初始延迟1秒，指数退避
+     */
+    public static RetryTemplate defaultRetry() {
+        return new RetryTemplate(3, 1000, 2.0);
+    }
+
+    /**
+     * 快速失败模板
+     * 不重试
+     */
+    public static RetryTemplate noRetry() {
+        return new RetryTemplate(1, 0, 1.0);
+    }
+
+    /**
+     * 激进重试模板
+     * 最多重试5次，初始延迟500ms
+     */
+    public static RetryTemplate aggressiveRetry() {
+        return new RetryTemplate(5, 500, 1.5);
+    }
+}
+
+/**
+ * 使用示例
+ */
+@Service
+public class AiServiceWithRetry {
+
+    private final AiAgent aiAgent;
+    private final RetryTemplate retryTemplate = RetryTemplate.defaultRetry();
+
+    public String generateResponse(String prompt) {
+        return retryTemplate.execute(() -&gt; aiAgent.generate(prompt));
+    }
+}
+                    </code></pre>
+                </div>
+
+                <div class="bg-amber-50 border border-amber-100 rounded-lg p-6 mb-8">
+                    <h4 class="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                        <span class="text-amber-600">⚠️</span> 容错设计要点
+                    </h4>
+                    <ul class="text-gray-700 space-y-2 text-sm">
+                        <li>• <strong>优雅降级</strong>：AI服务不可用时返回缓存结果或默认回复</li>
+                        <li>• <strong>熔断机制</strong>：连续失败时暂时停止调用，避免雪崩</li>
+                        <li>• <strong>超时控制</strong>：所有外部调用必须设置超时</li>
+                        <li>• <strong>资源隔离</strong>：不同租户或模型使用独立线程池</li>
+                        <li>• <strong>监控告警</strong>：监控失败率、延迟等指标</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                    <span class="bg-indigo-600 text-white w-10 h-10 rounded-full flex items-center justify-center text-xl font-bold">4</span>
+                    安全实践
+                </h2>
+
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">4.1 API密钥管理</h3>
+                <div class="bg-gray-900 rounded-lg p-5 mb-8 border border-gray-700">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="text-xs text-gray-400">ApiKeyManager.java</div>
+                        <div class="text-xs text-gray-400">密钥管理器</div>
+                    </div>
+                    <pre class="text-gray-100 text-sm overflow-x-auto"><code class="language-java">package com.example.langchain4j.service;
+
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.PostConstruct;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
+/**
+ * API密钥管理器
+ * 支持多租户、轮询、负载均衡
+ */
+@Slf4j
+@Service
+public class ApiKeyManager {
+
+    @Value("${openai.api.keys:}")
+    private String apiKeysConfig;
+
+    @Value("${openai.api.rotation.enabled:false}")
+    private boolean rotationEnabled;
+
+    private Map&lt;String, ApiKeyInfo&gt; tenantKeys = new ConcurrentHashMap&lt;&gt;();
+    private Map&lt;String, ApiKeyInfo&gt; globalKeys = new ConcurrentHashMap&lt;&gt;();
+
+    private int currentKeyIndex = 0;
+
+    @PostConstruct
+    public void init() {
+        // 从环境变量或配置文件加载密钥
+        loadApiKeys();
+        log.info("API密钥管理器初始化完成: 全局密钥数={}", globalKeys.size());
+    }
+
+    /**
+     * 获取API密钥（全局）
+     * 支持轮询以分散配额
+     */
+    public String getApiKey() {
+        if (globalKeys.isEmpty()) {
+            throw new ApiKeyException("未配置全局API密钥");
+        }
+
+        if (rotationEnabled) {
+            // 轮询密钥
+            ApiKeyInfo keyInfo = getNextAvailableKey(globalKeys);
+            if (keyInfo == null) {
+                throw new ApiKeyException("所有API密钥配额已用尽");
+            }
+            return keyInfo.getKey();
+        } else {
+            // 返回第一个可用密钥
+            return globalKeys.values().stream()
+                .filter(ApiKeyInfo::isAvailable)
+                .findFirst()
+                .map(ApiKeyInfo::getKey)
+                .orElseThrow(() -&gt; new ApiKeyException("所有API密钥配额已用尽"));
+        }
+    }
+
+    /**
+     * 获取租户的API密钥
+     */
+    public String getApiKey(String tenantId) {
+        ApiKeyInfo keyInfo = tenantKeys.get(tenantId);
+        if (keyInfo == null) {
+            log.warn("租户{}未配置专用密钥，使用全局密钥", tenantId);
+            return getApiKey();
+        }
+
+        if (!keyInfo.isAvailable()) {
+            log.warn("租户{}的API密钥配额已用尽", tenantId);
+            throw new QuotaExceededException("配额已用尽");
+        }
+
+        return keyInfo.getKey();
+    }
+
+    /**
+     * 标记密钥配额已用尽
+     */
+    public void markQuotaExceeded(String apiKey) {
+        log.warn("API密钥配额已用尽: {}", maskApiKey(apiKey));
+
+        globalKeys.values().stream()
+            .filter(k -&gt; k.getKey().equals(apiKey))
+            .forEach(k -&gt; k.setAvailable(false));
+
+        tenantKeys.values().stream()
+            .filter(k -&gt; k.getKey().equals(apiKey))
+            .forEach(k -&gt; k.setAvailable(false));
+    }
+
+    /**
+     * 检查密钥状态
+     */
+    public void checkKeyStatus() {
+        globalKeys.values().forEach(this::checkKeyHealth);
+        tenantKeys.values().forEach(this::checkKeyHealth);
+    }
+
+    /**
+     * 重置密钥状态
+     */
+    public void resetKeys() {
+        globalKeys.values().forEach(k -&gt; k.setAvailable(true));
+        tenantKeys.values().forEach(k -&gt; k.setAvailable(true));
+        log.info("所有API密钥状态已重置");
+    }
+
+    // ========== 私有方法 ==========
+
+    private void loadApiKeys() {
+        // 从环境变量加载
+        String envKey = System.getenv("OPENAI_API_KEY");
+        if (envKey != null &amp;&amp; !envKey.isEmpty()) {
+            addGlobalKey(envKey);
+        }
+
+        // 从配置文件加载（支持多个密钥，逗号分隔）
+        if (apiKeysConfig != null &amp;&amp; !apiKeysConfig.isEmpty()) {
+            String[] keys = apiKeysConfig.split(",");
+            for (String key : keys) {
+                String trimmedKey = key.trim();
+                if (!trimmedKey.isEmpty()) {
+                    addGlobalKey(trimmedKey);
+                }
+            }
+        }
+    }
+
+    private void addGlobalKey(String key) {
+        String keyId = generateKeyId(key);
+        globalKeys.put(keyId, new ApiKeyInfo(keyId, key));
+        log.debug("添加全局API密钥: {}", maskApiKey(key));
+    }
+
+    private ApiKeyInfo getNextAvailableKey(Map&lt;String, ApiKeyInfo&gt; keys) {
+        int size = keys.size();
+        for (int i = 0; i &lt; size; i++) {
+            int index = (currentKeyIndex + i) % size;
+            ApiKeyInfo keyInfo = keys.get(index);
+            if (keyInfo != null &amp;&amp; keyInfo.isAvailable()) {
+                currentKeyIndex = index + 1;
+                return keyInfo;
+            }
+        }
+        return null;
+    }
+
+    private void checkKeyHealth(ApiKeyInfo keyInfo) {
+        if (!keyInfo.isAvailable()) {
+            // 可以添加定时任务检查密钥是否恢复
+            log.debug("密钥不可用: {}", maskApiKey(keyInfo.getKey()));
+        }
+    }
+
+    private String generateKeyId(String key) {
+        return "KEY-" + key.hashCode();
+    }
+
+    private String maskApiKey(String key) {
+        if (key == null || key.length() &lt; 8) {
+            return "****";
+        }
+        return key.substring(0, 4) + "****" + key.substring(key.length() - 4);
+    }
+
+    /**
+     * API密钥信息
+     */
+    @Data
+    static class ApiKeyInfo {
+        private final String keyId;
+        private final String key;
+        private boolean available = true;
+        private long lastUsedAt;
+        private long quotaLimit;
+        private long quotaUsed;
+
+        public ApiKeyInfo(String keyId, String key) {
+            this.keyId = keyId;
+            this.key = key;
+            this.lastUsedAt = System.currentTimeMillis();
+        }
+
+        public void markUsed() {
+            this.lastUsedAt = System.currentTimeMillis();
+            this.quotaUsed++;
+        }
+    }
+}
+                    </code></pre>
+                </div>
+
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">4.2 输入验证和内容过滤</h3>
+                <div class="bg-gray-900 rounded-lg p-5 mb-8 border border-gray-700">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="text-xs text-gray-400">ContentValidator.java</div>
+                        <div class="text-xs text-gray-400">内容验证器</div>
+                    </div>
+                    <pre class="text-gray-100 text-sm overflow-x-auto"><code class="language-java">package com.example.langchain4j.service;
+
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
+
+import java.util.List;
+import java.util.regex.Pattern;
+
+/**
+ * 内容验证器
+ * 验证用户输入和AI输出
+ */
+@Slf4j
+@Component
+public class ContentValidator {
+
+    // 敏感词列表
+    private static final List&lt;String&gt; SENSITIVE_WORDS = List.of(
+        "暴力", "恐怖", "色情", "赌博", "毒品"
+    );
+
+    // 输入长度限制
+    private static final int MAX_INPUT_LENGTH = 4000;
+    private static final int MIN_INPUT_LENGTH = 1;
+
+    // 输出长度限制
+    private static final int MAX_OUTPUT_LENGTH = 10000;
+
+    // 危险模式
+    private static final Pattern DANGEROUS_PATTERNS = Pattern.compile(
+        "(?i)(system\\(|exec\\(|eval\\(|__import__|os\\.|subprocess\\.)"
+    );
+
+    /**
+     * 验证用户输入
+     * @param content 输入内容
+     * @throws ValidationException 验证失败
+     */
+    public void validateInput(String content) {
+        if (content == null || content.trim().isEmpty()) {
+            throw new ValidationException("输入内容不能为空");
+        }
+
+        if (content.length() &gt; MAX_INPUT_LENGTH) {
+            throw new ValidationException(
+                String.format("输入内容过长，最大允许%d个字符", MAX_INPUT_LENGTH)
+            );
+        }
+
+        if (content.length() &lt; MIN_INPUT_LENGTH) {
+            throw new ValidationException(
+                String.format("输入内容过短，最少需要%d个字符", MIN_INPUT_LENGTH)
+            );
+        }
+
+        // 检查敏感词
+        for (String word : SENSITIVE_WORDS) {
+            if (content.toLowerCase().contains(word.toLowerCase())) {
+                log.warn("输入包含敏感词: {}", word);
+                throw new ValidationException("输入内容包含敏感词汇");
+            }
+        }
+
+        // 检查危险模式
+        if (DANGEROUS_PATTERNS.matcher(content).find()) {
+            log.warn("输入包含危险模式");
+            throw new ValidationException("输入内容包含危险代码模式");
+        }
+    }
+
+    /**
+     * 验证AI输出
+     * @param content AI生成的内容
+     * @throws ValidationException 验证失败
+     */
+    public void validateOutput(String content) {
+        if (content == null || content.trim().isEmpty()) {
+            throw new ValidationException("AI输出内容为空");
+        }
+
+        if (content.length() &gt; MAX_OUTPUT_LENGTH) {
+            log.warn("AI输出过长，截断处理");
+            content = content.substring(0, MAX_OUTPUT_LENGTH);
+        }
+
+        // 可以添加更多的输出验证逻辑
+        // 例如：检查是否包含恶意链接、敏感信息等
+    }
+
+    /**
+     * 清理输入内容
+     * @param content 原始内容
+     * @return 清理后的内容
+     */
+    public String sanitizeInput(String content) {
+        // 移除多余空白
+        content = content.trim().replaceAll("\\s+", " ");
+
+        // 移除控制字符
+        content = content.replaceAll("[\\p{Cntrl}&&[^\\r\\n\\t]]", "");
+
+        return content;
+    }
+}
+
+/**
+ * 验证异常
+ */
+class ValidationException extends RuntimeException {
+    public ValidationException(String message) {
+        super(message);
+    }
+}
+
+/**
+ * 使用示例
+ */
+@Service
+public class ChatServiceWithValidation {
+
+    private final ContentValidator contentValidator;
+    private final AiAgent aiAgent;
+
+    public String chat(String userInput) {
+        // 验证输入
+        contentValidator.validateInput(userInput);
+
+        // 清理输入
+        String sanitizedInput = contentValidator.sanitizeInput(userInput);
+
+        // 调用AI
+        String response = aiAgent.generate(sanitizedInput);
+
+        // 验证输出
+        contentValidator.validateOutput(response);
+
+        return response;
+    }
+}
+                    </code></pre>
+                </div>
+
+                <div class="bg-red-50 border border-red-100 rounded-lg p-6 mb-8">
+                    <h4 class="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                        <span class="text-red-600">🔒</span> 安全注意事项
+                    </h4>
+                    <ul class="text-gray-700 space-y-2 text-sm">
+                        <li>• <strong>密钥保护</strong>：绝不在代码中硬编码API密钥，使用环境变量或密钥管理服务</li>
+                        <li>• <strong>输入验证</strong>：对所有用户输入进行验证和清理</li>
+                        <li>• <strong>输出过滤</strong>：对AI输出进行内容审核</li>
+                        <li>• <strong>数据脱敏</strong>：日志中不记录敏感信息（如API密钥、个人信息）</li>
+                        <li>• <strong>访问控制</strong>：实现租户隔离和权限控制</li>
+                        <li>• <strong>速率限制</strong>：防止API滥用和DDoS攻击</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                    <span class="bg-indigo-600 text-white w-10 h-10 rounded-full flex items-center justify-center text-xl font-bold">5</span>
+                    监控和日志
+                </h2>
+
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">5.1 日志记录规范</h3>
+                <div class="bg-gray-900 rounded-lg p-5 mb-8 border border-gray-700">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="text-xs text-gray-400">LoggingExample.java</div>
+                        <div class="text-xs text-gray-400">日志记录示例</div>
+                    </div>
+                    <pre class="text-gray-100 text-sm overflow-x-auto"><code class="language-java">package com.example.langchain4j.service;
+
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+
+/**
+ * 日志记录示例
+ */
+@Slf4j
+@Service
+public class LoggingExampleService {
+
+    /**
+     * DEBUG级别：详细的调试信息
+     * 只在调试时开启
+     */
+    public void debugExample() {
+        log.debug("处理请求: userId={}, sessionId={}", "user123", "session-456");
+        log.debug("API调用: model={}, temperature={}, maxTokens={}",
+            "gpt-4", 0.7, 1000);
+    }
+
+    /**
+     * INFO级别：重要的业务操作
+     * 记录关键流程节点
+     */
+    public void infoExample(String userId) {
+        log.info("用户开始聊天: userId={}", userId);
+        log.info("文档上传成功: userId={}, docName={}, size={}",
+            userId, "document.pdf", 1024000);
+        log.info("RAG检索完成: query={}, topK={}, latency={}ms",
+            "test query", 5, 150);
+    }
+
+    /**
+     * WARN级别：可恢复的异常情况
+     * 需要关注但不影响系统运行
+     */
+    public void warnExample(String userId) {
+        log.warn("API调用失败，使用重试: userId={}, error={}",
+            userId, "timeout");
+        log.warn("配额使用超过80%: tenantId={}, used={}, total={}",
+            "tenant-123", 800, 1000);
+        log.warn("缓存miss，从数据库加载: key={}", "cache-key");
+    }
+
+    /**
+     * ERROR级别：错误和异常
+     * 需要立即处理的问题
+     */
+    public void errorExample(String userId, Exception e) {
+        log.error("AI调用失败: userId={}, model={}, error={}",
+            userId, "gpt-4", e.getMessage(), e);
+        log.error("数据库连接失败: {}", e.getMessage(), e);
+        log.error("向量存储写入失败: docId={}, error={}",
+            "doc-789", e.getMessage(), e);
+    }
+
+    /**
+     * 结构化日志
+     * 使用JSON格式，便于日志分析
+     */
+    public void structuredLog() {
+        // 方式1：使用占位符
+        log.info("API调用成功: model={}, latency={}ms, tokens={}",
+            "gpt-4", 1250, 350);
+
+        // 方式2：使用MDC（Mapped Diagnostic Context）
+        // MDC.put("userId", "user123");
+        // MDC.put("sessionId", "session-456");
+        // try {
+        //     // 业务逻辑
+        //     log.info("处理完成");
+        // } finally {
+        //     MDC.clear();
+        // }
+    }
+
+    /**
+     * 性能日志
+     * 记录关键操作耗时
+     */
+    public void performanceLog() {
+        long startTime = System.currentTimeMillis();
+
+        try {
+            // 执行耗时操作
+            Thread.sleep(100);
+        } finally {
+            long duration = System.currentTimeMillis() - startTime;
+            log.info("操作完成: duration={}ms", duration);
+        }
+    }
+}
+
+/**
+ * 日志配置（logback.xml）
+ */
+/*
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;configuration&gt;
+    &lt;!-- 控制台输出 --&gt;
+    &lt;appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender"&gt;
+        &lt;encoder&gt;
+            &lt;pattern&gt;%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n&lt;/pattern&gt;
+        &lt;/encoder&gt;
+    &lt;/appender&gt;
+
+    &lt;!-- 文件输出（按天滚动） --&gt;
+    &lt;appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender"&gt;
+        &lt;file&gt;logs/application.log&lt;/file&gt;
+        &lt;rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy"&gt;
+            &lt;fileNamePattern&gt;logs/application.%d{yyyy-MM-dd}.log&lt;/fileNamePattern&gt;
+            &lt;maxHistory&gt;30&lt;/maxHistory&gt;
+        &lt;/rollingPolicy&gt;
+        &lt;encoder&gt;
+            &lt;pattern&gt;%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n&lt;/pattern&gt;
+        &lt;/encoder&gt;
+    &lt;/appender&gt;
+
+    &lt;!-- 日志级别配置 --&gt;
+    &lt;logger name="com.example.langchain4j" level="DEBUG"/&gt;
+    &lt;logger name="dev.langchain4j" level="INFO"/&gt;
+
+    &lt;root level="INFO"&gt;
+        &lt;appender-ref ref="CONSOLE"/&gt;
+        &lt;appender-ref ref="FILE"/&gt;
+    &lt;/root&gt;
+&lt;/configuration&gt;
+*/
+                    </code></pre>
+                </div>
+
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">5.2 指标监控</h3>
+                <div class="bg-gray-900 rounded-lg p-5 mb-8 border border-gray-700">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="text-xs text-gray-400">MetricsService.java</div>
+                        <div class="text-xs text-gray-400">指标收集服务</div>
+                    </div>
+                    <pre class="text-gray-100 text-sm overflow-x-auto"><code class="language-java">package com.example.langchain4j.service;
+
+import io.micrometer.core.instrument.Counter;
+import io.micrometer.core.instrument.MeterRegistry;
+import io.micrometer.core.instrument.Timer;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+
+import java.util.concurrent.TimeUnit;
+
+/**
+ * 指标收集服务
+ * 使用Micrometer收集应用指标
+ */
+@Slf4j
+@Service
+public class MetricsService {
+
+    private final MeterRegistry meterRegistry;
+
+    // API调用计数器
+    private final Counter apiCallCounter;
+    private final Counter apiErrorCounter;
+
+    // API调用耗时计时器
+    private final Timer apiCallTimer;
+
+    // Token使用计数器
+    private final Counter tokenInputCounter;
+    private final Counter tokenOutputCounter;
+
+    // 缓存命中计数器
+    private final Counter cacheHitCounter;
+    private final Counter cacheMissCounter;
+
+    public MetricsService(MeterRegistry meterRegistry) {
+        this.meterRegistry = meterRegistry;
+
+        // 初始化计数器
+        this.apiCallCounter = Counter.builder("api.call.total")
+            .description("API调用总数")
+            .tag("type", "openai")
+            .register(meterRegistry);
+
+        this.apiErrorCounter = Counter.builder("api.call.error")
+            .description("API调用错误数")
+            .tag("type", "openai")
+            .register(meterRegistry);
+
+        // 初始化计时器
+        this.apiCallTimer = Timer.builder("api.call.duration")
+            .description("API调用耗时")
+            .tag("type", "openai")
+            .register(meterRegistry);
+
+        // 初始化Token计数器
+        this.tokenInputCounter = Counter.builder("api.token.input")
+            .description("输入Token数")
+            .tag("type", "openai")
+            .register(meterRegistry);
+
+        this.tokenOutputCounter = Counter.builder("api.token.output")
+            .description("输出Token数")
+            .tag("type", "openai")
+            .register(meterRegistry);
+
+        // 初始化缓存计数器
+        this.cacheHitCounter = Counter.builder("cache.hit")
+            .description("缓存命中数")
+            .register(meterRegistry);
+
+        this.cacheMissCounter = Counter.builder("cache.miss")
+            .description("缓存未命中数")
+            .register(meterRegistry);
+    }
+
+    /**
+     * 记录API调用开始
+     */
+    public Timer.Sample startApiCall(String model) {
+        apiCallCounter.increment();
+        return Timer.start(meterRegistry);
+    }
+
+    /**
+     * 记录API调用完成
+     */
+    public void endApiCall(Timer.Sample sample, String model, boolean success) {
+        sample.stop(Timer.builder("api.call.duration")
+            .tag("model", model)
+            .tag("success", String.valueOf(success))
+            .register(meterRegistry));
+
+        if (!success) {
+            apiErrorCounter.increment();
+        }
+    }
+
+    /**
+     * 记录Token使用
+     */
+    public void recordTokenUsage(int inputTokens, int outputTokens) {
+        tokenInputCounter.increment(inputTokens);
+        tokenOutputCounter.increment(outputTokens);
+    }
+
+    /**
+     * 记录缓存命中
+     */
+    public void recordCacheHit(String cacheName) {
+        cacheHitCounter.increment(Tags.of("cache", cacheName));
+    }
+
+    /**
+     * 记录缓存未命中
+     */
+    public void recordCacheMiss(String cacheName) {
+        cacheMissCounter.increment(Tags.of("cache", cacheName));
+    }
+
+    /**
+     * 获取缓存命中率
+     */
+    public double getCacheHitRate(String cacheName) {
+        double hits = cacheHitCounter.count();
+        double misses = cacheMissCounter.count();
+        if (hits + misses == 0) {
+            return 0.0;
+        }
+        return hits / (hits + misses);
+    }
+}
+
+/**
+ * 使用示例
+ */
+@Service
+public class MonitoredAiService {
+
+    private final AiAgent aiAgent;
+    private final MetricsService metricsService;
+
+    public String generate(String prompt) {
+        Timer.Sample sample = metricsService.startApiCall("gpt-4");
+
+        try {
+            String response = aiAgent.generate(prompt);
+            metricsService.endApiCall(sample, "gpt-4", true);
+            return response;
+        } catch (Exception e) {
+            metricsService.endApiCall(sample, "gpt-4", false);
+            throw e;
+        }
+    }
+
+    public String generateWithCache(String prompt) {
+        String cacheKey = "prompt:" + prompt.hashCode();
+
+        // 尝试从缓存获取
+        String cached = getFromCache(cacheKey);
+        if (cached != null) {
+            metricsService.recordCacheHit("embedding");
+            return cached;
+        }
+
+        // 缓存未命中，调用AI
+        metricsService.recordCacheMiss("embedding");
+        String response = aiAgent.generate(prompt);
+
+        // 存入缓存
+        putToCache(cacheKey, response);
+
+        return response;
+    }
+}
+                    </code></pre>
+                </div>
+
+                <div class="bg-purple-50 border border-purple-100 rounded-lg p-6 mb-8">
+                    <h4 class="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                        <span class="text-purple-600">📊</span> 关键监控指标
+                    </h4>
+                    <ul class="text-gray-700 space-y-2 text-sm">
+                        <li>• <strong>API调用成功率</strong>：监控API调用的成功/失败比例</li>
+                        <li>• <strong>响应延迟</strong>：P50、P95、P99延迟百分位</li>
+                        <li>• <strong>Token使用量</strong>：输入/输出Token计数和成本</li>
+                        <li>• <strong>缓存命中率</strong>：Embedding、RAG检索等缓存效果</li>
+                        <li>• <strong>错误率</strong>：按错误类型分类统计</li>
+                        <li>• <strong>并发数</strong>：同时处理的请求数</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="mb-16">
+                <div class="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-lg p-8 text-white">
+                    <h2 class="text-2xl font-bold mb-4">🎯 最佳实践总结</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="border border-gray-200 rounded-lg p-5 hover:border-indigo-300 transition-colors">
+                            <div class="text-2xl mb-3">🏗️ 架构设计</div>
+                            <ul class="text-sm space-y-1">
+                                <li>• 分层架构模式</li>
+                                <li>• 面向接口编程</li>
+                                <li>• 配置集中管理</li>
+                                <li>• 异常统一处理</li>
+                            </ul>
+                        </div>
+                        <div class="border border-gray-200 rounded-lg p-5 hover:border-indigo-300 transition-colors">
+                            <div class="text-2xl mb-3">⚡ 性能优化</div>
+                            <ul class="text-sm space-y-1">
+                                <li>• HTTP连接池</li>
+                                <li>• 批量处理</li>
+                                <li>• 多级缓存</li>
+                                <li>• 异步处理</li>
+                            </ul>
+                        </div>
+                        <div class="border border-gray-200 rounded-lg p-5 hover:border-indigo-300 transition-colors">
+                            <div class="text-2xl mb-3">🛡️ 安全实践</div>
+                            <ul class="text-sm space-y-1">
+                                <li>• 密钥管理</li>
+                                <li>• 输入验证</li>
+                                <li>• 内容过滤</li>
+                                <li>• 访问控制</li>
+                            </ul>
+                        </div>
+                        <div class="border border-gray-200 rounded-lg p-5 hover:border-indigo-300 transition-colors">
+                            <div class="text-2xl mb-3">🔧 错误处理</div>
+                            <ul class="text-sm space-y-1">
+                                <li>• 异常分类</li>
+                                <li>• 重试机制</li>
+                                <li>• 熔断降级</li>
+                                <li>• 超时控制</li>
+                            </ul>
+                        </div>
+                        <div class="border border-gray-200 rounded-lg p-5 hover:border-indigo-300 transition-colors">
+                            <div class="text-2xl mb-3">📝 日志规范</div>
+                            <ul class="text-sm space-y-1">
+                                <li>• 结构化日志</li>
+                                <li>• 性能日志</li>
+                                <li>• 错误日志</li>
+                                <li>• 日志脱敏</li>
+                            </ul>
+                        </div>
+                        <div class="border border-gray-200 rounded-lg p-5 hover:border-indigo-300 transition-colors">
+                            <div class="text-2xl mb-3">📊 监控指标</div>
+                            <ul class="text-sm space-y-1">
+                                <li>• API成功率</li>
+                                <li>• 响应延迟</li>
+                                <li>• Token使用</li>
+                                <li>• 缓存命中率</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="mt-6 pt-6 border-t border-gray-200">
+                        <p class="text-lg mb-2">📚 <strong>下一章：examples.html</strong></p>
+                        <p class="text-sm">查看更多实战示例，包括常见场景的完整代码实现</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

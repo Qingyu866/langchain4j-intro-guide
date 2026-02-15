@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>输出解析 - LangChain4j 学习指南</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body class="bg-white text-gray-800 antialiased">
+    <div class="flex min-h-screen">
+        <aside class="w-[280px] fixed left-0 top-0 h-full bg-white border-r border-gray-200 overflow-y-auto z-50">
+            <a href="index.html" class="flex items-center gap-3 mb-8 text-gray-900 no-underline">
+                <div class="w-9 h-9 bg-indigo-600 rounded-lg flex items-center justify-center text-white text-xl">⚡</div>
+                <span class="font-bold text-xl">LangChain4j</span>
+            </a>
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">入门</div>
+                <ul class="list-none">
+                    <li><a href="index.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">首页</a></li>
+                    <li><a href="getting-started.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">快速入门</a></li>
+                    <li><a href="core-concepts.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">核心概念</a></li>
+                </ul>
+            </div>
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">基础</div>
+                <ul class="list-none">
+                    <li><a href="embedding-models.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">Embedding模型</a></li>
+                    <li><a href="prompt-templates.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">Prompt模板</a></li>
+                    <li><a href="output-parsers.html" class="block text-indigo-700 font-medium py-2 px-3 text-sm rounded-md bg-primary-50">输出解析</a></li>
+                    <li><a href="model-providers.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">模型提供商</a></li>
+                </ul>
+            </div>
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">进阶</div>
+                <ul class="list-none">
+                    <li><a href="function-calling-deep.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">Function Calling</a></li>
+                    <li><a href="advanced-features.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">高级特性</a></li>
+                    <li><a href="multimodal-full.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">多模态能力</a></li>
+                    <li><a href="project-rag-kb.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">RAG知识库</a></li>
+                    <li><a href="project-ai-assistant.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">AI助手</a></li>
+                    <li><a href="project-chatbot.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">聊天机器人</a></li>
+                </ul>
+            </div>
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">实践</div>
+                <ul class="list-none">
+                    <li><a href="best-practices.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">最佳实践</a></li>
+                    <li><a href="examples.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">实战示例</a></li>
+                    <li><a href="integrations.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">框架集成</a></li>
+                    <li><a href="testing-strategies.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">测试策略</a></li>
+                    <li><a href="performance-tuning.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">性能调优</a></li>
+                </ul>
+            </div>
+            <div class="mb-8">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">其他</div>
+                <ul class="list-none">
+                    <li><a href="deep-dive.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">深度解析</a></li>
+                    <li><a href="error-handling.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">错误处理</a></li>
+                    <li><a href="moderation-safety.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">内容审核</a></li>
+                    <li><a href="troubleshooting.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">问题排查</a></li>
+                    <li><a href="interview-prep.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">面试准备</a></li>
+                    <li><a href="practice.html" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">练习项目</a></li>
+                </ul>
+            </div>
+            <div>
+                <ul class="list-none">
+                    <li><a href="https://docs.langchain4j.dev" target="_blank" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">📖 官方文档</a></li>
+                    <li><a href="https://github.com/langchain4j/langchain4j" target="_blank" class="block text-gray-600 no-underline py-2 px-3 text-sm rounded-md hover:bg-gray-100 transition-all">🔗 GitHub</a></li>
+                </ul>
+            </div>
+        </aside>
+        <main class="flex-1 ml-[280px] px-8 py-12 max-w-7xl">
+            <section class="mb-16">
+                <h1 class="text-5xl font-bold text-gray-900 mb-8 leading-tight">输出解析</h1>
+                <p class="text-xl text-gray-600 max-w-4xl mb-10 leading-relaxed">掌握输出解析技术，将LLM的文本输出转换为类型安全的Java对象，构建数据驱动的AI应用。</p>
+            </section>
+            <section class="mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-8 pb-4 border-b-2 border-gray-200">为什么需要输出解析</h2>
+                <p class="text-lg text-gray-600 mb-4">LLM以文本形式返回答案，但实际应用中往往需要结构化数据，如JSON、对象、枚举等。输出解析器可以将文本转换为Java类型安全对象。</p>
+            </section>
+            <section class="mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-8 pb-4 border-b-2 border-gray-200">基本用法</h2>
+                <p class="text-lg text-color-gray-600 mb-6">LangChain4j提供了强大的输出解析功能，使用简单的注解即可实现类型转换。</p>
+                <div class="bg-gray-900 border border-gray-300 rounded-xl overflow-hidden mb-8">
+                    <div class="flex items-center justify-between px-4 py-3 bg-gray-800 border-b border-gray-700">
+                        <span class="text-gray-400 text-xs font-mono">Java</span>
+                    </div>
+                    <pre class="m-0 font-mono text-sm leading-relaxed text-gray-300 p-4"><code><span class="text-purple-400">import</span> dev.langchain4j.<span class="text-yellow-300">AiServices</span>.<span class="text-yellow-300">AiServices</span>;
+<span class="text-purple-400">import</span> dev.langchain4j.service.<span class="text-yellow-300">TypeSafeChatLanguageModel</span>;
+<span class="text-purple-400">import</span> dev.langchain4j.service.<span class="text-yellow-300">OutputParser</span>;
+
+<span class="text-yellow-300">interface</span> <span class="text-yellow-300">Person</span> {
+    <span class="text-blue-400">String</span> name;
+    <span class="text-blue-400">int</span> age;
+}
+
+<span class="text-purple-400">public class</span> <span class="text-yellow-300">OutputParser</span> personParser = <span class="text-yellow-300">AiServices</span>.<span class="text-blue-400">builder</span>(<span class="text-yellow-300">TypeSafeChatLanguageModel</span>.<span class="text-blue-400">builder</span>(model))
+    .<span class="text-blue-400">outputParser</span>(<span class="text-yellow-300">OutputParser</span>.<span class="text-purple-400">ofString</span>())
+    .<span class="text-blue-400">build</span>();
+
+<span class="text-yellow-300">String</span> json = model.generate(<span class="text-green-400">"""你的名字叫什么？"""</span>);
+<span class="text-yellow-300">Person</span> person = personParser.<span class="text-blue-400">parse</span>(json);</span></code></pre>
+                </div>
+                <p class="text-gray-700 text-sm mt-4 mb-2">代码解析：
+                    <span class="text-gray-900 font-semibold">1.</span> 定义数据类（Person）
+                    <span class="text-gray-900 font-semibold">2.</span> 创建AiServices.builder()并配置model和outputParser
+                    <span class="text-gray-900 font-semibold">3.</span> 使用generate()获取文本，调用parse()转换为对象</span></p>
+            </section>
+            <section class="mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-8 pb-4 border-b-2 border-gray-200">支持的输出类型</h2>
+                <p class="text-lg text-gray-600 mb-6">LangChain4j支持多种输出解析器，覆盖常见使用场景。</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-white border border-gray-200 rounded-xl p-6">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">文本解析</h3>
+                        <p class="text-sm text-gray-600 mb-3">ofString() - 解析简单字符串和基本类型</p>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-xl p-6">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">Bean解析</h3>
+                        <p class="text-sm text-gray-600 mb-3">ofBean() - 解析为Java对象（POJO）</p>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-xl p-6">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">JSON解析</h3>
+                        <p class="text-sm text-gray-600 mb-3">fromJson() - 将JSON字符串转换为对象</p>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-xl p-6">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">List解析</h3>
+                        <p class="text-sm text-gray-600 mb-3">fromCsv()/fromXml() - 解析列表格式数据</p>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-xl p-6">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">Enum解析</h3>
+                        <p class="text-sm text-gray-600 mb-3">fromEnum() - 解析枚举类型</p>
+                    </div>
+                </div>
+            </section>
+            <section class="mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-8 pb-4 border-b-2 border-gray-200">高级用法</h2>
+                <div class="space-y-6">
+                    <div class="bg-white border border-gray-200 rounded-xl p-6">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">自定义解析器</h3>
+                        <p class="text-sm text-gray-600 mb-3">创建自定义OutputParser实现复杂的解析逻辑</p>
+                        <div class="bg-gray-900 border border-gray-300 rounded-lg overflow-hidden mb-4">
+                            <div class="px-4 py-3 bg-gray-800 border-b border-gray-700">
+                                <span class="text-gray-400 text-xs font-mono">Java</span>
+                            </div>
+                            <pre class="m-0 font-mono text-sm leading-relaxed text-gray-300 p-4"><code><span class="text-purple-400">interface</span> <span class="text-yellow-300">CustomParser</span> <span class="text-purple-400">implements</span> <span class="text-yellow-300">OutputParser</span> {
+    <span class="text-blue-400">Person</span> <span class="text-blue-400">parse</span>(<span class="text-green-400">String</span> text, <span class="text-purple-400">Class</span>&lt;<span class="text-yellow-300">T</span>&gt; type) {
+        }
+    }</code></pre>
+                        </div>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-xl p-6">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">错误处理</h3>
+                        <p class="text-sm text-gray-600 mb-3">处理解析失败和格式错误</p>
+                        <div class="bg-gray-900 border border-gray-300 rounded-lg overflow-hidden mb-4">
+                            <div class="px-4 py-3 bg-gray-800 border-b border-gray-700">
+                                <span class="text-gray-400 text-xs font-mono">Java</span>
+                            </div>
+                            <pre class="m-0 font-mono text-sm leading-relaxed text-gray-300 p-4"><code><span class="text-purple-400">try</span> {
+    Person person = personParser.<span class="text-blue-400">parse</span>(response);
+    <span class="text-purple-400">return</span> person;
+} <span class="text-purple-400">catch</span> (<span class="text-blue-400">OutputParserException</span> e) {
+    <span class="text-blue-400">System.err</span>.<span class="text-blue-400">println</span>(<span class="text-green-400">"解析失败："</span> + e.getMessage());
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </section>
+            <section class="mb-16">
+                <div class="text-center">
+                    <a href="function-calling-deep.html" class="inline-flex items-center gap-2 px-6 py-3 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition-all shadow-md">
+                        继续学习 Function Calling →
+                    </a>
+                </div>
+            </section>
+            <section class="mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-8 pb-4 border-b-2 border-gray-200">最佳实践</h2>
+                <div class="bg-blue-50 border-l-4 border-blue-200 rounded-xl p-6">
+                    <div class="flex items-start gap-3">
+                        <span class="text-3xl mr-4">✓</span>
+                        <div>
+                            <h4 class="text-lg font-semibold text-gray-900">类型安全</h4>
+                            <p class="text-sm text-gray-600">始终使用类型安全的OutputParser，避免运行时类型转换异常</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="text-3xl mr-4">✓</span>
+                        <div>
+                            <h4 class="text-lg font-semibold text-gray-900">错误处理</h4>
+                            <p class="text-sm text-gray-600">捕获OutputParserException并优雅降级处理</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="text-3xl mr-4">✓</span>
+                        <div>
+                            <h4 class="text-lg font-semibold text-gray-900">性能优化</h4>
+                            <p class="text-sm text-gray-600">解析是CPU密集型操作，考虑批量处理和缓存</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
