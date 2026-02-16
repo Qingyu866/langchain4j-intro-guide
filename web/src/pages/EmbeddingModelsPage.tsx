@@ -232,71 +232,78 @@ public class CachedEmbeddingStrategy {
     }
 }`;
 
-  const troubleshooting = `// 问题1：向量维度不匹配
+  const troubleshooting = `import dev.langchain4j.data.embedding.Embedding;
+import dev.langchain4j.data.segment.TextSegment;
+import dev.langchain4j.model.embedding.EmbeddingModel;
+import dev.langchain4j.model.openai.OpenAiEmbeddingModel;
+import java.util.List;
 
-// 错误场景：混用不同embedding模型
-EmbeddingModel modelA = OpenAiEmbeddingModel.builder()
-    .modelName("text-embedding-3-small")  // 1536维
-    .build();
+public class Troubleshooting {
 
-EmbeddingModel modelB = OpenAiEmbeddingModel.builder()
-    .modelName("text-embedding-3-large")  // 3072维
-    .build();
+    // 问题1：向量维度不匹配
+    public void dimensionMismatch() {
+        // ❌ 错误场景：混用不同embedding模型
+        EmbeddingModel modelA = OpenAiEmbeddingModel.builder()
+            .modelName("text-embedding-3-small")  // 1536维
+            .apiKey(System.getenv("OPENAI_API_KEY"))
+            .build();
 
-// 存储到同一个向量库时会导致相似度计算错误
+        EmbeddingModel modelB = OpenAiEmbeddingModel.builder()
+            .modelName("text-embedding-3-large")  // 3072维
+            .apiKey(System.getenv("OPENAI_API_KEY"))
+            .build();
+        // 存储到同一个向量库时会导致相似度计算错误
 
-// ✅ 正确做法：统一使用相同的模型
-EmbeddingModel model = OpenAiEmbeddingModel.builder()
-    .modelName("text-embedding-3-small")  // 始终一致
-    .build();
-
-// ------------------------------------------------
-
-// 问题2：内存不足
-
-// 错误代码：一次性加载太多文档
-List<TextSegment> hugeList = loadAllDocuments();  // 假设有10万条
-List<Embedding> allEmbeddings = model.embedAll(hugeList);  // OOM错误
-
-// ✅ 正确做法：分批处理
-List<TextSegment> allDocs = loadAllDocuments();
-int batchSize = 1000;
-
-for (int i = 0; i < allDocs.size(); i += batchSize) {
-    int end = Math.min(i + batchSize, allDocs.size());
-    List<TextSegment> batch = allDocs.subList(i, end);
-
-    List<Embedding> batchEmbeddings = model.embedAll(batch).content();
-    // 存储到向量数据库
-    storeBatch(batchEmbeddings);
-}
-
-// ------------------------------------------------
-
-// 问题3：相似度计算错误
-
-// ❌ 错误：直接使用欧几里得距离（不适用于高维向量）
-public double badSimilarity(float[] a, float[] b) {
-    double sum = 0.0;
-    for (int i = 0; i < a.length; i++) {
-        sum += Math.pow(a[i] - b[i], 2);
-    }
-    return Math.sqrt(sum);  // 高维空间不准确
-}
-
-// ✅ 正确：使用余弦相似度（标准化，适合高维）
-public double goodSimilarity(float[] a, float[] b) {
-    double dotProduct = 0.0;
-    double normA = 0.0;
-    double normB = 0.0;
-
-    for (int i = 0; i < a.length; i++) {
-        dotProduct += a[i] * b[i];
-        normA += a[i] * a[i];
-        normB += b[i] * b[i];
+        // ✅ 正确做法：统一使用相同的模型
+        EmbeddingModel model = OpenAiEmbeddingModel.builder()
+            .modelName("text-embedding-3-small")  // 始终一致
+            .apiKey(System.getenv("OPENAI_API_KEY"))
+            .build();
     }
 
-    return dotProduct / (Math.sqrt(normA) * Math.sqrt(normB));
+    // 问题2：内存不足
+    public void memoryIssue(List<TextSegment> allDocs, EmbeddingModel model) {
+        // ❌ 错误代码：一次性加载太多文档
+        // List<Embedding> allEmbeddings = model.embedAll(hugeList);  // OOM错误
+
+        // ✅ 正确做法：分批处理
+        int batchSize = 1000;
+
+        for (int i = 0; i < allDocs.size(); i += batchSize) {
+            int end = Math.min(i + batchSize, allDocs.size());
+            List<TextSegment> batch = allDocs.subList(i, end);
+
+            List<Embedding> batchEmbeddings = model.embedAll(batch).content();
+            // 存储到向量数据库
+            // storeBatch(batchEmbeddings);
+        }
+    }
+
+    // 问题3：相似度计算错误
+
+    // ❌ 错误：直接使用欧几里得距离（不适用于高维向量）
+    public double badSimilarity(float[] a, float[] b) {
+        double sum = 0.0;
+        for (int i = 0; i < a.length; i++) {
+            sum += Math.pow(a[i] - b[i], 2);
+        }
+        return Math.sqrt(sum);  // 高维空间不准确
+    }
+
+    // ✅ 正确：使用余弦相似度（标准化，适合高维）
+    public double goodSimilarity(float[] a, float[] b) {
+        double dotProduct = 0.0;
+        double normA = 0.0;
+        double normB = 0.0;
+
+        for (int i = 0; i < a.length; i++) {
+            dotProduct += a[i] * b[i];
+            normA += a[i] * a[i];
+            normB += b[i] * b[i];
+        }
+
+        return dotProduct / (Math.sqrt(normA) * Math.sqrt(normB));
+    }
 }`;
 
   return (
