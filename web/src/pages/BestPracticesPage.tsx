@@ -1,5 +1,5 @@
 import Layout from '../components/layout/Layout';
-import { Tag, CodeBlock, SectionHeader } from '../components/ui';
+import { Tag, CodeBlockWithCopy, SectionHeader } from '../components/ui';
 
 const BestPracticesPage = () => {
   const projectStructure = `src/main/java/com/example/langchain4j/
@@ -231,7 +231,7 @@ public class RateLimitFilter extends OncePerRequestFilter {
         <SectionHeader number={1} title="架构设计原则" />
         
         <h3 className="subsection-title">1.1 分层架构</h3>
-        <CodeBlock filename="项目结构">{projectStructure}</CodeBlock>
+        <CodeBlockWithCopy filename="项目结构">{projectStructure}</CodeBlockWithCopy>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
           <div className="bg-green-50 border border-green-100 rounded-lg p-6">
@@ -259,14 +259,14 @@ public class RateLimitFilter extends OncePerRequestFilter {
         </div>
 
         <h3 className="subsection-title">1.2 服务拆分示例</h3>
-        <CodeBlock filename="ChatServiceImpl.java">{chatService}</CodeBlock>
+        <CodeBlockWithCopy filename="ChatServiceImpl.java">{chatService}</CodeBlockWithCopy>
       </section>
 
       <section className="mb-16">
         <SectionHeader number={2} title="性能优化" />
         
         <h3 className="subsection-title">2.1 连接池管理</h3>
-        <CodeBlock filename="HttpClientConfig.java">{httpClientConfig}</CodeBlock>
+        <CodeBlockWithCopy filename="HttpClientConfig.java">{httpClientConfig}</CodeBlockWithCopy>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           <div className="bg-blue-50 border border-blue-100 rounded-lg p-6">
@@ -303,7 +303,7 @@ public class RateLimitFilter extends OncePerRequestFilter {
         <SectionHeader number={3} title="错误处理" />
         
         <h3 className="subsection-title">3.1 全局异常处理</h3>
-        <CodeBlock filename="GlobalExceptionHandler.java">{errorHandling}</CodeBlock>
+        <CodeBlockWithCopy filename="GlobalExceptionHandler.java">{errorHandling}</CodeBlockWithCopy>
 
         <div className="bg-amber-50 border border-amber-100 rounded-lg p-6 mb-8">
           <h4 className="font-semibold text-gray-900 mb-3">⚠️ 常见错误类型</h4>
@@ -352,7 +352,7 @@ public class RateLimitFilter extends OncePerRequestFilter {
         </div>
 
         <h3 className="subsection-title">4.2 安全配置</h3>
-        <CodeBlock filename="SecurityConfig.java">{securityConfig}</CodeBlock>
+        <CodeBlockWithCopy filename="SecurityConfig.java">{securityConfig}</CodeBlockWithCopy>
       </section>
 
       <section className="mb-16">

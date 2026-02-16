@@ -1,5 +1,5 @@
 import Layout from '../components/layout/Layout';
-import { Tag, CodeBlock, SectionHeader, TipBox, SummarySection } from '../components/ui';
+import { Tag, CodeBlockWithCopy, SectionHeader, TipBox, SummarySection } from '../components/ui';
 
 const OutputParsersPage = () => {
   const basicUsage = `import dev.langchain4j.AiServices.AiServices;
@@ -307,7 +307,7 @@ for (String doc : documents) {
         </div>
 
         <TipBox type="info" title="基本用法示例">
-          <CodeBlock language="java" filename="BasicUsage.java" code={basicUsage} />
+          <CodeBlockWithCopy language="java" filename="BasicUsage.java" code={basicUsage} />
         </TipBox>
       </section>
 
@@ -319,7 +319,7 @@ for (String doc : documents) {
           对于复杂的解析场景，可以实现自定义的OutputParser接口：
         </p>
 
-        <CodeBlock language="java" filename="CustomParser.java" code={customParser} />
+        <CodeBlockWithCopy language="java" filename="CustomParser.java" code={customParser} />
 
         <TipBox type="success" title="自定义解析器优势">
           <ul className="tip-box-list">
@@ -339,7 +339,7 @@ for (String doc : documents) {
           使用fromJson()方法可以将JSON字符串转换为Java对象，适用于嵌套JSON结构：
         </p>
 
-        <CodeBlock language="java" filename="JsonParsing.java" code={jsonParsing} />
+        <CodeBlockWithCopy language="java" filename="JsonParsing.java" code={jsonParsing} />
 
         <TipBox type="warning" title="JSON模式支持">
           <ul className="tip-box-list">
@@ -378,7 +378,7 @@ for (String doc : documents) {
           解析失败时抛出OutputParserException，需要妥善处理：
         </p>
 
-        <CodeBlock language="java" filename="ErrorHandling.java" code={errorHandling} />
+        <CodeBlockWithCopy language="java" filename="ErrorHandling.java" code={errorHandling} />
 
         <TipBox type="warning" title="错误处理最佳实践">
           <ul className="tip-box-list">
@@ -400,7 +400,7 @@ for (String doc : documents) {
           批量解析可以显著提高性能：
         </p>
 
-        <CodeBlock language="java" filename="BatchProcessing.java" code={performance} />
+        <CodeBlockWithCopy language="java" filename="BatchProcessing.java" code={performance} />
 
         <TipBox type="info" title="批量处理优势">
           <ul className="tip-box-list">

@@ -1,5 +1,5 @@
 import Layout from '../components/layout/Layout';
-import { Tag, CodeBlock, SectionHeader } from '../components/ui';
+import { Tag, CodeBlockWithCopy, SectionHeader } from '../components/ui';
 
 const SearchPage = () => {
   const embeddingStoreCode = `package com.example.langchain4j.search;
@@ -155,7 +155,7 @@ results.forEach((query, docs) -> {
         <h3 className="subsection-title">2.1 核心 API 方法</h3>
         <p className="paragraph">EmbeddingStore 是 LangChain4j 的向量存储接口，支持多种实现：</p>
 
-        <CodeBlock filename="EmbeddingStoreExample.java">{embeddingStoreCode}</CodeBlock>
+        <CodeBlockWithCopy filename="EmbeddingStoreExample.java">{embeddingStoreCode}</CodeBlockWithCopy>
 
         <h3 className="subsection-title">2.2 支持的向量数据库</h3>
         <p className="paragraph">LangChain4j 支持多种向量数据库实现：</p>
@@ -211,11 +211,11 @@ results.forEach((query, docs) -> {
         
         <h3 className="subsection-title">3.1 基础检索</h3>
         <p className="paragraph">最简单的向量检索实现：</p>
-        <CodeBlock filename="BasicSearchExample.java">{basicSearchCode}</CodeBlock>
+        <CodeBlockWithCopy filename="BasicSearchExample.java">{basicSearchCode}</CodeBlockWithCopy>
 
         <h3 className="subsection-title">3.2 批量检索</h3>
         <p className="paragraph">批量检索多个查询：</p>
-        <CodeBlock filename="BatchSearchExample.java">{batchSearchCode}</CodeBlock>
+        <CodeBlockWithCopy filename="BatchSearchExample.java">{batchSearchCode}</CodeBlockWithCopy>
       </section>
 
       <section id="混合检索" className="content-section">

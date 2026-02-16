@@ -1,5 +1,5 @@
 import Layout from '../components/layout/Layout';
-import { Tag, LearningPathCard, FeatureItem, CodeBlock, SectionHeader, SummarySection } from '../components/ui';
+import { Tag, LearningPathCard, FeatureItem, CodeBlockWithCopy, SectionHeader, SummarySection } from '../components/ui';
 
 const HomePage = () => {
   const learningPaths = [
@@ -80,7 +80,7 @@ System.out.println(answer);`;
       <section className="content-section">
         <SectionHeader number={3} title="快速预览" />
         <p className="section-intro">只需几行代码即可开始</p>
-        <CodeBlock filename="MyFirstAIApp.java">{codeExample}</CodeBlock>
+        <CodeBlockWithCopy filename="MyFirstAIApp.java">{codeExample}</CodeBlockWithCopy>
         <div className="text-center">
           <a href="/getting-started" className="btn btn-primary btn-lg">
             📖 查看完整入门教程

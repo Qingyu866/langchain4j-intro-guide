@@ -1,5 +1,5 @@
 import Layout from '../components/layout/Layout';
-import { Tag, SectionHeader, CodeBlock, TipBox } from '../components/ui';
+import { Tag, SectionHeader, CodeBlockWithCopy, TipBox } from '../components/ui';
 
 const ragControllerCode = `package com.example.langchain4j.rag;
 
@@ -499,7 +499,7 @@ const PracticePage = () => {
         <h3 className="subsection-title">2.1 系统架构设计</h3>
         <p className="text-gray-700 mb-4">使用分层架构，确保系统的可扩展性和可维护性：</p>
 
-        <CodeBlock
+        <CodeBlockWithCopy
           code={ragControllerCode}
           language="java"
           filename="RagController.java"
@@ -508,7 +508,7 @@ const PracticePage = () => {
         <h3 className="subsection-title">2.2 向量数据库配置</h3>
         <p className="text-gray-700 mb-4">配置 PostgreSQL + PGVector 扩展，实现高效的向量存储和相似度计算：</p>
 
-        <CodeBlock
+        <CodeBlockWithCopy
           code={pgVectorConfigCode}
           language="java"
           filename="PGVectorConfig.java"
@@ -517,7 +517,7 @@ const PracticePage = () => {
         <h3 className="subsection-title">2.3 文档向量化</h3>
         <p className="text-gray-700 mb-4">使用 Embedding 模型将文档转换为向量：</p>
 
-        <CodeBlock
+        <CodeBlockWithCopy
           code={documentEmbedderCode}
           language="java"
           filename="DocumentEmbedder.java"
@@ -526,7 +526,7 @@ const PracticePage = () => {
         <h3 className="subsection-title">2.4 完整 RAG 流程实现</h3>
         <p className="text-gray-700 mb-4">实现端到端的 RAG 流程，结合向量检索和 LLM 生成：</p>
 
-        <CodeBlock
+        <CodeBlockWithCopy
           code={ragServiceCode}
           language="java"
           filename="RAGService.java"
@@ -553,7 +553,7 @@ const PracticePage = () => {
         <h3 className="subsection-title">3.1 系统架构设计</h3>
         <p className="text-gray-700 mb-4">AI 助手采用模块化架构，支持插件式功能扩展：</p>
 
-        <CodeBlock
+        <CodeBlockWithCopy
           code={aiAssistantControllerCode}
           language="java"
           filename="AiAssistantController.java"
@@ -562,7 +562,7 @@ const PracticePage = () => {
         <h3 className="subsection-title">3.2 多模型支持</h3>
         <p className="text-gray-700 mb-4">使用工厂模式支持多种 LLM 模型：</p>
 
-        <CodeBlock
+        <CodeBlockWithCopy
           code={modelFactoryCode}
           language="java"
           filename="ModelFactory.java"
@@ -571,7 +571,7 @@ const PracticePage = () => {
         <h3 className="subsection-title">3.3 函数调用实现</h3>
         <p className="text-gray-700 mb-4">使用 LangChain4j 的 Function Calling 功能调用外部工具：</p>
 
-        <CodeBlock
+        <CodeBlockWithCopy
           code={weatherToolCode}
           language="java"
           filename="WeatherTool.java"
@@ -596,7 +596,7 @@ const PracticePage = () => {
         <h3 className="subsection-title">4.1 系统架构设计</h3>
         <p className="text-gray-700 mb-4">聊天机器人采用前后端分离架构，WebSocket 实现实时通信：</p>
 
-        <CodeBlock
+        <CodeBlockWithCopy
           code={chatWebSocketHandlerCode}
           language="java"
           filename="ChatWebSocketHandler.java"
@@ -605,7 +605,7 @@ const PracticePage = () => {
         <h3 className="subsection-title">4.2 用户认证与会话管理</h3>
         <p className="text-gray-700 mb-4">使用 JWT 进行用户认证，Redis 管理会话状态：</p>
 
-        <CodeBlock
+        <CodeBlockWithCopy
           code={authServiceCode}
           language="java"
           filename="AuthService.java"

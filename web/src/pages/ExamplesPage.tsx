@@ -1,5 +1,5 @@
 import Layout from '../components/layout/Layout';
-import { SectionHeader, CodeBlock, TipBox } from '../components/ui';
+import { SectionHeader, CodeBlockWithCopy, TipBox } from '../components/ui';
 
 const ExamplesPage = () => {
   return (
@@ -64,7 +64,7 @@ const ExamplesPage = () => {
         <SectionHeader number={1} title="简单聊天机器人" />
 
         <h3 className="text-xl font-semibold text-gray-900 mb-4">1.1 基础对话示例</h3>
-        <CodeBlock
+        <CodeBlockWithCopy
           language="java"
           filename="SimpleChatBot.java"
           title="Java - 基础聊天机器人"
@@ -149,7 +149,7 @@ public class SimpleChatBot {
         />
 
         <h3 className="text-xl font-semibold text-gray-900 mb-4 mt-8">1.2 流式输出示例</h3>
-        <CodeBlock
+        <CodeBlockWithCopy
           language="java"
           filename="StreamingChatBot.java"
           title="Java - 流式输出聊天机器人"
@@ -231,7 +231,7 @@ public class StreamingChatBot {
         />
 
         <h3 className="text-xl font-semibold text-gray-900 mb-4 mt-8">1.3 带记忆的聊天机器人</h3>
-        <CodeBlock
+        <CodeBlockWithCopy
           language="java"
           filename="ChatWithMemory.java"
           title="Java - 带对话记忆的机器人"
@@ -348,7 +348,7 @@ public class ChatWithMemory {
         <SectionHeader number={2} title="智能问答系统（RAG）" />
 
         <h3 className="text-xl font-semibold text-gray-900 mb-4">2.1 简单RAG示例</h3>
-        <CodeBlock
+        <CodeBlockWithCopy
           language="java"
           filename="SimpleRag.java"
           title="Java - RAG智能问答"
@@ -510,7 +510,7 @@ public class SimpleRag {
         <SectionHeader number={3} title="AI Agent（智能代理）" />
 
         <h3 className="text-xl font-semibold text-gray-900 mb-4">3.1 Function Calling示例</h3>
-        <CodeBlock
+        <CodeBlockWithCopy
           language="java"
           filename="WeatherAgent.java"
           title="Java - 天气查询Agent"
@@ -630,7 +630,7 @@ public class WeatherAgent {
         />
 
         <h3 className="text-xl font-semibold text-gray-900 mb-4 mt-8">3.2 多工具Agent</h3>
-        <CodeBlock
+        <CodeBlockWithCopy
           language="java"
           filename="MultiToolAgent.java"
           title="Java - 多工具智能代理"
@@ -730,7 +730,7 @@ public class MultiToolAgent {
         <SectionHeader number={4} title="实用工具示例" />
 
         <h3 className="text-xl font-semibold text-gray-900 mb-4">4.1 文档摘要</h3>
-        <CodeBlock
+        <CodeBlockWithCopy
           language="java"
           filename="DocumentSummarizer.java"
           title="Java - 文档摘要工具"
@@ -803,7 +803,7 @@ public class DocumentSummarizer {
         />
 
         <h3 className="text-xl font-semibold text-gray-900 mb-4 mt-8">4.2 代码翻译</h3>
-        <CodeBlock
+        <CodeBlockWithCopy
           language="java"
           filename="CodeTranslator.java"
           title="Java - 代码翻译工具"
@@ -878,7 +878,7 @@ if __name__ == "__main__":
         />
 
         <h3 className="text-xl font-semibold text-gray-900 mb-4 mt-8">4.3 文本情感分析</h3>
-        <CodeBlock
+        <CodeBlockWithCopy
           language="java"
           filename="SentimentAnalyzer.java"
           title="Java - 情感分析工具"

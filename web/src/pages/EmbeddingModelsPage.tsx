@@ -1,5 +1,5 @@
 import Layout from '../components/layout/Layout';
-import { Tag, CodeBlock, SectionHeader, TipBox, SummarySection } from '../components/ui';
+import { Tag, CodeBlockWithCopy, SectionHeader, TipBox, SummarySection } from '../components/ui';
 
 const EmbeddingModelsPage = () => {
   const basicEmbedding = `import dev.langchain4j.data.embedding.Embedding;
@@ -404,7 +404,7 @@ public double goodSimilarity(float[] a, float[] b) {
           EmbeddingModel是LangChain4j的核心接口，定义了将文本转换为embedding的标准方法。
         </p>
 
-        <CodeBlock language="java" filename="BasicEmbeddingExample.java" code={basicEmbedding} />
+        <CodeBlockWithCopy language="java" filename="BasicEmbeddingExample.java" code={basicEmbedding} />
 
         <TipBox type="info" title="主要方法说明">
           <ul className="tip-box-list">
@@ -421,7 +421,7 @@ public double goodSimilarity(float[] a, float[] b) {
           对于大量文档，使用批量Embedding可以显著提高效率：
         </p>
 
-        <CodeBlock language="java" filename="BatchEmbeddingExample.java" code={batchEmbedding} />
+        <CodeBlockWithCopy language="java" filename="BatchEmbeddingExample.java" code={batchEmbedding} />
 
         <TipBox type="success" title="批量处理优势">
           <ul className="tip-box-list">
@@ -507,7 +507,7 @@ public double goodSimilarity(float[] a, float[] b) {
           余弦相似度是计算向量相似度最常用的方法，它计算两个向量之间的夹角余弦值，范围在[-1, 1]之间，值越接近1表示越相似。
         </p>
 
-        <CodeBlock language="java" filename="CosineSimilarity.java" code={similarityCalculation} />
+        <CodeBlockWithCopy language="java" filename="CosineSimilarity.java" code={similarityCalculation} />
 
         <TipBox type="info" title="为什么选择余弦相似度？">
           <ul className="tip-box-list">
@@ -561,7 +561,7 @@ public double goodSimilarity(float[] a, float[] b) {
           使用LangChain4j构建完整的RAG系统：
         </p>
 
-        <CodeBlock language="java" filename="RAGCompleteExample.java" code={ragBasic} />
+        <CodeBlockWithCopy language="java" filename="RAGCompleteExample.java" code={ragBasic} />
 
         <TipBox type="success" title="RAG最佳实践">
           <ul className="tip-box-list">
@@ -582,7 +582,7 @@ public double goodSimilarity(float[] a, float[] b) {
           优化Embedding相关的性能可以显著提升系统效率：
         </p>
 
-        <CodeBlock language="java" filename="PerformanceOptimization.java" code={performanceOptimization} />
+        <CodeBlockWithCopy language="java" filename="PerformanceOptimization.java" code={performanceOptimization} />
 
         <div className="info-card info-card-purple">
           <h4 className="card-title-purple">性能优化要点</h4>
@@ -644,7 +644,7 @@ public double goodSimilarity(float[] a, float[] b) {
           Embedding使用中的常见问题和解决方案：
         </p>
 
-        <CodeBlock language="java" filename="Troubleshooting.java" code={troubleshooting} />
+        <CodeBlockWithCopy language="java" filename="Troubleshooting.java" code={troubleshooting} />
 
         <TipBox type="warning" title="常见错误总结">
           <ul className="tip-box-list">

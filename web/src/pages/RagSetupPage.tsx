@@ -1,5 +1,5 @@
 import Layout from '../components/layout/Layout';
-import { SectionHeader, CodeBlock, TipBox } from '../components/ui';
+import { SectionHeader, CodeBlockWithCopy, TipBox } from '../components/ui';
 
 const RagSetupPage = () => {
   return (
@@ -49,7 +49,7 @@ const RagSetupPage = () => {
           <p className="text-gray-600 mb-4">在pom.xml中添加LangChain4j核心依赖</p>
         </div>
 
-        <CodeBlock
+        <CodeBlockWithCopy
           language="xml"
           filename="pom.xml"
           title="Maven配置"
@@ -95,7 +95,7 @@ const RagSetupPage = () => {
           <p className="text-gray-600 mb-4">创建.env文件存储API密钥，确保安全性和灵活性</p>
         </div>
 
-        <CodeBlock
+        <CodeBlockWithCopy
           language="bash"
           filename=".env"
           title="环境变量文件"
@@ -123,7 +123,7 @@ PINECONE_INDEX=langchain4j-demo`}
         </TipBox>
 
         <h3 className="text-xl font-semibold text-gray-900 mb-4 mt-8">.env.example示例</h3>
-        <CodeBlock
+        <CodeBlockWithCopy
           language="bash"
           filename=".env.example"
           title="模板文件"
@@ -143,7 +143,7 @@ PINECONE_DIMENSION=1536`}
         />
 
         <TipBox type="success" title="Java环境变量读取">
-          <CodeBlock
+          <CodeBlockWithCopy
             language="java"
             filename="Environment.java"
             title="配置类"
@@ -252,7 +252,7 @@ public class Environment {
           <p className="text-gray-600 mb-4">清晰的项目结构有助于代码组织和团队协作</p>
         </div>
 
-        <CodeBlock
+        <CodeBlockWithCopy
           language="plaintext"
           filename="项目结构"
           title="目录结构"
@@ -332,7 +332,7 @@ public class Environment {
           </p>
         </div>
 
-        <CodeBlock
+        <CodeBlockWithCopy
           language="java"
           filename="HelloWorldRAG.java"
           title="完整示例"

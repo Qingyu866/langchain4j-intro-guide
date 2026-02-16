@@ -1,5 +1,5 @@
 import Layout from '../components/layout/Layout';
-import { Tag, CodeBlock, SectionHeader, TipBox } from '../components/ui';
+import { Tag, CodeBlockWithCopy, SectionHeader, TipBox } from '../components/ui';
 
 const GettingStartedPage = () => {
   const pomXml = `<?xml version="1.0" encoding="UTF-8"?>
@@ -139,7 +139,7 @@ public class ChatController {
         <h3 className="subsection-title">1.2 项目依赖</h3>
         <p className="paragraph">创建 Maven 或 Gradle 项目并添加 LangChain4j 依赖：</p>
 
-        <CodeBlock language="xml" filename="pom.xml" code={pomXml} />
+        <CodeBlockWithCopy language="xml" filename="pom.xml" code={pomXml} />
 
         <h3 className="subsection-title">1.3 快速开始选项</h3>
         <p className="paragraph">根据你的场景选择最快的开始方式：</p>
@@ -182,7 +182,7 @@ public class ChatController {
         <h3 className="subsection-title">2.2 Main 类</h3>
         <p className="paragraph">创建主启动类：</p>
 
-        <CodeBlock language="java" filename="MainApplication.java" code={mainApplication} />
+        <CodeBlockWithCopy language="java" filename="MainApplication.java" code={mainApplication} />
 
         <TipBox type="info" title="项目结构说明">
           <ul className="tip-box-list">
@@ -204,7 +204,7 @@ public class ChatController {
             <span className="code-badge code-badge-green">MainApplication.java</span>
           </div>
           <div className="code-preview-content">
-            <CodeBlock language="java" code={helloWorld} />
+            <CodeBlockWithCopy language="java" code={helloWorld} />
             <span className="code-keyword">输出：</span>
             <pre className="code-output">Hello, LangChain4j!</pre>
           </div>
@@ -224,7 +224,7 @@ public class ChatController {
 
         <p className="paragraph">扩展应用，支持真正的聊天对话：</p>
 
-        <CodeBlock language="java" filename="ChatController.java" code={chatController} />
+        <CodeBlockWithCopy language="java" filename="ChatController.java" code={chatController} />
 
         <TipBox type="success" title="功能说明">
           <ul className="tip-box-list">

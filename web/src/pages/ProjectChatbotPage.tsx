@@ -1,5 +1,5 @@
 import Layout from '../components/layout/Layout';
-import { Tag, CodeBlock, SectionHeader } from '../components/ui';
+import { Tag, CodeBlockWithCopy, SectionHeader } from '../components/ui';
 
 const ProjectChatbotPage = () => {
   const pomXml = `<dependencies>
@@ -548,41 +548,41 @@ volumes:
         <SectionHeader number={1} title="Spring Boot WebSocket后端实现" />
         
         <h3 className="subsection-title">1.1 项目依赖配置</h3>
-        <CodeBlock filename="pom.xml">{pomXml}</CodeBlock>
+        <CodeBlockWithCopy filename="pom.xml">{pomXml}</CodeBlockWithCopy>
 
         <h3 className="subsection-title">1.2 WebSocket配置</h3>
-        <CodeBlock filename="WebSocketConfig.java">{webSocketConfig}</CodeBlock>
+        <CodeBlockWithCopy filename="WebSocketConfig.java">{webSocketConfig}</CodeBlockWithCopy>
 
         <h3 className="subsection-title">1.3 消息实体类</h3>
-        <CodeBlock filename="Message.java">{messageEntity}</CodeBlock>
+        <CodeBlockWithCopy filename="Message.java">{messageEntity}</CodeBlockWithCopy>
       </section>
 
       <section className="mb-16">
         <SectionHeader number={2} title="ChatService业务逻辑" />
         
         <h3 className="subsection-title">2.1 ChatService核心实现</h3>
-        <CodeBlock filename="ChatServiceImpl.java">{chatService}</CodeBlock>
+        <CodeBlockWithCopy filename="ChatServiceImpl.java">{chatService}</CodeBlockWithCopy>
       </section>
 
       <section className="mb-16">
         <SectionHeader number={3} title="React前端实现" />
         
         <h3 className="subsection-title">3.1 ChatPage主组件</h3>
-        <CodeBlock filename="ChatPage.tsx">{reactComponent}</CodeBlock>
+        <CodeBlockWithCopy filename="ChatPage.tsx">{reactComponent}</CodeBlockWithCopy>
       </section>
 
       <section className="mb-16">
         <SectionHeader number={4} title="AI Agent集成" />
         
         <h3 className="subsection-title">4.1 ChatAgent实现</h3>
-        <CodeBlock filename="ChatAgent.java">{chatAgent}</CodeBlock>
+        <CodeBlockWithCopy filename="ChatAgent.java">{chatAgent}</CodeBlockWithCopy>
       </section>
 
       <section className="mb-16">
         <SectionHeader number={5} title="部署和配置" />
         
         <h3 className="subsection-title">5.1 Docker部署配置</h3>
-        <CodeBlock filename="docker-compose.yml">{dockerCompose}</CodeBlock>
+        <CodeBlockWithCopy filename="docker-compose.yml">{dockerCompose}</CodeBlockWithCopy>
       </section>
 
       <section className="mb-16">

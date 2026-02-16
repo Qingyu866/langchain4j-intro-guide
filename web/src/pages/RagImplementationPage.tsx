@@ -1,5 +1,5 @@
 import Layout from '../components/layout/Layout';
-import { SectionHeader, CodeBlock, TipBox } from '../components/ui';
+import { SectionHeader, CodeBlockWithCopy, TipBox } from '../components/ui';
 
 const RagImplementationPage = () => {
   return (
@@ -124,7 +124,7 @@ const RagImplementationPage = () => {
           </div>
         </div>
 
-        <CodeBlock
+        <CodeBlockWithCopy
           language="java"
           filename="DocumentLoadingExample.java"
           title="Java - 文档加载"
@@ -197,7 +197,7 @@ public class DocumentLoadingExample {
           </div>
         </div>
 
-        <CodeBlock
+        <CodeBlockWithCopy
           language="java"
           filename="FixedSizeSplitterExample.java"
           title="Java - 固定大小分块"
@@ -279,7 +279,7 @@ public class FixedSizeSplitterExample {
           </div>
         </div>
 
-        <CodeBlock
+        <CodeBlockWithCopy
           language="java"
           filename="EmbeddingGenerationExample.java"
           title="Java - Embedding生成"
@@ -432,7 +432,7 @@ public class EmbeddingGenerationExample {
           </div>
         </div>
 
-        <CodeBlock
+        <CodeBlockWithCopy
           language="java"
           filename="RetrievalService.java"
           title="Java - 检索服务"
@@ -493,7 +493,7 @@ public class RetrievalService {
           将前面所有组件组合起来，构建一个完整的RAG系统。
         </p>
 
-        <CodeBlock
+        <CodeBlockWithCopy
           language="java"
           filename="CompleteRAGSystem.java"
           title="Java - 完整RAG系统"

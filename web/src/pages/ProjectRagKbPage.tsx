@@ -1,5 +1,5 @@
 import Layout from '../components/layout/Layout';
-import { SectionHeader, CodeBlock, TipBox } from '../components/ui';
+import { SectionHeader, CodeBlockWithCopy, TipBox } from '../components/ui';
 
 const ProjectRagKbPage = () => {
   return (
@@ -90,7 +90,7 @@ const ProjectRagKbPage = () => {
           </div>
         </div>
 
-        <CodeBlock
+        <CodeBlockWithCopy
           language="java"
           filename="ProjectStructure.java"
           title="Java - 项目结构"
@@ -159,7 +159,7 @@ public class ProjectStructure {
         <SectionHeader number={2} title="后端API开发" />
 
         <h3 className="text-2xl font-semibold text-gray-900 mb-4">2.1 Spring Boot项目初始化</h3>
-        <CodeBlock
+        <CodeBlockWithCopy
           language="java"
           filename="RagKnowledgeBaseApplication.java"
           title="Java - Spring Boot主类"
@@ -193,7 +193,7 @@ public class RagKnowledgeBaseApplication {
         />
 
         <h3 className="text-2xl font-semibold text-gray-900 mb-4 mt-8">2.2 配置文件</h3>
-        <CodeBlock
+        <CodeBlockWithCopy
           language="yaml"
           filename="application.yml"
           title="YAML - 应用配置"
@@ -271,7 +271,7 @@ monitoring:
         />
 
         <h3 className="text-2xl font-semibold text-gray-900 mb-4 mt-8">2.3 LangChain4j配置类</h3>
-        <CodeBlock
+        <CodeBlockWithCopy
           language="java"
           filename="LangChain4jConfig.java"
           title="Java - LangChain4j配置"
@@ -368,7 +368,7 @@ public class LangChain4jConfig {
         />
 
         <h3 className="text-2xl font-semibold text-gray-900 mb-4 mt-8">2.4 RAG服务实现</h3>
-        <CodeBlock
+        <CodeBlockWithCopy
           language="java"
           filename="RagService.java"
           title="Java - RAG服务"
@@ -441,7 +441,7 @@ public class RagService {
         />
 
         <h3 className="text-2xl font-semibold text-gray-900 mb-4 mt-8">2.5 文档控制器</h3>
-        <CodeBlock
+        <CodeBlockWithCopy
           language="java"
           filename="DocumentController.java"
           title="Java - 文档API"
@@ -577,7 +577,7 @@ public class DocumentController {
         </div>
 
         <h3 className="text-2xl font-semibold text-gray-900 mb-4">3.1 主要页面组件</h3>
-        <CodeBlock
+        <CodeBlockWithCopy
           language="tsx"
           filename="App.tsx"
           title="React - 主页面"
@@ -790,7 +790,7 @@ export default App;`}
         />
 
         <h3 className="text-2xl font-semibold text-gray-900 mb-4 mt-8">3.2 问答界面组件</h3>
-        <CodeBlock
+        <CodeBlockWithCopy
           language="tsx"
           filename="ChatInterface.tsx"
           title="React - 问答组件"
@@ -983,7 +983,7 @@ export default ChatInterface;`}
           </p>
         </div>
 
-        <CodeBlock
+        <CodeBlockWithCopy
           language="sql"
           filename="setup_pgvector.sql"
           title="SQL - PGVector扩展"
@@ -1086,7 +1086,7 @@ EXECUTE FUNCTION update_updated_at();`}
           </p>
         </div>
 
-        <CodeBlock
+        <CodeBlockWithCopy
           language="java"
           filename="ApiKeyManager.java"
           title="Java - 密钥管理"
@@ -1271,7 +1271,7 @@ services:
           </div>
         </div>
 
-        <CodeBlock
+        <CodeBlockWithCopy
           language="yaml"
           filename="application-prod.yml"
           title="YAML - 监控配置"

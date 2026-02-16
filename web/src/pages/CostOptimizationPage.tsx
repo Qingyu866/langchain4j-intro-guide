@@ -1,5 +1,5 @@
 import Layout from '../components/layout/Layout';
-import { Tag, SectionHeader, CodeBlock, TipBox } from '../components/ui';
+import { Tag, SectionHeader, CodeBlockWithCopy, TipBox } from '../components/ui';
 
 const hybridModelCode = `public class HybridModelStrategy {
 
@@ -253,7 +253,7 @@ const CostOptimizationPage = () => {
         <h3 className="subsection-title">2.2 混合模型策略</h3>
         <p className="paragraph">在应用中混合使用多个模型以平衡成本和质量：</p>
 
-        <CodeBlock code={hybridModelCode} language="java" filename="HybridModelStrategy.java" />
+        <CodeBlockWithCopy code={hybridModelCode} language="java" filename="HybridModelStrategy.java" />
 
         <TipBox type="success" title="成本节省效果">
           <ul className="space-y-2">
@@ -306,7 +306,7 @@ const CostOptimizationPage = () => {
         </div>
 
         <h3 className="subsection-title">3.2 缓存实现</h3>
-        <CodeBlock code={cacheServiceCode} language="java" filename="CacheService.java" />
+        <CodeBlockWithCopy code={cacheServiceCode} language="java" filename="CacheService.java" />
       </section>
 
       <section id="Token优化" className="content-section">
@@ -335,7 +335,7 @@ const CostOptimizationPage = () => {
         <h3 className="subsection-title">4.2 输出长度控制</h3>
         <p className="paragraph">设置合理的 maxTokens 避免不必要的成本：</p>
 
-        <CodeBlock code={modelConfigCode} language="java" filename="ModelConfig.java" />
+        <CodeBlockWithCopy code={modelConfigCode} language="java" filename="ModelConfig.java" />
       </section>
 
       <section id="向量化成本优化" className="content-section">
@@ -386,7 +386,7 @@ const CostOptimizationPage = () => {
         <h3 className="subsection-title">5.2 批处理优化</h3>
         <p className="paragraph">批量处理文档可降低 API 调用开销：</p>
 
-        <CodeBlock code={batchEmbeddingCode} language="java" filename="BatchEmbedding.java" />
+        <CodeBlockWithCopy code={batchEmbeddingCode} language="java" filename="BatchEmbedding.java" />
       </section>
 
       <section id="监控与预算控制" className="content-section">
@@ -417,7 +417,7 @@ const CostOptimizationPage = () => {
         <h3 className="subsection-title">6.2 预算警报</h3>
         <p className="paragraph">设置预算阈值并触发警报：</p>
 
-        <CodeBlock code={budgetMonitorCode} language="java" filename="BudgetMonitor.java" />
+        <CodeBlockWithCopy code={budgetMonitorCode} language="java" filename="BudgetMonitor.java" />
 
         <TipBox type="info" title="成本优化总结">
           <ul className="space-y-2">

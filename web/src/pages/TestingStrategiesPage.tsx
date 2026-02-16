@@ -1,5 +1,5 @@
 import Layout from '../components/layout/Layout';
-import { SectionHeader, CodeBlock, TipBox } from '../components/ui';
+import { SectionHeader, CodeBlockWithCopy, TipBox } from '../components/ui';
 
 const TestingStrategiesPage = () => {
   return (
@@ -74,7 +74,7 @@ const TestingStrategiesPage = () => {
         <SectionHeader number={1} title="单元测试" />
 
         <h3 className="text-xl font-semibold text-gray-900 mb-4">1.1 JUnit 5 + Mockito 测试</h3>
-        <CodeBlock
+        <CodeBlockWithCopy
           language="java"
           filename="ChatServiceTest.java"
           title="Java - 单元测试示例"
@@ -233,7 +233,7 @@ class ChatException extends RuntimeException {
         </TipBox>
 
         <h3 className="text-xl font-semibold text-gray-900 mb-4 mt-8">1.2 Mock AI 模型</h3>
-        <CodeBlock
+        <CodeBlockWithCopy
           language="java"
           filename="MockChatModel.java"
           title="Java - Mock AI模型"
@@ -360,7 +360,7 @@ public class MockChatModel implements ChatLanguageModel {
         <SectionHeader number={2} title="集成测试" />
 
         <h3 className="text-xl font-semibold text-gray-900 mb-4">2.1 Spring Boot 集成测试</h3>
-        <CodeBlock
+        <CodeBlockWithCopy
           language="java"
           filename="ChatControllerIntegrationTest.java"
           title="Java - 集成测试"
@@ -448,7 +448,7 @@ class ChatControllerIntegrationTest {
         />
 
         <h3 className="text-xl font-semibold text-gray-900 mb-4 mt-8">2.2 Testcontainers 测试</h3>
-        <CodeBlock
+        <CodeBlockWithCopy
           language="java"
           filename="RagServiceIntegrationTest.java"
           title="Java - Testcontainers"
@@ -568,7 +568,7 @@ class RagServiceIntegrationTest {
         <SectionHeader number={3} title="端到端测试" />
 
         <h3 className="text-xl font-semibold text-gray-900 mb-4">3.1 REST Assured API 测试</h3>
-        <CodeBlock
+        <CodeBlockWithCopy
           language="java"
           filename="ApiE2ETest.java"
           title="Java - E2E API测试"
@@ -694,7 +694,7 @@ class ApiE2ETest {
         />
 
         <h3 className="text-xl font-semibold text-gray-900 mb-4 mt-8">3.2 Playwright UI 测试</h3>
-        <CodeBlock
+        <CodeBlockWithCopy
           language="java"
           filename="ChatUiE2ETest.java"
           title="Java - UI E2E测试"
@@ -842,7 +842,7 @@ class ChatUiE2ETest {
         <SectionHeader number={4} title="测试覆盖率与CI/CD" />
 
         <h3 className="text-xl font-semibold text-gray-900 mb-4">4.1 Maven 配置</h3>
-        <CodeBlock
+        <CodeBlockWithCopy
           language="xml"
           filename="pom.xml"
           title="XML - 测试插件配置"
@@ -922,7 +922,7 @@ class ChatUiE2ETest {
         />
 
         <h3 className="text-xl font-semibold text-gray-900 mb-4 mt-8">4.2 GitHub Actions CI</h3>
-        <CodeBlock
+        <CodeBlockWithCopy
           language="yaml"
           filename=".github/workflows/ci.yml"
           title="YAML - CI/CD配置"

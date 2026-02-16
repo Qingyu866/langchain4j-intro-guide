@@ -1,5 +1,5 @@
 import Layout from '../components/layout/Layout';
-import { Tag, SectionHeader, CodeBlock, TipBox } from '../components/ui';
+import { Tag, SectionHeader, CodeBlockWithCopy, TipBox } from '../components/ui';
 
 const exceptionHierarchyCode = `package com.example.langchain4j.exception;
 
@@ -213,7 +213,7 @@ const ErrorHandlingPage = () => {
         <h3 className="subsection-title">1.1 LangChain4j 异常体系</h3>
         <p className="text-gray-700 mb-4">LangChain4j 提供了丰富的异常类型，帮助开发者定位和处理不同类型的错误：</p>
 
-        <CodeBlock
+        <CodeBlockWithCopy
           code={exceptionHierarchyCode}
           language="java"
           filename="ExceptionHierarchy.java"
@@ -241,7 +241,7 @@ const ErrorHandlingPage = () => {
         <h3 className="subsection-title">2.1 重试机制</h3>
         <p className="text-gray-700 mb-4">使用指数退避算法实现智能重试：</p>
 
-        <CodeBlock
+        <CodeBlockWithCopy
           code={retryHandlerCode}
           language="java"
           filename="RetryHandler.java"
@@ -276,7 +276,7 @@ const ErrorHandlingPage = () => {
         <h3 className="subsection-title">4.1 模型故障转移</h3>
         <p className="text-gray-700 mb-4">当模型不可用时，应该实施故障转移策略：</p>
 
-        <CodeBlock
+        <CodeBlockWithCopy
           code={modelFailoverCode}
           language="java"
           filename="ModelFailover.java"
@@ -308,7 +308,7 @@ const ErrorHandlingPage = () => {
         <h3 className="subsection-title">6.1 结构化日志</h3>
         <p className="text-gray-700 mb-4">使用结构化日志记录错误信息：</p>
 
-        <CodeBlock
+        <CodeBlockWithCopy
           code={errorLoggerCode}
           language="java"
           filename="ErrorLogger.java"
@@ -321,7 +321,7 @@ const ErrorHandlingPage = () => {
           本节将所有错误处理策略整合到一个完整的框架中，展示如何构建生产级的错误处理系统。
         </p>
 
-        <CodeBlock
+        <CodeBlockWithCopy
           code={comprehensiveErrorHandlerCode}
           language="java"
           filename="ComprehensiveErrorHandler.java"

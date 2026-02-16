@@ -1,5 +1,5 @@
 import Layout from '../components/layout/Layout';
-import { Tag, SectionHeader, CodeBlock, TipBox } from '../components/ui';
+import { Tag, SectionHeader, CodeBlockWithCopy, TipBox } from '../components/ui';
 
 const dockerfileCode = `# 基础镜像：使用 JDK 17
 FROM openjdk:17-jdk-slim AS builder
@@ -246,12 +246,12 @@ const DeploymentPage = () => {
         <h3 className="subsection-title">1.1 Docker 镜像构建</h3>
         <p className="paragraph">使用 Docker 容器化 LangChain4j 应用，实现环境一致性和易于部署：</p>
 
-        <CodeBlock code={dockerfileCode} language="dockerfile" filename="Dockerfile" />
+        <CodeBlockWithCopy code={dockerfileCode} language="dockerfile" filename="Dockerfile" />
 
         <h3 className="subsection-title">1.2 Docker Compose 编排</h3>
         <p className="paragraph">使用 Docker Compose 管理多容器应用：</p>
 
-        <CodeBlock code={dockerComposeCode} language="yaml" filename="docker-compose.yml" />
+        <CodeBlockWithCopy code={dockerComposeCode} language="yaml" filename="docker-compose.yml" />
       </section>
 
       <section id="Kubernetes编排" className="content-section">
@@ -260,12 +260,12 @@ const DeploymentPage = () => {
         <h3 className="subsection-title">2.1 Deployment 配置</h3>
         <p className="paragraph">在 Kubernetes 中部署 LangChain4j 应用：</p>
 
-        <CodeBlock code={deploymentCode} language="yaml" filename="deployment.yaml" />
+        <CodeBlockWithCopy code={deploymentCode} language="yaml" filename="deployment.yaml" />
 
         <h3 className="subsection-title">2.2 配置管理</h3>
         <p className="paragraph">使用 Kubernetes ConfigMap 和 Secret 管理配置：</p>
 
-        <CodeBlock code={configMapCode} language="yaml" filename="config.yaml" />
+        <CodeBlockWithCopy code={configMapCode} language="yaml" filename="config.yaml" />
       </section>
 
       <section id="CI_CD流程" className="content-section">
@@ -274,7 +274,7 @@ const DeploymentPage = () => {
         <h3 className="subsection-title">3.1 GitHub Actions CI</h3>
         <p className="paragraph">自动化构建和测试流程：</p>
 
-        <CodeBlock code={githubActionsCode} language="yaml" filename=".github/workflows/ci.yml" />
+        <CodeBlockWithCopy code={githubActionsCode} language="yaml" filename=".github/workflows/ci.yml" />
 
         <h3 className="subsection-title">3.2 自动化部署到 K8s</h3>
         <p className="paragraph">构建完成后自动部署到 Kubernetes：</p>
@@ -330,7 +330,7 @@ const DeploymentPage = () => {
         <h3 className="subsection-title">4.3 告警规则</h3>
         <p className="paragraph">设置合理的告警阈值：</p>
 
-        <CodeBlock code={alertingRulesCode} language="yaml" filename="alerting-rules.yml" />
+        <CodeBlockWithCopy code={alertingRulesCode} language="yaml" filename="alerting-rules.yml" />
 
         <h3 className="subsection-title">4.4 日志聚合</h3>
         <p className="paragraph">使用 ELK（Elasticsearch + Logstash + Kibana）或类似方案：</p>

@@ -1,5 +1,5 @@
 import Layout from '../components/layout/Layout';
-import { Tag, SectionHeader, CodeBlock, TipBox } from '../components/ui';
+import { Tag, SectionHeader, CodeBlockWithCopy, TipBox } from '../components/ui';
 
 const customChatModelCode = `package com.example.langchain4j.custom;
 
@@ -309,7 +309,7 @@ const DeepDivePage = () => {
         <h4 className="text-lg font-semibold text-gray-900 mb-3">自定义 ChatModel 实现</h4>
         <p className="text-gray-700 mb-4">通过实现 ChatLanguageModel 接口，可以自定义任何 LLM 的适配器：</p>
 
-        <CodeBlock
+        <CodeBlockWithCopy
           code={customChatModelCode}
           language="java"
           filename="CustomChatModel.java"
@@ -353,7 +353,7 @@ const DeepDivePage = () => {
         <h4 className="text-lg font-semibold text-gray-900 mb-3">自定义 Memory 实现</h4>
         <p className="text-gray-700 mb-4">通过实现 ChatMemory 接口，可以自定义对话存储逻辑：</p>
 
-        <CodeBlock
+        <CodeBlockWithCopy
           code={redisChatMemoryCode}
           language="java"
           filename="RedisChatMemory.java"
@@ -397,7 +397,7 @@ const DeepDivePage = () => {
         <h4 className="text-lg font-semibold text-gray-900 mb-3">异步流式调用示例</h4>
         <p className="text-gray-700 mb-4">使用 StreamingChatLanguageModel 实现实时流式输出：</p>
 
-        <CodeBlock
+        <CodeBlockWithCopy
           code={asyncStreamingExampleCode}
           language="java"
           filename="AsyncStreamingExample.java"
@@ -443,7 +443,7 @@ const DeepDivePage = () => {
         <h4 className="text-lg font-semibold text-gray-900 mb-3">AOP 拦截器实现</h4>
         <p className="text-gray-700 mb-4">使用 AOP 拦截器在请求/响应生命周期中插入自定义逻辑：</p>
 
-        <CodeBlock
+        <CodeBlockWithCopy
           code={requestInterceptorCode}
           language="java"
           filename="RequestInterceptor.java"
@@ -501,7 +501,7 @@ const DeepDivePage = () => {
         <h4 className="text-lg font-semibold text-gray-900 mb-3">自定义 ChatModel 核心实现</h4>
         <p className="text-gray-700 mb-4">深入理解 ChatModel 的实现原理：</p>
 
-        <CodeBlock
+        <CodeBlockWithCopy
           code={chatModelCoreCode}
           language="java"
           filename="ChatModelCore.java"

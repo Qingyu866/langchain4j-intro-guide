@@ -1,5 +1,5 @@
 import Layout from '../components/layout/Layout';
-import { Tag, CodeBlock, SectionHeader, TipBox, SummarySection } from '../components/ui';
+import { Tag, CodeBlockWithCopy, SectionHeader, TipBox, SummarySection } from '../components/ui';
 
 const CoreConceptsPage = () => {
   const chatModelBasic = `import dev.langchain4j.model.chat.ChatLanguageModel;
@@ -299,7 +299,7 @@ String response = assistant.chat("What's the weather in Beijing and add 5 and 3?
           最简单的使用方式：
         </p>
 
-        <CodeBlock language="java" filename="BasicChatModelExample.java" code={chatModelBasic} />
+        <CodeBlockWithCopy language="java" filename="BasicChatModelExample.java" code={chatModelBasic} />
 
         <TipBox type="tip" title="Builder模式优势">
           <ul className="tip-box-list">
@@ -314,7 +314,7 @@ String response = assistant.chat("What's the weather in Beijing and add 5 and 3?
           通过Builder模式可以配置更多参数：
         </p>
 
-        <CodeBlock language="java" filename="AdvancedChatModelExample.java" code={chatModelAdvanced} />
+        <CodeBlockWithCopy language="java" filename="AdvancedChatModelExample.java" code={chatModelAdvanced} />
 
         <div className="info-card info-card-green">
           <h4 className="card-title-green">常用配置参数</h4>
@@ -365,7 +365,7 @@ String response = assistant.chat("What's the weather in Beijing and add 5 and 3?
           AiServices是LangChain4j最强大的特性之一，通过声明式接口大幅简化AI应用开发。类似于Spring Data JPA，你只需要定义接口，框架自动提供实现。
         </p>
 
-        <CodeBlock language="java" filename="AiServicesBasicExample.java" code={aiServicesBasic} />
+        <CodeBlockWithCopy language="java" filename="AiServicesBasicExample.java" code={aiServicesBasic} />
 
         <TipBox type="success" title="设计理念">
           <ul className="tip-box-list">
@@ -381,7 +381,7 @@ String response = assistant.chat("What's the weather in Beijing and add 5 and 3?
           AiServices支持多种注解来定制行为：
         </p>
 
-        <CodeBlock language="java" filename="AiServicesAdvancedExample.java" code={aiServicesAdvanced} />
+        <CodeBlockWithCopy language="java" filename="AiServicesAdvancedExample.java" code={aiServicesAdvanced} />
 
         <div className="info-card info-card-purple">
           <h4 className="card-title-purple">主要注解</h4>
@@ -485,7 +485,7 @@ String response = assistant.chat("What's the weather in Beijing and add 5 and 3?
           LangChain4j提供多种ChatMemory实现，根据不同场景选择：
         </p>
 
-        <CodeBlock language="java" filename="ChatMemoryTypesExample.java" code={chatMemoryTypes} />
+        <CodeBlockWithCopy language="java" filename="ChatMemoryTypesExample.java" code={chatMemoryTypes} />
 
         <div className="info-card info-card-green">
           <h4 className="card-title-green">内存类型对比</h4>
@@ -550,7 +550,7 @@ String response = assistant.chat("What's the weather in Beijing and add 5 and 3?
           使用StreamingChatModel和StreamingResponseHandler实现流式响应：
         </p>
 
-        <CodeBlock language="java" filename="StreamingExample.java" code={streamingExample} />
+        <CodeBlockWithCopy language="java" filename="StreamingExample.java" code={streamingExample} />
 
         <TipBox type="warning" title="注意事项">
           <ul className="tip-box-list">
@@ -586,7 +586,7 @@ String response = assistant.chat("What's the weather in Beijing and add 5 and 3?
           使用@Tool注解定义工具：
         </p>
 
-        <CodeBlock language="java" filename="ToolsExample.java" code={toolsExample} />
+        <CodeBlockWithCopy language="java" filename="ToolsExample.java" code={toolsExample} />
 
         <TipBox type="success" title="工具定义要点">
           <ul className="tip-box-list">

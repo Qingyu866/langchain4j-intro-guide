@@ -1,5 +1,5 @@
 import Layout from '../components/layout/Layout';
-import { Tag, CodeBlock, SectionHeader } from '../components/ui';
+import { Tag, CodeBlockWithCopy, SectionHeader } from '../components/ui';
 
 interface PageConfig {
   title: string;
@@ -33,9 +33,9 @@ const createPage = (config: PageConfig) => {
           <SectionHeader number={section.number} title={section.title} />
           <p className="paragraph">{section.content}</p>
           {section.code?.map((codeBlock, index) => (
-            <CodeBlock key={index} filename={codeBlock.filename}>
+            <CodeBlockWithCopy key={index} filename={codeBlock.filename}>
               {codeBlock.content}
-            </CodeBlock>
+            </CodeBlockWithCopy>
           ))}
         </section>
       ))}

@@ -1,5 +1,5 @@
 import Layout from '../components/layout/Layout';
-import { Tag, CodeBlock, SectionHeader, TipBox } from '../components/ui';
+import { Tag, CodeBlockWithCopy, SectionHeader, TipBox } from '../components/ui';
 
 const ProjectAiAssistantPage = () => {
   const aiServiceConfigCode = `package com.example.aiassistant.config;
@@ -158,17 +158,17 @@ public class AgentService {
           </div>
         </div>
 
-        <CodeBlock language="java" filename="AiServiceConfig.java" code={aiServiceConfigCode} />
+        <CodeBlockWithCopy language="java" filename="AiServiceConfig.java" code={aiServiceConfigCode} />
       </section>
 
       <section className="content-section">
         <SectionHeader number={2} title="后端API开发" />
 
         <h3 className="subsection-title">2.1 AgentController实现</h3>
-        <CodeBlock language="java" filename="AgentController.java" code={agentControllerCode} />
+        <CodeBlockWithCopy language="java" filename="AgentController.java" code={agentControllerCode} />
 
         <h3 className="subsection-title">2.2 AgentService实现</h3>
-        <CodeBlock language="java" filename="AgentService.java" code={agentServiceCode} />
+        <CodeBlockWithCopy language="java" filename="AgentService.java" code={agentServiceCode} />
 
         <TipBox type="warning" title="注意">
           <ul className="space-y-1 text-sm">

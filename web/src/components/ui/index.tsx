@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import CodeBlockWithCopy from './CodeBlockWithCopy';
 
 interface CodeBlockProps {
   filename?: string;
@@ -26,6 +27,9 @@ export const CodeBlock = ({ filename, children, code }: CodeBlockProps) => {
     </div>
   );
 };
+
+// 导出带复制功能的代码块组件
+export { CodeBlockWithCopy };
 
 interface TagProps {
   variant?: 'indigo' | 'purple' | 'green' | 'blue' | 'yellow' | 'orange' | 'cyan' | 'pink' | 'red';

@@ -1,5 +1,5 @@
 import Layout from '../components/layout/Layout';
-import { Tag, CodeBlock, SectionHeader, TipBox, SummarySection } from '../components/ui';
+import { Tag, CodeBlockWithCopy, SectionHeader, TipBox, SummarySection } from '../components/ui';
 
 const ModelProvidersPage = () => {
   const openaiConfig = `import dev.langchain4j.model.openai.OpenAiChatModel;
@@ -362,7 +362,7 @@ public class ConfigurationBestPractices {
           OpenAI 是最流行的 LLM 提供商之一，LangChain4j 完整支持 GPT-3.5 和 GPT-4 系列。
         </p>
 
-        <CodeBlock language="java" filename="OpenAIConfig.java" code={openaiConfig} />
+        <CodeBlockWithCopy language="java" filename="OpenAIConfig.java" code={openaiConfig} />
 
         <TipBox type="info" title="OpenAI模型特点">
           <ul className="tip-box-list">
@@ -383,7 +383,7 @@ public class ConfigurationBestPractices {
           Anthropic 提供的 Claude 系列模型以出色的推理能力和代码质量著称。
         </p>
 
-        <CodeBlock language="java" filename="AnthropicConfig.java" code={anthropicConfig} />
+        <CodeBlockWithCopy language="java" filename="AnthropicConfig.java" code={anthropicConfig} />
 
         <TipBox type="success" title="Claude优势">
           <ul className="tip-box-list">
@@ -404,7 +404,7 @@ public class ConfigurationBestPractices {
           Azure OpenAI 提供 OpenAI 模型的企业级部署方案，适合需要高可靠性和数据隐私的企业应用。
         </p>
 
-        <CodeBlock language="java" filename="AzureConfig.java" code={azureConfig} />
+        <CodeBlockWithCopy language="java" filename="AzureConfig.java" code={azureConfig} />
 
         <TipBox type="warning" title="Azure特性">
           <ul className="tip-box-list">
@@ -425,7 +425,7 @@ public class ConfigurationBestPractices {
           Hugging Face 提供大量开源模型，可以免费使用或本地部署，适合预算有限或需要离线运行的项目。
         </p>
 
-        <CodeBlock language="java" filename="HuggingFaceConfig.java" code={huggingfaceConfig} />
+        <CodeBlockWithCopy language="java" filename="HuggingFaceConfig.java" code={huggingfaceConfig} />
 
         <TipBox type="info" title="Hugging Face优势">
           <ul className="tip-box-list">
@@ -446,7 +446,7 @@ public class ConfigurationBestPractices {
           Google Gemini 提供强大的多模态能力，支持文本、图像、代码等多种输入输出。
         </p>
 
-        <CodeBlock language="java" filename="GeminiConfig.java" code={googleGeminiConfig} />
+        <CodeBlockWithCopy language="java" filename="GeminiConfig.java" code={googleGeminiConfig} />
 
         <div className="info-card info-card-blue">
           <h4 className="card-title-blue">Gemini优势</h4>
@@ -467,7 +467,7 @@ public class ConfigurationBestPractices {
           Amazon Bedrock 提供多种模型（Claude、Titan、Llama），通过统一的AWS基础设施提供服务。
         </p>
 
-        <CodeBlock language="java" filename="BedrockConfig.java" code={amazonBedrockConfig} />
+        <CodeBlockWithCopy language="java" filename="BedrockConfig.java" code={amazonBedrockConfig} />
 
         <TipBox type="success" title="Bedrock优势">
           <ul className="tip-box-list">
@@ -520,7 +520,7 @@ public class ConfigurationBestPractices {
           通过工厂模式实现提供商切换，业务代码无需关心底层实现：
         </p>
 
-        <CodeBlock language="java" filename="UnifiedInterface.java" code={unifiedInterface} />
+        <CodeBlockWithCopy language="java" filename="UnifiedInterface.java" code={unifiedInterface} />
 
         <TipBox type="success" title="设计优势">
           <ul className="tip-box-list">
@@ -537,7 +537,7 @@ public class ConfigurationBestPractices {
           合理管理API Key和配置是生产环境的关键：
         </p>
 
-        <CodeBlock language="java" filename="Configuration.java" code={bestPractices} />
+        <CodeBlockWithCopy language="java" filename="Configuration.java" code={bestPractices} />
 
         <TipBox type="warning" title="配置管理最佳实践">
           <ul className="tip-box-list">
@@ -559,7 +559,7 @@ public class ConfigurationBestPractices {
           不同提供商的成本差异很大，根据使用场景选择合适的模型：
         </p>
 
-        <CodeBlock language="java" filename="CostComparison.java" code={costComparison} />
+        <CodeBlockWithCopy language="java" filename="CostComparison.java" code={costComparison} />
 
         <div className="info-card info-card-purple">
           <h4 className="card-title-purple">选择建议</h4>

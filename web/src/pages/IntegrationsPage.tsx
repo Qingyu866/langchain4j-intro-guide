@@ -1,5 +1,5 @@
 import Layout from '../components/layout/Layout';
-import { SectionHeader, CodeBlock, TipBox } from '../components/ui';
+import { SectionHeader, CodeBlockWithCopy, TipBox } from '../components/ui';
 
 const IntegrationsPage = () => {
   return (
@@ -74,7 +74,7 @@ const IntegrationsPage = () => {
         <SectionHeader number={1} title="Spring Boot 集成" />
 
         <h3 className="text-xl font-semibold text-gray-900 mb-4">1.1 依赖配置</h3>
-        <CodeBlock
+        <CodeBlockWithCopy
           language="xml"
           filename="pom.xml"
           title="Maven依赖"
@@ -156,7 +156,7 @@ const IntegrationsPage = () => {
         />
 
         <h3 className="text-xl font-semibold text-gray-900 mb-4 mt-8">1.2 application.yml配置</h3>
-        <CodeBlock
+        <CodeBlockWithCopy
           language="yaml"
           filename="application.yml"
           title="应用配置"
@@ -235,7 +235,7 @@ management:
         />
 
         <h3 className="text-xl font-semibold text-gray-900 mb-4 mt-8">1.3 AI服务组件</h3>
-        <CodeBlock
+        <CodeBlockWithCopy
           language="java"
           filename="ChatService.java"
           title="Spring Bean定义"
@@ -294,7 +294,7 @@ public class RagService {
         />
 
         <h3 className="text-xl font-semibold text-gray-900 mb-4 mt-8">1.4 控制器层</h3>
-        <CodeBlock
+        <CodeBlockWithCopy
           language="java"
           filename="ChatController.java"
           title="REST API"
@@ -379,7 +379,7 @@ class ChatResponse {
         <SectionHeader number={2} title="Quarkus 集成" />
 
         <h3 className="text-xl font-semibold text-gray-900 mb-4">2.1 依赖配置</h3>
-        <CodeBlock
+        <CodeBlockWithCopy
           language="xml"
           filename="pom.xml"
           title="Quarkus Maven配置"
@@ -467,7 +467,7 @@ class ChatResponse {
         />
 
         <h3 className="text-xl font-semibold text-gray-900 mb-4 mt-8">2.2 application.properties</h3>
-        <CodeBlock
+        <CodeBlockWithCopy
           language="properties"
           filename="application.properties"
           title="Quarkus配置"
@@ -502,7 +502,7 @@ quarkus.package.type=fast-jar`}
         />
 
         <h3 className="text-xl font-semibold text-gray-900 mb-4 mt-8">2.3 CDI Bean定义</h3>
-        <CodeBlock
+        <CodeBlockWithCopy
           language="java"
           filename="ChatService.java"
           title="CDI Bean"
@@ -587,7 +587,7 @@ public record ChatResponse(String message, long timestamp) {}`}
         <SectionHeader number={3} title="消息队列集成" />
 
         <h3 className="text-xl font-semibold text-gray-900 mb-4">3.1 Kafka异步处理</h3>
-        <CodeBlock
+        <CodeBlockWithCopy
           language="java"
           filename="KafkaConfig.java"
           title="Kafka配置"
@@ -661,7 +661,7 @@ public class KafkaConfig {
         />
 
         <h3 className="text-xl font-semibold text-gray-900 mb-4 mt-8">3.2 Kafka生产者与消费者</h3>
-        <CodeBlock
+        <CodeBlockWithCopy
           language="java"
           filename="KafkaProducerService.java"
           title="消息生产与消费"
@@ -789,7 +789,7 @@ public class AsyncChatController {
         <SectionHeader number={4} title="数据存储集成" />
 
         <h3 className="text-xl font-semibold text-gray-900 mb-4">4.1 PostgreSQL向量存储</h3>
-        <CodeBlock
+        <CodeBlockWithCopy
           language="java"
           filename="PgVectorConfig.java"
           title="PGVector配置"
@@ -849,7 +849,7 @@ public class PgVectorConfig {
         />
 
         <h3 className="text-xl font-semibold text-gray-900 mb-4 mt-8">4.2 Redis缓存集成</h3>
-        <CodeBlock
+        <CodeBlockWithCopy
           language="java"
           filename="RedisCacheService.java"
           title="Redis缓存服务"

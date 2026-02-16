@@ -1,5 +1,5 @@
 import Layout from '../components/layout/Layout';
-import { SectionHeader, CodeBlock, TipBox } from '../components/ui';
+import { SectionHeader, CodeBlockWithCopy, TipBox } from '../components/ui';
 
 const MultimodalPage = () => {
   return (
@@ -123,7 +123,7 @@ const MultimodalPage = () => {
           以下是一个使用OpenAI DALL-E 3生成图像的示例：
         </p>
 
-        <CodeBlock
+        <CodeBlockWithCopy
           language="java"
           filename="ImageGenerationExample.java"
           title="Java - DALL-E图像生成"
@@ -186,7 +186,7 @@ public class ImageGenerationExample {
         </TipBox>
 
         <h3 className="text-2xl font-semibold text-gray-900 mb-4 mt-8">2.2 Google Imagen集成</h3>
-        <CodeBlock
+        <CodeBlockWithCopy
           language="java"
           filename="ImagenGenerationExample.java"
           title="Java - Imagen图像生成"
@@ -221,7 +221,7 @@ public class ImagenGenerationExample {
         />
 
         <h3 className="text-2xl font-semibold text-gray-900 mb-4 mt-8">2.3 高级图像生成配置</h3>
-        <CodeBlock
+        <CodeBlockWithCopy
           language="java"
           filename="AdvancedImageGeneration.java"
           title="Java - 高级图像生成"
@@ -308,7 +308,7 @@ public class AdvancedImageGeneration {
         </div>
 
         <h3 className="text-2xl font-semibold text-gray-900 mb-4">3.1 基础图像分析</h3>
-        <CodeBlock
+        <CodeBlockWithCopy
           language="java"
           filename="ImageUnderstandingExample.java"
           title="Java - 图像理解"
@@ -352,7 +352,7 @@ public class ImageUnderstandingExample {
         />
 
         <h3 className="text-2xl font-semibold text-gray-900 mb-4 mt-8">3.2 从本地文件加载图像</h3>
-        <CodeBlock
+        <CodeBlockWithCopy
           language="java"
           filename="LocalImageExample.java"
           title="Java - 本地图像处理"
@@ -405,7 +405,7 @@ public class LocalImageExample {
         />
 
         <h3 className="text-2xl font-semibold text-gray-900 mb-4 mt-8">3.3 提取结构化信息</h3>
-        <CodeBlock
+        <CodeBlockWithCopy
           language="java"
           filename="StructuredExtraction.java"
           title="Java - 结构化数据提取"
@@ -505,7 +505,7 @@ public class StructuredExtraction {
         </div>
 
         <h3 className="text-2xl font-semibold text-gray-900 mb-4">4.1 多轮图像对话示例</h3>
-        <CodeBlock
+        <CodeBlockWithCopy
           language="java"
           filename="MultimodalChat.java"
           title="Java - 多轮多模态对话"
@@ -571,7 +571,7 @@ public class MultimodalChat {
         />
 
         <h3 className="text-2xl font-semibold text-gray-900 mb-4 mt-8">4.2 AI Service中的多模态</h3>
-        <CodeBlock
+        <CodeBlockWithCopy
           language="java"
           filename="MultimodalService.java"
           title="Java - AI Service多模态"
@@ -684,7 +684,7 @@ public class MultimodalService {
         </div>
 
         <h3 className="text-2xl font-semibold text-gray-900 mb-4">5.2 图像RAG实现示例</h3>
-        <CodeBlock
+        <CodeBlockWithCopy
           language="java"
           filename="ImageRagExample.java"
           title="Java - 图像RAG系统"

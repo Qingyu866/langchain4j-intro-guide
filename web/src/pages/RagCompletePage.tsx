@@ -1,5 +1,5 @@
 import Layout from '../components/layout/Layout';
-import { SectionHeader, CodeBlock, TipBox } from '../components/ui';
+import { SectionHeader, CodeBlockWithCopy, TipBox } from '../components/ui';
 
 const RagCompletePage = () => {
   return (
@@ -174,7 +174,7 @@ const RagCompletePage = () => {
           </div>
         </div>
 
-        <CodeBlock
+        <CodeBlockWithCopy
           language="java"
           filename="FileSystemDocumentLoader.java"
           title="Java - FileSystem文档加载"
@@ -286,7 +286,7 @@ public class FileSystemDocumentLoader {
           </div>
         </div>
 
-        <CodeBlock
+        <CodeBlockWithCopy
           language="java"
           filename="ChunkingStrategies.java"
           title="Java - 文本分块策略"
@@ -415,7 +415,7 @@ public class ChunkingStrategies {
           </div>
         </div>
 
-        <CodeBlock
+        <CodeBlockWithCopy
           language="java"
           filename="EmbeddingGeneration.java"
           title="Java - Embedding生成"
@@ -570,7 +570,7 @@ public class EmbeddingGeneration {
           </div>
         </div>
 
-        <CodeBlock
+        <CodeBlockWithCopy
           language="java"
           filename="InMemoryStoreExample.java"
           title="Java - In-memory存储"
@@ -673,7 +673,7 @@ public class InMemoryStoreExample {
           </p>
         </div>
 
-        <CodeBlock
+        <CodeBlockWithCopy
           language="java"
           filename="VectorRetrieverExample.java"
           title="Java - 向量检索"
@@ -799,7 +799,7 @@ public class VectorRetrieverExample {
           </ul>
         </div>
 
-        <CodeBlock
+        <CodeBlockWithCopy
           language="java"
           filename="CompleteRAGSystem.java"
           title="Java - 完整RAG系统"
@@ -991,7 +991,7 @@ public class CompleteRAGSystem {
           直接使用用户查询可能效果不佳，可以通过重写查询来提升检索质量：
         </p>
 
-        <CodeBlock
+        <CodeBlockWithCopy
           language="java"
           filename="QueryRewriting.java"
           title="Java - 查询重写"
@@ -1081,7 +1081,7 @@ public class QueryRewriting {
         />
 
         <h3 className="text-2xl font-semibold text-gray-900 mb-4 mt-8">8.2 元数据增强与过滤</h3>
-        <CodeBlock
+        <CodeBlockWithCopy
           language="java"
           filename="MetadataFiltering.java"
           title="Java - 元数据过滤"

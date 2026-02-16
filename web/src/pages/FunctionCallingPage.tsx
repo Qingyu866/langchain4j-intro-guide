@@ -1,5 +1,5 @@
 import Layout from '../components/layout/Layout';
-import { Tag, CodeBlock, SectionHeader, TipBox, SummarySection } from '../components/ui';
+import { Tag, CodeBlockWithCopy, SectionHeader, TipBox, SummarySection } from '../components/ui';
 
 const FunctionCallingPage = () => {
   const toolDefinition = `import dev.langchain4j.agent.tool.Tool;
@@ -374,7 +374,7 @@ public class BadCalculatorTool {
           使用@Tool注解将Java方法标记为可被AI调用的工具：
         </p>
 
-        <CodeBlock language="java" filename="WeatherTool.java" code={toolDefinition} />
+        <CodeBlockWithCopy language="java" filename="WeatherTool.java" code={toolDefinition} />
 
         <TipBox type="info" title="@Tool注解说明">
           <ul className="tip-box-list">
@@ -396,7 +396,7 @@ public class BadCalculatorTool {
           将工具集成到AiServices中，让AI自动调用：
         </p>
 
-        <CodeBlock language="java" filename="AiServiceIntegration.java" code={aiServiceIntegration} />
+        <CodeBlockWithCopy language="java" filename="AiServiceIntegration.java" code={aiServiceIntegration} />
 
         <TipBox type="success" title="集成优势">
           <ul className="tip-box-list">
@@ -414,7 +414,7 @@ public class BadCalculatorTool {
           在实际应用中，往往需要多个工具协同工作：
         </p>
 
-        <CodeBlock language="java" filename="MultiToolScenario.java" code={multiToolScenario} />
+        <CodeBlockWithCopy language="java" filename="MultiToolScenario.java" code={multiToolScenario} />
 
         <div className="info-card info-card-green">
           <h4 className="card-title-green">多工具工作流程</h4>
@@ -455,7 +455,7 @@ public class BadCalculatorTool {
           使用AiServices构建Agent：
         </p>
 
-        <CodeBlock language="java" filename="AgentImplementation.java" code={agentImplementation} />
+        <CodeBlockWithCopy language="java" filename="AgentImplementation.java" code={agentImplementation} />
 
         <TipBox type="warning" title="Agent设计要点">
           <ul className="tip-box-list">
@@ -524,7 +524,7 @@ public class BadCalculatorTool {
           设计高质量的工具是成功的关键：
         </p>
 
-        <CodeBlock language="java" filename="ToolBestPractices.java" code={bestPractices} />
+        <CodeBlockWithCopy language="java" filename="ToolBestPractices.java" code={bestPractices} />
 
         <div className="info-card info-card-purple">
           <h4 className="card-title-purple">设计原则对比</h4>

@@ -1,5 +1,5 @@
 import Layout from '../components/layout/Layout';
-import { Tag, CodeBlock, SectionHeader, TipBox, SummarySection } from '../components/ui';
+import { Tag, CodeBlockWithCopy, SectionHeader, TipBox, SummarySection } from '../components/ui';
 
 const AdvancedFeaturesPage = () => {
   const streamingComplete = `import dev.langchain4j.model.chat.ChatLanguageModel;
@@ -176,7 +176,7 @@ System.out.println(result);`;
           LangChain4j提供了StreamingChatLanguageModel接口，支持流式输出：
         </p>
 
-        <CodeBlock language="java" filename="StreamingExample.java" code={streamingComplete} />
+        <CodeBlockWithCopy language="java" filename="StreamingExample.java" code={streamingComplete} />
 
         <TipBox type="info" title="StreamingResponseHandler接口">
           <ul className="tip-box-list">
@@ -226,7 +226,7 @@ System.out.println(result);`;
           通过定义POJO类和返回类型，LangChain4j可以自动解析响应：
         </p>
 
-        <CodeBlock language="java" filename="StructuredOutputExample.java" code={structuredOutputComplete} />
+        <CodeBlockWithCopy language="java" filename="StructuredOutputExample.java" code={structuredOutputComplete} />
 
         <TipBox type="success" title="POJO设计要点">
           <ul className="tip-box-list">
@@ -264,7 +264,7 @@ System.out.println(result);`;
           LangChain4j提供了Tool和ToolExecutor接口，用于定义和执行工具：
         </p>
 
-        <CodeBlock language="java" filename="AgentExample.java" code={agentArchitecture} />
+        <CodeBlockWithCopy language="java" filename="AgentExample.java" code={agentArchitecture} />
 
         <TipBox type="warning" title="工具设计原则">
           <ul className="tip-box-list">

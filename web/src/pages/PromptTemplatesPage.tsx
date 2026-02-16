@@ -1,5 +1,5 @@
 import Layout from '../components/layout/Layout';
-import { Tag, CodeBlock, SectionHeader, TipBox, SummarySection } from '../components/ui';
+import { Tag, CodeBlockWithCopy, SectionHeader, TipBox, SummarySection } from '../components/ui';
 
 const PromptTemplatesPage = () => {
   const basicTemplate = `import dev.langchain4j.model.input.PromptTemplate;
@@ -422,7 +422,7 @@ Prompt prompt = template.apply(variables);`;
         <h3 className="subsection-title">1.3 PromptTemplate类</h3>
         <p className="paragraph">PromptTemplate是核心类，提供静态工厂方法和实例方法：</p>
 
-        <CodeBlock language="java" filename="PromptTemplate基础用法" code={basicTemplate} />
+        <CodeBlockWithCopy language="java" filename="PromptTemplate基础用法" code={basicTemplate} />
 
         <TipBox type="info" title="设计模式说明">
           <ul className="tip-box-list">
@@ -440,7 +440,7 @@ Prompt prompt = template.apply(variables);`;
         <h3 className="subsection-title">2.1 使用单个变量（{"{{it}}"}）</h3>
         <p className="paragraph">最简单的使用场景，只有一个变量的模板：</p>
 
-        <CodeBlock language="java" filename="ApplySingleVariable.java" code={applySingleVar} />
+        <CodeBlockWithCopy language="java" filename="ApplySingleVariable.java" code={applySingleVar} />
 
         <TipBox type="tip" title={`何时使用{{it}}？`}>
           <ul className="tip-box-list">
@@ -453,7 +453,7 @@ Prompt prompt = template.apply(variables);`;
         <h3 className="subsection-title">2.2 使用多个变量</h3>
         <p className="paragraph">当需要注入多个值时，使用Map存储变量：</p>
 
-        <CodeBlock language="java" filename="ApplyMultipleVariables.java" code={applyMultipleVars} />
+        <CodeBlockWithCopy language="java" filename="ApplyMultipleVariables.java" code={applyMultipleVars} />
 
         <TipBox type="success" title="特殊变量说明">
           <ul className="tip-box-list">
@@ -484,7 +484,7 @@ Prompt prompt = template.apply(variables);`;
         <h3 className="subsection-title">3.1 @SystemMessage和@UserMessage</h3>
         <p className="paragraph">在AiServices中，可以使用注解定义系统消息和用户消息模板：</p>
 
-        <CodeBlock language="java" filename="AiServicesWithTemplate.java" code={systemUserTemplate} />
+        <CodeBlockWithCopy language="java" filename="AiServicesWithTemplate.java" code={systemUserTemplate} />
 
         <TipBox type="info" title="注解说明">
           <ul className="tip-box-list">
@@ -526,7 +526,7 @@ Prompt prompt = template.apply(variables);`;
         <h3 className="subsection-title">4.1 条件渲染</h3>
         <p className="paragraph">使用if指令实现条件性内容：</p>
 
-        <CodeBlock language="java" filename="ConditionalTemplate.java" code={conditionalTemplate} />
+        <CodeBlockWithCopy language="java" filename="ConditionalTemplate.java" code={conditionalTemplate} />
 
         <TipBox type="info" title="语法说明">
           <ul className="tip-box-list">
@@ -540,7 +540,7 @@ Prompt prompt = template.apply(variables);`;
         <h3 className="subsection-title">4.2 循环渲染</h3>
         <p className="paragraph">使用for指令遍历集合：</p>
 
-        <CodeBlock language="java" filename="LoopTemplate.java" code={loopTemplate} />
+        <CodeBlockWithCopy language="java" filename="LoopTemplate.java" code={loopTemplate} />
 
         <TipBox type="tip" title="循环最佳实践">
           <ul className="tip-box-list">
@@ -584,7 +584,7 @@ Prompt prompt = template.apply(variables);`;
         <h3 className="subsection-title">5.1 智能聊天机器人</h3>
         <p className="paragraph">使用模板创建可配置的聊天机器人：</p>
 
-        <CodeBlock language="java" filename="ChatBotExample.java" code={chatbotTemplate} />
+        <CodeBlockWithCopy language="java" filename="ChatBotExample.java" code={chatbotTemplate} />
 
         <TipBox type="success" title="应用场景">
           <ul className="tip-box-list">
@@ -598,7 +598,7 @@ Prompt prompt = template.apply(variables);`;
         <h3 className="subsection-title">5.2 RAG查询</h3>
         <p className="paragraph">结合检索增强生成的prompt模板：</p>
 
-        <CodeBlock language="java" filename="RAGTemplateExample.java" code={ragTemplate} />
+        <CodeBlockWithCopy language="java" filename="RAGTemplateExample.java" code={ragTemplate} />
 
         <TipBox type="info" title="RAG最佳实践">
           <ul className="tip-box-list">
@@ -612,7 +612,7 @@ Prompt prompt = template.apply(variables);`;
         <h3 className="subsection-title">5.3 代码生成器</h3>
         <p className="paragraph">使用模板生成代码：</p>
 
-        <CodeBlock language="java" filename="CodeGeneratorExample.java" code={codeGenTemplate} />
+        <CodeBlockWithCopy language="java" filename="CodeGeneratorExample.java" code={codeGenTemplate} />
 
         <TipBox type="tip" title="代码生成建议">
           <ul className="tip-box-list">
@@ -630,7 +630,7 @@ Prompt prompt = template.apply(variables);`;
         <h3 className="subsection-title">6.1 性能优化</h3>
         <p className="paragraph">优化Prompt模板的性能和资源使用：</p>
 
-        <CodeBlock language="java" filename="PerformanceOptimization.java" code={performanceOptimization} />
+        <CodeBlockWithCopy language="java" filename="PerformanceOptimization.java" code={performanceOptimization} />
 
         <div className="info-card info-card-purple">
           <h4 className="card-title-purple">性能优化要点</h4>
@@ -690,7 +690,7 @@ Prompt prompt = template.apply(variables);`;
         <h3 className="subsection-title">7.1 变量未正确替换</h3>
         <p className="paragraph">最常见的问题之一，变量名不匹配导致替换失败：</p>
 
-        <CodeBlock language="java" filename="Troubleshooting.java" code={troubleshooting} />
+        <CodeBlockWithCopy language="java" filename="Troubleshooting.java" code={troubleshooting} />
 
         <TipBox type="warning" title="调试技巧">
           <ul className="tip-box-list">
