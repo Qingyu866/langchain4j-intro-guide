@@ -1,5 +1,5 @@
 import Layout from '../components/layout/Layout';
-import { Tag, CodeBlockWithCopy, SectionHeader, TipBox, SummarySection } from '../components/ui';
+import { Tag, CodeBlockWithCopy, SectionHeader, TipBox, SummarySection, MermaidChart } from '../components/ui';
 
 const EmbeddingModelsPage = () => {
   const basicEmbedding = `import dev.langchain4j.data.embedding.Embedding;
@@ -394,6 +394,28 @@ public double goodSimilarity(float[] a, float[] b) {
             </tbody>
           </table>
         </div>
+
+        <h3 className="subsection-title mt-6">1.4 Embedding 工作流程</h3>
+        <p className="paragraph mb-4">文本如何转换为向量并进行相似度搜索：</p>
+
+        <MermaidChart chart={`
+          graph TB
+              A[原始文本] --> B[Embedding模型]
+              B --> C[向量表示 1536维]
+              C --> D[向量数据库]
+
+              E[查询文本] --> F[Embedding模型]
+              F --> G[查询向量]
+
+              G --> H[相似度计算]
+              D --> H
+              H --> I[Top-N 最相似结果]
+
+              style B fill:#f3e5f5
+              style D fill:#e3f2fd
+              style H fill:#fff3e0
+              style I fill:#e8f5e9
+        `} />
       </section>
 
       <section id="EmbeddingModel接口" className="content-section">

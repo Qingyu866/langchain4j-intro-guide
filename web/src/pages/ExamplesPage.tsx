@@ -1,5 +1,5 @@
 import Layout from '../components/layout/Layout';
-import { SectionHeader, CodeBlockWithCopy, TipBox } from '../components/ui';
+import { SectionHeader, CodeBlockWithCopy, TipBox, MermaidChart } from '../components/ui';
 
 const ExamplesPage = () => {
   return (
@@ -59,6 +59,25 @@ const ExamplesPage = () => {
           </div>
         </div>
       </div>
+
+      <h3 className="text-xl font-semibold text-gray-900 mb-4 mt-8">实战示例架构</h3>
+      <p className="text-gray-600 mb-4">LangChain4j 实战示例的分类和关系：</p>
+
+      <MermaidChart chart={`
+        graph TB
+            A[💬 简单聊天] --> B[🎨 AiServices]
+            C[🔍 智能问答] --> D[📚 RAG Pipeline]
+            E[🤖 AI Agent] --> F[🔧 Tools]
+
+            B --> G[🚀 快速上手]
+            D --> H[📖 知识库]
+            F --> I[⚡ 自动化]
+
+            style A fill:#e3f2fd
+            style C fill:#f3e5f5
+            style E fill:#fff3e0
+            style G fill:#e8f5e9
+      `} />
 
       <section className="content-section">
         <SectionHeader number={1} title="简单聊天机器人" />
@@ -959,13 +978,13 @@ public class SentimentAnalyzer {
         />
       </section>
 
-      <div className="bg-gray-50 border border-gray-200 rounded-lg p-8">
-        <h2 className="text-2xl font-bold mb-4 text-gray-900">🎯 示例总结</h2>
+      <div className="summary-box">
+        <h2 className="text-2xl font-bold mb-4">🎯 示例总结</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <div className="border border-gray-200 rounded-lg p-5">
             <div className="text-2xl mb-3">💬</div>
-            <div className="font-semibold mb-2 text-gray-800">简单聊天</div>
-            <ul className="text-sm space-y-1 text-gray-700">
+            <div className="font-semibold mb-2">简单聊天</div>
+            <ul className="text-sm space-y-1">
               <li> 基础对话API</li>
               <li> 流式输出</li>
               <li> 对话记忆</li>
@@ -973,8 +992,8 @@ public class SentimentAnalyzer {
           </div>
           <div className="border border-gray-200 rounded-lg p-5">
             <div className="text-2xl mb-3">🔍</div>
-            <div className="font-semibold mb-2 text-gray-800">RAG问答</div>
-            <ul className="text-sm space-y-1 text-gray-700">
+            <div className="font-semibold mb-2">RAG问答</div>
+            <ul className="text-sm space-y-1">
               <li> 向量搜索</li>
               <li> 知识库管理</li>
               <li> 上下文检索</li>
@@ -982,8 +1001,8 @@ public class SentimentAnalyzer {
           </div>
           <div className="border border-gray-200 rounded-lg p-5">
             <div className="text-2xl mb-3">🤖</div>
-            <div className="font-semibold mb-2 text-gray-800">AI Agent</div>
-            <ul className="text-sm space-y-1 text-gray-700">
+            <div className="font-semibold mb-2">AI Agent</div>
+            <ul className="text-sm space-y-1">
               <li> Function Calling</li>
               <li> 多工具集成</li>
               <li> 自动推理</li>
@@ -991,8 +1010,8 @@ public class SentimentAnalyzer {
           </div>
           <div className="border border-gray-200 rounded-lg p-5">
             <div className="text-2xl mb-3">📝</div>
-            <div className="font-semibold mb-2 text-gray-800">文档摘要</div>
-            <ul className="text-sm space-y-1 text-gray-700">
+            <div className="font-semibold mb-2">文档摘要</div>
+            <ul className="text-sm space-y-1">
               <li> 自动摘要</li>
               <li> 核心提取</li>
               <li> 长度控制</li>
@@ -1000,8 +1019,8 @@ public class SentimentAnalyzer {
           </div>
           <div className="border border-gray-200 rounded-lg p-5">
             <div className="text-2xl mb-3">🔄</div>
-            <div className="font-semibold mb-2 text-gray-800">代码翻译</div>
-            <ul className="text-sm space-y-1 text-gray-700">
+            <div className="font-semibold mb-2">代码翻译</div>
+            <ul className="text-sm space-y-1">
               <li> 跨语言转换</li>
               <li> 语法适配</li>
               <li> 逻辑保持</li>
@@ -1009,17 +1028,17 @@ public class SentimentAnalyzer {
           </div>
           <div className="border border-gray-200 rounded-lg p-5">
             <div className="text-2xl mb-3">😊</div>
-            <div className="font-semibold mb-2 text-gray-800">情感分析</div>
-            <ul className="text-sm space-y-1 text-gray-700">
+            <div className="font-semibold mb-2">情感分析</div>
+            <ul className="text-sm space-y-1">
               <li> 情感分类</li>
               <li> 置信度评估</li>
               <li> 原因分析</li>
             </ul>
           </div>
         </div>
-        <div className="mt-6 pt-6 border-t border-gray-200">
-          <p className="text-lg mb-2 text-gray-900">📚 <strong>下一章：框架集成</strong></p>
-          <p className="text-sm text-gray-700">学习如何将LangChain4j集成到Spring Boot、Quarkus等框架中</p>
+        <div className="mt-6 pt-6 border-t">
+          <p className="text-lg mb-2">📚 <strong>下一章：框架集成</strong></p>
+          <p className="text-sm">学习如何将LangChain4j集成到Spring Boot、Quarkus等框架中</p>
           <a href="/integrations" className="inline-block mt-3 px-6 py-2 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition-colors">
             继续学习 →
           </a>

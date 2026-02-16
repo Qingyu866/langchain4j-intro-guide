@@ -308,8 +308,8 @@
    -------------------------------------------- */
 
 .bg-gradient-to-r {
-  background-color: var(--color-gray-50);
-  border: 1px solid var(--color-gray-200);
+  background-color: var(--color-indigo-50);
+  border: 1px solid var(--color-indigo-200);
 }
 
 /* --------------------------------------------
@@ -501,8 +501,8 @@
    -------------------------------------------- */
 
 .tip-box-gradient {
-  background-color: var(--color-gray-50);
-  border: 1px solid var(--color-gray-200);
+  background-color: var(--color-indigo-50);
+  border: 1px solid var(--color-indigo-200);
   border-radius: var(--radius-xl);
   padding: var(--spacing-6);
   margin-bottom: var(--spacing-8);
@@ -531,8 +531,8 @@
    -------------------------------------------- */
 
 .summary-gradient {
-  background-color: var(--color-gray-50);
-  border: 1px solid var(--color-gray-200);
+  background-color: var(--color-indigo-50);
+  border: 1px solid var(--color-indigo-200);
   color: var(--color-gray-900);
 }
 
@@ -662,8 +662,8 @@
 }
 
 .from-indigo-600.to-purple-600 {
-  background-color: var(--color-gray-50);
-  border: 1px solid var(--color-gray-200);
+  background-color: var(--color-indigo-50);
+  border: 1px solid var(--color-indigo-200);
 }
 
 .text-white {
@@ -890,12 +890,49 @@
 }
 
 /* --------------------------------------------
+   总结区块样式
+   -------------------------------------------- */
+
+.summary-box {
+  background-color: var(--color-indigo-50);
+  border: 1px solid var(--color-indigo-200);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-8);
+  color: var(--color-gray-900);
+}
+
+.summary-box h2,
+.summary-box h3 {
+  color: var(--color-gray-900);
+}
+
+.summary-box h4 {
+  color: var(--color-gray-800);
+}
+
+.summary-box p {
+  color: var(--color-gray-700);
+}
+
+.summary-box li {
+  color: var(--color-gray-700);
+}
+
+.summary-box .border-t {
+  border-top: 1px solid var(--color-indigo-200);
+}
+
+.summary-box .border {
+  background-color: white;
+}
+
+/* --------------------------------------------
    总结卡片样式
    -------------------------------------------- */
 
 .summary-card {
-  background-color: var(--color-gray-50);
-  border: 1px solid var(--color-gray-200);
+  background-color: var(--color-indigo-50);
+  border: 1px solid var(--color-indigo-200);
   border-radius: var(--radius-xl);
   padding: var(--spacing-8);
   color: var(--color-gray-900);
@@ -1073,8 +1110,8 @@
    -------------------------------------------- */
 
 .summary-section {
-  background-color: var(--color-gray-50);
-  border: 1px solid var(--color-gray-200);
+  background-color: var(--color-indigo-50);
+  border: 1px solid var(--color-indigo-200);
   border-radius: var(--radius-xl);
   padding: var(--spacing-8);
   color: var(--color-gray-900);

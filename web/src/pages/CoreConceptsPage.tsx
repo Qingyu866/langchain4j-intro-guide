@@ -1,5 +1,5 @@
 import Layout from '../components/layout/Layout';
-import { Tag, CodeBlockWithCopy, SectionHeader, TipBox, SummarySection } from '../components/ui';
+import { Tag, CodeBlockWithCopy, SectionHeader, TipBox, SummarySection, MermaidChart } from '../components/ui';
 
 const CoreConceptsPage = () => {
   const chatModelBasic = `import dev.langchain4j.model.chat.ChatLanguageModel;
@@ -274,6 +274,51 @@ String response = assistant.chat("What's the weather in Beijing and add 5 and 3?
           <li className="toc-item"><span className="toc-number">5.</span> <a href="#工具调用" className="toc-link">工具调用</a></li>
         </ol>
       </nav>
+
+      <div className="mb-12 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-8">
+        <h2 className="text-2xl font-bold text-gray-900 mb-6">🏗️ LangChain4j 核心架构</h2>
+        <p className="text-gray-700 mb-6">
+          LangChain4j 的核心组件如何协同工作，构建完整的 AI 应用。
+        </p>
+
+        <MermaidChart chart={`
+graph TB
+    subgraph "用户层"
+        U[用户应用] -->|调用| AS[AiServices]
+    end
+
+    subgraph "服务层"
+        AS -->|使用| CLM[ChatLanguageModel]
+        AS -->|管理| CM[ChatMemory]
+        AS -->|调用| TC[ToolSpecification]
+    end
+
+    subgraph "模型层"
+        CLM -->|支持| OP[OpenAI]
+        CLM -->|支持| AP[Anthropic]
+        CLM -->|支持| HF[HuggingFace]
+    end
+
+    subgraph "数据层"
+        CM -->|存储| MSG[消息历史]
+        ES[EmbeddingStore] -->|向量检索| AS
+    end
+
+    subgraph "工具层"
+        TC -->|绑定| T1[天气工具]
+        TC -->|绑定| T2[计算工具]
+        TC -->|绑定| T3[自定义工具]
+    end
+
+    style AS fill:#4F46E5
+    style CLM fill:#7C3AED
+    style CM fill:#EC4899
+    style TC fill:#F59E0B
+    style ES fill:#10B981
+    style U fill:#6B7280
+        `}
+        />
+      </div>
 
       <section id="ChatLanguageModel" className="content-section">
         <SectionHeader number={1} title="ChatLanguageModel" />

@@ -1,5 +1,5 @@
 import Layout from '../components/layout/Layout';
-import { Tag, CodeBlockWithCopy, SectionHeader, TipBox } from '../components/ui';
+import { Tag, CodeBlockWithCopy, SectionHeader, TipBox, MermaidChart } from '../components/ui';
 
 const ProjectAiAssistantPage = () => {
   const aiServiceConfigCode = `package com.example.aiassistant.config;
@@ -157,6 +157,54 @@ public class AgentService {
             </div>
           </div>
         </div>
+
+        <h3 className="subsection-title mt-6">1.1 AI助手系统架构</h3>
+        <p className="paragraph mb-4">完整的AI助手系统各组件如何协作：</p>
+
+        <MermaidChart chart={`
+          graph TB
+              subgraph "🎨 前端 React"
+                  A1[聊天界面]
+                  A2[工具面板]
+                  A3[设置页面]
+              end
+
+              subgraph "🔌 API层 Spring Boot"
+                  B1[Agent Controller]
+                  B2[流式输出 SSE]
+              end
+
+              subgraph "🤖 AI层 LangChain4j"
+                  C1[AiServices]
+                  C2[工具执行器]
+                  C3[RAG服务]
+              end
+
+              subgraph "🔧 工具层"
+                  D1[代码编辑器]
+                  D2[网页浏览器]
+                  D3[计算器]
+                  D4[天气查询]
+              end
+
+              subgraph "💾 数据层"
+                  E1[(知识库)]
+                  E2[(对话历史)]
+              end
+
+              A1 --> B1
+              B1 --> C1
+              C1 --> C2
+              C2 --> D1
+              C2 --> D2
+              C1 --> C3
+              C3 --> E1
+              C1 --> E2
+
+              style C1 fill:#f3e5f5
+              style C2 fill:#e3f2fd
+              style E1 fill:#fff3e0
+        `} />
 
         <CodeBlockWithCopy language="java" filename="AiServiceConfig.java" code={aiServiceConfigCode} />
       </section>

@@ -1,5 +1,5 @@
 import Layout from '../components/layout/Layout';
-import { SectionHeader, CodeBlockWithCopy, TipBox } from '../components/ui';
+import { SectionHeader, CodeBlockWithCopy, TipBox, MermaidChart } from '../components/ui';
 
 const TestingStrategiesPage = () => {
   return (
@@ -69,6 +69,30 @@ const TestingStrategiesPage = () => {
           </div>
         </div>
       </div>
+
+      <h3 className="text-xl font-semibold text-gray-900 mb-4 mt-8">测试金字塔</h3>
+      <p className="text-gray-600 mb-4">LangChain4j 应用的测试策略层级：</p>
+
+      <MermaidChart chart={`
+        graph TB
+            subgraph "测试金字塔"
+                C[🧪 单元测试<br/>快速 + 大量]
+                B[🔗 集成测试<br/>中等 + 中等]
+                A[🎯 端到端测试<br/>慢速 + 少量]
+
+                C --> B
+                B --> A
+            end
+
+            C -.->|70%| D[📊 覆盖率目标]
+            B -.->|20%| D
+            A -.->|10%| D
+
+            style C fill:#e3f2fd
+            style B fill:#f3e5f5
+            style A fill:#fff3e0
+            style D fill:#e8f5e9
+      `} />
 
       <section className="content-section">
         <SectionHeader number={1} title="单元测试" />
@@ -1062,13 +1086,13 @@ jobs:
         </TipBox>
       </section>
 
-      <div className="bg-gray-50 border border-gray-200 rounded-lg p-8">
-        <h2 className="text-2xl font-bold mb-4 text-gray-900">🎯 测试策略总结</h2>
+      <div className="summary-box">
+        <h2 className="text-2xl font-bold mb-4">🎯 测试策略总结</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <div className="border border-gray-200 rounded-lg p-5">
             <div className="text-2xl mb-3">🧪</div>
-            <div className="font-semibold mb-2 text-gray-800">单元测试</div>
-            <ul className="text-sm space-y-1 text-gray-700 list-disc list-inside">
+            <div className="font-semibold mb-2">单元测试</div>
+            <ul className="text-sm space-y-1 list-disc list-inside">
               <li>JUnit 5</li>
               <li>Mockito</li>
               <li>Mock AI模型</li>
@@ -1076,8 +1100,8 @@ jobs:
           </div>
           <div className="border border-gray-200 rounded-lg p-5">
             <div className="text-2xl mb-3">🔗</div>
-            <div className="font-semibold mb-2 text-gray-800">集成测试</div>
-            <ul className="text-sm space-y-1 text-gray-700 list-disc list-inside">
+            <div className="font-semibold mb-2">集成测试</div>
+            <ul className="text-sm space-y-1 list-disc list-inside">
               <li>Spring Boot Test</li>
               <li>Testcontainers</li>
               <li>真实数据库</li>
@@ -1085,8 +1109,8 @@ jobs:
           </div>
           <div className="border border-gray-200 rounded-lg p-5">
             <div className="text-2xl mb-3">🎯</div>
-            <div className="font-semibold mb-2 text-gray-800">E2E测试</div>
-            <ul className="text-sm space-y-1 text-gray-700 list-disc list-inside">
+            <div className="font-semibold mb-2">E2E测试</div>
+            <ul className="text-sm space-y-1 list-disc list-inside">
               <li>REST Assured</li>
               <li>Playwright</li>
               <li>完整流程</li>
@@ -1094,8 +1118,8 @@ jobs:
           </div>
           <div className="border border-gray-200 rounded-lg p-5">
             <div className="text-2xl mb-3">📊</div>
-            <div className="font-semibold mb-2 text-gray-800">覆盖率</div>
-            <ul className="text-sm space-y-1 text-gray-700 list-disc list-inside">
+            <div className="font-semibold mb-2">覆盖率</div>
+            <ul className="text-sm space-y-1 list-disc list-inside">
               <li>JaCoCo</li>
               <li>SonarQube</li>
               <li>Codecov</li>
@@ -1103,8 +1127,8 @@ jobs:
           </div>
           <div className="border border-gray-200 rounded-lg p-5">
             <div className="text-2xl mb-3">🔄</div>
-            <div className="font-semibold mb-2 text-gray-800">CI/CD</div>
-            <ul className="text-sm space-y-1 text-gray-700 list-disc list-inside">
+            <div className="font-semibold mb-2">CI/CD</div>
+            <ul className="text-sm space-y-1 list-disc list-inside">
               <li>GitHub Actions</li>
               <li>自动化测试</li>
               <li>Docker集成</li>
@@ -1112,17 +1136,17 @@ jobs:
           </div>
           <div className="border border-gray-200 rounded-lg p-5">
             <div className="text-2xl mb-3">🔒</div>
-            <div className="font-semibold mb-2 text-gray-800">安全测试</div>
-            <ul className="text-sm space-y-1 text-gray-700 list-disc list-inside">
+            <div className="font-semibold mb-2">安全测试</div>
+            <ul className="text-sm space-y-1 list-disc list-inside">
               <li>OWASP</li>
               <li>Trivy</li>
               <li>依赖扫描</li>
             </ul>
           </div>
         </div>
-        <div className="mt-6 pt-6 border-t border-gray-200">
-          <p className="text-lg mb-2 text-gray-900">📚 <strong>下一章：性能优化</strong></p>
-          <p className="text-sm text-gray-700">学习LangChain4j应用的性能优化技巧，包括缓存策略、异步处理、批量操作等</p>
+        <div className="mt-6 pt-6 border-t">
+          <p className="text-lg mb-2">📚 <strong>下一章：性能优化</strong></p>
+          <p className="text-sm">学习LangChain4j应用的性能优化技巧，包括缓存策略、异步处理、批量操作等</p>
           <a href="/performance-tuning" className="inline-block mt-3 px-6 py-2 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition-colors">
             继续学习 →
           </a>

@@ -1,14 +1,7 @@
 /* ============================================
  * LangChain4j 学习指南 - 主样式文件
  * 
- * 模块化CSS架构：
- * 1. variables.css - CSS变量定义
- * 2. base.css - 基础重置和全局样式
- * 3. layout.css - 布局组件
- * 4. components.css - UI组件
- * 5. code.css - 代码块样式
- * 6. utilities.css - 工具类
- * 7. supplement.css - 补充样式
+ * Tailwind CSS v4 + 自定义样式
  * ============================================ */
 
 @import url('./variables.css');
@@ -16,5 +9,11 @@
 @import url('./layout.css');
 @import url('./components.css');
 @import url('./code.css');
-@import url('./utilities.css');
 @import url('./supplement.css');
+
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', Consolas, Monaco, monospace;
+}

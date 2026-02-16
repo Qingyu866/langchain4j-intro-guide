@@ -1,5 +1,5 @@
 import Layout from '../components/layout/Layout';
-import { SectionHeader, CodeBlockWithCopy, TipBox } from '../components/ui';
+import { SectionHeader, CodeBlockWithCopy, TipBox, MermaidChart } from '../components/ui';
 
 const RagImplementationPage = () => {
   return (
@@ -76,6 +76,34 @@ const RagImplementationPage = () => {
             </div>
           </div>
         </div>
+
+        <MermaidChart chart={`
+          graph TB
+              subgraph "📥 文档摄入层"
+                  A1[📄 原始文档] --> A2[📖 DocumentLoader]
+                  A2 --> A3[✂️ TextSplitter]
+                  A3 --> A4[🔢 EmbeddingModel]
+                  A4 --> A5[(💾 EmbeddingStore)]
+              end
+
+              subgraph "🔍 检索层"
+                  B1[❓ 用户查询] --> B2[🔢 EmbeddingModel]
+                  B2 --> B3[🎯 相似度搜索]
+                  B3 --> A5
+                  A5 --> B4[📋 ContentRetriever]
+                  B4 --> B5["Top-N 结果"]
+              end
+
+              subgraph "🤖 生成层"
+                  B5 --> C1[📝 Prompt Template]
+                  C1 --> C2[💬 ChatLanguageModel]
+                  C2 --> C3[✅ 最终回答]
+              end
+
+              style A5 fill:#f3e5f5
+              style C2 fill:#fff3e0
+              style C3 fill:#e8f5e9
+        `} />
 
         <TipBox type="info" title="关键设计决策">
           <ul className="space-y-1 text-sm">
@@ -635,12 +663,12 @@ public class CompleteRAGSystem {
         </div>
       </section>
 
-      <div className="bg-gray-50 border border-gray-200 rounded-lg p-8 text-gray-900">
-        <h2 className="text-2xl font-bold mb-4 text-gray-900">🎯 本章总结</h2>
+      <div className="summary-box">
+        <h2 className="text-2xl font-bold mb-4">🎯 本章总结</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <h4 className="font-semibold mb-2 text-gray-800">核心组件</h4>
-            <ul className="space-y-1 text-sm text-gray-700 list-disc list-inside">
+            <h4 className="font-semibold mb-2">核心组件</h4>
+            <ul className="space-y-1 text-sm list-disc list-inside">
               <li>DocumentLoader：加载文档</li>
               <li>DocumentSplitter：分割文本</li>
               <li>EmbeddingModel：生成向量</li>
@@ -649,8 +677,8 @@ public class CompleteRAGSystem {
             </ul>
           </div>
           <div>
-            <h4 className="font-semibold mb-2 text-gray-800">关键步骤</h4>
-            <ul className="space-y-1 text-sm text-gray-700 list-disc list-inside">
+            <h4 className="font-semibold mb-2">关键步骤</h4>
+            <ul className="space-y-1 text-sm list-disc list-inside">
               <li>文档加载 → 分块 → 向量化</li>
               <li>存储到向量数据库</li>
               <li>查询向量化 → 相似度检索</li>
@@ -658,7 +686,7 @@ public class CompleteRAGSystem {
             </ul>
           </div>
         </div>
-        <div className="mt-6 pt-6 border-t border-gray-200">
+        <div className="mt-6 pt-6 border-t">
           <a href="/rag-advanced" className="inline-block px-6 py-2 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition-colors">
             继续学习 RAG高级技巧 →
           </a>

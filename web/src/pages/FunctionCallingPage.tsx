@@ -1,5 +1,5 @@
 import Layout from '../components/layout/Layout';
-import { Tag, CodeBlockWithCopy, SectionHeader, TipBox, SummarySection } from '../components/ui';
+import { Tag, CodeBlockWithCopy, SectionHeader, TipBox, SummarySection, MermaidChart } from '../components/ui';
 
 const FunctionCallingPage = () => {
   const toolDefinition = `import dev.langchain4j.agent.tool.Tool;
@@ -346,6 +346,30 @@ public class BadCalculatorTool {
             <li><strong>灵活性</strong>：根据场景动态选择合适的工具</li>
           </ul>
         </div>
+
+        <h3 className="subsection-title mt-6">1.2 Function Calling 工作流程</h3>
+        <p className="paragraph mb-4">
+          Function Calling 是一个多步骤的交互过程，涉及用户、LLM 和工具之间的协同工作。
+        </p>
+
+        <MermaidChart chart={`
+          sequenceDiagram
+              participant User as 👤 用户
+              participant LLM as 🤖 LLM
+              participant Tool as 🔧 工具
+              participant System as 💻 系统
+
+              User->>LLM: "今天北京天气怎么样？"
+              LLM->>LLM: 分析意图，识别需要工具
+              LLM->>System: 调用 get_weather 工具
+              System->>Tool: 执行工具方法
+              Tool->>System: 返回结果
+              System->>LLM: 传递工具结果
+              LLM->>LLM: 整合信息生成回答
+              LLM->>User: "北京今天天气：晴天，温度25°C"
+
+              Note over LLM,Tool: 整个过程对用户透明
+        `} />
 
         <h3 className="subsection-title">1.2 工作流程</h3>
         <p className="paragraph">

@@ -1,5 +1,5 @@
 import Layout from '../components/layout/Layout';
-import { Tag, SectionHeader, CodeBlockWithCopy, TipBox } from '../components/ui';
+import { Tag, SectionHeader, CodeBlockWithCopy, TipBox, MermaidChart } from '../components/ui';
 
 const dockerfileCode = `# 基础镜像：使用 JDK 17
 FROM openjdk:17-jdk-slim AS builder
@@ -252,6 +252,24 @@ const DeploymentPage = () => {
         <p className="paragraph">使用 Docker Compose 管理多容器应用：</p>
 
         <CodeBlockWithCopy code={dockerComposeCode} language="yaml" filename="docker-compose.yml" />
+
+        <h3 className="subsection-title mt-6">1.3 部署流程概览</h3>
+        <p className="paragraph mb-4">从源代码到生产环境的完整部署流程：</p>
+
+        <MermaidChart chart={`
+          graph LR
+              A[💻 源代码] --> B[Docker 构建]
+              B --> C[🐳 Docker 镜像]
+              C --> D[📦 镜像仓库]
+
+              D --> E[K8s 部署]
+              E --> F[🔄 滚动更新]
+              F --> G[✅ 运行中]
+
+              style A fill:#e3f2fd
+              style C fill:#f3e5f5
+              style G fill:#e8f5e9
+        `} />
       </section>
 
       <section id="Kubernetes编排" className="content-section">

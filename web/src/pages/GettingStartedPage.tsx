@@ -1,5 +1,5 @@
 import Layout from '../components/layout/Layout';
-import { Tag, CodeBlockWithCopy, SectionHeader, TipBox } from '../components/ui';
+import { Tag, CodeBlockWithCopy, SectionHeader, TipBox, MermaidChart } from '../components/ui';
 
 const GettingStartedPage = () => {
   const pomXml = `<?xml version="1.0" encoding="UTF-8"?>
@@ -160,6 +160,23 @@ public class ChatController {
             <p className="card-description-green">使用本地模型（Llama2、mistral）完全离线</p>
           </div>
         </div>
+
+        <h3 className="subsection-title mt-6">1.4 快速开始流程</h3>
+        <p className="paragraph mb-4">从环境准备到第一个AI应用的完整步骤：</p>
+
+        <MermaidChart chart={`
+          graph LR
+              A[📋 环境准备] --> B[🔑 获取 API Key]
+              B --> C[📦 创建项目]
+              C --> D[🔧 添加依赖]
+              D --> E[💻 编写代码]
+              E --> F[🚀 运行应用]
+
+              style A fill:#e3f2fd
+              style C fill:#f3e5f5
+              style E fill:#fff3e0
+              style F fill:#e8f5e9
+        `} />
       </section>
 
       <section id="创建项目" className="content-section">

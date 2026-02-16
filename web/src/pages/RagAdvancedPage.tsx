@@ -1,5 +1,5 @@
 import Layout from '../components/layout/Layout';
-import { SectionHeader, CodeBlock, TipBox, Tag } from '../components/ui';
+import { SectionHeader, CodeBlock, TipBox, Tag, MermaidChart } from '../components/ui';
 
 const RagAdvancedPage = () => {
   return (
@@ -78,26 +78,26 @@ const RagAdvancedPage = () => {
 
         <h3 className="subsection-title">1.2 混合检索架构</h3>
 
-        <div className="bg-gray-50 rounded-lg p-6 mb-6">
-          <pre className="text-sm text-gray-700 font-mono whitespace-pre-wrap">
-{`用户查询
-    ↓
-┌─────────────┐     ┌─────────────┐
-│ 向量检索     │     │ 关键词检索    │
-│ (Semantic) │     │ (BM25)     │
-└─────────────┘     └─────────────┘
-        ↓                   ↓
-    检索结果 1          检索结果 2
-        ↓                   ↓
-        └─────────┬─────────┘
-                  ↓
-           结果融合 (RRF)
-                  ↓
-           重排序 (Reranker)
-                  ↓
-              最终结果`}
-          </pre>
-        </div>
+        <MermaidChart chart={`
+          graph TD
+              Q[❓ 用户查询] --> A[🔍 向量检索]
+              Q --> B[🔑 关键词检索]
+
+              A --> C[📊 检索结果 1]
+              B --> D[📊 检索结果 2]
+
+              C --> E[🔀 结果融合 RRF]
+              D --> E
+
+              E --> F[📈 重排序 Reranker]
+              F --> G[✅ 最终 Top-K 结果]
+
+              style Q fill:#e3f2fd
+              style A fill:#f3e5f5
+              style B fill:#fff3e0
+              style E fill:#e0f2fe
+              style G fill:#e8f5e9
+        `} />
 
         <h4 className="text-lg font-semibold text-gray-900 mb-3">检索流程：</h4>
         <ol className="list-decimal list-inside space-y-2 text-gray-600 mb-6">

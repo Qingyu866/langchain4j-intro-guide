@@ -1,5 +1,5 @@
 import Layout from '../components/layout/Layout';
-import { Tag, CodeBlockWithCopy, SectionHeader, TipBox, SummarySection } from '../components/ui';
+import { Tag, CodeBlockWithCopy, SectionHeader, TipBox, SummarySection, MermaidChart } from '../components/ui';
 
 const AdvancedFeaturesPage = () => {
   const streamingComplete = `import dev.langchain4j.model.chat.ChatLanguageModel;
@@ -249,6 +249,25 @@ System.out.println(result);`;
 
         <div className="info-card info-card-indigo">
           <h4 className="card-title-indigo">Agent工作流程</h4>
+
+          <MermaidChart chart={`
+            graph TD
+                A[👤 用户请求] --> B[🧠 理解任务]
+                B --> C[📋 规划步骤]
+                C --> D[🔧 选择工具]
+                D --> E[⚡ 执行工具]
+                E --> F{需要更多工具?}
+
+                F -->|是| D
+                F -->|否| G[🔀 整合结果]
+                G --> H[📝 最终答案]
+
+                style A fill:#e3f2fd
+                style E fill:#fff3e0
+                style H fill:#e8f5e9
+          `} />
+
+          <p className="text-sm text-gray-600 mb-3">Agent 的六个关键步骤：</p>
           <ol className="list-decimal list-styled">
             <li><strong>理解任务</strong>：解析用户的请求和意图</li>
             <li><strong>规划步骤</strong>：将复杂任务拆解为多个子任务</li>

@@ -1,5 +1,5 @@
 import Layout from '../components/layout/Layout';
-import { Tag, SectionHeader } from '../components/ui';
+import { Tag, SectionHeader, MermaidChart } from '../components/ui';
 
 const FaqPage = () => {
   return (
@@ -78,6 +78,36 @@ const FaqPage = () => {
             </ul>
           </div>
         </div>
+
+        <h3 className="subsection-title">1.1 问题分类体系</h3>
+        <p className="text-gray-700 mb-4">常见问题的知识体系结构：</p>
+
+        <MermaidChart chart={`
+          mindmap
+            root((LangChain4j FAQ))
+              基础概念
+                框架对比
+                模型选择
+                核心概念
+              嵌入模型
+                向量原理
+                模型选择
+                相似度计算
+                分块策略
+              RAG相关
+                RAG原理
+                向量数据库
+                检索优化
+              函数调用
+                调用原理
+                工具设计
+              性能优化
+                性能提升
+                成本控制
+              生产部署
+                部署方案
+                安全管理
+        `} />
       </section>
 
       <section id="embedding" className="content-section">

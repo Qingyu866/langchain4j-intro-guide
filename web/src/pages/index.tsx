@@ -10,11 +10,14 @@ const PromptTemplatesPage = lazy(() => import('./PromptTemplatesPage'));
 const OutputParsersPage = lazy(() => import('./OutputParsersPage'));
 const ModelProvidersPage = lazy(() => import('./ModelProvidersPage'));
 const FunctionCallingPage = lazy(() => import('./FunctionCallingPage'));
+const ConstraintValidationPage = lazy(() => import('./ConstraintValidationPage'));
+const OutputGuardPage = lazy(() => import('./OutputGuardPage'));
 const AdvancedFeaturesPage = lazy(() => import('./AdvancedFeaturesPage'));
 const MultimodalPage = lazy(() => import('./MultimodalPage'));
 const RagIntroPage = lazy(() => import('./RagIntroPage'));
 const RagSetupPage = lazy(() => import('./RagSetupPage'));
 const RagImplementationPage = lazy(() => import('./RagImplementationPage'));
+const DocumentSplittingPage = lazy(() => import('./DocumentSplittingPage'));
 const RagAdvancedPage = lazy(() => import('./RagAdvancedPage'));
 const RagCompletePage = lazy(() => import('./RagCompletePage'));
 const ProjectChatbotPage = lazy(() => import('./ProjectChatbotPage'));
@@ -57,11 +60,14 @@ export const pageComponents: Record<string, ComponentType> = {
   '/output-parsers': OutputParsersPage,
   '/model-providers': ModelProvidersPage,
   '/function-calling-deep': FunctionCallingPage,
+  '/constraint-validation': ConstraintValidationPage,
+  '/output-guard': OutputGuardPage,
   '/advanced-features': AdvancedFeaturesPage,
   '/multimodal-full': MultimodalPage,
   '/rag-intro': RagIntroPage,
   '/rag-setup': RagSetupPage,
   '/rag-implementation': RagImplementationPage,
+  '/document-splitting': DocumentSplittingPage,
   '/rag-advanced': RagAdvancedPage,
   '/rag-complete': RagCompletePage,
   '/project-chatbot': ProjectChatbotPage,

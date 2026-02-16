@@ -1,5 +1,5 @@
 import Layout from '../components/layout/Layout';
-import { Tag, CodeBlockWithCopy, SectionHeader, TipBox, SummarySection } from '../components/ui';
+import { Tag, CodeBlockWithCopy, SectionHeader, TipBox, SummarySection, MermaidChart } from '../components/ui';
 
 const PromptTemplatesPage = () => {
   const basicTemplate = `import dev.langchain4j.model.input.PromptTemplate;
@@ -432,6 +432,21 @@ Prompt prompt = template.apply(variables);`;
             <li><strong>复用性</strong>：同一模板可多次apply不同值</li>
           </ul>
         </TipBox>
+
+        <h3 className="subsection-title mt-6">1.4 Prompt 模板工作流程</h3>
+        <p className="paragraph mb-4">模板如何从定义到最终生成 prompt：</p>
+
+        <MermaidChart chart={`
+          graph LR
+              A[📝 定义模板] --> B["{变量}"]
+              B --> C[📊 变量Map]
+              C --> D[🔄 apply方法]
+              D --> E[✅ 最终Prompt]
+
+              style A fill:#e3f2fd
+              style D fill:#f3e5f5
+              style E fill:#e8f5e9
+        `} />
       </section>
 
       <section id="创建和使用模板" className="content-section">
@@ -498,18 +513,18 @@ Prompt prompt = template.apply(variables);`;
         <h3 className="subsection-title">3.2 方法参数映射</h3>
         <p className="paragraph">方法参数与模板变量的映射规则：</p>
 
-        <div className="code-preview">
-          <div className="code-preview-content">
-            <pre><code>interface MyService {'{'}
-    @UserMessage("Process {"{{item}}"} with {"{{option}}"} enabled")
+        <CodeBlockWithCopy
+          language="java"
+          filename="MyService.java"
+          code={`interface MyService {
+    @UserMessage("Process {{item}} with {{option}} enabled")
     String process(
-        @V("item") String item,      // → {"{{item}}"}
-        @V("option") boolean option,    // → {"{{option}}"}
-        String unmarkedParam               // 不映射到任何变量
+        @V("item") String item,         // → {{item}}
+        @V("option") boolean option,    // → {{option}}
+        String unmarkedParam            // 不映射到任何变量
     );
-{'}'}</code></pre>
-          </div>
-        </div>
+}`}
+        />
 
         <TipBox type="warning" title="注意事项">
           <ul className="tip-box-list">

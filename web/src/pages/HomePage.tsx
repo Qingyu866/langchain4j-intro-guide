@@ -1,5 +1,5 @@
 import Layout from '../components/layout/Layout';
-import { Tag, LearningPathCard, FeatureItem, CodeBlockWithCopy, SectionHeader, SummarySection } from '../components/ui';
+import { Tag, LearningPathCard, FeatureItem, CodeBlockWithCopy, SectionHeader, SummarySection, MermaidChart } from '../components/ui';
 
 const HomePage = () => {
   const learningPaths = [
@@ -66,6 +66,25 @@ System.out.println(answer);`;
             <LearningPathCard key={index} {...path} />
           ))}
         </div>
+
+        <h3 className="subsection-title mt-8">1.1 学习路径图</h3>
+        <p className="text-gray-700 mb-4">从入门到精通的完整学习流程：</p>
+
+        <MermaidChart chart={`
+          graph TD
+              A[🚀 快速入门] --> B[🧩 核心概念]
+              B --> C[🔢 Embedding模型]
+              C --> D[📝 Prompt模板]
+              D --> E[📊 输出解析]
+              E --> F{选择方向}
+              F --> G[⚡ Function Calling]
+              F --> H[🔬 RAG系统]
+              G --> I[🤖 高级特性]
+              H --> I
+              I --> J[🧪 测试与优化]
+              J --> K[✨ 生产实践]
+              K --> L[💻 深度解析]
+        `} />
       </section>
 
       <section className="content-section">

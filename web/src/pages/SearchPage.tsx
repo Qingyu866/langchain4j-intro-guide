@@ -1,5 +1,5 @@
 import Layout from '../components/layout/Layout';
-import { Tag, CodeBlockWithCopy, SectionHeader } from '../components/ui';
+import { Tag, CodeBlockWithCopy, SectionHeader, MermaidChart } from '../components/ui';
 
 const SearchPage = () => {
   const embeddingStoreCode = `package com.example.langchain4j.search;
@@ -247,6 +247,18 @@ results.forEach((query, docs) -> {
 
         <h3 className="subsection-title">4.2 结果融合</h3>
         <p className="paragraph">将两种检索结果合并并重新排序：</p>
+
+        <MermaidChart chart={`
+          graph TD
+              Q[❓ 用户查询] --> A[🔍 向量检索]
+              Q --> B[🔑 关键词检索]
+              A --> C[📊 向量结果]
+              B --> D[📊 关键词结果]
+              C --> E[🔀 结果融合 RRF]
+              D --> E
+              E --> F[📈 重排序 Reranker]
+              F --> G[✅ 最终 Top-K 结果]
+        `} />
 
         <div className="bg-blue-50 border border-blue-200 rounded-xl p-6 mb-8">
           <h4 className="text-xl font-bold mb-2 text-blue-900">融合策略</h4>

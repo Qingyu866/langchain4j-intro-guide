@@ -1,5 +1,5 @@
 import Layout from '../components/layout/Layout';
-import { SectionHeader, CodeBlockWithCopy, TipBox } from '../components/ui';
+import { SectionHeader, CodeBlockWithCopy, TipBox, MermaidChart } from '../components/ui';
 
 const MultimodalPage = () => {
   return (
@@ -104,6 +104,29 @@ const MultimodalPage = () => {
             图像检索（根据图片描述搜索相关图像）、文档分析（从PDF提取图文信息）、创意设计（AI辅助绘图）等。
           </p>
         </TipBox>
+
+        <h3 className="text-2xl font-semibold text-gray-900 mb-4">1.1 多模态处理流程</h3>
+        <p className="text-gray-700 mb-4">多模态系统如何处理不同类型的数据：</p>
+
+        <MermaidChart chart={`
+          graph TB
+              A[📝 文本输入] --> C[🔀 多模态编码器]
+              B[🖼️ 图像输入] --> C
+              D[🎵 音频输入] --> C
+
+              C --> E[🧠 统一特征空间]
+              E --> F[🤖 多模态LLM]
+              F --> G[💬 生成响应]
+
+              C --> H[🎨 图像生成模型]
+              H --> I[🖼️ 生成图像]
+
+              style C fill:#f3e5f5
+              style E fill:#e3f2fd
+              style F fill:#fff3e0
+              style G fill:#e8f5e9
+              style I fill:#e8f5e9
+        `} />
       </section>
 
       <section id="image-generation" className="content-section">
@@ -840,12 +863,12 @@ public class ImageRagExample {
           </ul>
         </div>
 
-        <div className="bg-gray-50 border border-gray-200 rounded-lg p-8 text-gray-900">
-          <h3 className="text-2xl font-bold mb-4 text-gray-900">🎯 本章总结</h3>
+        <div className="summary-box">
+          <h3 className="text-2xl font-bold mb-4">🎯 本章总结</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <h4 className="font-semibold mb-2 text-gray-800">核心概念</h4>
-              <ul className="space-y-1 text-sm text-gray-700 list-disc list-inside">
+              <h4 className="font-semibold mb-2">核心概念</h4>
+              <ul className="space-y-1 text-sm list-disc list-inside">
                 <li>多模态AI支持文本、图像、音频等多种数据</li>
                 <li>图像生成使用ImageModel（DALL-E、Imagen）</li>
                 <li>图像理解使用ChatModel（GPT-4V、Claude-3）</li>
@@ -853,8 +876,8 @@ public class ImageRagExample {
               </ul>
             </div>
             <div>
-              <h4 className="font-semibold mb-2 text-gray-800">关键API</h4>
-              <ul className="space-y-1 text-sm font-mono text-gray-700 list-disc list-inside">
+              <h4 className="font-semibold mb-2">关键API</h4>
+              <ul className="space-y-1 text-sm font-mono list-disc list-inside">
                 <li>ImageModel.generate()</li>
                 <li>UserMessage.from(ImageContent, text)</li>
                 <li>Image.from(url/base64)</li>
@@ -862,8 +885,8 @@ public class ImageRagExample {
               </ul>
             </div>
           </div>
-          <div className="mt-6 pt-6 border-t border-gray-200">
-            <p className="text-sm text-gray-700">
+          <div className="mt-6 pt-6 border-t">
+            <p className="text-sm">
               下一章我们将学习如何构建完整的RAG知识库系统，包括文档加载、嵌入生成、向量存储和智能检索。
             </p>
             <a href="/rag-complete" className="inline-block mt-3 px-6 py-2 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition-colors">

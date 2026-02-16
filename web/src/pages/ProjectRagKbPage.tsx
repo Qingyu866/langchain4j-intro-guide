@@ -1,5 +1,5 @@
 import Layout from '../components/layout/Layout';
-import { SectionHeader, CodeBlockWithCopy, TipBox } from '../components/ui';
+import { SectionHeader, CodeBlockWithCopy, TipBox, MermaidChart } from '../components/ui';
 
 const ProjectRagKbPage = () => {
   return (
@@ -153,6 +153,57 @@ public class ProjectStructure {
             <li><strong>性能优先</strong>：异步处理、批量操作、缓存优化</li>
           </ul>
         </TipBox>
+
+        <h3 className="subsection-title mt-6">1.1 RAG知识库系统架构</h3>
+        <p className="paragraph mb-4">完整的RAG知识库系统各组件如何协作：</p>
+
+        <MermaidChart chart={`
+          graph TB
+              subgraph "📄 文档摄取层"
+                  A1[PDF Parser]
+                  A2[Word Parser]
+                  A3[Text Splitter]
+                  A1 --> A4[Embedding Model]
+                  A2 --> A4
+                  A3 --> A4
+              end
+
+              subgraph "💾 存储层"
+                  B1[(PGVector)]
+                  B2[(PostgreSQL)]
+                  A4 --> B1
+                  B1 --> B2
+              end
+
+              subgraph "🔍 检索层"
+                  C1[Vector Search]
+                  C2[Metadata Filter]
+                  C3[Hybrid Search]
+                  C1 --> B1
+                  C2 --> B2
+                  C1 --> C3
+              end
+
+              subgraph "🤖 生成层"
+                  D1[RAG Service]
+                  D2[Chat LLM]
+                  C3 --> D1
+                  D1 --> D2
+              end
+
+              subgraph "🎨 API层"
+                  E1[Document API]
+                  E2[Search API]
+                  E3[Chat API]
+                  E1 --> A1
+                  E2 --> C1
+                  E3 --> D1
+              end
+
+              style A4 fill:#f3e5f5
+              style B1 fill:#e3f2fd
+              style D2 fill:#fff3e0
+        `} />
       </section>
 
       <section className="content-section">
@@ -1327,12 +1378,12 @@ metrics:
         </TipBox>
       </section>
 
-      <div className="bg-gray-50 border border-gray-200 rounded-lg p-8">
-        <h3 className="text-2xl font-bold mb-4 text-gray-900">🎯 项目总结</h3>
+      <div className="summary-box">
+        <h3 className="text-2xl font-bold mb-4">🎯 项目总结</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <h4 className="font-semibold mb-2 text-gray-800">核心功能</h4>
-            <ul className="space-y-1 text-sm text-gray-700 list-disc list-inside">
+            <h4 className="font-semibold mb-2">核心功能</h4>
+            <ul className="space-y-1 text-sm list-disc list-inside">
               <li>✅ 文档上传和管理</li>
               <li>✅ 向量化存储和检索</li>
               <li>✅ 智能问答对话</li>
@@ -1341,8 +1392,8 @@ metrics:
             </ul>
           </div>
           <div>
-            <h4 className="font-semibold mb-2 text-gray-800">技术栈</h4>
-            <ul className="space-y-1 text-sm text-gray-700 list-disc list-inside">
+            <h4 className="font-semibold mb-2">技术栈</h4>
+            <ul className="space-y-1 text-sm list-disc list-inside">
               <li>Spring Boot 3.2.x</li>
               <li>LangChain4j RAG API</li>
               <li>PostgreSQL + PGVector</li>
@@ -1351,11 +1402,11 @@ metrics:
             </ul>
           </div>
         </div>
-        <div className="mt-6 pt-6 border-t border-gray-200">
-          <p className="text-sm text-gray-700">
+        <div className="mt-6 pt-6 border-t">
+          <p className="text-sm">
             本章完成了一个完整的RAG知识库项目实战。涵盖了从项目架构、后端开发、前端实现到部署监控的全流程。
           </p>
-          <p className="text-sm text-gray-700">
+          <p className="text-sm">
             下一章我们将学习如何构建AI助手项目，包含更复杂的Agent能力和工具调用。
           </p>
           <a href="/project-ai-assistant" className="inline-block mt-3 px-6 py-2 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition-colors">

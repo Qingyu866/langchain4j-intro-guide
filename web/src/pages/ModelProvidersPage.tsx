@@ -1,5 +1,5 @@
 import Layout from '../components/layout/Layout';
-import { Tag, CodeBlockWithCopy, SectionHeader, TipBox, SummarySection } from '../components/ui';
+import { Tag, CodeBlockWithCopy, SectionHeader, TipBox, SummarySection, MermaidChart } from '../components/ui';
 
 const ModelProvidersPage = () => {
   const openaiConfig = `import dev.langchain4j.model.openai.OpenAiChatModel;
@@ -549,6 +549,35 @@ public class ConfigurationBestPractices {
             <li><strong>权限控制</strong>：最小化API Key的权限范围</li>
           </ul>
         </TipBox>
+
+        <h3 className="subsection-title mt-6">8.3 提供商选择流程</h3>
+        <p className="paragraph mb-4">如何根据场景选择合适的模型提供商：</p>
+
+        <MermaidChart chart={`
+          graph TD
+              A[🎯 需求分析] --> B{任务类型}
+              B -->|简单对话| C[OpenAI GPT-3.5]
+              B -->|复杂推理| D[Anthropic Claude]
+              B -->|代码生成| E[OpenAI GPT-4]
+              B -->|预算有限| F[Hugging Face]
+
+              C --> G{成本考量}
+              D --> G
+              E --> G
+              F --> H[本地部署]
+
+              G -->|高频使用| I[使用最便宜的]
+              G -->|质量优先| J[使用最强的]
+
+              I --> K[配置工厂模式]
+              J --> K
+              H --> K
+
+              K --> L[✅ 统一接口调用]
+
+              style A fill:#e3f2fd
+              style L fill:#e8f5e9
+        `} />
       </section>
 
       <section id="成本对比" className="content-section">

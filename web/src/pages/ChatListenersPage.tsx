@@ -1,5 +1,5 @@
 import Layout from '../components/layout/Layout';
-import { Tag, SectionHeader, CodeBlock, TipBox } from '../components/ui';
+import { Tag, SectionHeader, CodeBlock, TipBox, MermaidChart } from '../components/ui';
 
 const loggingModelListenerCode = `package com.example.langchain4j.listeners;
 
@@ -174,6 +174,27 @@ const ChatListenersPage = () => {
             </tbody>
           </table>
         </div>
+
+        <h3 className="subsection-title mt-6">2.1 监听器工作流程</h3>
+        <p className="paragraph mb-4">监听器在聊天过程中的事件触发顺序：</p>
+
+        <MermaidChart chart={`
+          sequenceDiagram
+              participant User as 👤 用户
+              participant App as 💻 应用
+              participant Listener as 👂 监听器
+              participant Model as 🤖 LLM
+
+              User->>App: 发送消息
+              App->>Listener: onRequest(请求开始)
+              App->>Model: 发送到 LLM
+              Model-->>Listener: onToken(Token 更新)
+              Model-->>App: 返回响应
+              App->>Listener: onResponse(响应完成)
+              App->>User: 返回结果
+
+              Note over Listener: 全程监控和记录
+        `} />
       </section>
 
       <section id="implementation" className="content-section">

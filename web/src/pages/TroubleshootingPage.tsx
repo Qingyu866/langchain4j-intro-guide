@@ -1,5 +1,5 @@
 import Layout from '../components/layout/Layout';
-import { Tag, SectionHeader, CodeBlock, TipBox } from '../components/ui';
+import { Tag, SectionHeader, CodeBlock, TipBox, MermaidChart } from '../components/ui';
 
 const debugLoggingCode = `package com.example.langchain4j.debug;
 
@@ -151,6 +151,23 @@ const TroubleshootingPage = () => {
         <p className="paragraph">
           使用以下调试技巧快速定位问题：
         </p>
+
+        <h3 className="subsection-title">2.1 故障排查流程</h3>
+        <p className="text-gray-700 mb-4">系统化的故障排查五步法：</p>
+
+        <MermaidChart chart={`
+          graph TD
+              A[❓ 问题现象] --> B[🔍 诊断过程]
+              B --> C[🔬 分析根因]
+              C --> D[💡 解决方案]
+              D --> E[🛡️ 预防措施]
+
+              style A fill:#fef2f2
+              style B fill:#fef3c7
+              style C fill:#e0f2fe
+              style D fill:#f0fdf4
+              style E fill:#e8f5e9
+        `} />
 
         <h3 className="subsection-title">2.1 启用调试日志</h3>
         <p className="text-gray-700 mb-4">启用详细的调试日志输出，查看请求和响应详情：</p>

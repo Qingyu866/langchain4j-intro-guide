@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import CodeBlockWithCopy from './CodeBlockWithCopy';
+import MermaidChart from './MermaidChart';
 
 interface CodeBlockProps {
   filename?: string;
@@ -191,3 +192,7 @@ export const Button = ({ variant = 'primary', href, children, size = 'normal' }:
 export const ButtonGroup = ({ children }: { children: ReactNode }) => {
   return <div className="btn-group">{children}</div>;
 };
+
+// 导出 MermaidChart 图表组件
+export { MermaidChart };
+

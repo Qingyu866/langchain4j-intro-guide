@@ -1,5 +1,5 @@
 import Layout from '../components/layout/Layout';
-import { Tag, SectionHeader, CodeBlockWithCopy, TipBox } from '../components/ui';
+import { Tag, SectionHeader, CodeBlockWithCopy, TipBox, MermaidChart } from '../components/ui';
 
 const ragControllerCode = `package com.example.langchain4j.rag;
 
@@ -488,6 +488,37 @@ const PracticePage = () => {
             </tbody>
           </table>
         </div>
+
+        <h3 className="subsection-title mt-6">1.4 实战项目架构</h3>
+        <p className="text-gray-700 mb-4">三个项目的整体架构和关系：</p>
+
+        <MermaidChart chart={`
+          graph TB
+              subgraph "📚 RAG 知识库项目"
+                  A1[📄 文档上传]
+                  A2[🔢 文档向量化]
+                  A3[💾 PGVector 存储]
+                  A4[🔍 语义检索]
+                  A5[🤖 RAG 问答]
+                  A1 --> A2 --> A3 --> A4 --> A5
+              end
+              subgraph "🤖 AI 助手项目"
+                  B1[🎛️ 模型工厂]
+                  B2[🔧 函数调用]
+                  B3[💾 上下文管理]
+                  B4[📊 多模型支持]
+                  B1 --> B2 --> B3 --> B4
+              end
+              subgraph "💬 聊天机器人项目"
+                  C1[🔌 WebSocket]
+                  C2[🔐 JWT 认证]
+                  C3[💬 消息持久化]
+                  C4[👥 多用户并发]
+                  C1 --> C2 --> C3 --> C4
+              end
+              A5 -.->|提供知识| B4
+              B4 -.->|增强能力| C4
+        `} />
       </section>
 
       <section id="rag-project" className="content-section">

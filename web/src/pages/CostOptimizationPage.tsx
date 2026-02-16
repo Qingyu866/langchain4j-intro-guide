@@ -1,5 +1,5 @@
 import Layout from '../components/layout/Layout';
-import { Tag, SectionHeader, CodeBlockWithCopy, TipBox } from '../components/ui';
+import { Tag, SectionHeader, CodeBlockWithCopy, TipBox, MermaidChart } from '../components/ui';
 
 const hybridModelCode = `public class HybridModelStrategy {
 
@@ -197,6 +197,28 @@ const CostOptimizationPage = () => {
             <li><strong>本地模型</strong>（高影响，高难度） - 完全消除 API 成本，但需要硬件投入</li>
           </ol>
         </TipBox>
+
+        <h3 className="subsection-title mt-6">1.2 成本优化流程</h3>
+        <p className="paragraph mb-4">系统化的成本优化方法和步骤：</p>
+
+        <MermaidChart chart={`
+          graph TD
+              A[📊 成本分析] --> B{识别主要成本来源}
+              B --> C[💰 模型选择策略]
+              B --> D[🗄️ 缓存与复用]
+              B --> E[📝 Token优化]
+
+              C --> F[⚡ 降低API调用成本]
+              D --> F
+              E --> F
+
+              F --> G[📈 持续监控]
+              G --> H[✅ 成本优化目标达成]
+
+              style A fill:#e3f2fd
+              style F fill:#fff3e0
+              style H fill:#e8f5e9
+        `} />
       </section>
 
       <section id="模型选择策略" className="content-section">

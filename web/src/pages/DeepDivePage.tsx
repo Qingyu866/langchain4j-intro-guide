@@ -1,5 +1,5 @@
 import Layout from '../components/layout/Layout';
-import { Tag, SectionHeader, CodeBlockWithCopy, TipBox } from '../components/ui';
+import { Tag, SectionHeader, CodeBlockWithCopy, TipBox, MermaidChart } from '../components/ui';
 
 const customChatModelCode = `package com.example.langchain4j.custom;
 
@@ -297,6 +297,43 @@ const DeepDivePage = () => {
         </p>
 
         <h3 className="subsection-title">1.1 核心组件设计</h3>
+
+        <p className="paragraph mb-4">LangChain4j 的核心架构概览：</p>
+
+        <MermaidChart chart={`
+          graph TB
+              subgraph "🎨 服务层 Service Layer"
+                  A1[AiServices]
+                  A2[ChatMemory]
+              end
+
+              subgraph "🤖 模型层 Model Layer"
+                  B1[ChatLanguageModel]
+                  B2[StreamingChatModel]
+                  B3[EmbeddingModel]
+              end
+
+              subgraph "🔧 工具层 Tool Layer"
+                  C1[ToolSpecification]
+                  C2[ToolExecutor]
+              end
+
+              subgraph "💾 存储层 Store Layer"
+                  D1[ChatMemoryProvider]
+                  D2[EmbeddingStore]
+              end
+
+              A1 --> B1
+              A1 --> B2
+              A1 --> C1
+              A2 --> D1
+              B3 --> D2
+
+              style A1 fill:#f3e5f5
+              style B1 fill:#e3f2fd
+              style C1 fill:#fff3e0
+              style D2 fill:#e8f5e9
+        `} />
         <p className="text-gray-700 mb-4">LangChain4j 的核心由四个抽象接口构成，它们共同构建了灵活的 AI 应用框架：</p>
 
         <ul className="list-disc list-inside text-gray-700 mb-6 space-y-2">

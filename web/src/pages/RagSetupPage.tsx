@@ -1,5 +1,5 @@
 import Layout from '../components/layout/Layout';
-import { SectionHeader, CodeBlockWithCopy, TipBox } from '../components/ui';
+import { SectionHeader, CodeBlockWithCopy, TipBox, MermaidChart } from '../components/ui';
 
 const RagSetupPage = () => {
   return (
@@ -85,6 +85,21 @@ const RagSetupPage = () => {
             <li>访问 <a href="https://docs.langchain4j.dev" className="text-blue-600 hover:underline" target="_blank" rel="noreferrer">官方文档</a> 获取最新版本</li>
           </ul>
         </TipBox>
+
+        <h3 className="text-xl font-semibold text-gray-900 mb-4 mt-8">环境搭建流程</h3>
+        <p className="text-gray-600 mb-4">RAG 环境搭建的关键步骤：</p>
+
+        <MermaidChart chart={`
+          graph LR
+              A[1. Maven依赖] --> B[2. 环境变量]
+              B --> C[3. 向量数据库]
+              C --> D[4. 项目结构]
+              D --> E[5. Hello World]
+
+              style A fill:#e3f2fd
+              style C fill:#f3e5f5
+              style E fill:#e8f5e9
+        `} />
       </section>
 
       <section className="content-section">

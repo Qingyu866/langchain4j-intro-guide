@@ -1,5 +1,5 @@
 import Layout from '../components/layout/Layout';
-import { SectionHeader, CodeBlockWithCopy, TipBox } from '../components/ui';
+import { SectionHeader, CodeBlockWithCopy, TipBox, MermaidChart } from '../components/ui';
 
 const IntegrationsPage = () => {
   return (
@@ -69,6 +69,28 @@ const IntegrationsPage = () => {
           </div>
         </div>
       </div>
+
+      <h3 className="text-xl font-semibold text-gray-900 mb-4 mt-8">集成架构概览</h3>
+      <p className="text-gray-600 mb-4">LangChain4j 与各种框架和工具的集成关系：</p>
+
+      <MermaidChart chart={`
+        graph TB
+            A[🍃 Spring Boot] --> B[LangChain4j]
+            C[⚡ Quarkus] --> B
+            D[🔄 Kafka/RabbitMQ] --> B
+            E[💾 Redis] --> B
+            F[🗄️ PostgreSQL] --> B
+            G[🔍 Pinecone/PGVector] --> B
+
+            B --> H[🤖 LLM Providers]
+            B --> I[📊 Vector Stores]
+
+            style A fill:#e8f5e9
+            style C fill:#fef3c7
+            style B fill:#f3e5f5
+            style H fill:#e3f2fd
+            style I fill:#fff3e0
+      `} />
 
       <section className="content-section">
         <SectionHeader number={1} title="Spring Boot 集成" />
@@ -975,13 +997,13 @@ public class RagServiceWithCache {
         />
       </section>
 
-      <div className="bg-gray-50 border border-gray-200 rounded-lg p-8">
-        <h2 className="text-2xl font-bold mb-4 text-gray-900">🎯 集成总结</h2>
+      <div className="summary-box">
+        <h2 className="text-2xl font-bold mb-4">🎯 集成总结</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <div className="border border-gray-200 rounded-lg p-5">
             <div className="text-2xl mb-3">🍃</div>
-            <div className="font-semibold mb-2 text-gray-800">Spring Boot</div>
-            <ul className="text-sm space-y-1 text-gray-700">
+            <div className="font-semibold mb-2">Spring Boot</div>
+            <ul className="text-sm space-y-1">
               <li> @AiService自动注册</li>
               <li> 依赖注入</li>
               <li> 配置外部化</li>
@@ -990,8 +1012,8 @@ public class RagServiceWithCache {
           </div>
           <div className="border border-gray-200 rounded-lg p-5">
             <div className="text-2xl mb-3">⚡</div>
-            <div className="font-semibold mb-2 text-gray-800">Quarkus</div>
-            <ul className="text-sm space-y-1 text-gray-700">
+            <div className="font-semibold mb-2">Quarkus</div>
+            <ul className="text-sm space-y-1">
               <li> CDI集成</li>
               <li> 原生编译</li>
               <li> 快速启动</li>
@@ -1000,8 +1022,8 @@ public class RagServiceWithCache {
           </div>
           <div className="border border-gray-200 rounded-lg p-5">
             <div className="text-2xl mb-3">🔄</div>
-            <div className="font-semibold mb-2 text-gray-800">Kafka</div>
-            <ul className="text-sm space-y-1 text-gray-700">
+            <div className="font-semibold mb-2">Kafka</div>
+            <ul className="text-sm space-y-1">
               <li> 异步消息处理</li>
               <li> 解耦系统</li>
               <li> 消息持久化</li>
@@ -1010,8 +1032,8 @@ public class RagServiceWithCache {
           </div>
           <div className="border border-gray-200 rounded-lg p-5">
             <div className="text-2xl mb-3">💾</div>
-            <div className="font-semibold mb-2 text-gray-800">PostgreSQL</div>
-            <ul className="text-sm space-y-1 text-gray-700">
+            <div className="font-semibold mb-2">PostgreSQL</div>
+            <ul className="text-sm space-y-1">
               <li> PGVector扩展</li>
               <li> 向量存储</li>
               <li> 数据持久化</li>
@@ -1020,8 +1042,8 @@ public class RagServiceWithCache {
           </div>
           <div className="border border-gray-200 rounded-lg p-5">
             <div className="text-2xl mb-3">🔴</div>
-            <div className="font-semibold mb-2 text-gray-800">Redis</div>
-            <ul className="text-sm space-y-1 text-gray-700">
+            <div className="font-semibold mb-2">Redis</div>
+            <ul className="text-sm space-y-1">
               <li> 缓存Embedding</li>
               <li> 缓存搜索结果</li>
               <li> 会话管理</li>
@@ -1030,8 +1052,8 @@ public class RagServiceWithCache {
           </div>
           <div className="border border-gray-200 rounded-lg p-5">
             <div className="text-2xl mb-3">🔐</div>
-            <div className="font-semibold mb-2 text-gray-800">安全实践</div>
-            <ul className="text-sm space-y-1 text-gray-700">
+            <div className="font-semibold mb-2">安全实践</div>
+            <ul className="text-sm space-y-1">
               <li> API密钥管理</li>
               <li> 环境变量</li>
               <li> 访问控制</li>
@@ -1039,9 +1061,9 @@ public class RagServiceWithCache {
             </ul>
           </div>
         </div>
-        <div className="mt-6 pt-6 border-t border-gray-200">
-          <p className="text-lg mb-2 text-gray-900">📚 <strong>下一章：测试策略</strong></p>
-          <p className="text-sm text-gray-700">学习LangChain4j应用的测试策略，包括单元测试、集成测试和端到端测试</p>
+        <div className="mt-6 pt-6 border-t">
+          <p className="text-lg mb-2">📚 <strong>下一章：测试策略</strong></p>
+          <p className="text-sm">学习LangChain4j应用的测试策略，包括单元测试、集成测试和端到端测试</p>
           <a href="/testing-strategies" className="inline-block mt-3 px-6 py-2 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition-colors">
             继续学习 →
           </a>

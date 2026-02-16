@@ -1,5 +1,5 @@
 import Layout from '../components/layout/Layout';
-import { Tag, CodeBlockWithCopy, SectionHeader } from '../components/ui';
+import { Tag, CodeBlockWithCopy, SectionHeader, MermaidChart } from '../components/ui';
 
 const BestPracticesPage = () => {
   const projectStructure = `src/main/java/com/example/langchain4j/
@@ -233,6 +233,47 @@ public class RateLimitFilter extends OncePerRequestFilter {
         <h3 className="subsection-title">1.1 分层架构</h3>
         <CodeBlockWithCopy filename="项目结构">{projectStructure}</CodeBlockWithCopy>
 
+        <MermaidChart chart={`
+          graph TB
+              subgraph "🌐 表现层 Presentation Layer"
+                  A1[Controller] --> A2[DTO]
+                  A2 --> A3[REST API]
+              end
+
+              subgraph "💼 业务逻辑层 Business Layer"
+                  B1[Chat Service]
+                  B2[RAG Service]
+                  B3[AI Service]
+                  A1 --> B1
+                  A1 --> B2
+                  A1 --> B3
+              end
+
+              subgraph "📊 数据访问层 Data Layer"
+                  C1[Document Repository]
+                  C2[Chat Repository]
+                  C3[Vector Store]
+                  B1 --> C2
+                  B2 --> C1
+                  B2 --> C3
+              end
+
+              subgraph "⚙️ 配置层 Config Layer"
+                  D1[AI Model Config]
+                  D2[Embedding Config]
+                  D3[Cache Config]
+                  B1 --> D1
+                  B2 --> D2
+                  B1 --> D3
+              end
+
+              style A1 fill:#e3f2fd
+              style B1 fill:#f3e5f5
+              style B2 fill:#f3e5f5
+              style C1 fill:#e8f5e9
+              style C3 fill:#fff3e0
+        `} />
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
           <div className="bg-green-50 border border-green-100 rounded-lg p-6">
             <h4 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
@@ -413,13 +454,13 @@ public class RateLimitFilter extends OncePerRequestFilter {
         </div>
       </section>
 
-      <div className="bg-gray-50 border border-gray-200 rounded-lg p-8">
-        <h2 className="text-2xl font-bold mb-4 text-gray-900">🎯 最佳实践总结</h2>
+      <div className="summary-box">
+        <h2 className="text-2xl font-bold mb-4">🎯 最佳实践总结</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="border border-gray-200 rounded-lg p-5">
             <div className="text-2xl mb-3">🏗️</div>
-            <h4 className="font-semibold mb-2 text-gray-800">架构设计</h4>
-            <ul className="text-sm space-y-1 text-gray-700">
+            <h4 className="font-semibold mb-2">架构设计</h4>
+            <ul className="text-sm space-y-1">
               <li> 分层架构清晰</li>
               <li> 服务职责单一</li>
               <li> 接口抽象合理</li>
@@ -428,8 +469,8 @@ public class RateLimitFilter extends OncePerRequestFilter {
           </div>
           <div className="border border-gray-200 rounded-lg p-5">
             <div className="text-2xl mb-3">⚡</div>
-            <h4 className="font-semibold mb-2 text-gray-800">性能优化</h4>
-            <ul className="text-sm space-y-1 text-gray-700">
+            <h4 className="font-semibold mb-2">性能优化</h4>
+            <ul className="text-sm space-y-1">
               <li> 连接池复用</li>
               <li> 批量处理请求</li>
               <li> 合理使用缓存</li>
@@ -438,8 +479,8 @@ public class RateLimitFilter extends OncePerRequestFilter {
           </div>
           <div className="border border-gray-200 rounded-lg p-5">
             <div className="text-2xl mb-3">🛡️</div>
-            <h4 className="font-semibold mb-2 text-gray-800">安全防护</h4>
-            <ul className="text-sm space-y-1 text-gray-700">
+            <h4 className="font-semibold mb-2">安全防护</h4>
+            <ul className="text-sm space-y-1">
               <li> 密钥安全存储</li>
               <li> 输入验证过滤</li>
               <li> 速率限制保护</li>
@@ -447,9 +488,9 @@ public class RateLimitFilter extends OncePerRequestFilter {
             </ul>
           </div>
         </div>
-        <div className="mt-6 pt-6 border-t border-gray-200">
-          <p className="text-lg mb-2 text-gray-900">📚 <strong>下一章：测试策略</strong></p>
-          <p className="text-sm text-gray-700">深入学习LangChain4j应用的测试方法和策略</p>
+        <div className="mt-6 pt-6 border-t">
+          <p className="text-lg mb-2">📚 <strong>下一章：测试策略</strong></p>
+          <p className="text-sm">深入学习LangChain4j应用的测试方法和策略</p>
         </div>
       </div>
     </Layout>

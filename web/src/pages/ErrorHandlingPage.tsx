@@ -1,5 +1,5 @@
 import Layout from '../components/layout/Layout';
-import { Tag, SectionHeader, CodeBlockWithCopy, TipBox } from '../components/ui';
+import { Tag, SectionHeader, CodeBlockWithCopy, TipBox, MermaidChart } from '../components/ui';
 
 const exceptionHierarchyCode = `package com.example.langchain4j.exception;
 
@@ -230,6 +230,28 @@ const ErrorHandlingPage = () => {
           <li><strong>告警通知</strong>: 对严重错误及时通知运维人员</li>
           <li><strong>用户反馈</strong>: 向用户清晰的错误提示，避免技术术语</li>
         </ul>
+
+        <h3 className="subsection-title mt-6">1.3 错误处理流程</h3>
+        <p className="paragraph mb-4">系统化的错误处理决策流程：</p>
+
+        <MermaidChart chart={`
+          graph TD
+              A[❌ 异常发生] --> B{异常类型}
+
+              B -->|网络错误| C[🔄 重试机制]
+              B -->|认证错误| D[🔑 检查配置]
+              B -->|配额超限| E[⏰ 等待重置]
+              B -->|模型错误| F[📉 降级方案]
+
+              C --> G[✅ 恢复成功]
+              D --> G
+              E --> G
+              F --> H[👥 用户友好提示]
+
+              style A fill:#fef2f2
+              style G fill:#e8f5e9
+              style H fill:#fff3e0
+        `} />
       </section>
 
       <section id="network" className="content-section">

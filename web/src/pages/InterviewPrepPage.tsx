@@ -1,5 +1,5 @@
 import Layout from '../components/layout/Layout';
-import { Tag, SectionHeader, CodeBlock, TipBox } from '../components/ui';
+import { Tag, SectionHeader, CodeBlock, TipBox, MermaidChart } from '../components/ui';
 
 const starProjectExperienceCode = `public class STARProjectExperience {
 
@@ -143,6 +143,23 @@ const InterviewPrepPage = () => {
             <p className="text-purple-700 text-sm">处理超长文档的优化策略</p>
           </div>
         </div>
+
+        <h3 className="subsection-title mt-6">面试准备流程</h3>
+        <p className="text-gray-700 mb-4">系统化的 LangChain4j 面试准备步骤：</p>
+
+        <MermaidChart chart={`
+          graph TD
+              A[📚 学习基础知识] --> B[👨‍💻 动手实践]
+              B --> C[📝 整理项目经验]
+              C --> D[🎯 模拟面试]
+              D --> E[✅ 面试成功]
+
+              style A fill:#e3f2fd
+              style B fill:#f3e5f5
+              style C fill:#fff3e0
+              style D fill:#e0f2fe
+              style E fill:#e8f5e9
+        `} />
       </section>
 
       <section id="knowledge" className="content-section">

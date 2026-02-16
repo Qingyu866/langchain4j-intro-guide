@@ -1,5 +1,5 @@
 import Layout from '../components/layout/Layout';
-import { SectionHeader, CodeBlockWithCopy, TipBox } from '../components/ui';
+import { SectionHeader, CodeBlockWithCopy, TipBox, MermaidChart } from '../components/ui';
 
 const RagCompletePage = () => {
   return (
@@ -128,6 +128,40 @@ const RagCompletePage = () => {
             </ul>
           </div>
         </div>
+
+        <h3 className="text-xl font-semibold text-gray-900 mb-4 mt-8">RAG 完整流程图</h3>
+        <p className="text-gray-600 mb-4">从文档加载到答案生成的完整 RAG 流程：</p>
+
+        <MermaidChart chart={`
+          graph TB
+              subgraph "📄 文档准备阶段"
+                  A1[文档加载器] --> A2[文本清理]
+                  A2 --> A3[文本分块]
+                  A3 --> A4[Embedding生成]
+              end
+
+              subgraph "💾 存储阶段"
+                  A4 --> B1[(向量数据库)]
+              end
+
+              subgraph "🔍 检索阶段"
+                  C1[用户查询] --> C2[查询向量化]
+                  C2 --> C3[相似度搜索]
+                  B1 --> C3
+                  C3 --> C4[Top-K结果]
+              end
+
+              subgraph "🤖 生成阶段"
+                  C4 --> D1[上下文注入]
+                  D1 --> D2[LLM生成]
+                  D2 --> D3[最终答案]
+              end
+
+              style A4 fill:#f3e5f5
+              style B1 fill:#e3f2fd
+              style D2 fill:#fff3e0
+              style D3 fill:#e8f5e9
+        `} />
 
         <TipBox type="info" title="应用场景">
           <p className="text-blue-800">
@@ -1234,12 +1268,12 @@ public class MetadataFiltering {
           </div>
         </div>
 
-        <div className="bg-gray-50 border border-gray-200 rounded-lg p-8 mt-8">
-          <h3 className="text-2xl font-bold mb-4 text-gray-900">🎯 本章总结</h3>
+        <div className="summary-box mt-8">
+          <h3 className="text-2xl font-bold mb-4">🎯 本章总结</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <h4 className="font-semibold mb-2 text-gray-800">核心概念</h4>
-              <ul className="space-y-1 text-sm text-gray-700">
+              <h4 className="font-semibold mb-2">核心概念</h4>
+              <ul className="space-y-1 text-sm">
                 <li> RAG让LLM访问私有数据</li>
                 <li> 文档加载→分块→Embedding→存储</li>
                 <li> 检索→增强生成是核心流程</li>
@@ -1247,8 +1281,8 @@ public class MetadataFiltering {
               </ul>
             </div>
             <div>
-              <h4 className="font-semibold mb-2 text-gray-800">关键组件</h4>
-              <ul className="space-y-1 text-sm text-gray-700">
+              <h4 className="font-semibold mb-2">关键组件</h4>
+              <ul className="space-y-1 text-sm">
                 <li> DocumentLoader：加载文档</li>
                 <li> DocumentSplitter：分割文本</li>
                 <li> EmbeddingModel：生成向量</li>
@@ -1257,8 +1291,8 @@ public class MetadataFiltering {
               </ul>
             </div>
           </div>
-          <div className="mt-6 pt-6 border-t border-gray-200">
-            <p className="text-sm text-gray-700">
+          <div className="mt-6 pt-6 border-t">
+            <p className="text-sm">
               下一章我们将学习如何构建一个完整的RAG知识库项目，包括前端界面、后端API、部署配置等。
             </p>
             <a href="/project-rag-kb" className="inline-block mt-3 px-6 py-2 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition-colors">

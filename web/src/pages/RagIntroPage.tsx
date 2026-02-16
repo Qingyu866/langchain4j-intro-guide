@@ -1,5 +1,5 @@
 import Layout from '../components/layout/Layout';
-import { SectionHeader, TipBox } from '../components/ui';
+import { SectionHeader, TipBox, MermaidChart } from '../components/ui';
 
 const RagIntroPage = () => {
   return (
@@ -61,6 +61,25 @@ const RagIntroPage = () => {
           <p className="text-gray-600 mb-4">
             RAG系统由5个核心步骤组成，形成一个完整的"检索-增强-生成"流水线。
           </p>
+
+          <MermaidChart chart={`
+            graph TD
+                A[📄 原始文档] -->|文档摄入| B[🔧 文本处理]
+                B --> C[📊 Embedding向量]
+                C -->|向量存储| D[🗄️ 向量数据库]
+
+                E[❓ 用户查询] -->|转为向量| F[🔍 相似度检索]
+                F -->|检索| D
+                D -->|返回相关文本| G[📝 上下文注入]
+                G --> H[🤖 LLM增强生成]
+                H --> I[✅ 准确回答]
+
+                style A fill:#e3f2fd
+                style D fill:#f3e5f5
+                style H fill:#fff3e0
+                style I fill:#e8f5e9
+          `} />
+
           <div className="space-y-4">
             <div className="flex items-start gap-4">
               <div className="w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold flex-shrink-0 text-lg shadow-md">1</div>

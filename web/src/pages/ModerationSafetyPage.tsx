@@ -1,5 +1,5 @@
 import Layout from '../components/layout/Layout';
-import { Tag, SectionHeader, CodeBlock, TipBox } from '../components/ui';
+import { Tag, SectionHeader, CodeBlock, TipBox, MermaidChart } from '../components/ui';
 
 const keywordFilterCode = `package com.example.langchain4j.moderation;
 
@@ -155,6 +155,27 @@ const ModerationSafetyPage = () => {
             <p className="text-yellow-700 text-sm">诈骗、虚假信息、钓鱼链接</p>
           </div>
         </div>
+
+        <h3 className="subsection-title mt-6">1.3 内容审核流程</h3>
+        <p className="text-gray-700 mb-4">完整的内容审核工作流程：</p>
+
+        <MermaidChart chart={`
+          graph LR
+              A[👤 用户输入] --> B[🔍 预审核]
+              B --> C{内容安全?}
+              C -->|❌| D[🚫 拒绝]
+              C -->|✅| E[🤖 LLM处理]
+              E --> F[📝 LLM输出]
+              F --> G[🔍 后审核]
+              G --> H{内容安全?}
+              H -->|❌| D
+              H -->|✅| I[✅ 返回用户]
+
+              style B fill:#fef3c7
+              style G fill:#e0f2fe
+              style I fill:#e8f5e9
+              style D fill:#fef2f2
+        `} />
       </section>
 
       <section id="pre-moderation" className="content-section">

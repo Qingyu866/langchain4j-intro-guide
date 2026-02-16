@@ -1,5 +1,5 @@
 import Layout from '../components/layout/Layout';
-import { Tag, SectionHeader, CodeBlock, TipBox } from '../components/ui';
+import { Tag, SectionHeader, CodeBlock, TipBox, MermaidChart } from '../components/ui';
 
 const httpClientPoolConfigCode = `package com.example.performance.config;
 
@@ -350,6 +350,31 @@ const PerformanceTuningPage = () => {
           </div>
         </div>
       </section>
+
+      <h3 className="subsection-title mt-6">性能优化流程</h3>
+      <p className="paragraph mb-4">系统化的性能优化方法和步骤：</p>
+
+      <MermaidChart chart={`
+        graph TD
+            A[📊 性能分析] --> B[🔍 识别瓶颈]
+            B --> C{瓶颈类型}
+
+            C -->|网络IO| D[🔌 连接池优化]
+            C -->|CPU| E[⚡ 并发处理]
+            C -->|内存| F[💾 缓存策略]
+            C -->|Token| G[📝 Prompt优化]
+
+            D --> H[✅ 性能提升]
+            E --> H
+            F --> H
+            G --> H
+
+            H --> I[📈 持续监控]
+
+            style A fill:#e3f2fd
+            style H fill:#fff3e0
+            style I fill:#e8f5e9
+      `} />
 
       <TipBox variant="info" title="学习目标">
         <ul className="list-styled">

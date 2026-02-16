@@ -1,5 +1,5 @@
 import Layout from '../components/layout/Layout';
-import { Tag, CodeBlockWithCopy, SectionHeader } from '../components/ui';
+import { Tag, CodeBlockWithCopy, SectionHeader, MermaidChart } from '../components/ui';
 
 const ProjectChatbotPage = () => {
   const pomXml = `<dependencies>
@@ -491,6 +491,50 @@ volumes:
 
         <div className="bg-white border border-gray-200 rounded-lg p-6 mb-8">
           <h3 className="subsection-title">系统架构图</h3>
+
+          <MermaidChart chart={`
+            graph TB
+                subgraph "🎨 客户端层 React"
+                    A1[聊天界面]
+                    A2[群聊列表]
+                    A3[设置面板]
+                end
+
+                subgraph "🔌 WebSocket层"
+                    B1[WebSocket Config]
+                    B2[STOMP消息代理]
+                    B3[消息路由]
+                end
+
+                subgraph "💼 业务层 Spring Boot"
+                    C1[Chat Service]
+                    C2[Room Service]
+                    C3[User Service]
+                end
+
+                subgraph "🤖 AI层 LangChain4j"
+                    D1[Chat Agent]
+                    D2[RAG Service]
+                    D3[Chat Memory]
+                end
+
+                subgraph "💾 数据层"
+                    E1[(PostgreSQL)]
+                    E2[(Redis)]
+                end
+
+                A1 --> B1
+                B2 --> C1
+                C1 --> D1
+                C1 --> E1
+                C2 --> E2
+
+                style D1 fill:#f3e5f5
+                style E1 fill:#e3f2fd
+                style E2 fill:#fff3e0
+          `} />
+
+          <h4 className="subsection-title mt-8">详细架构说明</h4>
           <pre className="bg-gray-900 text-gray-100 p-6 rounded-lg overflow-x-auto text-sm">
 {`┌─────────────────────────────────────────────────────────────────┐
 │                         客户端层 (React)                          │
@@ -627,12 +671,12 @@ volumes:
         </div>
       </section>
 
-      <div className="bg-gray-50 border border-gray-200 rounded-lg p-8">
-        <h2 className="text-2xl font-bold mb-4 text-gray-900">🎯 项目总结</h2>
+      <div className="summary-box">
+        <h2 className="text-2xl font-bold mb-4">🎯 项目总结</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="border border-gray-200 rounded-lg p-5">
-            <div className="text-2xl mb-3 text-gray-800">🔌 核心技术</div>
-            <ul className="text-sm space-y-1 list-disc list-inside text-gray-700">
+            <div className="text-2xl mb-3">🔌 核心技术</div>
+            <ul className="text-sm space-y-1 list-disc list-inside">
               <li>WebSocket实时双向通信</li>
               <li>STOMP消息协议</li>
               <li>Spring Boot 3.2.x</li>
@@ -642,8 +686,8 @@ volumes:
             </ul>
           </div>
           <div className="border border-gray-200 rounded-lg p-5">
-            <div className="text-2xl mb-3 text-gray-800">✨ 关键功能</div>
-            <ul className="text-sm space-y-1 list-disc list-inside text-gray-700">
+            <div className="text-2xl mb-3">✨ 关键功能</div>
+            <ul className="text-sm space-y-1 list-disc list-inside">
               <li>多用户实时群聊</li>
               <li>消息持久化和历史记录</li>
               <li>在线用户状态管理</li>
@@ -653,8 +697,8 @@ volumes:
             </ul>
           </div>
           <div className="border border-gray-200 rounded-lg p-5">
-            <div className="text-2xl mb-3 text-gray-800">🚀 最佳实践</div>
-            <ul className="text-sm space-y-1 list-disc list-inside text-gray-700">
+            <div className="text-2xl mb-3">🚀 最佳实践</div>
+            <ul className="text-sm space-y-1 list-disc list-inside">
               <li>异步消息处理</li>
               <li>批量数据库操作</li>
               <li>分页查询优化</li>
@@ -664,9 +708,9 @@ volumes:
             </ul>
           </div>
         </div>
-        <div className="mt-6 pt-6 border-t border-gray-200">
-          <p className="text-lg mb-2 text-gray-900">📚 <strong>下一章：最佳实践</strong></p>
-          <p className="text-sm text-gray-700">学习LangChain4j开发的最佳实践，包括代码组织、错误处理、性能优化等</p>
+        <div className="mt-6 pt-6 border-t">
+          <p className="text-lg mb-2">📚 <strong>下一章：最佳实践</strong></p>
+          <p className="text-sm">学习LangChain4j开发的最佳实践，包括代码组织、错误处理、性能优化等</p>
         </div>
       </div>
     </Layout>

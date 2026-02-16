@@ -1,5 +1,5 @@
 import Layout from '../components/layout/Layout';
-import { Tag, CodeBlockWithCopy, SectionHeader, TipBox, SummarySection } from '../components/ui';
+import { Tag, CodeBlockWithCopy, SectionHeader, TipBox, SummarySection, MermaidChart } from '../components/ui';
 
 const OutputParsersPage = () => {
   const basicUsage = `import dev.langchain4j.AiServices.AiServices;
@@ -288,7 +288,20 @@ for (String doc : documents) {
           </ul>
         </div>
 
-        <h3 className="subsection-title">1.2 OutputParser接口</h3>
+        <h3 className="subsection-title">1.2 输出解析流程</h3>
+        <p className="paragraph mb-4">LLM 输出如何转换为类型安全的 Java 对象：</p>
+
+        <MermaidChart chart={`
+          graph LR
+              A[🤖 LLM文本输出] --> B[📝 OutputParser]
+              B --> C[🔍 解析逻辑]
+              C --> D[✅ Java对象]
+
+              style B fill:#f3e5f5
+              style D fill:#e8f5e9
+        `} />
+
+        <h3 className="subsection-title">1.3 OutputParser接口</h3>
         <p className="paragraph">
           LangChain4j提供了OutputParser接口和多种实现，适用于不同的解析场景：
         </p>
