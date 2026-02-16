@@ -4,70 +4,84 @@ import { Tag, CodeBlockWithCopy, SectionHeader, TipBox, SummarySection, MermaidC
 const CoreConceptsPage = () => {
   const chatModelBasic = `import dev.langchain4j.model.chat.ChatLanguageModel;
 import dev.langchain4j.model.openai.OpenAiChatModel;
-import dev.langchain4j.data.message.AiMessage;
-import java.util.List;
 
-// 创建ChatLanguageModel
-ChatLanguageModel model = OpenAiChatModel.builder()
-    .apiKey(System.getenv("OPENAI_API_KEY"))
-    .modelName("gpt-4")
-    .temperature(0.7)
-    .maxTokens(1000)
-    .build();
+public class BasicChatModelExample {
+    public static void main(String[] args) {
+        // 创建ChatLanguageModel
+        ChatLanguageModel model = OpenAiChatModel.builder()
+            .apiKey(System.getenv("OPENAI_API_KEY"))
+            .modelName("gpt-4")
+            .temperature(0.7)
+            .maxTokens(1000)
+            .build();
 
-// 生成响应
-String response = model.generate("Hello, LangChain4j!");
-System.out.println(response);`;
+        // 生成响应
+        String response = model.generate("Hello, LangChain4j!");
+        System.out.println(response);
+    }
+}`;
 
   const chatModelAdvanced = `import dev.langchain4j.model.chat.ChatLanguageModel;
 import dev.langchain4j.model.openai.OpenAiChatModel;
+import dev.langchain4j.data.message.AiMessage;
+import dev.langchain4j.data.message.SystemMessage;
+import dev.langchain4j.data.message.UserMessage;
 import java.util.List;
 
-ChatLanguageModel model = OpenAiChatModel.builder()
-    .apiKey(System.getenv("OPENAI_API_KEY"))
-    .modelName("gpt-4")
-    // 温度参数：控制随机性，0.0-2.0
-    .temperature(0.7)
-    // 最大token数：限制响应长度
-    .maxTokens(2000)
-    // 超时设置（毫秒）
-    .timeout(30000)
-    // Top-P采样：0.0-1.0
-    .topP(0.9)
-    // 频率惩罚
-    .frequencyPenalty(0.5)
-    .build();
+public class AdvancedChatModelExample {
+    public static void main(String[] args) {
+        ChatLanguageModel model = OpenAiChatModel.builder()
+            .apiKey(System.getenv("OPENAI_API_KEY"))
+            .modelName("gpt-4")
+            // 温度参数：控制随机性，0.0-2.0
+            .temperature(0.7)
+            // 最大token数：限制响应长度
+            .maxTokens(2000)
+            // 超时设置（毫秒）
+            .timeout(30000)
+            // Top-P采样：0.0-1.0
+            .topP(0.9)
+            // 频率惩罚
+            .frequencyPenalty(0.5)
+            .build();
 
-// 生成带系统消息的响应
-AiMessage systemMessage = SystemMessage.from("You are a helpful assistant.");
-AiMessage userMessage = UserMessage.from("Explain quantum computing.");
+        // 生成带系统消息的响应
+        AiMessage systemMessage = SystemMessage.from("You are a helpful assistant.");
+        AiMessage userMessage = UserMessage.from("Explain quantum computing.");
 
-List<AiMessage> messages = List.of(systemMessage, userMessage);
-String response = model.generate(messages);`;
+        List<AiMessage> messages = List.of(systemMessage, userMessage);
+        String response = model.generate(messages);
+        System.out.println(response);
+    }
+}`;
 
   const aiServicesBasic = `import dev.langchain4j.service.AiServices;
 import dev.langchain4j.model.chat.ChatLanguageModel;
 import dev.langchain4j.model.openai.OpenAiChatModel;
-import static dev.langchain4j.model.openai.OpenAiChatModel.builder;
 
-// 定义AI Service接口
-interface Assistant {
-    String chat(String message);
-}
+public class AiServicesBasicExample {
+    
+    // 定义AI Service接口
+    interface Assistant {
+        String chat(String message);
+    }
 
-// 创建ChatLanguageModel
-ChatLanguageModel model = builder()
-    .apiKey(System.getenv("OPENAI_API_KEY"))
-    .build();
+    public static void main(String[] args) {
+        // 创建ChatLanguageModel
+        ChatLanguageModel model = OpenAiChatModel.builder()
+            .apiKey(System.getenv("OPENAI_API_KEY"))
+            .build();
 
-// 构建AI Service
-Assistant assistant = AiServices.builder(Assistant.class)
-    .chatLanguageModel(model)
-    .build();
+        // 构建AI Service
+        Assistant assistant = AiServices.builder(Assistant.class)
+            .chatLanguageModel(model)
+            .build();
 
-// 使用
-String response = assistant.chat("Hello!");
-System.out.println(response);`;
+        // 使用
+        String response = assistant.chat("Hello!");
+        System.out.println(response);
+    }
+}`;
 
   const aiServicesAdvanced = `import dev.langchain4j.model.chat.ChatLanguageModel;
 import dev.langchain4j.model.openai.OpenAiChatModel;
@@ -75,181 +89,173 @@ import dev.langchain4j.service.AiServices;
 import dev.langchain4j.service.SystemMessage;
 import dev.langchain4j.service.UserMessage;
 import dev.langchain4j.service.V;
-import static dev.langchain4j.model.openai.OpenAiChatModel.builder;
 
-interface Translator {
-    @SystemMessage("You are a professional translator.")
-    @UserMessage("Translate to {{language}}: {{text}}")
-    String translate(
-        @V("text") String text,
-        @V("language") String language
-    );
-}
+public class AiServicesAdvancedExample {
 
-interface SentimentAnalyzer {
-    @UserMessage("Analyze sentiment of: {{it}}")
-    Sentiment analyzeSentiment(String text);
-}
+    interface Translator {
+        @SystemMessage("You are a professional translator.")
+        @UserMessage("Translate to {{language}}: {{text}}")
+        String translate(
+            @V("text") String text,
+            @V("language") String language
+        );
+    }
 
-enum Sentiment {
-    POSITIVE, NEUTRAL, NEGATIVE
-}
+    interface SentimentAnalyzer {
+        @UserMessage("Analyze sentiment of: {{it}}")
+        Sentiment analyzeSentiment(String text);
+    }
 
-ChatLanguageModel model = builder()
-    .apiKey(System.getenv("OPENAI_API_KEY"))
-    .build();
+    enum Sentiment {
+        POSITIVE, NEUTRAL, NEGATIVE
+    }
 
-// 创建不同的AI Services
-Translator translator = AiServices.builder(Translator.class)
-    .chatLanguageModel(model)
-    .build();
+    public static void main(String[] args) {
+        ChatLanguageModel model = OpenAiChatModel.builder()
+            .apiKey(System.getenv("OPENAI_API_KEY"))
+            .build();
 
-SentimentAnalyzer analyzer = AiServices.builder(SentimentAnalyzer.class)
-    .chatLanguageModel(model)
-    .build();
+        // 创建不同的AI Services
+        Translator translator = AiServices.builder(Translator.class)
+            .chatLanguageModel(model)
+            .build();
 
-// 使用
-String translation = translator.translate("Hello, world!", "Spanish");
-Sentiment sentiment = analyzer.analyzeSentiment("I love LangChain4j!");
+        SentimentAnalyzer analyzer = AiServices.builder(SentimentAnalyzer.class)
+            .chatLanguageModel(model)
+            .build();
 
-System.out.println("Translation: " + translation);
-System.out.println("Sentiment: " + sentiment);`;
+        // 使用
+        String translation = translator.translate("Hello, world!", "Spanish");
+        Sentiment sentiment = analyzer.analyzeSentiment("I love LangChain4j!");
+
+        System.out.println("Translation: " + translation);
+        System.out.println("Sentiment: " + sentiment);
+    }
+}`;
 
   const chatMemoryTypes = `import dev.langchain4j.data.message.AiMessage;
-import dev.langchain4j.data.message.ChatMessage;
 import dev.langchain4j.memory.chat.MessageWindowChatMemory;
 import dev.langchain4j.memory.chat.TokenWindowChatMemory;
 import dev.langchain4j.model.chat.ChatLanguageModel;
 import dev.langchain4j.model.openai.OpenAiChatModel;
-import java.util.List;
+import dev.langchain4j.service.AiServices;
+import dev.langchain4j.service.MemoryId;
 
-ChatLanguageModel model = builder()
-    .apiKey(System.getenv("OPENAI_API_KEY"))
-    .build();
+public class ChatMemoryTypesExample {
 
-// 方式1：MessageWindowChatMemory - 保留最近N条消息
-MessageWindowChatMemory memory1 = MessageWindowChatMemory.builder()
-    .maxMessages(10)  // 保留最近10条
-    .id("user-123")  // 用户ID
-    .build();
+    interface ChatBot {
+        String chat(@MemoryId String userId, String message);
+    }
 
-// 方式2：TokenWindowChatMemory - 基于token数量管理
-TokenWindowChatMemory memory2 = TokenWindowChatMemory.builder()
-    .maxTokens(2000)  // 最多2000个token
-    .id("user-123")
-    .build();
+    public static void main(String[] args) {
+        ChatLanguageModel model = OpenAiChatModel.builder()
+            .apiKey(System.getenv("OPENAI_API_KEY"))
+            .build();
 
-// 在AI Service中使用
-interface ChatBot {
-    String chat(@MemoryId String userId, String message);
-}
+        // 方式1：MessageWindowChatMemory - 保留最近N条消息
+        MessageWindowChatMemory memory1 = MessageWindowChatMemory.builder()
+            .maxMessages(10)  // 保留最近10条
+            .id("user-123")  // 用户ID
+            .build();
 
-ChatBot bot = AiServices.builder(ChatBot.class)
-    .chatLanguageModel(model)
-    .chatMemoryProvider(userId -> memory1)  // 为每个用户创建独立的memory
-    .build();
+        // 方式2：TokenWindowChatMemory - 基于token数量管理
+        TokenWindowChatMemory memory2 = TokenWindowChatMemory.builder()
+            .maxTokens(2000)  // 最多2000个token
+            .id("user-123")
+            .build();
 
-// 使用
-bot.chat("user-123", "Hello!");  // 使用memory1
-bot.chat("user-456", "Hi there!");  // 使用新的memory`;
+        // 在AI Service中使用
+        ChatBot bot = AiServices.builder(ChatBot.class)
+            .chatLanguageModel(model)
+            .chatMemoryProvider(userId -> memory1)  // 为每个用户创建独立的memory
+            .build();
 
-  const streamingExample = `import dev.langchain4j.model.chat.ChatLanguageModel;
-import dev.langchain4j.model.openai.OpenAiChatModel;
-import dev.langchain4j.model.chat.StreamingChatModel;
+        // 使用
+        bot.chat("user-123", "Hello!");  // 使用memory1
+        bot.chat("user-456", "Hi there!");  // 使用新的memory
+    }
+}`;
+
+  const streamingExample = `import dev.langchain4j.model.chat.StreamingChatModel;
 import dev.langchain4j.model.chat.StreamingResponseHandler;
-import dev.langchain4j.data.message.AiMessage;
-import static dev.langchain4j.model.openai.OpenAiChatModel.builder;
+import dev.langchain4j.model.openai.OpenAiChatModel;
 
-// 创建StreamingChatModel
-StreamingChatModel model = builder()
-    .apiKey(System.getenv("OPENAI_API_KEY"))
-    .modelName("gpt-4")
-    .build();
+public class StreamingExample {
+    public static void main(String[] args) {
+        // 创建StreamingChatModel
+        StreamingChatModel model = OpenAiChatModel.builder()
+            .apiKey(System.getenv("OPENAI_API_KEY"))
+            .modelName("gpt-4")
+            .build();
 
-// 使用流式响应
-model.generate("Tell me a story about AI.", new StreamingResponseHandler() {
-    @Override
-    public void onPartialResponse(String partialResponse) {
-        // 接收部分响应（token流）
-        System.out.print(partialResponse);  // 逐步输出
+        // 使用流式响应
+        model.generate("Tell me a story about AI.", new StreamingResponseHandler() {
+            @Override
+            public void onPartialResponse(String partialResponse) {
+                // 接收部分响应（token流）
+                System.out.print(partialResponse);  // 逐步输出
+            }
+
+            @Override
+            public void onCompleteResponse(String completeResponse) {
+                // 响应完成
+                System.out.println("\\n--- COMPLETE ---");
+            }
+
+            @Override
+            public void onError(Throwable error) {
+                // 错误处理
+                System.err.println("Error: " + error.getMessage());
+            }
+        });
     }
-
-    @Override
-    public void onCompleteResponse(String completeResponse) {
-        // 响应完成
-        System.out.println("\\n--- COMPLETE ---");
-    }
-
-    @Override
-    public void onError(Throwable error) {
-        // 错误处理
-        System.err.println("Error: " + error.getMessage());
-    }
-});`;
+}`;
 
   const toolsExample = `import dev.langchain4j.service.AiServices;
 import dev.langchain4j.model.chat.ChatLanguageModel;
 import dev.langchain4j.model.openai.OpenAiChatModel;
 import dev.langchain4j.service.tool.Tool;
-import dev.langchain4j.service.tool.ToolExecutor;
-import static dev.langchain4j.model.openai.OpenAiChatModel.builder;
 
-// 定义工具
-@Tool("get_weather")  // 工具名称
-public String getWeather(String location) {
-    // 获取天气的API调用
-    return "Weather in " + location + ": 25°C, sunny";
-}
+public class ToolsExample {
 
-@Tool("calculate")
-public int calculate(int a, String operation, int b) {
-    return switch (operation) {
-        case "add" -> a + b;
-        case "subtract" -> a - b;
-        case "multiply" -> a * b;
-        default -> throw new IllegalArgumentException("Unknown operation");
-    };
-}
+    // 定义工具类
+    static class WeatherTools {
+        @Tool("Get current weather for a location")
+        public String getWeather(String location) {
+            return "Weather in " + location + ": 25°C, sunny";
+        }
 
-// 创建AI Service
-interface Assistant {
-    String chat(String message);
-}
+        @Tool("Perform mathematical calculations")
+        public int calculate(int a, String operation, int b) {
+            return switch (operation) {
+                case "add" -> a + b;
+                case "subtract" -> a - b;
+                case "multiply" -> a * b;
+                default -> throw new IllegalArgumentException("Unknown operation");
+            };
+        }
+    }
 
-ChatLanguageModel model = builder()
-    .apiKey(System.getenv("OPENAI_API_KEY"))
-    .build();
+    interface Assistant {
+        String chat(String message);
+    }
 
-// 构建AI Service并注册工具
-Assistant assistant = AiServices.builder(Assistant.class)
-    .chatLanguageModel(model)
-    .tools(
-        ToolSpecification.builder()
-            .name("get_weather")
-            .description("Get current weather for a location")
-            .parameters("""
-                {
-                    "type": "object",
-                    "properties": {
-                        "location": {
-                            "type": "string",
-                            "description": "City name"
-                        }
-                    },
-                    "required": ["location"]
-                }
-                """)
-            .build(),
-        ToolSpecification.builder()
-            .name("calculate")
-            .description("Perform mathematical calculations")
-            .parameters(...)
-            .build()
-    )
-    .build();
+    public static void main(String[] args) {
+        ChatLanguageModel model = OpenAiChatModel.builder()
+            .apiKey(System.getenv("OPENAI_API_KEY"))
+            .build();
 
-// AI会自动调用这些工具
-String response = assistant.chat("What's the weather in Beijing and add 5 and 3?");`;
+        // 构建AI Service并注册工具
+        Assistant assistant = AiServices.builder(Assistant.class)
+            .chatLanguageModel(model)
+            .tools(new WeatherTools())
+            .build();
+
+        // AI会自动调用这些工具
+        String response = assistant.chat("What's the weather in Beijing?");
+        System.out.println(response);
+    }
+}`;
 
   return (
     <Layout>

@@ -28,21 +28,29 @@ const HomePage = () => {
     { icon: '🌱', title: '框架集成', description: '与 Spring Boot、Quarkus、Helidon 深度集成' },
   ];
 
-  const codeExample = `// 1. 定义 AI Service 接口
-interface Assistant {
-    String chat(String message);
-}
+  const codeExample = `import dev.langchain4j.model.chat.ChatLanguageModel;
+import dev.langchain4j.model.openai.OpenAiChatModel;
+import dev.langchain4j.service.AiServices;
 
-// 2. 创建并配置
-Assistant assistant = AiServices.builder(Assistant.class)
-    .chatLanguageModel(OpenAiChatModel.builder()
-        .apiKey(System.getenv("OPENAI_API_KEY"))
-        .build())
-    .build();
+public class MyFirstAIApp {
+    public static void main(String[] args) {
+        // 1. 定义 AI Service 接口
+        interface Assistant {
+            String chat(String message);
+        }
 
-// 3. 使用
-String answer = assistant.chat("Hello!");
-System.out.println(answer);`;
+        // 2. 创建并配置
+        Assistant assistant = AiServices.builder(Assistant.class)
+            .chatLanguageModel(OpenAiChatModel.builder()
+                .apiKey(System.getenv("OPENAI_API_KEY"))
+                .build())
+            .build();
+
+        // 3. 使用
+        String answer = assistant.chat("Hello!");
+        System.out.println(answer);
+    }
+}`;
 
   return (
     <Layout>

@@ -5,21 +5,24 @@ const EmbeddingModelsPage = () => {
   const basicEmbedding = `import dev.langchain4j.data.embedding.Embedding;
 import dev.langchain4j.model.embedding.EmbeddingModel;
 import dev.langchain4j.model.openai.OpenAiEmbeddingModel;
-import static dev.langchain4j.model.openai.OpenAiEmbeddingModel.builder;
 
-// 创建OpenAI Embedding模型
-EmbeddingModel model = builder()
-    .apiKey(System.getenv("OPENAI_API_KEY"))
-    .modelName("text-embedding-3-small")
-    .build();
+public class BasicEmbeddingExample {
+    public static void main(String[] args) {
+        // 创建OpenAI Embedding模型
+        EmbeddingModel model = OpenAiEmbeddingModel.builder()
+            .apiKey(System.getenv("OPENAI_API_KEY"))
+            .modelName("text-embedding-3-small")
+            .build();
 
-// 生成单个文本的embedding
-String text = "Hello LangChain4j!";
-Embedding embedding = model.embed(text).content();
-float[] vector = embedding.vector();
+        // 生成单个文本的embedding
+        String text = "Hello LangChain4j!";
+        Embedding embedding = model.embed(text).content();
+        float[] vector = embedding.vector();
 
-System.out.println("Vector dimension: " + vector.length);
-System.out.println("First 3 values: " + vector[0] + ", " + vector[1] + ", " + vector[2]);`;
+        System.out.println("Vector dimension: " + vector.length);
+        System.out.println("First 3 values: " + vector[0] + ", " + vector[1] + ", " + vector[2]);
+    }
+}`;
 
   const batchEmbedding = `import dev.langchain4j.data.embedding.Embedding;
 import dev.langchain4j.data.segment.TextSegment;
@@ -27,24 +30,28 @@ import dev.langchain4j.model.embedding.EmbeddingModel;
 import dev.langchain4j.model.openai.OpenAiEmbeddingModel;
 import java.util.List;
 
-EmbeddingModel model = builder()
-    .apiKey(System.getenv("OPENAI_API_KEY"))
-    .build();
+public class BatchEmbeddingExample {
+    public static void main(String[] args) {
+        EmbeddingModel model = OpenAiEmbeddingModel.builder()
+            .apiKey(System.getenv("OPENAI_API_KEY"))
+            .build();
 
-// 准备多个文本段
-List<TextSegment> segments = List.of(
-    TextSegment.from("Machine learning is fascinating."),
-    TextSegment.from("Deep learning is a subset of machine learning."),
-    TextSegment.from("Neural networks power modern AI.")
-);
+        // 准备多个文本段
+        List<TextSegment> segments = List.of(
+            TextSegment.from("Machine learning is fascinating."),
+            TextSegment.from("Deep learning is a subset of machine learning."),
+            TextSegment.from("Neural networks power modern AI.")
+        );
 
-// 批量生成embedding（更高效）
-List<Embedding> embeddings = model.embedAll(segments).content();
+        // 批量生成embedding（更高效）
+        List<Embedding> embeddings = model.embedAll(segments).content();
 
-// 输出结果
-for (int i = 0; i < embeddings.size(); i++) {
-    Embedding emb = embeddings.get(i);
-    System.out.println("Segment " + i + ": vector length = " + emb.vectorAsList().size());
+        // 输出结果
+        for (int i = 0; i < embeddings.size(); i++) {
+            Embedding emb = embeddings.get(i);
+            System.out.println("Segment " + i + ": vector length = " + emb.vectorAsList().size());
+        }
+    }
 }`;
 
   const similarityCalculation = `import dev.langchain4j.data.embedding.Embedding;
@@ -108,66 +115,70 @@ import dev.langchain4j.rag.content.retriever.ContentRetriever;
 import dev.langchain4j.rag.content.retriever.EmbeddingStoreContentRetriever;
 import dev.langchain4j.store.embedding.EmbeddingStore;
 import dev.langchain4j.store.embedding.EmbeddingStoreIngestor;
-import static dev.langchain4j.model.openai.OpenAiChatModel.builder;
-import static dev.langchain4j.model.openai.OpenAiEmbeddingModel.builder;
+import dev.langchain4j.store.embedding.inmemory.InMemoryEmbeddingStore;
+import java.util.List;
 
-// 1. 创建embedding模型
-EmbeddingModel embeddingModel = builder()
-    .apiKey(System.getenv("OPENAI_API_KEY"))
-    .modelName("text-embedding-3-small")
-    .build();
+public class RAGBasicExample {
+    public static void main(String[] args) {
+        // 1. 创建embedding模型
+        EmbeddingModel embeddingModel = OpenAiEmbeddingModel.builder()
+            .apiKey(System.getenv("OPENAI_API_KEY"))
+            .modelName("text-embedding-3-small")
+            .build();
 
-// 2. 创建向量存储（这里使用内存存储）
-EmbeddingStore<TextSegment> embeddingStore = new InMemoryEmbeddingStore<>();
+        // 2. 创建向量存储（这里使用内存存储）
+        EmbeddingStore<TextSegment> embeddingStore = new InMemoryEmbeddingStore<>();
 
-// 3. 导入文档并生成embedding
-List<TextSegment> documents = List.of(
-    TextSegment.from("LangChain4j is a Java framework for LLMs."),
-    TextSegment.from("It provides unified API for 20+ model providers."),
-    TextSegment.from("Supports RAG, AI Services, and tools.")
-);
+        // 3. 导入文档并生成embedding
+        List<TextSegment> documents = List.of(
+            TextSegment.from("LangChain4j is a Java framework for LLMs."),
+            TextSegment.from("It provides unified API for 20+ model providers."),
+            TextSegment.from("Supports RAG, AI Services, and tools.")
+        );
 
-EmbeddingStoreIngestor ingestor = EmbeddingStoreIngestor.builder()
-    .embeddingModel(embeddingModel)
-    .embeddingStore(embeddingStore)
-    .build();
+        EmbeddingStoreIngestor ingestor = EmbeddingStoreIngestor.builder()
+            .embeddingModel(embeddingModel)
+            .embeddingStore(embeddingStore)
+            .build();
 
-ingestor.ingest(documents);
+        ingestor.ingest(documents);
 
-// 4. 创建内容检索器
-ContentRetriever retriever = EmbeddingStoreContentRetriever.builder()
-    .embeddingModel(embeddingModel)
-    .embeddingStore(embeddingStore)
-    .maxResults(3)  // 返回最相关的3个文档
-    .build();
+        // 4. 创建内容检索器
+        ContentRetriever retriever = EmbeddingStoreContentRetriever.builder()
+            .embeddingModel(embeddingModel)
+            .embeddingStore(embeddingStore)
+            .maxResults(3)  // 返回最相关的3个文档
+            .build();
 
-// 5. 检索相关文档
-List<TextSegment> relevantDocs = retriever.retrieve(
-    TextSegment.from("What features does LangChain4j provide?")
-);
+        // 5. 检索相关文档
+        List<TextSegment> relevantDocs = retriever.retrieve(
+            TextSegment.from("What features does LangChain4j provide?")
+        );
 
-// 6. 使用检索到的文档生成回答
-ChatLanguageModel chatModel = builder()
-    .apiKey(System.getenv("OPENAI_API_KEY"))
-    .build();
+        // 6. 使用检索到的文档生成回答
+        ChatLanguageModel chatModel = OpenAiChatModel.builder()
+            .apiKey(System.getenv("OPENAI_API_KEY"))
+            .build();
 
-String context = relevantDocs.stream()
-    .map(TextSegment::text)
-    .reduce("", (acc, doc) -> acc + "\\n" + doc);
+        String context = relevantDocs.stream()
+            .map(TextSegment::text)
+            .reduce("", (acc, doc) -> acc + "\\n" + doc);
 
-String prompt = """
-    Based on the following context, answer the question:
+        String prompt = """
+            Based on the following context, answer the question:
 
-    Context:
-    %s
+            Context:
+            %s
 
-    Question: What features does LangChain4j provide?
+            Question: What features does LangChain4j provide?
 
-    If the context doesn't contain the answer, say "I don't have enough information."
-    """.formatted(context);
+            If the context doesn't have the answer, say "I don't have enough information."
+            """.formatted(context);
 
-String answer = chatModel.generate(prompt);
-System.out.println(answer);`;
+        String answer = chatModel.generate(prompt);
+        System.out.println(answer);
+    }
+}`;
 
   const performanceOptimization = `import dev.langchain4j.data.segment.TextSegment;
 import dev.langchain4j.model.embedding.EmbeddingModel;
