@@ -316,36 +316,36 @@ const PerformanceTuningPage = () => {
             <div className="text-3xl mb-3">⚡</div>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">响应速度</h3>
             <ul className="text-gray-600 text-sm space-y-1">
-              <li>• 连接池优化</li>
-              <li>• 缓存策略</li>
-              <li>• 批量处理</li>
+              <li> 连接池优化</li>
+              <li> 缓存策略</li>
+              <li> 批量处理</li>
             </ul>
           </div>
           <div className="card card-blue">
             <div className="text-3xl mb-3">💾</div>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">资源利用</h3>
             <ul className="text-gray-600 text-sm space-y-1">
-              <li>• 内存管理</li>
-              <li>• 并发控制</li>
-              <li>• 资源回收</li>
+              <li> 内存管理</li>
+              <li> 并发控制</li>
+              <li> 资源回收</li>
             </ul>
           </div>
           <div className="card card-purple">
             <div className="text-3xl mb-3">💰</div>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">成本控制</h3>
             <ul className="text-gray-600 text-sm space-y-1">
-              <li>• Token优化</li>
-              <li>• 模型选择</li>
-              <li>• 请求合并</li>
+              <li> Token优化</li>
+              <li> 模型选择</li>
+              <li> 请求合并</li>
             </ul>
           </div>
           <div className="card card-orange">
             <div className="text-3xl mb-3">📊</div>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">监控分析</h3>
             <ul className="text-gray-600 text-sm space-y-1">
-              <li>• 性能指标</li>
-              <li>• 瓶颈识别</li>
-              <li>• 调优工具</li>
+              <li> 性能指标</li>
+              <li> 瓶颈识别</li>
+              <li> 调优工具</li>
             </ul>
           </div>
         </div>
@@ -526,54 +526,54 @@ const PerformanceTuningPage = () => {
               <div className="text-2xl mb-3">⚡</div>
               <div className="font-semibold mb-2">响应速度</div>
               <ul className="text-sm space-y-1">
-                <li>• HTTP连接池</li>
-                <li>• 并发处理</li>
-                <li>• 重试机制</li>
+                <li> HTTP连接池</li>
+                <li> 并发处理</li>
+                <li> 重试机制</li>
               </ul>
             </div>
             <div className="border border-gray-200 rounded-lg p-5">
               <div className="text-2xl mb-3">💾</div>
               <div className="font-semibold mb-2">资源利用</div>
               <ul className="text-sm space-y-1">
-                <li>• 多级缓存</li>
-                <li>• 内存管理</li>
-                <li>• 资源回收</li>
+                <li> 多级缓存</li>
+                <li> 内存管理</li>
+                <li> 资源回收</li>
               </ul>
             </div>
             <div className="border border-gray-200 rounded-lg p-5">
               <div className="text-2xl mb-3">💰</div>
               <div className="font-semibold mb-2">成本控制</div>
               <ul className="text-sm space-y-1">
-                <li>• Token优化</li>
-                <li>• 模型选择</li>
-                <li>• 缓存利用</li>
+                <li> Token优化</li>
+                <li> 模型选择</li>
+                <li> 缓存利用</li>
               </ul>
             </div>
             <div className="border border-gray-200 rounded-lg p-5">
               <div className="text-2xl mb-3">📊</div>
               <div className="font-semibold mb-2">批量处理</div>
               <ul className="text-sm space-y-1">
-                <li>• Embedding批量</li>
-                <li>• 并发执行</li>
-                <li>• 错误重试</li>
+                <li> Embedding批量</li>
+                <li> 并发执行</li>
+                <li> 错误重试</li>
               </ul>
             </div>
             <div className="border border-gray-200 rounded-lg p-5">
               <div className="text-2xl mb-3">📈</div>
               <div className="font-semibold mb-2">监控分析</div>
               <ul className="text-sm space-y-1">
-                <li>• 性能指标</li>
-                <li>• 瓶颈识别</li>
-                <li>• 调优工具</li>
+                <li> 性能指标</li>
+                <li> 瓶颈识别</li>
+                <li> 调优工具</li>
               </ul>
             </div>
             <div className="border border-gray-200 rounded-lg p-5">
               <div className="text-2xl mb-3">🔧</div>
               <div className="font-semibold mb-2">调优工具</div>
               <ul className="text-sm space-y-1">
-                <li>• 性能分析器</li>
-                <li>• Profiling工具</li>
-                <li>• 日志分析</li>
+                <li> 性能分析器</li>
+                <li> Profiling工具</li>
+                <li> 日志分析</li>
               </ul>
             </div>
           </div>

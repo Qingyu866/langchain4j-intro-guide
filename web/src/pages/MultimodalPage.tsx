@@ -644,15 +644,15 @@ public class MultimodalService {
           </p>
           <ul className="space-y-2 text-gray-700">
             <li className="flex items-start gap-2">
-              <span className="text-blue-600 font-bold">•</span>
+              <span className="text-blue-600 font-bold"></span>
               <span><strong>检索图像</strong>：根据文本或图像查询相似的图像</span>
             </li>
             <li className="flex items-start gap-2">
-              <span className="text-blue-600 font-bold">•</span>
+              <span className="text-blue-600 font-bold"></span>
               <span><strong>跨模态检索</strong>：用图像查询文本，或用文本查询图像</span>
             </li>
             <li className="flex items-start gap-2">
-              <span className="text-blue-600 font-bold">•</span>
+              <span className="text-blue-600 font-bold"></span>
               <span><strong>混合检索</strong>：同时检索文本和图像，综合生成回答</span>
             </li>
           </ul>
@@ -840,12 +840,12 @@ public class ImageRagExample {
           </ul>
         </div>
 
-        <div className="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-lg p-8 text-white">
-          <h3 className="text-2xl font-bold mb-4">🎯 本章总结</h3>
+        <div className="bg-gray-50 border border-gray-200 rounded-lg p-8 text-gray-900">
+          <h3 className="text-2xl font-bold mb-4 text-gray-900">🎯 本章总结</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <h4 className="font-semibold mb-2">核心概念</h4>
-              <ul className="space-y-1 text-sm opacity-90 list-disc list-inside">
+              <h4 className="font-semibold mb-2 text-gray-800">核心概念</h4>
+              <ul className="space-y-1 text-sm text-gray-700 list-disc list-inside">
                 <li>多模态AI支持文本、图像、音频等多种数据</li>
                 <li>图像生成使用ImageModel（DALL-E、Imagen）</li>
                 <li>图像理解使用ChatModel（GPT-4V、Claude-3）</li>
@@ -853,8 +853,8 @@ public class ImageRagExample {
               </ul>
             </div>
             <div>
-              <h4 className="font-semibold mb-2">关键API</h4>
-              <ul className="space-y-1 text-sm font-mono opacity-90 list-disc list-inside">
+              <h4 className="font-semibold mb-2 text-gray-800">关键API</h4>
+              <ul className="space-y-1 text-sm font-mono text-gray-700 list-disc list-inside">
                 <li>ImageModel.generate()</li>
                 <li>UserMessage.from(ImageContent, text)</li>
                 <li>Image.from(url/base64)</li>
@@ -862,11 +862,11 @@ public class ImageRagExample {
               </ul>
             </div>
           </div>
-          <div className="mt-6 pt-6 border-t border-white/20">
-            <p className="text-sm opacity-90">
+          <div className="mt-6 pt-6 border-t border-gray-200">
+            <p className="text-sm text-gray-700">
               下一章我们将学习如何构建完整的RAG知识库系统，包括文档加载、嵌入生成、向量存储和智能检索。
             </p>
-            <a href="/rag-complete" className="inline-block mt-3 px-6 py-2 bg-white text-indigo-600 rounded-lg font-medium hover:bg-gray-100 transition-colors">
+            <a href="/rag-complete" className="inline-block mt-3 px-6 py-2 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition-colors">
               继续学习 →
             </a>
           </div>

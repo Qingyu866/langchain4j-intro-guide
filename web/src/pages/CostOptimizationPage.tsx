@@ -153,36 +153,36 @@ const CostOptimizationPage = () => {
             <h4 className="font-semibold mb-2">API 调用成本</h4>
             <p className="text-sm mb-2">LLM API 调用（最大成本项）</p>
             <ul className="text-sm space-y-1 opacity-80">
-              <li>• 输入 Token：$0.005/1K tokens (GPT-3.5)</li>
-              <li>• 输出 Token：$0.015/1K tokens (GPT-3.5)</li>
-              <li>• GPT-4：成本为 GPT-3.5 的 10-20 倍</li>
+              <li> 输入 Token：$0.005/1K tokens (GPT-3.5)</li>
+              <li> 输出 Token：$0.015/1K tokens (GPT-3.5)</li>
+              <li> GPT-4：成本为 GPT-3.5 的 10-20 倍</li>
             </ul>
           </div>
           <div className="info-card info-card-green">
             <h4 className="font-semibold mb-2">嵌入模型成本</h4>
             <p className="text-sm mb-2">文本向量嵌入（中等成本）</p>
             <ul className="text-sm space-y-1 opacity-80">
-              <li>• OpenAI embeddings：$0.0001/1K tokens</li>
-              <li>• 本地模型：零 API 成本，但需要硬件</li>
-              <li>• HuggingFace：按使用量或免费层级</li>
+              <li> OpenAI embeddings：$0.0001/1K tokens</li>
+              <li> 本地模型：零 API 成本，但需要硬件</li>
+              <li> HuggingFace：按使用量或免费层级</li>
             </ul>
           </div>
           <div className="info-card info-card-purple">
             <h4 className="font-semibold mb-2">向量数据库成本</h4>
             <p className="text-sm mb-2">向量存储和检索（可变成本）</p>
             <ul className="text-sm space-y-1 opacity-80">
-              <li>• Pinecone：$70/月起步</li>
-              <li>• PGVector：PostgreSQL 基础成本</li>
-              <li>• Milvus：开源免费，需自行部署</li>
+              <li> Pinecone：$70/月起步</li>
+              <li> PGVector：PostgreSQL 基础成本</li>
+              <li> Milvus：开源免费，需自行部署</li>
             </ul>
           </div>
           <div className="info-card" style={{ background: '#fff7ed', borderColor: '#fed7aa' }}>
             <h4 className="font-semibold mb-2">基础设施成本</h4>
             <p className="text-sm mb-2">服务器、存储、带宽（固定成本）</p>
             <ul className="text-sm space-y-1 opacity-80">
-              <li>• 云服务器：$20-200/月</li>
-              <li>• GPU 实例：$300-1000/月（本地模型）</li>
-              <li>• 存储、CDN、带宽</li>
+              <li> 云服务器：$20-200/月</li>
+              <li> GPU 实例：$300-1000/月（本地模型）</li>
+              <li> 存储、CDN、带宽</li>
             </ul>
           </div>
         </div>
@@ -257,9 +257,9 @@ const CostOptimizationPage = () => {
 
         <TipBox type="success" title="成本节省效果">
           <ul className="space-y-2">
-            <li>• 混合使用 GPT-3.5 和 GPT-4，可节省 <strong>60-80%</strong> 成本</li>
-            <li>• 简单任务使用快速模型，复杂任务使用高质量模型</li>
-            <li>• 根据查询复杂度动态选择模型</li>
+            <li> 混合使用 GPT-3.5 和 GPT-4，可节省 <strong>60-80%</strong> 成本</li>
+            <li> 简单任务使用快速模型，复杂任务使用高质量模型</li>
+            <li> 根据查询复杂度动态选择模型</li>
           </ul>
         </TipBox>
       </section>
@@ -275,10 +275,10 @@ const CostOptimizationPage = () => {
             <h4 className="font-semibold mb-3">语义缓存（Semantic Caching）</h4>
             <p className="mb-3">缓存相似的查询，即使文本不完全相同：</p>
             <ul className="text-sm space-y-1 opacity-80">
-              <li>• 将查询转换为向量</li>
-              <li>• 计算与缓存查询的余弦相似度</li>
-              <li>• 相似度 &gt; 0.95 则返回缓存结果</li>
-              <li>• 节省率：30-70%</li>
+              <li> 将查询转换为向量</li>
+              <li> 计算与缓存查询的余弦相似度</li>
+              <li> 相似度 &gt; 0.95 则返回缓存结果</li>
+              <li> 节省率：30-70%</li>
             </ul>
           </div>
 
@@ -286,10 +286,10 @@ const CostOptimizationPage = () => {
             <h4 className="font-semibold mb-3">精确缓存（Exact Caching）</h4>
             <p className="mb-3">完全相同的查询直接返回缓存：</p>
             <ul className="text-sm space-y-1 opacity-80">
-              <li>• 使用 Redis 或内存缓存</li>
-              <li>• 设置合理的过期时间（如 1 小时）</li>
-              <li>• 适用于重复率高的场景</li>
-              <li>• 节省率：50-90%</li>
+              <li> 使用 Redis 或内存缓存</li>
+              <li> 设置合理的过期时间（如 1 小时）</li>
+              <li> 适用于重复率高的场景</li>
+              <li> 节省率：50-90%</li>
             </ul>
           </div>
 
@@ -297,10 +297,10 @@ const CostOptimizationPage = () => {
             <h4 className="font-semibold mb-3">向量缓存</h4>
             <p className="mb-3">缓存嵌入向量，避免重复计算：</p>
             <ul className="text-sm space-y-1 opacity-80">
-              <li>• 缓存文档和查询的嵌入向量</li>
-              <li>• 使用文本哈希作为缓存键</li>
-              <li>• 节省嵌入模型 API 调用成本</li>
-              <li>• 节省率：80-95%（文本重复场景）</li>
+              <li> 缓存文档和查询的嵌入向量</li>
+              <li> 使用文本哈希作为缓存键</li>
+              <li> 节省嵌入模型 API 调用成本</li>
+              <li> 节省率：80-95%（文本重复场景）</li>
             </ul>
           </div>
         </div>

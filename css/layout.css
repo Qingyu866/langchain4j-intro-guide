@@ -39,7 +39,7 @@
 .sidebar-logo-icon {
   width: 2.5rem;
   height: 2.5rem;
-  background: linear-gradient(135deg, var(--color-indigo-600), var(--color-purple-600));
+  background-color: var(--color-indigo-600);
   border-radius: var(--radius-lg);
   display: flex;
   align-items: center;

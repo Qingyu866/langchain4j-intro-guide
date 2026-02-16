@@ -627,12 +627,12 @@ volumes:
         </div>
       </section>
 
-      <div className="from-indigo-600 to-purple-600 rounded-lg p-8 text-white">
-        <h2 className="text-2xl font-bold mb-4">🎯 项目总结</h2>
+      <div className="bg-gray-50 border border-gray-200 rounded-lg p-8">
+        <h2 className="text-2xl font-bold mb-4 text-gray-900">🎯 项目总结</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="border border-white/20 rounded-lg p-5">
-            <div className="text-2xl mb-3">🔌 核心技术</div>
-            <ul className="text-sm space-y-1 list-disc list-inside">
+          <div className="border border-gray-200 rounded-lg p-5">
+            <div className="text-2xl mb-3 text-gray-800">🔌 核心技术</div>
+            <ul className="text-sm space-y-1 list-disc list-inside text-gray-700">
               <li>WebSocket实时双向通信</li>
               <li>STOMP消息协议</li>
               <li>Spring Boot 3.2.x</li>
@@ -641,9 +641,9 @@ volumes:
               <li>LangChain4j AI集成</li>
             </ul>
           </div>
-          <div className="border border-white/20 rounded-lg p-5">
-            <div className="text-2xl mb-3">✨ 关键功能</div>
-            <ul className="text-sm space-y-1 list-disc list-inside">
+          <div className="border border-gray-200 rounded-lg p-5">
+            <div className="text-2xl mb-3 text-gray-800">✨ 关键功能</div>
+            <ul className="text-sm space-y-1 list-disc list-inside text-gray-700">
               <li>多用户实时群聊</li>
               <li>消息持久化和历史记录</li>
               <li>在线用户状态管理</li>
@@ -652,9 +652,9 @@ volumes:
               <li>多Bot协作</li>
             </ul>
           </div>
-          <div className="border border-white/20 rounded-lg p-5">
-            <div className="text-2xl mb-3">🚀 最佳实践</div>
-            <ul className="text-sm space-y-1 list-disc list-inside">
+          <div className="border border-gray-200 rounded-lg p-5">
+            <div className="text-2xl mb-3 text-gray-800">🚀 最佳实践</div>
+            <ul className="text-sm space-y-1 list-disc list-inside text-gray-700">
               <li>异步消息处理</li>
               <li>批量数据库操作</li>
               <li>分页查询优化</li>
@@ -664,9 +664,9 @@ volumes:
             </ul>
           </div>
         </div>
-        <div className="mt-6 pt-6 border-t border-white/20">
-          <p className="text-lg mb-2">📚 <strong>下一章：最佳实践</strong></p>
-          <p className="text-sm">学习LangChain4j开发的最佳实践，包括代码组织、错误处理、性能优化等</p>
+        <div className="mt-6 pt-6 border-t border-gray-200">
+          <p className="text-lg mb-2 text-gray-900">📚 <strong>下一章：最佳实践</strong></p>
+          <p className="text-sm text-gray-700">学习LangChain4j开发的最佳实践，包括代码组织、错误处理、性能优化等</p>
         </div>
       </div>
     </Layout>

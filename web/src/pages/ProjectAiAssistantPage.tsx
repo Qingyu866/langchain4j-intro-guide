@@ -187,12 +187,12 @@ public class AgentService {
           <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-200">
             <div className="text-xl font-semibold text-gray-900 mb-3">组件结构</div>
             <ul className="text-gray-700 text-sm space-y-1">
-              <li>• src/pages/ - 页面组件</li>
-              <li>• src/components/ - 可复用组件</li>
-              <li>• src/services/ - API服务层</li>
-              <li>• src/hooks/ - 自定义Hooks</li>
-              <li>• src/types/ - TypeScript类型定义</li>
-              <li>• src/utils/ - 工具函数</li>
+              <li> src/pages/ - 页面组件</li>
+              <li> src/components/ - 可复用组件</li>
+              <li> src/services/ - API服务层</li>
+              <li> src/hooks/ - 自定义Hooks</li>
+              <li> src/types/ - TypeScript类型定义</li>
+              <li> src/utils/ - 工具函数</li>
             </ul>
           </div>
         </div>
@@ -204,23 +204,23 @@ public class AgentService {
           <div>
             <h4 className="font-semibold mb-2">核心功能</h4>
             <ul className="space-y-1 text-sm text-gray-700">
-              <li>• ✅ 智能Agent系统（自动工具选择 + AI Service）</li>
-              <li>• ✅ 工具集成（内置多种工具 + 自定义工具支持）</li>
-              <li>• ✅ 流式输出（SSE实时推送）</li>
-              <li>• ✅ RAG集成（调用rag-retriever）</li>
-              <li>• ✅ 多模态支持（图像、音频处理）</li>
-              <li>• ✅ 持久化对话（ContextManager + UserPreferences）</li>
+              <li> ✅ 智能Agent系统（自动工具选择 + AI Service）</li>
+              <li> ✅ 工具集成（内置多种工具 + 自定义工具支持）</li>
+              <li> ✅ 流式输出（SSE实时推送）</li>
+              <li> ✅ RAG集成（调用rag-retriever）</li>
+              <li> ✅ 多模态支持（图像、音频处理）</li>
+              <li> ✅ 持久化对话（ContextManager + UserPreferences）</li>
             </ul>
           </div>
           <div>
             <h4 className="font-semibold mb-2">技术栈</h4>
             <ul className="space-y-1 text-sm text-gray-700">
-              <li>• 后端：Spring Boot 3.2.x</li>
-              <li>• AI框架：LangChain4j</li>
-              <li>• 前端：React + TypeScript</li>
-              <li>• 数据库：PostgreSQL + PGVector</li>
-              <li>• 容器化：Docker + Compose</li>
-              <li>• 监控：Prometheus + Grafana</li>
+              <li> 后端：Spring Boot 3.2.x</li>
+              <li> AI框架：LangChain4j</li>
+              <li> 前端：React + TypeScript</li>
+              <li> 数据库：PostgreSQL + PGVector</li>
+              <li> 容器化：Docker + Compose</li>
+              <li> 监控：Prometheus + Grafana</li>
             </ul>
           </div>
         </div>

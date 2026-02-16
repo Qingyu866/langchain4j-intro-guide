@@ -27,8 +27,8 @@
 }
 
 .page-tag.purple {
-  background-color: var(--color-purple-100);
-  color: var(--color-purple-700);
+  background-color: var(--color-blue-100);
+  color: var(--color-blue-700);
 }
 
 .page-tag.green {

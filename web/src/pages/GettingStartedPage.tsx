@@ -121,16 +121,16 @@ public class ChatController {
           <div className="card-blue">
             <h4 className="card-title-blue">Java 环境</h4>
             <ul className="list-styled list-blue">
-              <li>• JDK 17 或更高</li>
-              <li>• Maven 3.8.x 或 Gradle 8.x</li>
-              <li>• IDE（IntelliJ IDEA、Eclipse、VS Code 等）</li>
+              <li> JDK 17 或更高</li>
+              <li> Maven 3.8.x 或 Gradle 8.x</li>
+              <li> IDE（IntelliJ IDEA、Eclipse、VS Code 等）</li>
             </ul>
           </div>
           <div className="card-green">
             <h4 className="card-title-green">API Key</h4>
             <ul className="list-styled list-green">
-              <li>• OpenAI API Key（推荐用于快速开始）</li>
-              <li>• 或者 Huggingface.co Access Token（免费替代方案）</li>
+              <li> OpenAI API Key（推荐用于快速开始）</li>
+              <li> 或者 Huggingface.co Access Token（免费替代方案）</li>
               <li>获取方式：<a href="https://platform.openai.com/api-keys" target="_blank" rel="noopener noreferrer" className="link-external">OpenAI</a></li>
             </ul>
           </div>

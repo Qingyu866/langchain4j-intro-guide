@@ -126,36 +126,36 @@
                         <div class="text-3xl mb-3">⚡</div>
                         <h3 class="text-lg font-semibold text-gray-900 mb-2">响应速度</h3>
                         <ul class="text-gray-600 text-sm space-y-1">
-                            <li>• 连接池优化</li>
-                            <li>• 缓存策略</li>
-                            <li>• 批量处理</li>
+                            <li> 连接池优化</li>
+                            <li> 缓存策略</li>
+                            <li> 批量处理</li>
                         </ul>
                     </div>
                     <div class="bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-100 rounded-xl p-6">
                         <div class="text-3xl mb-3">💾</div>
                         <h3 class="text-lg font-semibold text-gray-900 mb-2">资源利用</h3>
                         <ul class="text-gray-600 text-sm space-y-1">
-                            <li>• 内存管理</li>
-                            <li>• 并发控制</li>
-                            <li>• 资源回收</li>
+                            <li> 内存管理</li>
+                            <li> 并发控制</li>
+                            <li> 资源回收</li>
                         </ul>
                     </div>
                     <div class="bg-gradient-to-br from-purple-50 to-pink-50 border border-purple-100 rounded-xl p-6">
                         <div class="text-3xl mb-3">💰</div>
                         <h3 class="text-lg font-semibold text-gray-900 mb-2">成本控制</h3>
                         <ul class="text-gray-600 text-sm space-y-1">
-                            <li>• Token优化</li>
-                            <li>• 模型选择</li>
-                            <li>• 请求合并</li>
+                            <li> Token优化</li>
+                            <li> 模型选择</li>
+                            <li> 请求合并</li>
                         </ul>
                     </div>
                     <div class="bg-gradient-to-br from-amber-50 to-orange-50 border border-amber-100 rounded-xl p-6">
                         <div class="text-3xl mb-3">📊</div>
                         <h3 class="text-lg font-semibold text-gray-900 mb-2">监控分析</h3>
                         <ul class="text-gray-600 text-sm space-y-1">
-                            <li>• 性能指标</li>
-                            <li>• 瓶颈识别</li>
-                            <li>• 调优工具</li>
+                            <li> 性能指标</li>
+                            <li> 瓶颈识别</li>
+                            <li> 调优工具</li>
                         </ul>
                     </div>
                 </div>
@@ -167,11 +167,11 @@
                     <div>
                         <h3 class="font-bold text-gray-900 mb-2">学习目标</h3>
                         <ul class="text-gray-700 space-y-2 text-sm">
-                            <li>• 掌握LangChain4j应用的性能优化技巧</li>
-                            <li>• 学习连接池、缓存、批量处理等优化策略</li>
-                            <li>• 理解Token优化和成本控制方法</li>
-                            <li>• 掌握监控、分析和调优工具的使用</li>
-                            <li>• 学习生产环境性能优化最佳实践</li>
+                            <li> 掌握LangChain4j应用的性能优化技巧</li>
+                            <li> 学习连接池、缓存、批量处理等优化策略</li>
+                            <li> 理解Token优化和成本控制方法</li>
+                            <li> 掌握监控、分析和调优工具的使用</li>
+                            <li> 学习生产环境性能优化最佳实践</li>
                         </ul>
                     </div>
                 </div>
@@ -285,10 +285,10 @@ public class HttpClientPoolConfig {
                         <span class="text-green-600">✅</span> 连接池优化要点
                     </h4>
                     <ul class="text-gray-700 space-y-2 text-sm">
-                        <li>• <strong>连接复用</strong>：保持连接活跃，避免频繁创建销毁</li>
-                        <li>• <strong>合理池大小</strong>：maxIdleConnections 根据并发量设置</li>
-                        <li>• <strong>Keep-alive</strong>：设置合理的keep-alive时间</li>
-                        <li>• <strong>超时控制</strong>：connectTimeout、readTimeout 要合理设置</li>
+                        <li> <strong>连接复用</strong>：保持连接活跃，避免频繁创建销毁</li>
+                        <li> <strong>合理池大小</strong>：maxIdleConnections 根据并发量设置</li>
+                        <li> <strong>Keep-alive</strong>：设置合理的keep-alive时间</li>
+                        <li> <strong>超时控制</strong>：connectTimeout、readTimeout 要合理设置</li>
                     </ul>
                 </div>
             </section>
@@ -392,11 +392,11 @@ public class MultiLevelCacheService {
                         <span class="text-blue-600">💡</span> 缓存最佳实践
                     </h4>
                     <ul class="text-gray-700 space-y-2 text-sm">
-                        <li>• <strong>多级缓存</strong>：L1内存缓存→ L2分布式缓存→ L3数据库</li>
-                        <li>• <strong>缓存预热</strong>：应用启动时加载热点数据</li>
-                        <li>• <strong>TTL策略</strong>：根据数据更新频率设置合理的过期时间</li>
-                        <li>• <strong>缓存穿透保护</strong>：对不存在的key也缓存空值</li>
-                        <li>• <strong>缓存雪崩保护</strong>：TTL增加随机抖动，避免同时失效</li>
+                        <li> <strong>多级缓存</strong>：L1内存缓存→ L2分布式缓存→ L3数据库</li>
+                        <li> <strong>缓存预热</strong>：应用启动时加载热点数据</li>
+                        <li> <strong>TTL策略</strong>：根据数据更新频率设置合理的过期时间</li>
+                        <li> <strong>缓存穿透保护</strong>：对不存在的key也缓存空值</li>
+                        <li> <strong>缓存雪崩保护</strong>：TTL增加随机抖动，避免同时失效</li>
                     </ul>
                 </div>
             </section>
@@ -757,54 +757,54 @@ public class TokenOptimizer {
                             <div class="text-2xl mb-3">⚡</div>
                             <div class="font-semibold mb-2">响应速度</div>
                             <ul class="text-sm space-y-1">
-                                <li>• HTTP连接池</li>
-                                <li>• 并发处理</li>
-                                <li>• 重试机制</li>
+                                <li> HTTP连接池</li>
+                                <li> 并发处理</li>
+                                <li> 重试机制</li>
                             </ul>
                         </div>
                         <div class="border border-gray-200 rounded-lg p-5 hover:border-indigo-300 transition-colors">
                             <div class="text-2xl mb-3">💾</div>
                             <div class="font-semibold mb-2">资源利用</div>
                             <ul class="text-sm space-y-1">
-                                <li>• 多级缓存</li>
-                                <li>• 内存管理</li>
-                                <li>• 资源回收</li>
+                                <li> 多级缓存</li>
+                                <li> 内存管理</li>
+                                <li> 资源回收</li>
                             </ul>
                         </div>
                         <div class="border border-gray-200 rounded-lg p-5 hover:border-indigo-300 transition-colors">
                             <div class="text-2xl mb-3">💰</div>
                             <div class="font-semibold mb-2">成本控制</div>
                             <ul class="text-sm space-y-1">
-                                <li>• Token优化</li>
-                                <li>• 模型选择</li>
-                                <li>• 缓存利用</li>
+                                <li> Token优化</li>
+                                <li> 模型选择</li>
+                                <li> 缓存利用</li>
                             </ul>
                         </div>
                         <div class="border border-gray-200 rounded-lg p-5 hover:border-indigo-300 transition-colors">
                             <div class="text-2xl mb-3">📊</div>
                             <div class="font-semibold mb-2">批量处理</div>
                             <ul class="text-sm space-y-1">
-                                <li>• Embedding批量</li>
-                                <li>• 并发执行</li>
-                                <li>• 错误重试</li>
+                                <li> Embedding批量</li>
+                                <li> 并发执行</li>
+                                <li> 错误重试</li>
                             </ul>
                         </div>
                         <div class="border border-gray-200 rounded-lg p-5 hover:border-indigo-300 transition-colors">
                             <div class="text-2xl mb-3">📈</div>
                             <div class="font-semibold mb-2">监控分析</div>
                             <ul class="text-sm space-y-1">
-                                <li>• 性能指标</li>
-                                <li>• 瓶颈识别</li>
-                                <li>• 调优工具</li>
+                                <li> 性能指标</li>
+                                <li> 瓶颈识别</li>
+                                <li> 调优工具</li>
                             </ul>
                         </div>
                         <div class="border border-gray-200 rounded-lg p-5 hover:border-indigo-300 transition-colors">
                             <div class="text-2xl mb-3">🔧</div>
                             <div class="font-semibold mb-2">调优工具</div>
                             <ul class="text-sm space-y-1">
-                                <li>• 性能分析器</li>
-                                <li>• Profiling工具</li>
-                                <li>• 日志分析</li>
+                                <li> 性能分析器</li>
+                                <li> Profiling工具</li>
+                                <li> 日志分析</li>
                             </ul>
                         </div>
                     </div>

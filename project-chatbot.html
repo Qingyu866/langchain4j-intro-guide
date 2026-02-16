@@ -149,12 +149,12 @@
                     <div>
                         <h3 class="font-bold text-gray-900 mb-2">学习目标</h3>
                         <ul class="text-gray-700 space-y-2 text-sm">
-                            <li>• 掌握WebSocket实时通信的完整实现</li>
-                            <li>• 理解多用户聊天室的状态管理</li>
-                            <li>• 学习消息持久化和历史记录查询</li>
-                            <li>• 实现用户在线状态和实时通知</li>
-                            <li>• 集成LangChain4j增强对话能力</li>
-                            <li>• 实现多Bot协作的聊天场景</li>
+                            <li> 掌握WebSocket实时通信的完整实现</li>
+                            <li> 理解多用户聊天室的状态管理</li>
+                            <li> 学习消息持久化和历史记录查询</li>
+                            <li> 实现用户在线状态和实时通知</li>
+                            <li> 集成LangChain4j增强对话能力</li>
+                            <li> 实现多Bot协作的聊天场景</li>
                         </ul>
                     </div>
                 </div>
@@ -213,11 +213,11 @@
                             <span class="text-indigo-600">🔌</span> 核心组件
                         </h4>
                         <ul class="text-gray-700 space-y-2 text-sm">
-                            <li>• <strong>ChatWebSocketHandler</strong> - WebSocket消息处理</li>
-                            <li>• <strong>ChatService</strong> - 聊天业务逻辑</li>
-                            <li>• <strong>RoomManager</strong> - 聊天室管理</li>
-                            <li>• <strong>OnlineUserService</strong> - 在线用户管理</li>
-                            <li>• <strong>MessageRepository</strong> - 消息持久化</li>
+                            <li> <strong>ChatWebSocketHandler</strong> - WebSocket消息处理</li>
+                            <li> <strong>ChatService</strong> - 聊天业务逻辑</li>
+                            <li> <strong>RoomManager</strong> - 聊天室管理</li>
+                            <li> <strong>OnlineUserService</strong> - 在线用户管理</li>
+                            <li> <strong>MessageRepository</strong> - 消息持久化</li>
                         </ul>
                     </div>
                     <div class="bg-white border border-gray-200 rounded-lg p-5">
@@ -225,11 +225,11 @@
                             <span class="text-green-600">🤖</span> AI增强功能
                         </h4>
                         <ul class="text-gray-700 space-y-2 text-sm">
-                            <li>• <strong>ChatAgent</strong> - 智能对话Agent</li>
-                            <li>• <strong>MultiBotCoordinator</strong> - 多Bot协调</li>
-                            <li>• <strong>ContextMemory</strong> - 对话上下文记忆</li>
-                            <li>• <strong>ToolIntegration</strong> - 工具调用支持</li>
-                            <li>• <strong>RAGIntegration</strong> - 知识库检索</li>
+                            <li> <strong>ChatAgent</strong> - 智能对话Agent</li>
+                            <li> <strong>MultiBotCoordinator</strong> - 多Bot协调</li>
+                            <li> <strong>ContextMemory</strong> - 对话上下文记忆</li>
+                            <li> <strong>ToolIntegration</strong> - 工具调用支持</li>
+                            <li> <strong>RAGIntegration</strong> - 知识库检索</li>
                         </ul>
                     </div>
                 </div>
@@ -1902,11 +1902,11 @@ ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar app.jar"]
                         <span class="text-blue-600">💡</span> WebSocket性能优化
                     </h3>
                     <ul class="text-gray-700 space-y-3 text-sm">
-                        <li>• <strong>连接池管理</strong>：使用连接池避免频繁创建销毁连接</li>
-                        <li>• <strong>心跳检测</strong>：定期发送心跳包保持连接活跃</li>
-                        <li>• <strong>消息压缩</strong>：对大消息启用GZIP压缩减少传输量</li>
-                        <li>• <strong>断线重连</strong>：实现自动重连机制提升用户体验</li>
-                        <li>• <strong>消息队列</strong>：高并发场景下使用消息队列缓冲</li>
+                        <li> <strong>连接池管理</strong>：使用连接池避免频繁创建销毁连接</li>
+                        <li> <strong>心跳检测</strong>：定期发送心跳包保持连接活跃</li>
+                        <li> <strong>消息压缩</strong>：对大消息启用GZIP压缩减少传输量</li>
+                        <li> <strong>断线重连</strong>：实现自动重连机制提升用户体验</li>
+                        <li> <strong>消息队列</strong>：高并发场景下使用消息队列缓冲</li>
                     </ul>
                 </div>
 
@@ -1915,11 +1915,11 @@ ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar app.jar"]
                         <span class="text-green-600">✅</span> 消息持久化策略
                     </h3>
                     <ul class="text-gray-700 space-y-3 text-sm">
-                        <li>• <strong>批量插入</strong>：使用JPA的saveAll批量插入提升性能</li>
-                        <li>• <strong>异步持久化</strong>：先广播消息再异步保存，减少延迟</li>
-                        <li>• <strong>分页查询</strong>：历史消息使用分页避免一次性加载过多数据</li>
-                        <li>• <strong>消息清理</strong>：定期清理过期历史消息释放存储空间</li>
-                        <li>• <strong>索引优化</strong>：为常用查询字段创建合适的索引</li>
+                        <li> <strong>批量插入</strong>：使用JPA的saveAll批量插入提升性能</li>
+                        <li> <strong>异步持久化</strong>：先广播消息再异步保存，减少延迟</li>
+                        <li> <strong>分页查询</strong>：历史消息使用分页避免一次性加载过多数据</li>
+                        <li> <strong>消息清理</strong>：定期清理过期历史消息释放存储空间</li>
+                        <li> <strong>索引优化</strong>：为常用查询字段创建合适的索引</li>
                     </ul>
                 </div>
 
@@ -1928,11 +1928,11 @@ ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar app.jar"]
                         <span class="text-amber-600">⚠️</span> 安全注意事项
                     </h3>
                     <ul class="text-gray-700 space-y-3 text-sm">
-                        <li>• <strong>CSRF防护</strong>：启用Spring Security的CSRF防护</li>
-                        <li>• <strong>CORS配置</strong>：限制允许的跨域来源</li>
-                        <li>• <strong>消息过滤</strong>：过滤敏感词汇和恶意内容</li>
-                        <li>• <strong>速率限制</strong>：限制用户发送消息频率</li>
-                        <li>• <strong>内容审核</strong>：集成内容审核服务过滤不当内容</li>
+                        <li> <strong>CSRF防护</strong>：启用Spring Security的CSRF防护</li>
+                        <li> <strong>CORS配置</strong>：限制允许的跨域来源</li>
+                        <li> <strong>消息过滤</strong>：过滤敏感词汇和恶意内容</li>
+                        <li> <strong>速率限制</strong>：限制用户发送消息频率</li>
+                        <li> <strong>内容审核</strong>：集成内容审核服务过滤不当内容</li>
                     </ul>
                 </div>
 
@@ -2125,34 +2125,34 @@ class ChatServiceTest {
                         <div class="border border-gray-200 rounded-lg p-5 hover:border-indigo-300 transition-colors">
                             <div class="text-2xl mb-3">🔌 核心技术</div>
                             <ul class="text-sm space-y-1">
-                                <li>• WebSocket实时双向通信</li>
-                                <li>• STOMP消息协议</li>
-                                <li>• Spring Boot 3.2.x</li>
-                                <li>• React 18 + TypeScript</li>
-                                <li>• PostgreSQL + Redis</li>
-                                <li>• LangChain4j AI集成</li>
+                                <li> WebSocket实时双向通信</li>
+                                <li> STOMP消息协议</li>
+                                <li> Spring Boot 3.2.x</li>
+                                <li> React 18 + TypeScript</li>
+                                <li> PostgreSQL + Redis</li>
+                                <li> LangChain4j AI集成</li>
                             </ul>
                         </div>
                         <div class="border border-gray-200 rounded-lg p-5 hover:border-indigo-300 transition-colors">
                             <div class="text-2xl mb-3">✨ 关键功能</div>
                             <ul class="text-sm space-y-1">
-                                <li>• 多用户实时群聊</li>
-                                <li>• 消息持久化和历史记录</li>
-                                <li>• 在线用户状态管理</li>
-                                <li>• AI智能对话助手</li>
-                                <li>• RAG知识库集成</li>
-                                <li>• 多Bot协作</li>
+                                <li> 多用户实时群聊</li>
+                                <li> 消息持久化和历史记录</li>
+                                <li> 在线用户状态管理</li>
+                                <li> AI智能对话助手</li>
+                                <li> RAG知识库集成</li>
+                                <li> 多Bot协作</li>
                             </ul>
                         </div>
                         <div class="border border-gray-200 rounded-lg p-5 hover:border-indigo-300 transition-colors">
                             <div class="text-2xl mb-3">🚀 最佳实践</div>
                             <ul class="text-sm space-y-1">
-                                <li>• 异步消息处理</li>
-                                <li>• 批量数据库操作</li>
-                                <li>• 分页查询优化</li>
-                                <li>• Docker容器化部署</li>
-                                <li>• 健康检查和监控</li>
-                                <li>• 安全防护机制</li>
+                                <li> 异步消息处理</li>
+                                <li> 批量数据库操作</li>
+                                <li> 分页查询优化</li>
+                                <li> Docker容器化部署</li>
+                                <li> 健康检查和监控</li>
+                                <li> 安全防护机制</li>
                             </ul>
                         </div>
                     </div>

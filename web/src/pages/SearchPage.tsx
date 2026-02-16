@@ -248,9 +248,9 @@ results.forEach((query, docs) -> {
         <h3 className="subsection-title">4.2 结果融合</h3>
         <p className="paragraph">将两种检索结果合并并重新排序：</p>
 
-        <div className="from-indigo-600 to-purple-600 rounded-xl p-6 mb-8 text-white">
-          <h4 className="text-xl font-bold mb-2">融合策略</h4>
-          <ul className="space-y-3" style={{color: 'rgba(255,255,255,0.9)'}}>
+        <div className="bg-blue-50 border border-blue-200 rounded-xl p-6 mb-8">
+          <h4 className="text-xl font-bold mb-2 text-blue-900">融合策略</h4>
+          <ul className="space-y-3 text-blue-800">
             <li><strong>加权平均</strong>：vector_results * 0.6 + keyword_results * 0.4</li>
             <li><strong>倒排融合（RRF）</strong>：vector_rank + keyword_rank</li>
             <li><strong>重排序</strong>：使用 Cross-Encoder 重新排序</li>
@@ -295,19 +295,19 @@ results.forEach((query, docs) -> {
         </div>
       </section>
 
-      <div className="from-indigo-600 to-purple-600 rounded-xl p-8 text-white">
-        <h3 className="text-2xl font-bold mb-4">本节小结</h3>
-        <p className="mb-4">本节完整介绍了 LangChain4j 的向量检索功能，包括：</p>
-        <ul className="list-disc list-inside space-y-2 mb-6" style={{color: 'rgba(255,255,255,0.9)'}}>
+      <div className="bg-gray-50 border border-gray-200 rounded-xl p-8">
+        <h3 className="text-2xl font-bold mb-4 text-gray-900">本节小结</h3>
+        <p className="mb-4 text-gray-700">本节完整介绍了 LangChain4j 的向量检索功能，包括：</p>
+        <ul className="list-disc list-inside space-y-2 mb-6 text-gray-700">
           <li><strong>向量检索概述</strong>：向量嵌入原理、相似度计算、返回结果</li>
           <li><strong>EmbeddingStore 接口</strong>：核心 API 方法、支持的向量数据库</li>
           <li><strong>向量检索实现</strong>：基础检索、批量检索、代码示例</li>
           <li><strong>混合检索</strong>：向量检索 + 关键词检索、结果融合策略</li>
           <li><strong>最佳实践</strong>：向量优化、性能优化、检索优化</li>
         </ul>
-        <div className="border-t border-indigo-400 pt-6">
-          <p className="text-sm opacity-80 mb-2">下一步</p>
-          <a href="/chat-listeners" className="inline-flex items-center gap-2 text-white hover:text-indigo-200 transition-colors">
+        <div className="border-t border-gray-200 pt-6">
+          <p className="text-sm text-gray-600 mb-2">下一步</p>
+          <a href="/chat-listeners" className="inline-flex items-center gap-2 text-indigo-600 hover:text-indigo-700 transition-colors">
             下一章：聊天监听器 →
           </a>
         </div>

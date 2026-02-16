@@ -1062,68 +1062,68 @@ jobs:
         </TipBox>
       </section>
 
-      <div className="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-lg p-8 text-white">
-        <h2 className="text-2xl font-bold mb-4">🎯 测试策略总结</h2>
+      <div className="bg-gray-50 border border-gray-200 rounded-lg p-8">
+        <h2 className="text-2xl font-bold mb-4 text-gray-900">🎯 测试策略总结</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div className="border border-white/20 rounded-lg p-5">
+          <div className="border border-gray-200 rounded-lg p-5">
             <div className="text-2xl mb-3">🧪</div>
-            <div className="font-semibold mb-2">单元测试</div>
-            <ul className="text-sm space-y-1 opacity-90 list-disc list-inside">
+            <div className="font-semibold mb-2 text-gray-800">单元测试</div>
+            <ul className="text-sm space-y-1 text-gray-700 list-disc list-inside">
               <li>JUnit 5</li>
               <li>Mockito</li>
               <li>Mock AI模型</li>
             </ul>
           </div>
-          <div className="border border-white/20 rounded-lg p-5">
+          <div className="border border-gray-200 rounded-lg p-5">
             <div className="text-2xl mb-3">🔗</div>
-            <div className="font-semibold mb-2">集成测试</div>
-            <ul className="text-sm space-y-1 opacity-90 list-disc list-inside">
+            <div className="font-semibold mb-2 text-gray-800">集成测试</div>
+            <ul className="text-sm space-y-1 text-gray-700 list-disc list-inside">
               <li>Spring Boot Test</li>
               <li>Testcontainers</li>
               <li>真实数据库</li>
             </ul>
           </div>
-          <div className="border border-white/20 rounded-lg p-5">
+          <div className="border border-gray-200 rounded-lg p-5">
             <div className="text-2xl mb-3">🎯</div>
-            <div className="font-semibold mb-2">E2E测试</div>
-            <ul className="text-sm space-y-1 opacity-90 list-disc list-inside">
+            <div className="font-semibold mb-2 text-gray-800">E2E测试</div>
+            <ul className="text-sm space-y-1 text-gray-700 list-disc list-inside">
               <li>REST Assured</li>
               <li>Playwright</li>
               <li>完整流程</li>
             </ul>
           </div>
-          <div className="border border-white/20 rounded-lg p-5">
+          <div className="border border-gray-200 rounded-lg p-5">
             <div className="text-2xl mb-3">📊</div>
-            <div className="font-semibold mb-2">覆盖率</div>
-            <ul className="text-sm space-y-1 opacity-90 list-disc list-inside">
+            <div className="font-semibold mb-2 text-gray-800">覆盖率</div>
+            <ul className="text-sm space-y-1 text-gray-700 list-disc list-inside">
               <li>JaCoCo</li>
               <li>SonarQube</li>
               <li>Codecov</li>
             </ul>
           </div>
-          <div className="border border-white/20 rounded-lg p-5">
+          <div className="border border-gray-200 rounded-lg p-5">
             <div className="text-2xl mb-3">🔄</div>
-            <div className="font-semibold mb-2">CI/CD</div>
-            <ul className="text-sm space-y-1 opacity-90 list-disc list-inside">
+            <div className="font-semibold mb-2 text-gray-800">CI/CD</div>
+            <ul className="text-sm space-y-1 text-gray-700 list-disc list-inside">
               <li>GitHub Actions</li>
               <li>自动化测试</li>
               <li>Docker集成</li>
             </ul>
           </div>
-          <div className="border border-white/20 rounded-lg p-5">
+          <div className="border border-gray-200 rounded-lg p-5">
             <div className="text-2xl mb-3">🔒</div>
-            <div className="font-semibold mb-2">安全测试</div>
-            <ul className="text-sm space-y-1 opacity-90 list-disc list-inside">
+            <div className="font-semibold mb-2 text-gray-800">安全测试</div>
+            <ul className="text-sm space-y-1 text-gray-700 list-disc list-inside">
               <li>OWASP</li>
               <li>Trivy</li>
               <li>依赖扫描</li>
             </ul>
           </div>
         </div>
-        <div className="mt-6 pt-6 border-t border-white/20">
-          <p className="text-lg mb-2">📚 <strong>下一章：性能优化</strong></p>
-          <p className="text-sm opacity-90">学习LangChain4j应用的性能优化技巧，包括缓存策略、异步处理、批量操作等</p>
-          <a href="/performance-tuning" className="inline-block mt-3 px-6 py-2 bg-white text-indigo-600 rounded-lg font-medium hover:bg-gray-100 transition-colors">
+        <div className="mt-6 pt-6 border-t border-gray-200">
+          <p className="text-lg mb-2 text-gray-900">📚 <strong>下一章：性能优化</strong></p>
+          <p className="text-sm text-gray-700">学习LangChain4j应用的性能优化技巧，包括缓存策略、异步处理、批量操作等</p>
+          <a href="/performance-tuning" className="inline-block mt-3 px-6 py-2 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition-colors">
             继续学习 →
           </a>
         </div>

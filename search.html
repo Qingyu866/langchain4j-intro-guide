@@ -147,36 +147,36 @@
                             <h4 class="font-semibold text-blue-800 mb-2">向量嵌入</h4>
                             <p class="text-blue-700 text-sm">将文本转换为高维向量表示</p>
                             <ul class="text-blue-600 text-xs mt-2 space-y-1">
-                                <li>• 相似语义的文本在向量空间中距离相近</li>
-                                <li>• 使用 Embedding 模型生成向量</li>
-                                <li>• 向量维度通常为 768-3072</li>
+                                <li> 相似语义的文本在向量空间中距离相近</li>
+                                <li> 使用 Embedding 模型生成向量</li>
+                                <li> 向量维度通常为 768-3072</li>
                             </ul>
                         </div>
                         <div class="bg-green-50 border border-green-200 rounded-lg p-4">
                             <h4 class="font-semibold text-green-800 mb-2">相似度计算</h4>
                             <p class="text-green-700 text-sm">计算查询向量与文档向量的相似度</p>
                             <ul class="text-green-600 text-xs mt-2 space-y-1">
-                                <li>• 余弦相似度：最常用，值域 [-1, 1]</li>
-                                <li>• 欧氏距离：向量空间直线距离</li>
-                                <li>• 点积：未归一化向量的余弦相似度</li>
+                                <li> 余弦相似度：最常用，值域 [-1, 1]</li>
+                                <li> 欧氏距离：向量空间直线距离</li>
+                                <li> 点积：未归一化向量的余弦相似度</li>
                             </ul>
                         </div>
                         <div class="bg-purple-50 border border-purple-200 rounded-lg p-4">
                             <h4 class="font-semibold text-purple-800 mb-2">返回结果</h4>
                             <p class="text-purple-700 text-sm">按相似度排序返回最相关的文档</p>
                             <ul class="text-purple-600 text-xs mt-2 space-y-1">
-                                <li>• 返回前 K 个最相似的结果</li>
-                                <li>• 包含文档内容和相似度分数</li>
-                                <li>• 可设置最小相似度阈值过滤</li>
+                                <li> 返回前 K 个最相似的结果</li>
+                                <li> 包含文档内容和相似度分数</li>
+                                <li> 可设置最小相似度阈值过滤</li>
                             </ul>
                         </div>
                         <div class="bg-orange-50 border border-orange-200 rounded-lg p-4">
                             <h4 class="font-semibold text-orange-800 mb-2">性能优势</h4>
                             <p class="text-orange-700 text-sm">相比关键词搜索的性能优势</p>
                             <ul class="text-orange-600 text-xs mt-2 space-y-1">
-                                <li>• 理解语义而非字面匹配</li>
-                                <li>• 处理多语言和多义词</li>
-                                <li>• 可扩展到百万级文档</li>
+                                <li> 理解语义而非字面匹配</li>
+                                <li> 处理多语言和多义词</li>
+                                <li> 可扩展到百万级文档</li>
                             </ul>
                         </div>
                     </div>
@@ -385,18 +385,18 @@ results.<span class="code-string">forEach</span>((query, docs) -&gt; {
                             <h4 class="font-semibold text-blue-800 mb-2">向量检索</h4>
                             <p class="text-blue-700 text-sm mb-2">基于语义相似度的搜索</p>
                             <ul class="text-blue-600 text-xs space-y-1">
-                                <li>• 优势：理解语义、处理多义词</li>
-                                <li>• 劣势：可能错过精确匹配</li>
-                                <li>• 使用：OpenAI embeddings、Cohere</li>
+                                <li> 优势：理解语义、处理多义词</li>
+                                <li> 劣势：可能错过精确匹配</li>
+                                <li> 使用：OpenAI embeddings、Cohere</li>
                             </ul>
                         </div>
                         <div class="bg-green-50 border border-green-200 rounded-lg p-4">
                             <h4 class="font-semibold text-green-800 mb-2">关键词检索</h4>
                             <p class="text-green-700 text-sm mb-2">基于 BM25 等算法的搜索</p>
                             <ul class="text-green-600 text-xs space-y-1">
-                                <li>• 优势：精确匹配、快速</li>
-                                <li>• 劣势：无法理解语义</li>
-                                <li>• 使用：Elasticsearch、Lucene</li>
+                                <li> 优势：精确匹配、快速</li>
+                                <li> 劣势：无法理解语义</li>
+                                <li> 使用：Elasticsearch、Lucene</li>
                             </ul>
                         </div>
                     </div>

@@ -252,36 +252,36 @@ public class FileSystemDocumentLoader {
             <h4 className="font-semibold text-gray-900 mb-2">固定大小分块</h4>
             <p className="text-sm text-gray-600 mb-3">按固定字符数或Token数分割</p>
             <ul className="space-y-1 text-gray-700 text-sm">
-              <li>• 简单快速</li>
-              <li>• 可能在句子中间切断</li>
-              <li>• 适合：代码、日志文件</li>
+              <li> 简单快速</li>
+              <li> 可能在句子中间切断</li>
+              <li> 适合：代码、日志文件</li>
             </ul>
           </div>
           <div className="border border-gray-200 rounded-lg p-5">
             <h4 className="font-semibold text-gray-900 mb-2">段落/章节分块</h4>
             <p className="text-sm text-gray-600 mb-3">按段落、章节等自然单位分割</p>
             <ul className="space-y-1 text-gray-700 text-sm">
-              <li>• 保持语义完整</li>
-              <li>• 适合：文章、文档</li>
-              <li>• 可能导致块大小不均</li>
+              <li> 保持语义完整</li>
+              <li> 适合：文章、文档</li>
+              <li> 可能导致块大小不均</li>
             </ul>
           </div>
           <div className="border border-gray-200 rounded-lg p-5">
             <h4 className="font-semibold text-gray-900 mb-2">重叠分块</h4>
             <p className="text-sm text-gray-600 mb-3">块之间有重叠部分</p>
             <ul className="space-y-1 text-gray-700 text-sm">
-              <li>• 减少信息丢失</li>
-              <li>• 提高检索召回率</li>
-              <li>• 增加Token消耗</li>
+              <li> 减少信息丢失</li>
+              <li> 提高检索召回率</li>
+              <li> 增加Token消耗</li>
             </ul>
           </div>
           <div className="border border-gray-200 rounded-lg p-5">
             <h4 className="font-semibold text-gray-900 mb-2">语义分块</h4>
             <p className="text-sm text-gray-600 mb-3">根据语义相似度智能分块</p>
             <ul className="space-y-1 text-gray-700 text-sm">
-              <li>• 质量最佳</li>
-              <li>• 需要额外计算</li>
-              <li>• 速度较慢</li>
+              <li> 质量最佳</li>
+              <li> 需要额外计算</li>
+              <li> 速度较慢</li>
             </ul>
           </div>
         </div>
@@ -1234,34 +1234,34 @@ public class MetadataFiltering {
           </div>
         </div>
 
-        <div className="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-lg p-8 text-white mt-8">
-          <h3 className="text-2xl font-bold mb-4">🎯 本章总结</h3>
+        <div className="bg-gray-50 border border-gray-200 rounded-lg p-8 mt-8">
+          <h3 className="text-2xl font-bold mb-4 text-gray-900">🎯 本章总结</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <h4 className="font-semibold mb-2">核心概念</h4>
-              <ul className="space-y-1 text-sm opacity-90">
-                <li>• RAG让LLM访问私有数据</li>
-                <li>• 文档加载→分块→Embedding→存储</li>
-                <li>• 检索→增强生成是核心流程</li>
-                <li>• LangChain4j提供统一的RAG API</li>
+              <h4 className="font-semibold mb-2 text-gray-800">核心概念</h4>
+              <ul className="space-y-1 text-sm text-gray-700">
+                <li> RAG让LLM访问私有数据</li>
+                <li> 文档加载→分块→Embedding→存储</li>
+                <li> 检索→增强生成是核心流程</li>
+                <li> LangChain4j提供统一的RAG API</li>
               </ul>
             </div>
             <div>
-              <h4 className="font-semibold mb-2">关键组件</h4>
-              <ul className="space-y-1 text-sm opacity-90">
-                <li>• DocumentLoader：加载文档</li>
-                <li>• DocumentSplitter：分割文本</li>
-                <li>• EmbeddingModel：生成向量</li>
-                <li>• EmbeddingStore：存储向量</li>
-                <li>• ContentRetriever：检索内容</li>
+              <h4 className="font-semibold mb-2 text-gray-800">关键组件</h4>
+              <ul className="space-y-1 text-sm text-gray-700">
+                <li> DocumentLoader：加载文档</li>
+                <li> DocumentSplitter：分割文本</li>
+                <li> EmbeddingModel：生成向量</li>
+                <li> EmbeddingStore：存储向量</li>
+                <li> ContentRetriever：检索内容</li>
               </ul>
             </div>
           </div>
-          <div className="mt-6 pt-6 border-t border-white/20">
-            <p className="text-sm opacity-90">
+          <div className="mt-6 pt-6 border-t border-gray-200">
+            <p className="text-sm text-gray-700">
               下一章我们将学习如何构建一个完整的RAG知识库项目，包括前端界面、后端API、部署配置等。
             </p>
-            <a href="/project-rag-kb" className="inline-block mt-3 px-6 py-2 bg-white text-indigo-600 rounded-lg font-medium hover:bg-gray-100 transition-colors">
+            <a href="/project-rag-kb" className="inline-block mt-3 px-6 py-2 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition-colors">
               继续学习 →
             </a>
           </div>

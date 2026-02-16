@@ -114,9 +114,9 @@ const TroubleshootingPage = () => {
           <div className="card card-green">
             <h4 className="font-semibold text-green-800 mb-2">可能原因</h4>
             <ul className="text-green-700 text-sm space-y-1">
-              <li>• 网络配置错误（代理、防火墙）</li>
-              <li>• API 服务端不可用</li>
-              <li>• 超时设置过短</li>
+              <li> 网络配置错误（代理、防火墙）</li>
+              <li> API 服务端不可用</li>
+              <li> 超时设置过短</li>
             </ul>
           </div>
         </div>

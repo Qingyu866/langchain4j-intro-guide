@@ -217,22 +217,22 @@
                         <div class="text-2xl mb-3">✅</div>
                         <h4 class="font-semibold text-gray-900 mb-2">RAG优势</h4>
                         <ul class="space-y-2 text-gray-700 text-sm">
-                            <li>• 访问私有/专有数据</li>
-                            <li>• 减少LLM幻觉（虚假信息）</li>
-                            <li>• 实时更新知识（无需重新训练）</li>
-                            <li>• 可解释性强（追溯回答来源）</li>
-                            <li>• 成本效益高（比微调便宜）</li>
+                            <li> 访问私有/专有数据</li>
+                            <li> 减少LLM幻觉（虚假信息）</li>
+                            <li> 实时更新知识（无需重新训练）</li>
+                            <li> 可解释性强（追溯回答来源）</li>
+                            <li> 成本效益高（比微调便宜）</li>
                         </ul>
                     </div>
                     <div class="border border-gray-200 rounded-lg p-5 hover:border-indigo-300 transition-colors">
                         <div class="text-2xl mb-3">⚠️</div>
                         <h4 class="font-semibold text-gray-900 mb-2">RAG挑战</h4>
                         <ul class="space-y-2 text-gray-700 text-sm">
-                            <li>• 检索质量直接影响回答质量</li>
-                            <li>• 上下文窗口限制（Token超限）</li>
-                            <li>• 分块策略需要调优</li>
-                            <li>• 延迟增加（检索+生成两步）</li>
-                            <li>• 复杂问题难以检索</li>
+                            <li> 检索质量直接影响回答质量</li>
+                            <li> 上下文窗口限制（Token超限）</li>
+                            <li> 分块策略需要调优</li>
+                            <li> 延迟增加（检索+生成两步）</li>
+                            <li> 复杂问题难以检索</li>
                         </ul>
                     </div>
                 </div>
@@ -369,36 +369,36 @@ public class FileSystemDocumentLoader {
                         <h4 class="font-semibold text-gray-900 mb-2">固定大小分块</h4>
                         <p class="text-sm text-gray-600 mb-3">按固定字符数或Token数分割</p>
                         <ul class="space-y-1 text-gray-700 text-sm">
-                            <li>• 简单快速</li>
-                            <li>• 可能在句子中间切断</li>
-                            <li>• 适合：代码、日志文件</li>
+                            <li> 简单快速</li>
+                            <li> 可能在句子中间切断</li>
+                            <li> 适合：代码、日志文件</li>
                         </ul>
                     </div>
                     <div class="border border-gray-200 rounded-lg p-5">
                         <h4 class="font-semibold text-gray-900 mb-2">段落/章节分块</h4>
                         <p class="text-sm text-gray-600 mb-3">按段落、章节等自然单位分割</p>
                         <ul class="space-y-1 text-gray-700 text-sm">
-                            <li>• 保持语义完整</li>
-                            <li>• 适合：文章、文档</li>
-                            <li>• 可能导致块大小不均</li>
+                            <li> 保持语义完整</li>
+                            <li> 适合：文章、文档</li>
+                            <li> 可能导致块大小不均</li>
                         </ul>
                     </div>
                     <div class="border border-gray-200 rounded-lg p-5">
                         <h4 class="font-semibold text-gray-900 mb-2">重叠分块</h4>
                         <p class="text-sm text-gray-600 mb-3">块之间有重叠部分</p>
                         <ul class="space-y-1 text-gray-700 text-sm">
-                            <li>• 减少信息丢失</li>
-                            <li>• 提高检索召回率</li>
-                            <li>• 增加Token消耗</li>
+                            <li> 减少信息丢失</li>
+                            <li> 提高检索召回率</li>
+                            <li> 增加Token消耗</li>
                         </ul>
                     </div>
                     <div class="border border-gray-200 rounded-lg p-5">
                         <h4 class="font-semibold text-gray-900 mb-2">语义分块</h4>
                         <p class="text-sm text-gray-600 mb-3">根据语义相似度智能分块</p>
                         <ul class="space-y-1 text-gray-700 text-sm">
-                            <li>• 质量最佳</li>
-                            <li>• 需要额外计算</li>
-                            <li>• 速度较慢</li>
+                            <li> 质量最佳</li>
+                            <li> 需要额外计算</li>
+                            <li> 速度较慢</li>
                         </ul>
                     </div>
                 </div>
@@ -1384,20 +1384,20 @@ public class MetadataFiltering {
                         <div>
                             <h4 class="font-semibold mb-2">核心概念</h4>
                             <ul class="space-y-1 text-sm opacity-90">
-                                <li>• RAG让LLM访问私有数据</li>
-                                <li>• 文档加载→分块→Embedding→存储</li>
-                                <li>• 检索→增强生成是核心流程</li>
-                                <li>• LangChain4j提供统一的RAG API</li>
+                                <li> RAG让LLM访问私有数据</li>
+                                <li> 文档加载→分块→Embedding→存储</li>
+                                <li> 检索→增强生成是核心流程</li>
+                                <li> LangChain4j提供统一的RAG API</li>
                             </ul>
                         </div>
                         <div>
                             <h4 class="font-semibold mb-2">关键组件</h4>
                             <ul class="space-y-1 text-sm opacity-90">
-                                <li>• DocumentLoader：加载文档</li>
-                                <li>• DocumentSplitter：分割文本</li>
-                                <li>• EmbeddingModel：生成向量</li>
-                                <li>• EmbeddingStore：存储向量</li>
-                                <li>• ContentRetriever：检索内容</li>
+                                <li> DocumentLoader：加载文档</li>
+                                <li> DocumentSplitter：分割文本</li>
+                                <li> EmbeddingModel：生成向量</li>
+                                <li> EmbeddingStore：存储向量</li>
+                                <li> ContentRetriever：检索内容</li>
                             </ul>
                         </div>
                     </div>

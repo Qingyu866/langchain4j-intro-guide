@@ -126,27 +126,27 @@
                         <div class="text-3xl mb-3">🏗️</div>
                         <h3 class="text-lg font-semibold text-gray-900 mb-2">架构设计</h3>
                         <ul class="text-gray-600 text-sm space-y-1">
-                            <li>• 分层架构模式</li>
-                            <li>• 服务拆分原则</li>
-                            <li>• 模块化设计</li>
+                            <li> 分层架构模式</li>
+                            <li> 服务拆分原则</li>
+                            <li> 模块化设计</li>
                         </ul>
                     </div>
                     <div class="bg-gradient-to-br from-purple-50 to-pink-50 border border-purple-100 rounded-xl p-6">
                         <div class="text-3xl mb-3">⚡</div>
                         <h3 class="text-lg font-semibold text-gray-900 mb-2">性能优化</h3>
                         <ul class="text-gray-600 text-sm space-y-1">
-                            <li>• 连接池管理</li>
-                            <li>• 批量处理</li>
-                            <li>• 缓存策略</li>
+                            <li> 连接池管理</li>
+                            <li> 批量处理</li>
+                            <li> 缓存策略</li>
                         </ul>
                     </div>
                     <div class="bg-gradient-to-br from-green-50 to-teal-50 border border-green-100 rounded-xl p-6">
                         <div class="text-3xl mb-3">🛡️</div>
                         <h3 class="text-lg font-semibold text-gray-900 mb-2">安全实践</h3>
                         <ul class="text-gray-600 text-sm space-y-1">
-                            <li>• API密钥管理</li>
-                            <li>• 输入验证</li>
-                            <li>• 内容过滤</li>
+                            <li> API密钥管理</li>
+                            <li> 输入验证</li>
+                            <li> 内容过滤</li>
                         </ul>
                     </div>
                 </div>
@@ -158,12 +158,12 @@
                     <div>
                         <h3 class="font-bold text-gray-900 mb-2">学习目标</h3>
                         <ul class="text-gray-700 space-y-2 text-sm">
-                            <li>• 掌握 LangChain4j 应用的架构设计原则</li>
-                            <li>• 学习性能优化技巧和最佳实践</li>
-                            <li>• 理解错误处理和容错机制</li>
-                            <li>• 掌握安全防护和合规要求</li>
-                            <li>• 学习监控、日志和调试技巧</li>
-                            <li>• 了解测试策略和CI/CD集成</li>
+                            <li> 掌握 LangChain4j 应用的架构设计原则</li>
+                            <li> 学习性能优化技巧和最佳实践</li>
+                            <li> 理解错误处理和容错机制</li>
+                            <li> 掌握安全防护和合规要求</li>
+                            <li> 学习监控、日志和调试技巧</li>
+                            <li> 了解测试策略和CI/CD集成</li>
                         </ul>
                     </div>
                 </div>
@@ -230,10 +230,10 @@
                         <span class="text-green-600">✅</span> 推荐做法
                     </h4>
                     <ul class="text-gray-700 space-y-2 text-sm">
-                        <li>• <strong>清晰的职责分离</strong>：Controller负责请求处理，Service负责业务逻辑，Repository负责数据访问</li>
-                        <li>• <strong>面向接口编程</strong>：Service层定义接口，impl包中实现，便于测试和扩展</li>
-                        <li>• <strong>配置集中管理</strong>：所有AI模型、向量存储等配置统一放在config包</li>
-                        <li>• <strong>异常统一处理</strong>：定义业务异常类，使用全局异常处理器统一返回</li>
+                        <li> <strong>清晰的职责分离</strong>：Controller负责请求处理，Service负责业务逻辑，Repository负责数据访问</li>
+                        <li> <strong>面向接口编程</strong>：Service层定义接口，impl包中实现，便于测试和扩展</li>
+                        <li> <strong>配置集中管理</strong>：所有AI模型、向量存储等配置统一放在config包</li>
+                        <li> <strong>异常统一处理</strong>：定义业务异常类，使用全局异常处理器统一返回</li>
                     </ul>
                 </div>
 
@@ -242,10 +242,10 @@
                         <span class="text-red-600">❌</span> 避免的做法
                     </h4>
                     <ul class="text-gray-700 space-y-2 text-sm">
-                        <li>• <strong>在Controller中直接调用AI模型</strong>：应该通过Service层封装</li>
-                        <li>• <strong>硬编码API密钥</strong>：应使用环境变量或配置管理服务</li>
-                        <li>• <strong>Service之间循环依赖</strong>：通过共享Service或事件机制解耦</li>
-                        <li>• <strong>异常吞掉或直接返回</strong>：应该记录日志并转换为适当的错误响应</li>
+                        <li> <strong>在Controller中直接调用AI模型</strong>：应该通过Service层封装</li>
+                        <li> <strong>硬编码API密钥</strong>：应使用环境变量或配置管理服务</li>
+                        <li> <strong>Service之间循环依赖</strong>：通过共享Service或事件机制解耦</li>
+                        <li> <strong>异常吞掉或直接返回</strong>：应该记录日志并转换为适当的错误响应</li>
                     </ul>
                 </div>
 
@@ -570,11 +570,11 @@ class LoggingInterceptor implements Interceptor {
                         <span class="text-blue-600">💡</span> 性能优化要点
                     </h4>
                     <ul class="text-gray-700 space-y-2 text-sm">
-                        <li>• <strong>连接复用</strong>：使用连接池避免频繁建立HTTP连接</li>
-                        <li>• <strong>超时配置</strong>：合理设置连接、读取、写入超时</li>
-                        <li>• <strong>自动重试</strong>：对临时性错误（如网络抖动）自动重试</li>
-                        <li>• <strong>日志记录</strong>：记录API调用耗时，便于性能分析</li>
-                        <li>• <strong>连接保活</strong>：设置合理的keep-alive时间</li>
+                        <li> <strong>连接复用</strong>：使用连接池避免频繁建立HTTP连接</li>
+                        <li> <strong>超时配置</strong>：合理设置连接、读取、写入超时</li>
+                        <li> <strong>自动重试</strong>：对临时性错误（如网络抖动）自动重试</li>
+                        <li> <strong>日志记录</strong>：记录API调用耗时，便于性能分析</li>
+                        <li> <strong>连接保活</strong>：设置合理的keep-alive时间</li>
                     </ul>
                 </div>
 
@@ -814,11 +814,11 @@ public class CachedRagService {
                         <span class="text-green-600">✅</span> 缓存最佳实践
                     </h4>
                     <ul class="text-gray-700 space-y-2 text-sm">
-                        <li>• <strong>分级缓存</strong>：Embedding结果缓存7天，RAG检索缓存30分钟，对话缓存2小时</li>
-                        <li>• <strong>合理TTL</strong>：根据数据更新频率设置合适的过期时间</li>
-                        <li>• <strong>避免缓存雪崩</strong>：设置随机TTL抖动</li>
-                        <li>• <strong>缓存穿透保护</strong>：使用unless参数避免缓存空值</li>
-                        <li>• <strong>异步刷新</strong>：使用@CachePut在后台更新缓存</li>
+                        <li> <strong>分级缓存</strong>：Embedding结果缓存7天，RAG检索缓存30分钟，对话缓存2小时</li>
+                        <li> <strong>合理TTL</strong>：根据数据更新频率设置合适的过期时间</li>
+                        <li> <strong>避免缓存雪崩</strong>：设置随机TTL抖动</li>
+                        <li> <strong>缓存穿透保护</strong>：使用unless参数避免缓存空值</li>
+                        <li> <strong>异步刷新</strong>：使用@CachePut在后台更新缓存</li>
                     </ul>
                 </div>
             </section>
@@ -1189,11 +1189,11 @@ public class AiServiceWithRetry {
                         <span class="text-amber-600">⚠️</span> 容错设计要点
                     </h4>
                     <ul class="text-gray-700 space-y-2 text-sm">
-                        <li>• <strong>优雅降级</strong>：AI服务不可用时返回缓存结果或默认回复</li>
-                        <li>• <strong>熔断机制</strong>：连续失败时暂时停止调用，避免雪崩</li>
-                        <li>• <strong>超时控制</strong>：所有外部调用必须设置超时</li>
-                        <li>• <strong>资源隔离</strong>：不同租户或模型使用独立线程池</li>
-                        <li>• <strong>监控告警</strong>：监控失败率、延迟等指标</li>
+                        <li> <strong>优雅降级</strong>：AI服务不可用时返回缓存结果或默认回复</li>
+                        <li> <strong>熔断机制</strong>：连续失败时暂时停止调用，避免雪崩</li>
+                        <li> <strong>超时控制</strong>：所有外部调用必须设置超时</li>
+                        <li> <strong>资源隔离</strong>：不同租户或模型使用独立线程池</li>
+                        <li> <strong>监控告警</strong>：监控失败率、延迟等指标</li>
                     </ul>
                 </div>
             </section>
@@ -1560,12 +1560,12 @@ public class ChatServiceWithValidation {
                         <span class="text-red-600">🔒</span> 安全注意事项
                     </h4>
                     <ul class="text-gray-700 space-y-2 text-sm">
-                        <li>• <strong>密钥保护</strong>：绝不在代码中硬编码API密钥，使用环境变量或密钥管理服务</li>
-                        <li>• <strong>输入验证</strong>：对所有用户输入进行验证和清理</li>
-                        <li>• <strong>输出过滤</strong>：对AI输出进行内容审核</li>
-                        <li>• <strong>数据脱敏</strong>：日志中不记录敏感信息（如API密钥、个人信息）</li>
-                        <li>• <strong>访问控制</strong>：实现租户隔离和权限控制</li>
-                        <li>• <strong>速率限制</strong>：防止API滥用和DDoS攻击</li>
+                        <li> <strong>密钥保护</strong>：绝不在代码中硬编码API密钥，使用环境变量或密钥管理服务</li>
+                        <li> <strong>输入验证</strong>：对所有用户输入进行验证和清理</li>
+                        <li> <strong>输出过滤</strong>：对AI输出进行内容审核</li>
+                        <li> <strong>数据脱敏</strong>：日志中不记录敏感信息（如API密钥、个人信息）</li>
+                        <li> <strong>访问控制</strong>：实现租户隔离和权限控制</li>
+                        <li> <strong>速率限制</strong>：防止API滥用和DDoS攻击</li>
                     </ul>
                 </div>
             </section>
@@ -1904,12 +1904,12 @@ public class MonitoredAiService {
                         <span class="text-purple-600">📊</span> 关键监控指标
                     </h4>
                     <ul class="text-gray-700 space-y-2 text-sm">
-                        <li>• <strong>API调用成功率</strong>：监控API调用的成功/失败比例</li>
-                        <li>• <strong>响应延迟</strong>：P50、P95、P99延迟百分位</li>
-                        <li>• <strong>Token使用量</strong>：输入/输出Token计数和成本</li>
-                        <li>• <strong>缓存命中率</strong>：Embedding、RAG检索等缓存效果</li>
-                        <li>• <strong>错误率</strong>：按错误类型分类统计</li>
-                        <li>• <strong>并发数</strong>：同时处理的请求数</li>
+                        <li> <strong>API调用成功率</strong>：监控API调用的成功/失败比例</li>
+                        <li> <strong>响应延迟</strong>：P50、P95、P99延迟百分位</li>
+                        <li> <strong>Token使用量</strong>：输入/输出Token计数和成本</li>
+                        <li> <strong>缓存命中率</strong>：Embedding、RAG检索等缓存效果</li>
+                        <li> <strong>错误率</strong>：按错误类型分类统计</li>
+                        <li> <strong>并发数</strong>：同时处理的请求数</li>
                     </ul>
                 </div>
             </section>
@@ -1921,55 +1921,55 @@ public class MonitoredAiService {
                         <div class="border border-gray-200 rounded-lg p-5 hover:border-indigo-300 transition-colors">
                             <div class="text-2xl mb-3">🏗️ 架构设计</div>
                             <ul class="text-sm space-y-1">
-                                <li>• 分层架构模式</li>
-                                <li>• 面向接口编程</li>
-                                <li>• 配置集中管理</li>
-                                <li>• 异常统一处理</li>
+                                <li> 分层架构模式</li>
+                                <li> 面向接口编程</li>
+                                <li> 配置集中管理</li>
+                                <li> 异常统一处理</li>
                             </ul>
                         </div>
                         <div class="border border-gray-200 rounded-lg p-5 hover:border-indigo-300 transition-colors">
                             <div class="text-2xl mb-3">⚡ 性能优化</div>
                             <ul class="text-sm space-y-1">
-                                <li>• HTTP连接池</li>
-                                <li>• 批量处理</li>
-                                <li>• 多级缓存</li>
-                                <li>• 异步处理</li>
+                                <li> HTTP连接池</li>
+                                <li> 批量处理</li>
+                                <li> 多级缓存</li>
+                                <li> 异步处理</li>
                             </ul>
                         </div>
                         <div class="border border-gray-200 rounded-lg p-5 hover:border-indigo-300 transition-colors">
                             <div class="text-2xl mb-3">🛡️ 安全实践</div>
                             <ul class="text-sm space-y-1">
-                                <li>• 密钥管理</li>
-                                <li>• 输入验证</li>
-                                <li>• 内容过滤</li>
-                                <li>• 访问控制</li>
+                                <li> 密钥管理</li>
+                                <li> 输入验证</li>
+                                <li> 内容过滤</li>
+                                <li> 访问控制</li>
                             </ul>
                         </div>
                         <div class="border border-gray-200 rounded-lg p-5 hover:border-indigo-300 transition-colors">
                             <div class="text-2xl mb-3">🔧 错误处理</div>
                             <ul class="text-sm space-y-1">
-                                <li>• 异常分类</li>
-                                <li>• 重试机制</li>
-                                <li>• 熔断降级</li>
-                                <li>• 超时控制</li>
+                                <li> 异常分类</li>
+                                <li> 重试机制</li>
+                                <li> 熔断降级</li>
+                                <li> 超时控制</li>
                             </ul>
                         </div>
                         <div class="border border-gray-200 rounded-lg p-5 hover:border-indigo-300 transition-colors">
                             <div class="text-2xl mb-3">📝 日志规范</div>
                             <ul class="text-sm space-y-1">
-                                <li>• 结构化日志</li>
-                                <li>• 性能日志</li>
-                                <li>• 错误日志</li>
-                                <li>• 日志脱敏</li>
+                                <li> 结构化日志</li>
+                                <li> 性能日志</li>
+                                <li> 错误日志</li>
+                                <li> 日志脱敏</li>
                             </ul>
                         </div>
                         <div class="border border-gray-200 rounded-lg p-5 hover:border-indigo-300 transition-colors">
                             <div class="text-2xl mb-3">📊 监控指标</div>
                             <ul class="text-sm space-y-1">
-                                <li>• API成功率</li>
-                                <li>• 响应延迟</li>
-                                <li>• Token使用</li>
-                                <li>• 缓存命中率</li>
+                                <li> API成功率</li>
+                                <li> 响应延迟</li>
+                                <li> Token使用</li>
+                                <li> 缓存命中率</li>
                             </ul>
                         </div>
                     </div>

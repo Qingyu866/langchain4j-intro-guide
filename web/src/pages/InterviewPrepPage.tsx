@@ -155,55 +155,55 @@ const InterviewPrepPage = () => {
           <div className="card card-blue">
             <h4 className="font-semibold text-blue-800 mb-2">ChatLanguageModel</h4>
             <ul className="text-blue-700 text-sm space-y-1">
-              <li>• generate() 和 generateAsync() 方法</li>
-              <li>• 流式输出和批量处理</li>
-              <li>• Builder 模式的配置方式</li>
-              <li>• 超时和重试机制</li>
+              <li> generate() 和 generateAsync() 方法</li>
+              <li> 流式输出和批量处理</li>
+              <li> Builder 模式的配置方式</li>
+              <li> 超时和重试机制</li>
             </ul>
           </div>
           <div className="card card-green">
             <h4 className="font-semibold text-green-800 mb-2">Tool</h4>
             <ul className="text-green-700 text-sm space-y-1">
-              <li>• ToolSpecification 的定义</li>
-              <li>• @Tool 注解的使用</li>
-              <li>• 参数验证和类型转换</li>
-              <li>• 工具执行的错误处理</li>
+              <li> ToolSpecification 的定义</li>
+              <li> @Tool 注解的使用</li>
+              <li> 参数验证和类型转换</li>
+              <li> 工具执行的错误处理</li>
             </ul>
           </div>
           <div className="card card-purple">
             <h4 className="font-semibold text-purple-800 mb-2">Memory</h4>
             <ul className="text-purple-700 text-sm space-y-1">
-              <li>• MessageWindow 和 TokenChatMemory</li>
-              <li>• 持久化存储策略</li>
-              <li>• 上下文窗口管理</li>
-              <li>• 跨会话的内存共享</li>
+              <li> MessageWindow 和 TokenChatMemory</li>
+              <li> 持久化存储策略</li>
+              <li> 上下文窗口管理</li>
+              <li> 跨会话的内存共享</li>
             </ul>
           </div>
           <div className="card card-orange">
             <h4 className="font-semibold text-orange-800 mb-2">Chain</h4>
             <ul className="text-orange-700 text-sm space-y-1">
-              <li>• Chain 接口的设计</li>
-              <li>• 顺序执行和条件跳转</li>
-              <li>• 分支和循环</li>
-              <li>• 与 Tool 的集成</li>
+              <li> Chain 接口的设计</li>
+              <li> 顺序执行和条件跳转</li>
+              <li> 分支和循环</li>
+              <li> 与 Tool 的集成</li>
             </ul>
           </div>
           <div className="card card-pink">
             <h4 className="font-semibold text-pink-800 mb-2">Function Calling</h4>
             <ul className="text-pink-700 text-sm space-y-1">
-              <li>• 函数定义和描述</li>
-              <li>• 自动参数匹配</li>
-              <li>• 并发函数调用</li>
-              <li>• 返回结果处理</li>
+              <li> 函数定义和描述</li>
+              <li> 自动参数匹配</li>
+              <li> 并发函数调用</li>
+              <li> 返回结果处理</li>
             </ul>
           </div>
           <div className="card card-cyan">
             <h4 className="font-semibold text-cyan-800 mb-2">RAG</h4>
             <ul className="text-cyan-700 text-sm space-y-1">
-              <li>• 文档切分策略</li>
-              <li>• 向量化和存储</li>
-              <li>• 相似度检索</li>
-              <li>• 上下文组装</li>
+              <li> 文档切分策略</li>
+              <li> 向量化和存储</li>
+              <li> 相似度检索</li>
+              <li> 上下文组装</li>
             </ul>
           </div>
         </div>

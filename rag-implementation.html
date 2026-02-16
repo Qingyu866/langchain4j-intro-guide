@@ -190,11 +190,11 @@
                 <div class="bg-blue-50 border-l-4 border-blue-500 p-5 rounded-r-lg">
                     <h4 class="font-bold text-blue-900 mb-2">💡 关键设计决策</h4>
                     <ul class="space-y-2 text-blue-800 text-sm">
-                        <li>• <strong>分块大小</strong>：固定大小（512/1024/2048 tokens）或语义分块</li>
-                        <li>• <strong>检索数量</strong>：Top-K策略，通常返回3-5个最相关结果</li>
-                        <li>• <strong>向量维度</strong>：OpenAI text-embedding-3-small: 1536维，平衡性能和精度</li>
-                        <li>• <strong>上下文管理</strong>：控制总Token数，避免超出LLM上下文限制</li>
-                        <li>• <strong>延迟优化</strong>：使用流式检索，边检索边生成</li>
+                        <li> <strong>分块大小</strong>：固定大小（512/1024/2048 tokens）或语义分块</li>
+                        <li> <strong>检索数量</strong>：Top-K策略，通常返回3-5个最相关结果</li>
+                        <li> <strong>向量维度</strong>：OpenAI text-embedding-3-small: 1536维，平衡性能和精度</li>
+                        <li> <strong>上下文管理</strong>：控制总Token数，避免超出LLM上下文限制</li>
+                        <li> <strong>延迟优化</strong>：使用流式检索，边检索边生成</li>
                     </ul>
                 </div>
             </section>
@@ -288,19 +288,19 @@ public class DocumentLoadingExample {
                     <h4 class="font-bold text-blue-900 mb-2">🔑 加载器配置选项</h4>
                     <p class="text-blue-800 text-sm mb-3">DocumentLoader支持丰富的配置选项：</p>
                     <ul class="space-y-2 text-blue-800 text-sm">
-                        <li>• <strong>编码检测</strong>：自动识别文件编码（UTF-8、GBK等）</li>
-                        <li>• <strong>分批加载</strong>：大文件分批加载，避免内存溢出</li>
-                        <li>• <strong>递归目录</strong>：递归加载整个目录树</li>
-                        <li>• <strong>元数据提取</strong>：从文件名、路径、大小等提取信息</li>
+                        <li> <strong>编码检测</strong>：自动识别文件编码（UTF-8、GBK等）</li>
+                        <li> <strong>分批加载</strong>：大文件分批加载，避免内存溢出</li>
+                        <li> <strong>递归目录</strong>：递归加载整个目录树</li>
+                        <li> <strong>元数据提取</strong>：从文件名、路径、大小等提取信息</li>
                     </ul>
                 </div>
 
                 <div class="bg-yellow-50 border border border-yellow-200 rounded-lg p-5 mt-4">
                     <h4 class="font-bold text-yellow-900 mb-2">⚠️ 注意事项</h4>
                     <ul class="space-y-2 text-yellow-800 text-sm">
-                        <li>• <strong>文件大小限制</strong>：单个文件不宜过大，建议分块处理</li>
-                        <li>• <strong>内存管理</strong>：加载大量文档时注意内存使用，可以流式处理</li>
-                        <li>• <strong>权限检查</strong>：确保有文件读取权限</li>
+                        <li> <strong>文件大小限制</strong>：单个文件不宜过大，建议分块处理</li>
+                        <li> <strong>内存管理</strong>：加载大量文档时注意内存使用，可以流式处理</li>
+                        <li> <strong>权限检查</strong>：确保有文件读取权限</li>
                     </ul>
                 </div>
             </section>
@@ -364,10 +364,10 @@ public class FixedSizeSplitterExample {
                         <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-lg">
                             <h4 class="font-bold text-blue-900 mb-2">💡 最佳实践</h4>
                             <ul class="space-y-2 text-blue-800 text-sm">
-                                <li>• <strong>Token数量</strong>：通常使用512、1024或2048</li>
-                                <li>• <strong>重叠大小</strong>：50-200 tokens重叠保证语义完整性</li>
-                                <li>• <strong>段落边界</strong>优先在段落换行处切分</li>
-                                <li>• <strong>代码文件</strong>：编程文件可在函数或类边界处切分</li>
+                                <li> <strong>Token数量</strong>：通常使用512、1024或2048</li>
+                                <li> <strong>重叠大小</strong>：50-200 tokens重叠保证语义完整性</li>
+                                <li> <strong>段落边界</strong>优先在段落换行处切分</li>
+                                <li> <strong>代码文件</strong>：编程文件可在函数或类边界处切分</li>
                             </ul>
                         </div>
                     </div>
@@ -375,9 +375,9 @@ public class FixedSizeSplitterExample {
                     <div class="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow">
                         <h4 class="font-bold text-gray-900 mb-3">🚫 缺点与改进</h4>
                         <ul class="space-y-2 text-gray-600 text-sm">
-                            <li>• <strong>语义破坏</strong>：固定大小可能在句子中间切分</li>
-                            <li>• <strong>上下文缺失</strong>：太小分块可能导致重要信息丢失</li>
-                            <li>• <strong>冗余存储</strong>：更多小块增加存储和检索时间</li>
+                            <li> <strong>语义破坏</strong>：固定大小可能在句子中间切分</li>
+                            <li> <strong>上下文缺失</strong>：太小分块可能导致重要信息丢失</li>
+                            <li> <strong>冗余存储</strong>：更多小块增加存储和检索时间</li>
                         </ul>
                     </div>
                     </div>
@@ -386,9 +386,9 @@ public class FixedSizeSplitterExample {
                         <h4 class="font-bold text-gray-900 mb-3">📊 评估指标</h4>
                         <p class="text-gray-600 text-sm mb-2">如何评估分块效果？</p>
                         <ul class="space-y-2 text-gray-600 text-sm">
-                            <li>• <strong>检索准确率</strong>：分块后检索相关内容的召回率</li>
-                            <li>• <strong>回答质量</strong>：上下文完整性的影响</li>
-                            <li>• <strong>Token效率</strong>：分块大小的Token利用率</li>
+                            <li> <strong>检索准确率</strong>：分块后检索相关内容的召回率</li>
+                            <li> <strong>回答质量</strong>：上下文完整性的影响</li>
+                            <li> <strong>Token效率</strong>：分块大小的Token利用率</li>
                         </ul>
                     </div>
                 </div>
@@ -399,10 +399,10 @@ public class FixedSizeSplitterExample {
                             可以将不同分块策略结合使用，取长补短：
                         </p>
                         <ul class="space-y-2 text-gray-600 text-sm">
-                            <li>• <strong>大文档</strong>：段落+固定大小混合</li>
-                            <li>• <strong>代码文件</strong>：函数/类边界+递归</li>
-                            <li>• <strong>小文档</strong>：纯语义分块</li>
-                            <li>• <strong>动态调整</strong>：根据检索效果动态调整</li>
+                            <li> <strong>大文档</strong>：段落+固定大小混合</li>
+                            <li> <strong>代码文件</strong>：函数/类边界+递归</li>
+                            <li> <strong>小文档</strong>：纯语义分块</li>
+                            <li> <strong>动态调整</strong>：根据检索效果动态调整</li>
                         </ul>
                     </div>
                 </div>
@@ -537,11 +537,11 @@ public class EmbeddingGenerationExample {
                     <div class="bg-green-50 border-l-4 border-green-500 p-5 rounded-r-lg">
                         <h4 class="font-bold text-green-900 mb-2">💡 优化技巧</h4>
                         <ul class="space-y-2 text-green-800 text-sm">
-                            <li>• <strong>批量处理</strong>：一次生成多个Embedding，提高效率</li>
-                            <li>• <strong>缓存结果</strong>：相同文本的Embedding可以缓存避免重复生成</li>
-                            <li>• <strong>异步生成</strong>：对于大量数据，使用异步API</li>
-                            <li>• <strong>维度优化</strong>：1536维适合大多数场景，减少维度节省成本</li>
-                            <li>• <strong>量化</strong>：某些模型支持量化，可压缩存储</li>
+                            <li> <strong>批量处理</strong>：一次生成多个Embedding，提高效率</li>
+                            <li> <strong>缓存结果</strong>：相同文本的Embedding可以缓存避免重复生成</li>
+                            <li> <strong>异步生成</strong>：对于大量数据，使用异步API</li>
+                            <li> <strong>维度优化</strong>：1536维适合大多数场景，减少维度节省成本</li>
+                            <li> <strong>量化</strong>：某些模型支持量化，可压缩存储</li>
                         </ul>
                     </div>
                 </div>
@@ -641,10 +641,10 @@ for (TextSegment segment : segments) {
                             根据实际需求选择合适的向量数据库，学习曲线、成本预算、扩展性都是重要考虑因素。
                         </p>
                         <ul class="space-y-2 text-indigo-800 text-sm">
-                            <li>• <strong>快速原型</strong>：Pinecone - 易上手，快速验证</li>
-                            <li>• <strong>数据隐私</strong>：Chroma - 完全本地，企业级应用</li>
-                            <li>• <strong>大规模</strong>：Milvus - 极致性能，开源免费</li>
-                            <li>• <strong>高级功能</strong>：Weaviate - 丰富特性，GraphQL</li>
+                            <li> <strong>快速原型</strong>：Pinecone - 易上手，快速验证</li>
+                            <li> <strong>数据隐私</strong>：Chroma - 完全本地，企业级应用</li>
+                            <li> <strong>大规模</strong>：Milvus - 极致性能，开源免费</li>
+                            <li> <strong>高级功能</strong>：Weaviate - 丰富特性，GraphQL</li>
                         </ul>
                     </div>
                 </div>
@@ -742,10 +742,10 @@ public class RetrievalService {
                 <div class="bg-green-50 border-l-4 border-green-500 p-5 rounded-r-lg">
                     <h4 class="font-bold text-green-900 mb-2">💡 高级检索技巧</h4>
                     <ul class="space-y-2 text-green-800 text-sm">
-                        <li>• <strong>混合检索</strong>：结合向量检索和关键词检索，提高精度</li>
-                            <li>• <strong>重排序</strong>：使用专门的Rerank模型优化结果质量</li>
-                            <li>• <strong>多路查询</strong>：用不同策略（向量+BM25）检索并行后融合</li>
-                            <li>• <strong>阈值调整</strong>：根据反馈动态调整相似度阈值</li>
+                        <li> <strong>混合检索</strong>：结合向量检索和关键词检索，提高精度</li>
+                            <li> <strong>重排序</strong>：使用专门的Rerank模型优化结果质量</li>
+                            <li> <strong>多路查询</strong>：用不同策略（向量+BM25）检索并行后融合</li>
+                            <li> <strong>阈值调整</strong>：根据反馈动态调整相似度阈值</li>
                         </ul>
                     </div>
 
@@ -781,19 +781,19 @@ public class RetrievalService {
                     <div class="bg-white border border-gray-200 rounded-xl p-5 hover:shadow-lg transition-shadow">
                         <h4 class="font-bold text-gray-900 mb-3">🎨 高级模板技巧</h4>
                         <ul class="space-y-2 text-gray-600 text-sm">
-                            <li>• <strong>结构化上下文</strong>：按文档分类或主题组织信息</li>
-                            <li>• <strong>添加来源引用</strong>：标注回答来自哪些文档段</li>
-                            <li>• <strong>限制上下文</strong>：控制注入的文档数量，避免超限</li>
-                            <li>• <strong>提示来源追溯</strong>：让用户可以验证答案来源</li>
-                            <li>• <strong>使用分隔符</strong>：用清晰的分隔符区分不同文档</li>
+                            <li> <strong>结构化上下文</strong>：按文档分类或主题组织信息</li>
+                            <li> <strong>添加来源引用</strong>：标注回答来自哪些文档段</li>
+                            <li> <strong>限制上下文</strong>：控制注入的文档数量，避免超限</li>
+                            <li> <strong>提示来源追溯</strong>：让用户可以验证答案来源</li>
+                            <li> <strong>使用分隔符</strong>：用清晰的分隔符区分不同文档</li>
                         </ul>
                     </div>
                     <div class="bg-blue-50 border-l-4 border-blue-500 p-5 rounded-r-lg">
                         <h4 class="font-bold text-blue-900 mb-2">💡 动态调整</h4>
                         <ul class="space-y-2 text-blue-800 text-sm">
-                            <li>• <strong>根据问题长度</strong>：短问题用少上下文，长问题用多上下文</li>
-                            <li>• <strong>根据检索分数</strong>：相关性低的文档可以排除</li>
-                            <li>• <strong>流式注入</strong>：边检索边生成，减少响应延迟</li>
+                            <li> <strong>根据问题长度</strong>：短问题用少上下文，长问题用多上下文</li>
+                            <li> <strong>根据检索分数</strong>：相关性低的文档可以排除</li>
+                            <li> <strong>流式注入</strong>：边检索边生成，减少响应延迟</li>
                         </ul>
                     </div>
                 </div>
@@ -972,30 +972,30 @@ public class CompleteRAGSystem {
                         <h4 class="font-bold text-gray-900 mb-3">⚡ 检索优化</h4>
                         <p class="text-gray-600 text-sm mb-2">提高检索速度</p>
                         <ul class="space-y-2 text-gray-600 text-sm">
-                            <li>• <strong>缓存</strong>：缓存常用查询的检索结果，避免重复检索</li>
-                            <li>• <strong>并行检索</strong>：同时查询多个向量数据库</li>
-                            <li>• <strong>索引优化</strong>：为向量数据库添加合适的索引，提升查询速度</li>
-                            <li>• <strong>批量查询</strong>：一次检索多个查询，减少往返次数</li>
+                            <li> <strong>缓存</strong>：缓存常用查询的检索结果，避免重复检索</li>
+                            <li> <strong>并行检索</strong>：同时查询多个向量数据库</li>
+                            <li> <strong>索引优化</strong>：为向量数据库添加合适的索引，提升查询速度</li>
+                            <li> <strong>批量查询</strong>：一次检索多个查询，减少往返次数</li>
                         </ul>
                     </div>
                     <div class="bg-white border border-gray-200 rounded-xl p-5 hover:shadow-lg transition-shadow">
                         <h4 class="font-bold text-gray-900 mb-3">💾 生成优化</h4>
                         <p class="text-gray-600 text-sm mb-2">降低Embedding成本</p>
                         <ul class="space-y-2 text-gray-600 text-sm">
-                            <li>• <strong>批量处理</strong>：积累多个文本后一次性生成，减少API调用次数</li>
+                            <li> <strong>批量处理</strong>：积累多个文本后一次性生成，减少API调用次数</li>
                             <li> <strong>异步处理</strong>：使用异步API提高吞吐量</li>
-                            <li>• <strong>模型选择</strong>：text-embedding-3-small比ada-002便宜很多</li>
-                            <li>• <strong>维度优化</strong>：1536维在精度和成本间取得良好平衡</li>
+                            <li> <strong>模型选择</strong>：text-embedding-3-small比ada-002便宜很多</li>
+                            <li> <strong>维度优化</strong>：1536维在精度和成本间取得良好平衡</li>
                         </ul>
                     </div>
                     <div class="bg-white border border-gray-200 rounded-xl p-5 hover:shadow-lg transition-shadow">
                         <h4 class="font-bold text-gray-900 mb-3">🎨 上下文管理</h4>
                         <p class="text-gray-600 text-sm mb-2">优化LLM上下文使用</p>
                         <ul class="space-y-2 text-gray-600 text-sm">
-                            <li>• <strong>Top-K选择</strong>：使用3-5个结果，平衡相关性和多样性</li>
-                            <li>• <strong>上下文压缩</strong>：长文档摘要后嵌入，节省Token</li>
+                            <li> <strong>Top-K选择</strong>：使用3-5个结果，平衡相关性和多样性</li>
+                            <li> <strong>上下文压缩</strong>：长文档摘要后嵌入，节省Token</li>
                             <li> <strong>重排序过滤</strong>：在LLM前用Rerank过滤低质量结果</li>
-                            <li>• <strong>流式输出</strong>：边检索边生成，减少延迟</li>
+                            <li> <strong>流式输出</strong>：边检索边生成，减少延迟</li>
                         </ul>
                     </div>
                 </div>
@@ -1010,26 +1010,26 @@ public class CompleteRAGSystem {
                     <div class="bg-green-50 border border-green-200 rounded-xl p-5 hover:shadow-lg transition-shadow">
                         <h4 class="font-bold text-green-900 mb-3">📝 数据质量</h4>
                         <ul class="space-y-2 text-green-800 text-sm">
-                            <li>• <strong>数据清洗</strong>：加载前清理HTML标签、特殊字符</li>
-                            <li>• <strong>去重</strong>：使用哈希或去重算法移除重复文档</li>
-                            <li>• <strong>标准化</strong>：统一格式（Markdown、TXT）</li>
-                            <li>• <strong>版本管理</strong>：记录文档版本，支持历史回滚</li>
+                            <li> <strong>数据清洗</strong>：加载前清理HTML标签、特殊字符</li>
+                            <li> <strong>去重</strong>：使用哈希或去重算法移除重复文档</li>
+                            <li> <strong>标准化</strong>：统一格式（Markdown、TXT）</li>
+                            <li> <strong>版本管理</strong>：记录文档版本，支持历史回滚</li>
                         </ul>
                     </div>
                     <div class="bg-green-50 border border-green-200 rounded-xl p-5 hover:shadow-lg transition-shadow">
                         <h4 class="font-bold text-green-900 mb-3">🔒 系统测试</h4>
                         <ul class="space-y-2 text-green-800 text-sm">
-                            <li>• <strong>单元测试</strong>：测试每个组件的独立功能</li>
-                            <li>• <strong>集成测试</strong>：测试组件间协作是否正常</li>
-                            <li>• <strong>E2E测试</strong>：端到端测试整个流程</li>
+                            <li> <strong>单元测试</strong>：测试每个组件的独立功能</li>
+                            <li> <strong>集成测试</strong>：测试组件间协作是否正常</li>
+                            <li> <strong>E2E测试</strong>：端到端测试整个流程</li>
                         </ul>
                     </div>
                     <div class="bg-green-50 border border-green-200 rounded-xl p-5 hover:shadow-lg transition-shadow">
                         <h4 class="font-bold text-green-900 mb-3">📈 监控与日志</h4>
                         <ul class="space-y-2 text-green-800 text-sm">
-                            <li>• <strong>性能指标</strong>：检索时间、生成时间、总延迟</li>
-                            <li>• <strong>质量指标</strong>：召回率、准确率、相关性</li>
-                            <li>• <strong>用户反馈</strong>：满意度评分、采纳率</li>
+                            <li> <strong>性能指标</strong>：检索时间、生成时间、总延迟</li>
+                            <li> <strong>质量指标</strong>：召回率、准确率、相关性</li>
+                            <li> <strong>用户反馈</strong>：满意度评分、采纳率</li>
                         </ul>
                     </div>
                 </div>
@@ -1044,26 +1044,26 @@ public class CompleteRAGSystem {
                     <div class="bg-red-50 border border-red-200 rounded-xl p-5">
                         <h4 class="font-bold text-red-900 mb-3">数据陷阱</h4>
                         <ul class="space-y-2 text-gray-700 text-sm">
-                            <li>• <strong>重复数据</strong>：导致重复索引和检索结果，降低质量</li>
-                            <li>• <strong>过时信息</strong>：历史文档未被及时更新，可能返回错误答案</li>
-                            <li>• <strong>格式混乱</strong>：非结构化数据难以有效检索</li>
+                            <li> <strong>重复数据</strong>：导致重复索引和检索结果，降低质量</li>
+                            <li> <strong>过时信息</strong>：历史文档未被及时更新，可能返回错误答案</li>
+                            <li> <strong>格式混乱</strong>：非结构化数据难以有效检索</li>
                         </ul>
                     </div>
                     <div class="bg-red-50 border border-red-200 rounded-xl p-5">
                         <h4 class="font-bold text-red-900 mb-3">检索陷阱</h4>
                         <ul class="space-y-2 text-gray-700 text-sm">
-                            <li>• <strong>分块不当</strong>：太大或太小导致检索精度下降</li>
-                            <li>• <strong>阈值固定</strong>：固定的Top-K导致结果质量不均衡</li>
+                            <li> <strong>分块不当</strong>：太大或太小导致检索精度下降</li>
+                            <li> <strong>阈值固定</strong>：固定的Top-K导致结果质量不均衡</li>
                             <li> <strong>向量维度</strong>：维度过高导致成本激增且未必提升精度</li>
-                            <li>• <strong>忽略语义</strong>：仅靠关键词匹配会丢失语义信息</li>
+                            <li> <strong>忽略语义</strong>：仅靠关键词匹配会丢失语义信息</li>
                         </ul>
                     </div>
                     <div class="bg-red-50 border-red-200 rounded-xl p-5">
                         <h4 class="font-bold text-red-900 mb-3">生成陷阱</h4>
                         <ul class="space-y-2 text-gray-700 text-sm">
-                            <li>• <strong>上下文超限</strong>：Token过多导致LLM截断，丢失部分上下文</li>
-                            <li>• <strong>Prompt过长</strong>：导致额外Token消耗</li>
-                            <li>• <strong>格式混乱</strong>：JSON格式化、Markdown转义错误</li>
+                            <li> <strong>上下文超限</strong>：Token过多导致LLM截断，丢失部分上下文</li>
+                            <li> <strong>Prompt过长</strong>：导致额外Token消耗</li>
+                            <li> <strong>格式混乱</strong>：JSON格式化、Markdown转义错误</li>
                         </ul>
                     </div>
                 </div>
@@ -1071,9 +1071,9 @@ public class CompleteRAGSystem {
                 <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-5">
                     <h4 class="font-bold text-yellow-900 mb-3">💡 解决方案</h4>
                         <ul class="space-y-2 text-yellow-800 text-sm">
-                            <li>• <strong>数据治理</strong>：建立数据更新机制，定期清理和去重</li>
-                            <li>• <strong>A/B测试</strong>：对比不同分块策略的效果</li>
-                            <li>• <strong>监控告警</strong>：设置检索质量监控，低于阈值时告警</li>
+                            <li> <strong>数据治理</strong>：建立数据更新机制，定期清理和去重</li>
+                            <li> <strong>A/B测试</strong>：对比不同分块策略的效果</li>
+                            <li> <strong>监控告警</strong>：设置检索质量监控，低于阈值时告警</li>
                             <li> <strong>动态调整</strong>：根据反馈自动调整参数</li>
                         </ul>
                     </div>

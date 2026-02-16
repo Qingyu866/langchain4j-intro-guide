@@ -19,27 +19,27 @@ const ExamplesPage = () => {
             <div className="text-3xl mb-3">💬</div>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">简单聊天</h3>
             <ul className="text-gray-600 text-sm space-y-1">
-              <li>• 基础对话机器人</li>
-              <li>• 流式输出</li>
-              <li>• 上下文管理</li>
+              <li> 基础对话机器人</li>
+              <li> 流式输出</li>
+              <li> 上下文管理</li>
             </ul>
           </div>
           <div className="bg-gradient-to-br from-purple-50 to-pink-50 border border-purple-100 rounded-xl p-6">
             <div className="text-3xl mb-3">🔍</div>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">智能问答</h3>
             <ul className="text-gray-600 text-sm space-y-1">
-              <li>• RAG检索</li>
-              <li>• 向量搜索</li>
-              <li>• 知识库管理</li>
+              <li> RAG检索</li>
+              <li> 向量搜索</li>
+              <li> 知识库管理</li>
             </ul>
           </div>
           <div className="bg-gradient-to-br from-green-50 to-teal-50 border border-green-100 rounded-xl p-6">
             <div className="text-3xl mb-3">🤖</div>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">AI Agent</h3>
             <ul className="text-gray-600 text-sm space-y-1">
-              <li>• 工具调用</li>
-              <li>• 自动推理</li>
-              <li>• 任务规划</li>
+              <li> 工具调用</li>
+              <li> 自动推理</li>
+              <li> 任务规划</li>
             </ul>
           </div>
         </div>
@@ -51,10 +51,10 @@ const ExamplesPage = () => {
           <div>
             <h3 className="font-bold text-gray-900 mb-2">学习目标</h3>
             <ul className="text-gray-700 space-y-2 text-sm">
-              <li>• 通过实际代码示例理解 LangChain4j 的核心功能</li>
-              <li>• 学习常见应用场景的实现方式</li>
-              <li>• 掌握最佳实践和代码组织结构</li>
-              <li>• 了解不同场景下的技术选型</li>
+              <li> 通过实际代码示例理解 LangChain4j 的核心功能</li>
+              <li> 学习常见应用场景的实现方式</li>
+              <li> 掌握最佳实践和代码组织结构</li>
+              <li> 了解不同场景下的技术选型</li>
             </ul>
           </div>
         </div>
@@ -139,12 +139,12 @@ public class SimpleChatBot {
  *
  * 用户: 它支持哪些功能？
  * AI: LangChain4j支持很多强大的功能！✨ 主要包括：
- *     • 聊天对话（Chat）- 与AI进行自然对话
- *     • Function Calling - 让AI调用外部工具
- *     • RAG（检索增强）- 结合知识库回答问题
- *     • Embedding - 文本向量化
- *     • 多模态 - 处理图像、音频等
- *     • 记忆管理 - 保存对话历史
+ *      聊天对话（Chat）- 与AI进行自然对话
+ *      Function Calling - 让AI调用外部工具
+ *      RAG（检索增强）- 结合知识库回答问题
+ *      Embedding - 文本向量化
+ *      多模态 - 处理图像、音频等
+ *      记忆管理 - 保存对话历史
  */`}
         />
 
@@ -959,68 +959,68 @@ public class SentimentAnalyzer {
         />
       </section>
 
-      <div className="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-lg p-8 text-white">
-        <h2 className="text-2xl font-bold mb-4">🎯 示例总结</h2>
+      <div className="bg-gray-50 border border-gray-200 rounded-lg p-8">
+        <h2 className="text-2xl font-bold mb-4 text-gray-900">🎯 示例总结</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div className="border border-white/20 rounded-lg p-5">
+          <div className="border border-gray-200 rounded-lg p-5">
             <div className="text-2xl mb-3">💬</div>
-            <div className="font-semibold mb-2">简单聊天</div>
-            <ul className="text-sm space-y-1 opacity-90">
-              <li>• 基础对话API</li>
-              <li>• 流式输出</li>
-              <li>• 对话记忆</li>
+            <div className="font-semibold mb-2 text-gray-800">简单聊天</div>
+            <ul className="text-sm space-y-1 text-gray-700">
+              <li> 基础对话API</li>
+              <li> 流式输出</li>
+              <li> 对话记忆</li>
             </ul>
           </div>
-          <div className="border border-white/20 rounded-lg p-5">
+          <div className="border border-gray-200 rounded-lg p-5">
             <div className="text-2xl mb-3">🔍</div>
-            <div className="font-semibold mb-2">RAG问答</div>
-            <ul className="text-sm space-y-1 opacity-90">
-              <li>• 向量搜索</li>
-              <li>• 知识库管理</li>
-              <li>• 上下文检索</li>
+            <div className="font-semibold mb-2 text-gray-800">RAG问答</div>
+            <ul className="text-sm space-y-1 text-gray-700">
+              <li> 向量搜索</li>
+              <li> 知识库管理</li>
+              <li> 上下文检索</li>
             </ul>
           </div>
-          <div className="border border-white/20 rounded-lg p-5">
+          <div className="border border-gray-200 rounded-lg p-5">
             <div className="text-2xl mb-3">🤖</div>
-            <div className="font-semibold mb-2">AI Agent</div>
-            <ul className="text-sm space-y-1 opacity-90">
-              <li>• Function Calling</li>
-              <li>• 多工具集成</li>
-              <li>• 自动推理</li>
+            <div className="font-semibold mb-2 text-gray-800">AI Agent</div>
+            <ul className="text-sm space-y-1 text-gray-700">
+              <li> Function Calling</li>
+              <li> 多工具集成</li>
+              <li> 自动推理</li>
             </ul>
           </div>
-          <div className="border border-white/20 rounded-lg p-5">
+          <div className="border border-gray-200 rounded-lg p-5">
             <div className="text-2xl mb-3">📝</div>
-            <div className="font-semibold mb-2">文档摘要</div>
-            <ul className="text-sm space-y-1 opacity-90">
-              <li>• 自动摘要</li>
-              <li>• 核心提取</li>
-              <li>• 长度控制</li>
+            <div className="font-semibold mb-2 text-gray-800">文档摘要</div>
+            <ul className="text-sm space-y-1 text-gray-700">
+              <li> 自动摘要</li>
+              <li> 核心提取</li>
+              <li> 长度控制</li>
             </ul>
           </div>
-          <div className="border border-white/20 rounded-lg p-5">
+          <div className="border border-gray-200 rounded-lg p-5">
             <div className="text-2xl mb-3">🔄</div>
-            <div className="font-semibold mb-2">代码翻译</div>
-            <ul className="text-sm space-y-1 opacity-90">
-              <li>• 跨语言转换</li>
-              <li>• 语法适配</li>
-              <li>• 逻辑保持</li>
+            <div className="font-semibold mb-2 text-gray-800">代码翻译</div>
+            <ul className="text-sm space-y-1 text-gray-700">
+              <li> 跨语言转换</li>
+              <li> 语法适配</li>
+              <li> 逻辑保持</li>
             </ul>
           </div>
-          <div className="border border-white/20 rounded-lg p-5">
+          <div className="border border-gray-200 rounded-lg p-5">
             <div className="text-2xl mb-3">😊</div>
-            <div className="font-semibold mb-2">情感分析</div>
-            <ul className="text-sm space-y-1 opacity-90">
-              <li>• 情感分类</li>
-              <li>• 置信度评估</li>
-              <li>• 原因分析</li>
+            <div className="font-semibold mb-2 text-gray-800">情感分析</div>
+            <ul className="text-sm space-y-1 text-gray-700">
+              <li> 情感分类</li>
+              <li> 置信度评估</li>
+              <li> 原因分析</li>
             </ul>
           </div>
         </div>
-        <div className="mt-6 pt-6 border-t border-white/20">
-          <p className="text-lg mb-2">📚 <strong>下一章：框架集成</strong></p>
-          <p className="text-sm opacity-90">学习如何将LangChain4j集成到Spring Boot、Quarkus等框架中</p>
-          <a href="/integrations" className="inline-block mt-3 px-6 py-2 bg-white text-indigo-600 rounded-lg font-medium hover:bg-gray-100 transition-colors">
+        <div className="mt-6 pt-6 border-t border-gray-200">
+          <p className="text-lg mb-2 text-gray-900">📚 <strong>下一章：框架集成</strong></p>
+          <p className="text-sm text-gray-700">学习如何将LangChain4j集成到Spring Boot、Quarkus等框架中</p>
+          <a href="/integrations" className="inline-block mt-3 px-6 py-2 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition-colors">
             继续学习 →
           </a>
         </div>

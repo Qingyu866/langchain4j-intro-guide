@@ -104,32 +104,32 @@ const ChatListenersPage = () => {
             <h4 className="font-semibold text-blue-800 mb-2">事件类型</h4>
             <p className="text-blue-700 text-sm">监听器可以响应多种事件：</p>
             <ul className="text-blue-600 text-xs space-y-1">
-              <li>• 消息发送前</li>
-              <li>• 消息发送后</li>
-              <li>• 模型开始生成</li>
-              <li>• 模型生成完成</li>
-              <li>• Token 使用更新</li>
+              <li> 消息发送前</li>
+              <li> 消息发送后</li>
+              <li> 模型开始生成</li>
+              <li> 模型生成完成</li>
+              <li> Token 使用更新</li>
             </ul>
           </div>
           <div className="card card-green">
             <h4 className="font-semibold text-green-800 mb-2">应用场景</h4>
             <p className="text-green-700 text-sm">监听器的典型应用场景：</p>
             <ul className="text-green-600 text-xs space-y-1">
-              <li>• 日志记录和审计</li>
-              <li>• Token 使用监控</li>
-              <li>• 消息中间件处理</li>
-              <li>• 自定义业务逻辑触发</li>
-              <li>• 流程控制和拦截</li>
+              <li> 日志记录和审计</li>
+              <li> Token 使用监控</li>
+              <li> 消息中间件处理</li>
+              <li> 自定义业务逻辑触发</li>
+              <li> 流程控制和拦截</li>
             </ul>
           </div>
           <div className="card card-purple">
             <h4 className="font-semibold text-purple-800 mb-2">核心优势</h4>
             <p className="text-purple-700 text-sm">使用监听器的优势：</p>
             <ul className="text-purple-600 text-xs space-y-1">
-              <li>• 解耦：将业务逻辑从主流程中分离</li>
-              <li>• 可测试：独立测试监听器逻辑</li>
-              <li>• 可扩展：动态添加和移除监听器</li>
-              <li>• 观察者模式：易于实现复杂的事件链</li>
+              <li> 解耦：将业务逻辑从主流程中分离</li>
+              <li> 可测试：独立测试监听器逻辑</li>
+              <li> 可扩展：动态添加和移除监听器</li>
+              <li> 观察者模式：易于实现复杂的事件链</li>
             </ul>
           </div>
         </div>

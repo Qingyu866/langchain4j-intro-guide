@@ -1327,12 +1327,12 @@ metrics:
         </TipBox>
       </section>
 
-      <div className="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-lg p-8 text-white">
-        <h3 className="text-2xl font-bold mb-4">🎯 项目总结</h3>
+      <div className="bg-gray-50 border border-gray-200 rounded-lg p-8">
+        <h3 className="text-2xl font-bold mb-4 text-gray-900">🎯 项目总结</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <h4 className="font-semibold mb-2">核心功能</h4>
-            <ul className="space-y-1 text-sm opacity-90 list-disc list-inside">
+            <h4 className="font-semibold mb-2 text-gray-800">核心功能</h4>
+            <ul className="space-y-1 text-sm text-gray-700 list-disc list-inside">
               <li>✅ 文档上传和管理</li>
               <li>✅ 向量化存储和检索</li>
               <li>✅ 智能问答对话</li>
@@ -1341,8 +1341,8 @@ metrics:
             </ul>
           </div>
           <div>
-            <h4 className="font-semibold mb-2">技术栈</h4>
-            <ul className="space-y-1 text-sm opacity-90 list-disc list-inside">
+            <h4 className="font-semibold mb-2 text-gray-800">技术栈</h4>
+            <ul className="space-y-1 text-sm text-gray-700 list-disc list-inside">
               <li>Spring Boot 3.2.x</li>
               <li>LangChain4j RAG API</li>
               <li>PostgreSQL + PGVector</li>
@@ -1351,14 +1351,14 @@ metrics:
             </ul>
           </div>
         </div>
-        <div className="mt-6 pt-6 border-t border-white/20">
-          <p className="text-sm opacity-90">
+        <div className="mt-6 pt-6 border-t border-gray-200">
+          <p className="text-sm text-gray-700">
             本章完成了一个完整的RAG知识库项目实战。涵盖了从项目架构、后端开发、前端实现到部署监控的全流程。
           </p>
-          <p className="text-sm opacity-90">
+          <p className="text-sm text-gray-700">
             下一章我们将学习如何构建AI助手项目，包含更复杂的Agent能力和工具调用。
           </p>
-          <a href="/project-ai-assistant" className="inline-block mt-3 px-6 py-2 bg-white text-indigo-600 rounded-lg font-medium hover:bg-gray-100 transition-colors">
+          <a href="/project-ai-assistant" className="inline-block mt-3 px-6 py-2 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition-colors">
             继续学习 →
           </a>
         </div>

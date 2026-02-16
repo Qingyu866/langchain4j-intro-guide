@@ -417,20 +417,20 @@ const PracticePage = () => {
           <div className="card card-blue">
             <h4 className="font-semibold text-blue-800 mb-2">RAG 知识库项目</h4>
             <p className="text-blue-700 text-sm mb-2">企业级文档管理系统</p>
-            <p className="text-blue-600 text-sm">• 复杂度：⭐⭐⭐⭐</p>
-            <p className="text-blue-600 text-sm">• 核心功能：文档向量化、语义检索、相似度匹配</p>
+            <p className="text-blue-600 text-sm"> 复杂度：⭐⭐⭐⭐</p>
+            <p className="text-blue-600 text-sm"> 核心功能：文档向量化、语义检索、相似度匹配</p>
           </div>
           <div className="card card-purple">
             <h4 className="font-semibold text-purple-800 mb-2">AI 助手项目</h4>
             <p className="text-purple-700 text-sm mb-2">企业级智能助手</p>
-            <p className="text-purple-600 text-sm">• 复杂度：⭐⭐⭐</p>
-            <p className="text-purple-600 text-sm">• 核心功能：多模型支持、上下文管理、函数调用</p>
+            <p className="text-purple-600 text-sm"> 复杂度：⭐⭐⭐</p>
+            <p className="text-purple-600 text-sm"> 核心功能：多模型支持、上下文管理、函数调用</p>
           </div>
           <div className="card card-orange">
             <h4 className="font-semibold text-orange-800 mb-2">聊天机器人项目</h4>
             <p className="text-orange-700 text-sm mb-2">实时聊天应用</p>
-            <p className="text-orange-600 text-sm">• 复杂度：⭐⭐⭐</p>
-            <p className="text-orange-600 text-sm">• 核心功能：实时通信、多用户支持、WebSocket 连接</p>
+            <p className="text-orange-600 text-sm"> 复杂度：⭐⭐⭐</p>
+            <p className="text-orange-600 text-sm"> 核心功能：实时通信、多用户支持、WebSocket 连接</p>
           </div>
         </div>
 
@@ -631,8 +631,8 @@ const PracticePage = () => {
             <li><strong>AI 助手</strong>：多模型支持、函数调用、上下文管理</li>
             <li><strong>聊天机器人</strong>：实时通信、用户认证、消息持久化</li>
           </ul>
-          <div className="border-t border-indigo-400 pt-6">
-            <p className="text-sm opacity-80 mb-2">统一技术栈</p>
+          <div className="border-t border-gray-200 pt-6">
+            <p className="text-sm text-gray-600 mb-2">统一技术栈</p>
             <div className="flex flex-wrap gap-2 mb-4">
               <Tag variant="indigo">LangChain4j</Tag>
               <Tag variant="blue">Spring Boot 3.2.x</Tag>
@@ -642,9 +642,9 @@ const PracticePage = () => {
               <Tag variant="orange">WebSocket</Tag>
             </div>
           </div>
-          <div className="border-t border-indigo-400 pt-6 mt-6">
-            <p className="text-sm opacity-80 mb-2">下一步</p>
-            <a href="/search" className="text-white hover:text-indigo-200 transition-colors">
+          <div className="border-t border-gray-200 pt-6 mt-6">
+            <p className="text-sm text-gray-600 mb-2">下一步</p>
+            <a href="/search" className="text-indigo-600 hover:text-indigo-700 transition-colors">
               下一章：搜索功能 →
             </a>
           </div>

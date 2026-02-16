@@ -19,36 +19,36 @@ const IntegrationsPage = () => {
             <div className="text-3xl mb-3">🍃</div>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">Spring Boot</h3>
             <ul className="text-gray-600 text-sm space-y-1">
-              <li>• 自动配置</li>
-              <li>• 依赖注入</li>
-              <li>• AOP支持</li>
+              <li> 自动配置</li>
+              <li> 依赖注入</li>
+              <li> AOP支持</li>
             </ul>
           </div>
           <div className="bg-gradient-to-br from-red-50 to-orange-50 border border-red-100 rounded-xl p-6">
             <div className="text-3xl mb-3">⚡</div>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">Quarkus</h3>
             <ul className="text-gray-600 text-sm space-y-1">
-              <li>• CDI集成</li>
-              <li>• 原生镜像</li>
-              <li>• 快速启动</li>
+              <li> CDI集成</li>
+              <li> 原生镜像</li>
+              <li> 快速启动</li>
             </ul>
           </div>
           <div className="bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-100 rounded-xl p-6">
             <div className="text-3xl mb-3">🔄</div>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">消息队列</h3>
             <ul className="text-gray-600 text-sm space-y-1">
-              <li>• Kafka集成</li>
-              <li>• RabbitMQ</li>
-              <li>• 异步处理</li>
+              <li> Kafka集成</li>
+              <li> RabbitMQ</li>
+              <li> 异步处理</li>
             </ul>
           </div>
           <div className="bg-gradient-to-br from-purple-50 to-pink-50 border border-purple-100 rounded-xl p-6">
             <div className="text-3xl mb-3">💾</div>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">数据存储</h3>
             <ul className="text-gray-600 text-sm space-y-1">
-              <li>• PostgreSQL</li>
-              <li>• Redis缓存</li>
-              <li>• 向量数据库</li>
+              <li> PostgreSQL</li>
+              <li> Redis缓存</li>
+              <li> 向量数据库</li>
             </ul>
           </div>
         </div>
@@ -60,11 +60,11 @@ const IntegrationsPage = () => {
           <div>
             <h3 className="font-bold text-gray-900 mb-2">学习目标</h3>
             <ul className="text-gray-700 space-y-2 text-sm">
-              <li>• 掌握 LangChain4j 与 Spring Boot 的深度集成</li>
-              <li>• 学习 Quarkus 原生集成和优化</li>
-              <li>• 理解消息队列异步处理模式</li>
-              <li>• 掌握 Redis 缓存集成策略</li>
-              <li>• 了解向量数据库最佳实践</li>
+              <li> 掌握 LangChain4j 与 Spring Boot 的深度集成</li>
+              <li> 学习 Quarkus 原生集成和优化</li>
+              <li> 理解消息队列异步处理模式</li>
+              <li> 掌握 Redis 缓存集成策略</li>
+              <li> 了解向量数据库最佳实践</li>
             </ul>
           </div>
         </div>
@@ -975,74 +975,74 @@ public class RagServiceWithCache {
         />
       </section>
 
-      <div className="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-lg p-8 text-white">
-        <h2 className="text-2xl font-bold mb-4">🎯 集成总结</h2>
+      <div className="bg-gray-50 border border-gray-200 rounded-lg p-8">
+        <h2 className="text-2xl font-bold mb-4 text-gray-900">🎯 集成总结</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div className="border border-white/20 rounded-lg p-5">
+          <div className="border border-gray-200 rounded-lg p-5">
             <div className="text-2xl mb-3">🍃</div>
-            <div className="font-semibold mb-2">Spring Boot</div>
-            <ul className="text-sm space-y-1 opacity-90">
-              <li>• @AiService自动注册</li>
-              <li>• 依赖注入</li>
-              <li>• 配置外部化</li>
-              <li>• Actuator监控</li>
+            <div className="font-semibold mb-2 text-gray-800">Spring Boot</div>
+            <ul className="text-sm space-y-1 text-gray-700">
+              <li> @AiService自动注册</li>
+              <li> 依赖注入</li>
+              <li> 配置外部化</li>
+              <li> Actuator监控</li>
             </ul>
           </div>
-          <div className="border border-white/20 rounded-lg p-5">
+          <div className="border border-gray-200 rounded-lg p-5">
             <div className="text-2xl mb-3">⚡</div>
-            <div className="font-semibold mb-2">Quarkus</div>
-            <ul className="text-sm space-y-1 opacity-90">
-              <li>• CDI集成</li>
-              <li>• 原生编译</li>
-              <li>• 快速启动</li>
-              <li>• 低内存占用</li>
+            <div className="font-semibold mb-2 text-gray-800">Quarkus</div>
+            <ul className="text-sm space-y-1 text-gray-700">
+              <li> CDI集成</li>
+              <li> 原生编译</li>
+              <li> 快速启动</li>
+              <li> 低内存占用</li>
             </ul>
           </div>
-          <div className="border border-white/20 rounded-lg p-5">
+          <div className="border border-gray-200 rounded-lg p-5">
             <div className="text-2xl mb-3">🔄</div>
-            <div className="font-semibold mb-2">Kafka</div>
-            <ul className="text-sm space-y-1 opacity-90">
-              <li>• 异步消息处理</li>
-              <li>• 解耦系统</li>
-              <li>• 消息持久化</li>
-              <li>• 可扩展性</li>
+            <div className="font-semibold mb-2 text-gray-800">Kafka</div>
+            <ul className="text-sm space-y-1 text-gray-700">
+              <li> 异步消息处理</li>
+              <li> 解耦系统</li>
+              <li> 消息持久化</li>
+              <li> 可扩展性</li>
             </ul>
           </div>
-          <div className="border border-white/20 rounded-lg p-5">
+          <div className="border border-gray-200 rounded-lg p-5">
             <div className="text-2xl mb-3">💾</div>
-            <div className="font-semibold mb-2">PostgreSQL</div>
-            <ul className="text-sm space-y-1 opacity-90">
-              <li>• PGVector扩展</li>
-              <li>• 向量存储</li>
-              <li>• 数据持久化</li>
-              <li>• 事务支持</li>
+            <div className="font-semibold mb-2 text-gray-800">PostgreSQL</div>
+            <ul className="text-sm space-y-1 text-gray-700">
+              <li> PGVector扩展</li>
+              <li> 向量存储</li>
+              <li> 数据持久化</li>
+              <li> 事务支持</li>
             </ul>
           </div>
-          <div className="border border-white/20 rounded-lg p-5">
+          <div className="border border-gray-200 rounded-lg p-5">
             <div className="text-2xl mb-3">🔴</div>
-            <div className="font-semibold mb-2">Redis</div>
-            <ul className="text-sm space-y-1 opacity-90">
-              <li>• 缓存Embedding</li>
-              <li>• 缓存搜索结果</li>
-              <li>• 会话管理</li>
-              <li>• 分布式锁</li>
+            <div className="font-semibold mb-2 text-gray-800">Redis</div>
+            <ul className="text-sm space-y-1 text-gray-700">
+              <li> 缓存Embedding</li>
+              <li> 缓存搜索结果</li>
+              <li> 会话管理</li>
+              <li> 分布式锁</li>
             </ul>
           </div>
-          <div className="border border-white/20 rounded-lg p-5">
+          <div className="border border-gray-200 rounded-lg p-5">
             <div className="text-2xl mb-3">🔐</div>
-            <div className="font-semibold mb-2">安全实践</div>
-            <ul className="text-sm space-y-1 opacity-90">
-              <li>• API密钥管理</li>
-              <li>• 环境变量</li>
-              <li>• 访问控制</li>
-              <li>• 数据加密</li>
+            <div className="font-semibold mb-2 text-gray-800">安全实践</div>
+            <ul className="text-sm space-y-1 text-gray-700">
+              <li> API密钥管理</li>
+              <li> 环境变量</li>
+              <li> 访问控制</li>
+              <li> 数据加密</li>
             </ul>
           </div>
         </div>
-        <div className="mt-6 pt-6 border-t border-white/20">
-          <p className="text-lg mb-2">📚 <strong>下一章：测试策略</strong></p>
-          <p className="text-sm opacity-90">学习LangChain4j应用的测试策略，包括单元测试、集成测试和端到端测试</p>
-          <a href="/testing-strategies" className="inline-block mt-3 px-6 py-2 bg-white text-indigo-600 rounded-lg font-medium hover:bg-gray-100 transition-colors">
+        <div className="mt-6 pt-6 border-t border-gray-200">
+          <p className="text-lg mb-2 text-gray-900">📚 <strong>下一章：测试策略</strong></p>
+          <p className="text-sm text-gray-700">学习LangChain4j应用的测试策略，包括单元测试、集成测试和端到端测试</p>
+          <a href="/testing-strategies" className="inline-block mt-3 px-6 py-2 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition-colors">
             继续学习 →
           </a>
         </div>

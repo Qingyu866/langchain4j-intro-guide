@@ -409,10 +409,10 @@ const RagIntroPage = () => {
             <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-lg">
               <h5 className="font-bold text-blue-900 mb-2">💡 解决方案</h5>
               <ul className="space-y-1 text-blue-800 text-sm">
-                <li>• 使用多种检索策略（向量+关键词混合）</li>
-                <li>• 优化分块策略（语义分块、固定大小）</li>
-                <li>• 添加重排序（Rerank）优化结果质量</li>
-                <li>• 调整相似度阈值，平衡精度和召回率</li>
+                <li> 使用多种检索策略（向量+关键词混合）</li>
+                <li> 优化分块策略（语义分块、固定大小）</li>
+                <li> 添加重排序（Rerank）优化结果质量</li>
+                <li> 调整相似度阈值，平衡精度和召回率</li>
               </ul>
             </div>
           </div>
@@ -424,10 +424,10 @@ const RagIntroPage = () => {
             <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-lg">
               <h5 className="font-bold text-blue-900 mb-2">💡 解决方案</h5>
               <ul className="space-y-1 text-blue-800 text-sm">
-                <li>• 智能选择最相关的N个结果（Top-k策略）</li>
-                <li>• 使用压缩技术减少Token消耗</li>
-                <li>• 实现多轮检索，逐步获取信息</li>
-                <li>• 将长文档摘要后再嵌入</li>
+                <li> 智能选择最相关的N个结果（Top-k策略）</li>
+                <li> 使用压缩技术减少Token消耗</li>
+                <li> 实现多轮检索，逐步获取信息</li>
+                <li> 将长文档摘要后再嵌入</li>
               </ul>
             </div>
           </div>
@@ -439,11 +439,11 @@ const RagIntroPage = () => {
             <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-lg">
               <h5 className="font-bold text-blue-900 mb-2">💡 解决方案</h5>
               <ul className="space-y-1 text-blue-800 text-sm">
-                <li>• 使用流式检索，边检索边生成</li>
-                <li>• 缓存常用查询的检索结果</li>
-                <li>• 选择高性能向量数据库（Pinecone、Weaviate）</li>
-                <li>• 并行处理多个查询请求</li>
-                <li>• 优化Embedding生成批处理</li>
+                <li> 使用流式检索，边检索边生成</li>
+                <li> 缓存常用查询的检索结果</li>
+                <li> 选择高性能向量数据库（Pinecone、Weaviate）</li>
+                <li> 并行处理多个查询请求</li>
+                <li> 优化Embedding生成批处理</li>
               </ul>
             </div>
           </div>
@@ -455,11 +455,11 @@ const RagIntroPage = () => {
             <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-lg">
               <h5 className="font-bold text-blue-900 mb-2">💡 解决方案</h5>
               <ul className="space-y-1 text-blue-800 text-sm">
-                <li>• 固定大小分块（如512、1024 tokens）</li>
-                <li>• 段落分块，保持语义完整性</li>
-                <li>• 重叠分块（50-200 tokens重叠）</li>
-                <li>• 语义分块，基于语义边界切分</li>
-                <li>• 递归分块，先分大段落再分句子</li>
+                <li> 固定大小分块（如512、1024 tokens）</li>
+                <li> 段落分块，保持语义完整性</li>
+                <li> 重叠分块（50-200 tokens重叠）</li>
+                <li> 语义分块，基于语义边界切分</li>
+                <li> 递归分块，先分大段落再分句子</li>
               </ul>
             </div>
           </div>
