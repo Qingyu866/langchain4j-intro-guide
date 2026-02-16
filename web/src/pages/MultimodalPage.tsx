@@ -459,22 +459,22 @@ public class StructuredExtraction {
         <div className="grid-2col">
           <div className="bg-blue-50 border border-blue-200 rounded-lg p-5">
             <h4 className="font-semibold text-blue-900 mb-3">💡 常见应用场景</h4>
-            <ul className="text-blue-800 space-y-2 text-sm">
-              <li>• OCR文档识别（发票、收据、身份证）</li>
-              <li>• 产品缺陷检测（制造业质检）</li>
-              <li>• 医疗影像分析（X光片、CT扫描）</li>
-              <li>• 图像内容审核（识别不当内容）</li>
-              <li>• 电商商品分类（自动标注）</li>
+            <ul className="text-blue-800 space-y-2 text-sm list-disc list-inside">
+              <li>OCR文档识别（发票、收据、身份证）</li>
+              <li>产品缺陷检测（制造业质检）</li>
+              <li>医疗影像分析（X光片、CT扫描）</li>
+              <li>图像内容审核（识别不当内容）</li>
+              <li>电商商品分类（自动标注）</li>
             </ul>
           </div>
           <div className="bg-orange-50 border border-orange-200 rounded-lg p-5">
             <h4 className="font-semibold text-orange-900 mb-3">⚠️ 性能优化建议</h4>
-            <ul className="text-orange-800 space-y-2 text-sm">
-              <li>• 压缩图像分辨率（减少Token消耗）</li>
-              <li>• 裁剪感兴趣区域（降低复杂度）</li>
-              <li>• 使用小模型进行初筛（节省成本）</li>
-              <li>• 缓存图像嵌入（避免重复分析）</li>
-              <li>• 批量处理而非单张分析</li>
+            <ul className="text-orange-800 space-y-2 text-sm list-disc list-inside">
+              <li>压缩图像分辨率（减少Token消耗）</li>
+              <li>裁剪感兴趣区域（降低复杂度）</li>
+              <li>使用小模型进行初筛（节省成本）</li>
+              <li>缓存图像嵌入（避免重复分析）</li>
+              <li>批量处理而非单张分析</li>
             </ul>
           </div>
         </div>
@@ -845,20 +845,20 @@ public class ImageRagExample {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <h4 className="font-semibold mb-2">核心概念</h4>
-              <ul className="space-y-1 text-sm opacity-90">
-                <li>• 多模态AI支持文本、图像、音频等多种数据</li>
-                <li>• 图像生成使用ImageModel（DALL-E、Imagen）</li>
-                <li>• 图像理解使用ChatModel（GPT-4V、Claude-3）</li>
-                <li>• 多模态RAG支持图像检索和跨模态查询</li>
+              <ul className="space-y-1 text-sm opacity-90 list-disc list-inside">
+                <li>多模态AI支持文本、图像、音频等多种数据</li>
+                <li>图像生成使用ImageModel（DALL-E、Imagen）</li>
+                <li>图像理解使用ChatModel（GPT-4V、Claude-3）</li>
+                <li>多模态RAG支持图像检索和跨模态查询</li>
               </ul>
             </div>
             <div>
               <h4 className="font-semibold mb-2">关键API</h4>
-              <ul className="space-y-1 text-sm font-mono opacity-90">
-                <li>• ImageModel.generate()</li>
-                <li>• UserMessage.from(ImageContent, text)</li>
-                <li>• Image.from(url/base64)</li>
-                <li>• ContentRetriever（自定义检索器）</li>
+              <ul className="space-y-1 text-sm font-mono opacity-90 list-disc list-inside">
+                <li>ImageModel.generate()</li>
+                <li>UserMessage.from(ImageContent, text)</li>
+                <li>Image.from(url/base64)</li>
+                <li>ContentRetriever（自定义检索器）</li>
               </ul>
             </div>
           </div>

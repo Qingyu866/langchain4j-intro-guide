@@ -598,38 +598,38 @@ public class CompleteRAGSystem {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="bg-white border border-gray-200 rounded-xl p-6">
             <h4 className="font-bold text-gray-900 mb-3">⚡ 检索优化</h4>
-            <ul className="space-y-2 text-gray-600 text-sm">
-              <li>• <strong>缓存</strong>：缓存常用查询的检索结果</li>
-              <li>• <strong>并行检索</strong>：同时查询多个向量数据库</li>
-              <li>• <strong>索引优化</strong>：为向量数据库添加合适的索引</li>
-              <li>• <strong>批量查询</strong>：一次检索多个查询</li>
+            <ul className="space-y-2 text-gray-600 text-sm list-disc list-inside">
+              <li><strong>缓存</strong>：缓存常用查询的检索结果</li>
+              <li><strong>并行检索</strong>：同时查询多个向量数据库</li>
+              <li><strong>索引优化</strong>：为向量数据库添加合适的索引</li>
+              <li><strong>批量查询</strong>：一次检索多个查询</li>
             </ul>
           </div>
           <div className="bg-white border border-gray-200 rounded-xl p-6">
             <h4 className="font-bold text-gray-900 mb-3">💾 生成优化</h4>
-            <ul className="space-y-2 text-gray-600 text-sm">
-              <li>• <strong>批量处理</strong>：积累多个文本后一次性生成</li>
-              <li>• <strong>异步处理</strong>：使用异步API提高吞吐量</li>
-              <li>• <strong>模型选择</strong>：small比large便宜很多</li>
-              <li>• <strong>维度优化</strong>：1536维在精度和成本间平衡</li>
+            <ul className="space-y-2 text-gray-600 text-sm list-disc list-inside">
+              <li><strong>批量处理</strong>：积累多个文本后一次性生成</li>
+              <li><strong>异步处理</strong>：使用异步API提高吞吐量</li>
+              <li><strong>模型选择</strong>：small比large便宜很多</li>
+              <li><strong>维度优化</strong>：1536维在精度和成本间平衡</li>
             </ul>
           </div>
           <div className="bg-white border border-gray-200 rounded-xl p-6">
             <h4 className="font-bold text-gray-900 mb-3">🎨 上下文管理</h4>
-            <ul className="space-y-2 text-gray-600 text-sm">
-              <li>• <strong>Top-K选择</strong>：使用3-5个结果</li>
-              <li>• <strong>上下文压缩</strong>：长文档摘要后嵌入</li>
-              <li>• <strong>重排序过滤</strong>：用Rerank过滤低质量结果</li>
-              <li>• <strong>流式输出</strong>：边检索边生成</li>
+            <ul className="space-y-2 text-gray-600 text-sm list-disc list-inside">
+              <li><strong>Top-K选择</strong>：使用3-5个结果</li>
+              <li><strong>上下文压缩</strong>：长文档摘要后嵌入</li>
+              <li><strong>重排序过滤</strong>：用Rerank过滤低质量结果</li>
+              <li><strong>流式输出</strong>：边检索边生成</li>
             </ul>
           </div>
           <div className="bg-white border border-gray-200 rounded-xl p-6">
             <h4 className="font-bold text-gray-900 mb-3">📝 数据质量</h4>
-            <ul className="space-y-2 text-gray-600 text-sm">
-              <li>• <strong>数据清洗</strong>：清理HTML标签、特殊字符</li>
-              <li>• <strong>去重</strong>：移除重复文档</li>
-              <li>• <strong>标准化</strong>：统一格式</li>
-              <li>• <strong>版本管理</strong>：记录文档版本</li>
+            <ul className="space-y-2 text-gray-600 text-sm list-disc list-inside">
+              <li><strong>数据清洗</strong>：清理HTML标签、特殊字符</li>
+              <li><strong>去重</strong>：移除重复文档</li>
+              <li><strong>标准化</strong>：统一格式</li>
+              <li><strong>版本管理</strong>：记录文档版本</li>
             </ul>
           </div>
         </div>
@@ -640,21 +640,21 @@ public class CompleteRAGSystem {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <h4 className="font-semibold mb-2">核心组件</h4>
-            <ul className="space-y-1 text-sm opacity-90">
-              <li>• DocumentLoader：加载文档</li>
-              <li>• DocumentSplitter：分割文本</li>
-              <li>• EmbeddingModel：生成向量</li>
-              <li>• EmbeddingStore：存储向量</li>
-              <li>• ContentRetriever：检索内容</li>
+            <ul className="space-y-1 text-sm opacity-90 list-disc list-inside">
+              <li>DocumentLoader：加载文档</li>
+              <li>DocumentSplitter：分割文本</li>
+              <li>EmbeddingModel：生成向量</li>
+              <li>EmbeddingStore：存储向量</li>
+              <li>ContentRetriever：检索内容</li>
             </ul>
           </div>
           <div>
             <h4 className="font-semibold mb-2">关键步骤</h4>
-            <ul className="space-y-1 text-sm opacity-90">
-              <li>• 文档加载 → 分块 → 向量化</li>
-              <li>• 存储到向量数据库</li>
-              <li>• 查询向量化 → 相似度检索</li>
-              <li>• 上下文注入 → LLM生成</li>
+            <ul className="space-y-1 text-sm opacity-90 list-disc list-inside">
+              <li>文档加载 → 分块 → 向量化</li>
+              <li>存储到向量数据库</li>
+              <li>查询向量化 → 相似度检索</li>
+              <li>上下文注入 → LLM生成</li>
             </ul>
           </div>
         </div>
