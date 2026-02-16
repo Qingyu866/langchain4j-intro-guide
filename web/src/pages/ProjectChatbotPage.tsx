@@ -521,24 +521,24 @@ volumes:
             <h4 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
               <span className="text-indigo-600">🔌</span> 核心组件
             </h4>
-            <ul className="text-gray-700 space-y-2 text-sm">
-              <li>• <strong>ChatWebSocketHandler</strong> - WebSocket消息处理</li>
-              <li>• <strong>ChatService</strong> - 聊天业务逻辑</li>
-              <li>• <strong>RoomManager</strong> - 聊天室管理</li>
-              <li>• <strong>OnlineUserService</strong> - 在线用户管理</li>
-              <li>• <strong>MessageRepository</strong> - 消息持久化</li>
+            <ul className="text-gray-700 space-y-2 text-sm list-disc list-inside">
+              <li><strong>ChatWebSocketHandler</strong> - WebSocket消息处理</li>
+              <li><strong>ChatService</strong> - 聊天业务逻辑</li>
+              <li><strong>RoomManager</strong> - 聊天室管理</li>
+              <li><strong>OnlineUserService</strong> - 在线用户管理</li>
+              <li><strong>MessageRepository</strong> - 消息持久化</li>
             </ul>
           </div>
           <div className="bg-white border border-gray-200 rounded-lg p-5">
             <h4 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
               <span className="text-green-600">🤖</span> AI增强功能
             </h4>
-            <ul className="text-gray-700 space-y-2 text-sm">
-              <li>• <strong>ChatAgent</strong> - 智能对话Agent</li>
-              <li>• <strong>MultiBotCoordinator</strong> - 多Bot协调</li>
-              <li>• <strong>ContextMemory</strong> - 对话上下文记忆</li>
-              <li>• <strong>ToolIntegration</strong> - 工具调用支持</li>
-              <li>• <strong>RAGIntegration</strong> - 知识库检索</li>
+            <ul className="text-gray-700 space-y-2 text-sm list-disc list-inside">
+              <li><strong>ChatAgent</strong> - 智能对话Agent</li>
+              <li><strong>MultiBotCoordinator</strong> - 多Bot协调</li>
+              <li><strong>ContextMemory</strong> - 对话上下文记忆</li>
+              <li><strong>ToolIntegration</strong> - 工具调用支持</li>
+              <li><strong>RAGIntegration</strong> - 知识库检索</li>
             </ul>
           </div>
         </div>
@@ -593,11 +593,11 @@ volumes:
             <h4 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
               <span className="text-blue-600">💡</span> WebSocket性能优化
             </h4>
-            <ul className="text-gray-700 space-y-2 text-sm">
-              <li>• 连接池管理避免频繁创建销毁</li>
-              <li>• 心跳检测保持连接活跃</li>
-              <li>• 消息压缩减少传输量</li>
-              <li>• 断线重连提升用户体验</li>
+            <ul className="text-gray-700 space-y-2 text-sm list-disc list-inside">
+              <li>连接池管理避免频繁创建销毁</li>
+              <li>心跳检测保持连接活跃</li>
+              <li>消息压缩减少传输量</li>
+              <li>断线重连提升用户体验</li>
             </ul>
           </div>
 
@@ -605,11 +605,11 @@ volumes:
             <h4 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
               <span className="text-green-600">✅</span> 消息持久化策略
             </h4>
-            <ul className="text-gray-700 space-y-2 text-sm">
-              <li>• 批量插入提升性能</li>
-              <li>• 异步持久化减少延迟</li>
-              <li>• 分页查询避免数据过多</li>
-              <li>• 定期清理过期消息</li>
+            <ul className="text-gray-700 space-y-2 text-sm list-disc list-inside">
+              <li>批量插入提升性能</li>
+              <li>异步持久化减少延迟</li>
+              <li>分页查询避免数据过多</li>
+              <li>定期清理过期消息</li>
             </ul>
           </div>
 
@@ -617,11 +617,11 @@ volumes:
             <h4 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
               <span className="text-amber-600">⚠️</span> 安全注意事项
             </h4>
-            <ul className="text-gray-700 space-y-2 text-sm">
-              <li>• CSRF防护</li>
-              <li>• CORS配置限制</li>
-              <li>• 消息内容过滤</li>
-              <li>• 速率限制</li>
+            <ul className="text-gray-700 space-y-2 text-sm list-disc list-inside">
+              <li>CSRF防护</li>
+              <li>CORS配置限制</li>
+              <li>消息内容过滤</li>
+              <li>速率限制</li>
             </ul>
           </div>
         </div>
@@ -632,35 +632,35 @@ volumes:
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="border border-white/20 rounded-lg p-5">
             <div className="text-2xl mb-3">🔌 核心技术</div>
-            <ul className="text-sm space-y-1">
-              <li>• WebSocket实时双向通信</li>
-              <li>• STOMP消息协议</li>
-              <li>• Spring Boot 3.2.x</li>
-              <li>• React 18 + TypeScript</li>
-              <li>• PostgreSQL + Redis</li>
-              <li>• LangChain4j AI集成</li>
+            <ul className="text-sm space-y-1 list-disc list-inside">
+              <li>WebSocket实时双向通信</li>
+              <li>STOMP消息协议</li>
+              <li>Spring Boot 3.2.x</li>
+              <li>React 18 + TypeScript</li>
+              <li>PostgreSQL + Redis</li>
+              <li>LangChain4j AI集成</li>
             </ul>
           </div>
           <div className="border border-white/20 rounded-lg p-5">
             <div className="text-2xl mb-3">✨ 关键功能</div>
-            <ul className="text-sm space-y-1">
-              <li>• 多用户实时群聊</li>
-              <li>• 消息持久化和历史记录</li>
-              <li>• 在线用户状态管理</li>
-              <li>• AI智能对话助手</li>
-              <li>• RAG知识库集成</li>
-              <li>• 多Bot协作</li>
+            <ul className="text-sm space-y-1 list-disc list-inside">
+              <li>多用户实时群聊</li>
+              <li>消息持久化和历史记录</li>
+              <li>在线用户状态管理</li>
+              <li>AI智能对话助手</li>
+              <li>RAG知识库集成</li>
+              <li>多Bot协作</li>
             </ul>
           </div>
           <div className="border border-white/20 rounded-lg p-5">
             <div className="text-2xl mb-3">🚀 最佳实践</div>
-            <ul className="text-sm space-y-1">
-              <li>• 异步消息处理</li>
-              <li>• 批量数据库操作</li>
-              <li>• 分页查询优化</li>
-              <li>• Docker容器化部署</li>
-              <li>• 健康检查和监控</li>
-              <li>• 安全防护机制</li>
+            <ul className="text-sm space-y-1 list-disc list-inside">
+              <li>异步消息处理</li>
+              <li>批量数据库操作</li>
+              <li>分页查询优化</li>
+              <li>Docker容器化部署</li>
+              <li>健康检查和监控</li>
+              <li>安全防护机制</li>
             </ul>
           </div>
         </div>
