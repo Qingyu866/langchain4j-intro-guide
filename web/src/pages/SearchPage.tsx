@@ -60,26 +60,39 @@ public class SearchController {
     }
 }`;
 
-  const batchSearchCode = `List<String> queries = List.of(
-    "如何使用 LangChain4j?",
-    "向量检索的原理是什么？",
-    "什么是 RAG？"
-);
+  const batchSearchCode = `import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
-Map<String, List<String>> results = queries.parallelStream()
-    .collect(
-        Collectors.toMap(
-            query -> Map.entry(
-                query, 
-                embeddingStoreService.search(query, 5, 0.0)
-            )
-        )
-    );
+public class BatchSearchExample {
+    
+    private final EmbeddingStoreService embeddingStoreService;
 
-results.forEach((query, docs) -> {
-    System.out.println("Query: " + query);
-    docs.forEach(doc -> System.out.println("  - " + doc));
-});`;
+    public BatchSearchExample(EmbeddingStoreService service) {
+        this.embeddingStoreService = service;
+    }
+
+    public void batchSearch() {
+        List<String> queries = List.of(
+            "如何使用 LangChain4j?",
+            "向量检索的原理是什么？",
+            "什么是 RAG？"
+        );
+
+        Map<String, List<String>> results = queries.stream()
+            .collect(
+                Collectors.toMap(
+                    query -> query,
+                    query -> embeddingStoreService.search(query, 5, 0.0)
+                )
+            );
+
+        results.forEach((query, docs) -> {
+            System.out.println("Query: " + query);
+            docs.forEach(doc -> System.out.println("  - " + doc));
+        });
+    }
+}`;
 
   return (
     <Layout>

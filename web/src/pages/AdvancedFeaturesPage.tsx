@@ -2,132 +2,137 @@ import Layout from '../components/layout/Layout';
 import { Tag, CodeBlockWithCopy, SectionHeader, TipBox, SummarySection, MermaidChart } from '../components/ui';
 
 const AdvancedFeaturesPage = () => {
-  const streamingComplete = `import dev.langchain4j.model.chat.ChatLanguageModel;
-import dev.langchain4j.model.chat.StreamingChatLanguageModel;
+  const streamingComplete = `import dev.langchain4j.model.chat.StreamingChatLanguageModel;
 import dev.langchain4j.model.chat.StreamingResponseHandler;
 import dev.langchain4j.model.openai.OpenAiStreamingChatModel;
-import static dev.langchain4j.model.openai.OpenAiStreamingChatModel.builder;
 
-// 创建StreamingChatModel
-StreamingChatModel model = builder()
-    .apiKey(System.getenv("OPENAI_API_KEY"))
-    .modelName("gpt-4")
-    .build();
+public class StreamingExample {
+    public static void main(String[] args) {
+        // 创建StreamingChatModel
+        StreamingChatLanguageModel model = OpenAiStreamingChatModel.builder()
+            .apiKey(System.getenv("OPENAI_API_KEY"))
+            .modelName("gpt-4")
+            .build();
 
-// 实现流式响应
-model.generate("写一首关于AI的诗", new StreamingResponseHandler() {
-    // 接收部分token（流式输出）
-    @Override
-    public void onPartialResponse(String partialResponse) {
-        System.out.print(partialResponse);
+        // 实现流式响应
+        model.generate("写一首关于AI的诗", new StreamingResponseHandler() {
+            // 接收部分token（流式输出）
+            @Override
+            public void onPartialResponse(String partialResponse) {
+                System.out.print(partialResponse);
+            }
+
+            // 响应完成
+            @Override
+            public void onCompleteResponse(String completeResponse) {
+                System.out.println("\\n--- COMPLETE ---");
+            }
+
+            // 错误处理
+            @Override
+            public void onError(Throwable error) {
+                System.err.println("Error: " + error.getMessage());
+            }
+        });
     }
-
-    // 响应完成
-    @Override
-    public void onCompleteResponse(String completeResponse) {
-        System.out.println("\\n--- COMPLETE ---");
-    }
-
-    // 错误处理
-    @Override
-    public void onError(Throwable error) {
-        System.err.println("Error: " + error.getMessage());
-    }
-});`;
+}`;
 
   const structuredOutputComplete = `import dev.langchain4j.service.AiServices;
 import dev.langchain4j.model.chat.ChatLanguageModel;
 import dev.langchain4j.model.openai.OpenAiChatModel;
-import static dev.langchain4j.model.openai.OpenAiChatModel.builder;
+import dev.langchain4j.service.UserMessage;
+import dev.langchain4j.service.V;
 
-// 定义POJO类
-public class WeatherInfo {
-    private String city;
-    private double temperature;
-    private String condition;
-    private String description;
+public class StructuredOutputExample {
 
-    // 构造器、getters、setters
-}
+    // 定义POJO类
+    public static class WeatherInfo {
+        private String city;
+        private double temperature;
+        private String condition;
+        private String description;
 
-// 定义AI Service接口
-interface WeatherService {
-    @UserMessage("Get weather for {{city}}")
-    WeatherInfo getWeather(@V("city") String city);
-}
+        public String getCity() { return city; }
+        public void setCity(String city) { this.city = city; }
+        public double getTemperature() { return temperature; }
+        public void setTemperature(double temperature) { this.temperature = temperature; }
+        public String getCondition() { return condition; }
+        public void setCondition(String condition) { this.condition = condition; }
+        public String getDescription() { return description; }
+        public void setDescription(String description) { this.description = description; }
+    }
 
-// 创建AI Service
-ChatLanguageModel model = builder()
-    .apiKey(System.getenv("OPENAI_API_KEY"))
-    .modelName("gpt-4")
-    .build();
+    // 定义AI Service接口
+    interface WeatherService {
+        @UserMessage("Get weather for {{city}}")
+        WeatherInfo getWeather(@V("city") String city);
+    }
 
-WeatherService weatherService = AiServices.builder(WeatherService.class)
-    .chatLanguageModel(model)
-    .build();
+    public static void main(String[] args) {
+        // 创建AI Service
+        ChatLanguageModel model = OpenAiChatModel.builder()
+            .apiKey(System.getenv("OPENAI_API_KEY"))
+            .modelName("gpt-4")
+            .build();
 
-// 使用 - 自动解析为POJO
-WeatherInfo weather = weatherService.getWeather("Beijing");
-System.out.println("Temperature: " + weather.getTemperature());
-System.out.println("Condition: " + weather.getCondition());
-System.out.println("Description: " + weather.getDescription());`;
+        WeatherService weatherService = AiServices.builder(WeatherService.class)
+            .chatLanguageModel(model)
+            .build();
+
+        // 使用 - 自动解析为POJO
+        WeatherInfo weather = weatherService.getWeather("Beijing");
+        System.out.println("Temperature: " + weather.getTemperature());
+        System.out.println("Condition: " + weather.getCondition());
+        System.out.println("Description: " + weather.getDescription());
+    }
+}`;
 
   const agentArchitecture = `import dev.langchain4j.service.AiServices;
 import dev.langchain4j.model.chat.ChatLanguageModel;
 import dev.langchain4j.model.openai.OpenAiChatModel;
-import dev.langchain4j.agent.tool.Tool;
-import dev.langchain4j.agent.tool.ToolExecutor;
-import java.util.Map;
-import java.util.HashMap;
-import static dev.langchain4j.model.openai.OpenAiChatModel.builder;
+import dev.langchain4j.service.tool.Tool;
+import java.util.List;
 
-// 定义工具
-@Tool("search_web")
-public class WebSearchTool {
-    public String search(String query) {
-        // 实现网页搜索
-        return "搜索结果：" + query;
+public class AgentExample {
+
+    // 定义工具类
+    static class WebSearchTool {
+        @Tool("Search the web for information")
+        public String search(String query) {
+            return "搜索结果：" + query;
+        }
     }
-}
 
-@Tool("get_database")
-public class DatabaseTool {
-    public String query(String sql) {
-        // 实现数据库查询
-        return "查询结果";
+    static class DatabaseTool {
+        @Tool("Query the database")
+        public String query(String sql) {
+            return "查询结果";
+        }
     }
-}
 
-// 定义Agent接口
-interface ResearchAgent {
-    String research(String topic);
-}
+    // 定义Agent接口
+    interface ResearchAgent {
+        String research(String topic);
+    }
 
-// 创建Agent
-ChatLanguageModel model = builder()
-    .apiKey(System.getenv("OPENAI_API_KEY"))
-    .modelName("gpt-4")
-    .temperature(0.0)  // 确定性决策
-    .build();
+    public static void main(String[] args) {
+        // 创建Agent
+        ChatLanguageModel model = OpenAiChatModel.builder()
+            .apiKey(System.getenv("OPENAI_API_KEY"))
+            .modelName("gpt-4")
+            .temperature(0.0)  // 确定性决策
+            .build();
 
-Map<String, Tool> tools = new HashMap<>();
-tools.put("search_web", ToolSpecification.builder()
-    .name("search_web")
-    .description("Search the web for information")
-    .build());
-tools.put("get_database", ToolSpecification.builder()
-    .name("get_database")
-    .description("Query the database")
-    .build());
+        ResearchAgent agent = AiServices.builder(ResearchAgent.class)
+            .chatLanguageModel(model)
+            .tools(new WebSearchTool(), new DatabaseTool())
+            .build();
 
-ResearchAgent agent = AiServices.builder(ResearchAgent.class)
-    .chatLanguageModel(model)
-    .tools(tools)
-    .build();
-
-// Agent自主决策和工具调用
-String result = agent.research("AI发展趋势");
-System.out.println(result);`;
+        // Agent自主决策和工具调用
+        String result = agent.research("AI发展趋势");
+        System.out.println(result);
+    }
+}`;
 
   return (
     <Layout>
