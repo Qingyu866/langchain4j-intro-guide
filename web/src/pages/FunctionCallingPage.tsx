@@ -612,84 +612,96 @@ public class BadCalculatorTool {
 
         <div className="faq-section">
           <div className="faq-item">
-            <h4 className="faq-question">Q: AI不调用工具怎么办？</h4>
-            <p className="faq-answer">
-              可能的原因和解决方案：
-              1. **Prompt不清晰**：prompt中没有明确说明需要调用工具
-              2. **工具规格缺失**：ToolSpecification描述不完整或缺少参数
-              3. **参数不匹配**：工具参数与用户提供的信息不一致
-              4. **工具不可用**：工具服务故障或超时
-              5. **权限问题**：AI没有权限调用该工具
-              6. **解决方案**：优化prompt、检查工具配置、添加示例引导
-            </p>
+            <h4 className="faq-question">Q: AI 不调用工具怎么办？</h4>
+            <div className="faq-answer">
+              <p>可能的原因和解决方案：</p>
+              <ul className="tip-box-list">
+                <li><strong>Prompt 不清晰</strong>：prompt 中没有明确说明需要调用工具</li>
+                <li><strong>工具规格缺失</strong>：ToolSpecification 描述不完整或缺少参数</li>
+                <li><strong>参数不匹配</strong>：工具参数与用户提供的信息不一致</li>
+                <li><strong>工具不可用</strong>：工具服务故障或超时</li>
+                <li><strong>权限问题</strong>：AI 没有权限调用该工具</li>
+                <li><strong>解决方案</strong>：优化 prompt、检查工具配置、添加示例引导</li>
+              </ul>
+            </div>
           </div>
 
           <div className="faq-item">
             <h4 className="faq-question">Q: 如何调试工具调用？</h4>
-            <p className="faq-answer">
-              调试方法：
-              1. 启用详细日志记录工具调用过程
-              2. 在工具方法中添加日志语句
-              3. 检查ToolSpecification是否正确
-              4. 使用低temperature提高AI决策确定性
-              5. 单独测试工具，验证逻辑正确性
-              6. 分析AI的决策日志，理解调用逻辑
-            </p>
+            <div className="faq-answer">
+              <p>调试方法：</p>
+              <ul className="tip-box-list">
+                <li>启用详细日志记录工具调用过程</li>
+                <li>在工具方法中添加日志语句</li>
+                <li>检查 ToolSpecification 是否正确</li>
+                <li>使用低 temperature 提高 AI 决策确定性</li>
+                <li>单独测试工具，验证逻辑正确性</li>
+                <li>分析 AI 的决策日志，理解调用逻辑</li>
+              </ul>
+            </div>
           </div>
 
           <div className="faq-item">
             <h4 className="faq-question">Q: 工具调用失败如何重试？</h4>
-            <p className="faq-answer">
-              重试策略：
-              1. 检测工具调用失败的异常类型
-              2. 对于临时性错误（超时、网络问题）实现指数退避重试
-              3. 对于永久性错误（权限不足、参数错误）不重试
-              4. 设置最大重试次数和总超时时间
-              5. 记录重试历史，便于分析问题模式
-              6. 提供用户手动重试的选项
-            </p>
+            <div className="faq-answer">
+              <p>重试策略：</p>
+              <ul className="tip-box-list">
+                <li>检测工具调用失败的异常类型</li>
+                <li>对于临时性错误（超时、网络问题）实现指数退避重试</li>
+                <li>对于永久性错误（权限不足、参数错误）不重试</li>
+                <li>设置最大重试次数和总超时时间</li>
+                <li>记录重试历史，便于分析问题模式</li>
+                <li>提供用户手动重试的选项</li>
+              </ul>
+            </div>
           </div>
 
           <div className="faq-item">
             <h4 className="faq-question">Q: 如何优化工具调用性能？</h4>
-            <p className="faq-answer">
-              优化策略：
-              1. 批量处理：如果可能，将多个请求合并为一次工具调用
-              2. 并行执行：对于独立的工具调用，使用多线程并行执行
-              3. 结果缓存：缓存相同输入的工具调用结果
-              4. 异步调用：使用异步API避免阻塞
-              5. 连接池：复用HTTP连接减少建立开销
-              6. 超时设置：为工具调用设置合理的超时时间
-              7. 工具优化：优化工具本身性能，减少执行时间
-            </p>
+            <div className="faq-answer">
+              <p>优化策略：</p>
+              <ul className="tip-box-list">
+                <li><strong>批量处理</strong>：如果可能，将多个请求合并为一次工具调用</li>
+                <li><strong>并行执行</strong>：对于独立的工具调用，使用多线程并行执行</li>
+                <li><strong>结果缓存</strong>：缓存相同输入的工具调用结果</li>
+                <li><strong>异步调用</strong>：使用异步 API 避免阻塞</li>
+                <li><strong>连接池</strong>：复用 HTTP 连接减少建立开销</li>
+                <li><strong>超时设置</strong>：为工具调用设置合理的超时时间</li>
+                <li><strong>工具优化</strong>：优化工具本身性能，减少执行时间</li>
+              </ul>
+            </div>
           </div>
 
           <div className="faq-item">
-            <h4 className="faq-question">Q: Agent如何处理工具冲突？</h4>
-            <p className="faq-answer">
-              冲突处理策略：
-              1. 工具依赖分析：识别工具之间的依赖关系
-              2. 调度策略：按照依赖顺序串行调用，或并行调用独立工具
-              3. 资源锁定：对于有状态的工具，确保原子性操作
-              4. 冲突检测：检测潜在的冲突情况（如重复写操作）
-              5. 事务管理：对于数据库操作，使用事务保证一致性
-              6. 超时处理：设置合理的超时，避免无限等待
-              7. 错误恢复：某个工具失败时的降级方案
-            </p>
+            <h4 className="faq-question">Q: Agent 如何处理工具冲突？</h4>
+            <div className="faq-answer">
+              <p>冲突处理策略：</p>
+              <ul className="tip-box-list">
+                <li><strong>工具依赖分析</strong>：识别工具之间的依赖关系</li>
+                <li><strong>调度策略</strong>：按照依赖顺序串行调用，或并行调用独立工具</li>
+                <li><strong>资源锁定</strong>：对于有状态的工具，确保原子性操作</li>
+                <li><strong>冲突检测</strong>：检测潜在的冲突情况（如重复写操作）</li>
+                <li><strong>事务管理</strong>：对于数据库操作，使用事务保证一致性</li>
+                <li><strong>超时处理</strong>：设置合理的超时，避免无限等待</li>
+                <li><strong>错误恢复</strong>：某个工具失败时的降级方案</li>
+              </ul>
+            </div>
           </div>
 
           <div className="faq-item">
             <h4 className="faq-question">Q: 工具调用安全注意事项？</h4>
-            <p className="faq-answer">
-              安全要点：
-              1. 输入验证：严格验证所有工具输入参数，防止注入攻击
-              2. 权限控制：工具内部实现权限检查，限制可执行的操作
-              3. 数据加密：敏感数据在传输和存储时加密
-              4. 审计日志：记录关键操作，便于事后审计
-              5. 资源限制：限制工具的资源使用（CPU、内存、网络）
-              6. 敏感信息过滤：避免在日志和错误消息中泄露敏感信息
-              7. 最小权限原则：工具只授予完成任务所需的最小权限
-            </p>
+            <div className="faq-answer">
+              <p>安全要点：</p>
+              <ul className="tip-box-list">
+                <li><strong>输入验证</strong>：严格验证所有工具输入参数，防止注入攻击</li>
+                <li><strong>权限控制</strong>：工具内部实现权限检查，限制可执行的操作</li>
+                <li><strong>数据加密</strong>：敏感数据在传输和存储时加密</li>
+                <li><strong>审计日志</strong>：记录关键操作，便于事后审计</li>
+                <li><strong>资源限制</strong>：限制工具的资源使用（CPU、内存、网络）</li>
+                <li><strong>敏感信息过滤</strong>：避免在日志和错误消息中泄露敏感信息</li>
+                <li><strong>最小权限原则</strong>：工具只授予完成任务所需的最小权限</li>
+              </ul>
+            </div>
           </div>
         </div>
       </section>

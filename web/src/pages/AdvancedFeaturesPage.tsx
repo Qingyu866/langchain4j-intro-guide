@@ -369,51 +369,59 @@ public class AgentExample {
 
           <div className="faq-item">
             <h4 className="faq-question">Q: 结构化输出失败时如何处理？</h4>
-            <p className="faq-answer">
-              A: 可以通过以下方式处理：
-              - 设置temperature参数降低随机性，提高输出稳定性
-              - 添加清晰的格式要求（如JSON格式）到prompt中
-              - 使用重试机制自动恢复
-              - 记录失败案例，分析原因并调整prompt
-              - 考虑使用few-shot learning提供示例引导正确输出
-            </p>
+            <div className="faq-answer">
+              <p>A: 可以通过以下方式处理：</p>
+              <ul className="tip-box-list">
+                <li>设置 <code>temperature</code> 参数降低随机性，提高输出稳定性</li>
+                <li>添加清晰的格式要求（如 JSON 格式）到 prompt 中</li>
+                <li>使用重试机制自动恢复</li>
+                <li>记录失败案例，分析原因并调整 prompt</li>
+                <li>考虑使用 few-shot learning 提供示例引导正确输出</li>
+              </ul>
+            </div>
           </div>
 
           <div className="faq-item">
-            <h4 className="faq-question">Q: Agent如何处理工具调用失败？</h4>
-            <p className="faq-answer">
-              A: Agent应该有完善的错误处理机制：
-              - 捕获工具执行异常，记录详细错误信息
-              - 根据错误类型决定是否重试或跳过该工具
-              - 提供降级工具作为备选方案
-              - 将错误信息反馈给LLM，让它尝试其他方法
-              - 实现最大重试次数，避免无限循环
-            </p>
+            <h4 className="faq-question">Q: Agent 如何处理工具调用失败？</h4>
+            <div className="faq-answer">
+              <p>A: Agent 应该有完善的错误处理机制：</p>
+              <ul className="tip-box-list">
+                <li>捕获工具执行异常，记录详细错误信息</li>
+                <li>根据错误类型决定是否重试或跳过该工具</li>
+                <li>提供降级工具作为备选方案</li>
+                <li>将错误信息反馈给 LLM，让它尝试其他方法</li>
+                <li>实现最大重试次数，避免无限循环</li>
+              </ul>
+            </div>
           </div>
 
           <div className="faq-item">
-            <h4 className="faq-question">Q: 如何优化Agent的决策效率？</h4>
-            <p className="faq-answer">
-              A: 优化策略包括：
-              - 使用清晰的prompt，明确任务目标和约束
-              - 限制工具数量，只提供必要的工具
-              - 为工具添加优先级，帮助Agent更快选择
-              - 使用上下文缓存，避免重复调用
-              - 实现并行工具调用（如果LLM支持）
-              - 定期分析Agent的决策日志，优化prompt
-            </p>
+            <h4 className="faq-question">Q: 如何优化 Agent 的决策效率？</h4>
+            <div className="faq-answer">
+              <p>A: 优化策略包括：</p>
+              <ul className="tip-box-list">
+                <li>使用清晰的 prompt，明确任务目标和约束</li>
+                <li>限制工具数量，只提供必要的工具</li>
+                <li>为工具添加优先级，帮助 Agent 更快选择</li>
+                <li>使用上下文缓存，避免重复调用</li>
+                <li>实现并行工具调用（如果 LLM 支持）</li>
+                <li>定期分析 Agent 的决策日志，优化 prompt</li>
+              </ul>
+            </div>
           </div>
 
           <div className="faq-item">
             <h4 className="faq-question">Q: 流式响应如何处理中间结果？</h4>
-            <p className="faq-answer">
-              A: 中间结果处理策略：
-              - 在onPartialResponse中更新UI状态，显示部分内容
-              - 对中间结果进行基本的格式化和清理
-              - 不要假设中间结果是完整的，可能被截断或修正
-              - 实现用户可以手动停止生成的功能
-              - 记录中间结果，便于调试和分析
-            </p>
+            <div className="faq-answer">
+              <p>A: 中间结果处理策略：</p>
+              <ul className="tip-box-list">
+                <li>在 <code>onPartialResponse</code> 中更新 UI 状态，显示部分内容</li>
+                <li>对中间结果进行基本的格式化和清理</li>
+                <li>不要假设中间结果是完整的，可能被截断或修正</li>
+                <li>实现用户可以手动停止生成的功能</li>
+                <li>记录中间结果，便于调试和分析</li>
+              </ul>
+            </div>
           </div>
         </div>
       </section>

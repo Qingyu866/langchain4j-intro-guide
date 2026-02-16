@@ -706,46 +706,54 @@ public class Troubleshooting {
           </div>
 
           <div className="faq-item">
-            <h4 className="faq-question">Q: 如何选择适合中文的embedding模型？</h4>
-            <p className="faq-answer">
-              A: 推荐使用专门针对中文训练的模型，如：
-              - BAAI/bge系列（北京智源研究院）
-              - m3e-base（Massive Multilingual Text Embedding）
-              - 这些模型在中文语义理解上表现更好。
-            </p>
+            <h4 className="faq-question">Q: 如何选择适合中文的 embedding 模型？</h4>
+            <div className="faq-answer">
+              <p>A: 推荐使用专门针对中文训练的模型，如：</p>
+              <ul className="tip-box-list">
+                <li>BAAI/bge 系列（北京智源研究院）</li>
+                <li>m3e-base（Massive Multilingual Text Embedding）</li>
+                <li>这些模型在中文语义理解上表现更好</li>
+              </ul>
+            </div>
           </div>
 
           <div className="faq-item">
-            <h4 className="faq-question">Q: RAG系统需要多少文档才能工作？</h4>
-            <p className="faq-answer">
-              A: 没有固定要求，但建议：
-              - 小规模测试：100-1000篇文档
-              - 中等规模：1000-10000篇
-              - 生产环境：根据查询量和质量要求调整
-              重要：文档质量和相关性比数量更重要。
-            </p>
+            <h4 className="faq-question">Q: RAG 系统需要多少文档才能工作？</h4>
+            <div className="faq-answer">
+              <p>A: 没有固定要求，但建议：</p>
+              <ul className="tip-box-list">
+                <li>小规模测试：100-1000 篇文档</li>
+                <li>中等规模：1000-10000 篇</li>
+                <li>生产环境：根据查询量和质量要求调整</li>
+              </ul>
+              <p><strong>重要</strong>：文档质量和相关性比数量更重要。</p>
+            </div>
           </div>
 
           <div className="faq-item">
-            <h4 className="faq-question">Q: 如何评估Embedding的质量？</h4>
-            <p className="faq-answer">
-              A: 可以通过以下方法评估：
-              - 检索准确率：Top-K结果的相关性
-              - RAGAS评估：检索增强生成的质量指标
-              - 人工抽样：随机检查检索结果的合理性
-              - A/B测试：对比不同模型的效果
-            </p>
+            <h4 className="faq-question">Q: 如何评估 Embedding 的质量？</h4>
+            <div className="faq-answer">
+              <p>A: 可以通过以下方法评估：</p>
+              <ul className="tip-box-list">
+                <li><strong>检索准确率</strong>：Top-K 结果的相关性</li>
+                <li><strong>RAGAS 评估</strong>：检索增强生成的质量指标</li>
+                <li><strong>人工抽样</strong>：随机检查检索结果的合理性</li>
+                <li><strong>A/B 测试</strong>：对比不同模型的效果</li>
+              </ul>
+            </div>
           </div>
 
           <div className="faq-item">
-            <h4 className="faq-question">Q: Embedding可以用于多模态吗？</h4>
-            <p className="faq-answer">
-              A: 可以。除了文本embedding，还有：
-              - 图像embedding（CLIP等模型）
-              - 音频embedding
-              - 多模态embedding（同时处理文本和图像）
-              LangChain4j支持TextSegment，可以扩展用于其他模态。
-            </p>
+            <h4 className="faq-question">Q: Embedding 可以用于多模态吗？</h4>
+            <div className="faq-answer">
+              <p>A: 可以。除了文本 embedding，还有：</p>
+              <ul className="tip-box-list">
+                <li>图像 embedding（CLIP 等模型）</li>
+                <li>音频 embedding</li>
+                <li>多模态 embedding（同时处理文本和图像）</li>
+              </ul>
+              <p>LangChain4j 支持 TextSegment，可以扩展用于其他模态。</p>
+            </div>
           </div>
         </div>
       </section>

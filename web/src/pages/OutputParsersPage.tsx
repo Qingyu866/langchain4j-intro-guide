@@ -483,40 +483,46 @@ for (String doc : documents) {
         <div className="faq-section">
           <div className="faq-item">
             <h4 className="faq-question">Q: 输出解析失败时如何处理？</h4>
-            <p className="faq-answer">
-              A: 建议的处理方式：
-              1. 捕获OutputParserException，提供友好的错误消息
-              2. 使用默认值或空对象作为降级方案
-              3. 记录详细的错误日志便于调试
-              4. 考虑提供重试机制让用户重新提交
-              5. 监控解析错误率，过高时调整prompt或模型配置
-            </p>
+            <div className="faq-answer">
+              <p>A: 建议的处理方式：</p>
+              <ul className="tip-box-list">
+                <li>捕获 <code>OutputParserException</code>，提供友好的错误消息</li>
+                <li>使用默认值或空对象作为降级方案</li>
+                <li>记录详细的错误日志便于调试</li>
+                <li>考虑提供重试机制让用户重新提交</li>
+                <li>监控解析错误率，过高时调整 prompt 或模型配置</li>
+              </ul>
+            </div>
           </div>
 
           <div className="faq-item">
-            <h4 className="faq-question">Q: 如何提高JSON解析的成功率？</h4>
-            <p className="faq-answer">
-              A: 提高成功率的策略：
-              1. 在ChatModel中设置responseFormat("json_object")强制输出JSON格式
-              2. 在prompt中明确要求JSON结构，提供格式示例
-              3. 使用few-shot learning提供多个正确的JSON示例
-              4. 调整temperature参数降低随机性（建议0.1-0.3）
-              5. 增加maxTokens确保足够空间输出完整JSON
-              6. 实现自定义JSON解析器处理边缘情况
-            </p>
+            <h4 className="faq-question">Q: 如何提高 JSON 解析的成功率？</h4>
+            <div className="faq-answer">
+              <p>A: 提高成功率的策略：</p>
+              <ul className="tip-box-list">
+                <li>在 ChatModel 中设置 <code>responseFormat("json_object")</code> 强制输出 JSON 格式</li>
+                <li>在 prompt 中明确要求 JSON 结构，提供格式示例</li>
+                <li>使用 few-shot learning 提供多个正确的 JSON 示例</li>
+                <li>调整 <code>temperature</code> 参数降低随机性（建议 0.1-0.3）</li>
+                <li>增加 <code>maxTokens</code> 确保足够空间输出完整 JSON</li>
+                <li>实现自定义 JSON 解析器处理边缘情况</li>
+              </ul>
+            </div>
           </div>
 
           <div className="faq-item">
             <h4 className="faq-question">Q: 自定义解析器与内置解析器如何选择？</h4>
-            <p className="faq-answer">
-              A: 选择建议：
-              1. **简单场景**：优先使用内置解析器（ofBean、fromJson）
-              2. **复杂验证**：需要多层验证或复杂逻辑时使用自定义解析器
-              3. **性能要求**：批量处理或需要特殊优化时考虑自定义
-              4. **错误处理**：需要精细控制错误处理策略时使用自定义
-              5. **可维护性**：考虑团队技能和后续维护成本
-              6. **混合使用**：可以在同一AiServices中组合使用多个解析器
-            </p>
+            <div className="faq-answer">
+              <p>A: 选择建议：</p>
+              <ul className="tip-box-list">
+                <li><strong>简单场景</strong>：优先使用内置解析器（<code>ofBean</code>、<code>fromJson</code>）</li>
+                <li><strong>复杂验证</strong>：需要多层验证或复杂逻辑时使用自定义解析器</li>
+                <li><strong>性能要求</strong>：批量处理或需要特殊优化时考虑自定义</li>
+                <li><strong>错误处理</strong>：需要精细控制错误处理策略时使用自定义</li>
+                <li><strong>可维护性</strong>：考虑团队技能和后续维护成本</li>
+                <li><strong>混合使用</strong>：可以在同一 AiServices 中组合使用多个解析器</li>
+              </ul>
+            </div>
           </div>
         </div>
       </section>
