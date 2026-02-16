@@ -18,37 +18,37 @@ const TestingStrategiesPage = () => {
           <div className="bg-gradient-to-br from-blue-50 to-indigo-50 border border-indigo-100 rounded-xl p-6">
             <div className="text-3xl mb-3">🧪</div>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">单元测试</h3>
-            <ul className="text-gray-600 text-sm space-y-1">
-              <li>• JUnit 5</li>
-              <li>• Mockito</li>
-              <li>• 快速执行</li>
+            <ul className="text-gray-600 text-sm space-y-1 list-disc list-inside">
+              <li>JUnit 5</li>
+              <li>Mockito</li>
+              <li>快速执行</li>
             </ul>
           </div>
           <div className="bg-gradient-to-br from-purple-50 to-pink-50 border border-purple-100 rounded-xl p-6">
             <div className="text-3xl mb-3">🔗</div>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">集成测试</h3>
-            <ul className="text-gray-600 text-sm space-y-1">
-              <li>• Testcontainers</li>
-              <li>• Spring Boot Test</li>
-              <li>• 真实环境</li>
+            <ul className="text-gray-600 text-sm space-y-1 list-disc list-inside">
+              <li>Testcontainers</li>
+              <li>Spring Boot Test</li>
+              <li>真实环境</li>
             </ul>
           </div>
           <div className="bg-gradient-to-br from-green-50 to-teal-50 border border-green-100 rounded-xl p-6">
             <div className="text-3xl mb-3">🎯</div>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">端到端测试</h3>
-            <ul className="text-gray-600 text-sm space-y-1">
-              <li>• Selenium/Playwright</li>
-              <li>• REST Assured</li>
-              <li>• 完整流程</li>
+            <ul className="text-gray-600 text-sm space-y-1 list-disc list-inside">
+              <li>Selenium/Playwright</li>
+              <li>REST Assured</li>
+              <li>完整流程</li>
             </ul>
           </div>
           <div className="bg-gradient-to-br from-amber-50 to-orange-50 border border-amber-100 rounded-xl p-6">
             <div className="text-3xl mb-3">⚡</div>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">Mock策略</h3>
-            <ul className="text-gray-600 text-sm space-y-1">
-              <li>• AI模型Mock</li>
-              <li>• 向量数据库Stub</li>
-              <li>• 外部API隔离</li>
+            <ul className="text-gray-600 text-sm space-y-1 list-disc list-inside">
+              <li>AI模型Mock</li>
+              <li>向量数据库Stub</li>
+              <li>外部API隔离</li>
             </ul>
           </div>
         </div>
@@ -59,12 +59,12 @@ const TestingStrategiesPage = () => {
           <span className="text-2xl">💡</span>
           <div>
             <h3 className="font-bold text-gray-900 mb-2">学习目标</h3>
-            <ul className="text-gray-700 space-y-2 text-sm">
-              <li>• 掌握 LangChain4j 应用的单元测试方法</li>
-              <li>• 学习集成测试和端到端测试策略</li>
-              <li>• 理解如何 Mock AI 模型和外部依赖</li>
-              <li>• 掌握测试覆盖率提升技巧</li>
-              <li>• 学习持续集成中的自动化测试实践</li>
+            <ul className="text-gray-700 space-y-2 text-sm list-disc list-inside">
+              <li>掌握 LangChain4j 应用的单元测试方法</li>
+              <li>学习集成测试和端到端测试策略</li>
+              <li>理解如何 Mock AI 模型和外部依赖</li>
+              <li>掌握测试覆盖率提升技巧</li>
+              <li>学习持续集成中的自动化测试实践</li>
             </ul>
           </div>
         </div>
@@ -223,12 +223,12 @@ class ChatException extends RuntimeException {
         />
 
         <TipBox type="success" title="单元测试最佳实践">
-          <ul className="text-green-800 space-y-2 text-sm">
-            <li>• <strong>隔离测试</strong>：每个测试独立，不依赖其他测试</li>
-            <li>• <strong>快速执行</strong>：单元测试应该在几秒内完成</li>
-            <li>• <strong>命名清晰</strong>：使用描述性的测试方法名</li>
-            <li>• <strong>AAA模式</strong>：Arrange-Act-Assert 结构清晰</li>
-            <li>• <strong>Mock外部依赖</strong>：不要调用真实的AI API</li>
+          <ul className="text-green-800 space-y-2 text-sm list-disc list-inside">
+            <li><strong>隔离测试</strong>：每个测试独立，不依赖其他测试</li>
+            <li><strong>快速执行</strong>：单元测试应该在几秒内完成</li>
+            <li><strong>命名清晰</strong>：使用描述性的测试方法名</li>
+            <li><strong>AAA模式</strong>：Arrange-Act-Assert 结构清晰</li>
+            <li><strong>Mock外部依赖</strong>：不要调用真实的AI API</li>
           </ul>
         </TipBox>
 
@@ -554,12 +554,12 @@ class RagServiceIntegrationTest {
         />
 
         <TipBox type="info" title="集成测试要点">
-          <ul className="text-blue-800 space-y-2 text-sm">
-            <li>• <strong>真实环境</strong>：使用真实的数据库、消息队列等</li>
-            <li>• <strong>Testcontainers</strong>：自动启动Docker容器</li>
-            <li>• <strong>快速启动</strong>：容器复用，避免重复启动</li>
-            <li>• <strong>数据隔离</strong>：每个测试独立的数据集</li>
-            <li>• <strong>清理资源</strong>：测试后清理容器和数据</li>
+          <ul className="text-blue-800 space-y-2 text-sm list-disc list-inside">
+            <li><strong>真实环境</strong>：使用真实的数据库、消息队列等</li>
+            <li><strong>Testcontainers</strong>：自动启动Docker容器</li>
+            <li><strong>快速启动</strong>：容器复用，避免重复启动</li>
+            <li><strong>数据隔离</strong>：每个测试独立的数据集</li>
+            <li><strong>清理资源</strong>：测试后清理容器和数据</li>
           </ul>
         </TipBox>
       </section>
@@ -1052,12 +1052,12 @@ jobs:
         />
 
         <TipBox type="info" title="测试最佳实践">
-          <ul className="text-blue-800 space-y-2 text-sm">
-            <li>• <strong>测试金字塔</strong>：70%单元测试，20%集成测试，10%E2E测试</li>
-            <li>• <strong>快速反馈</strong>：单元测试在30秒内完成，集成测试在5分钟内</li>
-            <li>• <strong>并行执行</strong>：使用多线程加速测试执行</li>
-            <li>• <strong>覆盖率要求</strong>：核心模块&gt;80%，整体&gt;60%</li>
-            <li>• <strong>持续集成</strong>：每次提交自动运行测试</li>
+          <ul className="text-blue-800 space-y-2 text-sm list-disc list-inside">
+            <li><strong>测试金字塔</strong>：70%单元测试，20%集成测试，10%E2E测试</li>
+            <li><strong>快速反馈</strong>：单元测试在30秒内完成，集成测试在5分钟内</li>
+            <li><strong>并行执行</strong>：使用多线程加速测试执行</li>
+            <li><strong>覆盖率要求</strong>：核心模块&gt;80%，整体&gt;60%</li>
+            <li><strong>持续集成</strong>：每次提交自动运行测试</li>
           </ul>
         </TipBox>
       </section>
@@ -1068,55 +1068,55 @@ jobs:
           <div className="border border-white/20 rounded-lg p-5">
             <div className="text-2xl mb-3">🧪</div>
             <div className="font-semibold mb-2">单元测试</div>
-            <ul className="text-sm space-y-1 opacity-90">
-              <li>• JUnit 5</li>
-              <li>• Mockito</li>
-              <li>• Mock AI模型</li>
+            <ul className="text-sm space-y-1 opacity-90 list-disc list-inside">
+              <li>JUnit 5</li>
+              <li>Mockito</li>
+              <li>Mock AI模型</li>
             </ul>
           </div>
           <div className="border border-white/20 rounded-lg p-5">
             <div className="text-2xl mb-3">🔗</div>
             <div className="font-semibold mb-2">集成测试</div>
-            <ul className="text-sm space-y-1 opacity-90">
-              <li>• Spring Boot Test</li>
-              <li>• Testcontainers</li>
-              <li>• 真实数据库</li>
+            <ul className="text-sm space-y-1 opacity-90 list-disc list-inside">
+              <li>Spring Boot Test</li>
+              <li>Testcontainers</li>
+              <li>真实数据库</li>
             </ul>
           </div>
           <div className="border border-white/20 rounded-lg p-5">
             <div className="text-2xl mb-3">🎯</div>
             <div className="font-semibold mb-2">E2E测试</div>
-            <ul className="text-sm space-y-1 opacity-90">
-              <li>• REST Assured</li>
-              <li>• Playwright</li>
-              <li>• 完整流程</li>
+            <ul className="text-sm space-y-1 opacity-90 list-disc list-inside">
+              <li>REST Assured</li>
+              <li>Playwright</li>
+              <li>完整流程</li>
             </ul>
           </div>
           <div className="border border-white/20 rounded-lg p-5">
             <div className="text-2xl mb-3">📊</div>
             <div className="font-semibold mb-2">覆盖率</div>
-            <ul className="text-sm space-y-1 opacity-90">
-              <li>• JaCoCo</li>
-              <li>• SonarQube</li>
-              <li>• Codecov</li>
+            <ul className="text-sm space-y-1 opacity-90 list-disc list-inside">
+              <li>JaCoCo</li>
+              <li>SonarQube</li>
+              <li>Codecov</li>
             </ul>
           </div>
           <div className="border border-white/20 rounded-lg p-5">
             <div className="text-2xl mb-3">🔄</div>
             <div className="font-semibold mb-2">CI/CD</div>
-            <ul className="text-sm space-y-1 opacity-90">
-              <li>• GitHub Actions</li>
-              <li>• 自动化测试</li>
-              <li>• Docker集成</li>
+            <ul className="text-sm space-y-1 opacity-90 list-disc list-inside">
+              <li>GitHub Actions</li>
+              <li>自动化测试</li>
+              <li>Docker集成</li>
             </ul>
           </div>
           <div className="border border-white/20 rounded-lg p-5">
             <div className="text-2xl mb-3">🔒</div>
             <div className="font-semibold mb-2">安全测试</div>
-            <ul className="text-sm space-y-1 opacity-90">
-              <li>• OWASP</li>
-              <li>• Trivy</li>
-              <li>• 依赖扫描</li>
+            <ul className="text-sm space-y-1 opacity-90 list-disc list-inside">
+              <li>OWASP</li>
+              <li>Trivy</li>
+              <li>依赖扫描</li>
             </ul>
           </div>
         </div>

@@ -26,41 +26,41 @@ const ProjectRagKbPage = () => {
           <div className="border border-gray-200 rounded-lg p-5">
             <div className="text-2xl mb-3">📄</div>
             <h4 className="font-semibold text-gray-900 mb-2">文档管理</h4>
-            <ul className="text-gray-700 text-sm space-y-1">
-              <li>• 文档上传（支持PDF、Word、TXT）</li>
-              <li>• 自动分块和索引</li>
-              <li>• 元数据管理（作者、日期、标签）</li>
-              <li>• 文档版本控制</li>
+            <ul className="text-gray-700 text-sm space-y-1 list-disc list-inside">
+              <li>文档上传（支持PDF、Word、TXT）</li>
+              <li>自动分块和索引</li>
+              <li>元数据管理（作者、日期、标签）</li>
+              <li>文档版本控制</li>
             </ul>
           </div>
           <div className="border border-gray-200 rounded-lg p-5">
             <div className="text-2xl mb-3">🔍</div>
             <h4 className="font-semibold text-gray-900 mb-2">智能检索</h4>
-            <ul className="text-gray-700 text-sm space-y-1">
-              <li>• 语义搜索（向量相似度）</li>
-              <li>• 关键词搜索（全文检索）</li>
-              <li>• 元数据过滤（按类别、时间）</li>
-              <li>• 混合检索（向量+关键词）</li>
+            <ul className="text-gray-700 text-sm space-y-1 list-disc list-inside">
+              <li>语义搜索（向量相似度）</li>
+              <li>关键词搜索（全文检索）</li>
+              <li>元数据过滤（按类别、时间）</li>
+              <li>混合检索（向量+关键词）</li>
             </ul>
           </div>
           <div className="border border-gray-200 rounded-lg p-5">
             <div className="text-2xl mb-3">💬</div>
             <h4 className="font-semibold text-gray-900 mb-2">问答对话</h4>
-            <ul className="text-gray-700 text-sm space-y-1">
-              <li>• 多轮对话管理</li>
-              <li>• 上下文引用（标注来源）</li>
-              <li>• 相似问题推荐</li>
-              <li>• 答案收藏和导出</li>
+            <ul className="text-gray-700 text-sm space-y-1 list-disc list-inside">
+              <li>多轮对话管理</li>
+              <li>上下文引用（标注来源）</li>
+              <li>相似问题推荐</li>
+              <li>答案收藏和导出</li>
             </ul>
           </div>
           <div className="border border-gray-200 rounded-lg p-5">
             <div className="text-2xl mb-3">⚙️</div>
             <h4 className="font-semibold text-gray-900 mb-2">系统管理</h4>
-            <ul className="text-gray-700 text-sm space-y-1">
-              <li>• API密钥管理</li>
-              <li>• 模型配置</li>
-              <li>• 使用统计和监控</li>
-              <li>• 权限控制</li>
+            <ul className="text-gray-700 text-sm space-y-1 list-disc list-inside">
+              <li>API密钥管理</li>
+              <li>模型配置</li>
+              <li>使用统计和监控</li>
+              <li>权限控制</li>
             </ul>
           </div>
         </div>
@@ -556,21 +556,21 @@ public class DocumentController {
             <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-200">
               <div className="text-2xl mb-2">⚛️</div>
               <h4 className="font-semibold text-gray-900 mb-2">React</h4>
-              <ul className="text-gray-700 text-sm space-y-1">
-                <li>• 组件化开发</li>
-                <li>• 响应式设计</li>
-                <li>• 状态管理（Redux/Context）</li>
-                <li>• 丰富的UI组件库</li>
+              <ul className="text-gray-700 text-sm space-y-1 list-disc list-inside">
+                <li>组件化开发</li>
+                <li>响应式设计</li>
+                <li>状态管理（Redux/Context）</li>
+                <li>丰富的UI组件库</li>
               </ul>
             </div>
             <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-200">
               <div className="text-2xl mb-2">🎨</div>
               <h4 className="font-semibold text-gray-900 mb-2">Tailwind CSS</h4>
-              <ul className="text-gray-700 text-sm space-y-1">
-                <li>• 实用优先CSS框架</li>
-                <li>• 快速开发</li>
-                <li>• 统一的设计语言</li>
-                <li>• 优秀的响应式支持</li>
+              <ul className="text-gray-700 text-sm space-y-1 list-disc list-inside">
+                <li>实用优先CSS框架</li>
+                <li>快速开发</li>
+                <li>统一的设计语言</li>
+                <li>优秀的响应式支持</li>
               </ul>
             </div>
           </div>
@@ -1332,22 +1332,22 @@ metrics:
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <h4 className="font-semibold mb-2">核心功能</h4>
-            <ul className="space-y-1 text-sm opacity-90">
-              <li>• ✅ 文档上传和管理</li>
-              <li>• ✅ 向量化存储和检索</li>
-              <li>• ✅ 智能问答对话</li>
-              <li>• ✅ 元数据过滤</li>
-              <li>• ✅ 安全密钥管理</li>
+            <ul className="space-y-1 text-sm opacity-90 list-disc list-inside">
+              <li>✅ 文档上传和管理</li>
+              <li>✅ 向量化存储和检索</li>
+              <li>✅ 智能问答对话</li>
+              <li>✅ 元数据过滤</li>
+              <li>✅ 安全密钥管理</li>
             </ul>
           </div>
           <div>
             <h4 className="font-semibold mb-2">技术栈</h4>
-            <ul className="space-y-1 text-sm opacity-90">
-              <li>• Spring Boot 3.2.x</li>
-              <li>• LangChain4j RAG API</li>
-              <li>• PostgreSQL + PGVector</li>
-              <li>• React + Tailwind CSS</li>
-              <li>• Docker 容器化</li>
+            <ul className="space-y-1 text-sm opacity-90 list-disc list-inside">
+              <li>Spring Boot 3.2.x</li>
+              <li>LangChain4j RAG API</li>
+              <li>PostgreSQL + PGVector</li>
+              <li>React + Tailwind CSS</li>
+              <li>Docker 容器化</li>
             </ul>
           </div>
         </div>

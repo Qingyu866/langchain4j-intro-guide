@@ -471,13 +471,13 @@ volumes:
           <span className="text-2xl">💡</span>
           <div>
             <h3 className="font-bold text-gray-900 mb-2">学习目标</h3>
-            <ul className="text-gray-700 space-y-2 text-sm">
-              <li>• 掌握WebSocket实时通信的完整实现</li>
-              <li>• 理解多用户聊天室的状态管理</li>
-              <li>• 学习消息持久化和历史记录查询</li>
-              <li>• 实现用户在线状态和实时通知</li>
-              <li>• 集成LangChain4j增强对话能力</li>
-              <li>• 实现多Bot协作的聊天场景</li>
+            <ul className="text-gray-700 space-y-2 text-sm list-disc list-inside">
+              <li>掌握WebSocket实时通信的完整实现</li>
+              <li>理解多用户聊天室的状态管理</li>
+              <li>学习消息持久化和历史记录查询</li>
+              <li>实现用户在线状态和实时通知</li>
+              <li>集成LangChain4j增强对话能力</li>
+              <li>实现多Bot协作的聊天场景</li>
             </ul>
           </div>
         </div>

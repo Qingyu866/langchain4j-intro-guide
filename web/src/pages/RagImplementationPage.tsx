@@ -180,19 +180,19 @@ public class DocumentLoadingExample {
           <div className="bg-white border border-gray-200 rounded-xl p-6">
             <h4 className="font-bold text-gray-900 mb-3">📏 固定大小分块</h4>
             <p className="text-gray-600 text-sm mb-3">按照固定的Token数量切分</p>
-            <ul className="space-y-2 text-gray-600 text-sm">
-              <li>• <strong>Token数量</strong>：通常使用512、1024或2048</li>
-              <li>• <strong>重叠大小</strong>：50-200 tokens重叠保证语义完整性</li>
-              <li>• <strong>段落边界</strong>：优先在段落换行处切分</li>
+            <ul className="space-y-2 text-gray-600 text-sm list-disc list-inside">
+              <li><strong>Token数量</strong>：通常使用512、1024或2048</li>
+              <li><strong>重叠大小</strong>：50-200 tokens重叠保证语义完整性</li>
+              <li><strong>段落边界</strong>：优先在段落换行处切分</li>
             </ul>
           </div>
           <div className="bg-white border border-gray-200 rounded-xl p-6">
             <h4 className="font-bold text-gray-900 mb-3">📊 评估指标</h4>
             <p className="text-gray-600 text-sm mb-3">如何评估分块效果？</p>
-            <ul className="space-y-2 text-gray-600 text-sm">
-              <li>• <strong>检索准确率</strong>：分块后检索相关内容的召回率</li>
-              <li>• <strong>回答质量</strong>：上下文完整性的影响</li>
-              <li>• <strong>Token效率</strong>：分块大小的Token利用率</li>
+            <ul className="space-y-2 text-gray-600 text-sm list-disc list-inside">
+              <li><strong>检索准确率</strong>：分块后检索相关内容的召回率</li>
+              <li><strong>回答质量</strong>：上下文完整性的影响</li>
+              <li><strong>Token效率</strong>：分块大小的Token利用率</li>
             </ul>
           </div>
         </div>

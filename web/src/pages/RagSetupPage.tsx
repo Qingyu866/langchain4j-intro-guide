@@ -473,32 +473,32 @@ interface Assistant {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="bg-white border border-gray-200 rounded-xl p-5">
             <h4 className="font-bold text-gray-900 mb-3">🔒 安全实践</h4>
-            <ul className="space-y-2 text-gray-600 text-sm">
-              <li>• 使用环境变量管理敏感信息</li>
-              <li>• 永远不要提交.env到版本控制</li>
-              <li>• 定期轮换API密钥</li>
-              <li>• 限制API密钥的权限范围</li>
-              <li>• 生产环境使用专用密钥</li>
+            <ul className="space-y-2 text-gray-600 text-sm list-disc list-inside">
+              <li>使用环境变量管理敏感信息</li>
+              <li>永远不要提交.env到版本控制</li>
+              <li>定期轮换API密钥</li>
+              <li>限制API密钥的权限范围</li>
+              <li>生产环境使用专用密钥</li>
             </ul>
           </div>
           <div className="bg-white border border-gray-200 rounded-xl p-5">
             <h4 className="font-bold text-gray-900 mb-3">⚡ 性能优化</h4>
-            <ul className="space-y-2 text-gray-600 text-sm">
-              <li>• 使用批量Embedding生成</li>
-              <li>• 实现检索结果缓存</li>
-              <li>• 选择合适的向量维度（1536是常用值）</li>
-              <li>• 使用更小的模型进行检索</li>
-              <li>• 限制每次检索的文档数量</li>
+            <ul className="space-y-2 text-gray-600 text-sm list-disc list-inside">
+              <li>使用批量Embedding生成</li>
+              <li>实现检索结果缓存</li>
+              <li>选择合适的向量维度（1536是常用值）</li>
+              <li>使用更小的模型进行检索</li>
+              <li>限制每次检索的文档数量</li>
             </ul>
           </div>
           <div className="bg-white border border-gray-200 rounded-xl p-5">
             <h4 className="font-bold text-gray-900 mb-3">📝 开发建议</h4>
-            <ul className="space-y-2 text-gray-600 text-sm">
-              <li>• 先在内存向量数据库上测试原型</li>
-              <li>• 使用日志记录调试RAG流程</li>
-              <li>• 实现分步测试，先测试各组件</li>
-              <li>• 添加检索质量监控指标</li>
-              <li>• 编写单元测试验证检索结果</li>
+            <ul className="space-y-2 text-gray-600 text-sm list-disc list-inside">
+              <li>先在内存向量数据库上测试原型</li>
+              <li>使用日志记录调试RAG流程</li>
+              <li>实现分步测试，先测试各组件</li>
+              <li>添加检索质量监控指标</li>
+              <li>编写单元测试验证检索结果</li>
             </ul>
           </div>
         </div>

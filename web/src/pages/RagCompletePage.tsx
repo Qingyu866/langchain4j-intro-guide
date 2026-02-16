@@ -108,23 +108,23 @@ const RagCompletePage = () => {
           <div className="border border-gray-200 rounded-lg p-5 hover:border-indigo-300 transition-colors">
             <div className="text-2xl mb-3">✅</div>
             <h4 className="font-semibold text-gray-900 mb-2">RAG优势</h4>
-            <ul className="space-y-2 text-gray-700 text-sm">
-              <li>• 访问私有/专有数据</li>
-              <li>• 减少LLM幻觉（虚假信息）</li>
-              <li>• 实时更新知识（无需重新训练）</li>
-              <li>• 可解释性强（追溯回答来源）</li>
-              <li>• 成本效益高（比微调便宜）</li>
+            <ul className="space-y-2 text-gray-700 text-sm list-disc list-inside">
+              <li>访问私有/专有数据</li>
+              <li>减少LLM幻觉（虚假信息）</li>
+              <li>实时更新知识（无需重新训练）</li>
+              <li>可解释性强（追溯回答来源）</li>
+              <li>成本效益高（比微调便宜）</li>
             </ul>
           </div>
           <div className="border border-gray-200 rounded-lg p-5 hover:border-indigo-300 transition-colors">
             <div className="text-2xl mb-3">⚠️</div>
             <h4 className="font-semibold text-gray-900 mb-2">RAG挑战</h4>
-            <ul className="space-y-2 text-gray-700 text-sm">
-              <li>• 检索质量直接影响回答质量</li>
-              <li>• 上下文窗口限制（Token超限）</li>
-              <li>• 分块策略需要调优</li>
-              <li>• 延迟增加（检索+生成两步）</li>
-              <li>• 复杂问题难以检索</li>
+            <ul className="space-y-2 text-gray-700 text-sm list-disc list-inside">
+              <li>检索质量直接影响回答质量</li>
+              <li>上下文窗口限制（Token超限）</li>
+              <li>分块策略需要调优</li>
+              <li>延迟增加（检索+生成两步）</li>
+              <li>复杂问题难以检索</li>
             </ul>
           </div>
         </div>
