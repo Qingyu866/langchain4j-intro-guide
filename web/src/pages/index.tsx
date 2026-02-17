@@ -7,6 +7,8 @@ const GettingStartedPage = lazy(() => import('./GettingStartedPage'));
 const CoreConceptsPage = lazy(() => import('./CoreConceptsPage'));
 const EmbeddingModelsPage = lazy(() => import('./EmbeddingModelsPage'));
 const PromptTemplatesPage = lazy(() => import('./PromptTemplatesPage'));
+const TokenStreamPage = lazy(() => import('./TokenStreamPage'));
+const AgentDeepDivePage = lazy(() => import('./AgentDeepDivePage'));
 const OutputParsersPage = lazy(() => import('./OutputParsersPage'));
 const ModelProvidersPage = lazy(() => import('./ModelProvidersPage'));
 const FunctionCallingPage = lazy(() => import('./FunctionCallingPage'));
@@ -27,15 +29,18 @@ const PracticePage = lazy(() => import('./PracticePage'));
 const BestPracticesPage = lazy(() => import('./BestPracticesPage'));
 const TestingStrategiesPage = lazy(() => import('./TestingStrategiesPage'));
 const PerformanceTuningPage = lazy(() => import('./PerformanceTuningPage'));
+const PerformanceBenchmarkPage = lazy(() => import('./PerformanceBenchmarkPage'));
 const DeepDivePage = lazy(() => import('./DeepDivePage'));
 const ErrorHandlingPage = lazy(() => import('./ErrorHandlingPage'));
 const ModerationSafetyPage = lazy(() => import('./ModerationSafetyPage'));
+const SecurityDeepDivePage = lazy(() => import('./SecurityDeepDivePage'));
 const TroubleshootingPage = lazy(() => import('./TroubleshootingPage'));
 const InterviewPrepPage = lazy(() => import('./InterviewPrepPage'));
 const SearchPage = lazy(() => import('./SearchPage'));
 const ChatListenersPage = lazy(() => import('./ChatListenersPage'));
 const FaqPage = lazy(() => import('./FaqPage'));
 const CostOptimizationPage = lazy(() => import('./CostOptimizationPage'));
+const ProductionConfigPage = lazy(() => import('./ProductionConfigPage'));
 const DeploymentPage = lazy(() => import('./DeploymentPage'));
 const IntegrationsPage = lazy(() => import('./IntegrationsPage'));
 const ExamplesPage = lazy(() => import('./ExamplesPage'));
@@ -57,6 +62,8 @@ export const pageComponents: Record<string, ComponentType> = {
   '/core-concepts': CoreConceptsPage,
   '/embedding-models': EmbeddingModelsPage,
   '/prompt-templates': PromptTemplatesPage,
+  '/token-stream': TokenStreamPage,
+  '/agent-deep-dive': AgentDeepDivePage,
   '/output-parsers': OutputParsersPage,
   '/model-providers': ModelProvidersPage,
   '/function-calling-deep': FunctionCallingPage,
@@ -77,15 +84,18 @@ export const pageComponents: Record<string, ComponentType> = {
   '/best-practices': BestPracticesPage,
   '/testing-strategies': TestingStrategiesPage,
   '/performance-tuning': PerformanceTuningPage,
+  '/performance-benchmark': PerformanceBenchmarkPage,
   '/deep-dive': DeepDivePage,
   '/error-handling': ErrorHandlingPage,
   '/moderation-safety': ModerationSafetyPage,
+  '/security-deep-dive': SecurityDeepDivePage,
   '/troubleshooting': TroubleshootingPage,
   '/interview-prep': InterviewPrepPage,
   '/search': SearchPage,
   '/chat-listeners': ChatListenersPage,
   '/faq': FaqPage,
   '/cost-optimization': CostOptimizationPage,
+  '/production-config': ProductionConfigPage,
   '/deployment': DeploymentPage,
   '/integrations': IntegrationsPage,
   '/examples': ExamplesPage,
